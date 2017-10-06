@@ -10,7 +10,7 @@
       2. [获取数据结构的子集](/cookbook/Basics/R-基础-获取数据结构的子集.md)
       3. [创造填满值的向量](/cookbook/Basics/R-基础-创建填满值的向量.md)
       4. [变量信息](/cookbook/Basics/R-基础-获取变量信息.md)
-      5. [NULL, NA, NaN的处理](/cookbook/Basics/R-基础-NULL, NA, NaN的处理.md)
+      5. [NULL, NA, NaN的处理](/cookbook/Basics/R-基础-NULL-NA-NaN的处理.md)
 2. **数值**
    1. 生成随机数
    2. 生成可重复的随机序列
