@@ -31,13 +31,13 @@
    5. [将分析结果写入文件](/cookbook/Data_input_and_output/Data-input-and-output-5-Writing-text-and-output-from-analyses-to-a-file.md)
 6. **数据操作**
    1. 通用
-      1. 排序
-      2. 随机化顺序
-      3. 转换向量类型——数值向量，字符串向量和因子向量
-      4. 寻找和移除重复记录
-      5. 比较带NA值的向量或因子
-      6. 重编码数据
-      7. 映射向量值——将向量中所有值为x的实例改为值y
+      1. [排序](/cookbook/Manipulating_data/Manipulating-Data-1-Sorting.md)
+      2. [随机化顺序](/cookbook/Manipulating_data/Manipulating-Data-2-Randomizing-order.md)
+      3. [转换向量类型——数值向量，字符串向量和因子向量](/cookbook/Manipulating_data/Manipulating-Data-3-Converting-between-vector-types-Numeric-vectors-Character-vectors-and-Factors.md)
+      4. [寻找和移除重复记录](/cookbook/Manipulating_data/Manipulating-Data-4-Comparing-vectors-or-factors-with-NA.md)
+      5. [比较带NA值的向量或因子](/cookbook/Manipulating_data/Manipulating-Data-5-Finding-and-removing-duplicate-records.md)
+      6. [重编码数据](/cookbook/Manipulating_data/Manipulating-Data-6-Recoding-data.md)
+      7. [映射向量值——将向量中所有值为x的实例改为值y]
    2. 因子
       1. 重命名因子水平
       2. 重计算因子水平
