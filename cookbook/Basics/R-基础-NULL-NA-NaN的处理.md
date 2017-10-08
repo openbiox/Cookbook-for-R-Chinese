@@ -1,15 +1,4 @@
----
-title: "Basics-R中NULL, NA, NaN的处理"
-date: 2017-09-05
-status: publish
-categories: 
-- R
-- R-Cookbook
-tags:
-- R
-- variables
----
-
+# NULL-NA-NaN的处理
 
 
 ## 问题
