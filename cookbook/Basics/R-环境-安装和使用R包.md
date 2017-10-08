@@ -1,24 +1,13 @@
----
-title: "安装和使用R包"
-date: 2017-09-01
-status: publish
-output: html_notebook
-categories: 
-- R
-- R-Cookbook
-tags:
-- R
-- Packages
----
+# 安装和使用R包
  
  
-# 问题
+## 问题
  
 你想要安装和使用一个R包。
  
 <!-- more -->
  
-# 方案
+## 方案
  
 如果你正在使用支持R的图形界面软件，应该存在通过菜单栏方式安装R包的选项（比如，常用的Rstudio中，可以点击菜单栏Tools中的Install Packages进行R包的安装）。
  
@@ -46,7 +35,7 @@ update.packages()
  
 原文链接：<http://www.cookbook-r.com/Basics/Installing_and_using_packages/>
  
-# 其他
+## 其他
  
 ***
 导入包也可以使用`require()`函数。
