@@ -1,16 +1,4 @@
----
-title: "Basics-数据结构的索引"
-date: 2017-09-07
-status: publish
-categories: 
-- R
-- R-Cookbook
-tags:
-- R
-- Basics
-- Index
----
-
+# 数据结构的索引
 
 
 ## 问题
