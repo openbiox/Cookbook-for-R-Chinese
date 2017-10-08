@@ -1,15 +1,4 @@
----
-title: "Basics-R中的变量"
-date: 2017-09-02
-status: publish
-output: html_notebook
-categories: 
-- R
-- R-Cookbook
-tags:
-- R
-- variables
----
+# 获取变量信息
 
 ## 问题
 
