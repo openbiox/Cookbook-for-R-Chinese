@@ -24,7 +24,7 @@
    1. 通过字符串创建公式
    2. 从公式中提取组分
 5. **数据输入和输出**
-   1. [从文件中载入数据](/Cookbook-for-R-Chinese\cookbook\Data_input_and_output/Data input and output-1. Loading data from a file.md)
+   1. [从文件中载入数据](/Cookbook-for-R-Chinese/cookbook/Data_input_and_output/Data input and output-1. Loading data from a file.md)
    2. 从键盘和剪贴板载入和保存数据
    3. 运行脚本
    4. 将数据写入文件
