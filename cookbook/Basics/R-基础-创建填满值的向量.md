@@ -1,23 +1,12 @@
----
-title: "Basics-创造填满值的向量"
-date: 2017-09-03
-status: publish
-output: html_notebook
-categories: 
-- R
-- R-Cookbook
-tags:
-- R
-- vector
----
+# 创建填满值的向量
  
-# 问题
+## 问题
  
 你想要创建一个填满值的列表。
  
 <!-- more -->
  
-# 方案
+## 方案
  
 ```R
 rep(1, 50)
