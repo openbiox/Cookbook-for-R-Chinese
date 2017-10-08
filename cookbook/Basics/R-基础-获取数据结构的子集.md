@@ -1,16 +1,4 @@
----
-title: "Basics-获取数据结构的子集"
-date: 2017-09-07
-status: publish
-categories: 
-- R
-- R-Cookbook
-tags:
-- R
-- subset
----
-
-
+# 获取数据结构的子集
 
 
 ## 问题
