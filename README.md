@@ -1,5 +1,5 @@
-# Cookbook-for-R-Chinese
-更新日期：2017-10-02
+# Cookbook for R Chinese
+更新日期：2017-10-31
 
 ## 缘起
 
