@@ -64,11 +64,11 @@
    1. 通用
       1. [**排序**](http://www.jianshu.com/p/e2055007b767)
       2. [**随机化顺序**](http://www.jianshu.com/p/5c48351d0f20)
-      3. [转换向量类型——数值向量，字符串向量和因子向量](http://www.jianshu.com/p/8add5dc6d9ae)
+      3. [**转换向量类型——数值向量，字符串向量和因子向量**](http://www.jianshu.com/p/8add5dc6d9ae)
       4. [**寻找和移除重复记录**](http://www.jianshu.com/p/82ed2e4dac58)
       5. [**比较带NA值的向量或因子**](http://www.jianshu.com/p/48488400dcaf)
       6. [**重编码数据**](http://www.jianshu.com/p/949e31708f6b)
-      7. [映射向量值——将向量中所有值为x的实例改为值y](http://www.jianshu.com/p/9bbf71e524b5)
+      7. [**映射向量值——将向量中所有值为x的实例改为值y**](http://www.jianshu.com/p/9bbf71e524b5)
    2. 因子
       1. [**重命名因子水平**](http://www.jianshu.com/p/fbbdb180b39e)
       2. 重计算因子水平
