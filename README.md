@@ -64,71 +64,71 @@
    1. 通用
       1. [**排序**](http://www.jianshu.com/p/e2055007b767)
       2. [**随机化顺序**](http://www.jianshu.com/p/5c48351d0f20)
-      3. [**转换向量类型——数值向量，字符串向量和因子向量**](http://www.jianshu.com/p/8add5dc6d9ae)
-      4. [**寻找和移除重复记录**](http://www.jianshu.com/p/82ed2e4dac58)
-      5. [**比较带NA值的向量或因子**](http://www.jianshu.com/p/48488400dcaf)
-      6. [**重编码数据**](http://www.jianshu.com/p/949e31708f6b)
-      7. [**映射向量值——将向量中所有值为x的实例改为值y**](http://www.jianshu.com/p/9bbf71e524b5)
-   2. 因子
-      1. [**重命名因子水平**](http://www.jianshu.com/p/fbbdb180b39e)
-      2. 重计算因子水平
-      3. 改变因子水平的次序
-   3. 数据框
-      1. 重命令数据框的列
-      2. 添加和移除数据框的列
-      3. 对数据框的列重新排序
-      4. 融合数据框
-      5. 比较数据框——在多个数据框中搜索重复或者唯一行
-   4. 重新结构化数据
-      1. 长格式和宽格式数据转换
-      2. 归纳总结数据——计算数据框一或多个变量的均值、计数、标准差、标准误和置信区间
-      3. 数据框和列联表转换
-   5. 序列（连续）数据
-      1. 计算移动平均数
-      2. 窗口平滑
-      3. 寻找唯一值序列
-      4. 用最后的非NA值填充NA值
-7. [统计分析](http://www.cookbook-r.com/Statistical_analysis)
-   1. 回归和相关
-   2. t检验
-   3. 频数检验—— Chi-square, Fisher’s exact, exact Binomial, McNemar’s test
-   4. ANOVA
-   5. 逻辑回归
-   6. 变量同质性——Levene’s, Bartlett’s, Fligner-Killeen test
-   7. 评分人信度——Cohen’s Kappa, weighted Kappa, Fleiss’s Kappa, Conger’s Kappa, intraclass correlation coefficient
-8. [绘图](http://www.cookbook-r.com/Graphs)
-   1. 用ggplot2绘图
-      1. 直方图和线图
-      2. [**绘制均值和误差棒**](http://www.jianshu.com/p/003138ac593b)
-      3. 绘制分布——Histograms, density curves, boxplots
-      4. 散点图
-      5. 题目
-      6. 坐标轴——控制坐标轴文字、标签和网格线
-      7. 图例
-      8. 线条
-      9. 分面
-      10. 多图
-      11. 颜色
-   2. 图形混杂
-      1. 输出到文件——PDF, PNG, TIFF, SVG
-      2. 形状和线形
-      3. 字体
-      4. 抗混淆位图输出
-   3. 用标准绘图函数绘制图形
-      1. 直方图和密度图
-      2. 散点图
-      3. 箱线图
-      4. Q-Q图
-   4. 其他有趣图形
-      1. 相关矩阵
-   5. 有用链接
-      1. [ggplot2在线文档](http://docs.ggplot2.org/current/)
-9. [脚本和函数](http://www.cookbook-r.com/Scripts_and_functions)
-   1. 创建和运行一个脚本
-   2. 调试脚本或函数
-   3. 测量运行时间
-   4. 获取一个包的函数和对象列表
-10. [实验工具](http://www.cookbook-r.com/Tools_for_experiments)
+      7. [**转换向量类型——数值向量，字符串向量和因子向量**](http://www.jianshu.com/p/8add5dc6d9ae)
+      8. [**寻找和移除重复记录**](http://www.jianshu.com/p/82ed2e4dac58)
+      9. [**比较带NA值的向量或因子**](http://www.jianshu.com/p/48488400dcaf)
+      10. [**重编码数据**](http://www.jianshu.com/p/949e31708f6b)
+      11. [**映射向量值——将向量中所有值为x的实例改为值y**](http://www.jianshu.com/p/9bbf71e524b5)
+   12. 因子
+       1. [**重命名因子水平**](http://www.jianshu.com/p/fbbdb180b39e)
+       2. [**重计算因子水平**](http://www.jianshu.com/p/2a92f8e3af2d)
+       3. [**改变因子水平的次序**](http://www.jianshu.com/p/87ae057ae557)
+   13. 数据框
+       1. 重命令数据框的列
+       2. 添加和移除数据框的列
+       3. 对数据框的列重新排序
+       4. 融合数据框
+       5. 比较数据框——在多个数据框中搜索重复或者唯一行
+   14. 重新结构化数据
+       1. [**长格式和宽格式数据转换**](http://www.jianshu.com/p/4c73f3950cdb)
+       2. 归纳总结数据——计算数据框一或多个变量的均值、计数、标准差、标准误和置信区间
+       3. 数据框和列联表转换
+   15. 序列（连续）数据
+       1. 计算移动平均数
+       2. 窗口平滑
+       3. 寻找唯一值序列
+       4. 用最后的非NA值填充NA值
+16. [统计分析](http://www.cookbook-r.com/Statistical_analysis)
+    1. 回归和相关
+    2. t检验
+    3. 频数检验—— Chi-square, Fisher’s exact, exact Binomial, McNemar’s test
+    4. ANOVA
+    5. 逻辑回归
+    6. 变量同质性——Levene’s, Bartlett’s, Fligner-Killeen test
+    7. 评分人信度——Cohen’s Kappa, weighted Kappa, Fleiss’s Kappa, Conger’s Kappa, intraclass correlation coefficient
+17. [绘图](http://www.cookbook-r.com/Graphs)
+    1. 用ggplot2绘图
+       1. 直方图和线图
+       2. [**绘制均值和误差棒**](http://www.jianshu.com/p/003138ac593b)
+       3. 绘制分布——Histograms, density curves, boxplots
+       4. 散点图
+       5. 题目
+       6. 坐标轴——控制坐标轴文字、标签和网格线
+       7. 图例
+       8. 线条
+       9. 分面
+       10. 多图
+       11. 颜色
+    2. 图形混杂
+       1. 输出到文件——PDF, PNG, TIFF, SVG
+       2. 形状和线形
+       3. 字体
+       4. 抗混淆位图输出
+    3. 用标准绘图函数绘制图形
+       1. 直方图和密度图
+       2. 散点图
+       3. 箱线图
+       4. Q-Q图
+    4. 其他有趣图形
+       1. 相关矩阵
+    5. 有用链接
+       1. [ggplot2在线文档](http://docs.ggplot2.org/current/)
+18. [脚本和函数](http://www.cookbook-r.com/Scripts_and_functions)
+    1. 创建和运行一个脚本
+    2. 调试脚本或函数
+    3. 测量运行时间
+    4. 获取一个包的函数和对象列表
+19. [实验工具](http://www.cookbook-r.com/Tools_for_experiments)
     1. [**生成拉丁方（counterbalanced orders）**](http://www.jianshu.com/p/13b41738e1e5)
 
 **注意**：一级章节提供英文链接，翻译中文文章点击具体的文章标题（一般加粗并提供跳转链接表示已翻译）。
