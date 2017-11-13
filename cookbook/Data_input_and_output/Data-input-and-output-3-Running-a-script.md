@@ -1,4 +1,4 @@
-# Data input and output-运行R脚本
+# 运行R脚本
 
 ## 问题
 
