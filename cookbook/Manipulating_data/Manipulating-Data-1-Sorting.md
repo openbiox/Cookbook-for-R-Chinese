@@ -1,4 +1,4 @@
-# Manipulating Data-R中的排序问题
+# R中的排序问题
 
 ## 问题
 
