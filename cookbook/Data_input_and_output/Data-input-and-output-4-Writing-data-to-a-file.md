@@ -1,4 +1,4 @@
-# Data input and output-用R把数据写入文件
+# 用R把数据写入文件
 
 ## 问题
 
