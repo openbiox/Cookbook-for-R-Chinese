@@ -1,4 +1,4 @@
-# Manipulating Data-用R生成随机的顺序
+# 用R生成随机的顺序
 
 ## 问题
 
