@@ -1,4 +1,4 @@
-# Data input and output-R载入文件中的数据
+# R载入文件中的数据
 
 ## 问题
 
