@@ -12,11 +12,11 @@
       4. [变量信息](/cookbook/Basics/R-基础-获取变量信息.md)
       5. [NULL, NA, NaN的处理](/cookbook/Basics/R-基础-NULL-NA-NaN的处理.md)
 2. **数值**
-   1. 生成随机数
-   2. 生成可重复的随机序列
-   3. 保存随机数生成器的状态
-   4. 对数值取整
-   5. 比较浮点数
+   1. [生成随机数](/cookbook/Numbers/生成随机数.md)
+   2. [生成可重复的随机序列](/cookbook/Numbers/生成可重复的随机序列.md)
+   3. [保存随机数生成器的状态](/cookbook/Numbers/保存随机数生成器的状态.md)
+   4. [对数值取整](/cookbook/Numbers/对数值取整.md)
+   5. [比较浮点数](/cookbook/Numbers/比较浮点数.md)
 3. **字符串**
    1. 使用grep,sub,gsub进行搜索和替换
    2. 通过变量创建字符串
