@@ -129,8 +129,8 @@
    3. 测量运行时间
    4. 获取一个包的函数和对象列表
 10. [实验工具](http://www.cookbook-r.com/Tools_for_experiments)
-  1. [**生成拉丁方（counterbalanced orders）**](http://www.jianshu.com/p/13b41738e1e5)
-  2. 待补充
+   1. [**生成拉丁方（counterbalanced orders）**](http://www.jianshu.com/p/13b41738e1e5)
+   2. 待补充
 
 **注意**：一级章节提供英文链接，翻译中文文章点击具体的文章标题（一般加粗并提供跳转链接表示已翻译）。
 
