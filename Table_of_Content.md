@@ -19,10 +19,10 @@
    5. [比较浮点数](/cookbook/Numbers/比较浮点数.md)
 3. **字符串**
    1. 使用grep,sub,gsub进行搜索和替换
-   2. 通过变量创建字符串
+   2. [通过变量创建字符串](/cookbook/Strings/通过变量创建字符串.md)
 4. **公式**
-   1. 通过字符串创建公式
-   2. 从公式中提取组分
+   1. [通过字符串创建公式](/cookbook/Formulas/通过字符串创建公式.md)
+   2. [从公式中提取组分](/cookbook/Formulas/从公式中提取组分.md)
 5. **数据输入和输出**
    1. [从文件中载入数据](/cookbook/Data_input_and_output/Data-input-and-output-1-Loading-data-from-a-file.md)
    2. [从键盘和剪贴板载入和保存数据](/cookbook/Data_input_and_output/Data-input-and-output-2-Loading-and-storing-data-with-the-keyboard-and-clipboard.md)
@@ -37,11 +37,11 @@
       4. [寻找和移除重复记录](/cookbook/Manipulating_data/Manipulating-Data-4-Comparing-vectors-or-factors-with-NA.md)
       5. [比较带NA值的向量或因子](/cookbook/Manipulating_data/Manipulating-Data-5-Finding-and-removing-duplicate-records.md)
       6. [重编码数据](/cookbook/Manipulating_data/Manipulating-Data-6-Recoding-data.md)
-      7. [映射向量值——将向量中所有值为x的实例改为值y]
+      7. [映射向量值——将向量中所有值为x的实例改为值y](/cookbook/Manipulating_data/通用-映射向量值-将向量中所有值为x的实例改为值y.md)
    2. 因子
-      1. 重命名因子水平
-      2. 重计算因子水平
-      3. 改变因子水平的次序
+      1. [重命名因子水平](/cookbook/Manipulating_data/因子-重命名因子水平.md)
+      2. [重计算因子水平](/cookbook/Manipulating_data/因子-重计算因子水平.md)
+      3. [改变因子水平的次序](/cookbook/Manipulating_data/因子-重计算因子水平.md)
    3. 数据框
       1. 重命令数据框的列
       2. 添加和移除数据框的列
@@ -68,7 +68,7 @@
 8. **绘图**
    1. 用ggplot2绘图
       1. 直方图和线图
-      2. 绘制均值和误差棒
+      2. [绘制均值和误差棒](/cookbook/Graphs/ggplot-绘制均值和误差棒.md)
       3. 绘制分布——Histograms, density curves, boxplots
       4. 散点图
       5. 题目
