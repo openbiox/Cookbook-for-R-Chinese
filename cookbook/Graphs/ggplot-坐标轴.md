@@ -156,12 +156,12 @@ bp + theme(axis.ticks = element_blank(), axis.text.y = element_blank())
 
 #### 轴转log、sqrt等
 
-By default, the axes are linearly scaled. It is possible to transform the axes with log, power, roots, and so on.
+默认轴是线性坐标，我们也可以将它转换为log、幂、根等等。
 
-There are two ways of transforming an axis. One is to use a *scale* transform, and the other is to use a *coordinate* transform. With a scale transform, the data is transformed before properties such as breaks (the tick locations) and range of the axis are decided. With a coordinate transform, the transformation happens *after* the breaks and scale range are decided. This results in different appearances, as shown below.
+有两种办法可以转换一个轴，一是使用*scale*进行转换，另外是使用*coordinate*进行转换。使用前者需要在先弄好刻度和轴的范围之前转换，而使用后者则相反，需要在弄好刻度和轴范围之后转换。这将产生不太一样的显示效果，如下所示。
 
-```
-# Create some noisy exponentially-distributed data
+```r
+# 创建指数分布数据
 set.seed(201)
 n <- 100
 dat <- data.frame(
@@ -169,23 +169,22 @@ dat <- data.frame(
     yval = 2*2^((1:n+rnorm(n,sd=5))/20)
 )
 
-# A scatterplot with regular (linear) axis scaling
+# 创建常规的散点图
 sp <- ggplot(dat, aes(xval, yval)) + geom_point()
 sp
 
-# log2 scaling of the y axis (with visually-equal spacing)
-library(scales)     # Need the scales package
+# log2比例化（间隔相等）
+library(scales)     # 需要scales包
 sp + scale_y_continuous(trans=log2_trans())
 
-# log2 coordinate transformation (with visually-diminishing spacing)
+# log2坐标转换，空间间隔不同
 sp + coord_trans(y="log2")
 ```
 
 ![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-3.png)
 
-With a scale transformation, you can also set the axis tick marks to show exponents.
-
-```
+在标度转换中，我们还可以指定刻度值，让它们显示指数。
+```r
 sp + scale_y_continuous(trans = log2_trans(),
                         breaks = trans_breaks("log2", function(x) 2^x),
                         labels = trans_format("log2", math_format(2^.x)))
@@ -193,11 +192,11 @@ sp + scale_y_continuous(trans = log2_trans(),
 
 ![plot of chunk unnamed-chunk-13](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-13-1.png)
 
-Many transformations are available. See `?trans_new` for a full list. If the transformation you need isn’t on the list, it is possible to write your own transformation function.
+可以使用非常多的转换，参见 `?trans_new` 查看所有可用转换的列表。如果你所需要的转换不在该列表上，可以自己写一个转换函数。
 
-A couple scale transformations have convenience functions: `scale_y_log10` and `scale_y_sqrt` (with corresponding versions for x).
+有一些非常便捷的函数：`scale_y_log10`和`scale_y_sqrt` （有对应的x版本）。
 
-```
+```r
 set.seed(205)
 n <- 100
 dat10 <- data.frame(
@@ -217,12 +216,12 @@ sp10 + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
 
 ![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-2.png)
 
-#### Fixed ratio between x and y axes
+#### x与y轴固定的比例
 
-It is possible to set the scaling of the axes to an equal ratio, with one visual unit being representing the same numeric unit on both axes. It is also possible to set them to ratios other than 1:1.
+设置x与y轴比例宽度也是可以的。
 
-```
-# Data where x ranges from 0-10, y ranges from 0-30
+```r
+# x范围0-10, y范围0-30
 set.seed(202)
 dat <- data.frame(
     xval = runif(40,0,10),
@@ -230,34 +229,34 @@ dat <- data.frame(
 )
 sp <- ggplot(dat, aes(xval, yval)) + geom_point()
 
-# Force equal scaling
+# 强制比例相等
 sp + coord_fixed()
 
-# Equal scaling, with each 1 on the x axis the same length as y on x axis
+# 相等的标度变化，让x的1个单位等同y的3个单位
 sp + coord_fixed(ratio=1/3)
 ```
 
 ![plot of chunk unnamed-chunk-15](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-15-1.png)![plot of chunk unnamed-chunk-15](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-15-2.png)
 
-### Axis labels and text formatting
+### 轴标签和文字格式化
 
-To set and hide the axis labels:
+设置和隐藏轴标签：
 
-```
-bp + theme(axis.title.x = element_blank()) +   # Remove x-axis label
-     ylab("Weight (Kg)")                       # Set y-axis label
+```r
+bp + theme(axis.title.x = element_blank()) +   # 移除x轴标签
+     ylab("Weight (Kg)")                       # 设置y轴标签
 
-# Also possible to set the axis label with the scale
-# Note that vertical space is still reserved for x's label
+# 也可以通过标度设置
+# 注意这里x轴标签的空间仍然保留
 bp + scale_x_discrete(name="") +
      scale_y_continuous(name="Weight (Kg)")
 ```
 
 ![plot of chunk unnamed-chunk-16](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-16-1.png)![plot of chunk unnamed-chunk-16](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-16-2.png)
 
-To change the fonts, and rotate tick mark labels:
+改变字体、颜色、旋转刻度标签：
 
-```
+```r
 # Change font options:
 # X-axis label: bold, red, and 20 points
 # X-axis tick marks: rotate 90 degrees CCW, move to the left a bit (using vjust,
@@ -268,25 +267,25 @@ bp + theme(axis.title.x = element_text(face="bold", colour="#990000", size=20),
 
 ![plot of chunk unnamed-chunk-17](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-17-1.png)
 
-### Tick mark label text formatters
+### 刻度标签
 
-You may want to display your values as percents, or dollars, or in scientific notation. To do this you can use a **formatter**, which is a function that changes the text:
+你可能想将值显示为百分比、或美元、或科学计数法。这里可以使用**格式器**，它是一个可以改变文本的函数。
 
-```
-# Label formatters
-library(scales)   # Need the scales package
+```r
+# 标签格式器
+library(scales)   # 需要scales包
 bp + scale_y_continuous(labels=percent) +
-     scale_x_discrete(labels=abbreviate)  # In this particular case, it has no effect
+     scale_x_discrete(labels=abbreviate)  # 在这个例子中它没作用
 ```
 
 ![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-18-1.png)
 
-Other useful formatters for continuous scales include `comma`, `percent`, `dollar`, and `scientific`. For discrete scales, `abbreviate` will remove vowels and spaces and shorten to four characters. For dates, use `date_format`.
+连续标度格式器有`comma`、`percent`、`dollar`以及`scientific`。离散标度格式器有`abbreviate`、`date_format`等。
 
-Sometimes you may need to create your own formatting function. This one will display numeric minutes in HH:MM:SS format.
+有时你需要自己创建格式化函数。下面的函数可以显示时间格式为HH:MM:SS。
 
-```
-# Self-defined formatting function for times.
+```r
+# 自定义时间格式化函数
 timeHMS_formatter <- function(x) {
     h <- floor(x/60)
     m <- floor(x %% 60)
@@ -301,29 +300,29 @@ bp + scale_y_continuous(label=timeHMS_formatter)
 
 ![plot of chunk unnamed-chunk-19](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-19-1.png)
 
-### Hiding gridlines
+### 隐藏网格线
 
-To hide all gridlines, both vertical and horizontal:
+隐藏网格线：
 
-```
-# Hide all the gridlines
+```r
+# 隐藏所有网格线
 bp + theme(panel.grid.minor=element_blank(),
            panel.grid.major=element_blank())
 
-# Hide just the minor gridlines
+# 仅隐藏次级网格线
 bp + theme(panel.grid.minor=element_blank())
 ```
 
 ![plot of chunk unnamed-chunk-20](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-20-1.png)![plot of chunk unnamed-chunk-20](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-20-2.png)
 
-It’s also possible to hide just the vertical or horizontal gridlines:
+也可以仅隐藏水平或垂直网格线：
 
-```
-# Hide all the vertical gridlines
+```r
+# 隐藏所有垂直网格线
 bp + theme(panel.grid.minor.x=element_blank(),
            panel.grid.major.x=element_blank())
 
-# Hide all the horizontal gridlines
+# 隐藏所有水平网格线
 bp + theme(panel.grid.minor.y=element_blank(),
            panel.grid.major.y=element_blank())
 ```
