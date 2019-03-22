@@ -1,0 +1,577 @@
+# 基础
+
+## 安装和使用R包
+ 
+ 
+### 问题
+ 
+你想要安装和使用一个R包。
+ 
+### 方案
+ 
+如果你正在使用支持R的图形界面软件，应该存在通过菜单栏方式安装R包的选项（比如，常用的Rstudio中，可以点击菜单栏Tools中的Install Packages进行R包的安装）。
+ 
+这里主要介绍如何用命令行来安装R包。
+ 
+```
+install.packages("reshape2") # reshap2为包名
+```
+ 
+在一个新R线程中使用该包之前，你必须先导入它。
+ 
+```
+library(reshape2)
+```
+如果你在一个脚本中使用该包，把这一行输入脚本中。
+ 
+如果想要更新包，使用
+```
+update.packages()
+```
+ 
+如果你在Linux系统上使用R，管理员可能已经在系统上安装了一些R包，你将不能以上述方式对R包更新（因为你没有权限）。
+ 
+ 
+### 其他
+ 
+导入包也可以使用`require()`函数。
+
+常见的包安装命令
+
+| 命令                 | 描述                           |      |
+| ------------------ | ---------------------------- | ---- |
+| installed.packages | 返回一个矩阵，包含所有已安装的包信息           |      |
+| available.packages | 返回一个矩阵，包含资源库上所有可用的R包         |      |
+| old.packages       | 返回一个矩阵，显示所有已安装的包中具有新版本的包     |      |
+| new.packages       | 返回一个矩阵，显示所有可从资源库上获得而当前尚未安装的包 |      |
+| download.packages  | 下载一系列R包到本地目录                 |      |
+| install.packages   | 从资源库下载安装一系列R包                |      |
+| remove.packages    | 移除一系列已安装的R包                  |      |
+| update.packages    | 将已经安装的R包更新到最新版本              |      |
+| setRepositories    | 设定当前的R包的资源库列表                |      |
+
+
+**通过命令行安装R包**
+
+```shell
+R CMD INSTALL aplpack_1.1.1.tgz # 安装aplpack包
+```
+
+**从其他资源库安装R包**
+
+`devtools`库提供了从其他流行的`Git`资源库或其他URL上安装R包的工具。
+
+比如我们想安装开发版本的`ggplot2`包，可以使用下面命令：
+
+```R
+# 如果没有安装devtools，需要先安装
+install.packages("devtools")
+
+library(devtools)
+install_github("ggplot2")
+```
+
+## 数据结构的索引
+
+
+### 问题
+
+你想获得数据结构的一部分。
+
+
+### 解决
+
+可以使用数字索引或通过使用适当长度的布尔向量来提取向量，矩阵或数据框中的元素。
+以下这些例子中有多种方式来解决这一问题。
+
+#### 用数字和名称进行索引
+
+对于向量
+
+```
+# 样本向量
+v <- c(1,4,4,3,2,2,3)
+
+v[c(2,3,4)]
+#> [1] 4 4 3
+v[2:4]
+#> [1] 4 4 3
+
+v[c(2,4,3)]
+#> [1] 4 3 4
+
+```
+
+对于数据框
+
+```
+# 创建样本数据框
+data <- read.table(header=T, text='
+ subject sex size
+       1   M    7
+       2   F    6
+       3   F    9
+       4   M   11
+ ')
+
+# 获取位于第一行第三列的元素
+data[1,3]
+#> [1] 7
+data[1,"size"]
+#> [1] 7
+
+
+# 获取第1行和第2行所有列上的元素
+data[1:2, ]   
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+data[c(1,2), ]
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+
+
+# 获取一，二两行第二列上的元素
+data[1:2, 2]
+#> [1] M F
+#> Levels: F M
+data[c(1,2), 2]
+#> [1] M F
+#> Levels: F M
+
+# 获取行1和2，名为“sex”和 "size"的列
+data[1:2, c("sex","size")]
+#>   sex size
+#> 1   M    7
+#> 2   F    6
+data[c(1,2), c(2,3)]
+#>   sex size
+#> 1   M    7
+#> 2   F    6
+
+```
+
+#### 使用布尔向量进行索引
+
+向量V同上
+
+```
+v > 2
+#> [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+
+v[v>2]
+#> [1] 4 4 3 3
+v[ c(F,T,T,T,F,F,T)]
+#> [1] 4 4 3 3
+
+```
+
+数据框同上
+
+```
+# 一个布尔向量 
+data$subject < 3
+#> [1]  TRUE  TRUE FALSE FALSE
+    
+data[data$subject < 3, ]
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+data[c(TRUE,TRUE,FALSE,FALSE), ]
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+
+# 也可以获取TRUE的数字索引
+which(data$subject < 3)
+#> [1] 1 2
+
+```
+
+#### 负索引
+
+与其他一些编程语言不同，当您在R中使用负数进行索引时，并不意味着从后向前索引。 相反，它意味着按照通常的从前往后顺序删除索引中的元素。
+
+```
+# 还是这个向量
+v
+#> [1] 1 4 4 3 2 2 3
+
+# 删除第一个
+v[-1]
+#> [1] 4 4 3 2 2 3
+
+#删除前三个
+v[-1:-3]
+#> [1] 3 2 2 3
+
+# 只删除最后一个
+v[-length(v)]
+#> [1] 1 4 4 3 2 2
+
+```
+
+#### 注意
+
+也可参考[获取数据结构的子集](http://www.jianshu.com/p/89485084c62c)
+
+## 获取数据结构的子集
+
+
+### 问题
+
+你想得到一个由向量，矩阵或数据框里元素组成的子集。
+
+
+### 方案
+
+为了基于一些条件准则获得子集，可以使用`subset()`函数或者是方括号索引。 在这里的例子中，显示了两种方式。
+
+```
+v <- c(1,4,4,3,2,2,3)
+
+subset(v, v<3)
+#> [1] 1 2 2
+v[v<3]
+#> [1] 1 2 2
+
+
+# 另一个向量
+t <- c("small", "small", "large", "medium")
+
+# 删除 "small" 这一项
+subset(t, t!="small")
+#> [1] "large"  "medium"
+t[t!="small"]
+#> [1] "large"  "medium"
+
+```
+
+这两种方法之间的一个重要区别在于方括号索引可以为元素赋值，而subset（）不可以。
+
+```
+v[v<3] <- 9
+
+subset(v, v<3) <- 9
+#> Error in subset(v, v < 3) <- 9: could not find function "subset<-"
+
+```
+
+### 数据框
+
+```
+# 样本数据框
+data <- read.table(header=T, text='
+ subject sex size
+       1   M    7
+       2   F    6
+       3   F    9
+       4   M   11
+ ')
+
+
+subset(data, subject < 3)
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+data[data$subject < 3, ]
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+
+
+# 特定行和列的子集
+subset(data, subject < 3, select = -subject)
+#>   sex size
+#> 1   M    7
+#> 2   F    6
+subset(data, subject < 3, select = c(sex,size))
+#>   sex size
+#> 1   M    7
+#> 2   F    6
+subset(data, subject < 3, select = sex:size)
+#>   sex size
+#> 1   M    7
+#> 2   F    6
+data[data$subject < 3, c("sex","size")]
+#>   sex size
+#> 1   M    7
+#> 2   F    6
+
+
+# 逻辑AND的两个条件
+subset(data, subject < 3  &  sex=="M")
+#>   subject sex size
+#> 1       1   M    7
+data[data$subject < 3  &  data$sex=="M", ]
+#>   subject sex size
+#> 1       1   M    7
+
+
+# 逻辑或的两个条件
+subset(data, subject < 3  |  sex=="M")
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+#> 4       4   M   11
+data[data$subject < 3  |  data$sex=="M", ]
+#>   subject sex size
+#> 1       1   M    7
+#> 2       2   F    6
+#> 4       4   M   11
+
+
+# 基于转换数据的条件
+subset(data, log2(size) > 3 )
+#>   subject sex size
+#> 3       3   F    9
+#> 4       4   M   11
+data[log2(data$size) > 3, ]
+#>   subject sex size
+#> 3       3   F    9
+#> 4       4   M   11
+
+
+# 当元素在另一个向量里时的子集
+subset(data, subject %in% c(1,3))
+#>   subject sex size
+#> 1       1   M    7
+#> 3       3   F    9
+data[data$subject %in% c(1,3), ]
+#>   subject sex size
+#> 1       1   M    7
+#> 3       3   F    9
+
+```
+
+#### 注意
+
+也可参考[数据结构索引](http://www.jianshu.com/p/3bb2489f7c6f)。
+
+## 创建填满值的向量
+ 
+### 问题
+ 
+你想要创建一个填满值的列表。
+ 
+ 
+### 方案
+ 
+```R
+rep(1, 50)
+#  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+# [39] 1 1 1 1 1 1 1 1 1 1 1 1
+ 
+rep(F, 20)
+#  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+# [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ 
+ 
+rep(1:5, 4)
+# 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5
+ 
+rep(1:5, each=4)
+# 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5
+ 
+ 
+ 
+# 用在因子变量上
+rep(factor(LETTERS[1:3]), 5)
+# A B C A B C A B C A B C A B C
+# Levels: A B C
+ 
+```
+ 
+## 获取变量信息
+
+### 问题
+
+你想找到关于变量的信息。
+
+
+### 方案
+
+以下为关于样本变量的一些例子
+
+```
+x <- 6
+n <- 1:4
+let <- LETTERS[1:4]
+df <- data.frame(n, let)
+ 
+```
+
+#### 关于存在
+
+```
+# 列出当前所定义的变量
+ls()
+#> [1] "df"       "filename" "let"      "n"        "old_dir"  "x"
+ 
+# 检查名为“x”的变量是否存在
+exists("x")
+#> [1] TRUE
+ 
+# 检查名为“y”的变量是否存在
+exists("y")
+#> [1] FALSE
+ 
+# 删除变量“x”
+rm(x)
+x
+#> Error in eval(expr, envir, enclos): object 'x' not found
+# eval(expr, envir, enclos)错误：找不到对象“x”
+```
+
+#### 关于大小/结构
+
+```
+# 获得关于结构的信息
+str(n)
+#>  int [1:4] 1 2 3 4
+ 
+str(df)
+#> 'data.frame':    4 obs. of  2 variables:
+#>  $ n  : int  1 2 3 4
+#>  $ let: Factor w/ 4 levels "A","B","C","D": 1 2 3 4
+ 
+# 得到一个向量的长度
+length(n)
+#> [1] 4
+ 
+# 可能会得不到我们想要的长度
+length(df)
+#> [1] 2
+ 
+# 行数
+nrow(df)
+#> [1] 4
+ 
+# 列数
+ncol(df)
+#> [1] 2
+ 
+# 得到行数和列数
+dim(df)
+#> [1] 4 2
+ 
+```
+
+## NULL-NA-NaN的处理
+
+
+### 问题
+
+你想正确处理`NULL`、`NA` （Not Available）、`NaN`（Not a Number）。
+
+<!-- more -->
+
+### 方案
+
+你的数据有时将会存在`NULL`、`NA` 、`NaN`。处理这些数据有些不同于”正常”值，并可能需要确定性测试。
+
+以下是这些值相比较的例子：
+
+```
+x <- NULL
+x > 5
+# logical(0)
+
+y <- NA
+y > 5
+# NA
+
+z <- NaN
+z > 5
+# NA
+
+```
+
+如何测试某个变量是否是其中的一个值：
+
+```
+is.null(x)
+# TRUE
+
+is.na(y)
+# TRUE
+
+is.nan(z)
+# TRUE
+
+```
+
+注意，`NULL`不同于其他两个。`NULL`意味着没有值，而`NA`和`NaN`表示有价，尽管也许是不可用的。下面有一个例子区分：
+
+```
+# Is y null?
+is.null(y)
+# FALSE
+
+# Is x NA?
+is.na(x)
+# logical(0)
+# Warning message:
+# In is.na(x) : is.na() applied to non-(list or vector) of type 'NULL'
+
+```
+
+第一个例子，检查`y`是否是`NULL`，结果`y`并不是；第二个例子，试图检查`x`是否是`NA`，但并没有值被检测。
+
+#### 忽视向量汇总函数中的“坏”值
+
+如果你对包含`NA`或`NaN`的向量使用诸如`mean()`或`sum()`之类的函数，结果将返回`NA`和`NaN`，这通常没有任何意义，虽然这样的结果会提醒你有“坏”值的存在。许多函数都有`na.rm`可以将这些值忽略。
+
+```
+vy <- c(1, 2, 3, NA, 5)
+# 1  2  3 NA  5
+mean(vy)
+# NA
+mean(vy, na.rm=TRUE)
+# 2.75
+
+vz <- c(1, 2, 3, NaN, 5)
+# 1   2   3 NaN   5
+sum(vz)
+# NaN
+sum(vz, na.rm=TRUE)
+# 11
+
+# NULL不是问题，因为它不存在
+vx <- c(1, 2, 3, NULL, 5)
+# 1 2 3 5
+sum(vx)
+# 11
+
+```
+
+#### 从向量中移除”坏值“
+
+使用`is.na()`或`is.nan()`的反向函数，可以将这些值移除。
+
+```
+vy
+# 1  2  3 NA  5
+vy[!is.na(vy)]
+# 1  2  3  5
+
+vz
+# 1   2   3 NaN   5
+vz[!is.nan(vz)]
+# 1  2  3  5
+
+```
+
+#### 注意
+
+也有无限值`Inf`和`-Inf`，及其相应的函数`is.finite()`和`is.infinite()`。
+
+见[/Manipulating data/Comparing vectors or factors with NA](http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA)
+
+
+
+
+
+
+
