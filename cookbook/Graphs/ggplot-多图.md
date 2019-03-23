@@ -9,7 +9,7 @@
 首先，构建并保存图像但不需要对它们进行渲染，这些图像的细节并不重要。你只需要将这些图像对象储存为变量。
 
 ```r
-# 以下例子使用的是ggplot2包中自带的 Chickweight数据集
+# 以下例子使用的是 ggplot2 包中自带的 Chickweight 数据集
 #第一幅图像
 p1 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) +
     geom_line() +
