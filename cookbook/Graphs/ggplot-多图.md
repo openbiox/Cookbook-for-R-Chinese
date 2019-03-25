@@ -53,12 +53,12 @@ multiplot(p1, p2, p3, p4, cols=2)
 #
 # 假设 layout 参数是 matrix(c(1,2,3,3), nrow=2, byrow = TRUE),
 # 那么第一幅图像会位于左上方，第二幅图会在右上方，而
-#第三幅图会占据整个下方。
+# 第三幅图会占据整个下方。
 #
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   library(grid)
 
-#从参数 `…`中建立一个列表然后 plotlist
+# 从参数 `…`中建立一个列表然后 plotlist
 plots <- c(list(...), plotlist)
 
 numPlots = length(plots)
