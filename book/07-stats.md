@@ -1,1 +1,198 @@
 # 统计分析
+## 回归和相关分析
+
+### 问题
+
+你想要做线性回归和/或相关分析。
+
+
+
+### 方案
+
+要处理的一些样例数据：
+
+```R
+# 制造一些数据
+# X增加（大的干扰噪声）
+# Z缓慢增加
+# 构建Y，它与X变量负相关，与X*Z变量正相关
+set.seed(955)
+xvar <- 1:20 + rnorm(20,sd=3)
+zvar <- 1:20/4 + rnorm(20,sd=2)
+yvar <- -2*xvar + xvar*zvar/5 + 3 + rnorm(20,sd=4)
+
+# 用制造的变量构建数据框
+dat <- data.frame(x=xvar, y=yvar, z=zvar)
+# 展示头部几行
+head(dat)
+#>           x           y           z
+#> 1 -4.252354   4.5857688  1.89877152
+#> 2  1.702318  -4.9027824 -0.82937359
+#> 3  4.323054  -4.3076433 -1.31283495
+#> 4  1.780628   0.2050367 -0.28479448
+#> 5 11.537348 -29.7670502 -1.27303976
+#> 6  6.672130 -10.1458220 -0.09459239
+
+```
+
+#### 相关
+
+```R
+# 相关系数
+cor(dat$x, dat$y)
+#> [1] -0.7695378
+
+```
+
+#### 相关矩阵（多个变量）
+
+我们也可以对多个配对变量进行相关分析操作，结果是一个矩阵或是数据框。
+
+```R
+# 变量之间的相关矩阵
+cor(dat)
+#>            x            y           z
+#> x  1.0000000 -0.769537849 0.491698938
+#> y -0.7695378  1.000000000 0.004172295
+#> z  0.4916989  0.004172295 1.000000000
+
+
+# Print with only two decimal places
+round(cor(dat), 2)
+#>       x     y    z
+#> x  1.00 -0.77 0.49
+#> y -0.77  1.00 0.00
+#> z  0.49  0.00 1.00
+
+```
+
+
+#### 线性回归
+
+线性回归，当`dat$x`是预测变量时，`dat$y`为响应变量。这可以使用一个数据框的两列，或者是直接使用数值向量。
+
+```R
+# 下面两个命令会显示一样的结果
+fit <- lm(y ~ x, data=dat)  # 使用数据框的x列和y列
+fit <- lm(dat$y ~ dat$x)     # 使用dat$x和dat$y进行拟合
+fit
+#> 
+#> Call:
+#> lm(formula = dat$y ~ dat$x)
+#> 
+#> Coefficients:
+#> (Intercept)        dat$x  
+#>     -0.2278      -1.1829
+
+# 这说明预测 y = -0.2278 - 1.1829*x
+
+
+
+# 获取更详细的信息
+summary(fit)
+#> 
+#> Call:
+#> lm(formula = dat$y ~ dat$x)
+#> 
+#> Residuals:
+#>      Min       1Q   Median       3Q      Max 
+#> -15.8922  -2.5114   0.2866   4.4646   9.3285 
+#> 
+#> Coefficients:
+#>             Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept)  -0.2278     2.6323  -0.087    0.932    
+#> dat$x        -1.1829     0.2314  -5.113 7.28e-05 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 6.506 on 18 degrees of freedom
+#> Multiple R-squared:  0.5922,	Adjusted R-squared:  0.5695 
+#> F-statistic: 26.14 on 1 and 18 DF,  p-value: 7.282e-05
+
+```
+
+#### 多个预测变量的线性回归（多元线性回归）
+
+使用`y`作为线性回归的响应变量，`x`和`z`作为预测变量。
+
+注意下面的公式没有检测`x`与`z`之间的交互效应。
+
+```R
+# 这些都有相同的结果
+fit2 <- lm(y ~ x + z, data=dat)    # 使用数据框的x,y,z列
+fit2 <- lm(dat$y ~ dat$x + dat$z)  # 使用向量
+fit2
+#> 
+#> Call:
+#> lm(formula = dat$y ~ dat$x + dat$z)
+#> 
+#> Coefficients:
+#> (Intercept)        dat$x        dat$z  
+#>      -1.382       -1.564        1.858
+
+
+summary(fit2)
+#> 
+#> Call:
+#> lm(formula = dat$y ~ dat$x + dat$z)
+#> 
+#> Residuals:
+#>    Min     1Q Median     3Q    Max 
+#> -7.974 -3.187 -1.205  3.847  7.524 
+#> 
+#> Coefficients:
+#>             Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept)  -1.3816     1.9878  -0.695  0.49644    
+#> dat$x        -1.5642     0.1984  -7.883 4.46e-07 ***
+#> dat$z         1.8578     0.4753   3.908  0.00113 ** 
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 4.859 on 17 degrees of freedom
+#> Multiple R-squared:  0.7852,	Adjusted R-squared:  0.7599 
+#> F-statistic: 31.07 on 2 and 17 DF,  p-value: 2.1e-06
+
+```
+
+##### 交互效应
+
+如何合适地构建多元线性回归并且检验交互效应非常复杂，这里不作讲述。这里我们仅仅用`x`和`z`变量以及它们之间的交互效应拟合模型。
+
+想要构建`x`与`z`之间的交互效应模型，需要添加`x:z`项。我们也可以使用公式`x*z`来代表`x+z+x:z`。
+
+```R
+# 下面两个公式等效
+fit3 <- lm(y ~ x * z, data=dat) 
+fit3 <- lm(y ~ x + z + x:z, data=dat) 
+fit3
+#> 
+#> Call:
+#> lm(formula = y ~ x + z + x:z, data = dat)
+#> 
+#> Coefficients:
+#> (Intercept)            x            z          x:z  
+#>      2.2820      -2.1311      -0.1068       0.2081
+
+summary(fit3)
+#> 
+#> Call:
+#> lm(formula = y ~ x + z + x:z, data = dat)
+#> 
+#> Residuals:
+#>     Min      1Q  Median      3Q     Max 
+#> -5.3045 -3.5998  0.3926  2.1376  8.3957 
+#> 
+#> Coefficients:
+#>             Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept)  2.28204    2.20064   1.037   0.3152    
+#> x           -2.13110    0.27406  -7.776    8e-07 ***
+#> z           -0.10682    0.84820  -0.126   0.9013    
+#> x:z          0.20814    0.07874   2.643   0.0177 *  
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 4.178 on 16 degrees of freedom
+#> Multiple R-squared:  0.8505,	Adjusted R-squared:  0.8225 
+#> F-statistic: 30.34 on 3 and 16 DF,  p-value: 7.759e-07
+
+```
