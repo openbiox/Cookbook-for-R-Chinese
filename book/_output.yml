@@ -2,16 +2,14 @@ bookdown::gitbook:
   css: css/style.css
   config:
     toc:
-      collapse: none
+      collapse: section
       before: |
-        <li><a href="./">Cook book for R 中文版</a></li>
+        <li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
       after: |
         <li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
-    download: [pdf, epub]
     edit: https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/%s
     sharing:
       github: yes
-      facebook: yes
       twitter: yes
 bookdown::pdf_book:
   includes:
@@ -28,5 +26,3 @@ bookdown::pdf_book:
   toc_unnumbered: no
   toc_appendix: yes
   quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
-bookdown::epub_book:
-  stylesheet: css/style.css

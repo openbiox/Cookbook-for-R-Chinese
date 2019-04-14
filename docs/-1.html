@@ -5,25 +5,24 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>第 6 章 操作数据 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 6 章 操作数据 | Cookbook for R 中文版本">
+  <title>第 10 章 创建错误次序的因子 | Cookbook for R 中文版</title>
+  <meta name="description" content="第 10 章 创建错误次序的因子 | Cookbook for R 中文版本">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="第 6 章 操作数据 | Cookbook for R 中文版" />
+  <meta property="og:title" content="第 10 章 创建错误次序的因子 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="第 6 章 操作数据 | Cookbook for R 中文版本" />
+  <meta property="og:description" content="第 10 章 创建错误次序的因子 | Cookbook for R 中文版本" />
   <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第 6 章 操作数据 | Cookbook for R 中文版" />
+  <meta name="twitter:title" content="第 10 章 创建错误次序的因子 | Cookbook for R 中文版" />
   
-  <meta name="twitter:description" content="第 6 章 操作数据 | Cookbook for R 中文版本" />
+  <meta name="twitter:description" content="第 10 章 创建错误次序的因子 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）">
-<meta name="author" content="王诗翔 等（译）">
+<meta name="author" content="Winston Chang（著）| 王诗翔等（译）">
 
 
 <meta name="date" content="2019-04-14">
@@ -33,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="section-5.html">
-<link rel="next" href="section-7.html">
+<link rel="prev" href="-small-.html">
+<link rel="next" href="section-11.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -102,7 +101,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
+<li><strong><a href="./">Cook book for R 中文版</a></strong></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
@@ -244,213 +243,214 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.10.1" data-path="section-6.html"><a href="section-6.html#-29"><i class="fa fa-check"></i><b>6.10.1</b> 问题</a></li>
 <li class="chapter" data-level="6.10.2" data-path="section-6.html"><a href="section-6.html#-26"><i class="fa fa-check"></i><b>6.10.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.11" data-path="section-6.html"><a href="section-6.html#section-6.11"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a><ul>
-<li class="chapter" data-level="6.11.1" data-path="section-6.html"><a href="section-6.html#-30"><i class="fa fa-check"></i><b>6.11.1</b> 问题</a></li>
-<li class="chapter" data-level="6.11.2" data-path="section-6.html"><a href="section-6.html#-27"><i class="fa fa-check"></i><b>6.11.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.12" data-path="section-6.html"><a href="section-6.html#section-6.12"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a><ul>
-<li class="chapter" data-level="6.12.1" data-path="section-6.html"><a href="section-6.html#-31"><i class="fa fa-check"></i><b>6.12.1</b> 问题</a></li>
-<li class="chapter" data-level="6.12.2" data-path="section-6.html"><a href="section-6.html#-28"><i class="fa fa-check"></i><b>6.12.2</b> 方案</a></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 创建错误次序的因子</a></li>
+<li class="chapter" data-level="8" data-path="-medium-.html"><a href="-medium-.html"><i class="fa fa-check"></i><b>8</b> 使得 medium 排最前面</a></li>
+<li class="chapter" data-level="9" data-path="-small-.html"><a href="-small-.html"><i class="fa fa-check"></i><b>9</b> 使得 small 排最前面</a></li>
+<li class="chapter" data-level="10" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>10</b> 创建错误次序的因子</a><ul>
+<li class="chapter" data-level="10.1" data-path="-1.html"><a href="-1.html"><i class="fa fa-check"></i><b>10.1</b> 重命名数据框的列</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="-1.html"><a href="-1.html#-30"><i class="fa fa-check"></i><b>10.1.1</b> 问题</a></li>
+<li class="chapter" data-level="10.1.2" data-path="section-6.html"><a href="section-6.html#-27"><i class="fa fa-check"></i><b>10.1.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="section-6.html"><a href="section-6.html#section-6.13"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a><ul>
-<li class="chapter" data-level="6.13.1" data-path="section-6.html"><a href="section-6.html#-32"><i class="fa fa-check"></i><b>6.13.1</b> 问题</a></li>
-<li class="chapter" data-level="6.13.2" data-path="section-6.html"><a href="section-6.html#-29"><i class="fa fa-check"></i><b>6.13.2</b> 方案</a></li>
+<li class="chapter" data-level="10.2" data-path="-1.html"><a href="-1.html#section-10.2"><i class="fa fa-check"></i><b>10.2</b> 添加和移除数据框的列</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="-1.html"><a href="-1.html#-31"><i class="fa fa-check"></i><b>10.2.1</b> 问题</a></li>
+<li class="chapter" data-level="10.2.2" data-path="section-6.html"><a href="section-6.html#-28"><i class="fa fa-check"></i><b>10.2.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.14" data-path="section-6.html"><a href="section-6.html#section-6.14"><i class="fa fa-check"></i><b>6.14</b> 融合数据框</a><ul>
-<li class="chapter" data-level="6.14.1" data-path="section-6.html"><a href="section-6.html#-33"><i class="fa fa-check"></i><b>6.14.1</b> 问题</a></li>
-<li class="chapter" data-level="6.14.2" data-path="section-6.html"><a href="section-6.html#-30"><i class="fa fa-check"></i><b>6.14.2</b> 方案</a></li>
+<li class="chapter" data-level="10.3" data-path="-1.html"><a href="-1.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 对数据框的列重新排序</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="-1.html"><a href="-1.html#-32"><i class="fa fa-check"></i><b>10.3.1</b> 问题</a></li>
+<li class="chapter" data-level="10.3.2" data-path="section-6.html"><a href="section-6.html#-29"><i class="fa fa-check"></i><b>10.3.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a><ul>
-<li class="chapter" data-level="6.15.1" data-path="section-6.html"><a href="section-6.html#-34"><i class="fa fa-check"></i><b>6.15.1</b> 问题</a></li>
-<li class="chapter" data-level="6.15.2" data-path="section-6.html"><a href="section-6.html#-31"><i class="fa fa-check"></i><b>6.15.2</b> 方案</a></li>
+<li class="chapter" data-level="10.4" data-path="-1.html"><a href="-1.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 融合数据框</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="-1.html"><a href="-1.html#-33"><i class="fa fa-check"></i><b>10.4.1</b> 问题</a></li>
+<li class="chapter" data-level="10.4.2" data-path="-1.html"><a href="-1.html#-30"><i class="fa fa-check"></i><b>10.4.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a><ul>
-<li class="chapter" data-level="6.16.1" data-path="section-6.html"><a href="section-6.html#-35"><i class="fa fa-check"></i><b>6.16.1</b> 问题</a></li>
-<li class="chapter" data-level="6.16.2" data-path="section-6.html"><a href="section-6.html#-32"><i class="fa fa-check"></i><b>6.16.2</b> 方案</a></li>
-<li class="chapter" data-level="6.16.3" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>6.16.3</b> 另见</a></li>
+<li class="chapter" data-level="10.5" data-path="-1.html"><a href="-1.html#section-10.5"><i class="fa fa-check"></i><b>10.5</b> 比较数据框</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="-1.html"><a href="-1.html#-34"><i class="fa fa-check"></i><b>10.5.1</b> 问题</a></li>
+<li class="chapter" data-level="10.5.2" data-path="-1.html"><a href="-1.html#-31"><i class="fa fa-check"></i><b>10.5.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a><ul>
-<li class="chapter" data-level="6.17.1" data-path="section-6.html"><a href="section-6.html#-36"><i class="fa fa-check"></i><b>6.17.1</b> 问题</a></li>
-<li class="chapter" data-level="6.17.2" data-path="section-6.html"><a href="section-6.html#-33"><i class="fa fa-check"></i><b>6.17.2</b> 方案</a></li>
+<li class="chapter" data-level="10.6" data-path="-1.html"><a href="-1.html#section-10.6"><i class="fa fa-check"></i><b>10.6</b> 重计算数据框所有因子列的水平</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="-1.html"><a href="-1.html#-35"><i class="fa fa-check"></i><b>10.6.1</b> 问题</a></li>
+<li class="chapter" data-level="10.6.2" data-path="-1.html"><a href="-1.html#-32"><i class="fa fa-check"></i><b>10.6.2</b> 方案</a></li>
+<li class="chapter" data-level="10.6.3" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>10.6.3</b> 另见</a></li>
 </ul></li>
-<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 归纳总结数据</a><ul>
-<li class="chapter" data-level="6.18.1" data-path="section-6.html"><a href="section-6.html#-37"><i class="fa fa-check"></i><b>6.18.1</b> 问题</a></li>
-<li class="chapter" data-level="6.18.2" data-path="section-6.html"><a href="section-6.html#-34"><i class="fa fa-check"></i><b>6.18.2</b> 方案</a></li>
+<li class="chapter" data-level="10.7" data-path="-1.html"><a href="-1.html#section-10.7"><i class="fa fa-check"></i><b>10.7</b> 长宽格式数据互换</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="-1.html"><a href="-1.html#-36"><i class="fa fa-check"></i><b>10.7.1</b> 问题</a></li>
+<li class="chapter" data-level="10.7.2" data-path="-1.html"><a href="-1.html#-33"><i class="fa fa-check"></i><b>10.7.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a><ul>
-<li class="chapter" data-level="6.19.1" data-path="section-6.html"><a href="section-6.html#-38"><i class="fa fa-check"></i><b>6.19.1</b> 问题</a></li>
-<li class="chapter" data-level="6.19.2" data-path="section-6.html"><a href="section-6.html#-35"><i class="fa fa-check"></i><b>6.19.2</b> 方案</a></li>
+<li class="chapter" data-level="10.8" data-path="-1.html"><a href="-1.html#section-10.8"><i class="fa fa-check"></i><b>10.8</b> 归纳总结数据</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="-1.html"><a href="-1.html#-37"><i class="fa fa-check"></i><b>10.8.1</b> 问题</a></li>
+<li class="chapter" data-level="10.8.2" data-path="-1.html"><a href="-1.html#-34"><i class="fa fa-check"></i><b>10.8.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a><ul>
-<li class="chapter" data-level="6.20.1" data-path="section-6.html"><a href="section-6.html#-39"><i class="fa fa-check"></i><b>6.20.1</b> 问题</a></li>
-<li class="chapter" data-level="6.20.2" data-path="section-6.html"><a href="section-6.html#section-6.20.2"><i class="fa fa-check"></i><b>6.20.2</b> 解决方案</a></li>
+<li class="chapter" data-level="10.9" data-path="-1.html"><a href="-1.html#section-10.9"><i class="fa fa-check"></i><b>10.9</b> 数据框与列联表互换</a><ul>
+<li class="chapter" data-level="10.9.1" data-path="-1.html"><a href="-1.html#-38"><i class="fa fa-check"></i><b>10.9.1</b> 问题</a></li>
+<li class="chapter" data-level="10.9.2" data-path="-1.html"><a href="-1.html#-35"><i class="fa fa-check"></i><b>10.9.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a><ul>
-<li class="chapter" data-level="6.21.1" data-path="section-6.html"><a href="section-6.html#-40"><i class="fa fa-check"></i><b>6.21.1</b> 问题</a></li>
-<li class="chapter" data-level="6.21.2" data-path="section-6.html"><a href="section-6.html#-36"><i class="fa fa-check"></i><b>6.21.2</b> 方案</a></li>
+<li class="chapter" data-level="10.10" data-path="-1.html"><a href="-1.html#section-10.10"><i class="fa fa-check"></i><b>10.10</b> 计算移动平均数</a><ul>
+<li class="chapter" data-level="10.10.1" data-path="-1.html"><a href="-1.html#-39"><i class="fa fa-check"></i><b>10.10.1</b> 问题</a></li>
+<li class="chapter" data-level="10.10.2" data-path="-1.html"><a href="-1.html#section-10.10.2"><i class="fa fa-check"></i><b>10.10.2</b> 解决方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a><ul>
-<li class="chapter" data-level="6.22.1" data-path="section-6.html"><a href="section-6.html#-41"><i class="fa fa-check"></i><b>6.22.1</b> 问题</a></li>
-<li class="chapter" data-level="6.22.2" data-path="section-6.html"><a href="section-6.html#-37"><i class="fa fa-check"></i><b>6.22.2</b> 方案</a></li>
-<li class="chapter" data-level="6.22.3" data-path="section-6.html"><a href="section-6.html#section-6.22.3"><i class="fa fa-check"></i><b>6.22.3</b> 向量上运行</a></li>
+<li class="chapter" data-level="10.11" data-path="-1.html"><a href="-1.html#section-10.11"><i class="fa fa-check"></i><b>10.11</b> 窗口平滑</a><ul>
+<li class="chapter" data-level="10.11.1" data-path="-1.html"><a href="-1.html#-40"><i class="fa fa-check"></i><b>10.11.1</b> 问题</a></li>
+<li class="chapter" data-level="10.11.2" data-path="-1.html"><a href="-1.html#-36"><i class="fa fa-check"></i><b>10.11.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#nana"><i class="fa fa-check"></i><b>6.23</b> 用最后的非NA值填充NA值</a><ul>
-<li class="chapter" data-level="6.23.1" data-path="section-6.html"><a href="section-6.html#-42"><i class="fa fa-check"></i><b>6.23.1</b> 问题</a></li>
-<li class="chapter" data-level="6.23.2" data-path="section-6.html"><a href="section-6.html#-38"><i class="fa fa-check"></i><b>6.23.2</b> 方案</a></li>
+<li class="chapter" data-level="10.12" data-path="-1.html"><a href="-1.html#section-10.12"><i class="fa fa-check"></i><b>10.12</b> 寻找唯一值序列</a><ul>
+<li class="chapter" data-level="10.12.1" data-path="-1.html"><a href="-1.html#-41"><i class="fa fa-check"></i><b>10.12.1</b> 问题</a></li>
+<li class="chapter" data-level="10.12.2" data-path="-1.html"><a href="-1.html#-37"><i class="fa fa-check"></i><b>10.12.2</b> 方案</a></li>
+<li class="chapter" data-level="10.12.3" data-path="-1.html"><a href="-1.html#section-10.12.3"><i class="fa fa-check"></i><b>10.12.3</b> 向量上运行</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
-<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="section-7.html"><a href="section-7.html#-43"><i class="fa fa-check"></i><b>7.1.1</b> 问题</a></li>
-<li class="chapter" data-level="7.1.2" data-path="section-6.html"><a href="section-6.html#-39"><i class="fa fa-check"></i><b>7.1.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#t"><i class="fa fa-check"></i><b>7.2</b> t检验</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="section-7.html"><a href="section-7.html#-44"><i class="fa fa-check"></i><b>7.2.1</b> 问题</a></li>
-<li class="chapter" data-level="7.2.2" data-path="section-6.html"><a href="section-6.html#-40"><i class="fa fa-check"></i><b>7.2.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#section-7.3"><i class="fa fa-check"></i><b>7.3</b> 频数检验</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="section-7.html"><a href="section-7.html#-45"><i class="fa fa-check"></i><b>7.3.1</b> 问题</a></li>
-<li class="chapter" data-level="7.3.2" data-path="section-6.html"><a href="section-6.html#-41"><i class="fa fa-check"></i><b>7.3.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="section-7.html"><a href="section-7.html#-46"><i class="fa fa-check"></i><b>7.4.1</b> 问题</a></li>
-<li class="chapter" data-level="7.4.2" data-path="section-6.html"><a href="section-6.html#-42"><i class="fa fa-check"></i><b>7.4.2</b> 方案</a></li>
-<li class="chapter" data-level="7.4.3" data-path="section-7.html"><a href="section-7.html#anovas"><i class="fa fa-check"></i><b>7.4.3</b> 有受试内变量的ANOVAs</a></li>
-</ul></li>
-<li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#section-7.5"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="section-7.html"><a href="section-7.html#-47"><i class="fa fa-check"></i><b>7.5.1</b> 问题</a></li>
-<li class="chapter" data-level="7.5.2" data-path="section-7.html"><a href="section-7.html#-43"><i class="fa fa-check"></i><b>7.5.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#section-7.6"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="section-7.html"><a href="section-7.html#-48"><i class="fa fa-check"></i><b>7.6.1</b> 问题</a></li>
-<li class="chapter" data-level="7.6.2" data-path="section-7.html"><a href="section-7.html#-44"><i class="fa fa-check"></i><b>7.6.2</b> 方案</a></li>
+<li class="chapter" data-level="10.13" data-path="-1.html"><a href="-1.html#nana"><i class="fa fa-check"></i><b>10.13</b> 用最后的非NA值填充NA值</a><ul>
+<li class="chapter" data-level="10.13.1" data-path="-1.html"><a href="-1.html#-42"><i class="fa fa-check"></i><b>10.13.1</b> 问题</a></li>
+<li class="chapter" data-level="10.13.2" data-path="-1.html"><a href="-1.html#-38"><i class="fa fa-check"></i><b>10.13.2</b> 方案</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 图形</a><ul>
-<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 条形图与线图</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="section-8.html"><a href="section-8.html#-49"><i class="fa fa-check"></i><b>8.1.1</b> 问题</a></li>
-<li class="chapter" data-level="8.1.2" data-path="section-7.html"><a href="section-7.html#-45"><i class="fa fa-check"></i><b>8.1.2</b> 方案</a></li>
-<li class="chapter" data-level="8.1.3" data-path="section-8.html"><a href="section-8.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 有更多变量的图</a></li>
-<li class="chapter" data-level="8.1.4" data-path="section-8.html"><a href="section-8.html#-x-axis"><i class="fa fa-check"></i><b>8.1.4</b> 使用数值 x-axis</a></li>
+<li class="chapter" data-level="11" data-path="section-11.html"><a href="section-11.html"><i class="fa fa-check"></i><b>11</b> 统计分析</a><ul>
+<li class="chapter" data-level="11.1" data-path="section-11.html"><a href="section-11.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 回归和相关分析</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="section-11.html"><a href="section-11.html#-43"><i class="fa fa-check"></i><b>11.1.1</b> 问题</a></li>
+<li class="chapter" data-level="11.1.2" data-path="-1.html"><a href="-1.html#-39"><i class="fa fa-check"></i><b>11.1.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 绘制均值和误差棒</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="section-8.html"><a href="section-8.html#-50"><i class="fa fa-check"></i><b>8.2.1</b> 问题</a></li>
-<li class="chapter" data-level="8.2.2" data-path="section-7.html"><a href="section-7.html#-46"><i class="fa fa-check"></i><b>8.2.2</b> 方案</a></li>
-<li class="chapter" data-level="8.2.3" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>8.2.3</b> 线图</a></li>
-<li class="chapter" data-level="8.2.4" data-path="section-8.html"><a href="section-8.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 直方图</a></li>
-<li class="chapter" data-level="8.2.5" data-path="section-8.html"><a href="section-8.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 为组内变量添加误差棒</a></li>
-<li class="chapter" data-level="8.2.6" data-path="section-8.html"><a href="section-8.html#section-8.2.6"><i class="fa fa-check"></i><b>8.2.6</b> 注意标准化的均值</a></li>
-<li class="chapter" data-level="8.2.7" data-path="section-8.html"><a href="section-8.html#section-8.2.7"><i class="fa fa-check"></i><b>8.2.7</b> 助手函数</a></li>
-<li class="chapter" data-level="8.2.8" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>8.2.8</b> 其他</a></li>
+<li class="chapter" data-level="11.2" data-path="section-11.html"><a href="section-11.html#t"><i class="fa fa-check"></i><b>11.2</b> t检验</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="section-11.html"><a href="section-11.html#-44"><i class="fa fa-check"></i><b>11.2.1</b> 问题</a></li>
+<li class="chapter" data-level="11.2.2" data-path="-1.html"><a href="-1.html#-40"><i class="fa fa-check"></i><b>11.2.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.3</b> ggplot | 绘制分布图</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="section-8.html"><a href="section-8.html#-51"><i class="fa fa-check"></i><b>8.3.1</b> 问题</a></li>
-<li class="chapter" data-level="8.3.2" data-path="section-7.html"><a href="section-7.html#-47"><i class="fa fa-check"></i><b>8.3.2</b> 方案</a></li>
-<li class="chapter" data-level="8.3.3" data-path="section-8.html"><a href="section-8.html#section-8.3.3"><i class="fa fa-check"></i><b>8.3.3</b> 直方图和概率密度图</a></li>
-<li class="chapter" data-level="8.3.4" data-path="section-8.html"><a href="section-8.html#section-8.3.4"><i class="fa fa-check"></i><b>8.3.4</b> 多组数据的直方图和概率密度图</a></li>
+<li class="chapter" data-level="11.3" data-path="section-11.html"><a href="section-11.html#section-11.3"><i class="fa fa-check"></i><b>11.3</b> 频数检验</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="section-11.html"><a href="section-11.html#-45"><i class="fa fa-check"></i><b>11.3.1</b> 问题</a></li>
+<li class="chapter" data-level="11.3.2" data-path="-1.html"><a href="-1.html#-41"><i class="fa fa-check"></i><b>11.3.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="section-8.html"><a href="section-8.html#section-8.4"><i class="fa fa-check"></i><b>8.4</b> 箱型图</a></li>
-<li class="chapter" data-level="8.5" data-path="section-8.html"><a href="section-8.html#ggplot"><i class="fa fa-check"></i><b>8.5</b> ggplot|散点图</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="section-8.html"><a href="section-8.html#-52"><i class="fa fa-check"></i><b>8.5.1</b> 问题</a></li>
-<li class="chapter" data-level="8.5.2" data-path="section-7.html"><a href="section-7.html#-48"><i class="fa fa-check"></i><b>8.5.2</b> 方案</a></li>
+<li class="chapter" data-level="11.4" data-path="section-11.html"><a href="section-11.html#anova"><i class="fa fa-check"></i><b>11.4</b> ANOVA</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="section-11.html"><a href="section-11.html#-46"><i class="fa fa-check"></i><b>11.4.1</b> 问题</a></li>
+<li class="chapter" data-level="11.4.2" data-path="-1.html"><a href="-1.html#-42"><i class="fa fa-check"></i><b>11.4.2</b> 方案</a></li>
+<li class="chapter" data-level="11.4.3" data-path="section-11.html"><a href="section-11.html#anovas"><i class="fa fa-check"></i><b>11.4.3</b> 有受试内变量的ANOVAs</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.6</b> ggplot | 标题</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="section-8.html"><a href="section-8.html#-53"><i class="fa fa-check"></i><b>8.6.1</b> 问题</a></li>
-<li class="chapter" data-level="8.6.2" data-path="section-8.html"><a href="section-8.html#-49"><i class="fa fa-check"></i><b>8.6.2</b> 方案</a></li>
+<li class="chapter" data-level="11.5" data-path="section-11.html"><a href="section-11.html#section-11.5"><i class="fa fa-check"></i><b>11.5</b> 逻辑回归</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="section-11.html"><a href="section-11.html#-47"><i class="fa fa-check"></i><b>11.5.1</b> 问题</a></li>
+<li class="chapter" data-level="11.5.2" data-path="section-11.html"><a href="section-11.html#-43"><i class="fa fa-check"></i><b>11.5.2</b> 方案</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="section-8.html"><a href="section-8.html#ggplot"><i class="fa fa-check"></i><b>8.7</b> ggplot|坐标轴</a><ul>
-<li class="chapter" data-level="8.7.1" data-path="section-8.html"><a href="section-8.html#-54"><i class="fa fa-check"></i><b>8.7.1</b> 问题</a></li>
-<li class="chapter" data-level="8.7.2" data-path="section-8.html"><a href="section-8.html#-50"><i class="fa fa-check"></i><b>8.7.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.8" data-path="section-8.html"><a href="section-8.html#-ggplot2"><i class="fa fa-check"></i><b>8.8</b> 图例 (ggplot2)</a><ul>
-<li class="chapter" data-level="8.8.1" data-path="section-8.html"><a href="section-8.html#-55"><i class="fa fa-check"></i><b>8.8.1</b> 问题</a></li>
-<li class="chapter" data-level="8.8.2" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>8.8.2</b> 解决方案</a></li>
-<li class="chapter" data-level="8.8.3" data-path="section-8.html"><a href="section-8.html#section-8.8.3"><i class="fa fa-check"></i><b>8.8.3</b> 修改图例标题和标签的外观</a></li>
-<li class="chapter" data-level="8.8.4" data-path="section-8.html"><a href="section-8.html#section-8.8.4"><i class="fa fa-check"></i><b>8.8.4</b> 修改图例框</a></li>
-<li class="chapter" data-level="8.8.5" data-path="section-8.html"><a href="section-8.html#section-8.8.5"><i class="fa fa-check"></i><b>8.8.5</b> 改变图例位置</a></li>
-<li class="chapter" data-level="8.8.6" data-path="section-8.html"><a href="section-8.html#section-8.8.6"><i class="fa fa-check"></i><b>8.8.6</b> 隐藏在图例中的斜线</a></li>
-<li class="chapter" data-level="8.8.7" data-path="section-2.html"><a href="section-2.html#-9"><i class="fa fa-check"></i><b>8.8.7</b> 注意</a></li>
-</ul></li>
-<li class="chapter" data-level="8.9" data-path="section-8.html"><a href="section-8.html#-ggplot2"><i class="fa fa-check"></i><b>8.9</b> 线条 (ggplot2)</a><ul>
-<li class="chapter" data-level="8.9.1" data-path="section-8.html"><a href="section-8.html#-56"><i class="fa fa-check"></i><b>8.9.1</b> 问题</a></li>
-<li class="chapter" data-level="8.9.2" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>8.9.2</b> 解决方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.10" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.10</b> ggplot | 分面</a><ul>
-<li class="chapter" data-level="8.10.1" data-path="section-8.html"><a href="section-8.html#-57"><i class="fa fa-check"></i><b>8.10.1</b> 问题</a></li>
-<li class="chapter" data-level="8.10.2" data-path="section-8.html"><a href="section-8.html#-51"><i class="fa fa-check"></i><b>8.10.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.11" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.11</b> ggplot |多图</a><ul>
-<li class="chapter" data-level="8.11.1" data-path="section-8.html"><a href="section-8.html#-58"><i class="fa fa-check"></i><b>8.11.1</b> 问题</a></li>
-<li class="chapter" data-level="8.11.2" data-path="section-8.html"><a href="section-8.html#-52"><i class="fa fa-check"></i><b>8.11.2</b> 方案</a></li>
-<li class="chapter" data-level="8.11.3" data-path="section-8.html"><a href="section-8.html#multiplot-"><i class="fa fa-check"></i><b>8.11.3</b> multiplot 函数</a></li>
-</ul></li>
-<li class="chapter" data-level="8.12" data-path="section-8.html"><a href="section-8.html#ggplot2"><i class="fa fa-check"></i><b>8.12</b> 颜色（ggplot2)</a><ul>
-<li class="chapter" data-level="8.12.1" data-path="section-8.html"><a href="section-8.html#-59"><i class="fa fa-check"></i><b>8.12.1</b> 问题</a></li>
-<li class="chapter" data-level="8.12.2" data-path="section-1.html"><a href="section-1.html#-3"><i class="fa fa-check"></i><b>8.12.2</b> 解决方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.13" data-path="section-8.html"><a href="section-8.html#--pdf-png-tiff-svg"><i class="fa fa-check"></i><b>8.13</b> 图形混杂-输出到文件-PDF-PNG-TIFF-SVG</a><ul>
-<li class="chapter" data-level="8.13.1" data-path="section-8.html"><a href="section-8.html#-60"><i class="fa fa-check"></i><b>8.13.1</b> 问题</a></li>
-<li class="chapter" data-level="8.13.2" data-path="section-8.html"><a href="section-8.html#-53"><i class="fa fa-check"></i><b>8.13.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.14" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.14</b> 图形混杂-形状和线形</a><ul>
-<li class="chapter" data-level="8.14.1" data-path="section-8.html"><a href="section-8.html#-61"><i class="fa fa-check"></i><b>8.14.1</b> 问题</a></li>
-<li class="chapter" data-level="8.14.2" data-path="section-8.html"><a href="section-8.html#-54"><i class="fa fa-check"></i><b>8.14.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.15" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.15</b> 图形混杂-字体</a><ul>
-<li class="chapter" data-level="8.15.1" data-path="section-8.html"><a href="section-8.html#-62"><i class="fa fa-check"></i><b>8.15.1</b> 问题</a></li>
-<li class="chapter" data-level="8.15.2" data-path="section-8.html"><a href="section-8.html#-55"><i class="fa fa-check"></i><b>8.15.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.16" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.16</b> 图形混杂-抗混淆位图输出</a><ul>
-<li class="chapter" data-level="8.16.1" data-path="section-8.html"><a href="section-8.html#-63"><i class="fa fa-check"></i><b>8.16.1</b> 问题</a></li>
-<li class="chapter" data-level="8.16.2" data-path="section-8.html"><a href="section-8.html#-56"><i class="fa fa-check"></i><b>8.16.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.17" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.17</b> 标准绘图 | 散点图</a><ul>
-<li class="chapter" data-level="8.17.1" data-path="section-8.html"><a href="section-8.html#-64"><i class="fa fa-check"></i><b>8.17.1</b> 问题</a></li>
-<li class="chapter" data-level="8.17.2" data-path="section-8.html"><a href="section-8.html#-57"><i class="fa fa-check"></i><b>8.17.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.18" data-path="section-8.html"><a href="section-8.html#section-8.18"><i class="fa fa-check"></i><b>8.18</b> 标准绘图|箱线图</a><ul>
-<li class="chapter" data-level="8.18.1" data-path="section-8.html"><a href="section-8.html#-65"><i class="fa fa-check"></i><b>8.18.1</b> 问题</a></li>
-<li class="chapter" data-level="8.18.2" data-path="section-8.html"><a href="section-8.html#-58"><i class="fa fa-check"></i><b>8.18.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.19" data-path="section-8.html"><a href="section-8.html#qq"><i class="fa fa-check"></i><b>8.19</b> 标准绘图|QQ图</a><ul>
-<li class="chapter" data-level="8.19.1" data-path="section-8.html"><a href="section-8.html#-66"><i class="fa fa-check"></i><b>8.19.1</b> 问题</a></li>
-<li class="chapter" data-level="8.19.2" data-path="section-8.html"><a href="section-8.html#-59"><i class="fa fa-check"></i><b>8.19.2</b> 方案</a></li>
-</ul></li>
-<li class="chapter" data-level="8.20" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.20</b> 其他有趣图形-相关矩阵</a><ul>
-<li class="chapter" data-level="8.20.1" data-path="section-8.html"><a href="section-8.html#-67"><i class="fa fa-check"></i><b>8.20.1</b> 问题</a></li>
-<li class="chapter" data-level="8.20.2" data-path="section-8.html"><a href="section-8.html#-60"><i class="fa fa-check"></i><b>8.20.2</b> 方案</a></li>
-<li class="chapter" data-level="8.20.3" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>8.20.3</b> 提示</a></li>
+<li class="chapter" data-level="11.6" data-path="section-11.html"><a href="section-11.html#section-11.6"><i class="fa fa-check"></i><b>11.6</b> 变量同质性</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="section-11.html"><a href="section-11.html#-48"><i class="fa fa-check"></i><b>11.6.1</b> 问题</a></li>
+<li class="chapter" data-level="11.6.2" data-path="section-11.html"><a href="section-11.html#-44"><i class="fa fa-check"></i><b>11.6.2</b> 方案</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 脚本与函数</a><ul>
-<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 创建和运行一个脚本</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="section-9.html"><a href="section-9.html#section-9.1.1"><i class="fa fa-check"></i><b>9.1.1</b> 参考文献：</a></li>
+<li class="chapter" data-level="12" data-path="section-12.html"><a href="section-12.html"><i class="fa fa-check"></i><b>12</b> 图形</a><ul>
+<li class="chapter" data-level="12.1" data-path="section-12.html"><a href="section-12.html#section-12.1"><i class="fa fa-check"></i><b>12.1</b> 条形图与线图</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="section-12.html"><a href="section-12.html#-49"><i class="fa fa-check"></i><b>12.1.1</b> 问题</a></li>
+<li class="chapter" data-level="12.1.2" data-path="section-11.html"><a href="section-11.html#-45"><i class="fa fa-check"></i><b>12.1.2</b> 方案</a></li>
+<li class="chapter" data-level="12.1.3" data-path="section-12.html"><a href="section-12.html#section-12.1.3"><i class="fa fa-check"></i><b>12.1.3</b> 有更多变量的图</a></li>
+<li class="chapter" data-level="12.1.4" data-path="section-12.html"><a href="section-12.html#-x-axis"><i class="fa fa-check"></i><b>12.1.4</b> 使用数值 x-axis</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 调试脚本或函数</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="section-9.html"><a href="section-9.html#-68"><i class="fa fa-check"></i><b>9.2.1</b> 问题</a></li>
-<li class="chapter" data-level="9.2.2" data-path="section-8.html"><a href="section-8.html#-61"><i class="fa fa-check"></i><b>9.2.2</b> 方案</a></li>
-<li class="chapter" data-level="9.2.3" data-path="section-9.html"><a href="section-9.html#section-9.2.3"><i class="fa fa-check"></i><b>9.2.3</b> <strong>有用的选择</strong></a></li>
+<li class="chapter" data-level="12.2" data-path="section-12.html"><a href="section-12.html#section-12.2"><i class="fa fa-check"></i><b>12.2</b> 绘制均值和误差棒</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="section-12.html"><a href="section-12.html#-50"><i class="fa fa-check"></i><b>12.2.1</b> 问题</a></li>
+<li class="chapter" data-level="12.2.2" data-path="section-11.html"><a href="section-11.html#-46"><i class="fa fa-check"></i><b>12.2.2</b> 方案</a></li>
+<li class="chapter" data-level="12.2.3" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>12.2.3</b> 线图</a></li>
+<li class="chapter" data-level="12.2.4" data-path="section-12.html"><a href="section-12.html#section-12.2.4"><i class="fa fa-check"></i><b>12.2.4</b> 直方图</a></li>
+<li class="chapter" data-level="12.2.5" data-path="section-12.html"><a href="section-12.html#section-12.2.5"><i class="fa fa-check"></i><b>12.2.5</b> 为组内变量添加误差棒</a></li>
+<li class="chapter" data-level="12.2.6" data-path="section-12.html"><a href="section-12.html#section-12.2.6"><i class="fa fa-check"></i><b>12.2.6</b> 注意标准化的均值</a></li>
+<li class="chapter" data-level="12.2.7" data-path="section-12.html"><a href="section-12.html#section-12.2.7"><i class="fa fa-check"></i><b>12.2.7</b> 助手函数</a></li>
+<li class="chapter" data-level="12.2.8" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>12.2.8</b> 其他</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量经过的时间</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="section-9.html"><a href="section-9.html#-69"><i class="fa fa-check"></i><b>9.3.1</b> <strong>问题</strong></a></li>
+<li class="chapter" data-level="12.3" data-path="section-12.html"><a href="section-12.html#ggplot-"><i class="fa fa-check"></i><b>12.3</b> ggplot | 绘制分布图</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="section-12.html"><a href="section-12.html#-51"><i class="fa fa-check"></i><b>12.3.1</b> 问题</a></li>
+<li class="chapter" data-level="12.3.2" data-path="section-11.html"><a href="section-11.html#-47"><i class="fa fa-check"></i><b>12.3.2</b> 方案</a></li>
+<li class="chapter" data-level="12.3.3" data-path="section-12.html"><a href="section-12.html#section-12.3.3"><i class="fa fa-check"></i><b>12.3.3</b> 直方图和概率密度图</a></li>
+<li class="chapter" data-level="12.3.4" data-path="section-12.html"><a href="section-12.html#section-12.3.4"><i class="fa fa-check"></i><b>12.3.4</b> 多组数据的直方图和概率密度图</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="section-9.html"><a href="section-9.html#section-9.4"><i class="fa fa-check"></i><b>9.4</b> 获取包中的函数和对象列表</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="section-9.html"><a href="section-9.html#-70"><i class="fa fa-check"></i><b>9.4.1</b> 问题</a></li>
-<li class="chapter" data-level="9.4.2" data-path="section-8.html"><a href="section-8.html#-62"><i class="fa fa-check"></i><b>9.4.2</b> 方案</a></li>
+<li class="chapter" data-level="12.4" data-path="section-12.html"><a href="section-12.html#section-12.4"><i class="fa fa-check"></i><b>12.4</b> 箱型图</a></li>
+<li class="chapter" data-level="12.5" data-path="section-12.html"><a href="section-12.html#ggplot"><i class="fa fa-check"></i><b>12.5</b> ggplot|散点图</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="section-12.html"><a href="section-12.html#-52"><i class="fa fa-check"></i><b>12.5.1</b> 问题</a></li>
+<li class="chapter" data-level="12.5.2" data-path="section-11.html"><a href="section-11.html#-48"><i class="fa fa-check"></i><b>12.5.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="section-12.html"><a href="section-12.html#ggplot-"><i class="fa fa-check"></i><b>12.6</b> ggplot | 标题</a><ul>
+<li class="chapter" data-level="12.6.1" data-path="section-12.html"><a href="section-12.html#-53"><i class="fa fa-check"></i><b>12.6.1</b> 问题</a></li>
+<li class="chapter" data-level="12.6.2" data-path="section-12.html"><a href="section-12.html#-49"><i class="fa fa-check"></i><b>12.6.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="section-12.html"><a href="section-12.html#ggplot"><i class="fa fa-check"></i><b>12.7</b> ggplot|坐标轴</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="section-12.html"><a href="section-12.html#-54"><i class="fa fa-check"></i><b>12.7.1</b> 问题</a></li>
+<li class="chapter" data-level="12.7.2" data-path="section-12.html"><a href="section-12.html#-50"><i class="fa fa-check"></i><b>12.7.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="section-12.html"><a href="section-12.html#-ggplot2"><i class="fa fa-check"></i><b>12.8</b> 图例 (ggplot2)</a><ul>
+<li class="chapter" data-level="12.8.1" data-path="section-12.html"><a href="section-12.html#-55"><i class="fa fa-check"></i><b>12.8.1</b> 问题</a></li>
+<li class="chapter" data-level="12.8.2" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>12.8.2</b> 解决方案</a></li>
+<li class="chapter" data-level="12.8.3" data-path="section-12.html"><a href="section-12.html#section-12.8.3"><i class="fa fa-check"></i><b>12.8.3</b> 修改图例标题和标签的外观</a></li>
+<li class="chapter" data-level="12.8.4" data-path="section-12.html"><a href="section-12.html#section-12.8.4"><i class="fa fa-check"></i><b>12.8.4</b> 修改图例框</a></li>
+<li class="chapter" data-level="12.8.5" data-path="section-12.html"><a href="section-12.html#section-12.8.5"><i class="fa fa-check"></i><b>12.8.5</b> 改变图例位置</a></li>
+<li class="chapter" data-level="12.8.6" data-path="section-12.html"><a href="section-12.html#section-12.8.6"><i class="fa fa-check"></i><b>12.8.6</b> 隐藏在图例中的斜线</a></li>
+<li class="chapter" data-level="12.8.7" data-path="section-2.html"><a href="section-2.html#-9"><i class="fa fa-check"></i><b>12.8.7</b> 注意</a></li>
+</ul></li>
+<li class="chapter" data-level="12.9" data-path="section-12.html"><a href="section-12.html#-ggplot2"><i class="fa fa-check"></i><b>12.9</b> 线条 (ggplot2)</a><ul>
+<li class="chapter" data-level="12.9.1" data-path="section-12.html"><a href="section-12.html#-56"><i class="fa fa-check"></i><b>12.9.1</b> 问题</a></li>
+<li class="chapter" data-level="12.9.2" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>12.9.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.10" data-path="section-12.html"><a href="section-12.html#ggplot-"><i class="fa fa-check"></i><b>12.10</b> ggplot | 分面</a><ul>
+<li class="chapter" data-level="12.10.1" data-path="section-12.html"><a href="section-12.html#-57"><i class="fa fa-check"></i><b>12.10.1</b> 问题</a></li>
+<li class="chapter" data-level="12.10.2" data-path="section-12.html"><a href="section-12.html#-51"><i class="fa fa-check"></i><b>12.10.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.11" data-path="section-12.html"><a href="section-12.html#ggplot-"><i class="fa fa-check"></i><b>12.11</b> ggplot |多图</a><ul>
+<li class="chapter" data-level="12.11.1" data-path="section-12.html"><a href="section-12.html#-58"><i class="fa fa-check"></i><b>12.11.1</b> 问题</a></li>
+<li class="chapter" data-level="12.11.2" data-path="section-12.html"><a href="section-12.html#-52"><i class="fa fa-check"></i><b>12.11.2</b> 方案</a></li>
+<li class="chapter" data-level="12.11.3" data-path="section-12.html"><a href="section-12.html#multiplot-"><i class="fa fa-check"></i><b>12.11.3</b> multiplot 函数</a></li>
+</ul></li>
+<li class="chapter" data-level="12.12" data-path="section-12.html"><a href="section-12.html#ggplot2"><i class="fa fa-check"></i><b>12.12</b> 颜色（ggplot2)</a><ul>
+<li class="chapter" data-level="12.12.1" data-path="section-12.html"><a href="section-12.html#-59"><i class="fa fa-check"></i><b>12.12.1</b> 问题</a></li>
+<li class="chapter" data-level="12.12.2" data-path="section-1.html"><a href="section-1.html#-3"><i class="fa fa-check"></i><b>12.12.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.13" data-path="section-12.html"><a href="section-12.html#--pdf-png-tiff-svg"><i class="fa fa-check"></i><b>12.13</b> 图形混杂-输出到文件-PDF-PNG-TIFF-SVG</a><ul>
+<li class="chapter" data-level="12.13.1" data-path="section-12.html"><a href="section-12.html#-60"><i class="fa fa-check"></i><b>12.13.1</b> 问题</a></li>
+<li class="chapter" data-level="12.13.2" data-path="section-12.html"><a href="section-12.html#-53"><i class="fa fa-check"></i><b>12.13.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.14" data-path="section-11.html"><a href="section-11.html#-"><i class="fa fa-check"></i><b>12.14</b> 图形混杂-形状和线形</a><ul>
+<li class="chapter" data-level="12.14.1" data-path="section-12.html"><a href="section-12.html#-61"><i class="fa fa-check"></i><b>12.14.1</b> 问题</a></li>
+<li class="chapter" data-level="12.14.2" data-path="section-12.html"><a href="section-12.html#-54"><i class="fa fa-check"></i><b>12.14.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.15" data-path="section-11.html"><a href="section-11.html#-"><i class="fa fa-check"></i><b>12.15</b> 图形混杂-字体</a><ul>
+<li class="chapter" data-level="12.15.1" data-path="section-12.html"><a href="section-12.html#-62"><i class="fa fa-check"></i><b>12.15.1</b> 问题</a></li>
+<li class="chapter" data-level="12.15.2" data-path="section-12.html"><a href="section-12.html#-55"><i class="fa fa-check"></i><b>12.15.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.16" data-path="section-11.html"><a href="section-11.html#-"><i class="fa fa-check"></i><b>12.16</b> 图形混杂-抗混淆位图输出</a><ul>
+<li class="chapter" data-level="12.16.1" data-path="section-12.html"><a href="section-12.html#-63"><i class="fa fa-check"></i><b>12.16.1</b> 问题</a></li>
+<li class="chapter" data-level="12.16.2" data-path="section-12.html"><a href="section-12.html#-56"><i class="fa fa-check"></i><b>12.16.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.17" data-path="section-11.html"><a href="section-11.html#-"><i class="fa fa-check"></i><b>12.17</b> 标准绘图 | 散点图</a><ul>
+<li class="chapter" data-level="12.17.1" data-path="section-12.html"><a href="section-12.html#-64"><i class="fa fa-check"></i><b>12.17.1</b> 问题</a></li>
+<li class="chapter" data-level="12.17.2" data-path="section-12.html"><a href="section-12.html#-57"><i class="fa fa-check"></i><b>12.17.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.18" data-path="section-12.html"><a href="section-12.html#section-12.18"><i class="fa fa-check"></i><b>12.18</b> 标准绘图|箱线图</a><ul>
+<li class="chapter" data-level="12.18.1" data-path="section-12.html"><a href="section-12.html#-65"><i class="fa fa-check"></i><b>12.18.1</b> 问题</a></li>
+<li class="chapter" data-level="12.18.2" data-path="section-12.html"><a href="section-12.html#-58"><i class="fa fa-check"></i><b>12.18.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.19" data-path="section-12.html"><a href="section-12.html#qq"><i class="fa fa-check"></i><b>12.19</b> 标准绘图|QQ图</a><ul>
+<li class="chapter" data-level="12.19.1" data-path="section-12.html"><a href="section-12.html#-66"><i class="fa fa-check"></i><b>12.19.1</b> 问题</a></li>
+<li class="chapter" data-level="12.19.2" data-path="section-12.html"><a href="section-12.html#-59"><i class="fa fa-check"></i><b>12.19.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="12.20" data-path="section-11.html"><a href="section-11.html#-"><i class="fa fa-check"></i><b>12.20</b> 其他有趣图形-相关矩阵</a><ul>
+<li class="chapter" data-level="12.20.1" data-path="section-12.html"><a href="section-12.html#-67"><i class="fa fa-check"></i><b>12.20.1</b> 问题</a></li>
+<li class="chapter" data-level="12.20.2" data-path="section-12.html"><a href="section-12.html#-60"><i class="fa fa-check"></i><b>12.20.2</b> 方案</a></li>
+<li class="chapter" data-level="12.20.3" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>12.20.3</b> 提示</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 工具</a><ul>
-<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 生成拉丁方</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="section-10.html"><a href="section-10.html#-71"><i class="fa fa-check"></i><b>10.1.1</b> 问题</a></li>
-<li class="chapter" data-level="10.1.2" data-path="section-8.html"><a href="section-8.html#-63"><i class="fa fa-check"></i><b>10.1.2</b> 方案</a></li>
+<li class="chapter" data-level="13" data-path="section-13.html"><a href="section-13.html"><i class="fa fa-check"></i><b>13</b> 脚本与函数</a><ul>
+<li class="chapter" data-level="13.1" data-path="section-13.html"><a href="section-13.html#section-13.1"><i class="fa fa-check"></i><b>13.1</b> 创建和运行一个脚本</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="section-13.html"><a href="section-13.html#section-13.1.1"><i class="fa fa-check"></i><b>13.1.1</b> 参考文献：</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="section-13.html"><a href="section-13.html#section-13.2"><i class="fa fa-check"></i><b>13.2</b> 调试脚本或函数</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="section-13.html"><a href="section-13.html#-68"><i class="fa fa-check"></i><b>13.2.1</b> 问题</a></li>
+<li class="chapter" data-level="13.2.2" data-path="section-12.html"><a href="section-12.html#-61"><i class="fa fa-check"></i><b>13.2.2</b> 方案</a></li>
+<li class="chapter" data-level="13.2.3" data-path="section-13.html"><a href="section-13.html#section-13.2.3"><i class="fa fa-check"></i><b>13.2.3</b> <strong>有用的选择</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="section-13.html"><a href="section-13.html#section-13.3"><i class="fa fa-check"></i><b>13.3</b> 测量经过的时间</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="section-13.html"><a href="section-13.html#-69"><i class="fa fa-check"></i><b>13.3.1</b> <strong>问题</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="section-13.html"><a href="section-13.html#section-13.4"><i class="fa fa-check"></i><b>13.4</b> 获取包中的函数和对象列表</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="section-13.html"><a href="section-13.html#-70"><i class="fa fa-check"></i><b>13.4.1</b> 问题</a></li>
+<li class="chapter" data-level="13.4.2" data-path="section-12.html"><a href="section-12.html#-62"><i class="fa fa-check"></i><b>13.4.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-14.html"><a href="section-14.html"><i class="fa fa-check"></i><b>14</b> 工具</a><ul>
+<li class="chapter" data-level="14.1" data-path="section-14.html"><a href="section-14.html#section-14.1"><i class="fa fa-check"></i><b>14.1</b> 生成拉丁方</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="section-14.html"><a href="section-14.html#-71"><i class="fa fa-check"></i><b>14.1.1</b> 问题</a></li>
+<li class="chapter" data-level="14.1.2" data-path="section-12.html"><a href="section-12.html#-63"><i class="fa fa-check"></i><b>14.1.2</b> 方案</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>附录</b></span></li>
-<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
-<li class="chapter" data-level="A.1" data-path="06-manipulation.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
-<li class="chapter" data-level="A.2" data-path="06-manipulation.html"><a href="#section-A.2"><i class="fa fa-check"></i><b>A.2</b> 网站</a></li>
-<li class="chapter" data-level="A.3" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
-</ul></li>
+<li class="chapter" data-level="A" data-path="sound.html"><a href="sound.html"><i class="fa fa-check"></i><b>A</b> 余音绕梁</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
@@ -472,725 +472,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-6" class="section level1">
-<h1><span class="header-section-number">第 6 章</span> 操作数据</h1>
-<div id="r" class="section level2">
-<h2><span class="header-section-number">6.1</span> R中的排序问题</h2>
-<div id="-20" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> 问题</h3>
-<p>你想将一个向量，矩阵或列表排序</p>
-</div>
-<div id="-2" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> 解决</h3>
-<div id="section-6.1.2.1" class="section level4">
-<h4><span class="header-section-number">6.1.2.1</span> 向量</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 生成一个随机向量</span>
-v &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">101</span><span class="op">:</span><span class="dv">110</span>)
-
-<span class="co"># 排序</span>
-<span class="kw">sort</span>(v)
-<span class="co">#&gt;  [1] 101 102 103 104 105 106 107 108 109 110</span>
-
-<span class="co"># 反向排序</span>
-<span class="kw">sort</span>(v, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
-<span class="co">#&gt;  [1] 110 109 108 107 106 105 104 103 102 101</span></code></pre></div>
-</div>
-<div id="section-6.1.2.2" class="section level4">
-<h4><span class="header-section-number">6.1.2.2</span> 列表</h4>
-<p>列表在一个或多个列进行排序，您可以使用<code>plyr</code>包里的<code>arrange</code>函数，或者使用R内置的功能。<code>arrange</code>函数更容易使用，但需要外部安装包。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 生成一个列表</span>
-df &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
-            <span class="dt">weight=</span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">27</span>,<span class="dv">24</span>,<span class="dv">22</span>),
-            <span class="dt">size=</span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>))
-df
-
-<span class="kw">library</span>(plyr)
-
-<span class="co"># &quot;weight&quot;列排序，他们有相同的结果.</span>
-<span class="kw">arrange</span>(df, weight)       <span class="co"># 使用plyr包里的arrange函数</span>
-df[ <span class="kw">order</span>(df<span class="op">$</span>weight), ]   <span class="co"># 使用R内置的功能</span>
-<span class="co">#&gt;   id weight   size</span>
-<span class="co">#&gt; 1  1     20  small</span>
-<span class="co">#&gt; 2  4     22  large</span>
-<span class="co">#&gt; 3  3     24 medium</span>
-<span class="co">#&gt; 4  2     27  large</span>
-
-<span class="co"># 以size为第一关键词, weight为第二关键词排序</span>
-<span class="kw">arrange</span>(df, size, weight)         <span class="co"># 使用plyr包里的arrange函数</span>
-df[ <span class="kw">order</span>(df<span class="op">$</span>size, df<span class="op">$</span>weight), ]  <span class="co"># 使用R内置的功能</span>
-<span class="co">#&gt;   id weight   size</span>
-<span class="co">#&gt; 4  4     22  large</span>
-<span class="co">#&gt; 2  2     27  large</span>
-<span class="co">#&gt; 3  3     24 medium</span>
-<span class="co">#&gt; 1  1     20  small</span>
-
-<span class="co"># 所有列从左到右排序</span>
-df[ <span class="kw">do.call</span>(order, <span class="kw">as.list</span>(df)), ] 
-<span class="co"># 在这个特殊的例子中,顺序将保持不变</span></code></pre></div>
-<p>请注意，<code>size</code>列是一个把行排序的因子。在这种情况下，横向将自动按字母顺序排列（创建数据表格），所以<strong>大</strong>是第一和<strong>小</strong>是最后。</p>
-<div id="section-6.1.2.2.1" class="section level5">
-<h5><span class="header-section-number">6.1.2.2.1</span> 反向排序</h5>
-<p>使用<code>decreasing=TRUE</code>可以反向排序。</p>
-<p>反向排序的方法依赖于数据类型：</p>
-<ul>
-<li><p>数字：变量名前加一个<code>-</code>。例如：<code>df[order(-df$weight)]</code></p></li>
-<li><p>因子：转换为整数，变量名前加一个<code>-</code>。例如：<code>df[ order(-xtfrm(df$size)), ]</code></p></li>
-<li><p>字符：没有简单的方法能做到这一点。一种方法是先转换为一个因子，然后如上所述。</p></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 反向排序weight列，他们有相同的结果：</span>
-<span class="kw">arrange</span>(df, <span class="op">-</span>weight)                      <span class="co"># 使用plyr包里的arrange函数</span>
-df[ <span class="kw">order</span>(df<span class="op">$</span>weight, <span class="dt">decreasing=</span><span class="ot">TRUE</span>), ]  <span class="co"># 使用R内置的功能</span>
-df[ <span class="kw">order</span>(<span class="op">-</span>df<span class="op">$</span>weight), ]                  <span class="co"># 使用R内置的功能</span>
-<span class="co">#&gt;   id weight   size</span>
-<span class="co">#&gt; 2  2     27  large</span>
-<span class="co">#&gt; 3  3     24 medium</span>
-<span class="co">#&gt; 4  4     22  large</span>
-<span class="co">#&gt; 1  1     20  small</span>
-
-<span class="co"># 升序排列size,然后降序排列weight</span>
-<span class="kw">arrange</span>(df, size, <span class="op">-</span>weight)         <span class="co"># 使用plyr包里的arrange函数</span>
-df[ <span class="kw">order</span>(df<span class="op">$</span>size, <span class="op">-</span>df<span class="op">$</span>weight), ]  <span class="co"># 使用R内置的功能</span>
-<span class="co">#&gt;   id weight   size</span>
-<span class="co">#&gt; 2  2     27  large</span>
-<span class="co">#&gt; 4  4     22  large</span>
-<span class="co">#&gt; 3  3     24 medium</span>
-<span class="co">#&gt; 1  1     20  small</span>
-
-<span class="co"># 升序排列size,然后降序排列weight</span>
-<span class="co"># 因子需要xtfrm()</span>
-<span class="kw">arrange</span>(df, <span class="op">-</span><span class="kw">xtfrm</span>(size), weight)         <span class="co"># 使用plyr包里的arrange函数</span>
-df[ <span class="kw">order</span>(<span class="op">-</span><span class="kw">xtfrm</span>(df<span class="op">$</span>size), df<span class="op">$</span>weight), ]  <span class="co"># 使用R内置的功能</span>
-<span class="co">#&gt;   id weight   size</span>
-<span class="co">#&gt; 1  1     20  small</span>
-<span class="co">#&gt; 3  3     24 medium</span>
-<span class="co">#&gt; 4  4     22  large</span>
-<span class="co">#&gt; 2  2     27  large</span></code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div id="r" class="section level2">
-<h2><span class="header-section-number">6.2</span> 用R生成随机的顺序</h2>
-<div id="-21" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> 问题</h3>
-<p>你想事一个数据结构随机化。</p>
-</div>
-<div id="-18" class="section level3">
-<h3><span class="header-section-number">6.2.2</span> 方案</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建一个向量</span>
-v &lt;-<span class="st"> </span><span class="dv">11</span><span class="op">:</span><span class="dv">20</span>
-
-<span class="co"># 随机化向量的顺序</span>
-v &lt;-<span class="st"> </span><span class="kw">sample</span>(v)
-
-<span class="co"># 创建一个列表</span>
-data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">label=</span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">number=</span><span class="dv">11</span><span class="op">:</span><span class="dv">15</span>)
-data
-<span class="co">#&gt;   label number</span>
-<span class="co">#&gt; 1     a     11</span>
-<span class="co">#&gt; 2     b     12</span>
-<span class="co">#&gt; 3     c     13</span>
-<span class="co">#&gt; 4     d     14</span>
-<span class="co">#&gt; 5     e     15</span>
-
-<span class="co"># 随机化列表的顺序</span>
-data &lt;-<span class="st"> </span>data[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(data)), ]
-data
-<span class="co">#&gt;   label number</span>
-<span class="co">#&gt; 5     e     15</span>
-<span class="co">#&gt; 2     b     12</span>
-<span class="co">#&gt; 4     d     14</span>
-<span class="co">#&gt; 3     c     13</span>
-<span class="co">#&gt; 1     a     11</span></code></pre></div>
-<div id="-6" class="section level4">
-<h4><span class="header-section-number">6.2.2.1</span> 注意</h4>
-<p>为了使随机化可重复，你应该设置随机数生成器。详见：<a href="http://www.jianshu.com/p/5fe992779356">Numbers-生成随机数</a>、<a href="http://www.jianshu.com/p/25a12a5a6e45">Numbers-生成可重复的随机数序列</a></p>
-</div>
-</div>
-</div>
-<div id="section-6.3" class="section level2">
-<h2><span class="header-section-number">6.3</span> 转换向量类型——数值向量，字符串向量和因子向量</h2>
-<div id="-22" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> 问题</h3>
-<p>你想在数值向量、字符串向量和因子向量间做转换。</p>
-</div>
-<div id="-19" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> 方案</h3>
-<p>假设你刚开始有一个数值型向量<code>n</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">14</span>
-n
-<span class="co">#&gt; [1] 10 11 12 13 14</span></code></pre></div>
-<p>将这个数值型向量转换为其他两种类型（将结果保存在<code>c</code>和<code>f</code>）：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 数值型→字符串型</span>
-c &lt;-<span class="st"> </span><span class="kw">as.character</span>(n)
-
-<span class="co"># 数值型→因子型</span>
-f &lt;-<span class="st"> </span><span class="kw">factor</span>(n)
-<span class="co"># 10 11 12 13 14</span></code></pre></div>
-<p>将字符串型向量转化为另外两种：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 数值型</span>
-<span class="kw">as.numeric</span>(c)
-<span class="co">#&gt; [1] 10 11 12 13 14</span>
-
-<span class="co"># 字符串型→因子型</span>
-<span class="kw">factor</span>(c)
-<span class="co">#&gt; [1] 10 11 12 13 14</span>
-<span class="co">#&gt; Levels: 10 11 12 13 14</span></code></pre></div>
-<p>把一个因子转变为一个字符串型向量很简单：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 因子型→数值型</span>
-<span class="kw">as.character</span>(f)
-<span class="co">#&gt; [1] &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;</span></code></pre></div>
-<p>然而，将因子转化为数值型向量，有点棘手。如果你使用<code>as.numberic</code>，它将会给你因子编码的数值，恐怕不是你想要的。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(f)
-<span class="co">#&gt; [1] 1 2 3 4 5</span>
-
-<span class="co"># 另一种方式得到数字的编码，如果这是你想要的:</span>
-<span class="kw">unclass</span>(f)
-<span class="co">#&gt; [1] 1 2 3 4 5</span>
-<span class="co">#&gt; attr(,&quot;levels&quot;)</span>
-<span class="co">#&gt; [1] &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;</span></code></pre></div>
-<p>方法是，先转化为字符串型，再转化为数值型。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 因子型→数值型</span>
-<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(f))
-<span class="co">#&gt; [1] 10 11 12 13 14</span></code></pre></div>
-</div>
-</div>
-<div id="r" class="section level2">
-<h2><span class="header-section-number">6.4</span> 用R查找并移除重复的记录</h2>
-<div id="-23" class="section level3">
-<h3><span class="header-section-number">6.4.1</span> 问题</h3>
-<p>你想查找和（或）移除向量或列表里重复的条目。</p>
-</div>
-<div id="-20" class="section level3">
-<h3><span class="header-section-number">6.4.2</span> 方案</h3>
-<p>向量：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 生成一个向量</span>
-<span class="kw">set.seed</span>(<span class="dv">158</span>)
-x &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">5</span>))
-x
-<span class="co">#&gt;  [1] 14 11  8  4 12  5 10 10  3  3 11  6  0 16  8 10  8  5  6  6</span>
-
-<span class="co"># 对于每一个元素：它是否重复（第一个值不算）</span>
-<span class="kw">duplicated</span>(x)
-<span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE</span>
-<span class="co">#&gt; [15]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span>
-
-<span class="co"># 重复的条目的值</span>
-<span class="co"># 注意“6”出现了三次，所以它有俩</span>
-x[<span class="kw">duplicated</span>(x)]
-<span class="co">#&gt; [1] 10  3 11  8 10  8  5  6  6</span>
-
-<span class="co"># 重复的条目，没有重复</span>
-<span class="kw">unique</span>(x[<span class="kw">duplicated</span>(x)])
-<span class="co">#&gt; [1] 10  3 11  8  5  6</span>
-
-<span class="co"># 移除重复的数据，他们效果一样:</span>
-<span class="kw">unique</span>(x)
-<span class="co">#&gt;  [1] 14 11  8  4 12  5 10  3  6  0 16</span>
-x[<span class="op">!</span><span class="kw">duplicated</span>(x)]
-<span class="co">#&gt;  [1] 14 11  8  4 12  5 10  3  6  0 16</span></code></pre></div>
-<p>列表：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 一个样本列表:</span>
-df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
-<span class="st"> label value</span>
-<span class="st">     A     4</span>
-<span class="st">     B     3</span>
-<span class="st">     C     6</span>
-<span class="st">     B     3</span>
-<span class="st">     B     1</span>
-<span class="st">     A     2</span>
-<span class="st">     A     4</span>
-<span class="st">     A     4</span>
-<span class="st">&#39;</span>)
-
-
-<span class="co"># 每一行是否有重复？</span>
-<span class="kw">duplicated</span>(df)
-<span class="co">#&gt; [1] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE</span>
-
-<span class="co"># 显示重复的条目</span>
-df[<span class="kw">duplicated</span>(df),]
-<span class="co">#&gt;   label value</span>
-<span class="co">#&gt; 4     B     3</span>
-<span class="co">#&gt; 7     A     4</span>
-<span class="co">#&gt; 8     A     4</span>
-
-<span class="co"># 显示没有重复的条目 (行名可能不同，但值相同)</span>
-<span class="kw">unique</span>(df[<span class="kw">duplicated</span>(df),])
-<span class="co">#&gt;   label value</span>
-<span class="co">#&gt; 4     B     3</span>
-<span class="co">#&gt; 7     A     4</span>
-
-<span class="co"># 移除重复的数据，他们效果一样:</span>
-<span class="kw">unique</span>(df)
-<span class="co">#&gt;   label value</span>
-<span class="co">#&gt; 1     A     4</span>
-<span class="co">#&gt; 2     B     3</span>
-<span class="co">#&gt; 3     C     6</span>
-<span class="co">#&gt; 5     B     1</span>
-<span class="co">#&gt; 6     A     2</span>
-df[<span class="op">!</span><span class="kw">duplicated</span>(df),]
-<span class="co">#&gt;   label value</span>
-<span class="co">#&gt; 1     A     4</span>
-<span class="co">#&gt; 2     B     3</span>
-<span class="co">#&gt; 3     C     6</span>
-<span class="co">#&gt; 5     B     1</span>
-<span class="co">#&gt; 6     A     2</span></code></pre></div>
-</div>
-</div>
-<div id="na" class="section level2">
-<h2><span class="header-section-number">6.5</span> NA存在的情况下，向量或因子间的比较</h2>
-<div id="-24" class="section level3">
-<h3><span class="header-section-number">6.5.1</span> 问题</h3>
-<p>你想比较两个向量或因子，而且是在<code>NA</code>存在的情况下比较，并返回<code>TRUE</code>或<code>FALSE</code>（而不是<code>NA</code>）。</p>
-</div>
-<div id="-21" class="section level3">
-<h3><span class="header-section-number">6.5.2</span> 方案</h3>
-<p>假设你有一个两列（包含布尔值）的列表：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">a=</span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">FALSE</span>,<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>),
-                  <span class="dt">b=</span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">NA</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">NA</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">NA</span>))
-df
-<span class="co">#&gt;       a     b</span>
-<span class="co">#&gt; 1  TRUE  TRUE</span>
-<span class="co">#&gt; 2  TRUE FALSE</span>
-<span class="co">#&gt; 3  TRUE    NA</span>
-<span class="co">#&gt; 4 FALSE  TRUE</span>
-<span class="co">#&gt; 5 FALSE FALSE</span>
-<span class="co">#&gt; 6 FALSE    NA</span>
-<span class="co">#&gt; 7    NA  TRUE</span>
-<span class="co">#&gt; 8    NA FALSE</span>
-<span class="co">#&gt; 9    NA    NA</span></code></pre></div>
-<p>通常情况下，当你比较两个包含<code>NA</code>值的向量或因子时，原始值是<code>NA</code>，结果也将有<code>NA</code>。根据你的目的，这（不）可能为你所需。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span>df<span class="op">$</span>b
-<span class="co">#&gt; [1]  TRUE FALSE    NA FALSE  TRUE    NA    NA    NA    NA</span>
-
-<span class="co"># 同样的比较，但是可以生成列表的另一列：</span>
-<span class="kw">data.frame</span>(df, <span class="dt">isSame =</span> (df<span class="op">$</span>a<span class="op">==</span>df<span class="op">$</span>b))
-<span class="co">#&gt;       a     b isSame</span>
-<span class="co">#&gt; 1  TRUE  TRUE   TRUE</span>
-<span class="co">#&gt; 2  TRUE FALSE  FALSE</span>
-<span class="co">#&gt; 3  TRUE    NA     NA</span>
-<span class="co">#&gt; 4 FALSE  TRUE  FALSE</span>
-<span class="co">#&gt; 5 FALSE FALSE   TRUE</span>
-<span class="co">#&gt; 6 FALSE    NA     NA</span>
-<span class="co">#&gt; 7    NA  TRUE     NA</span>
-<span class="co">#&gt; 8    NA FALSE     NA</span>
-<span class="co">#&gt; 9    NA    NA     NA</span></code></pre></div>
-<div id="na" class="section level4">
-<h4><span class="header-section-number">6.5.2.1</span> 可以与<code>NA</code>相比的一个函数</h4>
-<p>这个比较函数会把<code>NA</code>赋予另一个值。如果一个向量的两项都是<code>NA</code>，则返回<code>TRUE</code>；如果其中一个是<code>NA</code>，则返回<code>FALSE</code>；所有其他比较(无<code>NA</code>之间)的方式是一样的。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 这个函数将会返回TRUE，当两个元素相同（包括两个NA），其他情况返回FALSE</span>
-compareNA &lt;-<span class="st"> </span><span class="cf">function</span>(v1,v2) {
-    same &lt;-<span class="st"> </span>(v1 <span class="op">==</span><span class="st"> </span>v2) <span class="op">|</span><span class="st"> </span>(<span class="kw">is.na</span>(v1) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(v2))
-    same[<span class="kw">is.na</span>(same)] &lt;-<span class="st"> </span><span class="ot">FALSE</span>
-    <span class="kw">return</span>(same)
-}</code></pre></div>
-</div>
-<div id="section-6.5.2.2" class="section level4">
-<h4><span class="header-section-number">6.5.2.2</span> 使用该函数的例子</h4>
-<p>比较两个布尔向量：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">compareNA</span>(df<span class="op">$</span>a, df<span class="op">$</span>b)
-<span class="co">#&gt; [1]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</span>
-
-<span class="co"># 同样的比较，生成另一列</span>
-<span class="kw">data.frame</span>(df, <span class="dt">isSame =</span> <span class="kw">compareNA</span>(df<span class="op">$</span>a,df<span class="op">$</span>b))
-<span class="co">#&gt;       a     b isSame</span>
-<span class="co">#&gt; 1  TRUE  TRUE   TRUE</span>
-<span class="co">#&gt; 2  TRUE FALSE  FALSE</span>
-<span class="co">#&gt; 3  TRUE    NA  FALSE</span>
-<span class="co">#&gt; 4 FALSE  TRUE  FALSE</span>
-<span class="co">#&gt; 5 FALSE FALSE   TRUE</span>
-<span class="co">#&gt; 6 FALSE    NA  FALSE</span>
-<span class="co">#&gt; 7    NA  TRUE  FALSE</span>
-<span class="co">#&gt; 8    NA FALSE  FALSE</span>
-<span class="co">#&gt; 9    NA    NA   TRUE</span></code></pre></div>
-<p>它也能用于因子，即使因子的水平处于不同的次序：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建一个含因子的列表</span>
-df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;x&#39;</span>,<span class="st">&#39;x&#39;</span>,<span class="st">&#39;x&#39;</span>,<span class="st">&#39;y&#39;</span>,<span class="st">&#39;y&#39;</span>,<span class="st">&#39;y&#39;</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>)),
-                  <span class="dt">b =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;x&#39;</span>,<span class="st">&#39;y&#39;</span>, <span class="ot">NA</span>,<span class="st">&#39;x&#39;</span>,<span class="st">&#39;y&#39;</span>, <span class="ot">NA</span>,<span class="st">&#39;x&#39;</span>,<span class="st">&#39;y&#39;</span>, <span class="ot">NA</span>)))
-
-<span class="co"># 比较</span>
-<span class="kw">data.frame</span>(df1, <span class="dt">isSame =</span> <span class="kw">compareNA</span>(df1<span class="op">$</span>a, df1<span class="op">$</span>b))
-<span class="co">#&gt;      a    b isSame</span>
-<span class="co">#&gt; 1    x    x   TRUE</span>
-<span class="co">#&gt; 2    x    y  FALSE</span>
-<span class="co">#&gt; 3    x &lt;NA&gt;  FALSE</span>
-<span class="co">#&gt; 4    y    x  FALSE</span>
-<span class="co">#&gt; 5    y    y   TRUE</span>
-<span class="co">#&gt; 6    y &lt;NA&gt;  FALSE</span>
-<span class="co">#&gt; 7 &lt;NA&gt;    x  FALSE</span>
-<span class="co">#&gt; 8 &lt;NA&gt;    y  FALSE</span>
-<span class="co">#&gt; 9 &lt;NA&gt; &lt;NA&gt;   TRUE</span>
-
-
-<span class="co"># 也能用于因子，即使因子的水平处于不同的次序</span>
-df1<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">factor</span>(df1<span class="op">$</span>b, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&#39;y&#39;</span>,<span class="st">&#39;x&#39;</span>))
-<span class="kw">data.frame</span>(df1, <span class="dt">isSame =</span> <span class="kw">compareNA</span>(df1<span class="op">$</span>a, df1<span class="op">$</span>b))
-<span class="co">#&gt;      a    b isSame</span>
-<span class="co">#&gt; 1    x    x   TRUE</span>
-<span class="co">#&gt; 2    x    y  FALSE</span>
-<span class="co">#&gt; 3    x &lt;NA&gt;  FALSE</span>
-<span class="co">#&gt; 4    y    x  FALSE</span>
-<span class="co">#&gt; 5    y    y   TRUE</span>
-<span class="co">#&gt; 6    y &lt;NA&gt;  FALSE</span>
-<span class="co">#&gt; 7 &lt;NA&gt;    x  FALSE</span>
-<span class="co">#&gt; 8 &lt;NA&gt;    y  FALSE</span>
-<span class="co">#&gt; 9 &lt;NA&gt; &lt;NA&gt;   TRUE</span></code></pre></div>
-</div>
-</div>
-</div>
-<div id="section-6.6" class="section level2">
-<h2><span class="header-section-number">6.6</span> 数据重新编码</h2>
-<div id="-25" class="section level3">
-<h3><span class="header-section-number">6.6.1</span> 问题</h3>
-<p>你想重新编码数据或从现有的数据中计算生产新的数据列。</p>
-</div>
-<div id="-22" class="section level3">
-<h3><span class="header-section-number">6.6.2</span> 方案</h3>
-<p>下面的例子将使用这些数据：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span>T, <span class="dt">text=</span><span class="st">&#39;</span>
-<span class="st"> subject sex control cond1 cond2</span>
-<span class="st">       1   M     7.9  12.3  10.7</span>
-<span class="st">       2   F     6.3  10.6  11.1</span>
-<span class="st">       3   F     9.5  13.1  13.8</span>
-<span class="st">       4   M    11.5  13.4  12.9</span>
-<span class="st">&#39;</span>)</code></pre></div>
-<div id="section-6.6.2.1" class="section level4">
-<h4><span class="header-section-number">6.6.2.1</span> 重新编码分类变量</h4>
-<p>最简单的方法是使用<code>plyr</code>包里的<code>revalue()</code>或<code>mapvalues()</code>。这可以令<code>M</code>为<code>1</code>、<code>F</code>为<code>2</code>，并把它放在一个新生产的列。注意，这两个函数均保存数据类型：如果输入一个因子，输出将会是一个因子；如果输入是一个字符串向量，输出将会是一个字符串向量。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plyr)
-
-<span class="co"># 下面两行是等价的:</span>
-data<span class="op">$</span>scode &lt;-<span class="st"> </span><span class="kw">revalue</span>(data<span class="op">$</span>sex, <span class="kw">c</span>(<span class="st">&quot;M&quot;</span>=<span class="st">&quot;1&quot;</span>, <span class="st">&quot;F&quot;</span>=<span class="st">&quot;2&quot;</span>))
-data<span class="op">$</span>scode &lt;-<span class="st"> </span><span class="kw">mapvalues</span>(data<span class="op">$</span>sex, <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>), <span class="dt">to =</span> <span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>))
-data
-<span class="co">#&gt;   subject sex control cond1 cond2 scode</span>
-<span class="co">#&gt; 1       1   M     7.9  12.3  10.7     1</span>
-<span class="co">#&gt; 2       2   F     6.3  10.6  11.1     2</span>
-<span class="co">#&gt; 3       3   F     9.5  13.1  13.8     2</span>
-<span class="co">#&gt; 4       4   M    11.5  13.4  12.9     1</span>
-
-<span class="co"># data$sex是一个因子，因此data$scode也是因子</span></code></pre></div>
-<p>详见Manipulating Data - 映射向量的值</p>
-<p><a href="http://www.jianshu.com/p/fbbdb180b39e">Manipulating Data - 重命名因子水平</a></p>
-<p>如果你不想依赖<code>plyr</code>，你可以使用R内置函数：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>scode[data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;M&quot;</span>] &lt;-<span class="st"> &quot;1&quot;</span>
-data<span class="op">$</span>scode[data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;F&quot;</span>] &lt;-<span class="st"> &quot;2&quot;</span>
-
-<span class="co"># 把列转换为因子</span>
-data<span class="op">$</span>scode &lt;-<span class="st"> </span><span class="kw">factor</span>(data<span class="op">$</span>scode)
-data
-<span class="co">#&gt;   subject sex control cond1 cond2 scode</span>
-<span class="co">#&gt; 1       1   M     7.9  12.3  10.7     1</span>
-<span class="co">#&gt; 2       2   F     6.3  10.6  11.1     2</span>
-<span class="co">#&gt; 3       3   F     9.5  13.1  13.8     2</span>
-<span class="co">#&gt; 4       4   M    11.5  13.4  12.9     1</span></code></pre></div>
-<p>另一种方法是使用<code>match</code>函数：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">oldvalues &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)
-newvalues &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;g1&quot;</span>,<span class="st">&quot;g2&quot;</span>))  <span class="co"># 因子</span>
-
-data<span class="op">$</span>scode &lt;-<span class="st"> </span>newvalues[ <span class="kw">match</span>(data<span class="op">$</span>sex, oldvalues) ]
-data
-<span class="co">#&gt;   subject sex control cond1 cond2 scode</span>
-<span class="co">#&gt; 1       1   M     7.9  12.3  10.7    g1</span>
-<span class="co">#&gt; 2       2   F     6.3  10.6  11.1    g2</span>
-<span class="co">#&gt; 3       3   F     9.5  13.1  13.8    g2</span>
-<span class="co">#&gt; 4       4   M    11.5  13.4  12.9    g1</span></code></pre></div>
-</div>
-<div id="section-6.6.2.2" class="section level4">
-<h4><span class="header-section-number">6.6.2.2</span> 将一个连续变量编码为分类变量</h4>
-<p>标记这些值，control值小于7为“low”，大于或等于7为“high”：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>category[data<span class="op">$</span>control<span class="op">&lt;</span><span class="st"> </span><span class="dv">7</span>] &lt;-<span class="st"> &quot;low&quot;</span>
-data<span class="op">$</span>category[data<span class="op">$</span>control<span class="op">&gt;=</span><span class="dv">7</span>] &lt;-<span class="st"> &quot;high&quot;</span>
-
-<span class="co"># 把列转换为因子</span>
-data<span class="op">$</span>category &lt;-<span class="st"> </span><span class="kw">factor</span>(data<span class="op">$</span>category)
-data
-<span class="co">#&gt;   subject sex control cond1 cond2 scode category</span>
-<span class="co">#&gt; 1       1   M     7.9  12.3  10.7    g1     high</span>
-<span class="co">#&gt; 2       2   F     6.3  10.6  11.1    g2      low</span>
-<span class="co">#&gt; 3       3   F     9.5  13.1  13.8    g2     high</span>
-<span class="co">#&gt; 4       4   M    11.5  13.4  12.9    g1     high</span></code></pre></div>
-<p>用<code>cut</code>函数，可以指定上下限：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>category &lt;-<span class="st"> </span><span class="kw">cut</span>(data<span class="op">$</span>control,
-                     <span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="ot">Inf</span>),
-                     <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>))
-data
-<span class="co">#&gt;   subject sex control cond1 cond2 scode category</span>
-<span class="co">#&gt; 1       1   M     7.9  12.3  10.7    g1   medium</span>
-<span class="co">#&gt; 2       2   F     6.3  10.6  11.1    g2      low</span>
-<span class="co">#&gt; 3       3   F     9.5  13.1  13.8    g2     high</span>
-<span class="co">#&gt; 4       4   M    11.5  13.4  12.9    g1     high</span></code></pre></div>
-<p>默认情况下，范围是左边开放、右边关闭，如(7，9]。使用<code>right= FALSE</code>可以设置成左边关闭、右边开放，像[7、9)。</p>
-</div>
-<div id="section-6.6.2.3" class="section level4">
-<h4><span class="header-section-number">6.6.2.3</span> 计算得到一个新的连续变量</h4>
-<p>假设您想添加一个新列，为三个量的和。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>total &lt;-<span class="st"> </span>data<span class="op">$</span>control <span class="op">+</span><span class="st"> </span>data<span class="op">$</span>cond1 <span class="op">+</span><span class="st"> </span>data<span class="op">$</span>cond2
-data
-<span class="co">#&gt;   subject sex control cond1 cond2 scode category total</span>
-<span class="co">#&gt; 1       1   M     7.9  12.3  10.7    g1   medium  30.9</span>
-<span class="co">#&gt; 2       2   F     6.3  10.6  11.1    g2      low  28.0</span>
-<span class="co">#&gt; 3       3   F     9.5  13.1  13.8    g2     high  36.4</span>
-<span class="co">#&gt; 4       4   M    11.5  13.4  12.9    g1     high  37.8</span></code></pre></div>
-</div>
-</div>
-</div>
-<div id="xy" class="section level2">
-<h2><span class="header-section-number">6.7</span> 将向量中所有值为x的对象改变值y</h2>
-<div id="-26" class="section level3">
-<h3><span class="header-section-number">6.7.1</span> 问题</h3>
-<p>你想将向量中所有值为x的实例改为值y。</p>
-</div>
-<div id="-23" class="section level3">
-<h3><span class="header-section-number">6.7.2</span> 方案</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建一些样本数据</span>
-str &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>, <span class="st">&quot;gamma&quot;</span>)
-num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</code></pre></div>
-<p>最简单的方法是使用<code>plyr</code>包里的<code>revalue()</code>或<code>mapvalues()</code>。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plyr)
-<span class="kw">revalue</span>(str, <span class="kw">c</span>(<span class="st">&quot;beta&quot;</span>=<span class="st">&quot;two&quot;</span>, <span class="st">&quot;gamma&quot;</span>=<span class="st">&quot;three&quot;</span>))
-<span class="co">#&gt; [1] &quot;alpha&quot; &quot;two&quot;   &quot;three&quot;</span>
-
-<span class="kw">mapvalues</span>(str, <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;beta&quot;</span>, <span class="st">&quot;gamma&quot;</span>), <span class="dt">to =</span> <span class="kw">c</span>(<span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))
-<span class="co">#&gt; [1] &quot;alpha&quot; &quot;two&quot;   &quot;three&quot;</span>
-
-
-<span class="co"># 对于数值型向量，revalue()没作用，由于它使用一个命名了的向量，向量名一般是字符串而不是数值，但mapvalues()仍然有作用</span>
-<span class="kw">mapvalues</span>(num, <span class="dt">from =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">to =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>))
-<span class="co">#&gt; [1] 1 5 6</span></code></pre></div>
-<p>如果你不想依赖<code>plyr</code>，你可以使用R内置函数。注意，这些方法将直接修改向量；也就是说，你不需要把结果保存回变量。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 把&quot;beta&quot; 替换为 &quot;two&quot;</span>
-str[str<span class="op">==</span><span class="st">&quot;beta&quot;</span>] &lt;-<span class="st"> &quot;two&quot;</span>
-str
-<span class="co">#&gt; [1] &quot;alpha&quot; &quot;two&quot;   &quot;gamma&quot;</span>
-
-num[num<span class="op">==</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span>
-num
-<span class="co">#&gt; [1] 1 5 3</span></code></pre></div>
-<p>也可以使用R的字符串的查找和替换函数来重新映射字符串向量的值。注意，<code>alpha</code>前后的^<code>和</code>$<code>确保整个字符串匹配。没有它们，如果有一个值为</code>alphabet<code>，它也会被匹配，替代</code>onebet`。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">str &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>, <span class="st">&quot;gamma&quot;</span>)
-
-<span class="kw">sub</span>(<span class="st">&quot;^alpha$&quot;</span>, <span class="st">&quot;one&quot;</span>, str)
-<span class="co">#&gt; [1] &quot;one&quot;   &quot;beta&quot;  &quot;gamma&quot;</span>
-
-<span class="co"># 把所有列的 &quot;a&quot; 替代为 &quot;X&quot;</span>
-<span class="kw">gsub</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;X&quot;</span>, str)
-<span class="co">#&gt; [1] &quot;XlphX&quot; &quot;betX&quot;  &quot;gXmmX&quot;</span>
-
-<span class="co"># gsub() 替代所有匹配的元素</span>
-<span class="co"># sub() 只替代每一个元素首先匹配到的内容</span></code></pre></div>
-</div>
-<div id="section-6.7.3" class="section level3">
-<h3><span class="header-section-number">6.7.3</span> 另见</h3>
-<p>详见<a href="http://www.jianshu.com/p/fbbdb180b39e"><strong>重命名因子水平</strong></a></p>
-</div>
-</div>
-<div id="section-6.8" class="section level2">
-<h2><span class="header-section-number">6.8</span> 重命名因子水平</h2>
-<div id="-27" class="section level3">
-<h3><span class="header-section-number">6.8.1</span> 问题</h3>
-<p>你想要重命名因子水平。</p>
-</div>
-<div id="-24" class="section level3">
-<h3><span class="header-section-number">6.8.2</span> 方案</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 处理一个因子的样例</span>
-x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>,<span class="st">&quot;gamma&quot;</span>,<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>))
-x
-<span class="co">#&gt; [1] alpha beta  gamma alpha beta </span>
-<span class="co">#&gt; Levels: alpha beta gamma</span>
-
-<span class="kw">levels</span>(x)
-<span class="co">#&gt; [1] &quot;alpha&quot; &quot;beta&quot;  &quot;gamma&quot;</span></code></pre></div>
-<p>最简单的办法是使用<code>plyr</code>包中的<code>revalue()</code>或者<code>mapvalues()</code>函数。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plyr)
-<span class="kw">revalue</span>(x, <span class="kw">c</span>(<span class="st">&quot;beta&quot;</span>=<span class="st">&quot;two&quot;</span>, <span class="st">&quot;gamma&quot;</span>=<span class="st">&quot;three&quot;</span>))
-<span class="co">#&gt; [1] alpha two   three alpha two  </span>
-<span class="co">#&gt; Levels: alpha two three</span>
-
-<span class="kw">mapvalues</span>(x, <span class="dt">from =</span> <span class="kw">c</span>(<span class="st">&quot;beta&quot;</span>, <span class="st">&quot;gamma&quot;</span>), <span class="dt">to =</span> <span class="kw">c</span>(<span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))
-<span class="co">#&gt; [1] alpha two   three alpha two  </span>
-<span class="co">#&gt; Levels: alpha two three</span></code></pre></div>
-<p>如果你不想要依赖<code>plyr</code>包，你可以使用R的内置函数进行以下处理。注意这些方法会直接修改变量<code>x</code>；这说明，你不需要将结果重新赋值回给<code>x</code>。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 通过名字重命名: change &quot;beta&quot; to &quot;two&quot;</span>
-<span class="kw">levels</span>(x)[<span class="kw">levels</span>(x)<span class="op">==</span><span class="st">&quot;beta&quot;</span>] &lt;-<span class="st"> &quot;two&quot;</span>
-
-
-<span class="co"># 你也可以通过位置重命名，但这种做法比较危险（会因数据变化造成不可控结果），不值得推荐</span>
-
-<span class="co"># 通过因子列表索引重命名: change third item, &quot;gamma&quot;, to &quot;three&quot;.</span>
-<span class="kw">levels</span>(x)[<span class="dv">3</span>] &lt;-<span class="st"> &quot;three&quot;</span>
-x
-<span class="co">#&gt; [1] alpha two   three alpha two  </span>
-<span class="co">#&gt; Levels: alpha two three</span>
-
-<span class="co"># 重命名所有的因子水平</span>
-<span class="kw">levels</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;one&quot;</span>,<span class="st">&quot;two&quot;</span>,<span class="st">&quot;three&quot;</span>)
-x
-<span class="co">#&gt; [1] one   two   three one   two  </span>
-<span class="co">#&gt; Levels: one two three</span></code></pre></div>
-<p>我们可以不使用<code>plyr</code>包而通过名字实现因子水平的重命名，但记住这只有在所有的水平都在列表中时才起作用，否则会返回NA以代替寻找不到的因子水平。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Rename all levels, by name</span>
-x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>,<span class="st">&quot;gamma&quot;</span>,<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>))
-<span class="kw">levels</span>(x) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">A=</span><span class="st">&quot;alpha&quot;</span>, <span class="dt">B=</span><span class="st">&quot;beta&quot;</span>, <span class="dt">C=</span><span class="st">&quot;gamma&quot;</span>)
-x
-<span class="co">#&gt; [1] A B C A B</span>
-<span class="co">#&gt; Levels: A B C</span></code></pre></div>
-<p>我们也可以使用R的字符串搜索与替换函数去重命名因子水平。注意字符<code>alpha</code>周围的<code>^</code>与<code>$</code>符号是用来确保整个字符串能够匹配（正则表达式）。如果没有它们，字符<code>alphabet</code>也能够被成功匹配并会被替换为<code>onbet</code>。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 一个样例</span>
-x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>,<span class="st">&quot;gamma&quot;</span>,<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>))
-x
-<span class="co">#&gt; [1] alpha beta  gamma alpha beta </span>
-<span class="co">#&gt; Levels: alpha beta gamma</span>
-
-<span class="kw">levels</span>(x) &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class="st">&quot;^alpha$&quot;</span>, <span class="st">&quot;one&quot;</span>, <span class="kw">levels</span>(x))
-x
-<span class="co">#&gt; [1] one   beta  gamma one   beta </span>
-<span class="co">#&gt; Levels: one beta gamma</span>
-
-
-<span class="co"># Across all columns, replace all instances of &quot;a&quot; with &quot;X&quot;</span>
-<span class="kw">levels</span>(x) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="kw">levels</span>(x))
-x
-<span class="co">#&gt; [1] one   betX  gXmmX one   betX </span>
-<span class="co">#&gt; Levels: one betX gXmmX</span>
-
-<span class="co"># gsub() replaces all instances of the pattern in each factor level.</span>
-<span class="co"># sub() replaces only the first instance in each factor level.</span></code></pre></div>
-</div>
-<div id="section-6.8.3" class="section level3">
-<h3><span class="header-section-number">6.8.3</span> 更多参考</h3>
-<p>匹配向量中值并将其替换为新的值操作类似，参见 <a href="http://www.cookbook-r.com/Manipulating_data/Mapping_vector_values">../Mapping vector values</a>获取更多信息。</p>
-</div>
-</div>
-<div id="section-6.9" class="section level2">
-<h2><span class="header-section-number">6.9</span> 重计算因子水平</h2>
-<div id="-28" class="section level3">
-<h3><span class="header-section-number">6.9.1</span> 问题</h3>
-<p>你想要重新计算一个因子的水平。这在因子水平实际并没有出现在数据中时非常有用。它可能发生在数据的导入，或者当你移除一些行。</p>
-</div>
-<div id="-25" class="section level3">
-<h3><span class="header-section-number">6.9.2</span> 方案</h3>
-<p>对于单个因子变量：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建额外的因子水平 (gamma)</span>
-x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>,<span class="st">&quot;alpha&quot;</span>), <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>,<span class="st">&quot;gamma&quot;</span>))
-x
-<span class="co">#&gt; [1] alpha beta  alpha</span>
-<span class="co">#&gt; Levels: alpha beta gamma</span>
-
-<span class="co"># 移除额外的因子水平</span>
-x &lt;-<span class="st"> </span><span class="kw">factor</span>(x)
-x
-<span class="co">#&gt; [1] alpha beta  alpha</span>
-<span class="co">#&gt; Levels: alpha beta</span></code></pre></div>
-<p>当导入数据之后，你可能有一个混合因子变量和其他向量的数据框，然后想要重新计算所有因子的水平。你可以使用<code>droplevels()</code>函数实现这一点。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建一些因子的数据框 (有额外的因子水平)</span>
-df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-    <span class="dt">x =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>,<span class="st">&quot;alpha&quot;</span>), <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;alpha&quot;</span>,<span class="st">&quot;beta&quot;</span>,<span class="st">&quot;gamma&quot;</span>)),
-    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">2</span>),
-    <span class="dt">z =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;green&quot;</span>), <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>))
-)
-
-<span class="co"># 显示因子水平 (with extra levels)</span>
-df<span class="op">$</span>x
-<span class="co">#&gt; [1] alpha beta  alpha</span>
-<span class="co">#&gt; Levels: alpha beta gamma</span>
-df<span class="op">$</span>z
-<span class="co">#&gt; [1] red   green green</span>
-<span class="co">#&gt; Levels: red green blue</span>
-
-
-<span class="co"># 丢掉额外因子水平</span>
-df &lt;-<span class="st"> </span><span class="kw">droplevels</span>(df)
-
-<span class="co"># 再次显示因子，现在没有额外的因子水平了</span>
-df<span class="op">$</span>x
-<span class="co">#&gt; [1] alpha beta  alpha</span>
-<span class="co">#&gt; Levels: alpha beta</span>
-df<span class="op">$</span>z
-<span class="co">#&gt; [1] red   green green</span>
-<span class="co">#&gt; Levels: red green</span></code></pre></div>
-</div>
-<div id="-1" class="section level3">
-<h3><span class="header-section-number">6.9.3</span> 另见</h3>
-<p>想要重计算一个数据框中所有的因子变量列的因子水平，参见 <a href="http://www.cookbook-r.com/Manipulating_data/Re-computing_the_levels_of_all_factor_columns_in_a_data_frame">../Re-computing_the_levels_of_all_factor_columns_in_a_data_frame</a>。</p>
-</div>
-</div>
-<div id="section-6.10" class="section level2">
-<h2><span class="header-section-number">6.10</span> 改变因子水平次序</h2>
-<div id="-29" class="section level3">
-<h3><span class="header-section-number">6.10.1</span> 问题</h3>
-<p>你想要改变因子水平出现的次序。</p>
-</div>
-<div id="-26" class="section level3">
-<h3><span class="header-section-number">6.10.2</span> 方案</h3>
-<p>R中有两种不同类型的因子变量：<strong>有序</strong>和<strong>无序</strong>。比如{小，中，大}和｛钢笔，橡皮擦，铅笔｝。对于绝大多数分析而言，一个因子变量是有序还是无序的不重要。如果因子是<strong>有序</strong>的，那么这个因子水平的特定次序是重要的（小<中<大）。如果因子是**无序**的，那么因子水平同样会以一定的顺序出现，但这仅仅为了方便而已（钢笔，橡皮擦，铅笔） - 但有时它是重要的，例如它会觉得结果如何输出，图形元素如何展示。
-
-一种改变因子次序的方式是对因子使用`factor()`函数并且直接指定它们的次序。下面这个例子中，`ordered()`函数可以替换`factor()`函数。
-
-下面是这个例子的数据：
-
-```R
-# 创建一个错误次序的因子
-sizes <- factor(c("small", "large", "large", "small", "medium"))
-sizes
-#> [1] small large large small medium #&gt; Levels: large medium small ```</p>
-<p>因子水平被显式地指定：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sizes &lt;-<span class="st"> </span><span class="kw">factor</span>(sizes, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>))
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: small medium large</span></code></pre></div>
-<p>我们同样可以对有序因子这样操作：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sizes &lt;-<span class="st"> </span><span class="kw">ordered</span>(<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>))
-sizes &lt;-<span class="st"> </span><span class="kw">ordered</span>(sizes, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>))
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: small &lt; medium &lt; large</span></code></pre></div>
-<p>另一种方式是使用<code>relevel()</code>函数在列表中制作一个特定水平（这对有序因子不起作用）。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建错误次序的因子</span>
-sizes &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>))
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: large medium small</span>
-
-<span class="co"># 使得 medium 排最前面</span>
-sizes &lt;-<span class="st"> </span><span class="kw">relevel</span>(sizes, <span class="st">&quot;medium&quot;</span>)
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: medium large small</span>
-
-<span class="co"># 使得 small 排最前面</span>
-sizes &lt;-<span class="st"> </span><span class="kw">relevel</span>(sizes, <span class="st">&quot;small&quot;</span>)
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: small medium large</span></code></pre></div>
-<p>当因子创建时，我们可以指定合适的顺序。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sizes &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>),
-                <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>))
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: small medium large</span></code></pre></div>
-<p><strong>反转</strong>因子水平次序。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建错误次序的因子</span>
-sizes &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>))
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: large medium small</span>
-
-sizes &lt;-<span class="st"> </span><span class="kw">factor</span>(sizes, <span class="dt">levels=</span><span class="kw">rev</span>(<span class="kw">levels</span>(sizes)))
-sizes
-<span class="co">#&gt; [1] small  large  large  small  medium</span>
-<span class="co">#&gt; Levels: small medium large</span></code></pre></div>
-</div>
-</div>
-<div id="section-6.11" class="section level2">
-<h2><span class="header-section-number">6.11</span> 重命名数据框的列</h2>
+<div id="-1" class="section level1">
+<h1><span class="header-section-number">第 10 章</span> 创建错误次序的因子</h1>
+<p>sizes &lt;- factor(c(“small”, “large”, “large”, “small”, “medium”)) sizes #&gt; [1] small large large small medium #&gt; Levels: large medium small</p>
+<p>sizes &lt;- factor(sizes, levels=rev(levels(sizes))) sizes #&gt; [1] small large large small medium #&gt; Levels: small medium large ```</p>
+<div id="section-10.1" class="section level2">
+<h2><span class="header-section-number">10.1</span> 重命名数据框的列</h2>
 <div id="-30" class="section level3">
-<h3><span class="header-section-number">6.11.1</span> 问题</h3>
+<h3><span class="header-section-number">10.1.1</span> 问题</h3>
 <p>你想要给数据框的列重新命名。</p>
 </div>
 <div id="-27" class="section level3">
-<h3><span class="header-section-number">6.11.2</span> 方案</h3>
+<h3><span class="header-section-number">10.1.2</span> 方案</h3>
 <p>让我们从有三列的一个数据框开始：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">alpha=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">beta=</span><span class="dv">4</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">gamma=</span><span class="dv">7</span><span class="op">:</span><span class="dv">9</span>)
 d
@@ -1246,14 +539,14 @@ d
 <span class="co"># sub()只替换每个列名中匹配的第一项</span></code></pre></div>
 </div>
 </div>
-<div id="section-6.12" class="section level2">
-<h2><span class="header-section-number">6.12</span> 添加和移除数据框的列</h2>
+<div id="section-10.2" class="section level2">
+<h2><span class="header-section-number">10.2</span> 添加和移除数据框的列</h2>
 <div id="-31" class="section level3">
-<h3><span class="header-section-number">6.12.1</span> 问题</h3>
+<h3><span class="header-section-number">10.2.1</span> 问题</h3>
 <p>你想要对一个数据框添加或者移除一些列（变量）。</p>
 </div>
 <div id="-28" class="section level3">
-<h3><span class="header-section-number">6.12.2</span> 方案</h3>
+<h3><span class="header-section-number">10.2.2</span> 方案</h3>
 <p>这里有着许多解决办法：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
 <span class="st"> id weight</span>
@@ -1278,14 +571,14 @@ data[,<span class="dv">3</span>]       &lt;-<span class="st"> </span><span class
 data           &lt;-<span class="st"> </span><span class="kw">subset</span>(data, <span class="dt">select=</span><span class="op">-</span>size)</code></pre></div>
 </div>
 </div>
-<div id="section-6.13" class="section level2">
-<h2><span class="header-section-number">6.13</span> 对数据框的列重新排序</h2>
+<div id="section-10.3" class="section level2">
+<h2><span class="header-section-number">10.3</span> 对数据框的列重新排序</h2>
 <div id="-32" class="section level3">
-<h3><span class="header-section-number">6.13.1</span> 问题</h3>
+<h3><span class="header-section-number">10.3.1</span> 问题</h3>
 <p>你想要对一个数据框的列重新排序。</p>
 </div>
 <div id="-29" class="section level3">
-<h3><span class="header-section-number">6.13.2</span> 方案</h3>
+<h3><span class="header-section-number">10.3.2</span> 方案</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 一个样例数据框</span>
 data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
 <span class="st">    id weight   size</span>
@@ -1337,14 +630,14 @@ data[, <span class="dv">2</span>, drop=<span class="ot">FALSE</span>]
 <span class="co">#&gt; 3     24</span></code></pre></div>
 </div>
 </div>
-<div id="section-6.14" class="section level2">
-<h2><span class="header-section-number">6.14</span> 融合数据框</h2>
+<div id="section-10.4" class="section level2">
+<h2><span class="header-section-number">10.4</span> 融合数据框</h2>
 <div id="-33" class="section level3">
-<h3><span class="header-section-number">6.14.1</span> 问题</h3>
+<h3><span class="header-section-number">10.4.1</span> 问题</h3>
 <p>你想要基于一个给定的列融合两个数据框（像SQL的<strong>join</strong>）。</p>
 </div>
 <div id="-30" class="section level3">
-<h3><span class="header-section-number">6.14.2</span> 方案</h3>
+<h3><span class="header-section-number">10.4.2</span> 方案</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建一个将storyid映射到titles上的数据框</span>
 stories &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
 <span class="st">   storyid  title</span>
@@ -1418,21 +711,21 @@ observations &lt;-<span class="st"> </span><span class="kw">read.table</span>(<s
 <span class="co">#&gt; 3 small  dog      2  chihuahua</span>
 <span class="co">#&gt; 4 small  dog      3  chihuahua</span></code></pre></div>
 <div id="-7" class="section level4">
-<h4><span class="header-section-number">6.14.2.1</span> 注意</h4>
+<h4><span class="header-section-number">10.4.2.1</span> 注意</h4>
 <p>融合之后，改变列名的顺序可能是 有用的，参见<a href="https://www.jianshu.com/p/1f78b5929d62">../Reordering the columns in a data frame</a> 。</p>
 </div>
 </div>
 </div>
-<div id="section-6.15" class="section level2">
-<h2><span class="header-section-number">6.15</span> 比较数据框</h2>
+<div id="section-10.5" class="section level2">
+<h2><span class="header-section-number">10.5</span> 比较数据框</h2>
 <div id="-34" class="section level3">
-<h3><span class="header-section-number">6.15.1</span> 问题</h3>
+<h3><span class="header-section-number">10.5.1</span> 问题</h3>
 <p>你想要比较两个或多个数据框并找到在超过一个数据框中出现的行，或者仅在一个数据框中出现的行。</p>
 </div>
 <div id="-31" class="section level3">
-<h3><span class="header-section-number">6.15.2</span> 方案</h3>
-<div id="section-6.15.2.1" class="section level4">
-<h4><span class="header-section-number">6.15.2.1</span> 一个例子</h4>
+<h3><span class="header-section-number">10.5.2</span> 方案</h3>
+<div id="section-10.5.2.1" class="section level4">
+<h4><span class="header-section-number">10.5.2.1</span> 一个例子</h4>
 <p>假设你有下面三个数据框，你想要知道那些至少在两个数据框中出现的行。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dfA &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Subject=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">Response=</span><span class="kw">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;X&quot;</span>,<span class="st">&quot;X&quot;</span>,<span class="st">&quot;X&quot;</span>))
 dfA
@@ -1457,8 +750,8 @@ dfC
 <span class="co">#&gt; 3       3        Z</span></code></pre></div>
 <p>在dfA中，包括(1,X)的行同样出现在了dfB，但是包含(2,X)的行没有出现在任何其他的数据框。相似地，df包含的(1,X)出现在了dfA，(2,Y)出现在了dfC，但是(3,X)没有出现在其他数据框。</p>
 <p>你可能想要标记在其他数据框中出现了的行，或者没有数据框中都是唯一的行。</p>
-<div id="section-6.15.2.1.1" class="section level5">
-<h5><span class="header-section-number">6.15.2.1.1</span> 连接数据框</h5>
+<div id="section-10.5.2.1.1" class="section level5">
+<h5><span class="header-section-number">10.5.2.1.1</span> 连接数据框</h5>
 <p>进一步地，我们首先用一个可以识别每一行来自哪里的列来连接数据框。这里称为<code>Coder</code>变量因为它可能是由三个不同的人编码的数据。在这个例子中，你可能想要找到编码者同意之处（至少出现在两个数据框中的行），或者它们不同意之处。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dfA<span class="op">$</span>Coder &lt;-<span class="st"> &quot;A&quot;</span>
 dfB<span class="op">$</span>Coder &lt;-<span class="st"> &quot;B&quot;</span>
@@ -1480,8 +773,8 @@ df
 <span class="co">#&gt; 10     C       3        Z</span></code></pre></div>
 <p>如果你的数据一开始就是这种格式，那就不要将它们连接到一起啦。</p>
 </div>
-<div id="section-6.15.2.1.2" class="section level5">
-<h5><span class="header-section-number">6.15.2.1.2</span> 寻找重复行</h5>
+<div id="section-10.5.2.1.2" class="section level5">
+<h5><span class="header-section-number">10.5.2.1.2</span> 寻找重复行</h5>
 <p>使用在文末定义的函数<code>dupsBetweenGroups</code>，我们可以找出在不同组别中重复的行。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 找出在不同组别中重复的行</span>
 dupRows &lt;-<span class="st"> </span><span class="kw">dupsBetweenGroups</span>(df, <span class="st">&quot;Coder&quot;</span>)
@@ -1501,8 +794,8 @@ dupRows &lt;-<span class="st"> </span><span class="kw">dupsBetweenGroups</span>(
 <span class="co">#&gt; 10     C       3        Z FALSE</span></code></pre></div>
 <p>注意这不会标记<strong>在同一组</strong>中的重复行，比如Coder=A时，有两行Subject=2以及Response=X，但没有标记出来。</p>
 </div>
-<div id="section-6.15.2.1.3" class="section level5">
-<h5><span class="header-section-number">6.15.2.1.3</span> 寻找唯一行</h5>
+<div id="section-10.5.2.1.3" class="section level5">
+<h5><span class="header-section-number">10.5.2.1.3</span> 寻找唯一行</h5>
 <p>同样可以找出在每一组中唯一出现的行。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cbind</span>(df, <span class="dt">unique=</span><span class="op">!</span>dupRows)
 <span class="co">#&gt;    Coder Subject Response unique</span>
@@ -1517,8 +810,8 @@ dupRows &lt;-<span class="st"> </span><span class="kw">dupsBetweenGroups</span>(
 <span class="co">#&gt; 9      C       2        Y  FALSE</span>
 <span class="co">#&gt; 10     C       3        Z   TRUE</span></code></pre></div>
 </div>
-<div id="section-6.15.2.1.4" class="section level5">
-<h5><span class="header-section-number">6.15.2.1.4</span> 拆分数据框</h5>
+<div id="section-10.5.2.1.4" class="section level5">
+<h5><span class="header-section-number">10.5.2.1.4</span> 拆分数据框</h5>
 <p>如果你想要把连接的数据框拆分为三个原始的数据框</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 保存df的结果</span>
 dfDup &lt;-<span class="st"> </span><span class="kw">cbind</span>(df, <span class="dt">dup=</span>dupRows)
@@ -1545,8 +838,8 @@ dfC
 <span class="co">#&gt; 9        2        Y  TRUE</span>
 <span class="co">#&gt; 10       3        Z FALSE</span></code></pre></div>
 </div>
-<div id="section-6.15.2.1.5" class="section level5">
-<h5><span class="header-section-number">6.15.2.1.5</span> 忽略列</h5>
+<div id="section-10.5.2.1.5" class="section level5">
+<h5><span class="header-section-number">10.5.2.1.5</span> 忽略列</h5>
 <p>有可能需要通过移除数据框的列来忽略一个或者多个列，结果又可以把原始完整的数据框连接起来。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 忽略Subject列——仅使用Response列</span>
 dfNoSub &lt;-<span class="st"> </span><span class="kw">subset</span>(df, <span class="dt">select=</span><span class="op">-</span>Subject)
@@ -1582,7 +875,7 @@ dupRows &lt;-<span class="st"> </span><span class="kw">dupsBetweenGroups</span>(
 </div>
 </div>
 <div id="dupsbetweengroups-" class="section level4">
-<h4><span class="header-section-number">6.15.2.2</span> dupsBetweenGroups 函数</h4>
+<h4><span class="header-section-number">10.5.2.2</span> dupsBetweenGroups 函数</h4>
 <p>该函数用来寻找不同组别的重复行：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dupsBetweenGroups &lt;-<span class="st"> </span><span class="cf">function</span> (df, idcol) {
     <span class="co"># df: the data frame</span>
@@ -1629,19 +922,19 @@ dupRows &lt;-<span class="st"> </span><span class="kw">dupsBetweenGroups</span>(
 }</code></pre></div>
 </div>
 <div id="-8" class="section level4">
-<h4><span class="header-section-number">6.15.2.3</span> 注意</h4>
+<h4><span class="header-section-number">10.5.2.3</span> 注意</h4>
 <p>想要寻找单个数据框中的重复行，参看<a href="https://www.jianshu.com/p/82ed2e4dac58">../Finding and removing duplicate records</a>。</p>
 </div>
 </div>
 </div>
-<div id="section-6.16" class="section level2">
-<h2><span class="header-section-number">6.16</span> 重计算数据框所有因子列的水平</h2>
+<div id="section-10.6" class="section level2">
+<h2><span class="header-section-number">10.6</span> 重计算数据框所有因子列的水平</h2>
 <div id="-35" class="section level3">
-<h3><span class="header-section-number">6.16.1</span> 问题</h3>
+<h3><span class="header-section-number">10.6.1</span> 问题</h3>
 <p>你想要重新计算一个数据框中所有因子列（变量）的因子水平。</p>
 </div>
 <div id="-32" class="section level3">
-<h3><span class="header-section-number">6.16.2</span> 方案</h3>
+<h3><span class="header-section-number">10.6.2</span> 方案</h3>
 <p>有时候在读入和清理数据之后，你会发现数据（数据框）结果中有的因子列有一些不存在的因子水平。</p>
 <p>例如，下面的<code>d</code>有一个空行。当它被读入时，因子列会出现“”水平，它不应该是数据的一部分。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
@@ -1679,7 +972,7 @@ d
 <span class="co">#&gt;  $ y    : Factor w/ 4 levels &quot;&quot;,&quot;one&quot;,&quot;three&quot;,..: 2 4 3</span>
 <span class="co">#&gt;  $ value: int  1 4 10</span></code></pre></div>
 <div id="droplevels" class="section level4">
-<h4><span class="header-section-number">6.16.2.1</span> 使用<code>droplevels</code></h4>
+<h4><span class="header-section-number">10.6.2.1</span> 使用<code>droplevels</code></h4>
 <p>最简单的方式是使用<code>droplevels()</code>函数：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d1 &lt;-<span class="st"> </span><span class="kw">droplevels</span>(d)
 <span class="kw">str</span>(d1)
@@ -1689,7 +982,7 @@ d
 <span class="co">#&gt;  $ value: int  1 4 10</span></code></pre></div>
 </div>
 <div id="vapply--lapply" class="section level4">
-<h4><span class="header-section-number">6.16.2.2</span> 使用<code>vapply</code> 和 <code>lapply</code></h4>
+<h4><span class="header-section-number">10.6.2.2</span> 使用<code>vapply</code> 和 <code>lapply</code></h4>
 <p>为了重新计算所有因子列的水平，我们使用以<code>is.factor()</code>为参数的<code>vapply()</code>函数去找出哪些列是因子，然后再利用以<code>factor()</code>函数为参数的<code>lapply()</code>操作将那些列重新计算因子水平。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 找出哪些列是因子</span>
 factor_cols &lt;-<span class="st"> </span><span class="kw">vapply</span>(d, is.factor, <span class="kw">logical</span>(<span class="dv">1</span>))
@@ -1704,19 +997,19 @@ d[factor_cols] &lt;-<span class="st"> </span><span class="kw">lapply</span>(d[fa
 </div>
 </div>
 <div id="-2" class="section level3">
-<h3><span class="header-section-number">6.16.3</span> 另见</h3>
+<h3><span class="header-section-number">10.6.3</span> 另见</h3>
 <p>关于重计算一个因子变量水平的信息，参见 <a href="https://www.jianshu.com/p/2a92f8e3af2d">../Re-computing_the_levels_of_factor</a>.</p>
 </div>
 </div>
-<div id="section-6.17" class="section level2">
-<h2><span class="header-section-number">6.17</span> 长宽格式数据互换</h2>
+<div id="section-10.7" class="section level2">
+<h2><span class="header-section-number">10.7</span> 长宽格式数据互换</h2>
 <div id="-36" class="section level3">
-<h3><span class="header-section-number">6.17.1</span> 问题</h3>
+<h3><span class="header-section-number">10.7.1</span> 问题</h3>
 <p>你想要把数据从宽格式转换为长格式。</p>
 <p>R中许多函数希望输入的数据是长格式而不是宽格式。然而像SPSS软件经常使用宽格式数据。</p>
 </div>
 <div id="-33" class="section level3">
-<h3><span class="header-section-number">6.17.2</span> 方案</h3>
+<h3><span class="header-section-number">10.7.2</span> 方案</h3>
 <p>下面有两类方法：</p>
 <ul>
 <li><strong>tidyr</strong>包的<code>gather()</code>和<code>spread()</code>函数。这是<strong>reshape2</strong>包的一个新接口。</li>
@@ -1727,8 +1020,8 @@ d[factor_cols] &lt;-<span class="st"> </span><span class="kw">lapply</span>(d[fa
 <li><code>reshape()</code>函数，它比较让人迷惑，因为它是R的基础包的一部分，而不是reshape2包的一部分。</li>
 <li><code>stack()</code> 和 <code>unstack()</code></li>
 </ul>
-<div id="section-6.17.2.1" class="section level4">
-<h4><span class="header-section-number">6.17.2.1</span> 样例数据</h4>
+<div id="section-10.7.2.1" class="section level4">
+<h4><span class="header-section-number">10.7.2.1</span> 样例数据</h4>
 <p>这里使用的数据框包含同样数据的长、宽格式。它们接下来会被相互转换。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">olddata_wide &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
 <span class="st"> subject sex control cond1 cond2</span>
@@ -1758,9 +1051,9 @@ olddata_wide<span class="op">$</span>subject &lt;-<span class="st"> </span><span
 olddata_long<span class="op">$</span>subject &lt;-<span class="st"> </span><span class="kw">factor</span>(olddata_long<span class="op">$</span>subject)</code></pre></div>
 </div>
 <div id="tidyr" class="section level4">
-<h4><span class="header-section-number">6.17.2.2</span> tidyr</h4>
-<div id="section-6.17.2.2.1" class="section level5">
-<h5><span class="header-section-number">6.17.2.2.1</span> 从宽格式到长格式</h5>
+<h4><span class="header-section-number">10.7.2.2</span> tidyr</h4>
+<div id="section-10.7.2.2.1" class="section level5">
+<h5><span class="header-section-number">10.7.2.2.1</span> 从宽格式到长格式</h5>
 <p>使用 <code>gather</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">olddata_wide
 <span class="co">#&gt;   subject sex control cond1 cond2</span>
@@ -1822,8 +1115,8 @@ data_long
 <span class="co">#&gt; 8        4   M     first        13.4</span>
 <span class="co">#&gt; 12       4   M    second        12.9</span></code></pre></div>
 </div>
-<div id="section-6.17.2.2.2" class="section level5">
-<h5><span class="header-section-number">6.17.2.2.2</span> 从长格式到宽格式</h5>
+<div id="section-10.7.2.2.2" class="section level5">
+<h5><span class="header-section-number">10.7.2.2.2</span> 从长格式到宽格式</h5>
 <p>使用 <code>spread</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">olddata_long
 <span class="co">#&gt;    subject sex condition measurement</span>
@@ -1870,9 +1163,9 @@ data_wide
 </div>
 </div>
 <div id="reshape2" class="section level4">
-<h4><span class="header-section-number">6.17.2.3</span> reshape2</h4>
+<h4><span class="header-section-number">10.7.2.3</span> reshape2</h4>
 <div id="-1" class="section level5">
-<h5><span class="header-section-number">6.17.2.3.1</span> 从宽格式到长格式</h5>
+<h5><span class="header-section-number">10.7.2.3.1</span> 从宽格式到长格式</h5>
 <p>使用 <code>melt</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">olddata_wide
 <span class="co">#&gt;   subject sex control cond1 cond2</span>
@@ -1948,7 +1241,7 @@ data_long
 <span class="co">#&gt; 12       4   M    second        12.9</span></code></pre></div>
 </div>
 <div id="-1" class="section level5">
-<h5><span class="header-section-number">6.17.2.3.2</span> 从长格式到宽格式</h5>
+<h5><span class="header-section-number">10.7.2.3.2</span> 从长格式到宽格式</h5>
 <p>下面代码使用<code>dcast</code>函数重塑数据。这个函数用于数据框，如果你处理数组或矩阵，替换使用<code>acast</code>。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">olddata_long
 <span class="co">#&gt;    subject sex condition measurement</span>
@@ -2000,14 +1293,14 @@ data_wide
 </div>
 </div>
 </div>
-<div id="section-6.18" class="section level2">
-<h2><span class="header-section-number">6.18</span> 归纳总结数据</h2>
+<div id="section-10.8" class="section level2">
+<h2><span class="header-section-number">10.8</span> 归纳总结数据</h2>
 <div id="-37" class="section level3">
-<h3><span class="header-section-number">6.18.1</span> 问题</h3>
+<h3><span class="header-section-number">10.8.1</span> 问题</h3>
 <p>你想要按照组别总结你的数据（均值、标准差等等）。</p>
 </div>
 <div id="-34" class="section level3">
-<h3><span class="header-section-number">6.18.2</span> 方案</h3>
+<h3><span class="header-section-number">10.8.2</span> 方案</h3>
 <p>有三种方法描述基于一些特定变量的分组数据，然后对每一组使用总结函数（像均值、标准差等等）。</p>
 <ul>
 <li><code>ddply()</code>函数：它比较容易使用，但需要载入<code>plyr</code>包。这种方法可能就是你要找的（说明很多人用呗，好用呗）。</li>
@@ -2049,7 +1342,7 @@ data_wide
 <span class="st">      30   F   placebo   10.3   8.3   -2.0</span>
 <span class="st"> &#39;</span>)</code></pre></div>
 <div id="-ddply" class="section level4">
-<h4><span class="header-section-number">6.18.2.1</span> 使用 ddply</h4>
+<h4><span class="header-section-number">10.8.2.1</span> 使用 ddply</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plyr)
 
 <span class="co"># 给每一组运行长度、均值、标准差等函数</span>
@@ -2066,8 +1359,8 @@ cdata
 <span class="co">#&gt; 2   F   placebo 12 -2.058333 0.5247655 0.1514867</span>
 <span class="co">#&gt; 3   M   aspirin  9 -5.411111 1.1307569 0.3769190</span>
 <span class="co">#&gt; 4   M   placebo  4 -0.975000 0.7804913 0.3902456</span></code></pre></div>
-<div id="section-6.18.2.1.1" class="section level5">
-<h5><span class="header-section-number">6.18.2.1.1</span> 处理缺失值</h5>
+<div id="section-10.8.2.1.1" class="section level5">
+<h5><span class="header-section-number">10.8.2.1.1</span> 处理缺失值</h5>
 <p>如果数据中存在NA值，需要给每个函数添加<code>na.rm=TRUE</code>标记去除缺失值。因为函数<code>length()</code>没有<code>na.rm</code>选项，所以可以使用<code>sum(!is.na(...))</code>的方式对非缺失值进行计数。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 给数据加些NA值</span>
 dataNA &lt;-<span class="st"> </span>data
@@ -2086,8 +1379,8 @@ cdata
 <span class="co">#&gt; 3   M   aspirin  7 -5.142857 1.0674848 0.4034713</span>
 <span class="co">#&gt; 4   M   placebo  3 -1.300000 0.5291503 0.3055050</span></code></pre></div>
 </div>
-<div id="section-6.18.2.1.2" class="section level5">
-<h5><span class="header-section-number">6.18.2.1.2</span> 自动总结函数</h5>
+<div id="section-10.8.2.1.2" class="section level5">
+<h5><span class="header-section-number">10.8.2.1.2</span> 自动总结函数</h5>
 <p>不像我们刚才手动地指定想要的值然后计算标准误，这个函数可以自动处理所有的细节。它可以干以下的事情：</p>
 <ul>
 <li>寻找均值、标准差和计数</li>
@@ -2154,8 +1447,8 @@ summarySE &lt;-<span class="st"> </span><span class="cf">function</span>(<span c
 <span class="co">#&gt; 3   M   aspirin  7 -5.142857 1.0674848 0.4034713 0.9872588</span>
 <span class="co">#&gt; 4   M   placebo  3 -1.300000 0.5291503 0.3055050 1.3144821</span></code></pre></div>
 </div>
-<div id="section-6.18.2.1.3" class="section level5">
-<h5><span class="header-section-number">6.18.2.1.3</span> 用零填满空组合</h5>
+<div id="section-10.8.2.1.3" class="section level5">
+<h5><span class="header-section-number">10.8.2.1.3</span> 用零填满空组合</h5>
 <p>有时候总结的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有NA值的数据框时有用。要做到这一点，当调用<code>ddply</code>或<code>summarySE</code>时设置<code>.drop=FALSE</code>。（这里我翻译的不是很如意，大家可以查看原文）</p>
 <p>例子：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 首先移除所有 Male+Placebo 条目</span>
@@ -2180,7 +1473,7 @@ dataSub &lt;-<span class="st"> </span><span class="kw">subset</span>(data, <span
 </div>
 </div>
 <div id="summaryby" class="section level4">
-<h4><span class="header-section-number">6.18.2.2</span> 使用summaryBy</h4>
+<h4><span class="header-section-number">10.8.2.2</span> 使用summaryBy</h4>
 <p>使用<code>summarizeBy()</code>函数瓦解数据：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(doBy)
 
@@ -2207,7 +1500,7 @@ cdata
 <span class="co">#&gt; 4   M   placebo  4   -0.975000 0.7804913 0.3902456</span></code></pre></div>
 <p><strong>注意如果你有任何被试内变量，这些标准误值在比对组别差异时就没用了</strong>。参见 <a href="http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)">../../Graphs/Plotting means and error bars (ggplot2)</a> 获取如何绘制被试内变量的误差棒。</p>
 <div id="-1" class="section level5">
-<h5><span class="header-section-number">6.18.2.2.1</span> 处理缺失值</h5>
+<h5><span class="header-section-number">10.8.2.2.1</span> 处理缺失值</h5>
 <p>如果数据中存在NA值，你需要添加<code>na.rm=TRUE</code>选项。通常你可以在<code>summaryBy()</code>函数中设置，但<code>length()</code>函数识别不了这个选项。一种解决方式是根据<code>length()</code>函数定义一个新的取长度函数去处理NA值。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 新版的length函数可以处理NA值，如果na.rm=T,则不对NA计数</span>
 length2 &lt;-<span class="st"> </span><span class="cf">function</span> (x, <span class="dt">na.rm=</span><span class="ot">FALSE</span>) {
@@ -2231,7 +1524,7 @@ cdataNA
 <span class="co"># Now, do the same as before</span></code></pre></div>
 </div>
 <div id="-1" class="section level5">
-<h5><span class="header-section-number">6.18.2.2.2</span> 自动总结函数</h5>
+<h5><span class="header-section-number">10.8.2.2.2</span> 自动总结函数</h5>
 <p>（注意这里的自动总结函数与之前的不同，它是通过<code>summaryBy</code>实现的）</p>
 <p>不像我们刚才手动地指定想要的值然后计算标准误，这个函数可以自动处理所有的细节。它可以干以下的事情：</p>
 <ul>
@@ -2295,7 +1588,7 @@ summarySE(dataNA, measurevar=&quot;change&quot;, groupvars=c(&quot;sex&quot;,&qu
 </code></pre>
 </div>
 <div id="-1" class="section level5">
-<h5><span class="header-section-number">6.18.2.2.3</span> 用零填满空组合</h5>
+<h5><span class="header-section-number">10.8.2.2.3</span> 用零填满空组合</h5>
 <p>有时候总结的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有NA值的数据框时有用。</p>
 <p>这个例子将会用0填满缺失的组合：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fillMissingCombs &lt;-<span class="st"> </span><span class="cf">function</span>(df, factors, measures) {
@@ -2339,7 +1632,7 @@ fillMissingCombs(cdataSub, factors=c(&quot;sex&quot;,&quot;condition&quot;), mea
 </div>
 </div>
 <div id="-aggregate" class="section level4">
-<h4><span class="header-section-number">6.18.2.3</span> 使用 aggregate</h4>
+<h4><span class="header-section-number">10.8.2.3</span> 使用 aggregate</h4>
 <p><code>aggregate</code>函数比较难用，但它内置于R，所以不需要按照其他包。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 对每个目录 (sex*condition) 中的对象计数</span>
 cdata &lt;-<span class="st"> </span><span class="kw">aggregate</span>(data[<span class="st">&quot;subject&quot;</span>], <span class="dt">by=</span>data[<span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>,<span class="st">&quot;condition&quot;</span>)], <span class="dt">FUN=</span>length)
@@ -2431,14 +1724,14 @@ cdata.means
 </div>
 </div>
 </div>
-<div id="section-6.19" class="section level2">
-<h2><span class="header-section-number">6.19</span> 数据框与列联表互换</h2>
+<div id="section-10.9" class="section level2">
+<h2><span class="header-section-number">10.9</span> 数据框与列联表互换</h2>
 <div id="-38" class="section level3">
-<h3><span class="header-section-number">6.19.1</span> 问题</h3>
+<h3><span class="header-section-number">10.9.1</span> 问题</h3>
 <p>你想要在多种情况的一个数据框、每种情况类型计数的数据框以及一个列联表之间转换。</p>
 </div>
 <div id="-35" class="section level3">
-<h3><span class="header-section-number">6.19.2</span> 方案</h3>
+<h3><span class="header-section-number">10.9.2</span> 方案</h3>
 <p>这里有3种数据结构代表相同的信息，但是是以不同的形式：</p>
 <ul>
 <li><code>cases</code>: 每一行代表一个情况的数据框</li>
@@ -2478,8 +1771,8 @@ counts
 <span class="co">#&gt; 2   M  blue    1</span>
 <span class="co">#&gt; 3   F brown    3</span>
 <span class="co">#&gt; 4   M brown    1</span></code></pre></div>
-<div id="section-6.19.2.1" class="section level4">
-<h4><span class="header-section-number">6.19.2.1</span> 将情况记录转为列联表</h4>
+<div id="section-10.9.2.1" class="section level4">
+<h4><span class="header-section-number">10.9.2.1</span> 将情况记录转为列联表</h4>
 <p>将情况记录转为列联表（上面已经展示了）：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cases to Table</span>
 ctable  &lt;-<span class="st"> </span><span class="kw">table</span>(cases)
@@ -2504,8 +1797,8 @@ ctable
 <span class="co">#&gt;   M    1     1</span>
 </code></pre></div>
 </div>
-<div id="section-6.19.2.2" class="section level4">
-<h4><span class="header-section-number">6.19.2.2</span> 将情况记录转为计数</h4>
+<div id="section-10.9.2.2" class="section level4">
+<h4><span class="header-section-number">10.9.2.2</span> 将情况记录转为计数</h4>
 <p>它可以用一个数据框代表每一种组合的计数。注意它被转换并存储在<code>countdf</code>变量中：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cases to Counts</span>
 countdf &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">table</span>(cases))
@@ -2516,8 +1809,8 @@ countdf
 <span class="co">#&gt; 3   F brown    3</span>
 <span class="co">#&gt; 4   M brown    1</span></code></pre></div>
 </div>
-<div id="section-6.19.2.3" class="section level4">
-<h4><span class="header-section-number">6.19.2.3</span> 列联表转为情况记录</h4>
+<div id="section-10.9.2.3" class="section level4">
+<h4><span class="header-section-number">10.9.2.3</span> 列联表转为情况记录</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">countsToCases</span>(<span class="kw">as.data.frame</span>(ctable))
 <span class="co">#&gt;     Sex Color</span>
 <span class="co">#&gt; 2     M  blue</span>
@@ -2527,8 +1820,8 @@ countdf
 <span class="co">#&gt; 4     M brown</span></code></pre></div>
 <p>注意countsToCases函数定义在下面（文章最后）。</p>
 </div>
-<div id="section-6.19.2.4" class="section level4">
-<h4><span class="header-section-number">6.19.2.4</span> 列联表转为计数</h4>
+<div id="section-10.9.2.4" class="section level4">
+<h4><span class="header-section-number">10.9.2.4</span> 列联表转为计数</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.data.frame</span>(ctable)
 <span class="co">#&gt;   Sex Color Freq</span>
 <span class="co">#&gt; 1   F  blue    0</span>
@@ -2537,8 +1830,8 @@ countdf
 <span class="co">#&gt; 4   M brown    1</span></code></pre></div>
 <p>（从这里我们可以看到上一个代码的中间效果）</p>
 </div>
-<div id="section-6.19.2.5" class="section level4">
-<h4><span class="header-section-number">6.19.2.5</span> 计数转为情况记录</h4>
+<div id="section-10.9.2.5" class="section level4">
+<h4><span class="header-section-number">10.9.2.5</span> 计数转为情况记录</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">countsToCases</span>(countdf)
 <span class="co">#&gt;     Sex Color</span>
 <span class="co">#&gt; 2     M  blue</span>
@@ -2548,8 +1841,8 @@ countdf
 <span class="co">#&gt; 4     M brown</span></code></pre></div>
 <p>这相当于是列联表转为情况记录的第二步。</p>
 </div>
-<div id="section-6.19.2.6" class="section level4">
-<h4><span class="header-section-number">6.19.2.6</span> 计数转为列联表</h4>
+<div id="section-10.9.2.6" class="section level4">
+<h4><span class="header-section-number">10.9.2.6</span> 计数转为列联表</h4>
 <pre><code>xtabs(Freq ~ Sex+Color, data=countdf)
 #&gt;    Color
 #&gt; Sex blue brown
@@ -2558,7 +1851,7 @@ countdf
 </code></pre>
 </div>
 <div id="countstocases-" class="section level4">
-<h4><span class="header-section-number">6.19.2.7</span> <code>countsToCases()</code> 函数</h4>
+<h4><span class="header-section-number">10.9.2.7</span> <code>countsToCases()</code> 函数</h4>
 <p>这个函数使用在上面的例子中：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Convert from data frame of counts to data frame of cases.</span>
 <span class="co"># `countcol` is the name of the column containing the counts</span>
@@ -2575,14 +1868,14 @@ countsToCases &lt;-<span class="st"> </span><span class="cf">function</span>(x, 
 </div>
 </div>
 </div>
-<div id="section-6.20" class="section level2">
-<h2><span class="header-section-number">6.20</span> 计算移动平均数</h2>
+<div id="section-10.10" class="section level2">
+<h2><span class="header-section-number">10.10</span> 计算移动平均数</h2>
 <div id="-39" class="section level3">
-<h3><span class="header-section-number">6.20.1</span> 问题</h3>
+<h3><span class="header-section-number">10.10.1</span> 问题</h3>
 <p>你想要计算移动平均数</p>
 </div>
-<div id="section-6.20.2" class="section level3">
-<h3><span class="header-section-number">6.20.2</span> 解决方案</h3>
+<div id="section-10.10.2" class="section level3">
+<h3><span class="header-section-number">10.10.2</span> 解决方案</h3>
 <p>假设你的数据时带缺失值的噪声正弦波。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">993</span>)
 x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">300</span>
@@ -2697,14 +1990,14 @@ y_sym_na.rm &lt;-<span class="st"> </span><span class="kw">movingAverage</span>(
 </div>
 </div>
 </div>
-<div id="section-6.21" class="section level2">
-<h2><span class="header-section-number">6.21</span> 窗口平滑</h2>
+<div id="section-10.11" class="section level2">
+<h2><span class="header-section-number">10.11</span> 窗口平滑</h2>
 <div id="-40" class="section level3">
-<h3><span class="header-section-number">6.21.1</span> 问题</h3>
+<h3><span class="header-section-number">10.11.1</span> 问题</h3>
 <p>你想要计算序列给定窗口长度的平均数。这是平滑数据的一种方式。</p>
 </div>
 <div id="-36" class="section level3">
-<h3><span class="header-section-number">6.21.2</span> 方案</h3>
+<h3><span class="header-section-number">10.11.2</span> 方案</h3>
 <p>假设你有一个数值向量并且想要找出第一个连续四个数、第二个连续四个数等等如此的平均数。（就像用一个窗口在序列上移动，移动一次，计算一次）</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 生成有22个（0-99）以内的随机数向量</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>)
@@ -2736,14 +2029,14 @@ x
 <span class="co">#&gt; [1] 58.50 59.75 60.00 55.75 38.75 78.50</span></code></pre></div>
 </div>
 </div>
-<div id="section-6.22" class="section level2">
-<h2><span class="header-section-number">6.22</span> 寻找唯一值序列</h2>
+<div id="section-10.12" class="section level2">
+<h2><span class="header-section-number">10.12</span> 寻找唯一值序列</h2>
 <div id="-41" class="section level3">
-<h3><span class="header-section-number">6.22.1</span> 问题</h3>
+<h3><span class="header-section-number">10.12.1</span> 问题</h3>
 <p>你需要找到一个向量或者因子的唯一值</p>
 </div>
 <div id="-37" class="section level3">
-<h3><span class="header-section-number">6.22.2</span> 方案</h3>
+<h3><span class="header-section-number">10.12.2</span> 方案</h3>
 <p>你可以通过在向量里迭代寻找唯一值，但这样做在R里是很慢的。一个比较快的方案是通过<code>rle()</code>函数：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 示例数据</span>
 v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;B&quot;</span>, <span class="ot">NA</span>,<span class="ot">NA</span>, <span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;C&quot;</span>)
@@ -2782,8 +2075,8 @@ w2 &lt;-<span class="st"> </span><span class="kw">inverse.rle</span>(wr)
 w2
 <span class="co">#&gt;  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; NA  NA  &quot;C&quot; &quot;C&quot; &quot;B&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot;</span></code></pre></div>
 </div>
-<div id="section-6.22.3" class="section level3">
-<h3><span class="header-section-number">6.22.3</span> 向量上运行</h3>
+<div id="section-10.12.3" class="section level3">
+<h3><span class="header-section-number">10.12.3</span> 向量上运行</h3>
 <p>虽然因子基本上只是带有一些关于级别信息的整数向量，但是<code>rle()</code>函数不能处理因子。解决方案是手动将因子转换为整数向量或字符向量。使用整数向量速度快，内存效率高，这对于大型数据集可能很重要，但是很难解释。使用字符向量比较慢，需要更多的内存，但是更容易解释。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 假设这是我们要处理的向量</span>
 f &lt;-<span class="st"> </span><span class="kw">factor</span>(v)
@@ -2825,13 +2118,13 @@ f2
 </div>
 </div>
 <div id="nana" class="section level2">
-<h2><span class="header-section-number">6.23</span> 用最后的非NA值填充NA值</h2>
+<h2><span class="header-section-number">10.13</span> 用最后的非NA值填充NA值</h2>
 <div id="-42" class="section level3">
-<h3><span class="header-section-number">6.23.1</span> 问题</h3>
+<h3><span class="header-section-number">10.13.1</span> 问题</h3>
 <p>你想要将非NA值代替向量或者因子中的NA值</p>
 </div>
 <div id="-38" class="section level3">
-<h3><span class="header-section-number">6.23.2</span> 方案</h3>
+<h3><span class="header-section-number">10.13.2</span> 方案</h3>
 <p>这段代码展示了如何填充向量中的空白。如果需要重复执行此操作，请参阅下面的函数。该函数还可以用第一个确定的值填充领头<code>NA</code>，并正确处理因子。</p>
 <pre><code># 示例数据
 x &lt;- c(NA,NA, &quot;A&quot;,&quot;A&quot;, &quot;B&quot;,&quot;B&quot;,&quot;B&quot;, NA,NA, &quot;C&quot;, NA,NA,NA, &quot;A&quot;,&quot;A&quot;,&quot;B&quot;, NA,NA)
@@ -2855,8 +2148,8 @@ fillIdx
 
 # 原本向量的值被填充了
 #&gt;  [1] NA  NA  &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
-<div id="section-6.23.2.1" class="section level4">
-<h4><span class="header-section-number">6.23.2.1</span> 填充空隙的函数</h4>
+<div id="section-10.13.2.1" class="section level4">
+<h4><span class="header-section-number">10.13.2.1</span> 填充空隙的函数</h4>
 <p>此函数执行与上面代码相同的操作。它还可以用第一个良好的值填充领头<code>NA</code>，并正确处理因子。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fillNAgaps &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">firstBack=</span><span class="ot">FALSE</span>) {
     ## 向量或因子中的NA被之前一个非NA值代替
@@ -2915,8 +2208,8 @@ y
 <span class="co">#&gt; [18] B   </span>
 <span class="co">#&gt; Levels: A B C</span></code></pre></div>
 </div>
-<div id="section-6.23.2.2" class="section level4">
-<h4><span class="header-section-number">6.23.2.2</span> 注释</h4>
+<div id="section-10.13.2.2" class="section level4">
+<h4><span class="header-section-number">10.13.2.2</span> 注释</h4>
 <p>改编自来自于<strong>zoo</strong> library的<code>na.locf()</code> 函数</p>
 
 </div>
@@ -2928,8 +2221,8 @@ y
           </div>
         </div>
       </div>
-<a href="section-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="-small-.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-11.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -2966,7 +2259,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["bookdown.pdf", "bookdown.epub"],
 "toc": {
 "collapse": "section"
 }

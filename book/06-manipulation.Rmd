@@ -1,4 +1,5 @@
 # 操作数据
+
 ## R中的排序问题
 
 ### 问题
@@ -778,39 +779,36 @@ R中有两种不同类型的因子变量：**有序**和**无序**。比如{小�
 
 下面是这个例子的数据：
 
-```
+```R
 # 创建一个错误次序的因子
 sizes <- factor(c("small", "large", "large", "small", "medium"))
 sizes
 #> [1] small  large  large  small  medium
 #> Levels: large medium small
-
 ```
 
 因子水平被显式地指定：
 
-```
+```R
 sizes <- factor(sizes, levels = c("small", "medium", "large"))
 sizes
 #> [1] small  large  large  small  medium
 #> Levels: small medium large
-
 ```
 
 我们同样可以对有序因子这样操作：
 
-```
+```R
 sizes <- ordered(c("small", "large", "large", "small", "medium"))
 sizes <- ordered(sizes, levels = c("small", "medium", "large"))
 sizes
 #> [1] small  large  large  small  medium
 #> Levels: small < medium < large
-
 ```
 
 另一种方式是使用`relevel()`函数在列表中制作一个特定水平（这对有序因子不起作用）。
 
-```
+```R
 # 创建错误次序的因子
 sizes <- factor(c("small", "large", "large", "small", "medium"))
 sizes
@@ -828,12 +826,11 @@ sizes <- relevel(sizes, "small")
 sizes
 #> [1] small  large  large  small  medium
 #> Levels: small medium large
-
 ```
 
 当因子创建时，我们可以指定合适的顺序。
 
-```
+```R
 sizes <- factor(c("small", "large", "large", "small", "medium"),
                 levels = c("small", "medium", "large"))
 sizes
@@ -844,7 +841,7 @@ sizes
 
 **反转**因子水平次序。
 
-```
+```R
 # 创建错误次序的因子
 sizes <- factor(c("small", "large", "large", "small", "medium"))
 sizes

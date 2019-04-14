@@ -5,21 +5,21 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>第 4 章 公式 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 4 章 公式 | Cookbook for R 中文版本">
+  <title>B 图书推荐 | Cookbook for R 中文版</title>
+  <meta name="description" content="B 图书推荐 | Cookbook for R 中文版本">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="第 4 章 公式 | Cookbook for R 中文版" />
+  <meta property="og:title" content="B 图书推荐 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="第 4 章 公式 | Cookbook for R 中文版本" />
+  <meta property="og:description" content="B 图书推荐 | Cookbook for R 中文版本" />
   <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第 4 章 公式 | Cookbook for R 中文版" />
+  <meta name="twitter:title" content="B 图书推荐 | Cookbook for R 中文版" />
   
-  <meta name="twitter:description" content="第 4 章 公式 | Cookbook for R 中文版本" />
+  <meta name="twitter:description" content="B 图书推荐 | Cookbook for R 中文版本" />
   
 
 <meta name="author" content="Winston Chang（著）">
@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="section-3.html">
-<link rel="next" href="section-5.html">
+<link rel="prev" href="materials.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -102,7 +102,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
+<li><strong><a href="./">Cook book for R 中文版</a></strong></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
@@ -446,11 +446,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>附录</b></span></li>
-<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
-<li class="chapter" data-level="A.1" data-path="04-formulas.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
-<li class="chapter" data-level="A.2" data-path="04-formulas.html"><a href="#section-A.2"><i class="fa fa-check"></i><b>A.2</b> 网站</a></li>
-<li class="chapter" data-level="A.3" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
-</ul></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a></li>
+<li class="chapter" data-level="B" data-path="books.html"><a href="books.html"><i class="fa fa-check"></i><b>B</b> 图书推荐</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
@@ -472,135 +469,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-4" class="section level1">
-<h1><span class="header-section-number">第 4 章</span> 公式</h1>
-<div id="section-4.1" class="section level2">
-<h2><span class="header-section-number">4.1</span> 通过字符串创建公式</h2>
-<div id="-13" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> 问题</h3>
-<p>你想要通过字符串创建公式</p>
-</div>
-<div id="-12" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> 方案</h3>
-<p>通过字符串的方式来创建公式是非常有用的。这通常用于需要将公式参数当做字符串传入函数中</p>
-<p>最基础实用的方法就是调用函数 <code>as.formula()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 这将返回一个字符串</span>
-<span class="st">&quot;y ~ x1 + x2&quot;</span>
-<span class="co">#&gt; [1] &quot;y ~ x1 + x2&quot;</span>
+<div id="books" class="section level1">
+<h1><span class="header-section-number">B</span> 图书推荐</h1>
 
-<span class="co"># 这将返回一个公式</span>
-<span class="kw">as.formula</span>(<span class="st">&quot;y ~ x1 + x2&quot;</span>)
-<span class="co">#&gt; y ~ x1 + x2</span>
-<span class="co">#&gt; &lt;environment: 0x3361710&gt;</span></code></pre></div>
-<p>下面是一个简单实例：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 存在一些变量名:</span>
-measurevar &lt;-<span class="st"> &quot;y&quot;</span>
-groupvars  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x1&quot;</span>,<span class="st">&quot;x2&quot;</span>,<span class="st">&quot;x3&quot;</span>)
-
-<span class="co"># 创建合适的字符串:</span>
-<span class="kw">paste</span>(measurevar, <span class="kw">paste</span>(groupvars, <span class="dt">collapse=</span><span class="st">&quot; + &quot;</span>), <span class="dt">sep=</span><span class="st">&quot; ~ &quot;</span>)
-<span class="co">#&gt; [1] &quot;y ~ x1 + x2 + x3&quot;</span>
-
-<span class="co"># 返回公式:</span>
-<span class="kw">as.formula</span>(<span class="kw">paste</span>(measurevar, <span class="kw">paste</span>(groupvars, <span class="dt">collapse=</span><span class="st">&quot; + &quot;</span>), <span class="dt">sep=</span><span class="st">&quot; ~ &quot;</span>))
-<span class="co">#&gt; y ~ x1 + x2 + x3</span>
-<span class="co">#&gt; &lt;environment: 0x3361710&gt;</span></code></pre></div>
-<hr />
-<p>原文链接：<a href="http://www.cookbook-r.com/Formulas/Creating_a_formula_from_a_string/" class="uri">http://www.cookbook-r.com/Formulas/Creating_a_formula_from_a_string/</a></p>
-</div>
-</div>
-<div id="section-4.2" class="section level2">
-<h2><span class="header-section-number">4.2</span> 从公式中提取组分</h2>
-<div id="-14" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> 问题</h3>
-<p>你想要抽离公式的一部分用来使用。</p>
-</div>
-<div id="-13" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> 方案</h3>
-<p>你可以把公式对象当作列表看待，使用<code>[[</code>操作符对其组分进行操作。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span>y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2
-
-<span class="co"># 观察f结构</span>
-<span class="kw">str</span>(f)
-<span class="co">#&gt; Class &#39;formula&#39;  language y ~ x1 + x2</span>
-<span class="co">#&gt;   ..- attr(*, &quot;.Environment&quot;)=&lt;environment: 0x1e46710&gt;</span>
-
-<span class="co"># 获得每一部分</span>
-f[[<span class="dv">1</span>]]
-<span class="co">#&gt; `~`</span>
-f[[<span class="dv">2</span>]]
-<span class="co">#&gt; y</span>
-f[[<span class="dv">3</span>]]
-<span class="co">#&gt; x1 + x2</span>
-
-<span class="co"># 转换为列表观察</span>
-<span class="kw">as.list</span>(f)
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; `~`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; y</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[3]]</span>
-<span class="co">#&gt; x1 + x2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; &lt;environment: 0x1e46710&gt;</span></code></pre></div>
-<p>如果公式左边没有任何东西，那么列表只有两个元素：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f2 &lt;-<span class="st"> </span><span class="er">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2
-<span class="kw">as.list</span>(f2)
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; `~`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; x1 + x2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; &lt;environment: 0x1e46710&gt;</span></code></pre></div>
-<p>公式的每一个元素都是一个符号或者语言对象（包含多个符号）：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(f[[<span class="dv">1</span>]])
-<span class="co">#&gt;  symbol ~</span>
-<span class="kw">str</span>(f[[<span class="dv">2</span>]])
-<span class="co">#&gt;  symbol y</span>
-<span class="kw">str</span>(f[[<span class="dv">3</span>]])
-<span class="co">#&gt;  language x1 + x2</span>
-
-<span class="co"># Look at parts of the langage object</span>
-<span class="kw">str</span>(f[[<span class="dv">3</span>]][[<span class="dv">1</span>]])
-<span class="co">#&gt;  symbol +</span>
-<span class="kw">str</span>(f[[<span class="dv">3</span>]][[<span class="dv">2</span>]])
-<span class="co">#&gt;  symbol x1</span>
-<span class="kw">str</span>(f[[<span class="dv">3</span>]][[<span class="dv">3</span>]])
-<span class="co">#&gt;  symbol x2</span></code></pre></div>
-<p>你可以使用<code>as.character()</code>或<code>deparse()</code>函数将它们转为字符串。<code>deparse()</code>函数可以返回一个看起来更为自然的结果：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(f[[<span class="dv">1</span>]])
-<span class="co">#&gt; [1] &quot;~&quot;</span>
-<span class="kw">as.character</span>(f[[<span class="dv">2</span>]])
-<span class="co">#&gt; [1] &quot;y&quot;</span>
-
-<span class="co"># The language object gets coerced into a string that represents the parse tree:</span>
-<span class="kw">as.character</span>(f[[<span class="dv">3</span>]])
-<span class="co">#&gt; [1] &quot;+&quot;  &quot;x1&quot; &quot;x2&quot;</span>
-
-<span class="co"># You can use deparse() to get a more natural looking string</span>
-<span class="kw">deparse</span>(f[[<span class="dv">3</span>]])
-<span class="co">#&gt; [1] &quot;x1 + x2&quot;</span>
-<span class="kw">deparse</span>(f)
-<span class="co">#&gt; [1] &quot;y ~ x1 + x2&quot;</span></code></pre></div>
-<p>公式对象也会捕捉调用它的环境，比如我们在运行<code>str(f)</code>命令时看到的那样。如果要抽取它，可以使用<code>environment()</code>函数：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">environment</span>(f)
-<span class="co">#&gt; &lt;environment: 0x1e46710&gt;</span></code></pre></div>
-<hr />
-<p>原文链接：<a href="http://www.cookbook-r.com/Formulas/Extracting_components_from_a_formula/" class="uri">http://www.cookbook-r.com/Formulas/Extracting_components_from_a_formula/</a></p>
-
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="materials.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -630,7 +509,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/04-formulas.Rmd",
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/11-append.Rmd",
 "text": "编辑"
 },
 "history": {

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>数据的导入与导出 | Cookbook for R 中文版</title>
+  <meta name="description" content="数据的导入与导出 | Cookbook for R 中文版本">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="数据的导入与导出 | Cookbook for R 中文版" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="数据的导入与导出 | Cookbook for R 中文版本" />
+  <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="数据的导入与导出 | Cookbook for R 中文版" />
+  
+  <meta name="twitter:description" content="数据的导入与导出 | Cookbook for R 中文版本" />
+  
+
+<meta name="author" content="Winston Chang（著）">
+<meta name="author" content="王诗翔 等（译）">
+
+
+<meta name="date" content="2019-04-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="e585ace5bc8f.html">
+<link rel="next" href="e6938de4bd9ce695b0e68dae.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Cook book for R 中文版</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
+<li class="chapter" data-level="" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html"><i class="fa fa-check"></i>基础</a><ul>
+<li class="chapter" data-level="0.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.1</b> 安装和使用R包</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.1.1"><i class="fa fa-check"></i><b>0.1.1</b> 问题</a></li>
+<li class="chapter" data-level="0.1.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.1.2"><i class="fa fa-check"></i><b>0.1.2</b> 方案</a></li>
+<li class="chapter" data-level="0.1.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.1.3"><i class="fa fa-check"></i><b>0.1.3</b> 其他</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.2"><i class="fa fa-check"></i><b>0.2</b> 数据结构的索引</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.2.1</b> 问题</a></li>
+<li class="chapter" data-level="0.2.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.2.2"><i class="fa fa-check"></i><b>0.2.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.3"><i class="fa fa-check"></i><b>0.3</b> 获取数据结构的子集</a><ul>
+<li class="chapter" data-level="0.3.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.3.1</b> 问题</a></li>
+<li class="chapter" data-level="0.3.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.3.2</b> 方案</a></li>
+<li class="chapter" data-level="0.3.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.3.3"><i class="fa fa-check"></i><b>0.3.3</b> 数据框</a></li>
+</ul></li>
+<li class="chapter" data-level="0.4" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.4"><i class="fa fa-check"></i><b>0.4</b> 创建填满值的向量</a><ul>
+<li class="chapter" data-level="0.4.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.4.1</b> 问题</a></li>
+<li class="chapter" data-level="0.4.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.4.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.5" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.5"><i class="fa fa-check"></i><b>0.5</b> 获取变量信息</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-4"><i class="fa fa-check"></i><b>0.5.1</b> 问题</a></li>
+<li class="chapter" data-level="0.5.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.5.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.6" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#null-na-nan"><i class="fa fa-check"></i><b>0.6</b> NULL-NA-NaN的处理</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-5"><i class="fa fa-check"></i><b>0.6.1</b> 问题</a></li>
+<li class="chapter" data-level="0.6.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-4"><i class="fa fa-check"></i><b>0.6.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html"><i class="fa fa-check"></i>数字</a><ul>
+<li class="chapter" data-level="0.7" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.7"><i class="fa fa-check"></i><b>0.7</b> 生成随机数</a><ul>
+<li class="chapter" data-level="0.7.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-6"><i class="fa fa-check"></i><b>0.7.1</b> 问题</a></li>
+<li class="chapter" data-level="0.7.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-5"><i class="fa fa-check"></i><b>0.7.2</b> 方案</a></li>
+<li class="chapter" data-level="0.7.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.7.3</b> 注意</a></li>
+</ul></li>
+<li class="chapter" data-level="0.8" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.8"><i class="fa fa-check"></i><b>0.8</b> 生成可重复的随机序列</a><ul>
+<li class="chapter" data-level="0.8.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-7"><i class="fa fa-check"></i><b>0.8.1</b> 问题</a></li>
+<li class="chapter" data-level="0.8.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-6"><i class="fa fa-check"></i><b>0.8.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.9" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.9"><i class="fa fa-check"></i><b>0.9</b> 保持随机数生成器的状态</a><ul>
+<li class="chapter" data-level="0.9.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-8"><i class="fa fa-check"></i><b>0.9.1</b> 问题</a></li>
+<li class="chapter" data-level="0.9.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-7"><i class="fa fa-check"></i><b>0.9.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.10" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.10"><i class="fa fa-check"></i><b>0.10</b> 对数值取整</a><ul>
+<li class="chapter" data-level="0.10.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-9"><i class="fa fa-check"></i><b>0.10.1</b> 问题</a></li>
+<li class="chapter" data-level="0.10.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-8"><i class="fa fa-check"></i><b>0.10.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.11" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.11"><i class="fa fa-check"></i><b>0.11</b> 比较浮点数</a><ul>
+<li class="chapter" data-level="0.11.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-10"><i class="fa fa-check"></i><b>0.11.1</b> 问题</a></li>
+<li class="chapter" data-level="0.11.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-9"><i class="fa fa-check"></i><b>0.11.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html"><i class="fa fa-check"></i>字符串</a><ul>
+<li class="chapter" data-level="0.12" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#grepsubgsub"><i class="fa fa-check"></i><b>0.12</b> 使用grep,sub,gsub进行搜索和替换</a><ul>
+<li class="chapter" data-level="0.12.1" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-11"><i class="fa fa-check"></i><b>0.12.1</b> 问题</a></li>
+<li class="chapter" data-level="0.12.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-10"><i class="fa fa-check"></i><b>0.12.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.13" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#section-0.13"><i class="fa fa-check"></i><b>0.13</b> 通过变量创建字符串</a><ul>
+<li class="chapter" data-level="0.13.1" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-12"><i class="fa fa-check"></i><b>0.13.1</b> 问题</a></li>
+<li class="chapter" data-level="0.13.2" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-11"><i class="fa fa-check"></i><b>0.13.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html"><i class="fa fa-check"></i>公式</a><ul>
+<li class="chapter" data-level="0.14" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#section-0.14"><i class="fa fa-check"></i><b>0.14</b> 通过字符串创建公式</a><ul>
+<li class="chapter" data-level="0.14.1" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-13"><i class="fa fa-check"></i><b>0.14.1</b> 问题</a></li>
+<li class="chapter" data-level="0.14.2" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-12"><i class="fa fa-check"></i><b>0.14.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.15" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#section-0.15"><i class="fa fa-check"></i><b>0.15</b> 从公式中提取组分</a><ul>
+<li class="chapter" data-level="0.15.1" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-14"><i class="fa fa-check"></i><b>0.15.1</b> 问题</a></li>
+<li class="chapter" data-level="0.15.2" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-13"><i class="fa fa-check"></i><b>0.15.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><i class="fa fa-check"></i>数据的导入与导出</a><ul>
+<li class="chapter" data-level="0.16" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.16</b> R载入文件中的数据</a><ul>
+<li class="chapter" data-level="0.16.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-15"><i class="fa fa-check"></i><b>0.16.1</b> 问题</a></li>
+<li class="chapter" data-level="0.16.2" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-14"><i class="fa fa-check"></i><b>0.16.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.17" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.17</b> 键盘和剪贴板把数据载入并保存到R</a><ul>
+<li class="chapter" data-level="0.17.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-16"><i class="fa fa-check"></i><b>0.17.1</b> 问题</a></li>
+<li class="chapter" data-level="0.17.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-15"><i class="fa fa-check"></i><b>0.17.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.18" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.18</b> 运行R脚本</a><ul>
+<li class="chapter" data-level="0.18.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-17"><i class="fa fa-check"></i><b>0.18.1</b> 问题</a></li>
+<li class="chapter" data-level="0.18.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.18.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="0.19" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.19</b> 用R把数据写入文件</a><ul>
+<li class="chapter" data-level="0.19.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-18"><i class="fa fa-check"></i><b>0.19.1</b> 问题</a></li>
+<li class="chapter" data-level="0.19.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-16"><i class="fa fa-check"></i><b>0.19.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.20" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.20</b> 用R写入文本，分析输出到文件</a><ul>
+<li class="chapter" data-level="0.20.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-19"><i class="fa fa-check"></i><b>0.20.1</b> 问题</a></li>
+<li class="chapter" data-level="0.20.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-17"><i class="fa fa-check"></i><b>0.20.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html"><i class="fa fa-check"></i>操作数据</a><ul>
+<li class="chapter" data-level="0.21" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.21</b> R中的排序问题</a><ul>
+<li class="chapter" data-level="0.21.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-20"><i class="fa fa-check"></i><b>0.21.1</b> 问题</a></li>
+<li class="chapter" data-level="0.21.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.21.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="0.22" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.22</b> 用R生成随机的顺序</a><ul>
+<li class="chapter" data-level="0.22.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-21"><i class="fa fa-check"></i><b>0.22.1</b> 问题</a></li>
+<li class="chapter" data-level="0.22.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-18"><i class="fa fa-check"></i><b>0.22.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.23" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.23"><i class="fa fa-check"></i><b>0.23</b> 转换向量类型——数值向量，字符串向量和因子向量</a><ul>
+<li class="chapter" data-level="0.23.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-22"><i class="fa fa-check"></i><b>0.23.1</b> 问题</a></li>
+<li class="chapter" data-level="0.23.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-19"><i class="fa fa-check"></i><b>0.23.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.24" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.24</b> 用R查找并移除重复的记录</a><ul>
+<li class="chapter" data-level="0.24.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-23"><i class="fa fa-check"></i><b>0.24.1</b> 问题</a></li>
+<li class="chapter" data-level="0.24.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-20"><i class="fa fa-check"></i><b>0.24.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.25" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#na"><i class="fa fa-check"></i><b>0.25</b> NA存在的情况下，向量或因子间的比较</a><ul>
+<li class="chapter" data-level="0.25.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-24"><i class="fa fa-check"></i><b>0.25.1</b> 问题</a></li>
+<li class="chapter" data-level="0.25.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-21"><i class="fa fa-check"></i><b>0.25.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.26" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.26"><i class="fa fa-check"></i><b>0.26</b> 数据重新编码</a><ul>
+<li class="chapter" data-level="0.26.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-25"><i class="fa fa-check"></i><b>0.26.1</b> 问题</a></li>
+<li class="chapter" data-level="0.26.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-22"><i class="fa fa-check"></i><b>0.26.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.27" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#xy"><i class="fa fa-check"></i><b>0.27</b> 将向量中所有值为x的对象改变值y</a><ul>
+<li class="chapter" data-level="0.27.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-26"><i class="fa fa-check"></i><b>0.27.1</b> 问题</a></li>
+<li class="chapter" data-level="0.27.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-23"><i class="fa fa-check"></i><b>0.27.2</b> 方案</a></li>
+<li class="chapter" data-level="0.27.3" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.27.3"><i class="fa fa-check"></i><b>0.27.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="0.28" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.28"><i class="fa fa-check"></i><b>0.28</b> 重命名因子水平</a><ul>
+<li class="chapter" data-level="0.28.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-27"><i class="fa fa-check"></i><b>0.28.1</b> 问题</a></li>
+<li class="chapter" data-level="0.28.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-24"><i class="fa fa-check"></i><b>0.28.2</b> 方案</a></li>
+<li class="chapter" data-level="0.28.3" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.28.3"><i class="fa fa-check"></i><b>0.28.3</b> 更多参考</a></li>
+</ul></li>
+<li class="chapter" data-level="0.29" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.29"><i class="fa fa-check"></i><b>0.29</b> 重计算因子水平</a><ul>
+<li class="chapter" data-level="0.29.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-28"><i class="fa fa-check"></i><b>0.29.1</b> 问题</a></li>
+<li class="chapter" data-level="0.29.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-25"><i class="fa fa-check"></i><b>0.29.2</b> 方案</a></li>
+<li class="chapter" data-level="0.29.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.29.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="0.30" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.30"><i class="fa fa-check"></i><b>0.30</b> 改变因子水平次序</a><ul>
+<li class="chapter" data-level="0.30.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-29"><i class="fa fa-check"></i><b>0.30.1</b> 问题</a></li>
+<li class="chapter" data-level="0.30.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-26"><i class="fa fa-check"></i><b>0.30.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.31" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.31"><i class="fa fa-check"></i><b>0.31</b> 重命名数据框的列</a><ul>
+<li class="chapter" data-level="0.31.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-30"><i class="fa fa-check"></i><b>0.31.1</b> 问题</a></li>
+<li class="chapter" data-level="0.31.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-27"><i class="fa fa-check"></i><b>0.31.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.32" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.32"><i class="fa fa-check"></i><b>0.32</b> 添加和移除数据框的列</a><ul>
+<li class="chapter" data-level="0.32.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-31"><i class="fa fa-check"></i><b>0.32.1</b> 问题</a></li>
+<li class="chapter" data-level="0.32.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-28"><i class="fa fa-check"></i><b>0.32.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.33" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.33"><i class="fa fa-check"></i><b>0.33</b> 对数据框的列重新排序</a><ul>
+<li class="chapter" data-level="0.33.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-32"><i class="fa fa-check"></i><b>0.33.1</b> 问题</a></li>
+<li class="chapter" data-level="0.33.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-29"><i class="fa fa-check"></i><b>0.33.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.34" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.34"><i class="fa fa-check"></i><b>0.34</b> 融合数据框</a><ul>
+<li class="chapter" data-level="0.34.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-33"><i class="fa fa-check"></i><b>0.34.1</b> 问题</a></li>
+<li class="chapter" data-level="0.34.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-30"><i class="fa fa-check"></i><b>0.34.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.35" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.35"><i class="fa fa-check"></i><b>0.35</b> 比较数据框</a><ul>
+<li class="chapter" data-level="0.35.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-34"><i class="fa fa-check"></i><b>0.35.1</b> 问题</a></li>
+<li class="chapter" data-level="0.35.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-31"><i class="fa fa-check"></i><b>0.35.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.36" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.36"><i class="fa fa-check"></i><b>0.36</b> 重计算数据框所有因子列的水平</a><ul>
+<li class="chapter" data-level="0.36.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-35"><i class="fa fa-check"></i><b>0.36.1</b> 问题</a></li>
+<li class="chapter" data-level="0.36.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-32"><i class="fa fa-check"></i><b>0.36.2</b> 方案</a></li>
+<li class="chapter" data-level="0.36.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.36.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="0.37" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.37"><i class="fa fa-check"></i><b>0.37</b> 长宽格式数据互换</a><ul>
+<li class="chapter" data-level="0.37.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-36"><i class="fa fa-check"></i><b>0.37.1</b> 问题</a></li>
+<li class="chapter" data-level="0.37.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-33"><i class="fa fa-check"></i><b>0.37.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.38" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.38"><i class="fa fa-check"></i><b>0.38</b> 归纳总结数据</a><ul>
+<li class="chapter" data-level="0.38.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-37"><i class="fa fa-check"></i><b>0.38.1</b> 问题</a></li>
+<li class="chapter" data-level="0.38.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-34"><i class="fa fa-check"></i><b>0.38.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.39" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.39"><i class="fa fa-check"></i><b>0.39</b> 数据框与列联表互换</a><ul>
+<li class="chapter" data-level="0.39.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-38"><i class="fa fa-check"></i><b>0.39.1</b> 问题</a></li>
+<li class="chapter" data-level="0.39.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-35"><i class="fa fa-check"></i><b>0.39.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.40" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.40"><i class="fa fa-check"></i><b>0.40</b> 计算移动平均数</a><ul>
+<li class="chapter" data-level="0.40.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-39"><i class="fa fa-check"></i><b>0.40.1</b> 问题</a></li>
+<li class="chapter" data-level="0.40.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.40.2"><i class="fa fa-check"></i><b>0.40.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.41" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.41"><i class="fa fa-check"></i><b>0.41</b> 窗口平滑</a><ul>
+<li class="chapter" data-level="0.41.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-40"><i class="fa fa-check"></i><b>0.41.1</b> 问题</a></li>
+<li class="chapter" data-level="0.41.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-36"><i class="fa fa-check"></i><b>0.41.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.42" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.42"><i class="fa fa-check"></i><b>0.42</b> 寻找唯一值序列</a><ul>
+<li class="chapter" data-level="0.42.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-41"><i class="fa fa-check"></i><b>0.42.1</b> 问题</a></li>
+<li class="chapter" data-level="0.42.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-37"><i class="fa fa-check"></i><b>0.42.2</b> 方案</a></li>
+<li class="chapter" data-level="0.42.3" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.42.3"><i class="fa fa-check"></i><b>0.42.3</b> 向量上运行</a></li>
+</ul></li>
+<li class="chapter" data-level="0.43" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#nana"><i class="fa fa-check"></i><b>0.43</b> 用最后的非NA值填充NA值</a><ul>
+<li class="chapter" data-level="0.43.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-42"><i class="fa fa-check"></i><b>0.43.1</b> 问题</a></li>
+<li class="chapter" data-level="0.43.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-38"><i class="fa fa-check"></i><b>0.43.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html"><i class="fa fa-check"></i>统计分析</a><ul>
+<li class="chapter" data-level="0.44" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.44"><i class="fa fa-check"></i><b>0.44</b> 回归和相关分析</a><ul>
+<li class="chapter" data-level="0.44.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-43"><i class="fa fa-check"></i><b>0.44.1</b> 问题</a></li>
+<li class="chapter" data-level="0.44.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-39"><i class="fa fa-check"></i><b>0.44.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.45" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#t"><i class="fa fa-check"></i><b>0.45</b> t检验</a><ul>
+<li class="chapter" data-level="0.45.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-44"><i class="fa fa-check"></i><b>0.45.1</b> 问题</a></li>
+<li class="chapter" data-level="0.45.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-40"><i class="fa fa-check"></i><b>0.45.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.46" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.46"><i class="fa fa-check"></i><b>0.46</b> 频数检验</a><ul>
+<li class="chapter" data-level="0.46.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-45"><i class="fa fa-check"></i><b>0.46.1</b> 问题</a></li>
+<li class="chapter" data-level="0.46.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-41"><i class="fa fa-check"></i><b>0.46.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.47" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#anova"><i class="fa fa-check"></i><b>0.47</b> ANOVA</a><ul>
+<li class="chapter" data-level="0.47.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-46"><i class="fa fa-check"></i><b>0.47.1</b> 问题</a></li>
+<li class="chapter" data-level="0.47.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-42"><i class="fa fa-check"></i><b>0.47.2</b> 方案</a></li>
+<li class="chapter" data-level="0.47.3" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#anovas"><i class="fa fa-check"></i><b>0.47.3</b> 有受试内变量的ANOVAs</a></li>
+</ul></li>
+<li class="chapter" data-level="0.48" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.48"><i class="fa fa-check"></i><b>0.48</b> 逻辑回归</a><ul>
+<li class="chapter" data-level="0.48.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-47"><i class="fa fa-check"></i><b>0.48.1</b> 问题</a></li>
+<li class="chapter" data-level="0.48.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-43"><i class="fa fa-check"></i><b>0.48.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.49" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.49"><i class="fa fa-check"></i><b>0.49</b> 变量同质性</a><ul>
+<li class="chapter" data-level="0.49.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-48"><i class="fa fa-check"></i><b>0.49.1</b> 问题</a></li>
+<li class="chapter" data-level="0.49.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-44"><i class="fa fa-check"></i><b>0.49.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html"><i class="fa fa-check"></i>图形</a><ul>
+<li class="chapter" data-level="0.50" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.50"><i class="fa fa-check"></i><b>0.50</b> 条形图与线图</a><ul>
+<li class="chapter" data-level="0.50.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-49"><i class="fa fa-check"></i><b>0.50.1</b> 问题</a></li>
+<li class="chapter" data-level="0.50.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-45"><i class="fa fa-check"></i><b>0.50.2</b> 方案</a></li>
+<li class="chapter" data-level="0.50.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.50.3"><i class="fa fa-check"></i><b>0.50.3</b> 有更多变量的图</a></li>
+<li class="chapter" data-level="0.50.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-x-axis"><i class="fa fa-check"></i><b>0.50.4</b> 使用数值 x-axis</a></li>
+</ul></li>
+<li class="chapter" data-level="0.51" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51"><i class="fa fa-check"></i><b>0.51</b> 绘制均值和误差棒</a><ul>
+<li class="chapter" data-level="0.51.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-50"><i class="fa fa-check"></i><b>0.51.1</b> 问题</a></li>
+<li class="chapter" data-level="0.51.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-46"><i class="fa fa-check"></i><b>0.51.2</b> 方案</a></li>
+<li class="chapter" data-level="0.51.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.51.3</b> 线图</a></li>
+<li class="chapter" data-level="0.51.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.4"><i class="fa fa-check"></i><b>0.51.4</b> 直方图</a></li>
+<li class="chapter" data-level="0.51.5" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.5"><i class="fa fa-check"></i><b>0.51.5</b> 为组内变量添加误差棒</a></li>
+<li class="chapter" data-level="0.51.6" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.6"><i class="fa fa-check"></i><b>0.51.6</b> 注意标准化的均值</a></li>
+<li class="chapter" data-level="0.51.7" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.7"><i class="fa fa-check"></i><b>0.51.7</b> 助手函数</a></li>
+<li class="chapter" data-level="0.51.8" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.51.8</b> 其他</a></li>
+</ul></li>
+<li class="chapter" data-level="0.52" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.52</b> ggplot | 绘制分布图</a><ul>
+<li class="chapter" data-level="0.52.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-51"><i class="fa fa-check"></i><b>0.52.1</b> 问题</a></li>
+<li class="chapter" data-level="0.52.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-47"><i class="fa fa-check"></i><b>0.52.2</b> 方案</a></li>
+<li class="chapter" data-level="0.52.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.52.3"><i class="fa fa-check"></i><b>0.52.3</b> 直方图和概率密度图</a></li>
+<li class="chapter" data-level="0.52.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.52.4"><i class="fa fa-check"></i><b>0.52.4</b> 多组数据的直方图和概率密度图</a></li>
+</ul></li>
+<li class="chapter" data-level="0.53" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.53"><i class="fa fa-check"></i><b>0.53</b> 箱型图</a></li>
+<li class="chapter" data-level="0.54" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot"><i class="fa fa-check"></i><b>0.54</b> ggplot|散点图</a><ul>
+<li class="chapter" data-level="0.54.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-52"><i class="fa fa-check"></i><b>0.54.1</b> 问题</a></li>
+<li class="chapter" data-level="0.54.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-48"><i class="fa fa-check"></i><b>0.54.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.55" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.55</b> ggplot | 标题</a><ul>
+<li class="chapter" data-level="0.55.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-53"><i class="fa fa-check"></i><b>0.55.1</b> 问题</a></li>
+<li class="chapter" data-level="0.55.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-49"><i class="fa fa-check"></i><b>0.55.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.56" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot"><i class="fa fa-check"></i><b>0.56</b> ggplot|坐标轴</a><ul>
+<li class="chapter" data-level="0.56.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-54"><i class="fa fa-check"></i><b>0.56.1</b> 问题</a></li>
+<li class="chapter" data-level="0.56.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-50"><i class="fa fa-check"></i><b>0.56.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.57" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-ggplot2"><i class="fa fa-check"></i><b>0.57</b> 图例 (ggplot2)</a><ul>
+<li class="chapter" data-level="0.57.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-55"><i class="fa fa-check"></i><b>0.57.1</b> 问题</a></li>
+<li class="chapter" data-level="0.57.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.57.2</b> 解决方案</a></li>
+<li class="chapter" data-level="0.57.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.3"><i class="fa fa-check"></i><b>0.57.3</b> 修改图例标题和标签的外观</a></li>
+<li class="chapter" data-level="0.57.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.4"><i class="fa fa-check"></i><b>0.57.4</b> 修改图例框</a></li>
+<li class="chapter" data-level="0.57.5" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.5"><i class="fa fa-check"></i><b>0.57.5</b> 改变图例位置</a></li>
+<li class="chapter" data-level="0.57.6" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.6"><i class="fa fa-check"></i><b>0.57.6</b> 隐藏在图例中的斜线</a></li>
+<li class="chapter" data-level="0.57.7" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-9"><i class="fa fa-check"></i><b>0.57.7</b> 注意</a></li>
+</ul></li>
+<li class="chapter" data-level="0.58" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-ggplot2"><i class="fa fa-check"></i><b>0.58</b> 线条 (ggplot2)</a><ul>
+<li class="chapter" data-level="0.58.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-56"><i class="fa fa-check"></i><b>0.58.1</b> 问题</a></li>
+<li class="chapter" data-level="0.58.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.58.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.59" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.59</b> ggplot | 分面</a><ul>
+<li class="chapter" data-level="0.59.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-57"><i class="fa fa-check"></i><b>0.59.1</b> 问题</a></li>
+<li class="chapter" data-level="0.59.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-51"><i class="fa fa-check"></i><b>0.59.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.60" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.60</b> ggplot |多图</a><ul>
+<li class="chapter" data-level="0.60.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-58"><i class="fa fa-check"></i><b>0.60.1</b> 问题</a></li>
+<li class="chapter" data-level="0.60.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-52"><i class="fa fa-check"></i><b>0.60.2</b> 方案</a></li>
+<li class="chapter" data-level="0.60.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#multiplot-"><i class="fa fa-check"></i><b>0.60.3</b> multiplot 函数</a></li>
+</ul></li>
+<li class="chapter" data-level="0.61" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot2"><i class="fa fa-check"></i><b>0.61</b> 颜色（ggplot2)</a><ul>
+<li class="chapter" data-level="0.61.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-59"><i class="fa fa-check"></i><b>0.61.1</b> 问题</a></li>
+<li class="chapter" data-level="0.61.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.61.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.62" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#--pdf-png-tiff-svg"><i class="fa fa-check"></i><b>0.62</b> 图形混杂-输出到文件-PDF-PNG-TIFF-SVG</a><ul>
+<li class="chapter" data-level="0.62.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-60"><i class="fa fa-check"></i><b>0.62.1</b> 问题</a></li>
+<li class="chapter" data-level="0.62.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-53"><i class="fa fa-check"></i><b>0.62.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.63" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.63</b> 图形混杂-形状和线形</a><ul>
+<li class="chapter" data-level="0.63.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-61"><i class="fa fa-check"></i><b>0.63.1</b> 问题</a></li>
+<li class="chapter" data-level="0.63.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-54"><i class="fa fa-check"></i><b>0.63.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.64" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.64</b> 图形混杂-字体</a><ul>
+<li class="chapter" data-level="0.64.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-62"><i class="fa fa-check"></i><b>0.64.1</b> 问题</a></li>
+<li class="chapter" data-level="0.64.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-55"><i class="fa fa-check"></i><b>0.64.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.65" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.65</b> 图形混杂-抗混淆位图输出</a><ul>
+<li class="chapter" data-level="0.65.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-63"><i class="fa fa-check"></i><b>0.65.1</b> 问题</a></li>
+<li class="chapter" data-level="0.65.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-56"><i class="fa fa-check"></i><b>0.65.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.66" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.66</b> 标准绘图 | 散点图</a><ul>
+<li class="chapter" data-level="0.66.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-64"><i class="fa fa-check"></i><b>0.66.1</b> 问题</a></li>
+<li class="chapter" data-level="0.66.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-57"><i class="fa fa-check"></i><b>0.66.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.67" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.67"><i class="fa fa-check"></i><b>0.67</b> 标准绘图|箱线图</a><ul>
+<li class="chapter" data-level="0.67.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-65"><i class="fa fa-check"></i><b>0.67.1</b> 问题</a></li>
+<li class="chapter" data-level="0.67.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-58"><i class="fa fa-check"></i><b>0.67.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.68" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#qq"><i class="fa fa-check"></i><b>0.68</b> 标准绘图|QQ图</a><ul>
+<li class="chapter" data-level="0.68.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-66"><i class="fa fa-check"></i><b>0.68.1</b> 问题</a></li>
+<li class="chapter" data-level="0.68.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-59"><i class="fa fa-check"></i><b>0.68.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.69" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.69</b> 其他有趣图形-相关矩阵</a><ul>
+<li class="chapter" data-level="0.69.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-67"><i class="fa fa-check"></i><b>0.69.1</b> 问题</a></li>
+<li class="chapter" data-level="0.69.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-60"><i class="fa fa-check"></i><b>0.69.2</b> 方案</a></li>
+<li class="chapter" data-level="0.69.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.69.3</b> 提示</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html"><i class="fa fa-check"></i>脚本与函数</a><ul>
+<li class="chapter" data-level="0.70" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.70"><i class="fa fa-check"></i><b>0.70</b> 创建和运行一个脚本</a><ul>
+<li class="chapter" data-level="0.70.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.70.1"><i class="fa fa-check"></i><b>0.70.1</b> 参考文献：</a></li>
+</ul></li>
+<li class="chapter" data-level="0.71" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.71"><i class="fa fa-check"></i><b>0.71</b> 调试脚本或函数</a><ul>
+<li class="chapter" data-level="0.71.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#-68"><i class="fa fa-check"></i><b>0.71.1</b> 问题</a></li>
+<li class="chapter" data-level="0.71.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-61"><i class="fa fa-check"></i><b>0.71.2</b> 方案</a></li>
+<li class="chapter" data-level="0.71.3" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.71.3"><i class="fa fa-check"></i><b>0.71.3</b> <strong>有用的选择</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.72" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.72"><i class="fa fa-check"></i><b>0.72</b> 测量经过的时间</a><ul>
+<li class="chapter" data-level="0.72.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#-69"><i class="fa fa-check"></i><b>0.72.1</b> <strong>问题</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.73" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.73"><i class="fa fa-check"></i><b>0.73</b> 获取包中的函数和对象列表</a><ul>
+<li class="chapter" data-level="0.73.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#-70"><i class="fa fa-check"></i><b>0.73.1</b> 问题</a></li>
+<li class="chapter" data-level="0.73.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-62"><i class="fa fa-check"></i><b>0.73.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e5b7a5e585b7.html"><a href="e5b7a5e585b7.html"><i class="fa fa-check"></i>工具</a><ul>
+<li class="chapter" data-level="0.74" data-path="e5b7a5e585b7.html"><a href="e5b7a5e585b7.html#section-0.74"><i class="fa fa-check"></i><b>0.74</b> 生成拉丁方</a><ul>
+<li class="chapter" data-level="0.74.1" data-path="e5b7a5e585b7.html"><a href="e5b7a5e585b7.html#-71"><i class="fa fa-check"></i><b>0.74.1</b> 问题</a></li>
+<li class="chapter" data-level="0.74.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-63"><i class="fa fa-check"></i><b>0.74.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a></li>
+<li class="chapter" data-level="B" data-path="books.html"><a href="books.html"><i class="fa fa-check"></i><b>B</b> 图书推荐</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cookbook for R 中文版</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba" class="section level1 unnumbered">
+<h1>数据的导入与导出</h1>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">0.16</span> R载入文件中的数据</h2>
+<div id="-15" class="section level3">
+<h3><span class="header-section-number">0.16.1</span> 问题</h3>
+<p>你想从文件中载入数据。</p>
+</div>
+<div id="-14" class="section level3">
+<h3><span class="header-section-number">0.16.2</span> 方案</h3>
+<div id="section-0.16.2.1" class="section level4">
+<h4><span class="header-section-number">0.16.2.1</span> 带分隔符的文本文件</h4>
+<p>最简单的输入数据的方式就是将其保存为带分隔符（如：制表位或逗号）的文本文件。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;datafile.csv&quot;</span>)
+
+<span class="co"># 导入一个没有表头的CSV文件</span>
+data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;datafile-noheader.csv&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p>函数<code>read.table()</code>是一个更为普遍的函数，允许你设置分隔符，不管是否有表头，不管字符串是否有引号，等等。使用<code>?read.table</code>查看更多详细信息。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;datafile-noheader.csv&quot;</span>,
+                   <span class="dt">header=</span><span class="ot">FALSE</span>,
+                   <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>         <span class="co"># 制表位分隔的文件用&quot;\t&quot;</span>
+)</code></pre></div>
+</div>
+<div id="section-0.16.2.2" class="section level4">
+<h4><span class="header-section-number">0.16.2.2</span> 打开文件的文件选择器</h4>
+<p>某些平台，使用<code>file.choose()</code>可以打开文件选择的对话窗口；其他平台则会提示用户输入一个文件名。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.choose</span>())</code></pre></div>
+</div>
+<div id="factorcharacter" class="section level4">
+<h4><span class="header-section-number">0.16.2.3</span> 把字符串看作因子（factor）或字符（character）</h4>
+<p>默认条件下，数据中的字符串都被转换为因子。如果你用<code>read.csv()</code>载入数据，所有的文本列都会被视为因子，即便它被处理为字符串更有意义。要这么做，使用 <code>stringsAsFactors=FALSE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;datafile.csv&quot;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)
+
+<span class="co"># 将某一列转化为因子</span>
+data<span class="op">$</span>Sex &lt;-<span class="st"> </span><span class="kw">factor</span>(data<span class="op">$</span>Sex)</code></pre></div>
+<p>另一种将他们加载为因子，把某一列转换为字符的方法：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;datafile.csv&quot;</span>)
+
+data<span class="op">$</span>First &lt;-<span class="st"> </span><span class="kw">as.character</span>(data<span class="op">$</span>First)
+data<span class="op">$</span>Last  &lt;-<span class="st"> </span><span class="kw">as.character</span>(data<span class="op">$</span>Last)
+
+<span class="co"># 另一种方法：转化名为“First”和“Last”的两列</span>
+stringcols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;First&quot;</span>,<span class="st">&quot;Last&quot;</span>)
+data[stringcols] &lt;-<span class="st"> </span><span class="kw">lapply</span>(data[stringcols], as.character)</code></pre></div>
+</div>
+<div id="section-0.16.2.4" class="section level4">
+<h4><span class="header-section-number">0.16.2.4</span> 从网上导入文件</h4>
+<p>也可以从URL加载数据。这些(很长的)URL可以加载相关文件。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv&quot;</span>)
+
+
+<span class="co"># 读取没有表头的CSV文件</span>
+data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)
+
+<span class="co"># 手动添加表头</span>
+<span class="kw">names</span>(data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;First&quot;</span>,<span class="st">&quot;Last&quot;</span>,<span class="st">&quot;Sex&quot;</span>,<span class="st">&quot;Number&quot;</span>)</code></pre></div>
+<p>上述所使用的数据文件：</p>
+<p><a href="http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv">datafile.csv</a>：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;First&quot;</span>,<span class="st">&quot;Last&quot;</span>,<span class="st">&quot;Sex&quot;</span>,<span class="st">&quot;Number&quot;</span>
+<span class="st">&quot;Currer&quot;</span>,<span class="st">&quot;Bell&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="dv">2</span>
+<span class="st">&quot;Dr.&quot;</span>,<span class="st">&quot;Seuss&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="dv">49</span>
+<span class="st">&quot;&quot;</span>,<span class="st">&quot;Student&quot;</span>,<span class="ot">NA</span>,<span class="dv">21</span></code></pre></div>
+<p><a href="http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv">datafile-noheader.csv</a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Currer&quot;</span>,<span class="st">&quot;Bell&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="dv">2</span>
+<span class="st">&quot;Dr.&quot;</span>,<span class="st">&quot;Seuss&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="dv">49</span>
+<span class="st">&quot;&quot;</span>,<span class="st">&quot;Student&quot;</span>,<span class="ot">NA</span>,<span class="dv">21</span></code></pre></div>
+</div>
+<div id="section-0.16.2.5" class="section level4">
+<h4><span class="header-section-number">0.16.2.5</span> 定宽文本文件</h4>
+<p>假如你的数据列宽固定，如下例：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  First     Last  Sex Number
+ Currer     Bell    F      <span class="dv">2</span>
+    Dr.    Seuss    M     <span class="dv">49</span>
+    <span class="st">&quot;&quot;</span>   Student   <span class="ot">NA</span>     <span class="dv">21</span></code></pre></div>
+<p>读取这种数据的一种方式是简单地使用<code>read.table()</code>函数<code>strip.white=TRUE</code>，可以清除额外的空格。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.table</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">strip.white=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p>然而，你的数据文件可能包含空间列，或列没有空格分开，这样，scores列表示六个不同的测量值，每一个从0到3。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subject  sex  scores
+   N  <span class="dv">1</span>    M  <span class="dv">113311</span>
+   NE <span class="dv">2</span>    F  <span class="dv">112231</span>
+   S  <span class="dv">3</span>    F  <span class="dv">111221</span>
+   W  <span class="dv">4</span>    M  <span class="dv">011002</span></code></pre></div>
+<p>这种情况，你可能需要使用<code>read.fwf()</code>函数。如果你读的列名来自于文件，它要求他们用分隔符（如：制表位，空格，逗号）分开。如果有多个空格分开将他们分开，如下例，你需要直接指定列的名称。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 指定列的名称</span>
+<span class="kw">read.fwf</span>(<span class="st">&quot;myfile.txt&quot;</span>, 
+         <span class="kw">c</span>(<span class="dv">7</span>,<span class="dv">5</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="co"># 列的宽度，-2意味着放弃这些列</span>
+         <span class="dt">skip=</span><span class="dv">1</span>,                <span class="co"># 跳过第一行（包括表头）</span>
+         <span class="dt">col.names=</span><span class="kw">c</span>(<span class="st">&quot;subject&quot;</span>,<span class="st">&quot;sex&quot;</span>,<span class="st">&quot;s1&quot;</span>,<span class="st">&quot;s2&quot;</span>,<span class="st">&quot;s3&quot;</span>,<span class="st">&quot;s4&quot;</span>,<span class="st">&quot;s5&quot;</span>,<span class="st">&quot;s6&quot;</span>),
+         <span class="dt">strip.white=</span><span class="ot">TRUE</span>)      <span class="co"># 跳过每个数据的前导和尾随</span>
+<span class="co">#&gt;   subject sex s1 s2 s3 s4 s5 s6</span>
+<span class="co">#&gt; 1    N  1   M  1  1  3  3  1  1</span>
+<span class="co">#&gt; 2    NE 2   F  1  1  2  2  3  1</span>
+<span class="co">#&gt; 3    S  3   F  1  1  1  2  2  1</span>
+<span class="co">#&gt; 4    W  4   M  0  1  1  0  0  2</span>
+<span class="co"># subject sex s1 s2 s3 s4 s5 s6</span>
+<span class="co">#    N  1   M  1  1  3  3  1  1</span>
+<span class="co">#    NE 2   F  1  1  2  2  3  1</span>
+<span class="co">#    S  3   F  1  1  1  2  2  1</span>
+<span class="co">#    W  4   M  0  1  1  0  0  2</span>
+
+<span class="co"># 如果第一行如下：</span>
+<span class="co"># subject,sex,scores</span>
+<span class="co"># 我们可以使用header=TRUE</span>
+<span class="kw">read.fwf</span>(<span class="st">&quot;myfile.txt&quot;</span>, <span class="kw">c</span>(<span class="dv">7</span>,<span class="dv">5</span>,<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">strip.white=</span><span class="ot">TRUE</span>)
+<span class="co">#&gt; Error in read.table(file = FILE, header = header, sep = sep, row.names = row.names, : more columns than column names</span>
+<span class="co"># 错误：列比例名多</span></code></pre></div>
+</div>
+<div id="excel" class="section level4">
+<h4><span class="header-section-number">0.16.2.6</span> Excel文件</h4>
+<p><code>gdata</code>包里的<code>read.xls</code>函数可以读取Excel文件。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gdata)
+data &lt;-<span class="st"> </span><span class="kw">read.xls</span>(<span class="st">&quot;data.xls&quot;</span>)</code></pre></div>
+<p><code>gdata</code>包，见<a href="http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets" class="uri">http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets</a>.</p>
+<p>包的安装，见<a href="http://www.jianshu.com/p/51d9a18117ee">Basics-安装和使用R包</a></p>
+</div>
+<div id="spss" class="section level4">
+<h4><span class="header-section-number">0.16.2.7</span> SPSS数据</h4>
+<p><code>foreign</code>包里的<code>read.spss</code>函数可以读取SPSS文件。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign)
+data &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;data.sav&quot;</span>, <span class="dt">to.data.frame=</span><span class="ot">TRUE</span>)</code></pre></div>
+<hr />
+<p>原文链接：<a href="http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/" class="uri">http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/</a></p>
+</div>
+</div>
+</div>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">0.17</span> 键盘和剪贴板把数据载入并保存到R</h2>
+<div id="-16" class="section level3">
+<h3><span class="header-section-number">0.17.1</span> 问题</h3>
+<p>你想用键盘输入数据，而不是从文件中载入。</p>
+</div>
+<div id="-15" class="section level3">
+<h3><span class="header-section-number">0.17.2</span> 方案</h3>
+<div id="section-0.17.2.1" class="section level4">
+<h4><span class="header-section-number">0.17.2.1</span> 数据输入</h4>
+<p>假如您的数据如下：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">size weight cost
+  small      <span class="dv">5</span>    <span class="dv">6</span>
+ medium      <span class="dv">8</span>   <span class="dv">10</span>
+  large     <span class="dv">11</span>    <span class="dv">9</span></code></pre></div>
+<div id="section-0.17.2.1.1" class="section level5">
+<h5><span class="header-section-number">0.17.2.1.1</span> 键盘输入或从剪贴板载入数据</h5>
+<p>从键盘上输入的方法之一是从标准输入读取（<code>stdin()</code>）。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使用read.table和stdin()剪切和粘贴</span>
+data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">stdin</span>(), <span class="dt">header=</span><span class="ot">TRUE</span>) 
+<span class="co"># 系统将提示您输入:在这复制和粘贴文本</span>
+
+<span class="co"># 或者：</span>
+<span class="co"># data &lt;- read.csv(stdin())</span></code></pre></div>
+<p>你也可以直接从剪贴板载入：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 首先将数据复制到剪贴板</span>
+data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;clipboard&#39;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)
+
+<span class="co"># 或者：</span>
+<span class="co"># data &lt;- read.csv(&#39;clipboard&#39;)</span></code></pre></div>
+</div>
+<div id="section-0.17.2.1.2" class="section level5">
+<h5><span class="header-section-number">0.17.2.1.2</span> 在脚本中载入数据</h5>
+<p>前面的方法不能用来加载脚本文件中的数据，因为输入必须被键入(或粘贴)在运行该命令之后。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使用read.table()</span>
+data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
+<span class="st">    size weight cost</span>
+<span class="st">   small      5    6</span>
+<span class="st">  medium      8   10</span>
+<span class="st">   large     11    9</span>
+<span class="st"> &#39;</span>)</code></pre></div>
+<p>不同的数据格式(如：以逗号分隔，没有表头，等等)，选择<code>read.table()</code>可以设置。</p>
+<p>见../ <a href="http://www.jianshu.com/p/2a3f55ef4188">Data input and output-R载入文件中的数据</a>查看更多信息。</p>
+</div>
+</div>
+<div id="section-0.17.2.2" class="section level4">
+<h4><span class="header-section-number">0.17.2.2</span> 数据输出</h4>
+<p>默认情况下，R打印行名称。如果你想打印表的格式，可以复制粘贴，可能很有用。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(data, <span class="dt">row.names=</span><span class="ot">FALSE</span>)
+<span class="co">#&gt;    size weight cost</span>
+<span class="co">#&gt;   small      5    6</span>
+<span class="co">#&gt;  medium      8   10</span>
+<span class="co">#&gt;   large     11    9</span></code></pre></div>
+<div id="section-0.17.2.2.1" class="section level5">
+<h5><span class="header-section-number">0.17.2.2.1</span> 写入可以复制粘贴或粘贴到剪贴板的数据</h5>
+<p>可以写带分隔符数据终端（<code>stdout()</code>），这样它就可以被复制粘贴到其他地方，也可以直接写入到剪贴板。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(data, <span class="kw">stdout</span>(), <span class="dt">row.names=</span><span class="ot">FALSE</span>)
+<span class="co"># &quot;size&quot;,&quot;weight&quot;,&quot;cost&quot;</span>
+<span class="co"># &quot;small&quot;,5,6</span>
+<span class="co"># &quot;medium&quot;,8,10</span>
+<span class="co"># &quot;large&quot;,11,9</span>
+
+
+<span class="co"># 写到剪贴板(不支持Mac或Unix)</span>
+<span class="kw">write.csv</span>(data, <span class="st">&#39;clipboard&#39;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</code></pre></div>
+</div>
+<div id="r" class="section level5">
+<h5><span class="header-section-number">0.17.2.2.2</span> 输出R的载入</h5>
+<p>如果数据已经加载到R，可以使用<code>dput()</code>保存数据。从<code>dput()</code>的输出是创建数据结构的一个命令。这种方法的优点是，它可以保持任何数据类型的修改。举个例子，如果有一列数据，包含数字和你已经转换好的因子，这种方法将保留该类型，而简单地加载文本表格（如上所示）将把它处理为数字。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 假如你已经载入数据</span>
+
+<span class="kw">dput</span>(data)
+<span class="co">#&gt; structure(list(size = structure(c(3L, 2L, 1L), .Label = c(&quot;large&quot;, </span>
+<span class="co">#&gt; &quot;medium&quot;, &quot;small&quot;), class = &quot;factor&quot;), weight = c(5L, 8L, 11L</span>
+<span class="co">#&gt; ), cost = c(6L, 10L, 9L)), .Names = c(&quot;size&quot;, &quot;weight&quot;, &quot;cost&quot;</span>
+<span class="co">#&gt; ), class = &quot;data.frame&quot;, row.names = c(NA, -3L))</span>
+
+<span class="co"># 之后，我们可以使用dput输出，重新创建数据结构</span>
+newdata &lt;-<span class="st"> </span><span class="kw">structure</span>(<span class="kw">list</span>(<span class="dt">size =</span> <span class="kw">structure</span>(<span class="kw">c</span>(3L, 2L, 1L), <span class="dt">.Label =</span> <span class="kw">c</span>(<span class="st">&quot;large&quot;</span>, 
+  <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>), <span class="dt">class =</span> <span class="st">&quot;factor&quot;</span>), <span class="dt">weight =</span> <span class="kw">c</span>(5L, 8L, 11L
+  ), <span class="dt">cost =</span> <span class="kw">c</span>(6L, 10L, 9L)), <span class="dt">.Names =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;cost&quot;</span>
+  ), <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>, <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="op">-</span>3L))</code></pre></div>
+<hr />
+<p>原文链接：<a href="http://www.cookbook-r.com/Data_input_and_output/Loading_and_storing_data_with_the_keyboard_and_clipboard/" class="uri">http://www.cookbook-r.com/Data_input_and_output/Loading_and_storing_data_with_the_keyboard_and_clipboard/</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">0.18</span> 运行R脚本</h2>
+<div id="-17" class="section level3">
+<h3><span class="header-section-number">0.18.1</span> 问题</h3>
+<p>你想从文本文件运行R代码</p>
+</div>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">0.18.2</span> 解决</h3>
+<p>使用<code>source()</code>函数。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 首先，选择合适的目录</span>
+<span class="kw">setwd</span>(<span class="st">&#39;/home/username/desktop/rcode&#39;</span>)
+
+<span class="kw">source</span>(<span class="st">&#39;analyze.r&#39;</span>)</code></pre></div>
+<p>请注意，如果你想让你的脚本生成文本输出，你必须使用<code>print()</code>或<code>cat()</code>函数。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+
+<span class="co"># 在脚本中，这什么都不做</span>
+x
+
+<span class="co"># 使用print()函数:</span>
+<span class="kw">print</span>(x)
+<span class="co">#&gt; [1]  1  2  3  4  5  6  7  8  9 10</span>
+
+
+<span class="co"># 更简单的输出: 没有行/列，没有文本</span>
+<span class="kw">cat</span>(x)
+<span class="co">#&gt; 1  2  3  4  5  6  7  8  9 10</span></code></pre></div>
+<p>另一种代替方法是：运行<code>source()</code>并加上<code>print.eval=TRUE</code>选项。</p>
+<hr />
+<p>原文链接：<a href="http://www.cookbook-r.com/Data_input_and_output/Running_a_script/" class="uri">http://www.cookbook-r.com/Data_input_and_output/Running_a_script/</a></p>
+</div>
+</div>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">0.19</span> 用R把数据写入文件</h2>
+<div id="-18" class="section level3">
+<h3><span class="header-section-number">0.19.1</span> 问题</h3>
+<p>你想把数据写入一个文件。</p>
+</div>
+<div id="-16" class="section level3">
+<h3><span class="header-section-number">0.19.2</span> 方案</h3>
+<div id="section-0.19.2.1" class="section level4">
+<h4><span class="header-section-number">0.19.2.1</span> 写到有分隔符的文本文件</h4>
+<p>最简单的方式是用<code>write.csv()</code>。默认情况下，<code>write.csv()</code>包含行名，但是这通常没必要，而且可能会导致混乱。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 一个简单的例子</span>
+data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">text=</span><span class="st">&#39;</span>
+<span class="st"> subject sex size</span>
+<span class="st">       1   M    7</span>
+<span class="st">       2   F    NA</span>
+<span class="st">       3   F    9</span>
+<span class="st">       4   M   11</span>
+<span class="st"> &#39;</span>)
+
+<span class="co"># 写入到文件，不显示行名</span>
+<span class="kw">write.csv</span>(data, <span class="st">&quot;data.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>)
+
+<span class="co"># 替代“NA”，输出空格</span>
+<span class="kw">write.csv</span>(data, <span class="st">&quot;data.csv&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">na=</span><span class="st">&quot;&quot;</span>)
+
+<span class="co"># 用制表位可以不显示行&amp;列名</span>
+<span class="kw">write.table</span>(data, <span class="st">&quot;data.csv&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">row.names=</span><span class="ot">FALSE</span>, <span class="dt">col.names=</span><span class="ot">FALSE</span>) </code></pre></div>
+</div>
+<div id="r" class="section level4">
+<h4><span class="header-section-number">0.19.2.2</span> R保存的数据格式</h4>
+<p><code>write.csv()</code>和<code>write.table()</code>是最适合与其他数据分析程序交互操作的函数。然而，他们不会保持数据结构的特殊属性，如：列是否是一个字符类型或因子，或因子的水平的顺序。为了做到这一点，它本该在R中被写成一个特殊的格式。</p>
+<p>下面是三种主要的方法：</p>
+<p>第一个方法是输出R源代码，运行时，将重新创建该对象。这应该对大多数数据对象有用，但它可能无法专一地重现一些较为复杂的数据对象。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 保存在一个能容易被R载入的文本文件中</span>
+<span class="kw">dump</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;data.Rdmpd&quot;</span>)
+<span class="co"># 能保存多个对象</span>
+<span class="kw">dump</span>(<span class="kw">c</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;data1&quot;</span>), <span class="st">&quot;data.Rdmpd&quot;</span>)
+
+<span class="co"># 再次加载数据</span>
+<span class="kw">source</span>(<span class="st">&quot;data.Rdmpd&quot;</span>)
+<span class="co"># 载入时，原始的数据名称将被自动使用</span></code></pre></div>
+<p>另一个方法是，在RDS格式中写入的个人数据对象。这种格式可以是二进制或ASCII。二进制更紧凑，而ASCII将与版本控制系统更有效率，如Git。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在二进制RDS格式中保存一个简单的对象</span>
+<span class="kw">saveRDS</span>(data, <span class="st">&quot;data.rds&quot;</span>)
+<span class="co"># 或，使用ASCII格式</span>
+<span class="kw">saveRDS</span>(data, <span class="st">&quot;data.rds&quot;</span>, <span class="dt">ascii=</span><span class="ot">TRUE</span>)
+
+<span class="co"># 再次载入:</span>
+data &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data.rds&quot;</span>)</code></pre></div>
+<p>也可以将多个对象保存到一个单一的文件，使用RData格式。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在二进制RData格式中保存多个对象</span>
+<span class="kw">save</span>(data, <span class="dt">file=</span><span class="st">&quot;data.RData&quot;</span>)
+<span class="co"># 或，使用ASCII格式</span>
+<span class="kw">save</span>(data, <span class="dt">file=</span><span class="st">&quot;data.RData&quot;</span>, <span class="dt">ascii=</span><span class="ot">TRUE</span>)
+<span class="co"># 可以保存多个对象</span>
+<span class="kw">save</span>(data, data1, <span class="dt">file=</span><span class="st">&quot;data.RData&quot;</span>)
+
+<span class="co"># 再次载入:</span>
+<span class="kw">load</span>(<span class="st">&quot;data.RData&quot;</span>)</code></pre></div>
+<p><code>saveRDS()</code>和<code>save()</code>一个重要的区别是，使用前者，当你用<code>readRDS()</code>读取数据，你指定对象的名称；使用后者，当你用<code>load()</code>载入数据，会自动使用原来的对象名称。自动使用原始对象名称有时可以简化工作流程，但如果数据对象在不同的环境中使用时，也会成为一个缺点。</p>
+<hr />
+<p>原文链接：<a href="http://www.cookbook-r.com/Data_input_and_output/Writing_data_to_a_file/" class="uri">http://www.cookbook-r.com/Data_input_and_output/Writing_data_to_a_file/</a></p>
+</div>
+</div>
+</div>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">0.20</span> 用R写入文本，分析输出到文件</h2>
+<div id="-19" class="section level3">
+<h3><span class="header-section-number">0.20.1</span> 问题</h3>
+<p>如果你想写出到文件</p>
+</div>
+<div id="-17" class="section level3">
+<h3><span class="header-section-number">0.20.2</span> 方案</h3>
+<p><code>sink()</code>函数将会不定向输出到一个文件，而不是R终端。请注意，如果您在脚本中使用<code>sink()</code>，它崩溃之前输出到终端，然后看不到任何对你命令的响应。<code>sink()</code>的调用不带任何参数将返回输出到终端。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 开始写入到文件</span>
+<span class="kw">sink</span>(<span class="st">&#39;analysis-output.txt&#39;</span>)
+
+<span class="kw">set.seed</span>(<span class="dv">12345</span>)
+x &lt;-<span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">1</span>)
+y &lt;-<span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">1</span>)
+<span class="co"># 加些东西</span>
+<span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;x has %d elements:</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">length</span>(x)))
+<span class="kw">print</span>(x)
+<span class="kw">cat</span>(<span class="st">&quot;y =&quot;</span>, y, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="kw">cat</span>(<span class="st">&quot;=============================</span><span class="ch">\n</span><span class="st">&quot;</span>)
+<span class="kw">cat</span>(<span class="st">&quot;T-test between x and y</span><span class="ch">\n</span><span class="st">&quot;</span>)
+<span class="kw">cat</span>(<span class="st">&quot;=============================</span><span class="ch">\n</span><span class="st">&quot;</span>)
+<span class="kw">t.test</span>(x,y)
+
+<span class="co"># 停止写入</span>
+<span class="kw">sink</span>()
+
+
+<span class="co"># 附加到文件</span>
+<span class="kw">sink</span>(<span class="st">&#39;analysis-output.txt&#39;</span>, <span class="dt">append=</span><span class="ot">TRUE</span>)
+<span class="kw">cat</span>(<span class="st">&quot;Some more stuff here...</span><span class="ch">\n</span><span class="st">&quot;</span>)
+<span class="kw">sink</span>()</code></pre></div>
+<p>输出文件的内容：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x has <span class="dv">10</span> elements<span class="op">:</span>
+<span class="st"> </span>[<span class="dv">1</span>] <span class="fl">10.585529</span> <span class="fl">10.709466</span>  <span class="fl">9.890697</span>  <span class="fl">9.546503</span> <span class="fl">10.605887</span>  <span class="fl">8.182044</span> <span class="fl">10.630099</span>  <span class="fl">9.723816</span>
+ [<span class="dv">9</span>]  <span class="fl">9.715840</span>  <span class="fl">9.080678</span>
+y =<span class="st"> </span><span class="fl">10.88375</span> <span class="fl">12.81731</span> <span class="fl">11.37063</span> <span class="fl">11.52022</span> <span class="fl">10.24947</span> <span class="fl">11.8169</span> <span class="fl">10.11364</span> <span class="fl">10.66842</span> <span class="fl">12.12071</span> <span class="fl">11.29872</span> 
+<span class="op">==</span><span class="er">===========================</span>
+T<span class="op">-</span>test between x and y
+<span class="op">==</span><span class="er">===========================</span>
+
+<span class="st">    </span>Welch Two Sample t<span class="op">-</span>test
+
+data<span class="op">:</span><span class="st">  </span>x and y
+t =<span class="st"> </span><span class="op">-</span><span class="fl">3.8326</span>, df =<span class="st"> </span><span class="fl">17.979</span>, p<span class="op">-</span>value =<span class="st"> </span><span class="fl">0.001222</span>
+alternative hypothesis<span class="op">:</span><span class="st"> </span>true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span>
+<span class="dv">95</span> percent confidence interval<span class="op">:</span>
+<span class="st"> </span><span class="op">-</span><span class="fl">2.196802</span> <span class="op">-</span><span class="fl">0.641042</span>
+sample estimates<span class="op">:</span>
+mean of x mean of y 
+ <span class="fl">9.867056</span> <span class="fl">11.285978</span> 
+
+Some more stuff here...</code></pre></div>
+<hr />
+<p>原文链接：<a href="http://www.cookbook-r.com/Data_input_and_output/Writing_text_and_output_from_analyses_to_a_file/" class="uri">http://www.cookbook-r.com/Data_input_and_output/Writing_text_and_output_from_analyses_to_a_file/</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="e585ace5bc8f.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="e6938de4bd9ce695b0e68dae.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/05-io.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
