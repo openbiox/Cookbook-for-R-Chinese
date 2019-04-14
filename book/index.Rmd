@@ -1,0 +1,47 @@
+--- 
+title: "Cookbook for R 中文版"
+author: "Winston Chang（著）| 王诗翔等（译）"
+date: "`r Sys.Date()`"
+documentclass: ctexbook
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+geometry: [b5paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=3.5cm, rmargin=2.5cm]
+site: bookdown::bookdown_site
+description: "Cookbook for R 中文版本"
+github-repo:  openbiox/Cookbook-for-R-Chinese
+#cover-image: images/cover.jpg
+---
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+)
+
+# 填上你需要用到的包，如 c('ggplot2', 'dplyr')
+lapply(c(), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+```
+
+# 前言 {-}
+
+
+我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@xie2015] 和 **bookdown**\index{bookdown} [@R-bookdown]。以下是我的 R 进程信息：
+
+```{r}
+sessionInfo()
+```
+
+## 致谢 {-}
+
+非常感谢以下成员的参与，如果不是他们，这本中文书再过两年也不会跟大家见面。
+
+```{block2, type='flushright', html.tag='p'}
+王诗翔  
+于 上海科技大学
+```
+

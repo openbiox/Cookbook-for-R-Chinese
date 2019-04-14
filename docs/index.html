@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Cookbook for R 中文版</title>
+  <meta name="description" content="Cookbook for R 中文版本">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Cookbook for R 中文版" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Cookbook for R 中文版本" />
+  <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cookbook for R 中文版" />
+  
+  <meta name="twitter:description" content="Cookbook for R 中文版本" />
+  
+
+<meta name="author" content="Winston Chang（著）| 王诗翔等（译）">
+
+
+<meta name="date" content="2019-04-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="author.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Cook book for R 中文版</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e887b4e8b0a2"><i class="fa fa-check"></i>致谢</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
+<li class="chapter" data-level="1" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
+<li class="chapter" data-level="1.1" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>1.1</b> 安装和使用R包</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="section-1.html"><a href="section-1.html#section-1.1.1"><i class="fa fa-check"></i><b>1.1.1</b> 问题</a></li>
+<li class="chapter" data-level="1.1.2" data-path="section-1.html"><a href="section-1.html#section-1.1.2"><i class="fa fa-check"></i><b>1.1.2</b> 方案</a></li>
+<li class="chapter" data-level="1.1.3" data-path="section-1.html"><a href="section-1.html#section-1.1.3"><i class="fa fa-check"></i><b>1.1.3</b> 其他</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="section-1.html"><a href="section-1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>1.2.1</b> 问题</a></li>
+<li class="chapter" data-level="1.2.2" data-path="section-1.html"><a href="section-1.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="section-1.html"><a href="section-1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>1.3.1</b> 问题</a></li>
+<li class="chapter" data-level="1.3.2" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>1.3.2</b> 方案</a></li>
+<li class="chapter" data-level="1.3.3" data-path="section-1.html"><a href="section-1.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> 数据框</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="section-1.html"><a href="section-1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="section-1.html"><a href="section-1.html#-3"><i class="fa fa-check"></i><b>1.4.1</b> 问题</a></li>
+<li class="chapter" data-level="1.4.2" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>1.4.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="section-1.html"><a href="section-1.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 获取变量信息</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="section-1.html"><a href="section-1.html#-4"><i class="fa fa-check"></i><b>1.5.1</b> 问题</a></li>
+<li class="chapter" data-level="1.5.2" data-path="section-1.html"><a href="section-1.html#-3"><i class="fa fa-check"></i><b>1.5.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="section-1.html"><a href="section-1.html#null-na-nan"><i class="fa fa-check"></i><b>1.6</b> NULL-NA-NaN的处理</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="section-1.html"><a href="section-1.html#-5"><i class="fa fa-check"></i><b>1.6.1</b> 问题</a></li>
+<li class="chapter" data-level="1.6.2" data-path="section-1.html"><a href="section-1.html#-4"><i class="fa fa-check"></i><b>1.6.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 数字</a><ul>
+<li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="section-2.html"><a href="section-2.html#-6"><i class="fa fa-check"></i><b>2.1.1</b> 问题</a></li>
+<li class="chapter" data-level="2.1.2" data-path="section-1.html"><a href="section-1.html#-5"><i class="fa fa-check"></i><b>2.1.2</b> 方案</a></li>
+<li class="chapter" data-level="2.1.3" data-path="section-1.html"><a href="section-1.html#-3"><i class="fa fa-check"></i><b>2.1.3</b> 注意</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="section-2.html"><a href="section-2.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 生成可重复的随机序列</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="section-2.html"><a href="section-2.html#-7"><i class="fa fa-check"></i><b>2.2.1</b> 问题</a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-2.html"><a href="section-2.html#-6"><i class="fa fa-check"></i><b>2.2.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="section-2.html"><a href="section-2.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 保持随机数生成器的状态</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="section-2.html"><a href="section-2.html#-8"><i class="fa fa-check"></i><b>2.3.1</b> 问题</a></li>
+<li class="chapter" data-level="2.3.2" data-path="section-2.html"><a href="section-2.html#-7"><i class="fa fa-check"></i><b>2.3.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="section-2.html"><a href="section-2.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 对数值取整</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="section-2.html"><a href="section-2.html#-9"><i class="fa fa-check"></i><b>2.4.1</b> 问题</a></li>
+<li class="chapter" data-level="2.4.2" data-path="section-2.html"><a href="section-2.html#-8"><i class="fa fa-check"></i><b>2.4.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="section-2.html"><a href="section-2.html#-10"><i class="fa fa-check"></i><b>2.5.1</b> 问题</a></li>
+<li class="chapter" data-level="2.5.2" data-path="section-2.html"><a href="section-2.html#-9"><i class="fa fa-check"></i><b>2.5.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 字符串</a><ul>
+<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#grepsubgsub"><i class="fa fa-check"></i><b>3.1</b> 使用grep,sub,gsub进行搜索和替换</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="section-3.html"><a href="section-3.html#-11"><i class="fa fa-check"></i><b>3.1.1</b> 问题</a></li>
+<li class="chapter" data-level="3.1.2" data-path="section-2.html"><a href="section-2.html#-10"><i class="fa fa-check"></i><b>3.1.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="section-3.html"><a href="section-3.html#-12"><i class="fa fa-check"></i><b>3.2.1</b> 问题</a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-3.html"><a href="section-3.html#-11"><i class="fa fa-check"></i><b>3.2.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 公式</a><ul>
+<li class="chapter" data-level="4.1" data-path="section-4.html"><a href="section-4.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 通过字符串创建公式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="section-4.html"><a href="section-4.html#-13"><i class="fa fa-check"></i><b>4.1.1</b> 问题</a></li>
+<li class="chapter" data-level="4.1.2" data-path="section-3.html"><a href="section-3.html#-12"><i class="fa fa-check"></i><b>4.1.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="section-4.html"><a href="section-4.html#-14"><i class="fa fa-check"></i><b>4.2.1</b> 问题</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section-4.html"><a href="section-4.html#-13"><i class="fa fa-check"></i><b>4.2.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a><ul>
+<li class="chapter" data-level="5.1" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="section-5.html"><a href="section-5.html#-15"><i class="fa fa-check"></i><b>5.1.1</b> 问题</a></li>
+<li class="chapter" data-level="5.1.2" data-path="section-4.html"><a href="section-4.html#-14"><i class="fa fa-check"></i><b>5.1.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>5.2</b> 键盘和剪贴板把数据载入并保存到R</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="section-5.html"><a href="section-5.html#-16"><i class="fa fa-check"></i><b>5.2.1</b> 问题</a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-5.html"><a href="section-5.html#-15"><i class="fa fa-check"></i><b>5.2.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>5.3</b> 运行R脚本</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="section-5.html"><a href="section-5.html#-17"><i class="fa fa-check"></i><b>5.3.1</b> 问题</a></li>
+<li class="chapter" data-level="5.3.2" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>5.3.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>5.4</b> 用R把数据写入文件</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="section-5.html"><a href="section-5.html#-18"><i class="fa fa-check"></i><b>5.4.1</b> 问题</a></li>
+<li class="chapter" data-level="5.4.2" data-path="section-5.html"><a href="section-5.html#-16"><i class="fa fa-check"></i><b>5.4.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>5.5</b> 用R写入文本，分析输出到文件</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="section-5.html"><a href="section-5.html#-19"><i class="fa fa-check"></i><b>5.5.1</b> 问题</a></li>
+<li class="chapter" data-level="5.5.2" data-path="section-5.html"><a href="section-5.html#-17"><i class="fa fa-check"></i><b>5.5.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 操作数据</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>6.1</b> R中的排序问题</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="section-6.html"><a href="section-6.html#-20"><i class="fa fa-check"></i><b>6.1.1</b> 问题</a></li>
+<li class="chapter" data-level="6.1.2" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>6.1.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>6.2</b> 用R生成随机的顺序</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.html"><a href="section-6.html#-21"><i class="fa fa-check"></i><b>6.2.1</b> 问题</a></li>
+<li class="chapter" data-level="6.2.2" data-path="section-5.html"><a href="section-5.html#-18"><i class="fa fa-check"></i><b>6.2.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型——数值向量，字符串向量和因子向量</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="section-6.html"><a href="section-6.html#-22"><i class="fa fa-check"></i><b>6.3.1</b> 问题</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-5.html"><a href="section-5.html#-19"><i class="fa fa-check"></i><b>6.3.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="section-1.html"><a href="section-1.html#r"><i class="fa fa-check"></i><b>6.4</b> 用R查找并移除重复的记录</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="section-6.html"><a href="section-6.html#-23"><i class="fa fa-check"></i><b>6.4.1</b> 问题</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-6.html"><a href="section-6.html#-20"><i class="fa fa-check"></i><b>6.4.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#na"><i class="fa fa-check"></i><b>6.5</b> NA存在的情况下，向量或因子间的比较</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="section-6.html"><a href="section-6.html#-24"><i class="fa fa-check"></i><b>6.5.1</b> 问题</a></li>
+<li class="chapter" data-level="6.5.2" data-path="section-6.html"><a href="section-6.html#-21"><i class="fa fa-check"></i><b>6.5.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="section-6.html"><a href="section-6.html#-25"><i class="fa fa-check"></i><b>6.6.1</b> 问题</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-6.html"><a href="section-6.html#-22"><i class="fa fa-check"></i><b>6.6.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#xy"><i class="fa fa-check"></i><b>6.7</b> 将向量中所有值为x的对象改变值y</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="section-6.html"><a href="section-6.html#-26"><i class="fa fa-check"></i><b>6.7.1</b> 问题</a></li>
+<li class="chapter" data-level="6.7.2" data-path="section-6.html"><a href="section-6.html#-23"><i class="fa fa-check"></i><b>6.7.2</b> 方案</a></li>
+<li class="chapter" data-level="6.7.3" data-path="section-6.html"><a href="section-6.html#section-6.7.3"><i class="fa fa-check"></i><b>6.7.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="section-6.html"><a href="section-6.html#-27"><i class="fa fa-check"></i><b>6.8.1</b> 问题</a></li>
+<li class="chapter" data-level="6.8.2" data-path="section-6.html"><a href="section-6.html#-24"><i class="fa fa-check"></i><b>6.8.2</b> 方案</a></li>
+<li class="chapter" data-level="6.8.3" data-path="section-6.html"><a href="section-6.html#section-6.8.3"><i class="fa fa-check"></i><b>6.8.3</b> 更多参考</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 重计算因子水平</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="section-6.html"><a href="section-6.html#-28"><i class="fa fa-check"></i><b>6.9.1</b> 问题</a></li>
+<li class="chapter" data-level="6.9.2" data-path="section-6.html"><a href="section-6.html#-25"><i class="fa fa-check"></i><b>6.9.2</b> 方案</a></li>
+<li class="chapter" data-level="6.9.3" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>6.9.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 改变因子水平次序</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="section-6.html"><a href="section-6.html#-29"><i class="fa fa-check"></i><b>6.10.1</b> 问题</a></li>
+<li class="chapter" data-level="6.10.2" data-path="section-6.html"><a href="section-6.html#-26"><i class="fa fa-check"></i><b>6.10.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="section-6.html"><a href="section-6.html#section-6.11"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a><ul>
+<li class="chapter" data-level="6.11.1" data-path="section-6.html"><a href="section-6.html#-30"><i class="fa fa-check"></i><b>6.11.1</b> 问题</a></li>
+<li class="chapter" data-level="6.11.2" data-path="section-6.html"><a href="section-6.html#-27"><i class="fa fa-check"></i><b>6.11.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="section-6.html"><a href="section-6.html#section-6.12"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a><ul>
+<li class="chapter" data-level="6.12.1" data-path="section-6.html"><a href="section-6.html#-31"><i class="fa fa-check"></i><b>6.12.1</b> 问题</a></li>
+<li class="chapter" data-level="6.12.2" data-path="section-6.html"><a href="section-6.html#-28"><i class="fa fa-check"></i><b>6.12.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.13" data-path="section-6.html"><a href="section-6.html#section-6.13"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a><ul>
+<li class="chapter" data-level="6.13.1" data-path="section-6.html"><a href="section-6.html#-32"><i class="fa fa-check"></i><b>6.13.1</b> 问题</a></li>
+<li class="chapter" data-level="6.13.2" data-path="section-6.html"><a href="section-6.html#-29"><i class="fa fa-check"></i><b>6.13.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.14" data-path="section-6.html"><a href="section-6.html#section-6.14"><i class="fa fa-check"></i><b>6.14</b> 融合数据框</a><ul>
+<li class="chapter" data-level="6.14.1" data-path="section-6.html"><a href="section-6.html#-33"><i class="fa fa-check"></i><b>6.14.1</b> 问题</a></li>
+<li class="chapter" data-level="6.14.2" data-path="section-6.html"><a href="section-6.html#-30"><i class="fa fa-check"></i><b>6.14.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a><ul>
+<li class="chapter" data-level="6.15.1" data-path="section-6.html"><a href="section-6.html#-34"><i class="fa fa-check"></i><b>6.15.1</b> 问题</a></li>
+<li class="chapter" data-level="6.15.2" data-path="section-6.html"><a href="section-6.html#-31"><i class="fa fa-check"></i><b>6.15.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a><ul>
+<li class="chapter" data-level="6.16.1" data-path="section-6.html"><a href="section-6.html#-35"><i class="fa fa-check"></i><b>6.16.1</b> 问题</a></li>
+<li class="chapter" data-level="6.16.2" data-path="section-6.html"><a href="section-6.html#-32"><i class="fa fa-check"></i><b>6.16.2</b> 方案</a></li>
+<li class="chapter" data-level="6.16.3" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>6.16.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a><ul>
+<li class="chapter" data-level="6.17.1" data-path="section-6.html"><a href="section-6.html#-36"><i class="fa fa-check"></i><b>6.17.1</b> 问题</a></li>
+<li class="chapter" data-level="6.17.2" data-path="section-6.html"><a href="section-6.html#-33"><i class="fa fa-check"></i><b>6.17.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 归纳总结数据</a><ul>
+<li class="chapter" data-level="6.18.1" data-path="section-6.html"><a href="section-6.html#-37"><i class="fa fa-check"></i><b>6.18.1</b> 问题</a></li>
+<li class="chapter" data-level="6.18.2" data-path="section-6.html"><a href="section-6.html#-34"><i class="fa fa-check"></i><b>6.18.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a><ul>
+<li class="chapter" data-level="6.19.1" data-path="section-6.html"><a href="section-6.html#-38"><i class="fa fa-check"></i><b>6.19.1</b> 问题</a></li>
+<li class="chapter" data-level="6.19.2" data-path="section-6.html"><a href="section-6.html#-35"><i class="fa fa-check"></i><b>6.19.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a><ul>
+<li class="chapter" data-level="6.20.1" data-path="section-6.html"><a href="section-6.html#-39"><i class="fa fa-check"></i><b>6.20.1</b> 问题</a></li>
+<li class="chapter" data-level="6.20.2" data-path="section-6.html"><a href="section-6.html#section-6.20.2"><i class="fa fa-check"></i><b>6.20.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a><ul>
+<li class="chapter" data-level="6.21.1" data-path="section-6.html"><a href="section-6.html#-40"><i class="fa fa-check"></i><b>6.21.1</b> 问题</a></li>
+<li class="chapter" data-level="6.21.2" data-path="section-6.html"><a href="section-6.html#-36"><i class="fa fa-check"></i><b>6.21.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a><ul>
+<li class="chapter" data-level="6.22.1" data-path="section-6.html"><a href="section-6.html#-41"><i class="fa fa-check"></i><b>6.22.1</b> 问题</a></li>
+<li class="chapter" data-level="6.22.2" data-path="section-6.html"><a href="section-6.html#-37"><i class="fa fa-check"></i><b>6.22.2</b> 方案</a></li>
+<li class="chapter" data-level="6.22.3" data-path="section-6.html"><a href="section-6.html#section-6.22.3"><i class="fa fa-check"></i><b>6.22.3</b> 向量上运行</a></li>
+</ul></li>
+<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#nana"><i class="fa fa-check"></i><b>6.23</b> 用最后的非NA值填充NA值</a><ul>
+<li class="chapter" data-level="6.23.1" data-path="section-6.html"><a href="section-6.html#-42"><i class="fa fa-check"></i><b>6.23.1</b> 问题</a></li>
+<li class="chapter" data-level="6.23.2" data-path="section-6.html"><a href="section-6.html#-38"><i class="fa fa-check"></i><b>6.23.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="section-7.html"><a href="section-7.html#-43"><i class="fa fa-check"></i><b>7.1.1</b> 问题</a></li>
+<li class="chapter" data-level="7.1.2" data-path="section-6.html"><a href="section-6.html#-39"><i class="fa fa-check"></i><b>7.1.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#t"><i class="fa fa-check"></i><b>7.2</b> t检验</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="section-7.html"><a href="section-7.html#-44"><i class="fa fa-check"></i><b>7.2.1</b> 问题</a></li>
+<li class="chapter" data-level="7.2.2" data-path="section-6.html"><a href="section-6.html#-40"><i class="fa fa-check"></i><b>7.2.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#section-7.3"><i class="fa fa-check"></i><b>7.3</b> 频数检验</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="section-7.html"><a href="section-7.html#-45"><i class="fa fa-check"></i><b>7.3.1</b> 问题</a></li>
+<li class="chapter" data-level="7.3.2" data-path="section-6.html"><a href="section-6.html#-41"><i class="fa fa-check"></i><b>7.3.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="section-7.html"><a href="section-7.html#-46"><i class="fa fa-check"></i><b>7.4.1</b> 问题</a></li>
+<li class="chapter" data-level="7.4.2" data-path="section-6.html"><a href="section-6.html#-42"><i class="fa fa-check"></i><b>7.4.2</b> 方案</a></li>
+<li class="chapter" data-level="7.4.3" data-path="section-7.html"><a href="section-7.html#anovas"><i class="fa fa-check"></i><b>7.4.3</b> 有受试内变量的ANOVAs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#section-7.5"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="section-7.html"><a href="section-7.html#-47"><i class="fa fa-check"></i><b>7.5.1</b> 问题</a></li>
+<li class="chapter" data-level="7.5.2" data-path="section-7.html"><a href="section-7.html#-43"><i class="fa fa-check"></i><b>7.5.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#section-7.6"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="section-7.html"><a href="section-7.html#-48"><i class="fa fa-check"></i><b>7.6.1</b> 问题</a></li>
+<li class="chapter" data-level="7.6.2" data-path="section-7.html"><a href="section-7.html#-44"><i class="fa fa-check"></i><b>7.6.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 图形</a><ul>
+<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 条形图与线图</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="section-8.html"><a href="section-8.html#-49"><i class="fa fa-check"></i><b>8.1.1</b> 问题</a></li>
+<li class="chapter" data-level="8.1.2" data-path="section-7.html"><a href="section-7.html#-45"><i class="fa fa-check"></i><b>8.1.2</b> 方案</a></li>
+<li class="chapter" data-level="8.1.3" data-path="section-8.html"><a href="section-8.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 有更多变量的图</a></li>
+<li class="chapter" data-level="8.1.4" data-path="section-8.html"><a href="section-8.html#-x-axis"><i class="fa fa-check"></i><b>8.1.4</b> 使用数值 x-axis</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 绘制均值和误差棒</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="section-8.html"><a href="section-8.html#-50"><i class="fa fa-check"></i><b>8.2.1</b> 问题</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-7.html"><a href="section-7.html#-46"><i class="fa fa-check"></i><b>8.2.2</b> 方案</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>8.2.3</b> 线图</a></li>
+<li class="chapter" data-level="8.2.4" data-path="section-8.html"><a href="section-8.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 直方图</a></li>
+<li class="chapter" data-level="8.2.5" data-path="section-8.html"><a href="section-8.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 为组内变量添加误差棒</a></li>
+<li class="chapter" data-level="8.2.6" data-path="section-8.html"><a href="section-8.html#section-8.2.6"><i class="fa fa-check"></i><b>8.2.6</b> 注意标准化的均值</a></li>
+<li class="chapter" data-level="8.2.7" data-path="section-8.html"><a href="section-8.html#section-8.2.7"><i class="fa fa-check"></i><b>8.2.7</b> 助手函数</a></li>
+<li class="chapter" data-level="8.2.8" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>8.2.8</b> 其他</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.3</b> ggplot | 绘制分布图</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="section-8.html"><a href="section-8.html#-51"><i class="fa fa-check"></i><b>8.3.1</b> 问题</a></li>
+<li class="chapter" data-level="8.3.2" data-path="section-7.html"><a href="section-7.html#-47"><i class="fa fa-check"></i><b>8.3.2</b> 方案</a></li>
+<li class="chapter" data-level="8.3.3" data-path="section-8.html"><a href="section-8.html#section-8.3.3"><i class="fa fa-check"></i><b>8.3.3</b> 直方图和概率密度图</a></li>
+<li class="chapter" data-level="8.3.4" data-path="section-8.html"><a href="section-8.html#section-8.3.4"><i class="fa fa-check"></i><b>8.3.4</b> 多组数据的直方图和概率密度图</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="section-8.html"><a href="section-8.html#section-8.4"><i class="fa fa-check"></i><b>8.4</b> 箱型图</a></li>
+<li class="chapter" data-level="8.5" data-path="section-8.html"><a href="section-8.html#ggplot"><i class="fa fa-check"></i><b>8.5</b> ggplot|散点图</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="section-8.html"><a href="section-8.html#-52"><i class="fa fa-check"></i><b>8.5.1</b> 问题</a></li>
+<li class="chapter" data-level="8.5.2" data-path="section-7.html"><a href="section-7.html#-48"><i class="fa fa-check"></i><b>8.5.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.6</b> ggplot | 标题</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="section-8.html"><a href="section-8.html#-53"><i class="fa fa-check"></i><b>8.6.1</b> 问题</a></li>
+<li class="chapter" data-level="8.6.2" data-path="section-8.html"><a href="section-8.html#-49"><i class="fa fa-check"></i><b>8.6.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="section-8.html"><a href="section-8.html#ggplot"><i class="fa fa-check"></i><b>8.7</b> ggplot|坐标轴</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="section-8.html"><a href="section-8.html#-54"><i class="fa fa-check"></i><b>8.7.1</b> 问题</a></li>
+<li class="chapter" data-level="8.7.2" data-path="section-8.html"><a href="section-8.html#-50"><i class="fa fa-check"></i><b>8.7.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="section-8.html"><a href="section-8.html#-ggplot2"><i class="fa fa-check"></i><b>8.8</b> 图例 (ggplot2)</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="section-8.html"><a href="section-8.html#-55"><i class="fa fa-check"></i><b>8.8.1</b> 问题</a></li>
+<li class="chapter" data-level="8.8.2" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>8.8.2</b> 解决方案</a></li>
+<li class="chapter" data-level="8.8.3" data-path="section-8.html"><a href="section-8.html#section-8.8.3"><i class="fa fa-check"></i><b>8.8.3</b> 修改图例标题和标签的外观</a></li>
+<li class="chapter" data-level="8.8.4" data-path="section-8.html"><a href="section-8.html#section-8.8.4"><i class="fa fa-check"></i><b>8.8.4</b> 修改图例框</a></li>
+<li class="chapter" data-level="8.8.5" data-path="section-8.html"><a href="section-8.html#section-8.8.5"><i class="fa fa-check"></i><b>8.8.5</b> 改变图例位置</a></li>
+<li class="chapter" data-level="8.8.6" data-path="section-8.html"><a href="section-8.html#section-8.8.6"><i class="fa fa-check"></i><b>8.8.6</b> 隐藏在图例中的斜线</a></li>
+<li class="chapter" data-level="8.8.7" data-path="section-2.html"><a href="section-2.html#-9"><i class="fa fa-check"></i><b>8.8.7</b> 注意</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="section-8.html"><a href="section-8.html#-ggplot2"><i class="fa fa-check"></i><b>8.9</b> 线条 (ggplot2)</a><ul>
+<li class="chapter" data-level="8.9.1" data-path="section-8.html"><a href="section-8.html#-56"><i class="fa fa-check"></i><b>8.9.1</b> 问题</a></li>
+<li class="chapter" data-level="8.9.2" data-path="section-1.html"><a href="section-1.html#-2"><i class="fa fa-check"></i><b>8.9.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.10</b> ggplot | 分面</a><ul>
+<li class="chapter" data-level="8.10.1" data-path="section-8.html"><a href="section-8.html#-57"><i class="fa fa-check"></i><b>8.10.1</b> 问题</a></li>
+<li class="chapter" data-level="8.10.2" data-path="section-8.html"><a href="section-8.html#-51"><i class="fa fa-check"></i><b>8.10.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.11</b> ggplot |多图</a><ul>
+<li class="chapter" data-level="8.11.1" data-path="section-8.html"><a href="section-8.html#-58"><i class="fa fa-check"></i><b>8.11.1</b> 问题</a></li>
+<li class="chapter" data-level="8.11.2" data-path="section-8.html"><a href="section-8.html#-52"><i class="fa fa-check"></i><b>8.11.2</b> 方案</a></li>
+<li class="chapter" data-level="8.11.3" data-path="section-8.html"><a href="section-8.html#multiplot-"><i class="fa fa-check"></i><b>8.11.3</b> multiplot 函数</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="section-8.html"><a href="section-8.html#ggplot2"><i class="fa fa-check"></i><b>8.12</b> 颜色（ggplot2)</a><ul>
+<li class="chapter" data-level="8.12.1" data-path="section-8.html"><a href="section-8.html#-59"><i class="fa fa-check"></i><b>8.12.1</b> 问题</a></li>
+<li class="chapter" data-level="8.12.2" data-path="section-1.html"><a href="section-1.html#-3"><i class="fa fa-check"></i><b>8.12.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="section-8.html"><a href="section-8.html#--pdf-png-tiff-svg"><i class="fa fa-check"></i><b>8.13</b> 图形混杂-输出到文件-PDF-PNG-TIFF-SVG</a><ul>
+<li class="chapter" data-level="8.13.1" data-path="section-8.html"><a href="section-8.html#-60"><i class="fa fa-check"></i><b>8.13.1</b> 问题</a></li>
+<li class="chapter" data-level="8.13.2" data-path="section-8.html"><a href="section-8.html#-53"><i class="fa fa-check"></i><b>8.13.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.14" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.14</b> 图形混杂-形状和线形</a><ul>
+<li class="chapter" data-level="8.14.1" data-path="section-8.html"><a href="section-8.html#-61"><i class="fa fa-check"></i><b>8.14.1</b> 问题</a></li>
+<li class="chapter" data-level="8.14.2" data-path="section-8.html"><a href="section-8.html#-54"><i class="fa fa-check"></i><b>8.14.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.15" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.15</b> 图形混杂-字体</a><ul>
+<li class="chapter" data-level="8.15.1" data-path="section-8.html"><a href="section-8.html#-62"><i class="fa fa-check"></i><b>8.15.1</b> 问题</a></li>
+<li class="chapter" data-level="8.15.2" data-path="section-8.html"><a href="section-8.html#-55"><i class="fa fa-check"></i><b>8.15.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.16" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.16</b> 图形混杂-抗混淆位图输出</a><ul>
+<li class="chapter" data-level="8.16.1" data-path="section-8.html"><a href="section-8.html#-63"><i class="fa fa-check"></i><b>8.16.1</b> 问题</a></li>
+<li class="chapter" data-level="8.16.2" data-path="section-8.html"><a href="section-8.html#-56"><i class="fa fa-check"></i><b>8.16.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.17" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.17</b> 标准绘图 | 散点图</a><ul>
+<li class="chapter" data-level="8.17.1" data-path="section-8.html"><a href="section-8.html#-64"><i class="fa fa-check"></i><b>8.17.1</b> 问题</a></li>
+<li class="chapter" data-level="8.17.2" data-path="section-8.html"><a href="section-8.html#-57"><i class="fa fa-check"></i><b>8.17.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.18" data-path="section-8.html"><a href="section-8.html#section-8.18"><i class="fa fa-check"></i><b>8.18</b> 标准绘图|箱线图</a><ul>
+<li class="chapter" data-level="8.18.1" data-path="section-8.html"><a href="section-8.html#-65"><i class="fa fa-check"></i><b>8.18.1</b> 问题</a></li>
+<li class="chapter" data-level="8.18.2" data-path="section-8.html"><a href="section-8.html#-58"><i class="fa fa-check"></i><b>8.18.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.19" data-path="section-8.html"><a href="section-8.html#qq"><i class="fa fa-check"></i><b>8.19</b> 标准绘图|QQ图</a><ul>
+<li class="chapter" data-level="8.19.1" data-path="section-8.html"><a href="section-8.html#-66"><i class="fa fa-check"></i><b>8.19.1</b> 问题</a></li>
+<li class="chapter" data-level="8.19.2" data-path="section-8.html"><a href="section-8.html#-59"><i class="fa fa-check"></i><b>8.19.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="8.20" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.20</b> 其他有趣图形-相关矩阵</a><ul>
+<li class="chapter" data-level="8.20.1" data-path="section-8.html"><a href="section-8.html#-67"><i class="fa fa-check"></i><b>8.20.1</b> 问题</a></li>
+<li class="chapter" data-level="8.20.2" data-path="section-8.html"><a href="section-8.html#-60"><i class="fa fa-check"></i><b>8.20.2</b> 方案</a></li>
+<li class="chapter" data-level="8.20.3" data-path="section-1.html"><a href="section-1.html#-1"><i class="fa fa-check"></i><b>8.20.3</b> 提示</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 脚本与函数</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 创建和运行一个脚本</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="section-9.html"><a href="section-9.html#section-9.1.1"><i class="fa fa-check"></i><b>9.1.1</b> 参考文献：</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 调试脚本或函数</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="section-9.html"><a href="section-9.html#-68"><i class="fa fa-check"></i><b>9.2.1</b> 问题</a></li>
+<li class="chapter" data-level="9.2.2" data-path="section-8.html"><a href="section-8.html#-61"><i class="fa fa-check"></i><b>9.2.2</b> 方案</a></li>
+<li class="chapter" data-level="9.2.3" data-path="section-9.html"><a href="section-9.html#section-9.2.3"><i class="fa fa-check"></i><b>9.2.3</b> <strong>有用的选择</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量经过的时间</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="section-9.html"><a href="section-9.html#-69"><i class="fa fa-check"></i><b>9.3.1</b> <strong>问题</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="section-9.html"><a href="section-9.html#section-9.4"><i class="fa fa-check"></i><b>9.4</b> 获取包中的函数和对象列表</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="section-9.html"><a href="section-9.html#-70"><i class="fa fa-check"></i><b>9.4.1</b> 问题</a></li>
+<li class="chapter" data-level="9.4.2" data-path="section-8.html"><a href="section-8.html#-62"><i class="fa fa-check"></i><b>9.4.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 生成拉丁方</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="section-10.html"><a href="section-10.html#-71"><i class="fa fa-check"></i><b>10.1.1</b> 问题</a></li>
+<li class="chapter" data-level="10.1.2" data-path="section-8.html"><a href="section-8.html#-63"><i class="fa fa-check"></i><b>10.1.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="sound.html"><a href="sound.html"><i class="fa fa-check"></i><b>A</b> 余音绕梁</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cookbook for R 中文版</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Cookbook for R 中文版</h1>
+<p class="author"><em>Winston Chang（著）| 王诗翔等（译）</em></p>
+<p class="date"><em>2019-04-14</em></p>
+</div>
+<div id="e5898de8a880" class="section level1 unnumbered">
+<h1>前言</h1>
+<p>我用了两个 R 包编译这本书，分别是 <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span> 和 <strong>bookdown</strong> <span class="citation">(Xie <a href="#ref-R-bookdown">2018</a>)</span>。以下是我的 R 进程信息：</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre>
+<pre><code>## R version 3.5.2 (2018-12-20)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.6
+## 
+## Matrix products: default
+## BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] zh_CN.UTF-8/zh_CN.UTF-8/zh_CN.UTF-8/C/zh_CN.UTF-8/zh_CN.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets 
+## [6] methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.5.2  magrittr_1.5    bookdown_0.9   
+##  [4] htmltools_0.3.6 tools_3.5.2     rstudioapi_0.10
+##  [7] yaml_2.2.0      Rcpp_1.0.1      stringi_1.4.3  
+## [10] rmarkdown_1.12  knitr_1.22      stringr_1.4.0  
+## [13] xfun_0.5        digest_0.6.18   packrat_0.5.0  
+## [16] evaluate_0.13</code></pre>
+<div id="e887b4e8b0a2" class="section level2 unnumbered">
+<h2>致谢</h2>
+<p>非常感谢以下成员的参与，如果不是他们，这本中文书再过两年也不会跟大家见面。</p>
+
+<p class="flushright">
+王诗翔<br />
+于 上海科技大学
+</p>
+
+
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div id="ref-R-bookdown">
+<p>Xie, Yihui. 2018. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="author.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/index.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
