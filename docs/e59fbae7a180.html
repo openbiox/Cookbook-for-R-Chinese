@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>基础 | Cookbook for R 中文版</title>
+  <meta name="description" content="基础 | Cookbook for R 中文版本">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="基础 | Cookbook for R 中文版" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="基础 | Cookbook for R 中文版本" />
+  <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="基础 | Cookbook for R 中文版" />
+  
+  <meta name="twitter:description" content="基础 | Cookbook for R 中文版本" />
+  
+
+<meta name="author" content="Winston Chang（著）">
+<meta name="author" content="王诗翔 等（译）">
+
+
+<meta name="date" content="2019-04-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="author.html">
+<link rel="next" href="e695b0e5ad97.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Cook book for R 中文版</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
+<li class="chapter" data-level="" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html"><i class="fa fa-check"></i>基础</a><ul>
+<li class="chapter" data-level="0.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.1</b> 安装和使用R包</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.1.1"><i class="fa fa-check"></i><b>0.1.1</b> 问题</a></li>
+<li class="chapter" data-level="0.1.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.1.2"><i class="fa fa-check"></i><b>0.1.2</b> 方案</a></li>
+<li class="chapter" data-level="0.1.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.1.3"><i class="fa fa-check"></i><b>0.1.3</b> 其他</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.2"><i class="fa fa-check"></i><b>0.2</b> 数据结构的索引</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.2.1</b> 问题</a></li>
+<li class="chapter" data-level="0.2.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.2.2"><i class="fa fa-check"></i><b>0.2.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.3"><i class="fa fa-check"></i><b>0.3</b> 获取数据结构的子集</a><ul>
+<li class="chapter" data-level="0.3.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.3.1</b> 问题</a></li>
+<li class="chapter" data-level="0.3.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.3.2</b> 方案</a></li>
+<li class="chapter" data-level="0.3.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.3.3"><i class="fa fa-check"></i><b>0.3.3</b> 数据框</a></li>
+</ul></li>
+<li class="chapter" data-level="0.4" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.4"><i class="fa fa-check"></i><b>0.4</b> 创建填满值的向量</a><ul>
+<li class="chapter" data-level="0.4.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.4.1</b> 问题</a></li>
+<li class="chapter" data-level="0.4.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.4.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.5" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#section-0.5"><i class="fa fa-check"></i><b>0.5</b> 获取变量信息</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-4"><i class="fa fa-check"></i><b>0.5.1</b> 问题</a></li>
+<li class="chapter" data-level="0.5.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.5.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.6" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#null-na-nan"><i class="fa fa-check"></i><b>0.6</b> NULL-NA-NaN的处理</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-5"><i class="fa fa-check"></i><b>0.6.1</b> 问题</a></li>
+<li class="chapter" data-level="0.6.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-4"><i class="fa fa-check"></i><b>0.6.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html"><i class="fa fa-check"></i>数字</a><ul>
+<li class="chapter" data-level="0.7" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.7"><i class="fa fa-check"></i><b>0.7</b> 生成随机数</a><ul>
+<li class="chapter" data-level="0.7.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-6"><i class="fa fa-check"></i><b>0.7.1</b> 问题</a></li>
+<li class="chapter" data-level="0.7.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-5"><i class="fa fa-check"></i><b>0.7.2</b> 方案</a></li>
+<li class="chapter" data-level="0.7.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.7.3</b> 注意</a></li>
+</ul></li>
+<li class="chapter" data-level="0.8" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.8"><i class="fa fa-check"></i><b>0.8</b> 生成可重复的随机序列</a><ul>
+<li class="chapter" data-level="0.8.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-7"><i class="fa fa-check"></i><b>0.8.1</b> 问题</a></li>
+<li class="chapter" data-level="0.8.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-6"><i class="fa fa-check"></i><b>0.8.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.9" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.9"><i class="fa fa-check"></i><b>0.9</b> 保持随机数生成器的状态</a><ul>
+<li class="chapter" data-level="0.9.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-8"><i class="fa fa-check"></i><b>0.9.1</b> 问题</a></li>
+<li class="chapter" data-level="0.9.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-7"><i class="fa fa-check"></i><b>0.9.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.10" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.10"><i class="fa fa-check"></i><b>0.10</b> 对数值取整</a><ul>
+<li class="chapter" data-level="0.10.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-9"><i class="fa fa-check"></i><b>0.10.1</b> 问题</a></li>
+<li class="chapter" data-level="0.10.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-8"><i class="fa fa-check"></i><b>0.10.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.11" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#section-0.11"><i class="fa fa-check"></i><b>0.11</b> 比较浮点数</a><ul>
+<li class="chapter" data-level="0.11.1" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-10"><i class="fa fa-check"></i><b>0.11.1</b> 问题</a></li>
+<li class="chapter" data-level="0.11.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-9"><i class="fa fa-check"></i><b>0.11.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html"><i class="fa fa-check"></i>字符串</a><ul>
+<li class="chapter" data-level="0.12" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#grepsubgsub"><i class="fa fa-check"></i><b>0.12</b> 使用grep,sub,gsub进行搜索和替换</a><ul>
+<li class="chapter" data-level="0.12.1" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-11"><i class="fa fa-check"></i><b>0.12.1</b> 问题</a></li>
+<li class="chapter" data-level="0.12.2" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-10"><i class="fa fa-check"></i><b>0.12.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.13" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#section-0.13"><i class="fa fa-check"></i><b>0.13</b> 通过变量创建字符串</a><ul>
+<li class="chapter" data-level="0.13.1" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-12"><i class="fa fa-check"></i><b>0.13.1</b> 问题</a></li>
+<li class="chapter" data-level="0.13.2" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-11"><i class="fa fa-check"></i><b>0.13.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html"><i class="fa fa-check"></i>公式</a><ul>
+<li class="chapter" data-level="0.14" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#section-0.14"><i class="fa fa-check"></i><b>0.14</b> 通过字符串创建公式</a><ul>
+<li class="chapter" data-level="0.14.1" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-13"><i class="fa fa-check"></i><b>0.14.1</b> 问题</a></li>
+<li class="chapter" data-level="0.14.2" data-path="e5ad97e7aca6e4b8b2.html"><a href="e5ad97e7aca6e4b8b2.html#-12"><i class="fa fa-check"></i><b>0.14.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.15" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#section-0.15"><i class="fa fa-check"></i><b>0.15</b> 从公式中提取组分</a><ul>
+<li class="chapter" data-level="0.15.1" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-14"><i class="fa fa-check"></i><b>0.15.1</b> 问题</a></li>
+<li class="chapter" data-level="0.15.2" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-13"><i class="fa fa-check"></i><b>0.15.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><i class="fa fa-check"></i>数据的导入与导出</a><ul>
+<li class="chapter" data-level="0.16" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.16</b> R载入文件中的数据</a><ul>
+<li class="chapter" data-level="0.16.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-15"><i class="fa fa-check"></i><b>0.16.1</b> 问题</a></li>
+<li class="chapter" data-level="0.16.2" data-path="e585ace5bc8f.html"><a href="e585ace5bc8f.html#-14"><i class="fa fa-check"></i><b>0.16.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.17" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.17</b> 键盘和剪贴板把数据载入并保存到R</a><ul>
+<li class="chapter" data-level="0.17.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-16"><i class="fa fa-check"></i><b>0.17.1</b> 问题</a></li>
+<li class="chapter" data-level="0.17.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-15"><i class="fa fa-check"></i><b>0.17.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.18" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.18</b> 运行R脚本</a><ul>
+<li class="chapter" data-level="0.18.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-17"><i class="fa fa-check"></i><b>0.18.1</b> 问题</a></li>
+<li class="chapter" data-level="0.18.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.18.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="0.19" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.19</b> 用R把数据写入文件</a><ul>
+<li class="chapter" data-level="0.19.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-18"><i class="fa fa-check"></i><b>0.19.1</b> 问题</a></li>
+<li class="chapter" data-level="0.19.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-16"><i class="fa fa-check"></i><b>0.19.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.20" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.20</b> 用R写入文本，分析输出到文件</a><ul>
+<li class="chapter" data-level="0.20.1" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-19"><i class="fa fa-check"></i><b>0.20.1</b> 问题</a></li>
+<li class="chapter" data-level="0.20.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-17"><i class="fa fa-check"></i><b>0.20.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html"><i class="fa fa-check"></i>操作数据</a><ul>
+<li class="chapter" data-level="0.21" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.21</b> R中的排序问题</a><ul>
+<li class="chapter" data-level="0.21.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-20"><i class="fa fa-check"></i><b>0.21.1</b> 问题</a></li>
+<li class="chapter" data-level="0.21.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.21.2</b> 解决</a></li>
+</ul></li>
+<li class="chapter" data-level="0.22" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.22</b> 用R生成随机的顺序</a><ul>
+<li class="chapter" data-level="0.22.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-21"><i class="fa fa-check"></i><b>0.22.1</b> 问题</a></li>
+<li class="chapter" data-level="0.22.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-18"><i class="fa fa-check"></i><b>0.22.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.23" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.23"><i class="fa fa-check"></i><b>0.23</b> 转换向量类型——数值向量，字符串向量和因子向量</a><ul>
+<li class="chapter" data-level="0.23.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-22"><i class="fa fa-check"></i><b>0.23.1</b> 问题</a></li>
+<li class="chapter" data-level="0.23.2" data-path="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html"><a href="e695b0e68daee79a84e5afbce585a5e4b88ee5afbce587ba.html#-19"><i class="fa fa-check"></i><b>0.23.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.24" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#r"><i class="fa fa-check"></i><b>0.24</b> 用R查找并移除重复的记录</a><ul>
+<li class="chapter" data-level="0.24.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-23"><i class="fa fa-check"></i><b>0.24.1</b> 问题</a></li>
+<li class="chapter" data-level="0.24.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-20"><i class="fa fa-check"></i><b>0.24.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.25" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#na"><i class="fa fa-check"></i><b>0.25</b> NA存在的情况下，向量或因子间的比较</a><ul>
+<li class="chapter" data-level="0.25.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-24"><i class="fa fa-check"></i><b>0.25.1</b> 问题</a></li>
+<li class="chapter" data-level="0.25.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-21"><i class="fa fa-check"></i><b>0.25.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.26" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.26"><i class="fa fa-check"></i><b>0.26</b> 数据重新编码</a><ul>
+<li class="chapter" data-level="0.26.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-25"><i class="fa fa-check"></i><b>0.26.1</b> 问题</a></li>
+<li class="chapter" data-level="0.26.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-22"><i class="fa fa-check"></i><b>0.26.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.27" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#xy"><i class="fa fa-check"></i><b>0.27</b> 将向量中所有值为x的对象改变值y</a><ul>
+<li class="chapter" data-level="0.27.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-26"><i class="fa fa-check"></i><b>0.27.1</b> 问题</a></li>
+<li class="chapter" data-level="0.27.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-23"><i class="fa fa-check"></i><b>0.27.2</b> 方案</a></li>
+<li class="chapter" data-level="0.27.3" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.27.3"><i class="fa fa-check"></i><b>0.27.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="0.28" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.28"><i class="fa fa-check"></i><b>0.28</b> 重命名因子水平</a><ul>
+<li class="chapter" data-level="0.28.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-27"><i class="fa fa-check"></i><b>0.28.1</b> 问题</a></li>
+<li class="chapter" data-level="0.28.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-24"><i class="fa fa-check"></i><b>0.28.2</b> 方案</a></li>
+<li class="chapter" data-level="0.28.3" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.28.3"><i class="fa fa-check"></i><b>0.28.3</b> 更多参考</a></li>
+</ul></li>
+<li class="chapter" data-level="0.29" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.29"><i class="fa fa-check"></i><b>0.29</b> 重计算因子水平</a><ul>
+<li class="chapter" data-level="0.29.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-28"><i class="fa fa-check"></i><b>0.29.1</b> 问题</a></li>
+<li class="chapter" data-level="0.29.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-25"><i class="fa fa-check"></i><b>0.29.2</b> 方案</a></li>
+<li class="chapter" data-level="0.29.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.29.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="0.30" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.30"><i class="fa fa-check"></i><b>0.30</b> 改变因子水平次序</a><ul>
+<li class="chapter" data-level="0.30.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-29"><i class="fa fa-check"></i><b>0.30.1</b> 问题</a></li>
+<li class="chapter" data-level="0.30.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-26"><i class="fa fa-check"></i><b>0.30.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.31" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.31"><i class="fa fa-check"></i><b>0.31</b> 重命名数据框的列</a><ul>
+<li class="chapter" data-level="0.31.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-30"><i class="fa fa-check"></i><b>0.31.1</b> 问题</a></li>
+<li class="chapter" data-level="0.31.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-27"><i class="fa fa-check"></i><b>0.31.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.32" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.32"><i class="fa fa-check"></i><b>0.32</b> 添加和移除数据框的列</a><ul>
+<li class="chapter" data-level="0.32.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-31"><i class="fa fa-check"></i><b>0.32.1</b> 问题</a></li>
+<li class="chapter" data-level="0.32.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-28"><i class="fa fa-check"></i><b>0.32.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.33" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.33"><i class="fa fa-check"></i><b>0.33</b> 对数据框的列重新排序</a><ul>
+<li class="chapter" data-level="0.33.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-32"><i class="fa fa-check"></i><b>0.33.1</b> 问题</a></li>
+<li class="chapter" data-level="0.33.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-29"><i class="fa fa-check"></i><b>0.33.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.34" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.34"><i class="fa fa-check"></i><b>0.34</b> 融合数据框</a><ul>
+<li class="chapter" data-level="0.34.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-33"><i class="fa fa-check"></i><b>0.34.1</b> 问题</a></li>
+<li class="chapter" data-level="0.34.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-30"><i class="fa fa-check"></i><b>0.34.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.35" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.35"><i class="fa fa-check"></i><b>0.35</b> 比较数据框</a><ul>
+<li class="chapter" data-level="0.35.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-34"><i class="fa fa-check"></i><b>0.35.1</b> 问题</a></li>
+<li class="chapter" data-level="0.35.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-31"><i class="fa fa-check"></i><b>0.35.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.36" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.36"><i class="fa fa-check"></i><b>0.36</b> 重计算数据框所有因子列的水平</a><ul>
+<li class="chapter" data-level="0.36.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-35"><i class="fa fa-check"></i><b>0.36.1</b> 问题</a></li>
+<li class="chapter" data-level="0.36.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-32"><i class="fa fa-check"></i><b>0.36.2</b> 方案</a></li>
+<li class="chapter" data-level="0.36.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.36.3</b> 另见</a></li>
+</ul></li>
+<li class="chapter" data-level="0.37" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.37"><i class="fa fa-check"></i><b>0.37</b> 长宽格式数据互换</a><ul>
+<li class="chapter" data-level="0.37.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-36"><i class="fa fa-check"></i><b>0.37.1</b> 问题</a></li>
+<li class="chapter" data-level="0.37.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-33"><i class="fa fa-check"></i><b>0.37.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.38" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.38"><i class="fa fa-check"></i><b>0.38</b> 归纳总结数据</a><ul>
+<li class="chapter" data-level="0.38.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-37"><i class="fa fa-check"></i><b>0.38.1</b> 问题</a></li>
+<li class="chapter" data-level="0.38.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-34"><i class="fa fa-check"></i><b>0.38.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.39" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.39"><i class="fa fa-check"></i><b>0.39</b> 数据框与列联表互换</a><ul>
+<li class="chapter" data-level="0.39.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-38"><i class="fa fa-check"></i><b>0.39.1</b> 问题</a></li>
+<li class="chapter" data-level="0.39.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-35"><i class="fa fa-check"></i><b>0.39.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.40" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.40"><i class="fa fa-check"></i><b>0.40</b> 计算移动平均数</a><ul>
+<li class="chapter" data-level="0.40.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-39"><i class="fa fa-check"></i><b>0.40.1</b> 问题</a></li>
+<li class="chapter" data-level="0.40.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.40.2"><i class="fa fa-check"></i><b>0.40.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.41" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.41"><i class="fa fa-check"></i><b>0.41</b> 窗口平滑</a><ul>
+<li class="chapter" data-level="0.41.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-40"><i class="fa fa-check"></i><b>0.41.1</b> 问题</a></li>
+<li class="chapter" data-level="0.41.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-36"><i class="fa fa-check"></i><b>0.41.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.42" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.42"><i class="fa fa-check"></i><b>0.42</b> 寻找唯一值序列</a><ul>
+<li class="chapter" data-level="0.42.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-41"><i class="fa fa-check"></i><b>0.42.1</b> 问题</a></li>
+<li class="chapter" data-level="0.42.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-37"><i class="fa fa-check"></i><b>0.42.2</b> 方案</a></li>
+<li class="chapter" data-level="0.42.3" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#section-0.42.3"><i class="fa fa-check"></i><b>0.42.3</b> 向量上运行</a></li>
+</ul></li>
+<li class="chapter" data-level="0.43" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#nana"><i class="fa fa-check"></i><b>0.43</b> 用最后的非NA值填充NA值</a><ul>
+<li class="chapter" data-level="0.43.1" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-42"><i class="fa fa-check"></i><b>0.43.1</b> 问题</a></li>
+<li class="chapter" data-level="0.43.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-38"><i class="fa fa-check"></i><b>0.43.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html"><i class="fa fa-check"></i>统计分析</a><ul>
+<li class="chapter" data-level="0.44" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.44"><i class="fa fa-check"></i><b>0.44</b> 回归和相关分析</a><ul>
+<li class="chapter" data-level="0.44.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-43"><i class="fa fa-check"></i><b>0.44.1</b> 问题</a></li>
+<li class="chapter" data-level="0.44.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-39"><i class="fa fa-check"></i><b>0.44.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.45" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#t"><i class="fa fa-check"></i><b>0.45</b> t检验</a><ul>
+<li class="chapter" data-level="0.45.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-44"><i class="fa fa-check"></i><b>0.45.1</b> 问题</a></li>
+<li class="chapter" data-level="0.45.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-40"><i class="fa fa-check"></i><b>0.45.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.46" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.46"><i class="fa fa-check"></i><b>0.46</b> 频数检验</a><ul>
+<li class="chapter" data-level="0.46.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-45"><i class="fa fa-check"></i><b>0.46.1</b> 问题</a></li>
+<li class="chapter" data-level="0.46.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-41"><i class="fa fa-check"></i><b>0.46.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.47" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#anova"><i class="fa fa-check"></i><b>0.47</b> ANOVA</a><ul>
+<li class="chapter" data-level="0.47.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-46"><i class="fa fa-check"></i><b>0.47.1</b> 问题</a></li>
+<li class="chapter" data-level="0.47.2" data-path="e6938de4bd9ce695b0e68dae.html"><a href="e6938de4bd9ce695b0e68dae.html#-42"><i class="fa fa-check"></i><b>0.47.2</b> 方案</a></li>
+<li class="chapter" data-level="0.47.3" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#anovas"><i class="fa fa-check"></i><b>0.47.3</b> 有受试内变量的ANOVAs</a></li>
+</ul></li>
+<li class="chapter" data-level="0.48" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.48"><i class="fa fa-check"></i><b>0.48</b> 逻辑回归</a><ul>
+<li class="chapter" data-level="0.48.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-47"><i class="fa fa-check"></i><b>0.48.1</b> 问题</a></li>
+<li class="chapter" data-level="0.48.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-43"><i class="fa fa-check"></i><b>0.48.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.49" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#section-0.49"><i class="fa fa-check"></i><b>0.49</b> 变量同质性</a><ul>
+<li class="chapter" data-level="0.49.1" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-48"><i class="fa fa-check"></i><b>0.49.1</b> 问题</a></li>
+<li class="chapter" data-level="0.49.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-44"><i class="fa fa-check"></i><b>0.49.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html"><i class="fa fa-check"></i>图形</a><ul>
+<li class="chapter" data-level="0.50" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.50"><i class="fa fa-check"></i><b>0.50</b> 条形图与线图</a><ul>
+<li class="chapter" data-level="0.50.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-49"><i class="fa fa-check"></i><b>0.50.1</b> 问题</a></li>
+<li class="chapter" data-level="0.50.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-45"><i class="fa fa-check"></i><b>0.50.2</b> 方案</a></li>
+<li class="chapter" data-level="0.50.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.50.3"><i class="fa fa-check"></i><b>0.50.3</b> 有更多变量的图</a></li>
+<li class="chapter" data-level="0.50.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-x-axis"><i class="fa fa-check"></i><b>0.50.4</b> 使用数值 x-axis</a></li>
+</ul></li>
+<li class="chapter" data-level="0.51" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51"><i class="fa fa-check"></i><b>0.51</b> 绘制均值和误差棒</a><ul>
+<li class="chapter" data-level="0.51.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-50"><i class="fa fa-check"></i><b>0.51.1</b> 问题</a></li>
+<li class="chapter" data-level="0.51.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-46"><i class="fa fa-check"></i><b>0.51.2</b> 方案</a></li>
+<li class="chapter" data-level="0.51.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.51.3</b> 线图</a></li>
+<li class="chapter" data-level="0.51.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.4"><i class="fa fa-check"></i><b>0.51.4</b> 直方图</a></li>
+<li class="chapter" data-level="0.51.5" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.5"><i class="fa fa-check"></i><b>0.51.5</b> 为组内变量添加误差棒</a></li>
+<li class="chapter" data-level="0.51.6" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.6"><i class="fa fa-check"></i><b>0.51.6</b> 注意标准化的均值</a></li>
+<li class="chapter" data-level="0.51.7" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.51.7"><i class="fa fa-check"></i><b>0.51.7</b> 助手函数</a></li>
+<li class="chapter" data-level="0.51.8" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.51.8</b> 其他</a></li>
+</ul></li>
+<li class="chapter" data-level="0.52" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.52</b> ggplot | 绘制分布图</a><ul>
+<li class="chapter" data-level="0.52.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-51"><i class="fa fa-check"></i><b>0.52.1</b> 问题</a></li>
+<li class="chapter" data-level="0.52.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-47"><i class="fa fa-check"></i><b>0.52.2</b> 方案</a></li>
+<li class="chapter" data-level="0.52.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.52.3"><i class="fa fa-check"></i><b>0.52.3</b> 直方图和概率密度图</a></li>
+<li class="chapter" data-level="0.52.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.52.4"><i class="fa fa-check"></i><b>0.52.4</b> 多组数据的直方图和概率密度图</a></li>
+</ul></li>
+<li class="chapter" data-level="0.53" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.53"><i class="fa fa-check"></i><b>0.53</b> 箱型图</a></li>
+<li class="chapter" data-level="0.54" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot"><i class="fa fa-check"></i><b>0.54</b> ggplot|散点图</a><ul>
+<li class="chapter" data-level="0.54.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-52"><i class="fa fa-check"></i><b>0.54.1</b> 问题</a></li>
+<li class="chapter" data-level="0.54.2" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-48"><i class="fa fa-check"></i><b>0.54.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.55" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.55</b> ggplot | 标题</a><ul>
+<li class="chapter" data-level="0.55.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-53"><i class="fa fa-check"></i><b>0.55.1</b> 问题</a></li>
+<li class="chapter" data-level="0.55.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-49"><i class="fa fa-check"></i><b>0.55.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.56" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot"><i class="fa fa-check"></i><b>0.56</b> ggplot|坐标轴</a><ul>
+<li class="chapter" data-level="0.56.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-54"><i class="fa fa-check"></i><b>0.56.1</b> 问题</a></li>
+<li class="chapter" data-level="0.56.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-50"><i class="fa fa-check"></i><b>0.56.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.57" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-ggplot2"><i class="fa fa-check"></i><b>0.57</b> 图例 (ggplot2)</a><ul>
+<li class="chapter" data-level="0.57.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-55"><i class="fa fa-check"></i><b>0.57.1</b> 问题</a></li>
+<li class="chapter" data-level="0.57.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.57.2</b> 解决方案</a></li>
+<li class="chapter" data-level="0.57.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.3"><i class="fa fa-check"></i><b>0.57.3</b> 修改图例标题和标签的外观</a></li>
+<li class="chapter" data-level="0.57.4" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.4"><i class="fa fa-check"></i><b>0.57.4</b> 修改图例框</a></li>
+<li class="chapter" data-level="0.57.5" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.5"><i class="fa fa-check"></i><b>0.57.5</b> 改变图例位置</a></li>
+<li class="chapter" data-level="0.57.6" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.57.6"><i class="fa fa-check"></i><b>0.57.6</b> 隐藏在图例中的斜线</a></li>
+<li class="chapter" data-level="0.57.7" data-path="e695b0e5ad97.html"><a href="e695b0e5ad97.html#-9"><i class="fa fa-check"></i><b>0.57.7</b> 注意</a></li>
+</ul></li>
+<li class="chapter" data-level="0.58" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-ggplot2"><i class="fa fa-check"></i><b>0.58</b> 线条 (ggplot2)</a><ul>
+<li class="chapter" data-level="0.58.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-56"><i class="fa fa-check"></i><b>0.58.1</b> 问题</a></li>
+<li class="chapter" data-level="0.58.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-2"><i class="fa fa-check"></i><b>0.58.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.59" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.59</b> ggplot | 分面</a><ul>
+<li class="chapter" data-level="0.59.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-57"><i class="fa fa-check"></i><b>0.59.1</b> 问题</a></li>
+<li class="chapter" data-level="0.59.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-51"><i class="fa fa-check"></i><b>0.59.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.60" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot-"><i class="fa fa-check"></i><b>0.60</b> ggplot |多图</a><ul>
+<li class="chapter" data-level="0.60.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-58"><i class="fa fa-check"></i><b>0.60.1</b> 问题</a></li>
+<li class="chapter" data-level="0.60.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-52"><i class="fa fa-check"></i><b>0.60.2</b> 方案</a></li>
+<li class="chapter" data-level="0.60.3" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#multiplot-"><i class="fa fa-check"></i><b>0.60.3</b> multiplot 函数</a></li>
+</ul></li>
+<li class="chapter" data-level="0.61" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#ggplot2"><i class="fa fa-check"></i><b>0.61</b> 颜色（ggplot2)</a><ul>
+<li class="chapter" data-level="0.61.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-59"><i class="fa fa-check"></i><b>0.61.1</b> 问题</a></li>
+<li class="chapter" data-level="0.61.2" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-3"><i class="fa fa-check"></i><b>0.61.2</b> 解决方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.62" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#--pdf-png-tiff-svg"><i class="fa fa-check"></i><b>0.62</b> 图形混杂-输出到文件-PDF-PNG-TIFF-SVG</a><ul>
+<li class="chapter" data-level="0.62.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-60"><i class="fa fa-check"></i><b>0.62.1</b> 问题</a></li>
+<li class="chapter" data-level="0.62.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-53"><i class="fa fa-check"></i><b>0.62.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.63" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.63</b> 图形混杂-形状和线形</a><ul>
+<li class="chapter" data-level="0.63.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-61"><i class="fa fa-check"></i><b>0.63.1</b> 问题</a></li>
+<li class="chapter" data-level="0.63.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-54"><i class="fa fa-check"></i><b>0.63.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.64" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.64</b> 图形混杂-字体</a><ul>
+<li class="chapter" data-level="0.64.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-62"><i class="fa fa-check"></i><b>0.64.1</b> 问题</a></li>
+<li class="chapter" data-level="0.64.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-55"><i class="fa fa-check"></i><b>0.64.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.65" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.65</b> 图形混杂-抗混淆位图输出</a><ul>
+<li class="chapter" data-level="0.65.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-63"><i class="fa fa-check"></i><b>0.65.1</b> 问题</a></li>
+<li class="chapter" data-level="0.65.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-56"><i class="fa fa-check"></i><b>0.65.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.66" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.66</b> 标准绘图 | 散点图</a><ul>
+<li class="chapter" data-level="0.66.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-64"><i class="fa fa-check"></i><b>0.66.1</b> 问题</a></li>
+<li class="chapter" data-level="0.66.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-57"><i class="fa fa-check"></i><b>0.66.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.67" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#section-0.67"><i class="fa fa-check"></i><b>0.67</b> 标准绘图|箱线图</a><ul>
+<li class="chapter" data-level="0.67.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-65"><i class="fa fa-check"></i><b>0.67.1</b> 问题</a></li>
+<li class="chapter" data-level="0.67.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-58"><i class="fa fa-check"></i><b>0.67.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.68" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#qq"><i class="fa fa-check"></i><b>0.68</b> 标准绘图|QQ图</a><ul>
+<li class="chapter" data-level="0.68.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-66"><i class="fa fa-check"></i><b>0.68.1</b> 问题</a></li>
+<li class="chapter" data-level="0.68.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-59"><i class="fa fa-check"></i><b>0.68.2</b> 方案</a></li>
+</ul></li>
+<li class="chapter" data-level="0.69" data-path="e7bb9fe8aea1e58886e69e90.html"><a href="e7bb9fe8aea1e58886e69e90.html#-"><i class="fa fa-check"></i><b>0.69</b> 其他有趣图形-相关矩阵</a><ul>
+<li class="chapter" data-level="0.69.1" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-67"><i class="fa fa-check"></i><b>0.69.1</b> 问题</a></li>
+<li class="chapter" data-level="0.69.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-60"><i class="fa fa-check"></i><b>0.69.2</b> 方案</a></li>
+<li class="chapter" data-level="0.69.3" data-path="e59fbae7a180.html"><a href="e59fbae7a180.html#-1"><i class="fa fa-check"></i><b>0.69.3</b> 提示</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html"><i class="fa fa-check"></i>脚本与函数</a><ul>
+<li class="chapter" data-level="0.70" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.70"><i class="fa fa-check"></i><b>0.70</b> 创建和运行一个脚本</a><ul>
+<li class="chapter" data-level="0.70.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.70.1"><i class="fa fa-check"></i><b>0.70.1</b> 参考文献：</a></li>
+</ul></li>
+<li class="chapter" data-level="0.71" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.71"><i class="fa fa-check"></i><b>0.71</b> 调试脚本或函数</a><ul>
+<li class="chapter" data-level="0.71.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#-68"><i class="fa fa-check"></i><b>0.71.1</b> 问题</a></li>
+<li class="chapter" data-level="0.71.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-61"><i class="fa fa-check"></i><b>0.71.2</b> 方案</a></li>
+<li class="chapter" data-level="0.71.3" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.71.3"><i class="fa fa-check"></i><b>0.71.3</b> <strong>有用的选择</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.72" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.72"><i class="fa fa-check"></i><b>0.72</b> 测量经过的时间</a><ul>
+<li class="chapter" data-level="0.72.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#-69"><i class="fa fa-check"></i><b>0.72.1</b> <strong>问题</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="0.73" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#section-0.73"><i class="fa fa-check"></i><b>0.73</b> 获取包中的函数和对象列表</a><ul>
+<li class="chapter" data-level="0.73.1" data-path="e8849ae69cace4b88ee587bde695b0.html"><a href="e8849ae69cace4b88ee587bde695b0.html#-70"><i class="fa fa-check"></i><b>0.73.1</b> 问题</a></li>
+<li class="chapter" data-level="0.73.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-62"><i class="fa fa-check"></i><b>0.73.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e5b7a5e585b7.html"><a href="e5b7a5e585b7.html"><i class="fa fa-check"></i>工具</a><ul>
+<li class="chapter" data-level="0.74" data-path="e5b7a5e585b7.html"><a href="e5b7a5e585b7.html#section-0.74"><i class="fa fa-check"></i><b>0.74</b> 生成拉丁方</a><ul>
+<li class="chapter" data-level="0.74.1" data-path="e5b7a5e585b7.html"><a href="e5b7a5e585b7.html#-71"><i class="fa fa-check"></i><b>0.74.1</b> 问题</a></li>
+<li class="chapter" data-level="0.74.2" data-path="e59bbee5bda2.html"><a href="e59bbee5bda2.html#-63"><i class="fa fa-check"></i><b>0.74.2</b> 方案</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a></li>
+<li class="chapter" data-level="B" data-path="books.html"><a href="books.html"><i class="fa fa-check"></i><b>B</b> 图书推荐</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cookbook for R 中文版</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="e59fbae7a180" class="section level1 unnumbered">
+<h1>基础</h1>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">0.1</span> 安装和使用R包</h2>
+<div id="section-0.1.1" class="section level3">
+<h3><span class="header-section-number">0.1.1</span> 问题</h3>
+<p>你想要安装和使用一个R包。</p>
+</div>
+<div id="section-0.1.2" class="section level3">
+<h3><span class="header-section-number">0.1.2</span> 方案</h3>
+<p>如果你正在使用支持R的图形界面软件，应该存在通过菜单栏方式安装R包的选项（比如，常用的Rstudio中，可以点击菜单栏Tools中的Install Packages进行R包的安装）。</p>
+<p>这里主要介绍如何用命令行来安装R包。</p>
+<pre><code>install.packages(&quot;reshape2&quot;) # reshap2为包名</code></pre>
+<p>在一个新R线程中使用该包之前，你必须先导入它。</p>
+<pre><code>library(reshape2)</code></pre>
+<p>如果你在一个脚本中使用该包，把这一行输入脚本中。</p>
+<p>如果想要更新包，使用</p>
+<pre><code>update.packages()</code></pre>
+<p>如果你在Linux系统上使用R，管理员可能已经在系统上安装了一些R包，你将不能以上述方式对R包更新（因为你没有权限）。</p>
+</div>
+<div id="section-0.1.3" class="section level3">
+<h3><span class="header-section-number">0.1.3</span> 其他</h3>
+<p>导入包也可以使用<code>require()</code>函数。</p>
+<p>常见的包安装命令</p>
+<table>
+<thead>
+<tr class="header">
+<th>命令</th>
+<th>描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>installed.packages</td>
+<td>返回一个矩阵，包含所有已安装的包信息</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>available.packages</td>
+<td>返回一个矩阵，包含资源库上所有可用的R包</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>old.packages</td>
+<td>返回一个矩阵，显示所有已安装的包中具有新版本的包</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>new.packages</td>
+<td>返回一个矩阵，显示所有可从资源库上获得而当前尚未安装的包</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>download.packages</td>
+<td>下载一系列R包到本地目录</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>install.packages</td>
+<td>从资源库下载安装一系列R包</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>remove.packages</td>
+<td>移除一系列已安装的R包</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>update.packages</td>
+<td>将已经安装的R包更新到最新版本</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>setRepositories</td>
+<td>设定当前的R包的资源库列表</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>通过命令行安装R包</strong></p>
+<pre class="shell"><code>R CMD INSTALL aplpack_1.1.1.tgz # 安装aplpack包</code></pre>
+<p><strong>从其他资源库安装R包</strong></p>
+<p><code>devtools</code>库提供了从其他流行的<code>Git</code>资源库或其他URL上安装R包的工具。</p>
+<p>比如我们想安装开发版本的<code>ggplot2</code>包，可以使用下面命令：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 如果没有安装devtools，需要先安装</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+
+<span class="kw">library</span>(devtools)
+<span class="kw">install_github</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
+</div>
+</div>
+<div id="section-0.2" class="section level2">
+<h2><span class="header-section-number">0.2</span> 数据结构的索引</h2>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">0.2.1</span> 问题</h3>
+<p>你想获得数据结构的一部分。</p>
+</div>
+<div id="section-0.2.2" class="section level3">
+<h3><span class="header-section-number">0.2.2</span> 解决</h3>
+<p>可以使用数字索引或通过使用适当长度的布尔向量来提取向量，矩阵或数据框中的元素。 以下这些例子中有多种方式来解决这一问题。</p>
+<div id="section-0.2.2.1" class="section level4">
+<h4><span class="header-section-number">0.2.2.1</span> 用数字和名称进行索引</h4>
+<p>对于向量</p>
+<pre><code># 样本向量
+v &lt;- c(1,4,4,3,2,2,3)
+
+v[c(2,3,4)]
+#&gt; [1] 4 4 3
+v[2:4]
+#&gt; [1] 4 4 3
+
+v[c(2,4,3)]
+#&gt; [1] 4 3 4
+</code></pre>
+<p>对于数据框</p>
+<pre><code># 创建样本数据框
+data &lt;- read.table(header=T, text=&#39;
+ subject sex size
+       1   M    7
+       2   F    6
+       3   F    9
+       4   M   11
+ &#39;)
+
+# 获取位于第一行第三列的元素
+data[1,3]
+#&gt; [1] 7
+data[1,&quot;size&quot;]
+#&gt; [1] 7
+
+
+# 获取第1行和第2行所有列上的元素
+data[1:2, ]   
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+data[c(1,2), ]
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+
+
+# 获取一，二两行第二列上的元素
+data[1:2, 2]
+#&gt; [1] M F
+#&gt; Levels: F M
+data[c(1,2), 2]
+#&gt; [1] M F
+#&gt; Levels: F M
+
+# 获取行1和2，名为“sex”和 &quot;size&quot;的列
+data[1:2, c(&quot;sex&quot;,&quot;size&quot;)]
+#&gt;   sex size
+#&gt; 1   M    7
+#&gt; 2   F    6
+data[c(1,2), c(2,3)]
+#&gt;   sex size
+#&gt; 1   M    7
+#&gt; 2   F    6
+</code></pre>
+</div>
+<div id="section-0.2.2.2" class="section level4">
+<h4><span class="header-section-number">0.2.2.2</span> 使用布尔向量进行索引</h4>
+<p>向量V同上</p>
+<pre><code>v &gt; 2
+#&gt; [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+
+v[v&gt;2]
+#&gt; [1] 4 4 3 3
+v[ c(F,T,T,T,F,F,T)]
+#&gt; [1] 4 4 3 3
+</code></pre>
+<p>数据框同上</p>
+<pre><code># 一个布尔向量 
+data$subject &lt; 3
+#&gt; [1]  TRUE  TRUE FALSE FALSE
+    
+data[data$subject &lt; 3, ]
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+data[c(TRUE,TRUE,FALSE,FALSE), ]
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+
+# 也可以获取TRUE的数字索引
+which(data$subject &lt; 3)
+#&gt; [1] 1 2
+</code></pre>
+</div>
+<div id="section-0.2.2.3" class="section level4">
+<h4><span class="header-section-number">0.2.2.3</span> 负索引</h4>
+<p>与其他一些编程语言不同，当您在R中使用负数进行索引时，并不意味着从后向前索引。 相反，它意味着按照通常的从前往后顺序删除索引中的元素。</p>
+<pre><code># 还是这个向量
+v
+#&gt; [1] 1 4 4 3 2 2 3
+
+# 删除第一个
+v[-1]
+#&gt; [1] 4 4 3 2 2 3
+
+#删除前三个
+v[-1:-3]
+#&gt; [1] 3 2 2 3
+
+# 只删除最后一个
+v[-length(v)]
+#&gt; [1] 1 4 4 3 2 2
+</code></pre>
+</div>
+<div id="section-0.2.2.4" class="section level4">
+<h4><span class="header-section-number">0.2.2.4</span> 注意</h4>
+<p>也可参考<a href="http://www.jianshu.com/p/89485084c62c">获取数据结构的子集</a></p>
+</div>
+</div>
+</div>
+<div id="section-0.3" class="section level2">
+<h2><span class="header-section-number">0.3</span> 获取数据结构的子集</h2>
+<div id="-2" class="section level3">
+<h3><span class="header-section-number">0.3.1</span> 问题</h3>
+<p>你想得到一个由向量，矩阵或数据框里元素组成的子集。</p>
+</div>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">0.3.2</span> 方案</h3>
+<p>为了基于一些条件准则获得子集，可以使用<code>subset()</code>函数或者是方括号索引。 在这里的例子中，显示了两种方式。</p>
+<pre><code>v &lt;- c(1,4,4,3,2,2,3)
+
+subset(v, v&lt;3)
+#&gt; [1] 1 2 2
+v[v&lt;3]
+#&gt; [1] 1 2 2
+
+
+# 另一个向量
+t &lt;- c(&quot;small&quot;, &quot;small&quot;, &quot;large&quot;, &quot;medium&quot;)
+
+# 删除 &quot;small&quot; 这一项
+subset(t, t!=&quot;small&quot;)
+#&gt; [1] &quot;large&quot;  &quot;medium&quot;
+t[t!=&quot;small&quot;]
+#&gt; [1] &quot;large&quot;  &quot;medium&quot;
+</code></pre>
+<p>这两种方法之间的一个重要区别在于方括号索引可以为元素赋值，而subset（）不可以。</p>
+<pre><code>v[v&lt;3] &lt;- 9
+
+subset(v, v&lt;3) &lt;- 9
+#&gt; Error in subset(v, v &lt; 3) &lt;- 9: could not find function &quot;subset&lt;-&quot;
+</code></pre>
+</div>
+<div id="section-0.3.3" class="section level3">
+<h3><span class="header-section-number">0.3.3</span> 数据框</h3>
+<pre><code># 样本数据框
+data &lt;- read.table(header=T, text=&#39;
+ subject sex size
+       1   M    7
+       2   F    6
+       3   F    9
+       4   M   11
+ &#39;)
+
+
+subset(data, subject &lt; 3)
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+data[data$subject &lt; 3, ]
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+
+
+# 特定行和列的子集
+subset(data, subject &lt; 3, select = -subject)
+#&gt;   sex size
+#&gt; 1   M    7
+#&gt; 2   F    6
+subset(data, subject &lt; 3, select = c(sex,size))
+#&gt;   sex size
+#&gt; 1   M    7
+#&gt; 2   F    6
+subset(data, subject &lt; 3, select = sex:size)
+#&gt;   sex size
+#&gt; 1   M    7
+#&gt; 2   F    6
+data[data$subject &lt; 3, c(&quot;sex&quot;,&quot;size&quot;)]
+#&gt;   sex size
+#&gt; 1   M    7
+#&gt; 2   F    6
+
+
+# 逻辑AND的两个条件
+subset(data, subject &lt; 3  &amp;  sex==&quot;M&quot;)
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+data[data$subject &lt; 3  &amp;  data$sex==&quot;M&quot;, ]
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+
+
+# 逻辑或的两个条件
+subset(data, subject &lt; 3  |  sex==&quot;M&quot;)
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+#&gt; 4       4   M   11
+data[data$subject &lt; 3  |  data$sex==&quot;M&quot;, ]
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 2       2   F    6
+#&gt; 4       4   M   11
+
+
+# 基于转换数据的条件
+subset(data, log2(size) &gt; 3 )
+#&gt;   subject sex size
+#&gt; 3       3   F    9
+#&gt; 4       4   M   11
+data[log2(data$size) &gt; 3, ]
+#&gt;   subject sex size
+#&gt; 3       3   F    9
+#&gt; 4       4   M   11
+
+
+# 当元素在另一个向量里时的子集
+subset(data, subject %in% c(1,3))
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 3       3   F    9
+data[data$subject %in% c(1,3), ]
+#&gt;   subject sex size
+#&gt; 1       1   M    7
+#&gt; 3       3   F    9
+</code></pre>
+<div id="-1" class="section level4">
+<h4><span class="header-section-number">0.3.3.1</span> 注意</h4>
+<p>也可参考<a href="http://www.jianshu.com/p/3bb2489f7c6f">数据结构索引</a>。</p>
+</div>
+</div>
+</div>
+<div id="section-0.4" class="section level2">
+<h2><span class="header-section-number">0.4</span> 创建填满值的向量</h2>
+<div id="-3" class="section level3">
+<h3><span class="header-section-number">0.4.1</span> 问题</h3>
+<p>你想要创建一个填满值的列表。</p>
+</div>
+<div id="-2" class="section level3">
+<h3><span class="header-section-number">0.4.2</span> 方案</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">50</span>)
+<span class="co">#  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span>
+<span class="co"># [39] 1 1 1 1 1 1 1 1 1 1 1 1</span>
+ 
+<span class="kw">rep</span>(F, <span class="dv">20</span>)
+<span class="co">#  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
+<span class="co"># [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
+ 
+ 
+<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">4</span>)
+<span class="co"># 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</span>
+ 
+<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">each=</span><span class="dv">4</span>)
+<span class="co"># 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5</span>
+ 
+ 
+ 
+<span class="co"># 用在因子变量上</span>
+<span class="kw">rep</span>(<span class="kw">factor</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]), <span class="dv">5</span>)
+<span class="co"># A B C A B C A B C A B C A B C</span>
+<span class="co"># Levels: A B C</span>
+ </code></pre></div>
+</div>
+</div>
+<div id="section-0.5" class="section level2">
+<h2><span class="header-section-number">0.5</span> 获取变量信息</h2>
+<div id="-4" class="section level3">
+<h3><span class="header-section-number">0.5.1</span> 问题</h3>
+<p>你想找到关于变量的信息。</p>
+</div>
+<div id="-3" class="section level3">
+<h3><span class="header-section-number">0.5.2</span> 方案</h3>
+<p>以下为关于样本变量的一些例子</p>
+<pre><code>x &lt;- 6
+n &lt;- 1:4
+let &lt;- LETTERS[1:4]
+df &lt;- data.frame(n, let)
+ </code></pre>
+<div id="section-0.5.2.1" class="section level4">
+<h4><span class="header-section-number">0.5.2.1</span> 关于存在</h4>
+<pre><code># 列出当前所定义的变量
+ls()
+#&gt; [1] &quot;df&quot;       &quot;filename&quot; &quot;let&quot;      &quot;n&quot;        &quot;old_dir&quot;  &quot;x&quot;
+ 
+# 检查名为“x”的变量是否存在
+exists(&quot;x&quot;)
+#&gt; [1] TRUE
+ 
+# 检查名为“y”的变量是否存在
+exists(&quot;y&quot;)
+#&gt; [1] FALSE
+ 
+# 删除变量“x”
+rm(x)
+x
+#&gt; Error in eval(expr, envir, enclos): object &#39;x&#39; not found
+# eval(expr, envir, enclos)错误：找不到对象“x”</code></pre>
+</div>
+<div id="section-0.5.2.2" class="section level4">
+<h4><span class="header-section-number">0.5.2.2</span> 关于大小/结构</h4>
+<pre><code># 获得关于结构的信息
+str(n)
+#&gt;  int [1:4] 1 2 3 4
+ 
+str(df)
+#&gt; &#39;data.frame&#39;:    4 obs. of  2 variables:
+#&gt;  $ n  : int  1 2 3 4
+#&gt;  $ let: Factor w/ 4 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;: 1 2 3 4
+ 
+# 得到一个向量的长度
+length(n)
+#&gt; [1] 4
+ 
+# 可能会得不到我们想要的长度
+length(df)
+#&gt; [1] 2
+ 
+# 行数
+nrow(df)
+#&gt; [1] 4
+ 
+# 列数
+ncol(df)
+#&gt; [1] 2
+ 
+# 得到行数和列数
+dim(df)
+#&gt; [1] 4 2
+ </code></pre>
+</div>
+</div>
+</div>
+<div id="null-na-nan" class="section level2">
+<h2><span class="header-section-number">0.6</span> NULL-NA-NaN的处理</h2>
+<div id="-5" class="section level3">
+<h3><span class="header-section-number">0.6.1</span> 问题</h3>
+<p>你想正确处理<code>NULL</code>、<code>NA</code> （Not Available）、<code>NaN</code>（Not a Number）。</p>
+<!-- more -->
+</div>
+<div id="-4" class="section level3">
+<h3><span class="header-section-number">0.6.2</span> 方案</h3>
+<p>你的数据有时将会存在<code>NULL</code>、<code>NA</code> 、<code>NaN</code>。处理这些数据有些不同于”正常”值，并可能需要确定性测试。</p>
+<p>以下是这些值相比较的例子：</p>
+<pre><code>x &lt;- NULL
+x &gt; 5
+# logical(0)
+
+y &lt;- NA
+y &gt; 5
+# NA
+
+z &lt;- NaN
+z &gt; 5
+# NA
+</code></pre>
+<p>如何测试某个变量是否是其中的一个值：</p>
+<pre><code>is.null(x)
+# TRUE
+
+is.na(y)
+# TRUE
+
+is.nan(z)
+# TRUE
+</code></pre>
+<p>注意，<code>NULL</code>不同于其他两个。<code>NULL</code>意味着没有值，而<code>NA</code>和<code>NaN</code>表示有价，尽管也许是不可用的。下面有一个例子区分：</p>
+<pre><code># Is y null?
+is.null(y)
+# FALSE
+
+# Is x NA?
+is.na(x)
+# logical(0)
+# Warning message:
+# In is.na(x) : is.na() applied to non-(list or vector) of type &#39;NULL&#39;
+</code></pre>
+<p>第一个例子，检查<code>y</code>是否是<code>NULL</code>，结果<code>y</code>并不是；第二个例子，试图检查<code>x</code>是否是<code>NA</code>，但并没有值被检测。</p>
+<div id="section-0.6.2.1" class="section level4">
+<h4><span class="header-section-number">0.6.2.1</span> 忽视向量汇总函数中的“坏”值</h4>
+<p>如果你对包含<code>NA</code>或<code>NaN</code>的向量使用诸如<code>mean()</code>或<code>sum()</code>之类的函数，结果将返回<code>NA</code>和<code>NaN</code>，这通常没有任何意义，虽然这样的结果会提醒你有“坏”值的存在。许多函数都有<code>na.rm</code>可以将这些值忽略。</p>
+<pre><code>vy &lt;- c(1, 2, 3, NA, 5)
+# 1  2  3 NA  5
+mean(vy)
+# NA
+mean(vy, na.rm=TRUE)
+# 2.75
+
+vz &lt;- c(1, 2, 3, NaN, 5)
+# 1   2   3 NaN   5
+sum(vz)
+# NaN
+sum(vz, na.rm=TRUE)
+# 11
+
+# NULL不是问题，因为它不存在
+vx &lt;- c(1, 2, 3, NULL, 5)
+# 1 2 3 5
+sum(vx)
+# 11
+</code></pre>
+</div>
+<div id="section-0.6.2.2" class="section level4">
+<h4><span class="header-section-number">0.6.2.2</span> 从向量中移除”坏值“</h4>
+<p>使用<code>is.na()</code>或<code>is.nan()</code>的反向函数，可以将这些值移除。</p>
+<pre><code>vy
+# 1  2  3 NA  5
+vy[!is.na(vy)]
+# 1  2  3  5
+
+vz
+# 1   2   3 NaN   5
+vz[!is.nan(vz)]
+# 1  2  3  5
+</code></pre>
+</div>
+<div id="-2" class="section level4">
+<h4><span class="header-section-number">0.6.2.3</span> 注意</h4>
+<p>也有无限值<code>Inf</code>和<code>-Inf</code>，及其相应的函数<code>is.finite()</code>和<code>is.infinite()</code>。</p>
+<p>见<a href="http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA">/Manipulating data/Comparing vectors or factors with NA</a></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="author.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="e695b0e5ad97.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/01-basics.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
