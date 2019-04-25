@@ -58,21 +58,21 @@ latinsquare(4, reps=2, seed=5873)
 ```R
 ## - len 指定的是拉丁方的大小
 ## - reps 是拉丁方的重复数-即给出多少个拉丁方
-## - seed 指的是给定一个随机种子，这样可以保证生成的拉丁方是可重复的。 is a random seed that can be used to generate repeatable sequences
+## - seed 指的是给定一个随机种子，这样可以保证生成的拉丁方是可重复的。
 ## - returnstrings 告诉函数为每个拉丁方返回一个字符串向量而不是返回一个巨大的矩阵，这个参数是用来检查生成拉丁方随机性的一个可选项。  
 latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
 
-    # Save the old random seed and use the new one, if present
+    # 保存旧的随机种子并使用新的（如果有）
     if (!is.na(seed)) {
         if (exists(".Random.seed"))  { saved.seed <- .Random.seed }
         else                         { saved.seed <- NA }
         set.seed(seed)
     }
     
-    # This matrix will contain all the individual squares
+    # 这个矩阵包含了全部独立的拉丁方
     allsq <- matrix(nrow=reps*len, ncol=len)
     
-    # Store a string id of each square if requested
+    # 如果需要，为每个拉丁方阵储存一个字符串 id 
     if (returnstrings) {  squareid <- vector(mode = "character", length = reps) }
 
     # Get a random element from a vector (the built-in sample function annoyingly
@@ -82,7 +82,7 @@ latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
         else              { return(sample(x,1)) }
     }
     
-    # Generate each of n individual squares
+    # 生成 n 个独立的拉丁方阵
     for (n in 1:reps) {
 
         # Generate an empty square
@@ -103,20 +103,20 @@ latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
         # (without the cross), the failure rate is much higher.
         while (any(is.na(sq))) {
 
-            # Pick a random cell which is currently NA
+            # 随机选择一个当前值为 NA （缺失值）的单元格
             k <- sample1(which(is.na(sq)))
             
             i <- (k-1) %% len +1       # Get the row num
             j <- floor((k-1) / len) +1 # Get the col num
             
-            # Find the other NA cells in the "cross" centered at i,j
+            # 在以 i,j 为中心的“交叉点”中找到其他为 NA 的单元格
             sqrow <- sq[i,]
             sqcol <- sq[,j]
 
-            # A matrix of coordinates of all the NA cells in the cross
+            # 一个包含了所有 NA 单元格坐标的矩阵
             openCell <-rbind( cbind(which(is.na(sqcol)), j),
                               cbind(i, which(is.na(sqrow))))
-            # Randomize fill order
+            # 随机化填充顺序
             openCell <- openCell[sample(nrow(openCell)),]
             
             # Put center cell at top of list, so that it gets filled first
@@ -168,9 +168,9 @@ latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
 
 #### 检查函数的随机性
 
-一些生成拉丁方的算法并不是非常的随机。4x4的拉丁方有576种，它们每一种都应该有相等的概率被生成，但一些算法没有做到。可能我们没有必要检查上面的函数，但这里确实有办法可以做到这一点。前面我使用的算法并没有好的随机分布，我们运行下面的代码可以发现这一点。
+一些生成拉丁方的算法并不是非常的随机。`4x4` 的拉丁方有 576 种，它们每一种都应该有相等的概率被生成，但一些算法没有做到。可能我们没有必要检查上面的函数，但这里确实有办法可以做到这一点。前面我使用的算法并没有好的随机分布，我们运行下面的代码可以发现这一点。
 
-这个代码创建10,000个4x4的拉丁方，然后计算这576个唯一拉丁方出现的频数。计数结果应该形成一个不是特别宽的正态分布；否则这个分布就不是很随机了。我相信期望的标准差是根号(10000/576)（假设随机生成拉丁方）。
+这个代码创建 10,000 个 `4x4` 的拉丁方，然后计算这 576 个唯一拉丁方出现的频数。计数结果应该形成一个不是特别宽的正态分布；否则这个分布就不是很随机了。我相信期望的标准差是根号(10000/576)（假设随机生成拉丁方）。
 
 ```R
 # Set up the size and number of squares to generate
