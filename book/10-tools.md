@@ -19,7 +19,7 @@ latinsquare(4)
 #> [4,]    4    3    2    1
 
 
-# To generate 2 Latin squares of size 4 (in sequence)
+# 生成两个大小为 4 的拉丁方(按顺序排列)
 latinsquare(4, reps=2)
 #>      [,1] [,2] [,3] [,4]
 #> [1,]    3    4    1    2
@@ -32,8 +32,8 @@ latinsquare(4, reps=2)
 #> [8,]    3    1    2    4
 
 
-# It is better to put the random seed in the function call, to make it repeatable
-# This will return the same sequence of two Latin squares every time
+# 在调用该函数时最好加入一个随机种子 (random seed)，这样可以使得生成的拉丁方具有可重复性。 
+# 如下所示，这样做每次都会得到同一序列的拉丁方。
 latinsquare(4, reps=2, seed=5873)
 #>      [,1] [,2] [,3] [,4]
 #> [1,]    1    4    2    3
@@ -47,21 +47,19 @@ latinsquare(4, reps=2, seed=5873)
 
 ```
 
-存在大小为4的576个拉丁方。函数`latinsquare`会随机选择其中`n`个并以序列形式返回它们。这被称为**重复拉丁方设计** 。
+存在大小为 4 的 576 个拉丁方。函数 `latinsquare` 会随机选择其中 `n` 个并以序列形式返回它们。这被称为**重复拉丁方设计** 。
 
-一旦你生成了自己的拉丁方，你需要确保不存在许多重复的序列。这在小型拉丁方中非常普遍 (3x3 or 4x4)。
+一旦你生成了自己的拉丁方，你需要进行检查确保不存在许多重复的序列，因为这中情况在小型拉丁方中非常普遍 (3x3 or 4x4)。
 
 #### 生成拉丁方的函数
 
-这个函数用来生成拉丁方。它使用了略微暴力的算法来生成每个拉丁方，有时候在给定位置的数字用完了它可能会失败。这种情况下，它会尝试再试一试。可能存在一种更好的办法吧，但我并不清楚。
+这个函数一定程度上使用了[暴力算法(brute-force algorithm)](http://www-igm.univ-mlv.fr/~lecroq/string/node3.html)来生成每个拉丁方，有时候它会因为没有可用的数字放入给定的位置而失败。这种情况下，它会再做尝试。可能存在一种更好的办法吧，但我并不清楚。
 
 ```R
-## - len is the size of the latin square
-## - reps is the number of repetitions - how many Latin squares to generate
-## - seed is a random seed that can be used to generate repeatable sequences
-## - returnstrings tells it to return a vector of char strings for each square,
-##    instead of a big matrix. This option is only really used for checking the
-##    randomness of the squares.
+## - len 指定的是拉丁方的大小
+## - reps 是拉丁方的重复数-即给出多少个拉丁方
+## - seed 指的是给定一个随机种子，这样可以保证生成的拉丁方是可重复的。 is a random seed that can be used to generate repeatable sequences
+## - returnstrings 告诉函数为每个拉丁方返回一个字符串向量而不是返回一个巨大的矩阵，这个参数是用来检查生成拉丁方随机性的一个可选项。  
 latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
 
     # Save the old random seed and use the new one, if present
