@@ -75,8 +75,7 @@ latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
     # 如果需要，为每个拉丁方阵储存一个字符串 id 
     if (returnstrings) {  squareid <- vector(mode = "character", length = reps) }
 
-    # Get a random element from a vector (the built-in sample function annoyingly
-    #   has different behavior if there's only one element in x)
+    # 从向量中获取一个随机元素。(如果 x 里只有一个元素，那么内置的示例函数会很诡异地发生不一样的运行）
     sample1 <- function(x) {
         if (length(x)==1) { return(x) }
         else              { return(sample(x,1)) }
