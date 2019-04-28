@@ -1415,7 +1415,7 @@ sp + scale_y_continuous(trans = log2_trans(),
 
 可以使用非常多的转换，参见 `?trans_new` 查看所有可用转换的列表。如果你所需要的转换不在该列表上，可以自己写一个转换函数。
 
-有一些非常便捷的函数：`scale_y_log10`和`scale_y_sqrt` （有对应的x版本）。
+有一些非常便捷的函数：`scale_y_log10` 和 `scale_y_sqrt` （有对应的 x 版本）。
 
 ```r
 set.seed(205)
@@ -1494,7 +1494,7 @@ bp + theme(axis.title.x = element_text(face="bold", colour="#990000", size=20),
 
 ```r
 # 标签格式器
-library(scales)   # 需要scales包
+library(scales)   # 需要 scales 包
 bp + scale_y_continuous(labels=percent) +
      scale_x_discrete(labels=abbreviate)  # 在这个例子中它没作用
 ```
@@ -1556,7 +1556,7 @@ bp + theme(panel.grid.minor.y=element_blank(),
 
 你想用 ggplot2 修改图表中的图例。
 
-### 解决方案
+### 方案
 
 从带有默认选项的示例图开始：
 
@@ -1798,10 +1798,10 @@ bp + theme(legend.position="top")
 也可以将图例定位在绘图区域内。 请注意，下面的数字位置是相对于整个区域的，包括标题和标签，而不仅仅是绘图区域。
 
 ```R
-# 将图例放在图表中，其中 x，y 为 0,0（左下角）到 1,1（右上角）
+# 将图例放在图表中，其中 x，y 为 0, 0（左下角）到 1, 1（右上角）
 bp + theme(legend.position=c(.5, .5))
 
-# 设置图例的「锚点」（左下角为 0,0;右上角为 1,1）
+# 设置图例的「锚点」（左下角为 0, 0; 右上角为 1, 1）
 # 将图例框的左下角放在图的左下角
 bp + theme(legend.justification=c(0,0), legend.position=c(0,0))
 
@@ -1813,7 +1813,7 @@ bp + theme(legend.justification=c(1,0), legend.position=c(1,0))
 
 ### 隐藏在图例中的斜线
 
-如果使用轮廓制作条形图（通过设置 color = “black”），它将通过图例中的颜色绘制斜线。 没有内置的方法来删除斜杠，但可以覆盖它们。
+如果使用轮廓制作条形图（通过设置 color = 「black」），它将通过图例中的颜色绘制斜线。 没有内置的方法来删除斜杠，但可以覆盖它们。
 
 ```R
 # 没有边缘线
@@ -1860,7 +1860,7 @@ library(ggplot2)
 
 ##### 一条线段
 
-这些使用`geom_hline`，因为y轴是连续的，但如果x轴是连续的，也可以使用`geom_vline`（带有'xintercept`）。
+这些使用 `geom_hline`，因为y轴是连续的，但如果x轴是连续的，也可以使用 `geom_vline`（带有 `xintercept`）。
 
 ```R
 # 基本柱状条
@@ -1879,7 +1879,7 @@ bp + geom_hline(aes(yintercept=12), colour="#990000", linetype="dashed")
 
 ##### 每个分类值的单独行
 
-要为每个条形成单独的行，请使用`geom_errorbar`。 误差条没有高度 - “ymin”=“ymax”。 由于某种原因，似乎有必要指定`y`，即使它没有任何功能。
+要为每个条形成单独的行，请使用 `geom_errorbar`。 误差条没有高度 - 「ymin」 = 「ymax」。 由于某种原因，似乎有必要指定 `y`，即使它没有任何功能。
 
 ```R
 # 为每个条形绘制单独的线条。 首先添加另一列到目前为止
@@ -1889,7 +1889,7 @@ dat
 #> 1   control   10.0     9
 #> 2 treatment   11.5    12
 
-# 需要重新指定bp，因为数据已经改变
+# 需要重新指定 bp，因为数据已经改变
 bp <- ggplot(dat, aes(x=cond, y=result)) +
     geom_bar(position=position_dodge(), stat="identity")
 
@@ -1900,15 +1900,15 @@ bp + geom_errorbar(aes(ymax=hline, ymin=hline), colour="#AA0000")
 bp + geom_errorbar(width=0.5, aes(ymax=hline, ymin=hline), colour="#AA0000")
 
 
-# 即使我们从第二个数据框获得hline值，也可以得到相同的结果
-# 使用hline定义数据框
+# 即使我们从第二个数据框获得 hline 值，也可以得到相同的结果
+# 使用 hline 定义数据框
 dat_hlines <- data.frame(cond=c("control","treatment"), hline=c(9,12))
 dat_hlines
 #>        cond hline
 #> 1   control     9
 #> 2 treatment    12
 
-# 柱状图形来自dat，但是线条来自dat_hlines 
+# 柱状图形来自 dat，但是线条来自 dat_hlines 
 bp + geom_errorbar(data=dat_hlines, aes(y=NULL, ymax=hline, ymin=hline), colour="#AA0000")
 #> 警告：忽略未知的美学 : y
 ```
@@ -1917,7 +1917,7 @@ bp + geom_errorbar(data=dat_hlines, aes(y=NULL, ymax=hline, ymin=hline), colour=
 
 ##### 分组栏上的线条
 
-可以在分组条上添加线条。 在这个例子中，实际上有四行（`hline`的每个条目一行），但它看起来像两个，因为它们是相互重叠的。 我不认为可以避免这种情况，但它不会导致任何问题。
+可以在分组条上添加线条。 在这个例子中，实际上有四行（`hline` 的每个条目一行），但它看起来像两个，因为它们是相互重叠的。 我不认为可以避免这种情况，但它不会导致任何问题。
 
 ```R
 dat <- read.table(header=TRUE, text='
@@ -2019,7 +2019,7 @@ sp + geom_hline(aes(yintercept=10)) +
 
 ##### 画线为平均值
 
-还可以计算每个数据子集的平均值，按一些变量分组。 组意味着必须计算并存储在单独的数据框中，最简单的方法是使用dplyr包。 请注意，该行的y范围由数据确定。
+还可以计算每个数据子集的平均值，按一些变量分组。 组意味着必须计算并存储在单独的数据框中，最简单的方法是使用 dplyr 包。 请注意，该行的y范围由数据确定。
 
 ```R
 library(dplyr)
@@ -2031,7 +2031,7 @@ lines <- dat %>%
     ymax = max(yval)
   )
 
-# 为每组的平均xval添加彩色线条
+# 为每组的平均 xval 添加彩色线条
 sp + geom_hline(aes(yintercept=10)) +
      geom_linerange(aes(x=x, y=NULL, ymin=ymin, ymax=ymax), data=lines)
 #> 警告：忽略未知的美学 : y
@@ -2054,7 +2054,7 @@ spf + geom_hline(aes(yintercept=10))
 
 ![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-11-2.png)
 
-如果您希望不同的线条出现在不同的方面，有两个选项。 一种是创建具有所需线条值的新数据框。 另一种选择（控制更有限）是在`geom_line（）`中使用`stat`和`xintercept`。
+如果您希望不同的线条出现在不同的方面，有两个选项。 一种是创建具有所需线条值的新数据框。 另一种选择（控制更有限）是在 `geom_line（）` 中使用 `stat` 和 `xintercept`。
 
 ```R
 dat_vlines <- data.frame(cond=levels(dat$cond), xval=c(10,11.5))
@@ -2111,7 +2111,7 @@ sp
 
 #### facet_grid
 
-根据一个或多个变量对数据进行分割，生成的子图按照水平或垂直的方向进行排列。这一功能是通过赋予 `facet_grid()` 函数一个  `vertical ~ horizontal` 公式来实现的（这里所说的“公式”是R中的一种数据结构，而不是数学意义上的公式）。
+根据一个或多个变量对数据进行分割，生成的子图按照水平或垂直的方向进行排列。这一功能是通过赋予 `facet_grid()` 函数一个 `vertical ~ horizontal` 公式来实现的（这里所说的「公式」是 R 中的一种数据结构，而不是数学意义上的公式）。
 ```r
 # 根据 "sex" 按垂直方向分割
 sp + facet_grid(sex ~ .)
@@ -2134,9 +2134,11 @@ sp + facet_grid(sex ~ day)
 ![plot of chunk unnamed-chunk-6](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-6-1.png)
 
 #### facet_wrap
-除了能够根据**单个变量**在水平或垂直方向上对图进行分面，`facet_wrap()`函数可以通过设置特定的行数或列数，让子图排列到一起。此时每个图像的上方都会有标签。
+
+除了能够根据**单个变量**在水平或垂直方向上对图进行分面，`facet_wrap()` 函数可以通过设置特定的行数或列数，让子图排列到一起。此时每个图像的上方都会有标签。
+
 ```r
-# 以变量 `day`进行水平分面，分面的行数为2。
+# 以变量 `day` 进行水平分面，分面的行数为2。
 sp + facet_wrap( ~ day, ncol=2)
 ```
 ![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-7-1.png)
@@ -2153,12 +2155,13 @@ sp + facet_grid(sex ~ day) +
 
 #### 修改分面标签的文本
 
-修改分面标签内容有两种方法。最简单的方法是为原来的名字匹配一个新的名字向量。比方说对数据中 `sex` 的类别进行重新定义  Female==>Women, and Male==>Men:
+修改分面标签内容有两种方法。最简单的方法是为原来的名字匹配一个新的名字向量。比方说对数据中 `sex` 的类别进行重新定义 Female==>Women, and Male==>Men:
 
 ```r
 labels <- c(Female = "Women", Male = "Men")
 sp + facet_grid(. ~ sex, labeller=labeller(sex = labels))
 ```
+
 另一个方法就是直接在数据框中修改，将你想要显示的标签赋值给相应的数据:
 
 ```r
@@ -2198,11 +2201,11 @@ sp + facet_grid(. ~ sex, labeller=labeller(sex = reverse))
 一般而言，每幅图的坐标轴范围都是**固定不变**的，也就是说每幅图都拥有相同的尺寸和范围。你可以通过将 `scales` 设置为 `free`，`free_x` 或 `free_y` 来改变坐标轴范围。
 
 ```r
-# 描绘一个 total_bill的柱状图
+# 描绘一个 total_bill 的柱状图
 hp <- ggplot(tips, aes(x=total_bill)) + geom_histogram(binwidth=2,colour="white")
 # 根据性别和是否吸烟进行分面
 hp + facet_grid(sex ~ smoker)
-# 在同样的情况下设定 scales="free_y" (y轴自由标度）
+# 在同样的情况下设定 scales="free_y" (y 轴自由标度）
 hp + facet_grid(sex ~ smoker, scales="free_y")
 # 画布的缩放比例不变，但各分面的范围有所改变，因此每个分面的物理大小都不一致
 hp + facet_grid(sex ~ smoker, scales="free", space="free")
@@ -2221,6 +2224,7 @@ hp + facet_grid(sex ~ smoker, scales="free", space="free")
 你想把多个图形放到同一个页面中。
 
 ### 方案
+
 最简单的方法就是使用 `multiplot` 函数，本页末尾处附有该函数的具体定义。如果它不能满足你的需求，你可以将其复制下来然后作出适当的修改。
 首先，构建并保存图像但不需要对它们进行渲染，这些图像的细节并不重要。你只需要将这些图像对象储存为变量。
 
@@ -2256,11 +2260,13 @@ p4 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
 multiplot(p1, p2, p3, p4, cols=2)
 #> `geom_smooth()`  函数设置成 method = 'loess'
 ```
+
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/figure/unnamed-chunk-3-1.png)
 
 ### multiplot 函数
 
 定义：`multiplot ` 函数可以将任意数量的图像对象作为参数，或者可以构建一个图像对象列表传递到该函数的 `plotlist` 参数中。
+
 ```r
 # 多图功能
 #
@@ -2308,11 +2314,11 @@ print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
 
 ###  问题
 
-你想在图表中用ggplot2添加颜色
+你想在图表中用 ggplot2 添加颜色
 
-### 解决方案
+### 方案
 
-在ggplot2中设置颜色，对相互区分不同变量会有些困难，因为这些颜色有一样的亮度，且对色盲者不太友好。一个比较好的通用解决方案是使用对色盲友好的调色。
+在 ggplot2 中设置颜色，对相互区分不同变量会有些困难，因为这些颜色有一样的亮度，且对色盲者不太友好。一个比较好的通用解决方案是使用对色盲友好的调色。
 
 #### 样本数据
 
@@ -2344,9 +2350,9 @@ df2 <- read.table(header=TRUE, text='
 
 #### 简单的颜色设置
 
-有颜色的线条和点可以直接用'colour = "red" ', 用颜色名称代替”red"。填充的对象的颜色，例如柱状条，可以用 'fill="red" 来进行设置。
+有颜色的线条和点可以直接用 'colour = "red" ', 用颜色名称代替「red」。填充的对象的颜色，例如柱状条，可以用 'fill="red" 来进行设置。
 
-如果你想用任何其他非常规颜色，用十六进位码来设置颜色更容易，比如"#FF6699"。（看下面的十六进位码颜色图）
+如果你想用任何其他非常规颜色，用十六进位码来设置颜色更容易，比如 「#FF6699」。（看下面的十六进位码颜色图）
 
 ```R
 library(ggplot2)
@@ -2356,7 +2362,6 @@ ggplot(df, aes(x=cond, y=yval)) + geom_bar(stat="identity")
 ggplot(df, aes(x=cond, y=yval)) + geom_bar(stat="identity", colour="#FF9999") 
 # 红色填充，黑色边线
 ggplot(df, aes(x=cond, y=yval)) + geom_bar(stat="identity", fill="#FF9999", colour="black")
-
 
 # 标准黑色线条和点
 ggplot(df, aes(x=cond, y=yval)) + 
@@ -2372,7 +2377,7 @@ ggplot(df, aes(x=cond, y=yval)) +
 
 #### 将变量值映射到颜色
 
-不用全局改变颜色，你可以将变量映射到颜色——换言之，通过把颜色放到aes()说明中，可以设置条件性变量。
+不用全局改变颜色，你可以将变量映射到颜色——换言之，通过把颜色放到 aes() 说明中，可以设置条件性变量。
 
 ```R
 # 柱状条: x 和填充都依赖于cond2
@@ -2404,7 +2409,7 @@ ggplot(df2, aes(x=cond1, y=yval)) +
 
 ![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-2.png)
 
-为了用ggplot2, 我们在一个变量里储存颜色色板，然后之后调用。
+为了用 ggplot2, 我们在一个变量里储存颜色色板，然后之后调用。
 
 ```
 # 灰色的颜色色板:
@@ -2426,11 +2431,11 @@ cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
 
 #### 颜色选择
 
-默认情况下，离散比例的颜色围绕HSL色环均匀分布。 例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔120°; 等等。 用于不同级别的颜色如下所示：
+默认情况下，离散比例的颜色围绕 HSL 色环均匀分布。 例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔 120°; 等等。 用于不同级别的颜色如下所示：
 
 ![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-7-1.png)
 
-默认颜色选择使用`scale_fill_hue（）`和`scale_colour_hue（）`。 例如，在这些情况下添加这些命令是多余的：
+默认颜色选择使用 `scale_fill_hue（）` 和 `scale_colour_hue（）`。 例如，在这些情况下添加这些命令是多余的：
 
 ```
 # 这两个是等价的; 默认使用scale_fill_hue（）
@@ -2446,18 +2451,18 @@ ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2)
 
 #### 设置亮度和饱和度（色度）
 
-虽然`scale_fill_hue（）`和`scale_colour_hue（）`在上面是多余的，但是当你想要改变默认值时，可以使用它们，比如改变亮度或色度。
+虽然 `scale_fill_hue（）` 和 `scale_colour_hue（）` 在上面是多余的，但是当你想要改变默认值时，可以使用它们，比如改变亮度或色度。
 
 ```
-# 使用 luminance=45, 而不是默认 65
+# 使用 luminance = 45, 而不是默认 65
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_hue(l=40)
 
-# 从100到50减少饱和度（亮度）, 增加亮度
+# 从 100 到 50 减少饱和度（亮度）, 增加亮度
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_hue(c=45, l=80)
 
-# 注意：使用scale_colour_hue() 设置线和点
+# 注意：使用 scale_colour_hue() 设置线和点
 ```
 
 ![plot of chunk unnamed-chunk-9](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-9-1.png)![plot of chunk unnamed-chunk-9](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-9-2.png)
@@ -2468,7 +2473,7 @@ This is a chart of colors with luminance=45:
 
 #### 调色板：Color Brewer
 
-您还可以使用其他色标，例如从RColorBrewer包中获取的色标。 请参阅下面的RColorBrewer调色板图表。
+您还可以使用其他色标，例如从 RColorBrewer 包中获取的色标。 请参阅下面的 RColorBrewer 调色板图表。
 
 ```R
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
@@ -2487,7 +2492,7 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 
 #### 调色板：手动定义
 
-最后，您可以使用`scale_fill_manual（）`定义自己的颜色集。 有关选择特定颜色的帮助，请参阅下面的十六进制代码表。
+最后，您可以使用 `scale_fill_manual（）` 定义自己的颜色集。 有关选择特定颜色的帮助，请参阅下面的十六进制代码表。
 
 ```R
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + 
@@ -2522,24 +2527,25 @@ ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point() +
 
 #### 十六进制色码图
 
-颜色可以指定为十六进制RGB三元组合，例如“＃0066CC”。 前两位数字是红色，接下来的两位是绿色，最后两位是蓝色。 每个值的范围从00到FF，以十六进制（base-16）表示，在base-10中等于0和255。 例如，在下表中，“＃FFFFFF”为白色，“＃990000”为深红色。
+颜色可以指定为十六进制RGB三元组合，例如「#0066CC」。 前两位数字是红色，接下来的两位是绿色，最后两位是蓝色。 每个值的范围从 00 到 FF，以十六进制（base-16）表示，在 base-10 中等于 0 和 255。 例如，在下表中，「#FFFFFF」为白色，「#990000」为深红色。
 
 ![img](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png)
 
 (色码图来源于 [http://www.visibone.com](http://www.visibone.com/))
 
-#### RColorBrewer调色板图表
+#### RColorBrewer 调色板图表
 
 ![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png)
 
 ## 图形混杂-输出到文件-PDF-PNG-TIFF-SVG
 
 ### 问题
+
 你想将图形保存到文件。
 
 ### 方案
 
-R 中有好几种命令可以直接将图形导出为文件而不是打印到屏幕上。另外，你必须通过  `dev.off()` 命令告诉 R 你已经完成作图了，否则你的图形是不会显示出来的。
+R 中有好几种命令可以直接将图形导出为文件而不是打印到屏幕上。另外，你必须通过 `dev.off()` 命令告诉 R 你已经完成作图了，否则你的图形是不会显示出来的。
 
 #### PDF格式
 
@@ -2567,9 +2573,9 @@ pdf("plots.pdf", width=10/2.54, height=6/2.54)
 pdf("plots.pdf", useDingbats=FALSE)
 ```
 
-#### SVG格式
+#### SVG 格式
 
-SVG是另一种矢量图。默认的  `svg()` 命令无法将多页图形输出到一个文件中，因为大部分的 SVG 浏览软件无法处理多页的 SVG 文件。后面的 PNG 内容中将涉及如何输出到多个文件。
+SVG 是另一种矢量图。默认的  `svg()` 命令无法将多页图形输出到一个文件中，因为大部分的 SVG 浏览软件无法处理多页的 SVG 文件。后面的 PNG 内容中将涉及如何输出到多个文件。
 
 ```r
 svg("plots.svg")
@@ -2592,7 +2598,7 @@ dev.off()
 
 输出的图像默认尺寸为 480X480 像素，分辨率为 72dpi （即 6.66x6.66 英寸）
 
-当分辨率增加时文本与图像元素的大小也会（以像素为单位）增加。这是因为这些元素的大小只与图像的物理大小有关（比如 4x4英寸），而与图像的像素大小无关。例如，一个 12 磅的字符高度为 12/72 = 1/6 英寸，在分辨率为 72dpi 的情况下，它共包含 12 个像素点；而在分辨率放大到 120dpi 时，它就含有 20 个像素点了。
+当分辨率增加时文本与图像元素的大小也会（以像素为单位）增加。这是因为这些元素的大小只与图像的物理大小有关（比如 4x4 英寸），而与图像的像素大小无关。例如，一个 12 磅的字符高度为 12/72 = 1/6 英寸，在分辨率为 72dpi 的情况下，它共包含 12 个像素点；而在分辨率放大到 120dpi 时，它就含有 20 个像素点了。
 
 以下创建一个大小为 480x240 像素，分辨率为 120dpi 的图像,其实际大小相当于 4x2 英寸。
 
@@ -2601,6 +2607,7 @@ png("plot.png", width=480, height=240, res=120)
 plot(...)
 dev.off()
 ```
+
 如果你要创建不止一张图像，必须对每张图像执行一个新的 `png()` 命令，或者将 `%d` 放置到文件名中:
 
 ```r
@@ -2610,8 +2617,9 @@ dev.off()
 ```
 上述代码会生成 plot-1.png, plot-2.png 等系列文件。
 
-#### 对于不支持PDF格式的程序 （MS Office）
-有些不支持 PDF文件导入的程序一般都需要高分辨率的PNG或TIFF文件。比如说微软 Office 无法导入 PDF 格式文件。而对于印刷出版物，则需要使用 300dpi 的图像。
+#### 对于不支持 PDF 格式的程序 （MS Office）
+有些不支持 PDF 文件导入的程序一般都需要高分辨率的 PNG 或 TIFF 文件。比如说微软 Office 无法导入 PDF 格式文件。而对于印刷出版物，则需要使用 300dpi 的图像。
+
 ```r
 # 绘制一幅 6x6英寸，300dpi 的图像
 ppi <- 300
@@ -2641,6 +2649,7 @@ ggsave("plot.pdf", width=4, height=4)
 # 将图形保存为 400x400，100 ppi的文件
 ggsave("plot.png", width=4, height=4, dpi=100)
 ```
+
 #### 保存屏幕中的图像
 
 如果你的屏幕中已经有一张图像了，可以将其保存为位图。
@@ -2666,7 +2675,6 @@ dev.off()
 # dev.off()
 dev.copy(png,"myplot.png", width=400, height=400)
 dev.off()
-
 ```
 
 ## 图形混杂-形状和线形
@@ -2680,11 +2688,11 @@ dev.off()
 
 ![plot of chunk line_types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/line_types-1.png)
 
-在输出位图时，对符号15-18的渲染可能不具抗锯齿性，即无论这些图形的绘制是否来自同一个平台，这些符号都有可能会被拉伸变形，出现像素点，或者无法居中。符号19和21-25在填充部分外周会有边框线，在大部分情况下这种边线在渲染时其边缘都是平滑的。另外，要使符号21-25显示实心填充，需要指定与边线颜色(`col`)一致的填充(`bg`)颜色，否则这些符号将会是空心的。
+在输出位图时，对符号 15-18 的渲染可能不具抗锯齿性，即无论这些图形的绘制是否来自同一个平台，这些符号都有可能会被拉伸变形，出现像素点，或者无法居中。符号 19 和 21-25 在填充部分外周会有边框线，在大部分情况下这种边线在渲染时其边缘都是平滑的。另外，要使符号 21-25 显示实心填充，需要指定与边线颜色 (`col`) 一致的填充 (`bg`) 颜色，否则这些符号将会是空心的。
 
 #### 标准图形
 
-通过  `pch` 选项来设置符号形状, 并且通过 `lty` 和 `lwd` 来设定线条的类型和粗细。线条的类型可以通过名字或数字来指定。
+通过 `pch` 选项来设置符号形状, 并且通过 `lty` 和 `lwd` 来设定线条的类型和粗细。线条的类型可以通过名字或数字来指定。
 
 ```r
 set.seed(331)
@@ -2704,6 +2712,7 @@ points(1:4, runif(4), type="b", pch=23,   # 菱形符号
        col="#000099", bg="#FF6666")       # 线条蓝色，符号形状红色填充
 
 ```
+
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-3-1.png)
 
 #### ggplot2
@@ -2719,7 +2728,6 @@ df <- read.table(header=T, text='
      B    1  3.0
      B    2  2.0
 ')
-
 
 library(ggplot2)
 
@@ -2759,7 +2767,7 @@ ggplot(df, aes(x=xval, y=yval, group = cond)) +
 ![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-3.png)
 ![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-4.png)
 
-一般来说 ggplot2 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以使用`scale_shape(solid=FALSE)`。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状21-25并且指定白色填充。
+一般来说 ggplot2 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以使用 `scale_shape(solid=FALSE)`。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。
 
 ```r
 # 空心形状
@@ -2779,6 +2787,7 @@ ggplot(df, aes(x=xval, y=yval, group = cond)) +
                size = 4)  +       # 放大形状
     scale_shape_manual(values=c(21,24))  # 形状：实心圆和三角形
 ```
+
 ![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-5-1.png)
 ![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-5-2.png)
 
@@ -2808,7 +2817,6 @@ text(0, 5, "5. 'longdash'",  adj=c(0,.5))
 text(0, 6, "6. 'twodash'" ,  adj=c(0,.5))
 ```
 
-
 ## 图形混杂-字体
 
 ### 问题
@@ -2821,11 +2829,9 @@ text(0, 6, "6. 'twodash'" ,  adj=c(0,.5))
 
 R 在一般情况下都不能很好地支持字体的显示。在不同的操作系统和不同的输出格式中都会出现不一样的结果。
 
-
 #### geom_text
 
 通过 ggplot2 中的 `geom_text` or `annotate` , 你可以对图形文本中的一系列属性进行设置。 `geom_text` 用于将数据框中的文本加入到图表中，而  `annotate` 则用于往图表中添加单个文本元素。
-
 
 Name | Default value
 :---|:---
@@ -2838,6 +2844,7 @@ Name | Default value
 `vjust` |	0.5
 
 注意这里 `size` 的单位是毫米, 而非磅。
+
 ```r
 dat <- data.frame(
     y = 1:3,
@@ -2855,22 +2862,25 @@ p + geom_text(aes(label=text), family="Times", fontface="italic", lineheight=.8)
     annotate(geom="text", x=1, y=1.5, label="Annotation text", colour="red",
              size=7, family="Courier", fontface="bold", angle=30)
 ```
+
 ![plot of chunk unnamed-chunk-2](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-2-1.png)
 ![plot of chunk unnamed-chunk-2](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-2-2.png)
 
 #### themes and element_text
 
-在管理类似标题，图注，坐标轴标签等元素时，可以使用 `element_text`, 其参数设置跟`geom_text`基本一致, 除了  `size` 的单位是 **points** (而非 mm), 还有就是它用的是 `face` 而不是 `fontface` 。默认情况下，`size` 取决于元素，比如图形标题的字体总是比刻度标签的大。
+在管理类似标题，图注，坐标轴标签等元素时，可以使用 `element_text`, 其参数设置跟 `geom_text` 基本一致, 除了  `size` 的单位是 **points** (而非 mm), 还有就是它用的是 `face` 而不是 `fontface` 。默认情况下，`size` 取决于元素，比如图形标题的字体总是比刻度标签的大。
 ```r
 p + geom_point() +
     ggtitle("This is a Title") +
     theme(plot.title=element_text(family="Times", face="bold", size=20))
 ```
+
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-3-1.png)
 
 #### 字体表格
 
 你可以运行下列代码来生成一张不同字体的图形表。 每种字体都有**简称**和**字体标准家族名称**，定义字体时使用其中一种即可。
+
 ```r
 fonttable <- read.table(header=TRUE, sep=",", stringsAsFactors=FALSE,
                         text='
@@ -2911,10 +2921,13 @@ pf <- ggplot(fullfonts, aes(x=NameType, y=pos)) +
              geom_text(aes(label=Font, family=Font, fontface=Face)) +
              facet_wrap(~ Face, ncol=2)
 ```
+
 在屏幕中查看:
+
 ```r
 pf
 ```
+
 你在屏幕中所看见的不一定跟你输出为 PNG 或 PDF 格式后的结果完全一样。查看 PNG 格式的输出结果： 
 
 ```r
@@ -2922,37 +2935,34 @@ png('fonttable.png', width=720, height=720, res=72)
 print(pf)
 dev.off()
 ```
+
 需要注意的是，对于生成这张图片的操作系统来说，大部分的字体（位于顶部）是不兼容的，只有一些基础字体（位于底部）是可以使用的。
 
 ![unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-7-1.png)
 
-
-
----
 PDF 格式输出结果(以下示例图已从 PDF 格式转化为 PNG 格式）:
+
 ```r
 pdf('fonttable.pdf', width=10, height=10)
 print(pf)
 dev.off()
-
-
 #  用 GraphicsMagick 将 PDF 转化为PNG格式:
 # system("gm convert -resize 720x720 -background white fonttable.pdf fonttable-pdf.png")
 ```
+
 PDF 设备对于不同字体的支持比 PNG 设备更好。基本所有的字体都能兼容。(虽然这些字体并不一定很好看):
 
 ![PDF font table, converted to PNG](http://www.cookbook-r.com/Graphs/Fonts/fonttable-pdf.png)
-
 
 ## 图形混杂-抗混淆位图输出
 
 ### 问题
 
-你想要在**windows**操作环境下保存抗锯齿的位图结果（[**anti-aliasing bitmap**](https://www.computerhope.com/jargon/a/antialias.htm)）。
+你想要在 **windows** 操作环境下保存抗锯齿的位图结果（[**anti-aliasing bitmap**](https://www.computerhope.com/jargon/a/antialias.htm)）。
 
 ### 方案
 
-类似于**png**和**jpeg**的标准图形设备可以将图形保存成**cairo、Xlib、 quartz**三种不同的文件格式。当使用**cairo**，我们便可以获得抗锯齿化的图形结果。在**MacOS**和**linux**系统下，自动将图片保存为**cairo**格式，但是在**windows**系统下的相应参数是**NULL**。
+类似于 **png** 和 **jpeg** 的标准图形设备可以将图形保存成 **cairo、Xlib、 quartz** 三种不同的文件格式。当使用 **cairo**，我们便可以获得抗锯齿化的图形结果。在 **MacOS** 和 **linux** 系统下，自动将图片保存为 **cairo** 格式，但是在 **windows** 系统下的相应参数是 **NULL**。
 
 绘图示例（如下）：
 
@@ -2966,7 +2976,7 @@ plot(x)
 dev.off()
 ```
 
-在**windows**系统环境下不可强行使用**type="cairo"**，需要借助**Cairo工具包**获取抗锯齿化结果。
+在 **windows** 系统环境下不可强行使用 **type="cairo"**，需要借助 **Cairo 工具包**获取抗锯齿化结果。
 
 ```R
 # 安装Cairo包
@@ -2984,7 +2994,6 @@ dev.off()
 #### 提示
 
 有关该部分的更多相关信息，参看[Efficient R programming](https://csgillespie.github.io/efficientR/cairo-type.html)。
-
 
 ## 标准绘图 | 散点图
 
@@ -3016,7 +3025,7 @@ head(dat)
 #### 基本的散点图
 
 ```R
-# 使用向量xvar和yvar绘制点图
+# 使用向量 xvar 和 yvar 绘制点图
 plot(dat$xvar, dat$yvar)
 
 # 跟上一句代码一致，但这里是用公式实现
@@ -3063,7 +3072,7 @@ scatterplotMatrix(dat[,1:3],
 
 #### 样例数据
 
-这里的例子使用`ToothGrowth`数据集，它有两个独立变量以及一个依赖变量。
+这里的例子使用 `ToothGrowth` 数据集，它有两个独立变量以及一个依赖变量。
 
 ```r
 head(ToothGrowth)
@@ -3076,18 +3085,18 @@ head(ToothGrowth)
 #> 6 10.0   VC  0.5
 ```
 
-在不同 `supp` 和`dose`条件下，变量`len`的箱线图:
+在不同 `supp` 和 `dose` 条件下，变量 `len` 的箱线图:
 
 ```r
 boxplot(len ~ supp, data=ToothGrowth)
 
-# 即使`dose`是一个数值型变量，`boxplot`也会将其转换为因子 
+# 即使 `dose` 是一个数值型变量，`boxplot` 也会将其转换为因子 
 boxplot(len ~ dose, data=ToothGrowth)
 ```
 
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-3-2.png)
 
-组合 `supp` 和 `dose` 不同水平（即交互项）下`len`的箱线图（）
+组合 `supp` 和 `dose` 不同水平（即交互项）下 `len` 的箱线图
 
 ```r
 boxplot(len ~ interaction(dose,supp), data=ToothGrowth)
@@ -3095,7 +3104,7 @@ boxplot(len ~ interaction(dose,supp), data=ToothGrowth)
 
 ![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-4-1.png)
 
-注意`plot`除了添加了横轴标签和不会自动将数值变量转换为因子变量，它与`boxplot`有非常相似的输出。
+注意 `plot` 除了添加了横轴标签和不会自动将数值变量转换为因子变量，它与 `boxplot` 有非常相似的输出。
 
 ```
 plot(len ~ interaction(dose,supp), data=ToothGrowth)
@@ -3103,7 +3112,7 @@ plot(len ~ interaction(dose,supp), data=ToothGrowth)
 
 ![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-5-1.png)
 
-## 标准绘图|QQ图
+## 标准绘图 - QQ 图
 
 ### 问题
 
@@ -3201,6 +3210,3 @@ plotcorr(ctab, col=rgb(colorfun((ctab+1)/2), maxColorValue=255),
 ### 提示
 
 有关生成关联表（数字）的更多信息，参看[../../Statistical analysis/Regression and correlation](http://www.cookbook-r.com/Statistical_analysis/Regression_and_correlation)。
-
-
-
