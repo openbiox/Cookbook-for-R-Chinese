@@ -8,14 +8,14 @@
 
 ### 方案
 
-想要使用ggplot2绘制图形，数据必须是一个数据框，而且必须是长格式。
+想要使用 ggplot2 绘制图形，数据必须是一个数据框，而且必须是长格式。
 
 #### 基本图形，离散x-axis
 
 使用条形图，条形的高度通常代表这种不同的东西：
 
-* 每一组事件的**计数**，通过`stat_bin`指定，ggplot2默认使用该选项
-* 数据集中某一列的**值**，通过`stat_identity`指定
+* 每一组事件的**计数**，通过 `stat_bin` 指定，ggplot2 默认使用该选项
+* 数据集中某一列的**值**，通过 `stat_identity` 指定
 
 | x axis   | 高度含义 | Common name |
 | -------- | -------- | ----------- |
@@ -24,11 +24,9 @@
 | **连续** | **数值** | 条形图      |
 | **离散** | **数值** | 条形图      |
 
-
-
 ##### 有值的条形图
 
-这里有一些样例数据 (抽自reshape2包的 `tips` 数据集):
+这里有一些样例数据 (抽自 reshape2 包的 `tips` 数据集):
 
 ```r
 dat <- data.frame(
@@ -44,7 +42,7 @@ dat
 library(ggplot2)
 ```
 
-在这些例子中，条形的高度代表数据框某一列的**值**，所以使用`stat="identity"` 而不是默认的`stat="bin"`。
+在这些例子中，条形的高度代表数据框某一列的**值**，所以使用 `stat="identity"` 而不是默认的 `stat="bin"`。
 
 这里使用的映射变量为：
 
@@ -60,17 +58,12 @@ ggplot(data=dat, aes(x=time, y=total_bill)) +
 # 按时间填充颜色
 ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
     geom_bar(stat="identity")
-
 ## 这和上面是一样的结果
 # ggplot(data=dat, aes(x=time, y=total_bill)) +
 #    geom_bar(aes(fill=time), stat="identity")
-
-
 # 添加黑色的边框线
 ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
     geom_bar(colour="black", stat="identity")
-
-
 # 没有图例，因为这个信息是多余的
 ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
     geom_bar(colour="black", stat="identity") +
@@ -98,7 +91,7 @@ ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
 
 在下面例子中，条形高度代表事件的计数。
 
-我们直接使用`reshape2`的`tips`数据集。
+我们直接使用 `reshape2` 的 `tips` 数据集。
 
 ```r
 library(reshape2)
@@ -113,13 +106,13 @@ head(tips)
 #> 6      25.29 4.71   Male     No Sun Dinner    4
 ```
 
-想要得到一个计数的条形图，不要映射变量到`y`，使用 `stat="bin"` (默认就是这个) 而不是`stat="identity"`:
+想要得到一个计数的条形图，不要映射变量到 `y`，使用 `stat="bin"` (默认就是这个) 而不是 `stat="identity"`:
 
 ```r
 # 计数的条形图
 ggplot(data=tips, aes(x=day)) +
     geom_bar(stat="count")
-## 和上面等同, 因为stat="bin"是默认
+## 和上面等同, 因为 stat="bin" 是默认
 # ggplot(data=tips, aes(x=day)) +
 #    geom_bar()
 ```
@@ -128,7 +121,7 @@ ggplot(data=tips, aes(x=day)) +
 
 #### 线图
 
-对于线图，数据点必须分组从而R知道怎么连接这些点。如果只有一组的话，非常简单，设定`group=1`即可，如果是多组，需要设定分组变量。
+对于线图，数据点必须分组从而R知道怎么连接这些点。如果只有一组的话，非常简单，设定 `group=1` 即可，如果是多组，需要设定分组变量。
 
 下面是使用的映射变量
 
@@ -161,7 +154,7 @@ ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
 理想的线图可能像下面这样：
 
 ```r
-# 设定y轴的范围
+# 设定 y 轴的范围
 # 改变轴标签
 ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
     geom_line() +
@@ -172,8 +165,6 @@ ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
 ```
 
 ![plot of chunk unnamed-chunk-8](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-8-1.png)
-
-
 
 ### 有更多变量的图
 
@@ -206,7 +197,7 @@ dat1
 ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
     geom_bar(stat="identity")
 
-# 条形图，x轴是time,颜色填充是sex 
+# 条形图，x 轴是 time, 颜色填充是 sex 
 ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
     geom_bar(stat="identity", position=position_dodge())
 
@@ -224,7 +215,7 @@ ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
 改变映射是非常容易的
 
 ```r
-# 条形图，x轴是性别，颜色是时间
+# 条形图，x 轴是性别，颜色是时间
 ggplot(data=dat1, aes(x=sex, y=total_bill, fill=time)) +
     geom_bar(stat="identity", position=position_dodge(), colour="black")
 ```
@@ -257,7 +248,6 @@ ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex)) +
     geom_line() +
     geom_point()
 
-
 # 使用更粗的线、更大的点
 ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex)) + 
     geom_line(size=1.5) + 
@@ -276,8 +266,6 @@ ggplot(data=dat1, aes(x=sex, y=total_bill, group=time, shape=time, color=time)) 
 ```
 
 ![plot of chunk unnamed-chunk-13](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-13-1.png)
-
-
 
 #### 完成的例子
 
@@ -299,7 +287,7 @@ ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
 ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex, colour=sex)) + 
     geom_line(aes(linetype=sex), size=1) +     # 按性别设定线型
     geom_point(size=3, fill="white") +         # 使用更大的点，并用颜色填充
-    expand_limits(y=0) +                       # 将0包含仅y轴
+    expand_limits(y=0) +                       # 将 0 包含仅 y 轴
     scale_colour_hue(name="Sex of payer",      # 设定图例标题
                      l=30)  +                  # 使用更深的颜色 (lightness=30)
     scale_shape_manual(name="Sex of payer",
@@ -314,7 +302,7 @@ ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex, colour=sex)) +
 
 ![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-14-2.png)
 
-为了保证上图的图例一致，必须指定3次。至于为何如此，点击 [这里](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)#With_lines_and_points)。
+为了保证上图的图例一致，必须指定 3 次。至于为何如此，点击 [这里](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)#With_lines_and_points)。
 
 ### 使用数值 x-axis
 
@@ -330,9 +318,9 @@ supp dose length
 ')
 ```
 
-来自`ToothGrowth` 数据集。
+来自 `ToothGrowth` 数据集。
 
-#### 当x-axis作为连续变量时
+#### 当 x-axis 作为连续变量时
 
 我们可以用它绘制一个线图
 
@@ -344,7 +332,7 @@ ggplot(data=datn, aes(x=dose, y=length, group=supp, colour=supp)) +
 
 ![plot of chunk unnamed-chunk-16](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-16-1.png)
 
-#### 当x-axis作为分类变量时
+#### 当 x-axis 作为分类变量时
 
 首先，我们要将该变量转换为因子。
 
@@ -356,7 +344,7 @@ ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
     geom_line() +
     geom_point()
 
-# 使用原始的数据框，但使用factor函数在绘图时转换
+# 使用原始的数据框，但使用 factor 函数在绘图时转换
 ggplot(data=datn, aes(x=factor(dose), y=length, group=supp, colour=supp)) +
     geom_line() +
     geom_point()
@@ -376,7 +364,6 @@ ggplot(data=datn, aes(x=factor(dose), y=length, fill=supp)) +
 
 ![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-18-1.png)![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-18-2.png)
 
-
 ## 绘制均值和误差棒
 
 ### 问题
@@ -385,7 +372,7 @@ ggplot(data=datn, aes(x=factor(dose), y=length, fill=supp)) +
 
 ### 方案
 
-想要用ggplot2绘制图形，数据必须是数据框形式，而且是长格式（相对于宽格式）。 如果你的数据需要重构，请参考 [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) 获取更多信息。
+想要用 ggplot2 绘制图形，数据必须是数据框形式，而且是长格式（相对于宽格式）。 如果你的数据需要重构，请参考 [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) 获取更多信息。
 
 #### 示例数据
 
@@ -408,7 +395,7 @@ library(ggplot2)
 首先，我们必须对数据进行统计汇总。 这可以通过多种方式实现，参考[this page](http://www.cookbook-r.com/Manipulating_data/Summarizing_data). 在这个案例中，我们将使用 `summarySE()` 函数，该函数代码在本页面的最下方 ( `summarySE` 函数的代码在使用前必须已经键入)。
 
 ```R
-# summarySE 函数提供了标准差、标准误以及95%的置信区间
+# summarySE 函数提供了标准差、标准误以及 95% 的置信区间
 tgc <- summarySE(tg, measurevar="len", groupvars=c("supp","dose"))
 tgc
 #>   supp dose  N   len       sd        se       ci
@@ -440,14 +427,13 @@ ggplot(tgc, aes(x=dose, y=len, colour=supp)) +
     geom_line(position=pd) +
     geom_point(position=pd)
 
-
-# 使用95%置信区间替换标准误
+# 使用 95% 置信区间替换标准误
 ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
     geom_errorbar(aes(ymin=len-ci, ymax=len+ci), width=.1, position=pd) +
     geom_line(position=pd) +
     geom_point(position=pd)
 
-# 黑色的误差棒 - 注意'group=supp'的映射 -- 没有它，误差棒将不会避开（就是会重叠）。
+# 黑色的误差棒 - 注意 'group=supp' 的映射 -- 没有它，误差棒将不会避开（就是会重叠）。
 ggplot(tgc, aes(x=dose, y=len, colour=supp, group=supp)) + 
     geom_errorbar(aes(ymin=len-ci, ymax=len+ci), colour="black", width=.1, position=pd) +
     geom_line(position=pd) +
@@ -560,11 +546,11 @@ dfw <- read.table(header=TRUE, text='
       10    38.9     48.5
  ')
 
-# 将物体的ID作为因子变量对待
+# 将物体的 ID 作为因子变量对待
 dfw$subject <- factor(dfw$subject)
 ```
 
-第一步是将该数据集转换为长格式。See [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) for more information about the conversion.
+第一步是将该数据集转换为长格式。参见 [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) for more information about the conversion.
 
 ```R
 # 转换为长格式
@@ -598,7 +584,7 @@ dfw_long
 #> 20      10  posttest  48.5
 ```
 
-使用 `summarySEwithin`函数瓦解数据 (defined at the [bottom](<http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/#Helper> functions) of this page; both of the helper functions below must be entered before the function is called here).
+使用 `summarySEwithin` 函数瓦解数据 (相关使用及定义 [bottom](<http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/#Helper>)).
 
 ```R
 dfwc <- summarySEwithin(dfw_long, measurevar="value", withinvars="condition",
@@ -620,13 +606,13 @@ ggplot(dfwc, aes(x=condition, y=value, group=1)) +
 
 plot of chunk unnamed-chunk-10
 
-`value`和`value_norm` 列代表了未标准化和标准化后的值。See the section below on normed means for more information.
+`value` 和 `value_norm` 列代表了未标准化和标准化后的值。详细信息参阅函数的相关使用部分
 
 #### 理解组内变量的误差棒
 
 这部分解释组内的误差棒值是如何计算出来的。这些步骤仅作解释目的；它们对于绘制误差棒是**非必需**的。
 
-下面独立数据的图形结果展示了组内变量`condition`存在连续一致的趋势，但使用常规的标准误（或者置信区间）则不能充分地展示这一点。Morey (2008) 和Cousineau (2005)的方法本质是标准化数据去移除组间的变化，计算出这个标准化数据的变异程度。
+下面独立数据的图形结果展示了组内变量 `condition` 存在连续一致的趋势，但使用常规的标准误（或者置信区间）则不能充分地展示这一点。Morey (2008) 和Cousineau (2005) 的方法本质是标准化数据去移除组间的变化，计算出这个标准化数据的变异程度。
 
 ```R
 # Use a consistent y range
@@ -637,7 +623,6 @@ ymin <- min(dfw_long$value)
 ggplot(dfw_long, aes(x=condition, y=value, colour=subject, group=subject)) +
     geom_line() + geom_point(shape=21, fill="white") + 
     ylim(ymin,ymax)
-
 
 # 创造标准化的版本
 dfwNorm.long <- normDataWithin(data=dfw_long, idvar="subject", measurevar="value")
@@ -675,7 +660,7 @@ plot of chunk unnamed-chunk-12
 
 #### 两个组内变量
 
-如果存在超过一个的组内变量，我们可以使用相同的函数`summarySEwithin`。下面的数据集来自[Hays (1994)](http://books.google.com/books?id=zSi2AAAAIAAJ)，在 [Rouder and Morey (2005)](http://www.jstor.org/pss/40064075)中用来绘制这类的组内误差棒。
+如果存在超过一个的组内变量，我们可以使用相同的函数 `summarySEwithin`。下面的数据集来自[Hays (1994)](http://books.google.com/books?id=zSi2AAAAIAAJ)，在 [Rouder and Morey (2005)](http://www.jstor.org/pss/40064075)中用来绘制这类的组内误差棒。
 
 ```R
 data <- read.table(header=TRUE, text='
@@ -693,10 +678,9 @@ data <- read.table(header=TRUE, text='
       11        32         31         31          33
       12        47         42         42          42
 ')
-
 ```
 
-数据集首先必须转换为长格式，列名显示了两个变量： shape (round/square) and color scheme (monochromatic/colored).
+数据集首先必须转换为长格式，列名显示了两个变量： 形状 (圆形/方形) 和配色方案 (黑白/有色).
 
 ```R
 # 转换为长格式
@@ -706,7 +690,7 @@ data_long <- melt(data=data, id.var="Subject",
                   variable.name="Condition")
 names(data_long)[names(data_long)=="value"] <- "Time"
 
-# 拆分 Condition 列为 Shape and ColorScheme
+# 拆分 Condition 列为 Shape 和 ColorScheme
 data_long$Shape <- NA
 data_long$Shape[grepl("^Round",  data_long$Condition)] <- "Round"
 data_long$Shape[grepl("^Square", data_long$Condition)] <- "Square"
@@ -717,7 +701,7 @@ data_long$ColorScheme[grepl("Mono$",  data_long$Condition)] <- "Monochromatic"
 data_long$ColorScheme[grepl("Color$", data_long$Condition)] <- "Colored"
 data_long$ColorScheme <- factor(data_long$ColorScheme, levels=c("Monochromatic","Colored"))
 
-# 现在移除 Condition column 
+# 删除 Condition 列 
 data_long$Condition <- NULL
 
 # 检查数据
@@ -787,7 +771,7 @@ summarySEwithin(dat, measurevar="dv", withinvars="trial", betweenvars="gender",
 
 ### 助手函数
 
-如果你处理的仅仅是组间变量，那么`summarySE`是你代码中唯一需要使用的函数。如果你的数据里有组内变量，**并且**你想要矫正误差棒使得组间的变异被移除，就像 Loftus and Masson (1994)里的那样，那么`normDataWithin` 和 `summarySEwithin`这两个函数必须加入你的代码中，然后调用`summarySEwithin` 函数进行计算。
+如果你处理的仅仅是组间变量，那么 `summarySE` 是你代码中唯一需要使用的函数。如果你的数据里有组内变量，**并且**你想要矫正误差棒使得组间的变异被移除，就像 Loftus and Masson (1994) 里的那样，那么 `normDataWithin` 和 `summarySEwithin` 这两个函数必须加入你的代码中，然后调用 `summarySEwithin` 函数进行计算。
 
 ```R
 ## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
@@ -928,22 +912,22 @@ summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=
 }
 ```
 
-------
-
 原文链接：< <http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/>>
 
 ### 其他
 
-解决问题的方法不止作者提供的这一种，为了理解ggplot2是如何进行误差棒的计算和添加，我在stackoverflow上提交了一个关于[ggplot2使用SE还是SD作为默认误差棒的问题](https://stackoverflow.com/questions/46192556/errorbar-in-ggplot-is-using-sd-or-se-as-default)。有人就提出了快速简易的解答。回答者的共同观点是必须先进行数据的统计计算。我之前在其他博客上看到的使用`stat_boxplot(geom="errorbar", width=.3)`直接计算误差棒可能就有问题（难以解释它算的是SD还是SE，我没有在帮助文档找到解释，我也不知道函数内部是如何计算的）。
-
+解决问题的方法不止作者提供的这一种，为了理解ggplot2是如何进行误差棒的计算和添加，我在 stackoverflow 上提交了一个关于[ggplot2使用SE还是SD作为默认误差棒的问题](https://stackoverflow.com/questions/46192556/errorbar-in-ggplot-is-using-sd-or-se-as-default)。有人就提出了快速简易的解答。回答者的共同观点是必须先进行数据的统计计算。我之前在其他博客上看到的使用 `stat_boxplot(geom="errorbar", width=.3)` 直接计算误差棒可能就有问题（难以解释它算的是 SD 还是 SE，我没有在帮助文档找到解释，我也不知道函数内部是如何计算的）。
 
 ## ggplot | 绘制分布图
 
 ### 问题
+
 你想要绘制一组数据的分布图。
 
 ### 方案
+
 后面的例子中会使用以下这组简单的数据：
+
 ```r
 set.seed(1234)
 dat <- data.frame(cond = factor(rep(c("A","B"), each=200)), 
@@ -961,7 +945,9 @@ library(ggplot2)
 ```
 
 ### 直方图和概率密度图
-`qplot` 函数能够用更简单的语法绘制出与  `ggplot` 相同的图像。然而，在实践过程中你会发现 `ggplot`是更好的选择，因为 `qplot` 中很多参数的选项都会让人感到困惑。
+
+`qplot` 函数能够用更简单的语法绘制出与  `ggplot` 相同的图像。然而，在实践过程中你会发现 `ggplot` 是更好的选择，因为 `qplot` 中很多参数的选项都会让人感到困惑。
+
 ```r
 ## 以 rating 为横轴绘制直方图，组距设为 0.5
 ## 两种函数都可以绘制出相同的图:
@@ -986,15 +972,18 @@ ggplot(dat, aes(x=rating)) +
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-4.png)
 
 添加一条均值线
+
 ```r
 ggplot(dat, aes(x=rating)) +
     geom_histogram(binwidth=.5, colour="black", fill="white") +
     geom_vline(aes(xintercept=mean(rating, na.rm=T)),   # 忽略缺失值
                color="red", linetype="dashed", size=1)
 ```
+
 ![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-4-1.png)
 
 ### 多组数据的直方图和概率密度图
+
 ```r
 # 重叠直方图
 ggplot(dat, aes(x=rating, fill=cond)) +
@@ -1014,6 +1003,7 @@ ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
 ![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-4.png)
 
 在给每组数据添加均值线前，需要将每组数据的平均值赋值到一个新的数据框。
+
 ```r
 # 求均值
 library(plyr)
@@ -1038,6 +1028,7 @@ ggplot(dat, aes(x=rating, colour=cond)) +
 ![plot of chunk unnamed-chunk-6](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-6-2.png)
 
 使用分面：
+
 ```r
 ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5, colour="black", fill="white") + 
     facet_grid(cond ~ .)
@@ -1054,6 +1045,7 @@ ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5, colour="black", fill="w
 更多关于分面的细节可查看[Facets (ggplot2)](http://www.cookbook-r.com/Graphs/Facets_(ggplot2))
 
 ## 箱型图
+
 ```r
 # 绘制箱型图
 ggplot(dat, aes(x=cond, y=rating)) + geom_boxplot()
@@ -1073,14 +1065,14 @@ ggplot(dat, aes(x=cond, y=rating, fill=cond)) + geom_boxplot() +
 ![plot of chunk unnamed-chunk-8](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-4.png)
   
 同时可以通过 ` stat_summary` 来添加平均值。
+
 ```r
 # 用菱形图标指征平均值，并调整参数使该图标变更大。
 ggplot(dat, aes(x=cond, y=rating)) + geom_boxplot() +
     stat_summary(fun.y=mean, geom="point", shape=5, size=4)
 ```
+
 ![plot of chunk unnamed-chunk-9](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-9-1.png)
-
-
 
 ## ggplot|散点图
 
@@ -1138,7 +1130,7 @@ ggplot(dat, aes(x=xvar, y=yvar)) +
 #### 通过其他变量设置颜色和形状
 
 ```r
-# 根据cond设置颜色
+# 根据 cond 设置颜色
 ggplot(dat, aes(x=xvar, y=yvar, color=cond)) + geom_point(shape=1)
 
 # 同上，但这里带了回归线
@@ -1155,7 +1147,6 @@ ggplot(dat, aes(x=xvar, y=yvar, color=cond)) + geom_point(shape=1) +
                 se=FALSE,    
                 fullrange=TRUE) 
 
-
 # 根据cond设置形状
 ggplot(dat, aes(x=xvar, y=yvar, shape=cond)) + geom_point()
 
@@ -1166,7 +1157,7 @@ ggplot(dat, aes(x=xvar, y=yvar, shape=cond)) + geom_point() +
 
 ![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-3.png)![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-4.png)![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-5.png)
 
-阅读 [Colors (ggplot2)](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)) 和Shapes and line types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types) 获取更多信息
+阅读 [Colors (ggplot2)](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)) 和 Shapes and line types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types) 获取更多信息
 
 #### 处理图像元素叠加
 
@@ -1183,7 +1174,6 @@ ggplot(dat, aes(x=xrnd, y=yrnd)) +
     geom_point(shape=19,      
                alpha=1/4)     
 
-
 # 抖动点
 # 抖动范围在x轴上是1，y轴上是0.5
 ggplot(dat, aes(x=xrnd, y=yrnd)) +
@@ -1192,7 +1182,6 @@ ggplot(dat, aes(x=xrnd, y=yrnd)) +
 ```
 
 ![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-5-2.png)
-
 
 ## ggplot | 标题
 
@@ -1209,9 +1198,11 @@ library(ggplot2)
 bp <- ggplot(PlantGrowth, aes(x=group, y=weight)) + geom_boxplot()
 bp
 ```
+
 ![plot of chunk unnamed-chunk-2](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-2-1.png)
 
 添加标题
+
 ```r
 bp + ggtitle("Plant growth")
 ## 等同于
@@ -1222,10 +1213,10 @@ bp + ggtitle("Plant growth with\ndifferent treatments")
 bp + ggtitle("Plant growth with\ndifferent treatments") + 
      theme(plot.title = element_text(lineheight=.8, face="bold"))
 ```
+
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-1.png)
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-2.png)
 ![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-3.png)
-
 
 ## ggplot|坐标轴
 
@@ -1235,9 +1226,9 @@ bp + ggtitle("Plant growth with\ndifferent treatments") +
 
 ### 方案
 
-> 注意：下面的例子中提到的`scale_y_continuous`、`ylim`等，`y`都可以替换为`x`。
+> 注意：下面的例子中提到的 `scale_y_continuous`、`ylim` 等，`y` 都可以替换为 `x`。
 
-下面使用内置的`PlantGrowth`数据集绘制一个基本的箱线图。
+下面使用内置的 `PlantGrowth` 数据集绘制一个基本的箱线图。
 
 ```r
 library(ggplot2)
@@ -1298,10 +1289,10 @@ bp + scale_x_discrete(breaks=c("ctrl", "trt1", "trt2"),
 ![plot of chunk unnamed-chunk-5](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-5-1.png)
 
 ```r
-# 隐藏x刻度、标签和网格线
+# 隐藏 x 刻度、标签和网格线
 bp + scale_x_discrete(breaks=NULL)
 
-# 隐藏所有的刻度和标签（X轴），保留网格线
+# 隐藏所有的刻度和标签（X 轴），保留网格线
 bp + theme(axis.ticks = element_blank(), axis.text.x = element_blank())
 ```
 
@@ -1311,7 +1302,7 @@ bp + theme(axis.ticks = element_blank(), axis.text.x = element_blank())
 
 ##### 设定范围和反转轴方向
 
-如果你仅想简单地让轴包含某个值，可以使用`expand_limits()`，它会进行拓展而不是拉伸。
+如果你仅想简单地让轴包含某个值，可以使用 `expand_limits()`，它会进行拓展而不是拉伸。
 
 ```r
 # 确保y轴包含0
@@ -1323,7 +1314,7 @@ bp + expand_limits(y=c(0,8))
 
 ![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-7-2.png)
 
-当然你也可以通过y刻度显式地指定。注意如果使用**任何**`scale_y_continuous` 命令，它会覆盖任何`ylim`命令，而且`ylim`会被忽略。
+当然你也可以通过 y 刻度显式地指定。注意如果使用**任何** `scale_y_continuous` 命令，它会覆盖任何 `ylim` 命令，而且 `ylim` 会被忽略。
 
 ```r
 ## 设定连续值轴的范围
@@ -1336,7 +1327,7 @@ bp + ylim(0, 8)
 
 如果使用上述方法让y轴的范围变小，任何超出范围的数据都会被忽略。有时候这会产生一些问题，读者需要注意。
 
-为了避免产生问题，你可以使用 `coord_cartesian` ，相比于设定轴的范围，它设定数据可视化的区域。
+为了避免产生问题，你可以使用 `coord_cartesian`，相比于设定轴的范围，它设定数据可视化的区域。
 
 ```r
 ## 这两个操作一致，超出范围的数据被删除了，导致产生一个误导的箱线图 
@@ -1383,11 +1374,11 @@ bp + theme(axis.ticks = element_blank(), axis.text.y = element_blank())
 
 ![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-2.png)![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-3.png)![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-4.png)
 
-##### 轴转log、sqrt等
+##### 轴转 log、sqrt 等
 
-默认轴是线性坐标，我们也可以将它转换为log、幂、根等等。
+默认轴是线性坐标，我们也可以将它转换为 log、幂、根等等。
 
-有两种办法可以转换一个轴，一是使用*scale*进行转换，另外是使用*coordinate*进行转换。使用前者需要在先弄好刻度和轴的范围之前转换，而使用后者则相反，需要在弄好刻度和轴范围之后转换。这将产生不太一样的显示效果，如下所示。
+有两种办法可以转换一个轴，一是使用 *scale* 进行转换，另外是使用 *coordinate* 进行转换。使用前者需要在先弄好刻度和轴的范围之前转换，而使用后者则相反，需要在弄好刻度和轴范围之后转换。这将产生不太一样的显示效果，如下所示。
 
 ```r
 # 创建指数分布数据
@@ -1403,16 +1394,17 @@ sp <- ggplot(dat, aes(xval, yval)) + geom_point()
 sp
 
 # log2比例化（间隔相等）
-library(scales)     # 需要scales包
+library(scales)     # 需要 scales 包
 sp + scale_y_continuous(trans=log2_trans())
 
-# log2坐标转换，空间间隔不同
+# log2 坐标转换，空间间隔不同
 sp + coord_trans(y="log2")
 ```
 
 ![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-3.png)
 
 在标度转换中，我们还可以指定刻度值，让它们显示指数。
+
 ```r
 sp + scale_y_continuous(trans = log2_trans(),
                         breaks = trans_breaks("log2", function(x) 2^x),
@@ -1445,12 +1437,12 @@ sp10 + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
 
 ![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-2.png)
 
-##### x与y轴固定的比例
+##### x 与 y 轴固定的比例
 
-设置x与y轴比例宽度也是可以的。
+设置 x 与 y 轴比例宽度也是可以的。
 
 ```r
-# x范围0-10, y范围0-30
+# x 范围 0-10, y 范围 0-30
 set.seed(202)
 dat <- data.frame(
     xval = runif(40,0,10),
@@ -1461,7 +1453,7 @@ sp <- ggplot(dat, aes(xval, yval)) + geom_point()
 # 强制比例相等
 sp + coord_fixed()
 
-# 相等的标度变化，让x的1个单位等同y的3个单位
+# 相等的标度变化，让 x 的 1 个单位等同 y 的 3 个单位
 sp + coord_fixed(ratio=1/3)
 ```
 
@@ -1472,11 +1464,11 @@ sp + coord_fixed(ratio=1/3)
 设置和隐藏轴标签：
 
 ```r
-bp + theme(axis.title.x = element_blank()) +   # 移除x轴标签
-     ylab("Weight (Kg)")                       # 设置y轴标签
+bp + theme(axis.title.x = element_blank()) +   # 移除 x 轴标签
+     ylab("Weight (Kg)")                       # 设置 y 轴标签
 
 # 也可以通过标度设置
-# 注意这里x轴标签的空间仍然保留
+# 注意这里 x 轴标签的空间仍然保留
 bp + scale_x_discrete(name="") +
      scale_y_continuous(name="Weight (Kg)")
 ```
@@ -1509,9 +1501,9 @@ bp + scale_y_continuous(labels=percent) +
 
 ![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-18-1.png)
 
-连续标度格式器有`comma`、`percent`、`dollar`以及`scientific`。离散标度格式器有`abbreviate`、`date_format`等。
+连续标度格式器有 `comma`、`percent`、`dollar` 以及 `scientific`。离散标度格式器有 `abbreviate`、`date_format` 等。
 
-有时你需要自己创建格式化函数。下面的函数可以显示时间格式为HH:MM:SS。
+有时你需要自己创建格式化函数。下面的函数可以显示时间格式为 HH:MM:SS。
 
 ```r
 # 自定义时间格式化函数
@@ -1562,7 +1554,7 @@ bp + theme(panel.grid.minor.y=element_blank(),
 
 ### 问题
 
-你想用ggplot2修改图表中的图例。
+你想用 ggplot2 修改图表中的图例。
 
 ### 解决方案
 
@@ -1580,7 +1572,7 @@ bp
 
 使用 `guides(fill=FALSE)`, 用想要的颜色替代填充色.
 
-你也可以用`theme` 移除图表中所有的图例。
+你也可以用 `theme` 移除图表中所有的图例。
 
 ```R
 # 删除特定美学的图例（填充）
@@ -1597,7 +1589,7 @@ bp + theme(legend.position="none")
 
 #### 在图例中改变变量的顺序
 
-这会将变量的顺序更改为trt1，ctrl，trt2:
+这会将变量的顺序更改为 trt1，ctrl，trt2:
 
 ```
 bp + scale_fill_discrete(breaks=c("trt1","ctrl","trt2"))
@@ -1622,7 +1614,7 @@ bp + scale_fill_discrete(breaks = rev(levels(PlantGrowth$group)))
 
 ![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-7-1.png)
 
-你可以使用不同的比例尺，例如 `scale_fill_manual`, `scale_colour_hue`, `scale_colour_manual`, `scale_shape_discrete`, `scale_linetype_discrete`等等，而不是`scale_fill_discrete`
+你可以使用不同的比例尺，例如 `scale_fill_manual`, `scale_colour_hue`, `scale_colour_manual`, `scale_shape_discrete`, `scale_linetype_discrete` 等等，而不是 `scale_fill_discrete`
 
 #### 隐藏图例标题
 
@@ -1640,15 +1632,15 @@ bp + theme(legend.title=element_blank())
 
 #### 修改图例标题和标签的文字
 
-有两种方法可以更改图例标题和标签。 第一种方法是告诉* scale *使用具有不同的标题和标签。 第二种方法是更改数据框，使因子具有所需的形式。
+有两种方法可以更改图例标题和标签。 第一种方法是告诉 *scale* 使用具有不同的标题和标签。 第二种方法是更改数据框，使因子具有所需的形式。
 
 ##### 使用比例尺
 
-图例可能由 `fill`, `colour`, `linetype`, `shape`, 或其他因素所介导.
+图例可能由 `fill`, `colour`, `linetype`, `shape` 或其他因素所介导.
 
 ##### 使用填充和颜色
 
-因为图例中的变量`group`被映射到颜色`fill`，所以必须使用`scale_fill_xxx`，其中`xxx`是将`group`的每个因子级别映射到不同颜色的方法。 默认设置是在每个因子级别的色轮上使用不同的色调，但也可以手动指定每个级别的颜色。
+因为图例中的变量 `group` 被映射到颜色 `fill`，所以必须使用 `scale_fill_xxx`，其中 `xxx` 是将 `group` 的每个因子级别映射到不同颜色的方法。 默认设置是在每个因子级别的色轮上使用不同的色调，但也可以手动指定每个级别的颜色。
 
 ```
 bp + scale_fill_discrete(name="Experimental\nCondition")
@@ -1668,9 +1660,9 @@ bp + scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9"),
 
 请注意，这并未更改x轴标签。 有关如何修改轴标签的信息，请参见[Axes (ggplot2)](http://www.cookbook-r.com/Graphs/Axes_(ggplot2))。
 
-如果使用折线图，则可能需要使用`scale_colour_xxx`和/或`scale_shape_xxx`而不是`scale_fill_xxx`。 **颜色**映射到线条和点的颜色，而**填充**映射到区域填充的颜色。 **形状**映射到点的形状。
+如果使用折线图，则可能需要使用 `scale_colour_xxx `或 `scale_shape_xxx` 而不是 `scale_fill_xxx`。 **颜色**映射到线条和点的颜色，而**填充**映射到区域填充的颜色。 **形状**映射到点的形状。
 
-我们将在这里为线图使用不同的数据集，因为PlantGrowth数据集不适用于折线图。
+我们将在这里为线图使用不同的数据集，因为 PlantGrowth 数据集不适用于折线图。
 
 ```R
 # 一个不同的数据集
@@ -1692,7 +1684,7 @@ lp + scale_shape_discrete(name  ="Payer",
 
 ![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-11-2.png)
 
-如果你同时使用`colour`和`shape`，它们都需要给出比例规格。 否则会有两个独立的图例。
+如果你同时使用 `colour` 和 `shape`，它们都需要给出比例规格。 否则会有两个独立的图例。
 
 ```
 # 指定颜色和形状
@@ -1717,7 +1709,7 @@ lp1 + scale_colour_discrete(name  ="Payer",
 
 ##### 比例尺的种类
 
-比例尺有很多种。 它们采用“scale_xxx_yyy”的形式。 以下是一些常用的`xxx`和`yyy`值：
+比例尺有很多种。 它们采用「scale_xxx_yyy」的形式。 以下是一些常用的 `xxx` 和 `yyy` 值：
 
 | **xxx**  | **描述**                      |
 | -------- | ----------------------------- |
@@ -1806,10 +1798,10 @@ bp + theme(legend.position="top")
 也可以将图例定位在绘图区域内。 请注意，下面的数字位置是相对于整个区域的，包括标题和标签，而不仅仅是绘图区域。
 
 ```R
-# 将图例放在图表中，其中x，y为0,0（左下角）到1,1（右上角）
+# 将图例放在图表中，其中 x，y 为 0,0（左下角）到 1,1（右上角）
 bp + theme(legend.position=c(.5, .5))
 
-# 设置图例的“锚点”（左下角为0,0;右上角为1,1）
+# 设置图例的「锚点」（左下角为 0,0;右上角为 1,1）
 # 将图例框的左下角放在图的左下角
 bp + theme(legend.justification=c(0,0), legend.position=c(0,0))
 
@@ -1821,7 +1813,7 @@ bp + theme(legend.justification=c(1,0), legend.position=c(1,0))
 
 ### 隐藏在图例中的斜线
 
-如果使用轮廓制作条形图（通过设置color =“black”），它将通过图例中的颜色绘制斜线。 没有内置的方法来删除斜杠，但可以覆盖它们。
+如果使用轮廓制作条形图（通过设置 color = “black”），它将通过图例中的颜色绘制斜线。 没有内置的方法来删除斜杠，但可以覆盖它们。
 
 ```R
 # 没有边缘线
@@ -1851,7 +1843,7 @@ ggplot(data=PlantGrowth, aes(x=group, fill=group)) +
 
 你想要把线条加到图上
 
-### 解决方案
+### 方案
 
 #### 使用一个连续轴和一个分类轴
 
@@ -2085,12 +2077,15 @@ spf + geom_hline(aes(yintercept=10)) +
 ## ggplot | 分面
 
 ### 问题
+
 你想要根据一个或多个变量对数据进行分割并且绘制出该数据所有的子图。
 
 ### 方案
 
 #### 样本数据
-以下例子将使用 `reshape2` 包中的 `tips`数据集 
+
+以下例子将使用 `reshape2` 包中的 `tips` 数据集
+
 ```r
 library(reshape2)
 # 查看头几行数据
