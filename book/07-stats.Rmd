@@ -20,9 +20,9 @@ xvar <- 1:20 + rnorm(20,sd=3)
 zvar <- 1:20/4 + rnorm(20,sd=2)
 yvar <- -2*xvar + xvar*zvar/5 + 3 + rnorm(20,sd=4)
 
-# 用制造的变量构建数据框
+# 通过组合已创建的向量来构建数据框
 dat <- data.frame(x=xvar, y=yvar, z=zvar)
-# 展示头部几行
+# 展示前 6 行
 head(dat)
 #>           x           y           z
 #> 1 -4.252354   4.5857688  1.89877152
@@ -37,7 +37,7 @@ head(dat)
 #### 相关系数
 
 ```R
-# 相关系数
+# 相关系数 - 默认使用 pearson 方法
 cor(dat$x, dat$y)
 #> [1] -0.7695378
 
@@ -45,7 +45,7 @@ cor(dat$x, dat$y)
 
 #### 相关矩阵（多个变量）
 
-我们也可以对多个配对变量进行相关分析操作，结果是一个矩阵或是数据框。
+同时可以对多个变量进行两两相关性分析，结果是一个 n*n 的平方矩阵或是数据框。
 
 ```R
 # 变量之间的相关矩阵
@@ -55,16 +55,13 @@ cor(dat)
 #> y -0.7695378  1.000000000 0.004172295
 #> z  0.4916989  0.004172295 1.000000000
 
-
 # Print with only two decimal places
 round(cor(dat), 2)
 #>       x     y    z
 #> x  1.00 -0.77 0.49
 #> y -0.77  1.00 0.00
 #> z  0.49  0.00 1.00
-
 ```
-
 
 #### 线性回归
 
@@ -72,8 +69,8 @@ round(cor(dat), 2)
 
 ```R
 # 下面两个命令会显示一样的结果
-fit <- lm(y ~ x, data=dat)  # 使用数据框的x列和y列
-fit <- lm(dat$y ~ dat$x)     # 使用dat$x和dat$y进行拟合
+fit <- lm(y ~ x, data=dat)  # 使用数据框的 x 列和 y 列
+fit <- lm(dat$y ~ dat$x)     # 使用 dat$x 和 dat$y 进行拟合
 fit
 #> 
 #> Call:
@@ -115,7 +112,7 @@ summary(fit)
 
 ```R
 # 这些都有相同的结果
-fit2 <- lm(y ~ x + z, data=dat)    # 使用数据框的x,y,z列
+fit2 <- lm(y ~ x + z, data=dat)    # 使用数据框的 x,y,z 列
 fit2 <- lm(dat$y ~ dat$x + dat$z)  # 使用向量
 fit2
 #> 
@@ -190,7 +187,7 @@ summary(fit3)
 #> F-statistic: 30.34 on 3 and 16 DF,  p-value: 7.759e-07
 ```
 
-## t检验
+## t 检验
 
 ### 问题
 
@@ -297,9 +294,9 @@ t.test(extra ~ group, sleep, var.equal=TRUE)
 
 #### 配对样本t检验
 
-你也可以使用配对样本t检验比较配对的数据。数据配对是指你可能有对某种药物治疗前后有观测值或者不同治疗有配对的研究对象。
+你也可以使用配对样本 t 检验比较配对的数据。数据配对是指你可能有对某种药物治疗前后有观测值或者不同治疗有配对的研究对象。
 
-再次说明，`t-test` 函数可以用于有分组变量的数据框或者两个向量。它依赖相对位置来决定配对。如果你使用有分组变量的长格式数据，group = 1 的第一行与group2 的第一行配对。确保数据排序好并且不存在缺失值是非常重要的；否则配对可以丢弃。这种情况中，我们能通过 `group` 和 `ID` 变量进行排序来确保顺序是一样的。
+再次说明，`t-test` 函数可以用于有分组变量的数据框或者两个向量。它依赖相对位置来决定配对。如果你使用有分组变量的长格式数据，group = 1 的第一行与group = 2 的第一行配对。确保数据排序好并且不存在缺失值是非常重要的；否则配对可以丢弃。这种情况中，我们能通过 `group` 和 `ID` 变量进行排序来确保顺序是一样的。
 
 ```R
 # Sort by group then ID
@@ -349,7 +346,7 @@ t.test(sleep$extra, mu=0)
 #>      1.54
 ```
 
-## 频数检验
+## 频率检验
 
 ### 问题
 
@@ -359,7 +356,7 @@ t.test(sleep$extra, mu=0)
 
 频数检验通常解决两类问题：
 
-1. 频数分布与预期或者理论的分布（比如 50% 的yes，50% 的 no ）符合吗？（拟合优度检验）
+1. 频数分布与预期或者理论的分布（比如 50% 的 yes，50% 的 no ）符合吗？（拟合优度检验）
 2. 两组或多组之间的频率分布有差异吗？（独立检验）
 
 通常用于解决这样问题的统计检验方法，分为**精确检验**与**近似检验**两种。
@@ -556,12 +553,12 @@ str(bin_res)
 #>  $ data.name  : chr "ct"
 #>  - attr(*, "class")= chr "htest"
 
-# 获取p值
+# 获取 p 值
 bin_res$p.value
 #>            0 
 #> 0.0002156938
 
-# 获取95%置信区间
+# 获取 95% 置信区间
 bin_res$conf.int
 #> [1] 0.3742735 0.7453925
 #> attr(,"conf.level")
@@ -656,7 +653,7 @@ fish <- read.table(header=TRUE, text='
 注意上面的数据是**计数**的数据框，而不是像之前的例子是**记录**的数据框。这里我们使用 `xtabs()` 函数将它转换为列联表。
 
 ```R
-# 制造一个3维的列联表，最后一个变量时要控制的 Location 变量
+# 制造一个三维的列联表，最后一个变量时要控制的 Location 变量
 ct <- xtabs(Count ~ Allele + Habitat + Location, data=fish)
 ct
 #> , , Location = alsea
@@ -772,7 +769,6 @@ mantelhaen.test(ct.4)
 #> data:  ct.4
 #> Cochran-Mantel-Haenszel M^2 = 168.47, df = 3, p-value < 2.2e-16
 
-
 # 把 Habitat 放最后，结果也不同
 ct.5 <- xtabs(Count ~ Allele + Location + Habitat, data=fish)
 ct.6 <- xtabs(Count ~ Location + Allele + Habitat, data=fish)
@@ -792,7 +788,7 @@ mantelhaen.test(ct.6)
 
 #### McNemar 检验
 
-McNemar 检验概念上是频数数据的一个被试内检验。例如，假设你想要检验是否一个处理增加了一个人对某个问题反应 「yes」 的概率，而且你只有每个人处理前和处理后的数据。标准的卡方检验将不合适，因为它假设了组别是独立的。取而代之，我们可以使用 McNemar 检验。该检验仅适用于当存在一个独立变量的两次测量时。用于 McNemar 的列联表与用于卡方检验的非常相似，但结构上是不同的。
+McNemar 检验概念上是频数数据的一个被试内检验。例如，假设你想要检验是否一个处理增加了一个人对某个问题反应「yes」的概率，而且你只有每个人处理前和处理后的数据。标准的卡方检验将不合适，因为它假设了组别是独立的。取而代之，我们可以使用 McNemar 检验。该检验仅适用于当存在一个独立变量的两次测量时。用于 McNemar 的列联表与用于卡方检验的非常相似，但结构上是不同的。
 
 假设你有下面的数据。每个对象有处理前和后的反应。
 
@@ -1051,7 +1047,7 @@ TukeyHSD(aov2)
 
 ### 有受试内变量的 ANOVAs 
 
-对于有受试内变量的 ANOVA 分析，数据必须满足为长格式。上面提到的数据都是宽格式，所以我们需要先转换数据格式（参见[长宽格式互相转换]
+对于有受试内变量的 ANOVA 分析，数据必须满足为长格式。上面提到的数据都是宽格式，所以我们需要先转换数据格式（参见「长宽格式互相转换」）
 
 同样地，有受试内变量的 ANOVA 分析需要一个识别列。当前数据里是 `subject` 列。**识别变量必须是一个因子**，如果是数值类型，函数会解析错误导致不能正常工作。
 
@@ -1082,7 +1078,7 @@ data_long$subject <- factor(data_long$subject)
 
 #### One-way within ANOVA
 
-首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。如果 `subject` 是数值向量，而不是因子，你的结果将会出错。
+首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。如果 `subject` 是数值向量，而不是因子，结果将会出错。
 
 ```R
 # 独立变量 (within): time
@@ -1523,7 +1519,7 @@ bartlett.test(count ~ spray, data=InsectSprays)
 
 ```
 
-有多个独立变量，必须使用 `interaction()` 函数将这些独立变量包裹为含所有因子组合的单个变量。如果不适应，那么会得到错误的自由度，因而p值也将是错误的。
+有多个独立变量，必须使用 `interaction()` 函数将这些独立变量包裹为含所有因子组合的单个变量。如果不适应，那么会得到错误的自由度，因而 p 值也将是错误的。
 
 ```R
 bartlett.test(len ~ interaction(supp,dose), data=ToothGrowth)
@@ -1604,4 +1600,3 @@ fligner.test(len ~ dose, data=ToothGrowth)
 #> data:  len by dose
 #> Fligner-Killeen:med chi-squared = 1.3879, df = 2, p-value = 0.4996
 ```
-
