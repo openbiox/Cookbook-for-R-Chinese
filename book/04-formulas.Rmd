@@ -4,11 +4,11 @@
 
 ### 问题
 
-你想要通过字符串创建公式
+你想通过字符串创建公式。
 
 ### 方案
 
-通过字符串的方式来创建公式是非常有用的。这通常用于需要将公式参数当做字符串传入函数中
+通过字符串的方式来创建公式是非常有用的。这通常用于需要将公式参数当做字符串传入函数中。
 
 最基础实用的方法就是调用函数 `as.formula()`:
 
@@ -42,13 +42,12 @@ as.formula(paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ "))
 
 ------
 
-原文链接：<http://www.cookbook-r.com/Formulas/Creating_a_formula_from_a_string/>
 
 ## 从公式中提取组分
 
 ### 问题
 
-你想要抽离公式的一部分用来使用。
+你想抽离公式的一部分用来使用。
 
 ### 方案
 
@@ -139,7 +138,7 @@ deparse(f)
 
 ```
 
-公式对象也会捕捉调用它的环境，比如我们在运行`str(f)`命令时看到的那样。如果要抽取它，可以使用`environment()`函数：
+正如我们在运行`str(f)`命令时看到的那样，公式对象也会捕捉调用它的环境。如果要抽取它，可以使用`environment()`函数：
 
 ```R
 environment(f)
@@ -147,5 +146,3 @@ environment(f)
 ```
 
 ------
-
-原文链接：<http://www.cookbook-r.com/Formulas/Extracting_components_from_a_formula/>
