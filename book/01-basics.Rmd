@@ -78,7 +78,7 @@ install_github("ggplot2")
 你想获得数据结构的一部分。
 
 
-### 解决
+### 方案
 
 可以使用数字索引或通过使用适当长度的布尔向量来提取向量、矩阵或数据框中的元素。
 以下这些例子中有多种方式来解决这一问题。
@@ -211,9 +211,6 @@ v[-length(v)]
 
 ```
 
-#### 注意
-
-可参考(http://www.jianshu.com/p/89485084c62c)
 
 ## 获取数据结构的子集
 
@@ -344,9 +341,6 @@ data[data$subject %in% c(1,3), ]
 
 ```
 
-#### 注意
-
-可参考(http://www.jianshu.com/p/3bb2489f7c6f)。
 
 ## 创建填满值的向量
  
@@ -566,7 +560,6 @@ vz[!is.nan(vz)]
 
 也有无限值`Inf`和`-Inf`，及其相应的函数`is.finite()`和`is.infinite()`。
 
-可参考(http://www.cookbook-r.com/Manipulating_data/Comparing_vectors_or_factors_with_NA)
 
 
 
