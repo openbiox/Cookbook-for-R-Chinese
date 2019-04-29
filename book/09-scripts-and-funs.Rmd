@@ -6,19 +6,21 @@
 
 - 应用场景：
 
-细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界门纲目科属种）。
+细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界/门/纲/目/科/属/种）。
 
-在基因组的核酸水平研究中，有诸如dDDH（数字化DNA分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。
+在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。
 
 - 简要过程：
 
-两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A作数据库，B查询；B作数据库，A查询），数据筛选的标准是：一致度大于40%，查询片段的长度大于原片段长度的50%，e值小于1e-5。
+两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。
 
 ### 参考文献：
 
 [A Proposed Genus Boundary for the Prokaryotes Based on Genomic Insights](https://jb.asm.org/content/196/12/2210)
 
 Qi-Long Qin *et al.*
+
+**以下 R 脚本都是在 windows 操作平台上进行的**
 
 ```R
 # 下载所分析的基因组数据（蛋白序列）
@@ -48,7 +50,7 @@ gunzip("Rawdata/Acinetobacter_baumannii.faa.gz")
 ```R
 # 使用 dbplyr 对数据框中的某列去重复
 library(dbplyr)
-# 使用 seqinr 格式化fasta格式的序列
+# 使用 seqinr 格式化 fasta 格式的序列
 library(seqinr)
 
 # 检查存放中间过程文件的文件夹是否存在
@@ -120,7 +122,7 @@ for (i in (1:dim(genome.comn)[2]) ) {
 
   print(paste0('-- Blasting: ',a.header,' - VS - ',b.header))
 
-  # “正向”--A为查询，B为参考数据库
+  # 「正向」-- A 为查询，B 为参考数据库
   result.forward <- paste0(a.header,'_VS_',b.header,'.tab')
   system(paste0(blast.comm1, a.genome,
                 blast.comm2, b.header,
@@ -134,7 +136,7 @@ for (i in (1:dim(genome.comn)[2]) ) {
   df.forward <- df.forward[which(df.forward$V3 > 40 & df.forward$align > 0.5 & df.forward$V11 < 1e-5),]
   C1 <- dim(df.forward)[1]
 
-  # “反向”--B为查询，A为参考数据库
+  # 「反向」-- B 为查询，A 为参考数据库
   result.backward <- paste0(b.header,'_VS_',a.header,'.tab')
   system(paste0(blast.comm1, b.genome,
                 blast.comm2, a.header,
@@ -165,12 +167,11 @@ unlink("Result", recursive = TRUE)
 # 重新创建新文件夹
 dir.create('Database')
 dir.create('Result')
-
 ```
 
 #### 提示：
 
-更多关于POCP计算的相关tips，请点击[这里-跳转](https://github.com/2015qyliang/POCP)
+更多关于 POCP 计算的相关 tips，请点击[这里-跳转](https://github.com/2015qyliang/POCP)
 
 ## 调试脚本或函数
 
@@ -185,7 +186,8 @@ dir.create('Result')
 ```R
 browser()
 ```
-当R解释器到达该行时，它将暂停您的代码，您将能够查看和更改变量。
+
+当 R 解释器到达该行时，它将暂停您的代码，您将能够查看和更改变量。
 
 在浏览器中，键入这些字母将执行以下操作
 	
@@ -200,6 +202,7 @@ browser()
 ```R
 ls()
 ```
+
 要为函数中的每一行暂停和启动浏览器
 
 ```R
@@ -207,24 +210,31 @@ debug(myfunction)
 myfunction(x)
 ```
 ### **有用的选择**
-默认情况下，每次在浏览器提示符下按Enter键，它都会运行下一步。这相当于按n，然后按Enter键。这可能很烦人。要禁用它，请使用：
+
+默认情况下，每次在浏览器提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：
 
 ```R
 options(browserNLdisabled=TRUE)
 ```
+
 要在抛出错误时开始调试，请在抛出错误的函数之前运行此命令
 
 ```R
 options(error=recover)
 ```
-如果您希望每次启动R时都设置这些选项，则可以将它们放在~/.Rprofile文件中。
+
+如果您希望每次启动R时都设置这些选项，则可以将它们放在 ~/.Rprofile 文件中。
 
 
 ## 测量经过的时间
+
 ### **问题**
+
 您想要测量运行特定代码块所需的时间。
+
 ### 方案
-该```system.time()```函数将测量在R中运行某些东西所需的时间。
+
+该 ```system.time()``` 函数将测量在R中运行某些东西所需的时间。
 
 ```R
 system.time({
@@ -234,10 +244,9 @@ system.time({
 })
 #>    user  system elapsed 
 #>   0.144   0.002   0.153
-
 ```
-输出意味着运行代码块需要0.153秒。
 
+输出意味着运行代码块需要 0.153 秒。
 
 ## 获取包中的函数和对象列表
 
@@ -328,8 +337,6 @@ showPackageContents <- function (packageName) {
     cat("\n")
 }
 
-
 # Run the function using base package
 showPackageContents("package:base")
 ```
-
