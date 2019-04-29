@@ -1,0 +1,51 @@
+--- 
+title: "Cookbook for R 中文版"
+author: ["Winston Chang（著）", "王诗翔 等（译）"]
+date: "`r Sys.Date()`"
+documentclass: ctexbook
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+geometry: [b5paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=3.5cm, rmargin=2.5cm]
+site: bookdown::bookdown_site
+description: "Cookbook for R 中文版本"
+github-repo:  openbiox/Cookbook-for-R-Chinese
+#cover-image: images/cover.jpg
+---
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+)
+
+# 填上你需要用到的包，如 c('ggplot2', 'dplyr')
+lapply(c("ggplot2"), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+```
+
+# 欢迎 {-}
+
+这是“Cookbook for R 中文版”的网站。这本书以直观明了的问题/需求和方案为基本内容向读者介绍R的基础和如何解决常见的分析问题：读者将会学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本，以及其他工具。这本书是R问题方案参考手册，建议读者配合系统的R语言读物使用，如[《R for Data Science》](https://r4ds.had.co.nz/index.html)。
+
+这个网站是（永久）免费的，它以[署名-非商业使用-禁止演绎](http://creativecommons.net.cn/licenses/meet-the-licenses/)CC许可协议发布。如果你想要该书的实体版本，请期待它的出版。
+
+
+非常感谢以下成员的参与，如果不是他们，这本中文书再过两年也不会跟大家见面。
+
+* 陈颖珊
+* 梁其云
+* 王慧美
+* 熊逸
+* 杨芮
+* 张浩浩
+* 赵飞
+
+```{block2, type='flushright', html.tag='p'}
+王诗翔  
+于 上海科技大学
+```
+

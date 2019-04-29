@@ -1,0 +1,151 @@
+# 公式
+
+## 通过字符串创建公式
+
+### 问题
+
+你想要通过字符串创建公式
+
+### 方案
+
+通过字符串的方式来创建公式是非常有用的。这通常用于需要将公式参数当做字符串传入函数中
+
+最基础实用的方法就是调用函数 `as.formula()`:
+
+```R
+# 这将返回一个字符串
+"y ~ x1 + x2"
+#> [1] "y ~ x1 + x2"
+
+# 这将返回一个公式
+as.formula("y ~ x1 + x2")
+#> y ~ x1 + x2
+#> <environment: 0x3361710>
+```
+
+下面是一个简单实例：
+
+```R
+# 存在一些变量名:
+measurevar <- "y"
+groupvars  <- c("x1","x2","x3")
+
+# 创建合适的字符串:
+paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ ")
+#> [1] "y ~ x1 + x2 + x3"
+
+# 返回公式:
+as.formula(paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ "))
+#> y ~ x1 + x2 + x3
+#> <environment: 0x3361710>
+```
+
+------
+
+原文链接：<http://www.cookbook-r.com/Formulas/Creating_a_formula_from_a_string/>
+
+## 从公式中提取组分
+
+### 问题
+
+你想要抽离公式的一部分用来使用。
+
+### 方案
+
+你可以把公式对象当作列表看待，使用`[[`操作符对其组分进行操作。
+
+```R
+f <- y ~ x1 + x2
+
+# 观察f结构
+str(f)
+#> Class 'formula'  language y ~ x1 + x2
+#>   ..- attr(*, ".Environment")=<environment: 0x1e46710>
+
+# 获得每一部分
+f[[1]]
+#> `~`
+f[[2]]
+#> y
+f[[3]]
+#> x1 + x2
+
+# 转换为列表观察
+as.list(f)
+#> [[1]]
+#> `~`
+#> 
+#> [[2]]
+#> y
+#> 
+#> [[3]]
+#> x1 + x2
+#> 
+#> <environment: 0x1e46710>
+```
+
+如果公式左边没有任何东西，那么列表只有两个元素：
+
+```R
+f2 <- ~ x1 + x2
+as.list(f2)
+#> [[1]]
+#> `~`
+#> 
+#> [[2]]
+#> x1 + x2
+#> 
+#> <environment: 0x1e46710>
+
+```
+
+公式的每一个元素都是一个符号或者语言对象（包含多个符号）：
+
+```R
+str(f[[1]])
+#>  symbol ~
+str(f[[2]])
+#>  symbol y
+str(f[[3]])
+#>  language x1 + x2
+
+# Look at parts of the langage object
+str(f[[3]][[1]])
+#>  symbol +
+str(f[[3]][[2]])
+#>  symbol x1
+str(f[[3]][[3]])
+#>  symbol x2
+
+```
+
+你可以使用`as.character()`或`deparse()`函数将它们转为字符串。`deparse()`函数可以返回一个看起来更为自然的结果：
+
+```R
+as.character(f[[1]])
+#> [1] "~"
+as.character(f[[2]])
+#> [1] "y"
+
+# The language object gets coerced into a string that represents the parse tree:
+as.character(f[[3]])
+#> [1] "+"  "x1" "x2"
+
+# You can use deparse() to get a more natural looking string
+deparse(f[[3]])
+#> [1] "x1 + x2"
+deparse(f)
+#> [1] "y ~ x1 + x2"
+
+```
+
+公式对象也会捕捉调用它的环境，比如我们在运行`str(f)`命令时看到的那样。如果要抽取它，可以使用`environment()`函数：
+
+```R
+environment(f)
+#> <environment: 0x1e46710>
+```
+
+------
+
+原文链接：<http://www.cookbook-r.com/Formulas/Extracting_components_from_a_formula/>
