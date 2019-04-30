@@ -2,7 +2,7 @@
 
 > [Cookbook for R 中文版](https://github.com/openbiox/Cookbook-for-R-Chinese/) 是由[Openbiox小组](https://github.com/openbiox)实时维护的[Cookbook for R](http://www.cookbook-r.com/)中文版。
 >
-> - 阅读文档请到 👉 
+> - 阅读文档请点击 👉 <https://openbiox.github.io/Cookbook-for-R-Chinese/>
 
 ## 如何翻译和修改
 
