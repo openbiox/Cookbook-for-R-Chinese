@@ -1,12 +1,12 @@
-# 操作数据
+# 数据操作
 
-## R中的排序问题
+## 排序
 
 ### 问题
 
 你想将一个向量，矩阵或列表排序
 
-### 解决
+### 方案
 
 #### 向量
 
@@ -25,7 +25,7 @@ sort(v, decreasing=TRUE)
 
 #### 列表
 
-列表在一个或多个列进行排序，您可以使用`plyr`包里的`arrange`函数，或者使用R内置的功能。`arrange`函数更容易使用，但需要外部安装包。
+对列表的一个或多个列进行排序，可以使用 `plyr` 包里的 `arrange` 函数或者使用 R 的内置函数。`arrange` 函数更容易使用，但需要额外安装包。
 
 ```R
 # 生成一个列表
@@ -36,69 +36,65 @@ df
 
 library(plyr)
 
-# "weight"列排序，他们有相同的结果.
-arrange(df, weight)       # 使用plyr包里的arrange函数
-df[ order(df$weight), ]   # 使用R内置的功能
+# 按照 "weight" 列排序，以下结果相同。
+arrange(df, weight)       # 使用 plyr 包里的 arrange 函数
+df[ order(df$weight), ]   # 使用 R 内置函数
 #>   id weight   size
 #> 1  1     20  small
 #> 2  4     22  large
 #> 3  3     24 medium
 #> 4  2     27  large
 
-# 以size为第一关键词, weight为第二关键词排序
-arrange(df, size, weight)         # 使用plyr包里的arrange函数
-df[ order(df$size, df$weight), ]  # 使用R内置的功能
+# 以 size 为第一关键词, weight 为第二关键词排序
+arrange(df, size, weight)         # 使用 plyr 包里的 arrange 函数
+df[ order(df$size, df$weight), ]  # 使用 R 内置函数
 #>   id weight   size
 #> 4  4     22  large
 #> 2  2     27  large
 #> 3  3     24 medium
 #> 1  1     20  small
 
-# 所有列从左到右排序
+# 所有列从左到右依次排序
 df[ do.call(order, as.list(df)), ] 
-# 在这个特殊的例子中,顺序将保持不变
+# 在这个特殊的例子中，顺序将保持不变
 ```
 
-请注意，`size`列是一个把行排序的因子。在这种情况下，横向将自动按字母顺序排列（创建数据表格），所以**大**是第一和**小**是最后。
+请注意，`size` 列是一个因子且按照因子水平进行排序。在这种情况下将自动按字母顺序排列（创建数据表格），所以**大**是第一而**小**是最后。
 
 ##### 反向排序
 
-使用`decreasing=TRUE`可以反向排序。
+使用 `decreasing=TRUE` 可以反向排序。
 
-反向排序的方法依赖于数据类型：
+反向排序某一列的方法依赖于数据类型：
 
 - 数字：变量名前加一个`-`。例如：`df[order(-df$weight)]`
-
-
 - 因子：转换为整数，变量名前加一个`-`。例如：`df[ order(-xtfrm(df$size)), ]`
-
-
 - 字符：没有简单的方法能做到这一点。一种方法是先转换为一个因子，然后如上所述。
 
 ```R
-# 反向排序weight列，他们有相同的结果：
-arrange(df, -weight)                      # 使用plyr包里的arrange函数
-df[ order(df$weight, decreasing=TRUE), ]  # 使用R内置的功能
-df[ order(-df$weight), ]                  # 使用R内置的功能
+# 反向排序 weight 列，下面方法有相同结果：
+arrange(df, -weight)                      # 使用 plyr 包里的 arrange 函数
+df[ order(df$weight, decreasing=TRUE), ]  # 使用 R 内置函数
+df[ order(-df$weight), ]                  # 使用 R 内置函数
 #>   id weight   size
 #> 2  2     27  large
 #> 3  3     24 medium
 #> 4  4     22  large
 #> 1  1     20  small
 
-# 升序排列size,然后降序排列weight
-arrange(df, size, -weight)         # 使用plyr包里的arrange函数
-df[ order(df$size, -df$weight), ]  # 使用R内置的功能
+# 升序排列 size ,然后降序排列 weight
+arrange(df, size, -weight)         # 使用 plyr 包里的 arrange 函数
+df[ order(df$size, -df$weight), ]  # 使用 R 内置函数
 #>   id weight   size
 #> 2  2     27  large
 #> 4  4     22  large
 #> 3  3     24 medium
 #> 1  1     20  small
 
-# 升序排列size,然后降序排列weight
-# 因子需要xtfrm()
-arrange(df, -xtfrm(size), weight)         # 使用plyr包里的arrange函数
-df[ order(-xtfrm(df$size), df$weight), ]  # 使用R内置的功能
+# 升序排列 size,然后降序排列 weight
+# 因子需要 xtfrm()
+arrange(df, -xtfrm(size), weight)         # 使用 plyr 包里的 arrange 函数
+df[ order(-xtfrm(df$size), df$weight), ]  # 使用 R 内置函数
 #>   id weight   size
 #> 1  1     20  small
 #> 3  3     24 medium
@@ -106,11 +102,11 @@ df[ order(-xtfrm(df$size), df$weight), ]  # 使用R内置的功能
 #> 2  2     27  large
 ```
 
-## 用R生成随机的顺序
+## 随机排序
 
 ### 问题
 
-你想事一个数据结构随机化。
+你想使一个数据结构随机排序。
 
 ### 方案
 
@@ -146,9 +142,7 @@ data
 
 为了使随机化可重复，你应该设置随机数生成器。详见：[Numbers-生成随机数](http://www.jianshu.com/p/5fe992779356)、[Numbers-生成可重复的随机数序列](http://www.jianshu.com/p/25a12a5a6e45)
 
-
-
-## 转换向量类型——数值向量，字符串向量和因子向量
+## 转换向量类型
 
 ### 问题
 
@@ -156,7 +150,7 @@ data
 
 ### 方案
 
-假设你刚开始有一个数值型向量`n`:
+假设你刚开始有一个数值型向量 `n`:
 
 ```R
 n <- 10:14
@@ -164,25 +158,25 @@ n
 #> [1] 10 11 12 13 14
 ```
 
-将这个数值型向量转换为其他两种类型（将结果保存在`c`和`f`）：
+将这个数值型向量转换为其他两种类型（将结果保存在 `c` 和 `f` ）：
 
 ```R
-# 数值型→字符串型
+# 数值型转换字符串
 c <- as.character(n)
 
-# 数值型→因子型
+# 数值型转换因子型
 f <- factor(n)
 # 10 11 12 13 14
 ```
 
-将字符串型向量转化为另外两种：
+将字符串向量转化为另外两种：
 
 ```R
-# 数值型
+# 数值
 as.numeric(c)
 #> [1] 10 11 12 13 14
 
-# 字符串型→因子型
+# 字符串转换为因子
 factor(c)
 #> [1] 10 11 12 13 14
 #> Levels: 10 11 12 13 14
@@ -191,12 +185,12 @@ factor(c)
 把一个因子转变为一个字符串型向量很简单：
 
 ```R
-# 因子型→数值型
+# 因子转换为字符串
 as.character(f)
 #> [1] "10" "11" "12" "13" "14"
 ```
 
-然而，将因子转化为数值型向量，有点棘手。如果你使用`as.numberic`，它将会给你因子编码的数值，恐怕不是你想要的。
+然而，将因子转化为数值型向量有点棘手。如果你使用`as.numberic`，它将会给你因子编码的数值，恐怕不是你想要的。
 
 ```R
 as.numeric(f)
@@ -209,15 +203,15 @@ unclass(f)
 #> [1] "10" "11" "12" "13" "14"
 ```
 
-方法是，先转化为字符串型，再转化为数值型。
+将因子转换为数值型的方法是先转化为字符串型，再转化为数值型。
 
 ```R
-# 因子型→数值型
+# 因子转换为数值型
 as.numeric(as.character(f))
 #> [1] 10 11 12 13 14
 ```
 
-## 用R查找并移除重复的记录
+## 查找并移除重复记录
 
 ### 问题
 
@@ -239,16 +233,16 @@ duplicated(x)
 #>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE
 #> [15]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 
-# 重复的条目的值
-# 注意“6”出现了三次，所以它有俩
+# 重复条目的值
+# 注意“6”出现了三次，所以它有两个
 x[duplicated(x)]
 #> [1] 10  3 11  8 10  8  5  6  6
 
-# 重复的条目，没有重复
+# 重复的条目无需重复出现
 unique(x[duplicated(x)])
 #> [1] 10  3 11  8  5  6
 
-# 移除重复的数据，他们效果一样:
+# 移除重复数据，下面两种方法效果一样:
 unique(x)
 #>  [1] 14 11  8  4 12  5 10  3  6  0 16
 x[!duplicated(x)]
@@ -289,7 +283,7 @@ unique(df[duplicated(df),])
 #> 4     B     3
 #> 7     A     4
 
-# 移除重复的数据，他们效果一样:
+# 移除重复的数据，下面两种方法效果一样:
 unique(df)
 #>   label value
 #> 1     A     4
@@ -306,11 +300,11 @@ df[!duplicated(df),]
 #> 6     A     2
 ```
 
-## NA存在的情况下，向量或因子间的比较
+## NA 存在时进行向量或因子比较
 
 ### 问题
 
-你想比较两个向量或因子，而且是在`NA`存在的情况下比较，并返回`TRUE`或`FALSE`（而不是`NA`）。
+你想在 `NA` 存在的情况下比较比较两个向量或因子并返回 `TRUE` 或 `FALSE`（而不是 `NA`）。
 
 ### 方案
 
@@ -332,7 +326,7 @@ df
 #> 9    NA    NA
 ```
 
-通常情况下，当你比较两个包含`NA`值的向量或因子时，原始值是`NA`，结果也将有`NA`。根据你的目的，这（不）可能为你所需。
+通常情况下，当你比较两个包含`NA`值的向量或因子时，原始值是`NA`，结果也将有`NA`。根据你的目的，这或许是是你想要的结果。
 
 ```R
 df$a == df$b
@@ -352,12 +346,12 @@ data.frame(df, isSame = (df$a==df$b))
 #> 9    NA    NA     NA
 ```
 
-#### 可以与`NA`相比的一个函数
+#### 可以与 `NA` 相比的函数
 
-这个比较函数会把`NA`赋予另一个值。如果一个向量的两项都是`NA`，则返回`TRUE`；如果其中一个是`NA`，则返回`FALSE`；所有其他比较(无`NA`之间)的方式是一样的。
+这个比较函数会把`NA`赋予另一个值。如果一个向量的两项都是 `NA` ，则返回 `TRUE`；如果其中一个是 `NA`，则返回 `FALSE`；所有其他比较(无`NA`之间)的方式是一样的。
 
 ```R
-# 这个函数将会返回TRUE，当两个元素相同（包括两个NA），其他情况返回FALSE
+# 这个函数将会返回 TRUE，当两个元素相同（包括两个 NA），其他情况返回 FALSE
 compareNA <- function(v1,v2) {
     same <- (v1 == v2) | (is.na(v1) & is.na(v2))
     same[is.na(same)] <- FALSE
@@ -423,8 +417,6 @@ data.frame(df1, isSame = compareNA(df1$a, df1$b))
 #> 9 <NA> <NA>   TRUE
 ```
 
-
-
 ## 数据重新编码
 
 ### 问题
@@ -447,7 +439,7 @@ data <- read.table(header=T, text='
 
 #### 重新编码分类变量
 
-最简单的方法是使用`plyr`包里的`revalue()`或`mapvalues()`。这可以令`M`为`1`、`F`为`2`，并把它放在一个新生产的列。注意，这两个函数均保存数据类型：如果输入一个因子，输出将会是一个因子；如果输入是一个字符串向量，输出将会是一个字符串向量。
+最简单的方法是使用 `plyr` 包里的 `revalue()` 或 `mapvalues()`。这可以令`M` 为 `1`、`F` 为 `2`，并把它放在一个新生产的列。注意，这两个函数均保存数据类型：如果输入一个因子，输出将会是一个因子；如果输入是一个字符串向量，输出将会是一个字符串向量。
 
 ```R
 library(plyr)
@@ -465,11 +457,11 @@ data
 # data$sex是一个因子，因此data$scode也是因子
 ```
 
-详见Manipulating Data - 映射向量的值
+详见 Manipulating Data - 映射向量的值
 
 [Manipulating Data - 重命名因子水平](http://www.jianshu.com/p/fbbdb180b39e)
 
-如果你不想依赖`plyr`，你可以使用R内置函数：
+如果你不想依赖 `plyr`，你可以使用 R 内置函数：
 
 ```R
 data$scode[data$sex=="M"] <- "1"
@@ -485,11 +477,11 @@ data
 #> 4       4   M    11.5  13.4  12.9     1
 ```
 
-另一种方法是使用`match`函数：
+另一种方法是使用 `match` 函数：
 
 ```R
 oldvalues <- c("M", "F")
-newvalues <- factor(c("g1","g2"))  # 因子
+newvalues <- factor(c("g1","g2"))  # 转换为因子
 
 data$scode <- newvalues[ match(data$sex, oldvalues) ]
 data
@@ -500,9 +492,9 @@ data
 #> 4       4   M    11.5  13.4  12.9    g1
 ```
 
-#### 将一个连续变量编码为分类变量
+#### 将一个连续变量重编码为分类变量
 
-标记这些值，control值小于7为“low”，大于或等于7为“high”：
+标记 control 值小于 7 为 “low”，大于或等于 7 为 “high”：
 
 ```R
 data$category[data$control< 7] <- "low"
@@ -518,7 +510,7 @@ data
 #> 4       4   M    11.5  13.4  12.9    g1     high
 ```
 
-用`cut`函数，可以指定上下限：
+用 `cut` 函数，可以指定边限和新值：
 
 ```R
 data$category <- cut(data$control,
@@ -532,7 +524,7 @@ data
 #> 4       4   M    11.5  13.4  12.9    g1     high
 ```
 
-默认情况下，范围是左边开放、右边关闭，如(7，9]。使用`right= FALSE`可以设置成左边关闭、右边开放，像[7、9)。
+默认情况下，范围是左边开放、右边关闭，如(7，9] 。使用 `right= FALSE` 可以设置成左边关闭、右边开放，像 [7、9)。
 
 #### 计算得到一个新的连续变量
 
@@ -547,7 +539,8 @@ data
 #> 3       3   F     9.5  13.1  13.8    g2     high  36.4
 #> 4       4   M    11.5  13.4  12.9    g1     high  37.8
 ```
-## 将向量中所有值为x的对象改变值y
+
+## 映射向量值
 
 ### 问题
 
@@ -561,7 +554,7 @@ str <- c("alpha", "beta", "gamma")
 num <- c(1, 2, 3)
 ```
 
-最简单的方法是使用`plyr`包里的`revalue()`或`mapvalues()`。
+最简单的方法是使用 `plyr` 包里的 `revalue()` 或 `mapvalues()`。
 
 ```R
 library(plyr)
@@ -572,12 +565,12 @@ mapvalues(str, from = c("beta", "gamma"), to = c("two", "three"))
 #> [1] "alpha" "two"   "three"
 
 
-# 对于数值型向量，revalue()没作用，由于它使用一个命名了的向量，向量名一般是字符串而不是数值，但mapvalues()仍然有作用
+# 对于数值型向量，revalue() 没作用，由于它使用一个命名了的向量，向量名一般是字符串而不是数值，但 mapvalues()仍然有作用
 mapvalues(num, from = c(2, 3), to = c(5, 6))
 #> [1] 1 5 6
 ```
 
-如果你不想依赖`plyr`，你可以使用R内置函数。注意，这些方法将直接修改向量；也就是说，你不需要把结果保存回变量。
+如果你不想依赖`plyr`，你可以使用 R 内置函数。注意，这些方法将直接修改向量；也就是说，你不需要把结果保存回变量。
 
 ```R
 # 把"beta" 替换为 "two"
@@ -590,7 +583,7 @@ num
 #> [1] 1 5 3
 ```
 
-也可以使用R的字符串的查找和替换函数来重新映射字符串向量的值。注意，`alpha`前后的^`和`$`确保整个字符串匹配。没有它们，如果有一个值为`alphabet`，它也会被匹配，替代`onebet`。
+也可以使用R的字符串查找和替换函数来重新映射字符串向量的值。注意，`alpha` 前后的 `^` 和 `$` 确保整个字符串匹配。没有它们，如果有一个值为`alphabet`，它也会被匹配，替代 `onebet`。
 
 ```R
 str <- c("alpha", "beta", "gamma")
@@ -609,7 +602,6 @@ gsub("a", "X", str)
 ### 另见
 
 详见[**重命名因子水平**](http://www.jianshu.com/p/fbbdb180b39e)
-
 
 ## 重命名因子水平
 
@@ -630,7 +622,7 @@ levels(x)
 #> [1] "alpha" "beta"  "gamma"
 ```
 
-最简单的办法是使用`plyr`包中的`revalue()`或者`mapvalues()`函数。
+最简单的办法是使用 `plyr` 包中的 `revalue() `或者 `mapvalues()` 函数。
 
 ```R
 library(plyr)
@@ -643,7 +635,7 @@ mapvalues(x, from = c("beta", "gamma"), to = c("two", "three"))
 #> Levels: alpha two three
 ```
 
-如果你不想要依赖`plyr`包，你可以使用R的内置函数进行以下处理。注意这些方法会直接修改变量`x`；这说明，你不需要将结果重新赋值回给`x`。
+如果你不想要依赖 `plyr` 包，你可以使用 R 的内置函数进行以下处理。注意这些方法会直接修改变量`x`；你不需要将结果重新赋值回给`x`。
 
 ```R
 # 通过名字重命名: change "beta" to "two"
@@ -665,10 +657,10 @@ x
 #> Levels: one two three
 ```
 
-我们可以不使用`plyr`包而通过名字实现因子水平的重命名，但记住这只有在所有的水平都在列表中时才起作用，否则会返回NA以代替寻找不到的因子水平。
+我们可以不使用 `plyr` 包而通过名字实现因子水平的重命名，但记住这只有在所有的水平都在列表中时才起作用，否则会返回 NA 以代替寻找不到的因子水平。
 
 ```R
-# Rename all levels, by name
+# 用名字重命名所有因子
 x <- factor(c("alpha","beta","gamma","alpha","beta"))
 levels(x) <- list(A="alpha", B="beta", C="gamma")
 x
@@ -676,7 +668,7 @@ x
 #> Levels: A B C
 ```
 
-我们也可以使用R的字符串搜索与替换函数去重命名因子水平。注意字符`alpha`周围的`^`与`$`符号是用来确保整个字符串能够匹配（正则表达式）。如果没有它们，字符`alphabet`也能够被成功匹配并会被替换为`onbet`。
+我们也可以使用 R 的字符串搜索与替换函数去重命名因子水平。注意字符`alpha`周围的`^`与`$`符号是用来确保整个字符串能够匹配（正则表达式）。如果没有它们，字符`alphabet`也能够被成功匹配并会被替换为`onbet`。
 
 ```R
 # 一个样例
@@ -709,7 +701,7 @@ x
 
 ### 问题
 
-你想要重新计算一个因子的水平。这在因子水平实际并没有出现在数据中时非常有用。它可能发生在数据的导入，或者当你移除一些行。
+你想要重新计算一个因子的水平。这在因子水平实际并没有出现在数据中时非常有用。它可能发生在数据的导入或者当你移除一些行时。
 
 ### 方案
 
@@ -729,7 +721,7 @@ x
 #> Levels: alpha beta
 ```
 
-当导入数据之后，你可能有一个混合因子变量和其他向量的数据框，然后想要重新计算所有因子的水平。你可以使用`droplevels()`函数实现这一点。
+当导入数据之后，你可能有一个混合因子变量和其他向量的数据框，然后想要重新计算所有因子的水平。你可以使用 `droplevels()` 函数实现这一点。
 
 ```R
 # 创建一些因子的数据框 (有额外的因子水平)
@@ -764,7 +756,6 @@ df$z
 
 想要重计算一个数据框中所有的因子变量列的因子水平，参见 [../Re-computing_the_levels_of_all_factor_columns_in_a_data_frame](http://www.cookbook-r.com/Manipulating_data/Re-computing_the_levels_of_all_factor_columns_in_a_data_frame)。
 
-
 ## 改变因子水平次序
 
 ### 问题
@@ -773,9 +764,9 @@ df$z
 
 ### 方案
 
-R中有两种不同类型的因子变量：**有序**和**无序**。比如{小，中，大}和｛钢笔，橡皮擦，铅笔｝。对于绝大多数分析而言，一个因子变量是有序还是无序的不重要。如果因子是**有序**的，那么这个因子水平的特定次序是重要的（小<中<大）。如果因子是**无序**的，那么因子水平同样会以一定的顺序出现，但这仅仅为了方便而已（钢笔，橡皮擦，铅笔） - 但有时它是重要的，例如它会觉得结果如何输出，图形元素如何展示。
+R 中有两种不同类型的因子变量：**有序**和**无序**。比如{小，中，大}和｛钢笔，橡皮擦，铅笔｝。对于绝大多数分析而言，一个因子变量是有序还是无序并不重要。如果因子是**有序**的，那么这个因子水平的特定次序是重要的（小 < 中 < 大）。如果因子是**无序**的，那么因子水平同样会以一定的顺序出现，但这仅仅为了方便而已（钢笔，橡皮擦，铅笔） - 但有时它是重要的，例如它会指导结果如何输出，图形元素如何展示。
 
-一种改变因子次序的方式是对因子使用`factor()`函数并且直接指定它们的次序。下面这个例子中，`ordered()`函数可以替换`factor()`函数。
+一种改变因子次序的方式是对因子使用 `factor()` 函数并且直接指定它们的次序。下面这个例子中，`ordered()` 函数可以替换 `factor()` 函数。
 
 下面是这个例子的数据：
 
@@ -806,7 +797,7 @@ sizes
 #> Levels: small < medium < large
 ```
 
-另一种方式是使用`relevel()`函数在列表中制作一个特定水平（这对有序因子不起作用）。
+另一种方式是使用 `relevel()` 函数在列表中制作一个特定水平（这对有序因子不起作用）。
 
 ```R
 # 创建错误次序的因子
@@ -860,8 +851,6 @@ sizes
 
 你想要给数据框的列重新命名。
 
-
-
 ### 方案
 
 让我们从有三列的一个数据框开始：
@@ -879,7 +868,7 @@ names(d)
 
 ```
 
-最简单的方式是使用plyr包的`rename()`函数：
+最简单的方式是使用 plyr 包的 `rename()` 函数：
 
 ```R
 library(plyr)
@@ -891,10 +880,10 @@ rename(d, c("beta"="two", "gamma"="three"))
 
 ```
 
-如果你不想要依赖plyr包，你可以使用下面R内置的函数。注意这些直接修改了`d`，意味着你不需要把结果保存回`d`。
+如果你不想要依赖 plyr 包，可以使用下面的 R 内置函数。注意这些直接修改了`d`，意味着你不需要把结果保存回`d`。
 
 ```R
-# 通过name函数重命名列：把"beta"改为"two"
+# 通过 name 函数重命名列：把 "beta" 改为 "two"
 names(d)[names(d)=="beta"] <- "two"
 d
 #>   alpha two gamma
@@ -904,7 +893,7 @@ d
 
 # 你也可以通过位置索引改变名字，但这种操作会有点危险，一旦你以后对数据做出改变，这些操作可能就不适用了。
 
-# 通过名字向量的位置索引重命名：改变第三项，将"gamma"改成"three"
+# 通过名字向量的位置索引重命名：改变第三项，将 "gamma" 改成 "three"
 names(d)[3] <- "three"
 d
 #>   alpha two three
@@ -914,7 +903,7 @@ d
 
 ```
 
-也可以使用R的字符串搜索和替换函数来重命名列。注意`alpha`周围的`^`和`$`是确保全部字符串匹配。没有他们的话，如果存在一个叫`alphabet`的列也会匹配成功。
+也可以使用 R 的字符串搜索和替换函数来重命名列。注意`alpha`周围的`^`和`$`是确保全部字符串匹配。没有他们的话，如果存在一个叫 `alphabet` 的列也会匹配成功。
 
 ```R
 names(d) <- sub("^alpha$", "one", names(d))
@@ -932,10 +921,9 @@ d
 #> 2   2   5     8
 #> 3   3   6     9
 
-# gsub()替换每个列名中所有的匹配项
-# sub()只替换每个列名中匹配的第一项
+# gsub() 替换每个列名中所有的匹配项
+# sub() 只替换每个列名中匹配的第一项
 ```
-
 
 ## 添加和移除数据框的列
 
@@ -945,7 +933,7 @@ d
 
 ### 方案
 
-这里有着许多解决办法：
+这里有许多解决办法：
 
 ```R
 data <- read.table(header=TRUE, text='
@@ -995,7 +983,7 @@ data[c(1,3,2)]
 #> 2  2  large     27
 #> 3  3 medium     24
 
-# 如果你想要实际改变`data`，需要把它重新赋值回`data`符号：
+# 如果你想要实际改变 `data`，需要把它重新赋值回 `data` 符号：
 # data <- data[c(1,3,2)]
 
 
@@ -1019,7 +1007,7 @@ data[, c(1,3,2)]
 
 ```
 
-矩阵形式索引的缺点在于当你只指定一列时结果会不同。下面例子中，返回的结果对象是一个**向量**而不是数据框。因为返回的数据类型并不能总是与矩阵索引保持一致，所以通常使用列表形式进行索引更为安全，或者在矩阵索引形式中指定`drop=FALSE`选项：
+矩阵形式索引的缺点在于当你只指定一列时结果会不同。下面例子中，返回的结果对象是一个**向量**而不是数据框。因为返回的数据类型并不能总是与矩阵索引保持一致，所以通常使用列表形式进行索引更为安全，或者在矩阵索引形式中指定 `drop=FALSE` 选项：
 
 ```R
 # 列表形式的索引
@@ -1033,7 +1021,7 @@ data[2]
 data[,2]
 #> [1] 20 27 24
 
-# 矩阵形式的索引，指定drop=FALSE——保留维度以保存数据框形式
+# 矩阵形式的索引，指定 drop=FALSE ——保留维度以保存数据框形式
 data[, 2, drop=FALSE]
 #>   weight
 #> 1     20
@@ -1041,16 +1029,16 @@ data[, 2, drop=FALSE]
 #> 3     24
 ```
 
-## 融合数据框
+## 合并数据框
 
 ### 问题
 
-你想要基于一个给定的列融合两个数据框（像SQL的**join**）。
+你想要基于一个给定的列合并两个数据框（像 SQL 的 **join**）。
 
 ### 方案
 
 ```R
-# 创建一个将storyid映射到titles上的数据框
+# 创建一个将 storyid 映射到 titles 上的数据框
 stories <- read.table(header=TRUE, text='
    storyid  title
     1       lions
@@ -1058,7 +1046,7 @@ stories <- read.table(header=TRUE, text='
     3       bears
 ')
 
-# 创建另一个有数据和storyid的数据框（没有titles）
+# 创建另一个有数据和 storyid 的数据框（没有 titles）
 data <- read.table(header=TRUE, text='
     subject storyid rating
           1       1    6.7
@@ -1069,7 +1057,7 @@ data <- read.table(header=TRUE, text='
           2       1    5.2
 ')
 
-# 融合两个数据框
+# 合并两个数据框
 merge(stories, data, "storyid")
 #>   storyid  title subject rating
 #> 1       1  lions       1    6.7
@@ -1084,7 +1072,7 @@ merge(stories, data, "storyid")
 如果两个数据框里你想要匹配的列有不同的名字，可以通过选项指定：
 
 ```R
-# 下面使用的是`id`替换了storyid
+# 下面使用的是 id 替换了 storyid
 stories2 <- read.table(header=TRUE, text='
    id       title
     1       lions
@@ -1092,7 +1080,7 @@ stories2 <- read.table(header=TRUE, text='
     3       bears
 ')
 
-# 融合两个数据框
+# 合并两个数据框
 merge(x=stories2, y=data, by.x="id", by.y="storyid")
 #>   id  title subject rating
 #> 1  1  lions       1    6.7
@@ -1106,7 +1094,7 @@ merge(x=stories2, y=data, by.x="id", by.y="storyid")
 
 ```
 
-我们也可以融合多个列：
+我们也可以合并多个列：
 
 ```R
 # 制造更多的数据
@@ -1135,19 +1123,15 @@ merge(observations, animals, c("size","type"))
 
 ```
 
-#### 注意
+### 注意
 
-融合之后，改变列名的顺序可能是 有用的，参见[../Reordering the columns in a data frame](https://www.jianshu.com/p/1f78b5929d62) 。
-
-
+合并之后，改变列名的顺序可能是有用的，参见[../Reordering the columns in a data frame](https://www.jianshu.com/p/1f78b5929d62) 。
 
 ## 比较数据框
 
 ### 问题
 
 你想要比较两个或多个数据框并找到在超过一个数据框中出现的行，或者仅在一个数据框中出现的行。
-
-
 
 ### 方案
 
@@ -1180,13 +1164,12 @@ dfC
 
 ```
 
-在dfA中，包括(1,X)的行同样出现在了dfB，但是包含(2,X)的行没有出现在任何其他的数据框。相似地，df包含的(1,X)出现在了dfA，(2,Y)出现在了dfC，但是(3,X)没有出现在其他数据框。
+在 dfA 中，包括 (1,X) 的行同样出现在了 dfB，但是包含 (2,X) 的行没有出现在任何其他的数据框。相似地，dfB 包含的 (1,X) 出现在了 dfA，(2,Y) 出现在了dfC，但是 (3,X) 没有出现在其他数据框。
 
-你可能想要标记在其他数据框中出现了的行，或者没有数据框中都是唯一的行。
+你可能想要标记在其他数据框中出现了的行，或者在每个数据框中都是唯一的行。
 
 
-
-##### 连接数据框
+#### 连接数据框
 
 进一步地，我们首先用一个可以识别每一行来自哪里的列来连接数据框。这里称为`Coder`变量因为它可能是由三个不同的人编码的数据。在这个例子中，你可能想要找到编码者同意之处（至少出现在两个数据框中的行），或者它们不同意之处。
 
@@ -1214,11 +1197,9 @@ df
 
 如果你的数据一开始就是这种格式，那就不要将它们连接到一起啦。
 
+#### 寻找重复行
 
-
-##### 寻找重复行
-
-使用在文末定义的函数`dupsBetweenGroups`，我们可以找出在不同组别中重复的行。
+使用在文末定义的函数 `dupsBetweenGroups`，我们可以找出在不同组别中重复的行。
 
 ```R
 # 找出在不同组别中重复的行
@@ -1240,9 +1221,9 @@ cbind(df, dup=dupRows)
 
 ```
 
-注意这不会标记**在同一组**中的重复行，比如Coder=A时，有两行Subject=2以及Response=X，但没有标记出来。
+注意这不会标记**在同一组**中的重复行，比如 Coder=A 时，有两行 Subject=2 以及 Response=X，但没有标记出来。
 
-##### 寻找唯一行
+#### 寻找唯一行
 
 同样可以找出在每一组中唯一出现的行。
 
@@ -1262,7 +1243,7 @@ cbind(df, unique=!dupRows)
 
 ```
 
-##### 拆分数据框
+#### 拆分数据框
 
 如果你想要把连接的数据框拆分为三个原始的数据框
 
@@ -1294,12 +1275,12 @@ dfC
 
 ```
 
-##### 忽略列
+#### 忽略列
 
 有可能需要通过移除数据框的列来忽略一个或者多个列，结果又可以把原始完整的数据框连接起来。
 
 ```R
-# 忽略Subject列——仅使用Response列
+# 忽略 Subject 列——仅使用 Response 列
 dfNoSub <- subset(df, select=-Subject)
 dfNoSub
 #>    Coder Response
@@ -1333,7 +1314,7 @@ cbind(df, dup=dupRows)
 
 ```
 
-#### dupsBetweenGroups 函数
+### dupsBetweenGroups 函数
 
 该函数用来寻找不同组别的重复行：
 
@@ -1384,25 +1365,15 @@ dupsBetweenGroups <- function (df, idcol) {
 
 ```
 
-#### 注意
+### 注意
 
 想要寻找单个数据框中的重复行，参看[../Finding and removing duplicate records](https://www.jianshu.com/p/82ed2e4dac58)。
 
-
-
-
-
-
-
 ## 重计算数据框所有因子列的水平
-
-
 
 ### 问题
 
 你想要重新计算一个数据框中所有因子列（变量）的因子水平。
-
-
 
 ### 方案
 
@@ -1453,9 +1424,9 @@ str(d)
 
 ```
 
-#### 使用`droplevels`
+#### 使用 `droplevels`
 
-最简单的方式是使用`droplevels()`函数：
+最简单的方式是使用 `droplevels()` 函数：
 
 ```R
 d1 <- droplevels(d)
@@ -1467,15 +1438,15 @@ str(d1)
 
 ```
 
-#### 使用`vapply` 和 `lapply`
+#### 使用 `vapply` 和 `lapply`
 
-为了重新计算所有因子列的水平，我们使用以`is.factor()`为参数的`vapply()`函数去找出哪些列是因子，然后再利用以`factor()`函数为参数的`lapply()`操作将那些列重新计算因子水平。
+为了重新计算所有因子列的水平，我们使用以 `is.factor()` 为参数的 `vapply() `函数去找出哪些列是因子，然后再利用以 `factor() `函数为参数的 `lapply()` 操作将那些列重新计算因子水平。
 
 ```R
 # 找出哪些列是因子
 factor_cols <- vapply(d, is.factor, logical(1))
 
-# 把factor()函数应用到那些列，并把结果赋回d
+# 把 factor() 函数应用到那些列，并把结果赋回 d
 d[factor_cols] <- lapply(d[factor_cols], factor)
 str(d)
 #> 'data.frame':	3 obs. of  3 variables:
@@ -1490,25 +1461,24 @@ str(d)
 关于重计算一个因子变量水平的信息，参见 [../Re-computing_the_levels_of_factor](https://www.jianshu.com/p/2a92f8e3af2d).
 
 
-
 ## 长宽格式数据互换
 
 ### 问题
 
 你想要把数据从宽格式转换为长格式。
 
-R中许多函数希望输入的数据是长格式而不是宽格式。然而像SPSS软件经常使用宽格式数据。
+R中许多函数希望输入的数据是长格式而不是宽格式。然而像 SPSS 软件经常使用宽格式数据。
 
 ### 方案
 
 下面有两类方法：
 
-- **tidyr**包的`gather()`和`spread()`函数。这是**reshape2**包的一个新接口。
-- **reshape2**包的`melt()`与`dcast()`函数。
+- **tidyr** 包的 `gather()` 和 `spread()` 函数。这 是**reshape2** 包的一个新接口。
+- **reshape2**包的 `melt()` 与 `dcast()` 函数。
 
 这里不包含其他一些实现的方法，因为这些方法不是很好使用：
 
-- `reshape()`函数，它比较让人迷惑，因为它是R的基础包的一部分，而不是reshape2包的一部分。
+- `reshape()` 函数比较让人迷惑，因为它是 R 基础包的一部分，而不是 reshape2 包的一部分。
 - `stack()` 和 `unstack()`
 
 #### 样例数据
@@ -1523,7 +1493,7 @@ olddata_wide <- read.table(header=TRUE, text='
        3   F     9.5  13.1  13.8
        4   M    11.5  13.4  12.9
 ')
-# 确保subject列是一个因子
+# 确保 subject 列是一个因子
 olddata_wide$subject <- factor(olddata_wide$subject)
 ```
 
@@ -1543,7 +1513,7 @@ olddata_long <- read.table(header=TRUE, text='
        4   M     cond1        13.4
        4   M     cond2        12.9
 ')
-# 确保subject列是一个因子
+# 确保 subject 列是一个因子
 olddata_long$subject <- factor(olddata_long$subject)
 ```
 
@@ -1563,12 +1533,12 @@ olddata_wide
 
 library(tidyr)
 
-# The arguments to gather():
-# - data: Data object
-# - key: Name of new key column (made from names of data columns)
-# - value: Name of new value column
-# - ...: Names of source columns that contain values
-# - factor_key: Treat the new key column as a factor (instead of character vector)
+# gather() 的主要参数:
+# - data: 输入数据
+# - key: 分类key的列名
+# - value: 包含值的列名
+# - ...: 包换需要转换值的列名
+# - factor_key: 把新的合成列设置为因子
 data_long <- gather(olddata_wide, condition, measurement, control:cond2, factor_key=TRUE)
 data_long
 #>    subject sex condition measurement
@@ -1586,13 +1556,13 @@ data_long
 #> 12       4   M     cond2        12.9
 ```
 
-在这个例子中，来源列通过`control:cond2`指定聚集到一起。这里的意思是使用位置上在`control`和`conda2`之间（包括`control`与`conda2`）的所有列。另一种使用的方式是单独为每一列命名，如下：
+在这个例子中，来源列通过 `control:cond2` 指定聚集到一起。这里的意思是使用位置上在 `control` 和 `conda2` 之间（包括 `control` 与 `conda2` ）的所有列。另一种使用的方式是单独为每一列命名，如下：
 
 ```R
 gather(olddata_wide, condition, measurement, control, cond1, cond2)
 ```
 
-如果你需要编程化使用`gather()`函数，可能需要使用包含列名的变量。想要实现它的话，你需要使用`gather_()`函数，它会使用字符串而不是没加引号的列名。
+如果你需要编程化使用`gather()`函数，可能需要使用包含列名的变量。想要实现它的话，你需要使用 `gather_()` 函数，它会使用字符串而不是没加引号的列名。
 
 ```R
 keycol <- "condition"
@@ -1602,14 +1572,14 @@ gathercols <- c("control", "cond1", "cond2")
 gather_(olddata_wide, keycol, valuecol, gathercols)
 ```
 
-备择：重命名变量列的因子水平，并排序。
+可选内容：重命名变量列的因子水平并排序。
 
 ```R
 # 重命名因子水平
 levels(data_long$condition)[levels(data_long$condition)=="cond1"] <- "first"
 levels(data_long$condition)[levels(data_long$condition)=="cond2"] <- "second"
 
-# 首先按照subject排序，然后按condition
+# 首先按照 subject 排序，然后按 condition
 data_long <- data_long[order(data_long$subject, data_long$condition), ]
 data_long
 #>    subject sex condition measurement
@@ -1662,7 +1632,7 @@ data_wide
 #> 4       4   M  13.4  12.9    11.5
 ```
 
-备择：一些可以使数据看起来更nice的操作。
+可选项：一些可以使数据看起来更易读的操作。
 
 ```R
 # 重命名
@@ -1714,7 +1684,7 @@ melt(olddata_wide, id.vars=c("subject", "sex"))
 #> 12       4   M    cond2  12.9
 ```
 
-`melt`的一些选项可以使得输出更好处理：
+`melt` 的一些选项可以使得输出更好处理：
 
 ```R
 data_long <- melt(olddata_wide,
@@ -1723,7 +1693,7 @@ data_long <- melt(olddata_wide,
         # 来源列（被转换的）
     measure.vars=c("control", "cond1", "cond2" ),
         # 目的列的名字可以确定测量列数值的来自的原始列（变量）
-        # 这里measurement是数值，condition指定了其来源
+        # 这里 measurement 是数值，condition 指定了其来源
     variable.name="condition",
     value.name="measurement"
 )
@@ -1743,18 +1713,18 @@ data_long
 #> 12       4   M     cond2        12.9
 ```
 
-如果你不设定`measure.vars`，`melt`函数会自动使用除`id.vars`的所有其他变量。反之亦然。
+如果你不设定 `measure.vars`，`melt` 函数会自动使用除 `id.vars` 的所有其他变量。反之亦然。
 
-如果你不指定`variable.name`，它会把那列命名为`"variable"`，如果你不使用`value.name`变量，它会将它命名为`"measurement"`。
+如果你不指定 `variable.name`，它会把那列命名为`"variable"`，如果你不使用 `value.name` 变量，它会将它命名为 `"measurement"`。
 
-备择：重命名变量列的因子水平。
+可选项：重命名变量列的因子水平。
 
 ```R
-# 重命名因子名
+# 重命名因子
 levels(data_long$condition)[levels(data_long$condition)=="cond1"] <- "first"
 levels(data_long$condition)[levels(data_long$condition)=="cond2"] <- "second"
 
-# 首先按subject排序，然后按condition排序
+# 首先按 subject 排序，然后按 condition 排序
 data_long <- data_long[ order(data_long$subject, data_long$condition), ]
 data_long
 #>    subject sex condition measurement
@@ -1774,7 +1744,7 @@ data_long
 
 ##### 从长格式到宽格式
 
-下面代码使用`dcast`函数重塑数据。这个函数用于数据框，如果你处理数组或矩阵，替换使用`acast`。
+下面代码使用 `dcast` 函数重塑数据。这个函数用于数据框，如果你处理数组或矩阵，替换使用 `acast`。
 
 ```R
 olddata_long
@@ -1793,12 +1763,9 @@ olddata_long
 #> 12       4   M     cond2        12.9
 
 # From the source:
-# "subject" and "sex" are columns we want to keep the same
-# "condition" is the column that contains the names of the new column to put things in
-# "measurement" holds the measurements
 # "subject" 和 "sex" 是我们想要保留的列
-# "condition"是我们想要放入新列名的列
-# "measurement"包含数值
+# "condition" 是我们想要放入新列名的列
+# "measurement" 包含数值
 
 library(reshape2)
 
@@ -1811,7 +1778,7 @@ data_wide
 #> 4       4   M  13.4  12.9    11.5
 ```
 
-备择：一些可以使数据看起来更nice的操作。
+可选项：一些可以使数据看起来更易读的操作。
 
 ```R
 # 重命名
@@ -1830,26 +1797,19 @@ data_wide
 
 因子水平的顺序决定了列的顺序。水平次序能够在重塑之前被改变（[changed](http://www.cookbook-r.com/Manipulating_data/Changing_the_order_of_levels_of_a_factor)），或者列也可以在之后重新排序（[re-ordered](http://www.cookbook-r.com/Manipulating_data/Reordering_the_columns_in_a_data_frame)）。
 
-
-
-
-## 归纳总结数据
+## 总结数据
 
 ### 问题
 
 你想要按照组别总结你的数据（均值、标准差等等）。
 
-
-
 ### 方案
 
 有三种方法描述基于一些特定变量的分组数据，然后对每一组使用总结函数（像均值、标准差等等）。
 
-- `ddply()`函数：它比较容易使用，但需要载入`plyr`包。这种方法可能就是你要找的（说明很多人用呗，好用呗）。
-- `summaryBy()`函数：它也比较容易使用，然而它需要载入`doBy`包。
-- `aggregate()`函数，它比较难使用一点但内置于R中。
-
-
+- `ddply()` 函数：它比较容易使用，但需要载入`plyr`包。这种方法可能就是你要找的。
+- `summaryBy()` 函数：它也比较容易使用，然而它需要载入 `doBy` 包。
+- `aggregate()` 函数，它比较难使用一点但内置于R中。
 
 假设你有以下数据并想求得每一组样本大小、均值的改变、标准差以及均值的标准误，而这里的组别是根据性别和条件指定的：**F-placebo**, **F-aspirin**, **M-placebo**和 **M-aspirin**。
 
@@ -1913,13 +1873,11 @@ cdata
 ```
 
 ##### 处理缺失值
-
-如果数据中存在NA值，需要给每个函数添加`na.rm=TRUE`标记去除缺失值。因为函数`length()`没有`na.rm`选项，所以可以使用`sum(!is.na(...))`的方式对非缺失值进行计数。
-
-
+ 
+如果数据中存在NA值，需要给每个函数添加 `na.rm=TRUE` 标记去除缺失值。因为函数 `length()` 没有 `na.rm` 选项，所以可以使用 `sum(!is.na(...))`的方式对非缺失值进行计数。
 
 ```R
-# 给数据加些NA值
+# 给数据加些 NA 值
 dataNA <- data
 dataNA$change[11:14] <- NA
 
@@ -1944,10 +1902,8 @@ cdata
 
 - 寻找均值、标准差和计数
 - 寻找均值的标准误（**强调，如果你处理的是被试内变量这可能不是你想要的，**，参见[../../Graphs/Plotting means and error bars (ggplot2)](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2))获取怎么绘制组内变量的误差棒信息。关于被试设计问题，可以[点击详细了解](http://www.xinli110.com/xueke/jczs/shiyanxinli/201203/283071.html)）
-- 寻找95%的置信区间（也可以指定其他值）
+- 寻找 95% 的置信区间（也可以指定其他值）
 - 重命令结果数据集的变量名，这样更方便后续处理
-
-
 
 要使用的话，把函数放你的代码中然后像下面一样调用它。
 
@@ -1997,7 +1953,7 @@ summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,
 
 ```
 
-举个例子使用它（用95%的置信区间）。与之前手动计算这些步骤相反，`summarySE`函数一步搞定：
+举个例子使用它（用95%的置信区间）。与之前手动计算这些步骤相比`summarySE`函数一步搞定：
 
 ```R
 summarySE(data, measurevar="change", groupvars=c("sex", "condition"))
@@ -2007,7 +1963,7 @@ summarySE(data, measurevar="change", groupvars=c("sex", "condition"))
 #> 3   M   aspirin  9 -5.411111 1.1307569 0.3769190 0.8691767
 #> 4   M   placebo  4 -0.975000 0.7804913 0.3902456 1.2419358
 
-# With a data set with NA's, use na.rm=TRUE
+# 使用 NA'的数据框, 使用 na.rm=TRUE
 summarySE(dataNA, measurevar="change", groupvars=c("sex", "condition"), na.rm=TRUE)
 #>   sex condition  N    change        sd        se        ci
 #> 1   F   aspirin  4 -3.425000 0.9979145 0.4989572 1.5879046
@@ -2019,7 +1975,7 @@ summarySE(dataNA, measurevar="change", groupvars=c("sex", "condition"), na.rm=TR
 
 ##### 用零填满空组合
 
-有时候总结的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有NA值的数据框时有用。要做到这一点，当调用`ddply`或`summarySE`时设置`.drop=FALSE`。（这里我翻译的不是很如意，大家可以查看原文）
+有时候总结的数据框中存在因子的空组合——意思是因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。要做到这一点，当调用`ddply` 或 `summarySE` 时设置 `.drop=FALSE`。
 
 例子：
 
@@ -2048,7 +2004,7 @@ summarySE(dataSub, measurevar="change", groupvars=c("sex", "condition"), .drop=F
 
 #### 使用summaryBy
 
-使用`summarizeBy()`函数瓦解数据：
+使用 `summarizeBy()` 函数瓦解数据：
 
 ```R
 library(doBy)
@@ -2063,10 +2019,10 @@ cdata
 #> 3   M   aspirin             9   -5.411111 1.1307569
 #> 4   M   placebo             4   -0.975000 0.7804913
 
-# Rename column change.length to just N
+# 重命名 change.length 为 N
 names(cdata)[names(cdata)=="change.length"] <- "N"
 
-# Calculate standard error of the mean
+# 计算平均值的标准误差
 cdata$change.se <- cdata$change.sd / sqrt(cdata$N)
 cdata
 #>   sex condition  N change.mean change.sd change.se
@@ -2077,20 +2033,20 @@ cdata
 
 ```
 
-**注意如果你有任何被试内变量，这些标准误值在比对组别差异时就没用了**。参见 [../../Graphs/Plotting means and error bars (ggplot2)](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)) 获取如何绘制被试内变量的误差棒。
+**注意如果你有任何被试间变量，这些标准误值在比对组别差异时就没用了**。参见 [../../Graphs/Plotting means and error bars (ggplot2)](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)) 获取如何绘制被试内变量的误差棒。
 
 ##### 处理缺失值
 
-如果数据中存在NA值，你需要添加`na.rm=TRUE`选项。通常你可以在`summaryBy()`函数中设置，但`length()`函数识别不了这个选项。一种解决方式是根据`length()`函数定义一个新的取长度函数去处理NA值。
+如果数据中存在 NA 值，你需要添加 `na.rm=TRUE` 选项。通常你可以在 `summaryBy()` 函数中设置，但 `length()` 函数识别不了这个选项。一种解决方式是根据 `length()` 函数定义一个新的取长度函数去处理NA值。
 
 ```R
-# 新版的length函数可以处理NA值，如果na.rm=T,则不对NA计数
+# 新版的 length 函数可以处理 NA 值，如果 na.rm=T,则不对 NA 计数
 length2 <- function (x, na.rm=FALSE) {
     if (na.rm) sum(!is.na(x))
     else       length(x)
 }
 
-# 给数据添加一些NA值
+# 给数据添加一些 NA 值
 dataNA <- data
 dataNA$change[11:14] <- NA
 
@@ -2117,8 +2073,6 @@ cdataNA
 - 寻找均值的标准误（**强调，如果你处理的是被试内变量这可能不是你想要的，**，参见[../../Graphs/Plotting means and error bars (ggplot2)](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2))获取怎么绘制组内变量的误差棒信息。关于被试设计问题，可以[点击详细了解](http://www.xinli110.com/xueke/jczs/shiyanxinli/201203/283071.html)）
 - 寻找95%的置信区间（也可以指定其他值）
 - 重命令结果数据集的变量名，这样更方便后续处理
-
-
 
 要使用的话，把函数放你的代码中然后像下面一样调用它。
 
@@ -2184,9 +2138,9 @@ summarySE(dataNA, measurevar="change", groupvars=c("sex","condition"), na.rm=TRU
 
 ##### 用零填满空组合
 
-有时候总结的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有NA值的数据框时有用。
+有时候总结的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。
 
-这个例子将会用0填满缺失的组合：
+这个例子将会用 0 填满缺失的组合：
 
 ```R
 fillMissingCombs <- function(df, factors, measures) {
@@ -2212,11 +2166,11 @@ fillMissingCombs <- function(df, factors, measures) {
 使用例子：
 
 ```
-# First remove some all Male+Placebo entries from the data
+# 首先移除所有 Male+Placebo 条目
 dataSub <- subset(data, !(sex=="M" & condition=="placebo"))
 
-# If we summarize the data, there will be a missing row for Male+Placebo,
-# since there were no cases with this combination.
+# 如果我们总结数据，在本来有 Male+Placebo 的地方会存在空行
+# 因为这个组合已经被我们删除了
 cdataSub <- summarySE(dataSub, measurevar="change", groupvars=c("sex", "condition"))
 cdataSub
 #>   sex condition  N    change        sd        se        ci
@@ -2224,7 +2178,7 @@ cdataSub
 #> 2   F   placebo 12 -2.058333 0.5247655 0.1514867 0.3334201
 #> 3   M   aspirin  9 -5.411111 1.1307569 0.3769190 0.8691767
 
-# This will fill in the missing combinations with zeros
+# 设置 .drop=FALSE 指定不要扔掉这个组合
 fillMissingCombs(cdataSub, factors=c("sex","condition"), measures=c("N","change","sd","se","ci"))
 #>   sex condition  N    change        sd        se        ci
 #> 1   F   aspirin  5 -3.420000 0.8642916 0.3865230 1.0731598
@@ -2236,7 +2190,7 @@ fillMissingCombs(cdataSub, factors=c("sex","condition"), measures=c("N","change"
 
 #### 使用 aggregate
 
-`aggregate`函数比较难用，但它内置于R，所以不需要按照其他包。
+`aggregate` 函数比较难用，但它内置于 R，所以不需要安装其他包。
 
 ```r
 # 对每个目录 (sex*condition) 中的对象计数
@@ -2278,7 +2232,7 @@ cdata.means
 #> 3   F   placebo 10.13333  8.075000 -2.058333
 #> 4   M   placebo 11.47500 10.500000 -0.975000
 
-# 融合数据框
+# 合并数据框
 cdata <- merge(cdata, cdata.means)
 cdata
 #>   sex condition  N   before     after    change
@@ -2299,7 +2253,7 @@ cdata.sd
 #> 3   F   placebo 0.5247655
 #> 4   M   placebo 0.7804913
 
-# 融合
+# 合并
 cdata <- merge(cdata, cdata.sd)
 cdata
 #>   sex condition  N   before     after    change change.sd
@@ -2319,7 +2273,7 @@ cdata
 
 ```
 
-如果你有NA值想要跳过，设置 `na.rm=TRUE`:
+如果你有 NA 值想要跳过，设置 `na.rm=TRUE`:
 
 ```R
 cdata.means <- aggregate(data[c("before","after","change")], 
@@ -2340,11 +2294,9 @@ cdata.means
 
 你想要在多种情况的一个数据框、每种情况类型计数的数据框以及一个列联表之间转换。
 
-
-
 ### 方案
 
-这里有3种数据结构代表相同的信息，但是是以不同的形式：
+这里有 3 种数据结构代表相同的信息，但是形式不同：
 
 - `cases`: 每一行代表一个情况的数据框
 - `ctable`: 一个**列联表**
@@ -2419,7 +2371,7 @@ table(cases$Sex, cases$Color, dnn=c("Sex","Color"))
 
 #### 将情况记录转为计数
 
-它可以用一个数据框代表每一种组合的计数。注意它被转换并存储在`countdf`变量中：
+它可以用一个数据框代表每一种组合的计数。注意它被转换并存储在 `countdf` 变量中：
 
 ```R
 # Cases to Counts
@@ -2446,7 +2398,7 @@ countsToCases(as.data.frame(ctable))
 
 ```
 
-注意countsToCases函数定义在下面（文章最后）。
+注意 countsToCases 函数定义在下面。
 
 #### 列联表转为计数
 
@@ -2516,7 +2468,7 @@ countsToCases <- function(x, countcol = "Freq") {
 
 ### 解决方案
 
-假设你的数据时带缺失值的噪声正弦波。
+假设你的数据是带缺失值的噪声正弦波。
 
 ```R
 set.seed(993)
@@ -2526,7 +2478,7 @@ y[251:255] <- NA
 
 ```
 
-`filter()`函数可以用来计算移动平均数。
+`filter()` 函数可以用来计算移动平均数。
 
 ```R
 # 绘制未平滑的数据（灰色）
@@ -2535,7 +2487,7 @@ plot(x, y, type="l", col=grey(.5))
 grid()
 
 # 延迟平滑
-# 当前样本和之前19个样本的平均数（红色）
+# 当前样本和之前 19 个样本的平均数（红色）
 f20 <- rep(1/20, 20)
 f20
 #>  [1] 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05
@@ -2558,7 +2510,7 @@ lines(x, y_sym, col="blue")
 
 ![plot of chunk unnamed-chunk-2](http://www.cookbook-r.com/Manipulating_data/Calculating_a_moving_average/figure/unnamed-chunk-2-1.png)
 
-`filter()`会在遭遇缺失值时留下空缺，就像上面图中显示的一样。 
+`filter()` 会在遭遇缺失值时留下空缺，就像上面图中显示的一样。 
 
 一种处理缺失值的方法是简单地忽略它，不把它包含在平均数的计算中。这个功能可以由下面的函数实现：
 
@@ -2646,8 +2598,6 @@ lines(x, y_sym_na.rm, col="green", lwd=2)
 
 你想要计算序列给定窗口长度的平均数。这是平滑数据的一种方式。
 
-
-
 ### 方案
 
 假设你有一个数值向量并且想要找出第一个连续四个数、第二个连续四个数等等如此的平均数。（就像用一个窗口在序列上移动，移动一次，计算一次）
@@ -2683,7 +2633,6 @@ colMeans(x, na.rm=TRUE)
 #> [1] 58.50 59.75 60.00 55.75 38.75 78.50
 ```
 
-
 ## 寻找唯一值序列
 
 ### 问题
@@ -2692,7 +2641,7 @@ colMeans(x, na.rm=TRUE)
 
 ### 方案
 
-你可以通过在向量里迭代寻找唯一值，但这样做在R里是很慢的。一个比较快的方案是通过`rle()`函数：
+你可以通过在向量里迭代寻找唯一值，但这样做在 R 里是很慢的。一个比较快的方案是通过 `rle()` 函数：
 
 ```R
 # 示例数据
@@ -2707,14 +2656,14 @@ vr
 #>   values : chr [1:7] "A" "B" NA NA "C" "B" "C"
 ```
 
-RLE编码的数据能够通过 `inverse.rle()`转换回到一个向量
+RLE 编码的数据能够通过 `inverse.rle()` 转换回到一个向量
 
 ```R
 inverse.rle(vr)
 #>  [1] "A" "A" "A" "B" "B" "B" "B" NA  NA  "C" "C" "B" "C" "C" "C"
 ```
 
-一个问题是每一个缺失值`NA`都会视为长度为1，即使`NA`是相邻的。可以通过用别的值替代`NA`来做到。对于数值变量，`Inf`或者别的数字都可使用；对于字符变量，任何字符串都能使用。当然，否则特殊值不能出现在向量中。
+一个问题是每一个缺失值 `NA` 都会视为长度为1，即使 `NA` 是相邻的，不过可以通过用别的值替代 `NA` 来做到。对于数值变量，`Inf` 或者别的数字都可使用；对于字符变量，任何字符串都能使用。当然，特殊值不得以其他方式出现在向量中。
 
 ```R
 w <- v
@@ -2741,9 +2690,9 @@ w2
 #>  [1] "A" "A" "A" "B" "B" "B" "B" NA  NA  "C" "C" "B" "C" "C" "C"
 ```
 
-### 向量上运行
+### 处理因子
 
-虽然因子基本上只是带有一些关于级别信息的整数向量，但是`rle() `函数不能处理因子。解决方案是手动将因子转换为整数向量或字符向量。使用整数向量速度快，内存效率高，这对于大型数据集可能很重要，但是很难解释。使用字符向量比较慢，需要更多的内存，但是更容易解释。
+虽然因子基本上只是带有一些关于级别信息的整数向量，但是 `rle()` 函数不能处理因子。解决方案是手动将因子转换为整数向量或字符向量。使用整数向量速度快，内存效率高，这对于大型数据集可能很重要，但是很难理解。使用字符向量比较慢，需要更多的内存，但是更容易理解。
 
 ```R
 # 假设这是我们要处理的向量
@@ -2770,7 +2719,7 @@ fr
 #>   lengths: int [1:6] 3 4 2 2 1 3
 #>   values : chr [1:6] "A" "B" "ZZZ" "C" "B" "C"
 
-# 在RLE编码数据中用NA代替ZZZ
+# 在RLE编码数据中用 NA 代替 ZZZ
 fr$values[ fr$values=="ZZZ" ] <- NA
 fr
 #> Run Length Encoding
@@ -2784,15 +2733,15 @@ f2
 #>  [1] A    A    A    B    B    B    B    <NA> <NA> C    C    B    C    C    C   
 #> Levels: A B C
 ```
-## 用最后的非NA值填充NA值
+## 用最后一个非 NA 值填充 NA
 
 ### 问题
 
-你想要将非NA值代替向量或者因子中的NA值
+你想要将非 NA 值代替向量或者因子中的 NA 值
 
 ### 方案
 
-这段代码展示了如何填充向量中的空白。如果需要重复执行此操作，请参阅下面的函数。该函数还可以用第一个确定的值填充领头`NA`，并正确处理因子。
+这段代码展示了如何填充向量中的空白。如果需要重复执行此操作，请参阅下面的函数。该函数还可以用第一个确定的值填充第一个即为`NA`的情况，并正确处理因子。
 
 ```
 # 示例数据
@@ -2819,14 +2768,14 @@ fillIdx
 #>  [1] NA  NA  "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "A" "A" "B" "B" "B"
 ```
 
-#### 填充空隙的函数
+#### 填充 NA 的函数
 
-此函数执行与上面代码相同的操作。它还可以用第一个良好的值填充领头`NA`，并正确处理因子。
+此函数执行与上面代码相同的操作。它还可以用第一个良好的值填充第一个就是`NA`的情况，并正确处理因子。
 
 ```R
 fillNAgaps <- function(x, firstBack=FALSE) {
-    ## 向量或因子中的NA被之前一个非NA值代替
-    ## 如果firstBack为TRUE，将会对领头的NA填充第一个非NA值，否则不会
+    ## 向量或因子中的 NA 被之前一个非 NA 值代替
+    ## 如果 firstBack 为 TRUE，将会对领头的 NA 填充第一个非 NA 值，否则不会
     # 如果是一个因子，保存因子的水平，并转换为整数
     lvls <- NULL
     if (is.factor(x)) {
@@ -2865,7 +2814,7 @@ x
 fillNAgaps(x)
 #>  [1] NA  NA  "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "A" "A" "B" "B" "B"
 
-# 对领头的NA以第一个非NA值进行填充
+# 对领头的 NA 以第一个非 NA 值进行填充
 fillNAgaps(x, firstBack=TRUE)
 #>  [1] "A" "A" "A" "A" "B" "B" "B" "B" "B" "C" "C" "C" "C" "A" "A" "B" "B" "B"
 
