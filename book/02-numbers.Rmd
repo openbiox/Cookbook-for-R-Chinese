@@ -1,7 +1,5 @@
 # 数字
 
-> 本章翻译：XXX 校对：思考问题的熊
-
 ## 生成随机数
 
 ### 问题
@@ -57,7 +55,7 @@ hist(x)
 
 如果你想要生成随机数的结果可重复，参看[../Generating repeatable sequences of random numbers](http://www.cookbook-r.com/Numbers/Generating_repeatable_sequences_of_random_numbers)。
 
-## 生成可重复的随机序列
+## 生成可重复的随机序列 
 
 ### 问题
 
