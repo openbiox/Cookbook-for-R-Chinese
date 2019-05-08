@@ -236,14 +236,12 @@ options(error=recover)
 
 该 ```system.time()``` 函数将测量在R中运行某些东西所需的时间。
 
-```R
+```{r}
 system.time({
     # Do something that takes time
     x <- 1:100000
     for (i in seq_along(x))  x[i] <- x[i]+1
 })
-#>    user  system elapsed 
-#>   0.144   0.002   0.153
 ```
 
 输出意味着运行代码块需要 0.153 秒。

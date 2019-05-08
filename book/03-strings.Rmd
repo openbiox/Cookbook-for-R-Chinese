@@ -68,23 +68,19 @@
 
 #### 使用 paste()
 
-```R
+```{r}
 a <- "apple"
 b <- "banana"
 
 # 将a,b变量内容连到一起，并用空格隔开
 paste(a, b)
-#> [1] "apple banana"
 
 # 如果不想要空格，可以设定参数 sep="", 或使用函数 paste0():
 paste(a, b, sep="")
-#> [1] "applebanana"
 paste0(a, b)
-#> [1] "applebanana"
 
 # 用逗号加空格分开:
 paste(a, b, sep=", ")
-#> [1] "apple, banana"
 
 
 # 设定一个字符向量
@@ -92,16 +88,13 @@ d <- c("fig", "grapefruit", "honeydew")
 
 # 如果输入是一个向量，输出会将其每个元素堆叠到一起：
 paste(d, collapse=", ")
-#> [1] "fig, grapefruit, honeydew"
 
 # 如果输入是一个标量和一个向量， 结果会将标量与向量里每个元素放到一起
 # 并返回一个向量（译者注：R向量化操作的循环对齐原则）：
 paste(a, d)
-#> [1] "apple fig"        "apple grapefruit" "apple honeydew"
 
 # 使用 sep 和 collapse 参数:
 paste(a, d, sep="-", collapse=", ")
-#> [1] "apple-fig, apple-grapefruit, apple-honeydew"
 ```
 
 #### 使用 sprintf()
@@ -110,26 +103,22 @@ paste(a, d, sep="-", collapse=", ")
 
 想要在字符串或字符变量中进行取代操作，使用 `%s`：
 
-```R
+```{r}
 a <- "string"
 sprintf("This is where a %s goes.", a)
-#> [1] "This is where a string goes."
 ```
 
 如果是整数，可以使用 `%d` 或它的变体：
 
-```R
+```{r}
 x <- 8
 sprintf("Regular:%d", x)
-#> [1] "Regular:8"
 
 # 可以以空格开头，替代一定数量字符。
 sprintf("Leading spaces:%4d", x)
-#> [1] "Leading spaces:   8"
 
 # 也可以使用 0 替代一定数量字符。
 sprintf("Leading zeros:%04d", x)
-#> [1] "Leading zeros:0008"
 ```
 
 对浮点数而言，使用 `%f` 进行标准释义，而 `%e` 或者 `%E` 则代表指数。你也可以使用 `%g` 或者 `%G` 让程序自动根据有效位数进行两种格式的转换。下面是 R  help 页面中关于 sprintf 的例子：
@@ -143,7 +132,7 @@ sprintf("%05.1f", pi)     # "003.1"
 sprintf("%+f", pi)        # "+3.141593"
 sprintf("% f", pi)        # " 3.141593"
 sprintf("%-10f", pi)      # "3.141593  "   (左对齐)
-sprintf("%e", pi)         #"3.141593e+00"
+sprintf("%e", pi)         # "3.141593e+00"
 sprintf("%E", pi)         # "3.141593E+00"
 sprintf("%g", pi)         # "3.14159"
 sprintf("%g",   1e6 * pi) # "3.14159e+06"  (指数化)
@@ -155,14 +144,12 @@ sprintf("%G", 1e-6 * pi)  # "3.14159E-06"
 
 其他混合操作：
 
-```R
+```{r}
 x <- "string"
 sprintf("Substitute in multiple strings: %s %s", x, "string2")
-#> [1] "Substitute in multiple strings: string string2"
 
 # 想要打印百分号，可以使用 "%%"
 sprintf("A single percent sign here %%")
-#> [1] "A single percent sign here %"
 ```
 
 #### 注意
