@@ -64,7 +64,7 @@ data[stringcols] <- lapply(data[stringcols], as.character)
 
 也可以从 URL 加载数据。这些(很长的) URL 可以加载相关文件。
 
-```R
+```{r}
 data <- read.csv("http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv")
 
 
@@ -79,7 +79,7 @@ names(data) <- c("First","Last","Sex","Number")
 
 [datafile.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv)：
 
-```R
+```
 "First","Last","Sex","Number"
 "Currer","Bell","F",2
 "Dr.","Seuss","M",49
@@ -88,7 +88,7 @@ names(data) <- c("First","Last","Sex","Number")
 
 [datafile-noheader.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv):
 
-```R
+```
 "Currer","Bell","F",2
 "Dr.","Seuss","M",49
 "","Student",NA,21
@@ -98,7 +98,7 @@ names(data) <- c("First","Last","Sex","Number")
 
 假如你的数据列宽固定，如下例：
 
-```R
+```
   First     Last  Sex Number
  Currer     Bell    F      2
     Dr.    Seuss    M     49
@@ -113,7 +113,7 @@ read.table("clipboard", header=TRUE, strip.white=TRUE)
 
 然而，数据文件里的某些列可能含有空格，也可能不包含空格。比如说下面的数据里，`scores` 列表示六个不同的测量值，每一个从 0 到 3 。
 
-```R
+```
 subject  sex  scores
    N  1    M  113311
    NE 2    F  112231
@@ -183,7 +183,7 @@ data <- read.spss("data.sav", to.data.frame=TRUE)
 
 假如你的数据如下：
 
-```R
+```
 size weight cost
   small      5    6
  medium      8   10
@@ -217,7 +217,7 @@ data <- read.table('clipboard', header=TRUE)
 
 前面的方法不能用来加载脚本文件中的数据，因为输入（通过键入或粘贴)必须发生在运行该命令之后。
 
-```R
+```{r}
 # 使用 read.table()
 data <- read.table(header=TRUE, text='
     size weight cost
@@ -300,7 +300,7 @@ source('analyze.r')
 
 请注意，如果你想让你的脚本生成文本输出，你必须使用 `print()` 或 `cat()` 函数。
 
-```R
+```{r}
 x <- 1:10
 
 # 这在脚本中，不会启动任何命令
@@ -308,12 +308,10 @@ x
 
 # 使用print()函数:
 print(x)
-#> [1]  1  2  3  4  5  6  7  8  9 10
-
 
 # 更简单的输出: 没有行/列，没有文本
 cat(x)
-#> 1  2  3  4  5  6  7  8  9 10
+
 ```
 
 另一种代替方法是：运行 `source()` 并加上 `print.eval=TRUE` 选项。
@@ -332,7 +330,7 @@ cat(x)
 
 最简单的方式是用 `write.csv()` 。默认情况下，`write.csv()` 包含行名，但是这通常没必要，而且可能会导致混乱。
 
-```R
+```{r}
 # 一个简单的例子
 data <- read.table(header=TRUE, text='
  subject sex size
@@ -439,7 +437,7 @@ sink()
 
 输出文件的内容：
 
-```R
+```
 x has 10 elements:
  [1] 10.585529 10.709466  9.890697  9.546503 10.605887  8.182044 10.630099  9.723816
  [9]  9.715840  9.080678
