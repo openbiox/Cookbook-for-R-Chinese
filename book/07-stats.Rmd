@@ -10,7 +10,7 @@
 
 要处理的一些样例数据：
 
-```R
+```{r}
 # 制造一些数据
 # X 增加（大的干扰噪声）
 # Z 缓慢增加
@@ -24,84 +24,40 @@ yvar <- -2*xvar + xvar*zvar/5 + 3 + rnorm(20,sd=4)
 dat <- data.frame(x=xvar, y=yvar, z=zvar)
 # 展示前 6 行
 head(dat)
-#>           x           y           z
-#> 1 -4.252354   4.5857688  1.89877152
-#> 2  1.702318  -4.9027824 -0.82937359
-#> 3  4.323054  -4.3076433 -1.31283495
-#> 4  1.780628   0.2050367 -0.28479448
-#> 5 11.537348 -29.7670502 -1.27303976
-#> 6  6.672130 -10.1458220 -0.09459239
-
 ```
 
 #### 相关系数
 
-```R
+```{r}
 # 相关系数 - 默认使用 pearson 方法
 cor(dat$x, dat$y)
-#> [1] -0.7695378
-
 ```
 
 #### 相关矩阵（多个变量）
 
 同时可以对多个变量进行两两相关性分析，结果是一个 n*n 的平方矩阵或是数据框。
 
-```R
+```{r}
 # 变量之间的相关矩阵
 cor(dat)
-#>            x            y           z
-#> x  1.0000000 -0.769537849 0.491698938
-#> y -0.7695378  1.000000000 0.004172295
-#> z  0.4916989  0.004172295 1.000000000
 
-# Print with only two decimal places
+# 保留两位小数点
 round(cor(dat), 2)
-#>       x     y    z
-#> x  1.00 -0.77 0.49
-#> y -0.77  1.00 0.00
-#> z  0.49  0.00 1.00
 ```
 
 #### 线性回归
 
 线性回归，当 `dat$x` 是预测变量时，`dat$y` 为响应变量。这可以使用一个数据框的两列，或者是直接使用数值向量。
 
-```R
+```{r}
 # 下面两个命令会显示一样的结果
 fit <- lm(y ~ x, data=dat)  # 使用数据框的 x 列和 y 列
 fit <- lm(dat$y ~ dat$x)     # 使用 dat$x 和 dat$y 进行拟合
 fit
-#> 
-#> Call:
-#> lm(formula = dat$y ~ dat$x)
-#> 
-#> Coefficients:
-#> (Intercept)        dat$x  
-#>     -0.2278      -1.1829
 
 # 这说明预测 y = -0.2278 - 1.1829*x
-
 # 获取更详细的信息
 summary(fit)
-#> 
-#> Call:
-#> lm(formula = dat$y ~ dat$x)
-#> 
-#> Residuals:
-#>      Min       1Q   Median       3Q      Max 
-#> -15.8922  -2.5114   0.2866   4.4646   9.3285 
-#> 
-#> Coefficients:
-#>             Estimate Std. Error t value Pr(>|t|)    
-#> (Intercept)  -0.2278     2.6323  -0.087    0.932    
-#> dat$x        -1.1829     0.2314  -5.113 7.28e-05 ***
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#> 
-#> Residual standard error: 6.506 on 18 degrees of freedom
-#> Multiple R-squared:  0.5922,	Adjusted R-squared:  0.5695 
-#> F-statistic: 26.14 on 1 and 18 DF,  p-value: 7.282e-05
 ```
 
 #### 多个预测变量的线性回归（多元线性回归）
@@ -110,39 +66,13 @@ summary(fit)
 
 注意下面的公式没有检测 `x` 与 `z` 之间的交互效应。
 
-```R
+```{r}
 # 这些都有相同的结果
 fit2 <- lm(y ~ x + z, data=dat)    # 使用数据框的 x,y,z 列
 fit2 <- lm(dat$y ~ dat$x + dat$z)  # 使用向量
 fit2
-#> 
-#> Call:
-#> lm(formula = dat$y ~ dat$x + dat$z)
-#> 
-#> Coefficients:
-#> (Intercept)        dat$x        dat$z  
-#>      -1.382       -1.564        1.858
 
 summary(fit2)
-#> 
-#> Call:
-#> lm(formula = dat$y ~ dat$x + dat$z)
-#> 
-#> Residuals:
-#>    Min     1Q Median     3Q    Max 
-#> -7.974 -3.187 -1.205  3.847  7.524 
-#> 
-#> Coefficients:
-#>             Estimate Std. Error t value Pr(>|t|)    
-#> (Intercept)  -1.3816     1.9878  -0.695  0.49644    
-#> dat$x        -1.5642     0.1984  -7.883 4.46e-07 ***
-#> dat$z         1.8578     0.4753   3.908  0.00113 ** 
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#> 
-#> Residual standard error: 4.859 on 17 degrees of freedom
-#> Multiple R-squared:  0.7852,	Adjusted R-squared:  0.7599 
-#> F-statistic: 31.07 on 2 and 17 DF,  p-value: 2.1e-06
 ```
 
 ##### 交互效应
@@ -151,40 +81,13 @@ summary(fit2)
 
 想要构建 `x` 与 `z` 之间的交互效应模型，需要添加 `x:z` 项。我们也可以使用公式 `x*z` 来代表 `x+z+x:z` 。
 
-```R
+```{r}
 # 下面两个公式等效
-fit3 <- lm(y ~ x * z, data=dat) 
-fit3 <- lm(y ~ x + z + x:z, data=dat) 
+fit3 <- lm(y ~ x * z, data=dat)
+fit3 <- lm(y ~ x + z + x:z, data=dat)
 fit3
-#> 
-#> Call:
-#> lm(formula = y ~ x + z + x:z, data = dat)
-#> 
-#> Coefficients:
-#> (Intercept)            x            z          x:z  
-#>      2.2820      -2.1311      -0.1068       0.2081
 
 summary(fit3)
-#> 
-#> Call:
-#> lm(formula = y ~ x + z + x:z, data = dat)
-#> 
-#> Residuals:
-#>     Min      1Q  Median      3Q     Max 
-#> -5.3045 -3.5998  0.3926  2.1376  8.3957 
-#> 
-#> Coefficients:
-#>             Estimate Std. Error t value Pr(>|t|)    
-#> (Intercept)  2.28204    2.20064   1.037   0.3152    
-#> x           -2.13110    0.27406  -7.776    8e-07 ***
-#> z           -0.10682    0.84820  -0.126   0.9013    
-#> x:z          0.20814    0.07874   2.643   0.0177 *  
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#> 
-#> Residual standard error: 4.178 on 16 degrees of freedom
-#> Multiple R-squared:  0.8505,	Adjusted R-squared:  0.8225 
-#> F-statistic: 30.34 on 3 and 16 DF,  p-value: 7.759e-07
 ```
 
 ## t 检验
@@ -199,51 +102,20 @@ summary(fit3)
 
 我们将使用内置的 `sleep` 数据集。
 
-```R
+```{r}
 sleep
-#>    extra group ID
-#> 1    0.7     1  1
-#> 2   -1.6     1  2
-#> 3   -0.2     1  3
-#> 4   -1.2     1  4
-#> 5   -0.1     1  5
-#> 6    3.4     1  6
-#> 7    3.7     1  7
-#> 8    0.8     1  8
-#> 9    0.0     1  9
-#> 10   2.0     1 10
-#> 11   1.9     2  1
-#> 12   0.8     2  2
-#> 13   1.1     2  3
-#> 14   0.1     2  4
-#> 15  -0.1     2  5
-#> 16   4.4     2  6
-#> 17   5.5     2  7
-#> 18   1.6     2  8
-#> 19   4.6     2  9
-#> 20   3.4     2 10
+
 ```
 
 我们将制造 `sleep` 数据的宽格式版本；下面我们将看看如何处理长格式和宽格式的数据。
 
-```R
+```{r}
 sleep_wide <- data.frame(
     ID=1:10,
     group1=sleep$extra[1:10],
     group2=sleep$extra[11:20]
 )
 sleep_wide
-#>    ID group1 group2
-#> 1   1    0.7    1.9
-#> 2   2   -1.6    0.8
-#> 3   3   -0.2    1.1
-#> 4   4   -1.2    0.1
-#> 5   5   -0.1   -0.1
-#> 6   6    3.4    4.4
-#> 7   7    3.7    5.5
-#> 8   8    0.8    1.6
-#> 9   9    0.0    4.6
-#> 10 10    2.0    3.4
 ```
 
 #### 比较两组：独立双样本t检验
@@ -252,44 +124,22 @@ sleep_wide
 
 `t.test` 函数能够操作像 `sleep` 这样的长格式数据——一列记录测量值，一列指定组别；或者操作两个单独的向量。
 
-```R
-# Welch t-test 
+```{r}
+# Welch t-test
 t.test(extra ~ group, sleep)
-#> 
-#>  Welch Two Sample t-test
-#> 
-#> data:  extra by group
-#> t = -1.8608, df = 17.776, p-value = 0.07939
-#> alternative hypothesis: true difference in means is not equal to 0
-#> 95 percent confidence interval:
-#>  -3.3654832  0.2054832
-#> sample estimates:
-#> mean in group 1 mean in group 2 
-#>            0.75            2.33
 
 # Same for wide data (two separate vectors)
-# t.test(sleep_wide$group1, sleep_wide$group2)
+t.test(sleep_wide$group1, sleep_wide$group2)
 ```
 
 默认，`t.test` 不假设有方差齐性（或称作方差同质）。默认的不是 Student t 检验而是使用了 Welch t 检验。注意 Welch t 检验结果中 df=17.776，这是因为对不同质方差进行了校正。要使用 Student t 检验的话，设置 `var.equal=TRUE` 。
 
-```R
+```{r}
 # Student t-test
 t.test(extra ~ group, sleep, var.equal=TRUE)
-#> 
-#>  Two Sample t-test
-#> 
-#> data:  extra by group
-#> t = -1.8608, df = 18, p-value = 0.07919
-#> alternative hypothesis: true difference in means is not equal to 0
-#> 95 percent confidence interval:
-#>  -3.363874  0.203874
-#> sample estimates:
-#> mean in group 1 mean in group 2 
-#>            0.75            2.33
 
 # Same for wide data (two separate vectors)
-# t.test(sleep_wide$group1, sleep_wide$group2, var.equal=TRUE)
+t.test(sleep_wide$group1, sleep_wide$group2, var.equal=TRUE)
 ```
 
 #### 配对样本t检验
@@ -298,52 +148,29 @@ t.test(extra ~ group, sleep, var.equal=TRUE)
 
 再次说明，`t-test` 函数可以用于有分组变量的数据框或者两个向量。它依赖相对位置来决定配对。如果你使用有分组变量的长格式数据，group = 1 的第一行与group = 2 的第一行配对。确保数据排序好并且不存在缺失值是非常重要的；否则配对可以丢弃。这种情况中，我们能通过 `group` 和 `ID` 变量进行排序来确保顺序是一样的。
 
-```R
+```{r}
 # Sort by group then ID
 sleep <- sleep[order(sleep$group, sleep$ID), ]
 
 # Paired t-test
 t.test(extra ~ group, sleep, paired=TRUE)
-#> 
-#>  Paired t-test
-#> 
-#> data:  extra by group
-#> t = -4.0621, df = 9, p-value = 0.002833
-#> alternative hypothesis: true difference in means is not equal to 0
-#> 95 percent confidence interval:
-#>  -2.4598858 -0.7001142
-#> sample estimates:
-#> mean of the differences 
-#>                   -1.58
 
 # Same for wide data (two separate vectors)
-# t.test(sleep.wide$group1, sleep.wide$group2, paired=TRUE)
+t.test(sleep_wide$group1, sleep_wide$group2, paired=TRUE)
 ```
 
 配对 t 检验等价于检测是否配对的观察值的总体均值是否为 0 。
 
-```R
-t.test(sleep.wide$group1 - sleep.wide$group2, mu=0, var.equal=TRUE)
-#> Error in t.test(sleep.wide$group1 - sleep.wide$group2, mu = 0, var.equal = TRUE): object 'sleep.wide' not found
+```{r}
+t.test(sleep_wide$group1 - sleep_wide$group2, mu=0, var.equal=TRUE)
 ```
 
 #### 与期望的总体均值进行比较：单样本 t 检验
 
 假设你想要检测是否 `extra` 列的数据抽取自总体均值为0的总体。（这里忽略 `group` 与 `ID` 列）
 
-```R
+```{r}
 t.test(sleep$extra, mu=0)
-#> 
-#>  One Sample t-test
-#> 
-#> data:  sleep$extra
-#> t = 3.413, df = 19, p-value = 0.002918
-#> alternative hypothesis: true mean is not equal to 0
-#> 95 percent confidence interval:
-#>  0.5955845 2.4844155
-#> sample estimates:
-#> mean of x 
-#>      1.54
 ```
 
 ## 频率检验
@@ -374,7 +201,7 @@ t.test(sleep$extra, mu=0)
 
 假设你有下面的数据，其中每一行代表一个记录：
 
-```R
+```{r}
 data <- read.table(header=TRUE, text='
  condition result
    control      0
@@ -418,151 +245,68 @@ data <- read.table(header=TRUE, text='
 
 想要检验假设：结果列 result（忽略条件 condition ）中的两个值在总体中几乎相等（50% - 50%）。
 
-```R
+```{r}
 #　为result列创建列联表，包含 0 和 1 两个值
 #　注意 「0」 和 「1」 是列名而不是实际的值
 ct <- table(data$result)
 ct
-#> 
-#>  0  1 
-#> 17 13
 
 # 也可以手动创建表格
-#ct <- matrix(c(17,13), ncol=2)
-#colnames(ct1) <- c("0", "1")
+ct <- matrix(c(17,13), ncol=2)
+colnames(ct) <- c("0", "1")
 
 # 执行卡方检验
 chisq.test(ct)
-#> 
-#> 	Chi-squared test for given probabilities
-#> 
-#> data:  ct
-#> X-squared = 0.53333, df = 1, p-value = 0.4652
 ```
 
 想要检验有不同期望频率的样本（比如下面一个 0.75，一个 0.25 ）：
 
-```R
+```{r}
 # 概率表 —— 和必须为 1
 pt <- c(.75, .25)
 chisq.test(ct, p=pt)
-#> 
-#> 	Chi-squared test for given probabilities
-#> 
-#> data:  ct
-#> X-squared = 5.3778, df = 1, p-value = 0.02039
 ```
 
 如果你想要从检验结果中提取信息，可以将结果保存进一个变量，然后用 `str()` 函数查看变量信息，接着把你想要的部分取出来。例如：
 
-```R
+```{r}
 chi_res <- chisq.test(ct, p=pt)
-# View all the parts that can be extracted
+# 查看所有组分
 str(chi_res)
-#> List of 9
-#>  $ statistic: Named num 5.38
-#>   ..- attr(*, "names")= chr "X-squared"
-#>  $ parameter: Named num 1
-#>   ..- attr(*, "names")= chr "df"
-#>  $ p.value  : num 0.0204
-#>  $ method   : chr "Chi-squared test for given probabilities"
-#>  $ data.name: chr "ct"
-#>  $ observed : 'table' int [1:2(1d)] 17 13
-#>   ..- attr(*, "dimnames")=List of 1
-#>   .. ..$ : chr [1:2] "0" "1"
-#>  $ expected : Named num [1:2] 22.5 7.5
-#>   ..- attr(*, "names")= chr [1:2] "0" "1"
-#>  $ residuals: table [1:2(1d)] -1.16 2.01
-#>   ..- attr(*, "dimnames")=List of 1
-#>   .. ..$ : chr [1:2] "0" "1"
-#>  $ stdres   : table [1:2(1d)] -2.32 2.32
-#>   ..- attr(*, "dimnames")=List of 1
-#>   .. ..$ : chr [1:2] "0" "1"
-#>  - attr(*, "class")= chr "htest"
 
 # 获取卡方值
 chi_res$statistic
-#> X-squared 
-#>  5.377778
 
 # 获取p值
 chi_res$p.value
-#> [1] 0.02039484
 ```
 
 ##### 精确二项检验
 
 精确二项检验仅能用于存在两个值的单变量数据。
 
-```R
+```{r}
 ct <- table(data$result)
 ct
-#> 
-#>  0  1 
-#> 17 13
 
 binom.test(ct, p=0.5)
-#> 
-#> 	Exact binomial test
-#> 
-#> data:  ct
-#> number of successes = 17, number of trials = 30, p-value = 0.5847
-#> alternative hypothesis: true probability of success is not equal to 0.5
-#> 95 percent confidence interval:
-#>  0.3742735 0.7453925
-#> sample estimates:
-#> probability of success 
-#>              0.5666667
 
 # 使用 75% 的期望概率——注意 1 在第二列，所以只需要令 p = 0.25
 binom.test(ct, p=0.25)
-#> 
-#> 	Exact binomial test
-#> 
-#> data:  ct
-#> number of successes = 17, number of trials = 30, p-value = 0.0002157
-#> alternative hypothesis: true probability of success is not equal to 0.25
-#> 95 percent confidence interval:
-#>  0.3742735 0.7453925
-#> sample estimates:
-#> probability of success 
-#>              0.5666667
 ```
 
 如果你想要从检验结果中提取信息，可以将结果保存进一个变量，然后用 `str()` 函数查看变量信息，接着把你想要的部分取出来。例如：
 
-```R
+```{r}
 bin_res <- binom.test(ct, p=0.25)
-# View all the parts that can be extracted
+# 字符串格式化后查看信息
 str(bin_res)
-#> List of 9
-#>  $ statistic  : Named num 17
-#>   ..- attr(*, "names")= chr "number of successes"
-#>  $ parameter  : Named num 30
-#>   ..- attr(*, "names")= chr "number of trials"
-#>  $ p.value    : Named num 0.000216
-#>   ..- attr(*, "names")= chr "0"
-#>  $ conf.int   : atomic [1:2] 0.374 0.745
-#>   ..- attr(*, "conf.level")= num 0.95
-#>  $ estimate   : Named num 0.567
-#>   ..- attr(*, "names")= chr "probability of success"
-#>  $ null.value : Named num 0.25
-#>   ..- attr(*, "names")= chr "probability of success"
-#>  $ alternative: chr "two.sided"
-#>  $ method     : chr "Exact binomial test"
-#>  $ data.name  : chr "ct"
-#>  - attr(*, "class")= chr "htest"
 
 # 获取 p 值
 bin_res$p.value
-#>            0 
-#> 0.0002156938
 
 # 获取 95% 置信区间
 bin_res$conf.int
-#> [1] 0.3742735 0.7453925
-#> attr(,"conf.level")
-#> [1] 0.95
 ```
 
 #### 独立检验（比较组间）
@@ -571,53 +315,24 @@ bin_res$conf.int
 
 想要检验控制和处理组结果的频数差异，使用二维列联表。
 
-```R
+```{r}
 ct <- table(data$condition, data$result)
 ct
-#>            
-#>              0  1
-#>   control   11  3
-#>   treatment  6 10
 
 chisq.test(ct)
-#> 
-#> 	Pearson's Chi-squared test with Yates' continuity correction
-#> 
-#> data:  ct
-#> X-squared = 3.593, df = 1, p-value = 0.05802
 
 chisq.test(ct, correct=FALSE)
-#> 
-#> 	Pearson's Chi-squared test
-#> 
-#> data:  ct
-#> X-squared = 5.1293, df = 1, p-value = 0.02353
 ```
 
 ##### Fisher 精确检验
 
 对于小样本而言 Fisher 精确检验更为适合。小样本的 2x2 列表非常典型，样本更多、更复杂的列表计算强度非常大。当然，用R进行比较复杂的计算也是没有太大问题的。
 
-```R
+```{r}
 ct <- table(data$condition, data$result)
 ct
-#>            
-#>              0  1
-#>   control   11  3
-#>   treatment  6 10
 
 fisher.test(ct)
-#> 
-#> 	Fisher's Exact Test for Count Data
-#> 
-#> data:  ct
-#> p-value = 0.03293
-#> alternative hypothesis: true odds ratio is not equal to 1
-#> 95 percent confidence interval:
-#>   0.966861 45.555016
-#> sample estimates:
-#> odds ratio 
-#>   5.714369
 ```
 
 ##### Cochran-Mantel-Haenszel test
@@ -628,7 +343,7 @@ R 中的 CMH 检验可以处理比 2x2xK 维度更高的数据，例如你处理
 
 在接下来的例子里有三个变量：Location，Allele 和 Habitat。问题是——当控制 location 变量时，Allel（94 或非 94）和 Habitat（marine 或 estuarine）两个变量是否独立。
 
-```R
+```{r}
 fish <- read.table(header=TRUE, text='
   Location Allele   Habitat Count
  tillamook     94    marine    56
@@ -652,138 +367,45 @@ fish <- read.table(header=TRUE, text='
 
 注意上面的数据是**计数**的数据框，而不是像之前的例子是**记录**的数据框。这里我们使用 `xtabs()` 函数将它转换为列联表。
 
-```R
+```{r}
 # 制造一个三维的列联表，最后一个变量时要控制的 Location 变量
 ct <- xtabs(Count ~ Allele + Habitat + Location, data=fish)
 ct
-#> , , Location = alsea
-#> 
-#>         Habitat
-#> Allele   estuarine marine
-#>   94            65     73
-#>   non-94        79     71
-#> 
-#> , , Location = tillamook
-#> 
-#>         Habitat
-#> Allele   estuarine marine
-#>   94            69     56
-#>   non-94        77     40
-#> 
-#> , , Location = umpqua
-#> 
-#>         Habitat
-#> Allele   estuarine marine
-#>   94            48     71
-#>   non-94        48     55
-#> 
-#> , , Location = yaquina
-#> 
-#>         Habitat
-#> Allele   estuarine marine
-#>   94           257     61
-#>   non-94       301     57
 
-# This prints ct in a "flat" format
+# 以扁平化显示
 ftable(ct)
-#>                  Location alsea tillamook umpqua yaquina
-#> Allele Habitat                                          
-#> 94     estuarine             65        69     48     257
-#>        marine                73        56     71      61
-#> non-94 estuarine             79        77     48     301
-#>        marine                71        40     55      57
 
 # 按指定方式进行变量输出
 ftable(ct, row.vars=c("Location","Allele"), col.vars="Habitat")
-#>                  Habitat estuarine marine
-#> Location  Allele                         
-#> alsea     94                    65     73
-#>           non-94                79     71
-#> tillamook 94                    69     56
-#>           non-94                77     40
-#> umpqua    94                    48     71
-#>           non-94                48     55
-#> yaquina   94                   257     61
-#>           non-94               301     57
 
 mantelhaen.test(ct)
-#> 
-#> 	Mantel-Haenszel chi-squared test with continuity correction
-#> 
-#> data:  ct
-#> Mantel-Haenszel X-squared = 5.0497, df = 1, p-value = 0.02463
-#> alternative hypothesis: true common odds ratio is not equal to 1
-#> 95 percent confidence interval:
-#>  0.6005522 0.9593077
-#> sample estimates:
-#> common odds ratio 
-#>          0.759022
 ```
 
 根据检验结果，当控制 Location 变量时 Allele 与 Habitat 变量存在相关（p = 0.025）。
 
 注意列联表的前两个维度处理是一致的，所以前后顺序变化都不会影响结果。而最后一个变量变化会导致结果的不同，下面是一个实例。
 
-```R
+```{r}
 # 下面两个看似不同的列联表，实际检验结果相同
 ct.1 <- xtabs(Count ~ Habitat + Allele + Location, data=fish)
 ct.2 <- xtabs(Count ~ Allele + Habitat + Location, data=fish)
 mantelhaen.test(ct.1)
-#> 
-#> 	Mantel-Haenszel chi-squared test with continuity correction
-#> 
-#> data:  ct.1
-#> Mantel-Haenszel X-squared = 5.0497, df = 1, p-value = 0.02463
-#> alternative hypothesis: true common odds ratio is not equal to 1
-#> 95 percent confidence interval:
-#>  0.6005522 0.9593077
-#> sample estimates:
-#> common odds ratio 
-#>          0.759022
+
 mantelhaen.test(ct.2)
-#> 
-#> 	Mantel-Haenszel chi-squared test with continuity correction
-#> 
-#> data:  ct.2
-#> Mantel-Haenszel X-squared = 5.0497, df = 1, p-value = 0.02463
-#> alternative hypothesis: true common odds ratio is not equal to 1
-#> 95 percent confidence interval:
-#>  0.6005522 0.9593077
-#> sample estimates:
-#> common odds ratio 
-#>          0.759022
 
 # 把 Allele 放到最后，结果不同了
 ct.3 <- xtabs(Count ~ Location + Habitat + Allele, data=fish)
 ct.4 <- xtabs(Count ~ Habitat + Location + Allele, data=fish)
 mantelhaen.test(ct.3)
-#> 
-#> 	Cochran-Mantel-Haenszel test
-#> 
-#> data:  ct.3
-#> Cochran-Mantel-Haenszel M^2 = 168.47, df = 3, p-value < 2.2e-16
+
 mantelhaen.test(ct.4)
-#> 
-#> 	Cochran-Mantel-Haenszel test
-#> 
-#> data:  ct.4
-#> Cochran-Mantel-Haenszel M^2 = 168.47, df = 3, p-value < 2.2e-16
 
 # 把 Habitat 放最后，结果也不同
 ct.5 <- xtabs(Count ~ Allele + Location + Habitat, data=fish)
 ct.6 <- xtabs(Count ~ Location + Allele + Habitat, data=fish)
 mantelhaen.test(ct.5)
-#> 
-#> 	Cochran-Mantel-Haenszel test
-#> 
-#> data:  ct.5
-#> Cochran-Mantel-Haenszel M^2 = 2.0168, df = 3, p-value = 0.5689
+
 mantelhaen.test(ct.6)
-#> 
-#> 	Cochran-Mantel-Haenszel test
-#> 
-#> data:  ct.6
-#> Cochran-Mantel-Haenszel M^2 = 2.0168, df = 3, p-value = 0.5689
 ```
 
 #### McNemar 检验
@@ -792,7 +414,7 @@ McNemar 检验概念上是频数数据的一个被试内检验。例如，假设
 
 假设你有下面的数据。每个对象有处理前和后的反应。
 
-```R
+```{r}
 data <- read.table(header=TRUE, text='
  subject time result
        1  pre      0
@@ -828,75 +450,34 @@ data <- read.table(header=TRUE, text='
 ')
 ```
 
-```R
+```{r}
 library(tidyr)
 data_wide <- spread(data, time, result)
 data_wide
-#>    subject post pre
-#> 1        1    1   0
-#> 2        2    1   1
-#> 3        3    1   0
-#> 4        4    0   1
-#> 5        5    1   1
-#> 6        6    1   0
-#> 7        7    1   0
-#> 8        8    1   0
-#> 9        9    1   0
-#> 10      10    1   1
-#> 11      11    0   0
-#> 12      12    1   1
-#> 13      13    1   0
-#> 14      14    0   0
-#> 15      15    1   0
 ```
 
 接下来从数据框的 pre 和 post 列生成列联表：
 
-```R
+```{r}
 ct <- table( data_wide[,c("pre","post")] )
 ct
-#>    post
-#> pre 0 1
-#>   0 2 8
-#>   1 1 4
 
 # 下面是用于标准卡方检验的列联表，注意差别
-# table(data[,c("time","result")])
-#       result
-# time    0  1
-#   post  3 12
-#   pre  10  5
+table(data[,c("time","result")])
 ```
 
 执行检验：
 
-```R
+```{r}
 mcnemar.test(ct)
-#> 
-#> 	McNemar's Chi-squared test with continuity correction
-#> 
-#> data:  ct
-#> McNemar's chi-squared = 4, df = 1, p-value = 0.0455
 ```
 
 对于小样本，它会使用连续校正。我们可以使用**精确**校正的 McNemar 检验替换这种校正方式，前者更加的精确，可通过 `exact2x2` 包获取。
 
-```R
+```{r}
 library(exact2x2)
-#> Loading required package: exactci
-#> Loading required package: ssanv
+
 mcnemar.exact(ct)
-#> 
-#> 	Exact McNemar test (with central confidence intervals)
-#> 
-#> data:  ct
-#> b = 8, c = 1, p-value = 0.03906
-#> alternative hypothesis: true odds ratio is not equal to 1
-#> 95 percent confidence interval:
-#>    1.072554 354.981246
-#> sample estimates:
-#> odds ratio 
-#>          8
 ```
 
 ## ANOVA
@@ -909,7 +490,7 @@ mcnemar.exact(ct)
 
 假设这是你的数据：
 
-```R
+```{r}
 data <- read.table(header=TRUE, text='
  subject sex   age before after
        1   F   old    9.5   7.1
@@ -950,32 +531,20 @@ data$subject <- factor(data$subject)
 
 #### 单因素 ANOVA 分析
 
-```R
+```{r}
 # 单因素：
 # 独立变量: sex
 # 依赖变量: before
 aov1 <- aov(before ~ sex, data=data)
 summary(aov1)
-#>             Df Sum Sq Mean Sq F value Pr(>F)
-#> sex          1   1.53   1.529   0.573  0.455
-#> Residuals   28  74.70   2.668
 
 # 显示均值
 model.tables(aov1, "means")
-#> Tables of means
-#> Grand mean
-#>          
-#> 9.703333 
-#> 
-#>  sex 
-#>      F      M
-#>     10  9.532
-#> rep 11 19.000
 ```
 
 #### 双因素 ANOVA 分析
 
-```R
+```{r}
 # 2x2 between:
 # 独立变量: sex
 # 独立变量: age
@@ -984,74 +553,24 @@ model.tables(aov1, "means")
 aov2 <- aov(after ~ sex*age, data=data)
 aov2 <- aov(after ~ sex + age + sex:age, data=data)
 summary(aov2)
-#>             Df Sum Sq Mean Sq F value  Pr(>F)    
-#> sex          1  16.08   16.08   4.038  0.0550 .  
-#> age          1  38.96   38.96   9.786  0.0043 ** 
-#> sex:age      1  89.61   89.61  22.509 6.6e-05 ***
-#> Residuals   26 103.51    3.98                    
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 # 显示均值
 model.tables(aov2, "means")
-#> Tables of means
-#> Grand mean
-#>          
-#> 6.483333 
-#> 
-#>  sex 
-#>          F      M
-#>      7.445  5.926
-#> rep 11.000 19.000
-#> 
-#>  age 
-#>        old  young
-#>      7.874  5.556
-#> rep 12.000 18.000
-#> 
-#>  sex:age 
-#>      age
-#> sex   old    young 
-#>   F    6.260  8.433
-#>   rep  5.000  6.000
-#>   M    9.157  4.042
-#>   rep  7.000 12.000
 ```
 
 #### Tukey HSD post-hoc 检验
 
-```R
+```{r}
 TukeyHSD(aov2)
-#>   Tukey multiple comparisons of means
-#>     95% family-wise confidence level
-#> 
-#> Fit: aov(formula = after ~ sex + age + sex:age, data = data)
-#> 
-#> $sex
-#>          diff       lwr        upr     p adj
-#> M-F -1.519139 -3.073025 0.03474709 0.0549625
-#> 
-#> $age
-#>               diff       lwr        upr     p adj
-#> young-old -2.31785 -3.846349 -0.7893498 0.0044215
-#> 
-#> $`sex:age`
-#>                       diff        lwr        upr     p adj
-#> M:old-F:old      2.8971429 -0.3079526  6.1022384 0.0869856
-#> F:young-F:old    2.1733333 -1.1411824  5.4878491 0.2966111
-#> M:young-F:old   -2.2183333 -5.1319553  0.6952887 0.1832890
-#> F:young-M:old   -0.7238095 -3.7691188  2.3214997 0.9138789
-#> M:young-M:old   -5.1154762 -7.7187601 -2.5121923 0.0000676
-#> M:young-F:young -4.3916667 -7.1285380 -1.6547953 0.0008841
 ```
 
-### 有受试内变量的 ANOVAs 
+### 有受试内变量的 ANOVAs
 
 对于有受试内变量的 ANOVA 分析，数据必须满足为长格式。上面提到的数据都是宽格式，所以我们需要先转换数据格式（参见「长宽格式互相转换」）
 
 同样地，有受试内变量的 ANOVA 分析需要一个识别列。当前数据里是 `subject` 列。**识别变量必须是一个因子**，如果是数值类型，函数会解析错误导致不能正常工作。
 
-```R
+```{r}
 library(tidyr)
 
 # 原始数据
@@ -1064,13 +583,6 @@ library(tidyr)
 data_long <- gather(data, time, value, before:after)
 # Look at first few rows
 head(data_long)
-#>   subject sex age   time value
-#> 1       1   F old before   9.5
-#> 2       2   M old before  10.3
-#> 3       3   M old before   7.5
-#> 4       4   F old before  12.4
-#> 5       5   M old before  10.2
-#> 6       6   M old before  11.0
 
 # 确保subject列是一个因子
 data_long$subject <- factor(data_long$subject)
@@ -1080,100 +592,45 @@ data_long$subject <- factor(data_long$subject)
 
 首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。如果 `subject` 是数值向量，而不是因子，结果将会出错。
 
-```R
+```{r}
 # 独立变量 (within): time
 # 依赖变量:          value
 aov_time <- aov(value ~ time + Error(subject/time), data=data_long)
 summary(aov_time)
-#> 
-#> Error: subject
-#>           Df Sum Sq Mean Sq F value Pr(>F)
-#> Residuals 29  261.2   9.009               
-#> 
-#> Error: subject:time
-#>           Df Sum Sq Mean Sq F value   Pr(>F)    
-#> time       1 155.53  155.53   71.43 2.59e-09 ***
-#> Residuals 29  63.14    2.18                     
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 # This won't work here for some reason (?)
 model.tables(aov_time, "means")
-#> Tables of means
-#> Grand mean
-#>          
-#> 8.093333 
-#> 
-#>  time 
-#> time
-#>  after before 
-#>  6.483  9.703
 ```
 
 #### 混合设计 ANOVA
 
 首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。
 
-```R
+```{r}
 # 2x2 mixed:
 # 独立变量（被试间） : age
 # 独立变量（被试内） :  time
 # 依赖变量:         value
 aov_age_time <- aov(value ~ age*time + Error(subject/time), data=data_long)
 summary(aov_age_time)
-#> 
-#> Error: subject
-#>           Df Sum Sq Mean Sq F value Pr(>F)
-#> age        1  24.44  24.440    2.89    0.1
-#> Residuals 28 236.81   8.457               
-#> 
-#> Error: subject:time
-#>           Df Sum Sq Mean Sq F value   Pr(>F)    
-#> time       1 155.53  155.53   98.14 1.18e-10 ***
-#> age:time   1  18.77   18.77   11.84  0.00184 ** 
-#> Residuals 28  44.37    1.58                     
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 # This won't work here because the data is unbalanced
 model.tables(aov_age_time, "means")
-#> Tables of means
-#> Grand mean
-#>          
-#> 8.093333 
-#> 
-#>  age 
-#>        old  young
-#>      8.875  7.572
-#> rep 24.000 36.000
-#> 
-#>  time 
-#>      after before
-#>      6.483  9.703
-#> rep 30.000 30.000
-#> 
-#>  age:time 
-#>        time
-#> age     after  before
-#>   old    7.950  9.800
-#>   rep   12.000 12.000
-#>   young  5.506  9.639
-#>   rep   18.000 18.000
 ```
 
 #### 更多被试内变量的 ANOVA
 
 下面这些例子使用的不是上面的数据，但可以解释怎么进行相应的处理。首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。
 
-```R
-# 两个被试内变量
-aov.ww <- aov(y ~ w1*w2 + Error(subject/(w1*w2)), data=data_long)
-
-# 1个被试间变量，两个被试内变量
-aov.bww <- aov(y ~ b1*w1*w2 + Error(subject/(w1*w2)) + b1, data=data_long)
-
-# 两个被试间变量，一个被试内变量
-aov.bww <- aov(y ~ b1*b2*w1 + Error(subject/(w1)) + b1*b2, data=data_long)
+```{r}
+# # 两个被试内变量
+# aov.ww <- aov(y ~ w1*w2 + Error(subject/(w1*w2)), data=data_long)
+#
+# # 1个被试间变量，两个被试内变量
+# aov.bww <- aov(y ~ b1*w1*w2 + Error(subject/(w1*w2)) + b1, data=data_long)
+#
+# # 两个被试间变量，一个被试内变量
+# aov.bww <- aov(y ~ b1*b2*w1 + Error(subject/(w1)) + b1*b2, data=data_long)
 ```
 
 ## 逻辑回归
@@ -1188,43 +645,10 @@ aov.bww <- aov(y ~ b1*b2*w1 + Error(subject/(w1)) + b1*b2, data=data_long)
 
 假设我们从内置的 `mtcars` 数据集的一部分开始，像下面这样，我们将 `vs` 作为响应变量，`mpg` 作为一个连续的预测变量，`am` 作为一个分类（离散）的预测变量。
 
-```R
+```{r}
 data(mtcars)
 dat <- subset(mtcars, select=c(mpg, am, vs))
 dat
-#>                      mpg am vs
-#> Mazda RX4           21.0  1  0
-#> Mazda RX4 Wag       21.0  1  0
-#> Datsun 710          22.8  1  1
-#> Hornet 4 Drive      21.4  0  1
-#> Hornet Sportabout   18.7  0  0
-#> Valiant             18.1  0  1
-#> Duster 360          14.3  0  0
-#> Merc 240D           24.4  0  1
-#> Merc 230            22.8  0  1
-#> Merc 280            19.2  0  1
-#> Merc 280C           17.8  0  1
-#> Merc 450SE          16.4  0  0
-#> Merc 450SL          17.3  0  0
-#> Merc 450SLC         15.2  0  0
-#> Cadillac Fleetwood  10.4  0  0
-#> Lincoln Continental 10.4  0  0
-#> Chrysler Imperial   14.7  0  0
-#> Fiat 128            32.4  1  1
-#> Honda Civic         30.4  1  1
-#> Toyota Corolla      33.9  1  1
-#> Toyota Corona       21.5  0  1
-#> Dodge Challenger    15.5  0  0
-#> AMC Javelin         15.2  0  0
-#> Camaro Z28          13.3  0  0
-#> Pontiac Firebird    19.2  0  0
-#> Fiat X1-9           27.3  1  1
-#> Porsche 914-2       26.0  1  0
-#> Lotus Europa        30.4  1  1
-#> Ford Pantera L      15.8  1  0
-#> Ferrari Dino        19.7  1  0
-#> Maserati Bora       15.0  1  0
-#> Volvo 142E          21.4  1  1
 ```
 
 #### 连续预测变量，离散响应变量
@@ -1233,7 +657,7 @@ dat
 
 下面例子中，`mpg` 是连续预测变量，`vs` 是离散响应变量。.
 
-```R
+```{r}
 # 执行逻辑回归 —— 下面两种方式等效
 # logit是二项分布家族的默认模型
 logr_vm <- glm(vs ~ mpg, data=dat, family=binomial)
@@ -1242,209 +666,80 @@ logr_vm <- glm(vs ~ mpg, data=dat, family=binomial(link="logit"))
 
 查看模型信息：
 
-```R
+```{r}
 # 输出模型信息
 logr_vm
-#> 
-#> Call:  glm(formula = vs ~ mpg, family = binomial(link = "logit"), data = dat)
-#> 
-#> Coefficients:
-#> (Intercept)          mpg  
-#>     -8.8331       0.4304  
-#> 
-#> Degrees of Freedom: 31 Total (i.e. Null);  30 Residual
-#> Null Deviance:	    43.86 
-#> Residual Deviance: 25.53 	AIC: 29.53
 
-# More information about the model
+# 汇总该模型的更多信息
 summary(logr_vm)
-#> 
-#> Call:
-#> glm(formula = vs ~ mpg, family = binomial(link = "logit"), data = dat)
-#> 
-#> Deviance Residuals: 
-#>     Min       1Q   Median       3Q      Max  
-#> -2.2127  -0.5121  -0.2276   0.6402   1.6980  
-#> 
-#> Coefficients:
-#>             Estimate Std. Error z value Pr(>|z|)   
-#> (Intercept)  -8.8331     3.1623  -2.793  0.00522 **
-#> mpg           0.4304     0.1584   2.717  0.00659 **
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#> 
-#> (Dispersion parameter for binomial family taken to be 1)
-#> 
-#>     Null deviance: 43.860  on 31  degrees of freedom
-#> Residual deviance: 25.533  on 30  degrees of freedom
-#> AIC: 29.533
-#> 
-#> Number of Fisher Scoring iterations: 6
 ```
 
 ##### 画图
 
 我们可以使用 `ggplot2` 或者基本图形绘制数据和逻辑回归结果。
 
-```R
+```{r}
 library(ggplot2)
-ggplot(dat, aes(x=mpg, y=vs)) + geom_point() + 
+ggplot(dat, aes(x=mpg, y=vs)) + geom_point() +
   stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
 
 par(mar = c(4, 4, 1, 1)) # 减少一些边缘使得图形显示更好些
 plot(dat$mpg, dat$vs)
-curve(predict(logr_vm, data.frame(mpg=x), type="response"), add=TRUE) 
+curve(predict(logr_vm, data.frame(mpg=x), type="response"), add=TRUE)
 ```
 
 #### 离散预测变量，离散响应变量
 
 这个跟上面的操作大致相同，`am` 是一个离散的预测变量，`vs` 是一个离散的响应变量。
 
-```R
+```{r}
 # 执行逻辑回归
 logr_va <- glm(vs ~ am, data=dat, family=binomial)
 
 # 打印模型信息
 logr_va
-#> 
-#> Call:  glm(formula = vs ~ am, family = binomial, data = dat)
-#> 
-#> Coefficients:
-#> (Intercept)           am  
-#>     -0.5390       0.6931  
-#> 
-#> Degrees of Freedom: 31 Total (i.e. Null);  30 Residual
-#> Null Deviance:	    43.86 
-#> Residual Deviance: 42.95 	AIC: 46.95
 
-# More information about the model
+# 汇总模型的信息
 summary(logr_va)
-#> 
-#> Call:
-#> glm(formula = vs ~ am, family = binomial, data = dat)
-#> 
-#> Deviance Residuals: 
-#>     Min       1Q   Median       3Q      Max  
-#> -1.2435  -0.9587  -0.9587   1.1127   1.4132  
-#> 
-#> Coefficients:
-#>             Estimate Std. Error z value Pr(>|z|)
-#> (Intercept)  -0.5390     0.4756  -1.133    0.257
-#> am            0.6931     0.7319   0.947    0.344
-#> 
-#> (Dispersion parameter for binomial family taken to be 1)
-#> 
-#>     Null deviance: 43.860  on 31  degrees of freedom
-#> Residual deviance: 42.953  on 30  degrees of freedom
-#> AIC: 46.953
-#> 
-#> Number of Fisher Scoring iterations: 4
 ```
 
 ##### 画图
 
 尽管图形可能会比连续预测变量的信息少，我们还是可以使用 `ggplot2` 或者基本图形绘制逻辑数据和回归结果。因为数据点大致在 4 个位置，我们可以使用抖动点避免叠加。
 
-```R
+```{r}
 library(ggplot2)
-ggplot(dat, aes(x=am, y=vs)) + 
-  geom_point(shape=1, position=position_jitter(width=.05,height=.05)) + 
+ggplot(dat, aes(x=am, y=vs)) +
+  geom_point(shape=1, position=position_jitter(width=.05,height=.05)) +
   stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
 par(mar = c(4, 4, 1, 1)) # 减少一些边缘使得图形显示更好些
 plot(jitter(dat$am, .2), jitter(dat$vs, .2))
-curve(predict(logr_va, data.frame(am=x), type="response"), add=TRUE) 
+curve(predict(logr_va, data.frame(am=x), type="response"), add=TRUE)
 ```
 
 #### 连续和离散预测变量，离散响应变量
 
 这跟先前的例子相似，这里 `mpg` 是连续预测变量，`am` 是离散预测变量，`vs` 是离散响应变量。
 
-```R
+```{r}
 logr_vma <- glm(vs ~ mpg + am, data=dat, family=binomial)
 logr_vma
-#> 
-#> Call:  glm(formula = vs ~ mpg + am, family = binomial, data = dat)
-#> 
-#> Coefficients:
-#> (Intercept)          mpg           am  
-#>    -12.7051       0.6809      -3.0073  
-#> 
-#> Degrees of Freedom: 31 Total (i.e. Null);  29 Residual
-#> Null Deviance:	    43.86 
-#> Residual Deviance: 20.65 	AIC: 26.65
 
 summary(logr_vma)
-#> 
-#> Call:
-#> glm(formula = vs ~ mpg + am, family = binomial, data = dat)
-#> 
-#> Deviance Residuals: 
-#>      Min        1Q    Median        3Q       Max  
-#> -2.05888  -0.44544  -0.08765   0.33335   1.68405  
-#> 
-#> Coefficients:
-#>             Estimate Std. Error z value Pr(>|z|)   
-#> (Intercept) -12.7051     4.6252  -2.747  0.00602 **
-#> mpg           0.6809     0.2524   2.698  0.00697 **
-#> am           -3.0073     1.5995  -1.880  0.06009 . 
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#> 
-#> (Dispersion parameter for binomial family taken to be 1)
-#> 
-#>     Null deviance: 43.860  on 31  degrees of freedom
-#> Residual deviance: 20.646  on 29  degrees of freedom
-#> AIC: 26.646
-#> 
-#> Number of Fisher Scoring iterations: 6
 ```
 
 #### 有交互项的多个预测变量
 
 当有多个预测变量时我们可能需要检验交互项。交互项可以单独指定，像 `a + b + c + a:b + b:c + a:b:c`，或者它们可以使用 `a * b *c` 自动展开（这两种等效）。如果只是想指定部分可能的交互项，比如 `a` 与 `c` 有交互项，使用 `a + b + c + a:c`。
 
-```R
+```{r}
 # 执行逻辑回归，下面两种方式等效
 logr_vmai <- glm(vs ~ mpg * am, data=dat, family=binomial)
 logr_vmai <- glm(vs ~ mpg + am + mpg:am, data=dat, family=binomial)
 
 logr_vmai
-#> 
-#> Call:  glm(formula = vs ~ mpg + am + mpg:am, family = binomial, data = dat)
-#> 
-#> Coefficients:
-#> (Intercept)          mpg           am       mpg:am  
-#>    -20.4784       1.1084      10.1055      -0.6637  
-#> 
-#> Degrees of Freedom: 31 Total (i.e. Null);  28 Residual
-#> Null Deviance:	    43.86 
-#> Residual Deviance: 19.12 	AIC: 27.12
 
 summary(logr_vmai)
-#> 
-#> Call:
-#> glm(formula = vs ~ mpg + am + mpg:am, family = binomial, data = dat)
-#> 
-#> Deviance Residuals: 
-#>      Min        1Q    Median        3Q       Max  
-#> -1.70566  -0.31124  -0.04817   0.28038   1.55603  
-#> 
-#> Coefficients:
-#>             Estimate Std. Error z value Pr(>|z|)  
-#> (Intercept) -20.4784    10.5525  -1.941   0.0523 .
-#> mpg           1.1084     0.5770   1.921   0.0547 .
-#> am           10.1055    11.9104   0.848   0.3962  
-#> mpg:am       -0.6637     0.6242  -1.063   0.2877  
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#> 
-#> (Dispersion parameter for binomial family taken to be 1)
-#> 
-#>     Null deviance: 43.860  on 31  degrees of freedom
-#> Residual deviance: 19.125  on 28  degrees of freedom
-#> AIC: 27.125
-#> 
-#> Number of Fisher Scoring iterations: 7
 ```
 
 ## 变量同质性
@@ -1467,36 +762,21 @@ summary(logr_vmai)
 
 这里的例子使用了 `InsectSprays` 和 `ToothGrowth` 数据集。`InsectSprays` 数据集有一个独立变量，而 `ToothGrowth` 数据集有两个独立变量。
 
-```R
+```{r}
 head(InsectSprays)
-#>   count spray
-#> 1    10     A
-#> 2     7     A
-#> 3    20     A
-#> 4    14     A
-#> 5    14     A
-#> 6    12     A
 
 tg      <- ToothGrowth
 tg$dose <- factor(tg$dose) # Treat this column as a factor, not numeric
 head(tg)
-#>    len supp dose
-#> 1  4.2   VC  0.5
-#> 2 11.5   VC  0.5
-#> 3  7.3   VC  0.5
-#> 4  5.8   VC  0.5
-#> 5  6.4   VC  0.5
-#> 6 10.0   VC  0.5
-
 ```
 
 快速绘制数据集的箱线图：
 
-```R
+```{r}
 plot(count ~ spray, data = InsectSprays)
 ```
 
-```R
+```{r}
 plot(len ~ interaction(dose,supp), data=ToothGrowth)
 ```
 
@@ -1506,36 +786,17 @@ plot(len ~ interaction(dose,supp), data=ToothGrowth)
 
 有一个独立变量：
 
-```R
+```{r}
 bartlett.test(count ~ spray, data=InsectSprays)
-#> 
-#> 	Bartlett test of homogeneity of variances
-#> 
-#> data:  count by spray
-#> Bartlett's K-squared = 25.96, df = 5, p-value = 9.085e-05
-
-# Same effect, but with two vectors, instead of two columns from a data frame
-# bartlett.test(InsectSprays$count ~ InsectSprays$spray)
-
 ```
 
 有多个独立变量，必须使用 `interaction()` 函数将这些独立变量包裹为含所有因子组合的单个变量。如果不适应，那么会得到错误的自由度，因而 p 值也将是错误的。
 
-```R
+```{r}
 bartlett.test(len ~ interaction(supp,dose), data=ToothGrowth)
-#> 
-#> 	Bartlett test of homogeneity of variances
-#> 
-#> data:  len by interaction(supp, dose)
-#> Bartlett's K-squared = 6.9273, df = 5, p-value = 0.2261
 
 # The above gives the same result as testing len vs. dose alone, without supp
 bartlett.test(len ~ dose, data=ToothGrowth)
-#> 
-#> 	Bartlett test of homogeneity of variances
-#> 
-#> data:  len by dose
-#> Bartlett's K-squared = 0.66547, df = 2, p-value = 0.717
 ```
 
 #### Levene’s test
@@ -1544,59 +805,31 @@ bartlett.test(len ~ dose, data=ToothGrowth)
 
 有一个独立变量：
 
-```R
+```{r}
 library(car)
 
 leveneTest(count ~ spray, data=InsectSprays)
-#> Levene's Test for Homogeneity of Variance (center = median)
-#>       Df F value   Pr(>F)   
-#> group  5  3.8214 0.004223 **
-#>       66                    
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-有两个独立变量。注意这里 `interaction` 函数不需要，因为该函数用于其他两个检验。 
+有两个独立变量。注意这里 `interaction` 函数不需要，因为该函数用于其他两个检验。
 
-```R
+```{r}
 leveneTest(len ~ supp*dose, data=tg)
-#> Levene's Test for Homogeneity of Variance (center = median)
-#>       Df F value Pr(>F)
-#> group  5  1.7086 0.1484
-#>       54
 ```
 
 #### Fligner-Killeen test
 
 有一个独立变量：
 
-```R
+```{r}
 fligner.test(count ~ spray, data=InsectSprays)
-#> 
-#> 	Fligner-Killeen test of homogeneity of variances
-#> 
-#> data:  count by spray
-#> Fligner-Killeen:med chi-squared = 14.483, df = 5, p-value = 0.01282
-
-# Same effect, but with two vectors, instead of two columns from a data frame
-# fligner.test(InsectSprays$count ~ InsectSprays$spray)
 ```
 
 当处理多个独立变量时，这个 `fligner.test` 函数有跟 `bartlett.test` 相同的行为。必须使用 `interaction()` 函数。
 
-```R
+```{r}
 fligner.test(len ~ interaction(supp,dose), data=ToothGrowth)
-#> 
-#> 	Fligner-Killeen test of homogeneity of variances
-#> 
-#> data:  len by interaction(supp, dose)
-#> Fligner-Killeen:med chi-squared = 7.7488, df = 5, p-value = 0.1706
 
 # The above gives the same result as testing len vs. dose alone, without supp
 fligner.test(len ~ dose, data=ToothGrowth)
-#> 
-#> 	Fligner-Killeen test of homogeneity of variances
-#> 
-#> data:  len by dose
-#> Fligner-Killeen:med chi-squared = 1.3879, df = 2, p-value = 0.4996
 ```
