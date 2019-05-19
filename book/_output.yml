@@ -1,5 +1,6 @@
 bookdown::gitbook:
   css: css/style.css
+  toc_depth: 2
   config:
     toc:
       collapse: section
@@ -22,7 +23,7 @@ bookdown::pdf_book:
   citation_package: natbib
   template: latex/template.tex
   pandoc_args: "--top-level-division=chapter"
-  toc_depth: 3
+  toc_depth: 2
   toc_unnumbered: no
   toc_appendix: yes
   quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
