@@ -1,7 +1,13 @@
 # 字符串
 
-## 使用 grep,sub,gsub 进行搜索和替换
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
+## 使用 grep、sub、gsub 进行搜索和替换
 
 ### 问题
 
@@ -17,28 +23,22 @@
 
 下面通过简单的例子理解它们的用法和区别：从小写字母向量中搜索 `c`。
 
-```
-> grep("c", letters)
-[1] 3
-> grepl("c", letters)
- [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[19] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+```{r}
+grep("c", letters)
+grepl("c", letters)
 ```
 
 `grep()` 函数设定选项 `value=TRUE` 可以返回匹配的值。
 
 ```
-> grep("c", letters, value = TRUE)
-[1] "c"
-> grep("c", c("dog", "cat"), value = TRUE)
-[1] "cat"
+grep("c", letters, value = TRUE)
+grep("c", c("dog", "cat"), value = TRUE)
 ```
 
 正则表达式提供了一种表达字符模式的强大方式（详情查看 `?regex`），我们可以将它应用于文本的搜索中。例如，我们想搜索字符向量中有4个数字连续出现的字符：
 
-```
-> grep("\\d{4}", c("This will not match", "2018-04-11, This will match"))
-[1] 2
+```{r}
+grep("\\d{4}", c("This will not match", "2018-04-11, This will match"))
 ```
 
 #### 文本替换
@@ -47,11 +47,10 @@
 
 例如，我们想要将字符向量中的年份全部替换为 2019。
 
-```
-> sub(pattern = "\\d{4}",replacement = "2019", x = c("This will not match", "2018-04-11, 2017-04-11", "2018-04-12"))
-[1] "This will not match"    "2019-04-11, 2017-04-11" "2019-04-12"            
-> gsub(pattern = "\\d{4}",replacement = "2019", x = c("This will not match", "2018-04-11, 2017-04-11", "2018-04-12"))
-[1] "This will not match"    "2019-04-11, 2019-04-11" "2019-04-12"   
+```{r}
+sub(pattern = "\\d{4}",replacement = "2019", x = c("This will not match", "2018-04-11, 2017-04-11", "2018-04-12"))
+          
+gsub(pattern = "\\d{4}",replacement = "2019", x = c("This will not match", "2018-04-11, 2017-04-11", "2018-04-12"))
 ```
 
 要操作的对象第二个元素包含2个可以匹配的模式，使用 `sub()` 只会将第一个替换为 2019，而使用 `gsub()` 会将所有能够匹配的模式都替换为 2019。
@@ -72,7 +71,7 @@
 a <- "apple"
 b <- "banana"
 
-# 将a,b变量内容连到一起，并用空格隔开
+# 将a、b变量内容连到一起，并用空格隔开
 paste(a, b)
 
 # 如果不想要空格，可以设定参数 sep="", 或使用函数 paste0():
@@ -81,7 +80,6 @@ paste0(a, b)
 
 # 用逗号加空格分开:
 paste(a, b, sep=", ")
-
 
 # 设定一个字符向量
 d <- c("fig", "grapefruit", "honeydew")
@@ -123,7 +121,7 @@ sprintf("Leading zeros:%04d", x)
 
 对浮点数而言，使用 `%f` 进行标准释义，而 `%e` 或者 `%E` 则代表指数。你也可以使用 `%g` 或者 `%G` 让程序自动根据有效位数进行两种格式的转换。下面是 R  help 页面中关于 sprintf 的例子：
 
-```R
+```r
 sprintf("%f", pi)         # "3.141593"
 sprintf("%.3f", pi)       # "3.142"
 sprintf("%1.0f", pi)      # "3"
@@ -136,7 +134,7 @@ sprintf("%e", pi)         # "3.141593e+00"
 sprintf("%E", pi)         # "3.141593E+00"
 sprintf("%g", pi)         # "3.14159"
 sprintf("%g",   1e6 * pi) # "3.14159e+06"  (指数化)
-sprintf("%.9g", 1e6 * pi) # "3141592.65"   ("修正")
+sprintf("%.9g", 1e6 * pi) # "3141592.65"   (固定)
 sprintf("%G", 1e-6 * pi)  # "3.14159E-06"
 ```
 
@@ -154,4 +152,4 @@ sprintf("A single percent sign here %%")
 
 #### 注意
 
-关于更多脚本输出的信息可以查看[this page](http://www.cookbook-r.com/Data_input_and_output/Writing_text_and_output_from_analyses_to_a_file)。
+关于更多脚本输出的信息可以查看[用 R 写入文本，分析输出到文件](#r-output-analysis)。

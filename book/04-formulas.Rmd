@@ -1,5 +1,12 @@
 # 公式
 
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ## 通过字符串创建公式
 
 ### 问题
@@ -15,12 +22,9 @@
 ```{r}
 # 这将返回一个字符串
 "y ~ x1 + x2"
-#> [1] "y ~ x1 + x2"
 
 # 这将返回一个公式
 as.formula("y ~ x1 + x2")
-#> y ~ x1 + x2
-#> <environment: 0x3361710>
 ```
 
 下面是一个简单实例：
@@ -32,15 +36,10 @@ groupvars  <- c("x1","x2","x3")
 
 # 创建合适的字符串:
 paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ ")
-#> [1] "y ~ x1 + x2 + x3"
 
 # 返回公式:
 as.formula(paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ "))
-#> y ~ x1 + x2 + x3
-#> <environment: 0x3361710>
 ```
-
-------
 
 
 ## 从公式中提取组分
@@ -51,36 +50,21 @@ as.formula(paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ "))
 
 ### 方案
 
-你可以把公式对象当作列表看待，使用`[[`操作符对其组分进行操作。
+你可以把公式对象当作列表看待，使用 `[[` 操作符对其组分进行操作。
 
 ```{r}
 f <- y ~ x1 + x2
 
 # 观察f结构
 str(f)
-#> Class 'formula'  language y ~ x1 + x2
-#>   ..- attr(*, ".Environment")=<environment: 0x1e46710>
 
 # 获得每一部分
 f[[1]]
-#> `~`
 f[[2]]
-#> y
 f[[3]]
-#> x1 + x2
 
 # 转换为列表观察
 as.list(f)
-#> [[1]]
-#> `~`
-#> 
-#> [[2]]
-#> y
-#> 
-#> [[3]]
-#> x1 + x2
-#> 
-#> <environment: 0x1e46710>
 ```
 
 如果公式左边没有任何东西，那么列表只有两个元素：
@@ -88,37 +72,23 @@ as.list(f)
 ```{r}
 f2 <- ~ x1 + x2
 as.list(f2)
-#> [[1]]
-#> `~`
-#> 
-#> [[2]]
-#> x1 + x2
-#> 
-#> <environment: 0x1e46710>
-
 ```
 
 公式的每一个元素都是一个符号或者语言对象（包含多个符号）：
 
 ```{r}
 str(f[[1]])
-#>  symbol ~
 str(f[[2]])
-#>  symbol y
 str(f[[3]])
-#>  language x1 + x2
 
-# Look at parts of the langage object
+# 查看语言对象某部分
 str(f[[3]][[1]])
-#>  symbol +
 str(f[[3]][[2]])
-#>  symbol x1
 str(f[[3]][[3]])
-#>  symbol x2
 
 ```
 
-你可以使用`as.character()`或`deparse()`函数将它们转为字符串。`deparse()`函数可以返回一个看起来更为自然的结果：
+你可以使用 `as.character()` 或 `deparse()` 函数将它们转为字符串。 `deparse()` 函数可以返回一个看起来更为自然的结果：
 
 ```{r}
 as.character(f[[1]])
@@ -126,23 +96,17 @@ as.character(f[[1]])
 as.character(f[[2]])
 #> [1] "y"
 
-# The language object gets coerced into a string that represents the parse tree:
+# 这里语言对象被强制转换为代表解析树的字符向量
 as.character(f[[3]])
 #> [1] "+"  "x1" "x2"
 
-# You can use deparse() to get a more natural looking string
+# 使用 deparse() 获取更为自然的结果
 deparse(f[[3]])
-#> [1] "x1 + x2"
 deparse(f)
-#> [1] "y ~ x1 + x2"
-
 ```
 
-正如我们在运行`str(f)`命令时看到的那样，公式对象也会捕捉调用它的环境。如果要抽取它，可以使用`environment()`函数：
+正如我们在运行 `str(f)` 命令时看到的那样，公式对象也会捕捉调用它的环境。如果要抽取它，可以使用 `environment()` 函数：
 
 ```{r}
 environment(f)
-#> <environment: 0x1e46710>
 ```
-
-------

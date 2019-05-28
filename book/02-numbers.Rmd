@@ -1,5 +1,12 @@
 # 数字
 
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ## 生成随机数
 
 ### 问题
@@ -8,7 +15,7 @@
 
 ### 方案
 
-要生成均匀分布的随机数，可以使用 `runif()` 函数，它的默认范围是从0到1。
+要生成均匀分布的随机数，可以使用 `runif()` 函数，它的默认范围是从 0 到 1。
 
 ```{r}
 runif(1)
@@ -20,7 +27,7 @@ runif(4)
 runif(3, min=0, max=100)
 
 # 得到 3 个范围在 0 到 100 的整数
-# 使用 max=101 因为它永远不可能等于 101，这里利用 floor 函数实现下取整数
+# 使用 max=101 因为它永远不可能等于 101，这里利用 floor 函数实现向下取整数
 floor(runif(3, min=0, max=101))
 
 # 以下方式得到的结果一样
@@ -45,7 +52,7 @@ hist(x)
 
 ### 注意
 
-如果你想要生成随机数的结果可重复，参看[../Generating repeatable sequences of random numbers](http://www.cookbook-r.com/Numbers/Generating_repeatable_sequences_of_random_numbers)。
+如果你想要生成随机数的结果可重复，参阅[生成可重复的随机序列](#section-2.2)。
 
 ## 生成可重复的随机序列 
 
@@ -159,7 +166,6 @@ bad_rand_restore()
 bad_rand_restore()
 
 # 好的版本每次都正确地重置了随机数生成器的状态，因此随机数可以保持一致
-# stay the same.
 set.seed(423)
 rand_restore()
 rand_restore()
@@ -194,7 +200,6 @@ floor(x)
 
 # 向 0 取整
 trunc(x)
-
 ```
 
 也可以近似到其它小数位：

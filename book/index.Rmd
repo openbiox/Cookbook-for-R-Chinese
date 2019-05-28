@@ -22,7 +22,7 @@ options(
 )
 
 # 填上你需要用到的包，如 c('ggplot2', 'dplyr')
-lapply(c("ggplot2"), function(pkg) {
+lapply(c("ggplot2", "tidyverse"), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
 ```

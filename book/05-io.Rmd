@@ -1,6 +1,13 @@
 # 数据的导入与导出
 
-## R载入文件中的数据
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## R载入文件中的数据 {#r-import-data-from-file}
 
 ### 问题
 
@@ -12,7 +19,7 @@
 
 最简单的输入数据的方式就是将其保存为带分隔符（如：制表位或逗号）的文本文件。
 
-```R
+```r
 data <- read.csv("datafile.csv")
 
 # 导入一个没有表头的 CSV 文件
@@ -21,7 +28,7 @@ data <- read.csv("datafile-noheader.csv", header=FALSE)
 
 函数 `read.table()` 是一个更为常用的函数。它允许你设置分隔符，不管该文件是否有表头或者字符串是否有引号，等等。使用 `?read.table` 查看更多详细信息。
 
-```R
+```r
 data <- read.table("datafile-noheader.csv",
                    header=FALSE,
                    sep=","         # 制表位分隔的文件用 "\t"
@@ -32,7 +39,7 @@ data <- read.table("datafile-noheader.csv",
 
 有些平台可以使用 `file.choose()` 命令打开文件选择的对话窗口；而另一些平台则只会提示用户输入一个文件名。
 
-```R
+```r
 data <- read.csv(file.choose())
 ```
 
@@ -40,7 +47,7 @@ data <- read.csv(file.choose())
 
 默认条件下，数据中的字符串都被转换为因子。如果你用 `read.csv()` 载入数据，所有的文本列都会被视为因子，而实际上某些文本列被处理为字符串才更为合理。要实现这一点，可以使用 `stringsAsFactors=FALSE`:
 
-```R
+```r
 data <- read.csv("datafile.csv", stringsAsFactors=FALSE)
 
 # 将某一列转化为因子
@@ -49,7 +56,7 @@ data$Sex <- factor(data$Sex)
 
 另一种将全部文本列加载为因子，再把其中一些转换为字符的方法：
 
-```R
+```r
 data <- read.csv("datafile.csv")
 
 data$First <- as.character(data$First)
@@ -62,14 +69,18 @@ data[stringcols] <- lapply(data[stringcols], as.character)
 
 #### 从网上导入文件
 
-也可以从 URL 加载数据。这些(很长的) URL 可以加载相关文件。
+也可以从 URL 加载数据。下面这些(很长的) URL 可以加载相关文件。
 
 ```{r}
-data <- read.csv("http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv")
+data <- read.csv(
+  "http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv"
+  )
 
 
 # 读取没有表头的 CSV 文件
-data <- read.csv("http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv", header=FALSE)
+data <- read.csv(
+  "http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv", 
+  header=FALSE)
 
 # 手动添加表头
 names(data) <- c("First","Last","Sex","Number")
@@ -96,7 +107,7 @@ names(data) <- c("First","Last","Sex","Number")
 
 #### 定宽文本文件
 
-假如你的数据列宽固定，如下例：
+假如你的数据列宽固定，如下：
 
 ```
   First     Last  Sex Number
@@ -107,7 +118,7 @@ names(data) <- c("First","Last","Sex","Number")
 
 读取这种数据的一种方式是简单地使用 `read.table()` 函数 `strip.white=TRUE` ，可以清除额外的空格。
 
-```R
+```r
 read.table("clipboard", header=TRUE, strip.white=TRUE)
 ```
 
@@ -123,7 +134,7 @@ subject  sex  scores
 
 这种情况，你可能需要使用 `read.fwf()` 函数。如果你读的列名来自于文件，按照要求它们需要用分隔符（如：制表位，空格，逗号）分开。如果它们之间是通过多个空格来隔开的（如下例），你需要直接指定列的名称。
 
-```R
+```r
 # 指定列的名称
 read.fwf("myfile.txt",
          c(7,5,-2,1,1,1,1,1,1), # 列的宽度，-2意味着放弃这些列
@@ -151,27 +162,27 @@ read.fwf("myfile.txt", c(7,5,-2,1,1,1,1,1,1), header=TRUE, strip.white=TRUE)
 
 #### Excel 文件
 
-`gdata` 包里的 `read.xls` 函数可以读取 Excel 文件。
+`gdata` 包里的 `read.xls()` 函数可以读取 Excel 文件。
 
-```R
+```r
 library(gdata)
 data <- read.xls("data.xls")
 ```
 
-`gdata` 包，见 <http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets>.
+**gdata** 包使用说明见 <http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets>。
 
-包的安装，见 [Basics-安装和使用R包](http://www.jianshu.com/p/51d9a18117ee)
+包的安装，见[安装和使用R包](#r-pkg-installation)。
 
 #### SPSS 数据
 
-`foreign` 包里的 `read.spss` 函数可以读取 SPSS 文件。
+**foreign** 包里的 `read.spss()` 函数可以读取 SPSS 文件。
 
-```R
+```r
 library(foreign)
 data <- read.spss("data.sav", to.data.frame=TRUE)
 ```
 
-## 通过键盘和剪贴板把数据载入并保存到 R
+## 通过键盘和剪贴板把数据载入并保存到 R {#read-data-from-keyboard}
 
 ### 问题
 
@@ -194,7 +205,7 @@ size weight cost
 
 从键盘上输入的方法之一是从标准输入读取（ `stdin()` ）。
 
-```R
+```r
 # 使用 read.table 和 stdin() 剪切和粘贴
 data <- read.table(stdin(), header=TRUE)
 # 系统将提示您输入:在这复制和粘贴文本
@@ -205,7 +216,7 @@ data <- read.table(stdin(), header=TRUE)
 
 你也可以直接从剪贴板载入：
 
-```R
+```r
 # 首先将数据复制到剪贴板
 data <- read.table('clipboard', header=TRUE)
 
@@ -229,25 +240,21 @@ data <- read.table(header=TRUE, text='
 
 不同的数据格式(如：以逗号分隔，没有表头，等等)，选择 `read.table()` 可以设置。
 
-见 [Data input and output-R载入文件中的数据](http://www.jianshu.com/p/2a3f55ef4188)查看更多信息。
+阅读[R载入文件中的数据](#r-import-data-from-file)查看更多信息。
 
 #### 数据输出
 
 默认情况下，R 会打印行名称。当你希望打印出来的表格可以被复制粘贴，那么最好将这一设定关闭。
 
-```R
+```{r}
 print(data, row.names=FALSE)
-#>    size weight cost
-#>   small      5    6
-#>  medium      8   10
-#>   large     11    9
 ```
 
 ##### 写入可以复制粘贴或粘贴到剪贴板的数据
 
 可以将带分隔符的数据写入终端（ `stdout()` ），这样它就可以被复制粘贴到其他地方，也可以直接写入到剪贴板。
 
-```R
+```r
 write.csv(data, stdout(), row.names=FALSE)
 # "size","weight","cost"
 # "small",5,6
@@ -263,7 +270,7 @@ write.csv(data, 'clipboard', row.names=FALSE)
 
 如果数据已经加载到 R，可以使用 `dput()` 保存数据。通过 `dput()` 得到的输出是一个命令，可以重建数据结构。这种方法的优点是，它可以保持各种数据类型的修改。举个例子，如果有一列包含各种数字的数据，并且你已经将这一列转化成了因子。这种方法将会在保留该数据类型的同时，只加载文本表格（如上所示）并将把它处理为数字。
 
-```R
+```r
 # 假如你已经载入数据
 
 dput(data)
@@ -281,7 +288,7 @@ newdata <- structure(list(size = structure(c(3L, 2L, 1L), .Label = c("large",
 
 
 
-## 运行 R 脚本
+## 运行 R 脚本 {#run-r-script}
 
 ### 问题
 
@@ -291,7 +298,7 @@ newdata <- structure(list(size = structure(c(3L, 2L, 1L), .Label = c("large",
 
 使用 `source()` 函数。
 
-```R
+```r
 # 首先，找到正确的目录
 setwd('/home/username/desktop/rcode')
 
@@ -316,9 +323,7 @@ cat(x)
 
 另一种代替方法是：运行 `source()` 并加上 `print.eval=TRUE` 选项。
 
-
-
-## 用 R 把数据写入文件
+## 用 R 把数据写入文件 {#r-write-data-into-file}
 
 ### 问题
 
@@ -358,7 +363,7 @@ write.table(data, "data.csv", sep="\t", row.names=FALSE, col.names=FALSE)
 
 第一个方法是输出 R 源代码，代码运行时，该对象将被重新创建。这种方法应该适用于大部分数据对象，但它可能无法专一地重构一些较为复杂的数据对象。
 
-```R
+```r
 # 保存在一个能容易被 R 载入的文本文件中
 dump("data", "data.Rdmpd")
 # 可以同时保存多个对象
@@ -371,7 +376,7 @@ source("data.Rdmpd")
 
 另一个方法是，在 RDS 格式中写入单个数据对象。这种格式可以是二进制或 ASCII。二进制更紧凑，而 ASCII 在配合版本控制系统（如 Git）方面则更有效率。
 
-```R
+```r
 # 在二进制 RDS 格式中保存一个简单的对象
 saveRDS(data, "data.rds")
 # 或者使用 ASCII 格式
@@ -383,7 +388,7 @@ data <- readRDS("data.rds")
 
 也可以将多个对象以 RData 格式保存到一个单一的文件。
 
-```R
+```r
 # 在二进制 RData 格式中保存多个对象
 save(data, file="data.RData")
 # 或者使用 ASCII 格式
@@ -398,17 +403,17 @@ load("data.RData")
 `saveRDS()` 和 `save()` 的一个重要区别：对于前者，当你用 `readRDS()` 读取数据时，是你指定对象的名称；而对于后者，当你用 `load()` 载入数据，R 会自动使用该数据原来的对象名称。自动使用原始对象名称有时可以简化工作流程，但这种在不同的环境中都使用相同数据对象名称的设定也会成为一个缺点。
 
 
-## 用 R 写入文本，分析输出到文件
+## 用 R 写入文本，分析输出到文件 {#r-output-analysis}
 
 ### 问题
 
-如果你想写出到文件
+如果你想将输出信息写到文件。
 
 ### 方案
 
 `sink()` 函数将会重定向输出到一个文件，而不是 R 的终端。请注意，如果您在脚本中使用`sink()`，并且在结果输出到终端前崩溃，那么你将不会看到任何对你命令的响应。在不带任何参数的情况下调用 `sink()` ，将返回输出到终端。
 
-```R
+```r
 # 开始写入到文件
 sink('analysis-output.txt')
 
