@@ -1,0 +1,8023 @@
+--- 
+title: "Cookbook for R 中文版"
+author: ["Winston Chang（著）", "王诗翔 等（译）"]
+date: "`r Sys.Date()`"
+documentclass: ctexbook
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+geometry: [b5paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=3.5cm, rmargin=2.5cm]
+site: bookdown::bookdown_site
+description: "Cookbook for R 中文版本"
+github-repo:  openbiox/Cookbook-for-R-Chinese
+#cover-image: images/cover.jpg
+---
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+)
+
+# 填上你需要用到的包，如 c('ggplot2', 'dplyr')
+lapply(c("ggplot2", "tidyverse"), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+```
+
+# 欢迎 {-}
+
+这是“Cookbook for R 中文版”的网站。这本书以直观明了的问题/需求和方案为基本内容向读者介绍R的基础和如何解决常见的分析问题：读者将会学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本，以及其他工具。这本书是R问题方案参考手册，建议读者配合系统的R语言读物使用，如[《R for Data Science》](https://r4ds.had.co.nz/index.html)。
+
+这个网站是（永久）免费的，它以[署名-非商业使用-禁止演绎](http://creativecommons.net.cn/licenses/meet-the-licenses/)CC许可协议发布。如果你想要该书的实体版本，请期待它的出版。
+
+
+非常感谢以下成员的参与，如果不是他们，这本中文书再过两年也不会跟大家见面。
+
+* 陈颖珊
+* 梁其云
+* 王慧美
+* 熊逸
+* 杨芮
+* 张浩浩
+* 赵飞
+
+```{block2, type='flushright', html.tag='p'}
+王诗翔  
+于 上海科技大学
+```
+
+
+<!--chapter:end:index.Rmd-->
+
+# 作者简介 {#author .unnumbered}
+
+Winston Chang
+
+
+
+<!--chapter:end:00-author.Rmd-->
+
+\mainmatter
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# 基础 {#chapter1}
+
+## 安装和使用 R 包 {#r-pkg-installation}
+  
+### 问题
+ 
+你想安装和使用一个 R 包。
+ 
+### 方案
+ 
+如果你正在使用支持 R 的图形界面软件，应该存在通过菜单栏方式安装 R 包的选项（例如，常用的 Rstudio 中，可以点击菜单栏 **Tools** 中的 **Install Packages...** 进行 R 包的安装）。这里主要介绍如何用命令行来安装 R 包，如下所示：
+ 
+```
+install.packages("reshape2")  # reshap2为包名
+```
+ 
+在一个新 R 线程中使用该包之前，你必须先导入它。
+ 
+```
+library(reshape2)
+```
+
+如果你在一个脚本中使用该包，将这一行输入脚本中。
+ 
+如果想要将所有已安装的软件包更新为可用的最新版本，使用以下命令：
+
+```
+update.packages()
+```
+ 
+如果你在 Linux 系统上使用 R ，管理员可能已经在系统上安装了一些 R 包，由于普通用户没有更改权限，所以你可能不能以上述方式对 R 包更新。
+ 
+ 
+### 其他 {-}
+ 
+导入包也可以使用`require()`函数。下表显示了 R 包安装相关的命令及描述。
+
+```{r echo=FALSE}
+tb = tibble::tribble(
+  ~`命令`, ~`描述`,
+  "installed.packages", "返回一个矩阵，包含所有已安装的包信息",
+  "available.packages", "返回一个矩阵，包含资源库上所有可用的R包",
+  "old.packages", "返回一个矩阵，显示所有已安装的包中具有新版本的包",
+  "new.packages", "返回一个矩阵，包含所有已安装的包信",
+  "download.packages", "下载一系列R包到本地目录",
+  "install.packages", "从资源库下载安装一系列R包",
+  "remove.packages", "移除一系列已安装的R包",
+  "installed.packages", "将已经安装的R包更新到最新版本",
+  "setRepositories", "设定当前的R包的资源库列表 ",
+)
+knitr::kable(tb, caption = "常见包安装命令")
+```
+
+
+**通过命令行安装 R 包**
+
+```shell
+R CMD INSTALL aplpack_1.1.1.tgz  # 安装aplpack包
+```
+
+**从其他资源库安装 R 包**
+
+**devtools** 包提供了从其他流行的 Git 资源库或其他 URL 上安装 R 包的工具。
+
+例如，我们想安装开发版本的 **ggplot2** 包，可以使用下面命令：
+
+```{r, eval = FALSE}
+# 如果没有安装devtools，需要先安装
+install.packages("devtools")
+library(devtools)
+install_github("ggplot2")
+```
+
+## 数据结构的索引
+
+### 问题
+
+你想获得数据结构的一部分。
+
+### 方案
+
+可以使用数字索引或通过使用适当长度的布尔向量来提取向量、矩阵或数据框中的元素。
+以下例子中使用了多种方式来解决这一问题。
+
+#### 使用数字和名称进行索引
+
+对于向量
+
+```{r}
+# 样本向量
+v <- c(1,4,4,3,2,2,3)
+v[c(2,3,4)]
+v[2:4]
+v[c(2,4,3)]
+```
+
+对于数据框
+
+```{r}
+# 创建样本数据框
+data <- read.table(header=T, text='
+ subject sex size
+       1   M    7
+       2   F    6
+       3   F    9
+       4   M   11
+ ')
+
+# 获取位于第一行第三列的元素
+data[1,3]
+data[1,"size"]
+
+# 获取第1行和第2行所有列上的元素
+data[1:2, ]   
+data[c(1,2), ]
+
+# 获取一，二两行第二列上的元素
+data[1:2, 2]
+data[c(1,2), 2]
+
+# 获取行1和2，名为“sex”和 "size"的列
+data[1:2, c("sex","size")]
+data[c(1,2), c(2,3)]
+```
+
+#### 使用布尔向量进行索引
+
+向量 `v` 同上。
+
+```{r}
+v > 2
+v[v>2]
+v[ c(F,T,T,T,F,F,T)]
+```
+
+数据框同上。
+
+```{r}
+# 一个布尔向量 
+data$subject < 3
+data[data$subject < 3, ]
+data[c(TRUE,TRUE,FALSE,FALSE), ]
+# 也可以获取TRUE的数字索引
+which(data$subject < 3)
+```
+
+#### 负索引
+
+与其他某些编程语言不同，当您在 R 中使用负数进行索引时，并不意味着从后向前索引。相反，它意味着按照通常的从前往后顺序删除索引中的元素。
+
+```{r}
+# 还是这个向量
+v
+
+# 删除第一个
+v[-1]
+
+#删除前三个
+v[-1:-3]
+
+# 只删除最后一个
+v[-length(v)]
+```
+
+
+## 获取数据结构的子集
+
+
+### 问题
+
+你想得到一个由向量、矩阵或数据框里元素组成的子集。
+
+
+### 方案
+
+为了基于一些条件准则获得子集，可以使用 `subset()` 函数或者是方括号索引。 两种方式均在下方举例说明。
+
+```{r}
+v <- c(1,4,4,3,2,2,3)
+subset(v, v<3)
+v[v<3]
+
+# 另一个向量
+t <- c("small", "small", "large", "medium")
+
+# 删除 "small" 这一项
+subset(t, t!="small")
+t[t!="small"]
+```
+
+这两种方法之间的一个重要区别在于方括号索引可以为元素赋值，而 `subset()` 不可以。
+
+```{r, error=TRUE}
+v[v<3] <- 9
+subset(v, v<3) <- 9
+```
+
+数据框
+
+```{r}
+# 样本数据框
+data <- read.table(header=T, text='
+ subject sex size
+       1   M    7
+       2   F    6
+       3   F    9
+       4   M   11
+ ')
+subset(data, subject < 3)
+data[data$subject < 3, ]
+
+
+# 特定行和列的子集
+subset(data, subject < 3, select = -subject)
+subset(data, subject < 3, select = c(sex,size))
+subset(data, subject < 3, select = sex:size)
+data[data$subject < 3, c("sex","size")]
+
+# 逻辑与的两个条件
+subset(data, subject < 3  &  sex=="M")
+data[data$subject < 3  &  data$sex=="M", ]
+
+
+# 逻辑或的两个条件
+subset(data, subject < 3  |  sex=="M")
+data[data$subject < 3  |  data$sex=="M", ]
+
+
+# 基于转换数据的条件
+subset(data, log2(size) > 3 )
+data[log2(data$size) > 3, ]
+
+# 当元素在另一个向量里时的子集
+subset(data, subject %in% c(1,3))
+data[data$subject %in% c(1,3), ]
+```
+
+
+## 创建填满值的向量
+ 
+### 问题
+ 
+你想创建一个填满值的列表。
+ 
+ 
+### 方案
+ 
+```{r}
+rep(1, 50)
+rep(F, 20)
+rep(1:5, 4)
+rep(1:5, each=4)
+ 
+# 用在因子变量上
+rep(factor(LETTERS[1:3]), 5)
+```
+ 
+## 变量信息
+
+### 问题
+
+你想找到关于变量的信息。
+
+### 方案
+
+以下为关于样本变量的一些例子
+
+```{r}
+x <- 6
+n <- 1:4
+let <- LETTERS[1:4]
+df <- data.frame(n, let)
+```
+
+#### 关于存在的信息
+
+```{r, error=TRUE}
+# 列出当前所定义的变量
+ls()
+ 
+# 检查名为“x”的变量是否存在
+exists("x")
+ 
+# 检查名为“y”的变量是否存在
+exists("y")
+ 
+# 删除变量“x”
+rm(x)
+x
+```
+
+#### 关于大小/结构的信息
+
+```{r}
+# 获得关于结构的信息
+str(n)
+str(df)
+ 
+# 得到一个向量的长度
+length(n)
+ 
+# 可能会得不到我们想要的长度
+length(df)
+ 
+# 行数
+nrow(df)
+ 
+# 列数
+ncol(df)
+ 
+# 得到行数和列数
+dim(df)
+```
+
+## NULL、NA、NaN 的处理
+
+
+### 问题
+
+你想正确处理`NULL`、`NA` （Not Available）、`NaN`（Not a Number）。
+
+### 方案
+
+你的数据有时将会存在`NULL`、`NA` 、`NaN`。处理这些数据有些不同于「正常」值，并可能需要确定性测试。
+
+以下是这些值相比较的例子：
+
+```{r}
+x <- NULL
+x > 5
+
+y <- NA
+y > 5
+
+z <- NaN
+z > 5
+```
+
+如何测试某个变量是否是其中的一个值：
+
+```{r}
+is.null(x)
+is.na(y)
+is.nan(z)
+```
+
+注意，`NULL` 不同于其他两个。`NULL` 意味着没有值，而 `NA` 和 `NaN` 表示有值，尽管也许是不可用的。下面有一个例子区分：
+
+```{r}
+# y 是 null 吗？
+is.null(y)
+# FALSE
+
+# x 是 NA 吗？
+is.na(x)
+```
+
+第一个例子，检查 `y` 是否是 `NULL` ，结果 `y` 并不是；第二个例子，试图检查 `x` 是否是 `NA`，但并没有值被检测。
+
+#### 忽视向量汇总函数中的「坏」值
+
+如果你对包含 `NA` 或 `NaN` 的向量使用诸如 `mean()` 或 `sum()` 之类的函数，结果将返回 `NA` 和 `NaN`，这通常没有任何意义，虽然这样的结果会提醒你有「坏」值的存在。许多函数都有 `na.rm`，可以将这些值忽略。
+
+```{r}
+vy <- c(1, 2, 3, NA, 5)
+mean(vy)
+mean(vy, na.rm=TRUE)
+vz <- c(1, 2, 3, NaN, 5)
+sum(vz)
+sum(vz, na.rm=TRUE)
+
+# NULL不是问题，因为它不存在
+vx <- c(1, 2, 3, NULL, 5)
+sum(vx)
+```
+
+#### 从向量中移除「坏值」
+
+使用 `is.na()` 或 `is.nan()` 的反向函数，可以将这些值移除。
+
+```{r}
+vy
+vy[!is.na(vy)]
+vz
+vz[!is.nan(vz)]
+```
+
+#### 注意
+
+也有无限值 `Inf` 和 `-Inf`，及其相应的函数 `is.finite()` 和 `is.infinite()`。
+
+
+
+
+
+
+
+
+
+<!--chapter:end:01-basics.Rmd-->
+
+# 数字
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 生成随机数
+
+### 问题
+
+你想要生成随机数。
+
+### 方案
+
+要生成均匀分布的随机数，可以使用 `runif()` 函数，它的默认范围是从 0 到 1。
+
+```{r}
+runif(1)
+
+# 得到 4 个数字的向量
+runif(4)
+
+# 得到 3 个范围在 0 到 100 的随机数向量
+runif(3, min=0, max=100)
+
+# 得到 3 个范围在 0 到 100 的整数
+# 使用 max=101 因为它永远不可能等于 101，这里利用 floor 函数实现向下取整数
+floor(runif(3, min=0, max=101))
+
+# 以下方式得到的结果一样
+sample(1:100, 3, replace=TRUE)
+
+# 生成无重复的随机整数
+sample(1:100, 3, replace=FALSE)
+```
+
+要生成服从正态分布的数字，使用 `rnorm()` 函数，该函数默认均值是 0，标准差是 1。
+
+```{r}
+rnorm(4)
+
+# 使用不同的均值和标准差
+rnorm(4, mean=50, sd=10)
+
+# 通过直方图检查分布是否正确
+x <- rnorm(400, mean=50, sd=10)
+hist(x)
+```
+
+### 注意
+
+如果你想要生成随机数的结果可重复，参阅[生成可重复的随机序列](#section-2.2)。
+
+## 生成可重复的随机序列 
+
+### 问题
+
+你想要生成可重复的随机数序列。
+
+### 方案
+
+使用 `set.seed()` 函数，并在括号内放入数字作为种子数。
+
+```{r}
+set.seed(423)
+runif(3)
+
+set.seed(423)
+runif(3)
+```
+
+## 保持随机数生成器的状态
+
+### 问题
+
+你想要保存和恢复随机数生成器的状态。
+
+### 方案
+
+将 `.Random.seed` 保存到其他变量，之后将变量值赋给 `.Random.seed` 从而恢复原来的值。
+
+```{r}
+# 这个例子中，先设定随机数种子
+set.seed(423)
+runif(3)
+
+# 保存种子
+oldseed <- .Random.seed
+
+runif(3)
+
+# 做其他随机数生成相关的事情，比如:
+# runif(30)
+# ...
+```
+
+```{r}
+# 恢复种子
+.Random.seed <- oldseed
+
+# 保存种子之后，得到与之前相同的随机数
+runif(3)
+```
+
+如果你之前还没有在 R 线程中用过随机数生成器，变量 `.Random.seed` 将不会存在。如果你对此不确定，应当在保存和恢复之前进行检查：
+
+```{r}
+oldseed <- NULL
+if (exists(".Random.seed"))
+    oldseed <- .Random.seed
+
+# 做一些随机数生成操作，比如：
+# runif(30)
+# ...
+
+if (!is.null(oldseed))
+    .Random.seed <- oldseed
+```
+
+#### 在函数中保存和恢复随机数生成器的状态
+
+如果你试图在函数中通过使用 `.Random.seed <- x` 来恢复随机数生成器的状态，结果是行不通的，因为这个操作改变的是名为 `.Random.seed` 的本地变量，而不是全局环境中的这个变量。
+
+这里有两个例子。这些函数想要做的是生成一些随机数，并使得随机数生成器保留未改变的状态。
+
+```{r}
+# 这是个坏的版本
+bad_rand_restore <- function() {
+    if (exists(".Random.seed"))
+        oldseed <- .Random.seed
+    else
+        oldseed <- NULL
+
+    print(runif(3))
+
+    if (!is.null(oldseed))
+        .Random.seed <- oldseed
+    else
+        rm(".Random.seed")
+}
+
+
+# 这是个好的版本
+rand_restore <- function() {
+    if (exists(".Random.seed", .GlobalEnv))
+        oldseed <- .GlobalEnv$.Random.seed
+    else
+        oldseed <- NULL
+
+    print(runif(3))
+
+    if (!is.null(oldseed)) 
+        .GlobalEnv$.Random.seed <- oldseed
+    else
+        rm(".Random.seed", envir = .GlobalEnv)
+}
+
+
+# 坏的版本没有正确地重置随机数生成器状态，因此随机数一直在改变
+set.seed(423)
+bad_rand_restore()
+bad_rand_restore()
+bad_rand_restore()
+
+# 好的版本每次都正确地重置了随机数生成器的状态，因此随机数可以保持一致
+set.seed(423)
+rand_restore()
+rand_restore()
+rand_restore()
+```
+
+#### 注意
+
+使用者最好不要修改 `.Random.seed` 变量。
+
+## 对数值取整
+
+### 问题
+
+你想要对数值取整。
+
+### 方案
+
+存在许多种取整的方式：向最近的整数取整，向上或向下取整或者向 0 取整。
+
+```{r}
+x <- seq(-2.5, 2.5, by=.5)
+
+# 向最近的整数取整, 含有 .5 的值取整到最近一个偶数。
+round(x)
+
+# 向上取整
+ceiling(x)
+
+# 向下取整
+floor(x)
+
+# 向 0 取整
+trunc(x)
+```
+
+也可以近似到其它小数位：
+
+```{r}
+x <- c(.001, .07, 1.2, 44.02, 738, 9927) 
+
+# 1 位小数近似
+round(x, digits=1)
+
+# 10 位取整
+round(x, digits=-1)
+
+# 向最近的 5 的倍数近似
+round(x/5)*5
+
+# 向最近的 .02 的倍数近似
+round(x/.02)*.02
+```
+
+## 比较浮点数
+
+### 问题
+
+浮点数比较结果通常未能如你所想。比如：
+
+```{r}
+0.3 == 3*.1
+
+(0.1 + 0.1 + 0.1) - 0.3
+
+x <- seq(0, 1, by=.1)
+x
+
+10*x - round(10*x)
+
+```
+
+### 方案
+
+不存在通用的解决方案，因为这个问题通常是由于非整数（浮点数）在计算机和 R 中的存储方式所导致的。可以通过网址 <http://www.mathworks.com/support/tech-notes/1100/1108.html> 查阅更多信息。虽然里面使用 Matlab 代码写的，但是基本与 R 一致。
+
+<!--chapter:end:02-numbers.Rmd-->
+
+# 字符串
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 使用 grep、sub、gsub 进行搜索和替换
+
+### 问题
+
+你想要搜索或替换字符串中特定的文本。
+
+### 方案
+
+两个常用字符串搜索函数 `grep()` 和 `grepl()`。两个常用字符串替换函数 `sub()` 和 `gsub()`。它们都是向量化操作，会应用到输入字符向量的每一个元素中。
+
+#### 文本搜索
+
+`grep()` 和 `grepl()` 函数输入的第一个参数都是带有正则表达式的字符串或者固定的字符串（需要设定选项 `fixed=TRUE` ），它们的不同之处是前者返回匹配的索引或值向量，而后者返回一个逻辑向量。
+
+下面通过简单的例子理解它们的用法和区别：从小写字母向量中搜索 `c`。
+
+```{r}
+grep("c", letters)
+grepl("c", letters)
+```
+
+`grep()` 函数设定选项 `value=TRUE` 可以返回匹配的值。
+
+```
+grep("c", letters, value = TRUE)
+grep("c", c("dog", "cat"), value = TRUE)
+```
+
+正则表达式提供了一种表达字符模式的强大方式（详情查看 `?regex`），我们可以将它应用于文本的搜索中。例如，我们想搜索字符向量中有4个数字连续出现的字符：
+
+```{r}
+grep("\\d{4}", c("This will not match", "2018-04-11, This will match"))
+```
+
+#### 文本替换
+
+大部分情况下我们不仅仅想搜索到文本，而且还想要在搜索的基础上进行替换，这可以通过 `sub()` 和 `gsub()` 函数实现。这两个函数参数是一样的，第一个参数是搜索模式，第二个参数是替换模式，第三个参数是要操作的字符向量。两个函数的区别是前者只会替换字符串中第一个匹配的模式，而 `gsub()`（ `g` 是 `global` 的缩写）会替换字符串中所有匹配模式。
+
+例如，我们想要将字符向量中的年份全部替换为 2019。
+
+```{r}
+sub(pattern = "\\d{4}",replacement = "2019", x = c("This will not match", "2018-04-11, 2017-04-11", "2018-04-12"))
+          
+gsub(pattern = "\\d{4}",replacement = "2019", x = c("This will not match", "2018-04-11, 2017-04-11", "2018-04-12"))
+```
+
+要操作的对象第二个元素包含2个可以匹配的模式，使用 `sub()` 只会将第一个替换为 2019，而使用 `gsub()` 会将所有能够匹配的模式都替换为 2019。
+
+## 通过变量创建字符串
+
+### 问题
+
+你想要通过变量创建一个字符串。
+
+### 方案
+
+两种从变量创建字符串的通用方法是使用 `paste()` 和 `sprintf()` 函数。对向量来说，`paste` 更加有用；`sprintf` 则常用于对输出实现精确的控制。
+
+#### 使用 paste()
+
+```{r}
+a <- "apple"
+b <- "banana"
+
+# 将a、b变量内容连到一起，并用空格隔开
+paste(a, b)
+
+# 如果不想要空格，可以设定参数 sep="", 或使用函数 paste0():
+paste(a, b, sep="")
+paste0(a, b)
+
+# 用逗号加空格分开:
+paste(a, b, sep=", ")
+
+# 设定一个字符向量
+d <- c("fig", "grapefruit", "honeydew")
+
+# 如果输入是一个向量，输出会将其每个元素堆叠到一起：
+paste(d, collapse=", ")
+
+# 如果输入是一个标量和一个向量， 结果会将标量与向量里每个元素放到一起
+# 并返回一个向量（译者注：R向量化操作的循环对齐原则）：
+paste(a, d)
+
+# 使用 sep 和 collapse 参数:
+paste(a, d, sep="-", collapse=", ")
+```
+
+#### 使用 sprintf()
+
+另一种方式是使用 `sprintf` 函数，它来自于 C 语言。
+
+想要在字符串或字符变量中进行取代操作，使用 `%s`：
+
+```{r}
+a <- "string"
+sprintf("This is where a %s goes.", a)
+```
+
+如果是整数，可以使用 `%d` 或它的变体：
+
+```{r}
+x <- 8
+sprintf("Regular:%d", x)
+
+# 可以以空格开头，替代一定数量字符。
+sprintf("Leading spaces:%4d", x)
+
+# 也可以使用 0 替代一定数量字符。
+sprintf("Leading zeros:%04d", x)
+```
+
+对浮点数而言，使用 `%f` 进行标准释义，而 `%e` 或者 `%E` 则代表指数。你也可以使用 `%g` 或者 `%G` 让程序自动根据有效位数进行两种格式的转换。下面是 R  help 页面中关于 sprintf 的例子：
+
+```r
+sprintf("%f", pi)         # "3.141593"
+sprintf("%.3f", pi)       # "3.142"
+sprintf("%1.0f", pi)      # "3"
+sprintf("%5.1f", pi)      # "  3.1"
+sprintf("%05.1f", pi)     # "003.1"
+sprintf("%+f", pi)        # "+3.141593"
+sprintf("% f", pi)        # " 3.141593"
+sprintf("%-10f", pi)      # "3.141593  "   (左对齐)
+sprintf("%e", pi)         # "3.141593e+00"
+sprintf("%E", pi)         # "3.141593E+00"
+sprintf("%g", pi)         # "3.14159"
+sprintf("%g",   1e6 * pi) # "3.14159e+06"  (指数化)
+sprintf("%.9g", 1e6 * pi) # "3141592.65"   (固定)
+sprintf("%G", 1e-6 * pi)  # "3.14159E-06"
+```
+
+在 `%m.nf` 格式规范中：`m` 代表域宽，它是输出字符串中字符的最小位数，可以以空格或 0 开头。`n` 代表精度，它指小数点后的数字位数。
+
+其他混合操作：
+
+```{r}
+x <- "string"
+sprintf("Substitute in multiple strings: %s %s", x, "string2")
+
+# 想要打印百分号，可以使用 "%%"
+sprintf("A single percent sign here %%")
+```
+
+#### 注意
+
+关于更多脚本输出的信息可以查看[用 R 写入文本，分析输出到文件](#r-output-analysis)。
+
+<!--chapter:end:03-strings.Rmd-->
+
+# 公式
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 通过字符串创建公式
+
+### 问题
+
+你想通过字符串创建公式。
+
+### 方案
+
+通过字符串的方式来创建公式是非常有用的。这通常用于需要将公式参数当做字符串传入函数中。
+
+最基础实用的方法就是调用函数 `as.formula()`:
+
+```{r}
+# 这将返回一个字符串
+"y ~ x1 + x2"
+
+# 这将返回一个公式
+as.formula("y ~ x1 + x2")
+```
+
+下面是一个简单实例：
+
+```{r}
+# 存在一些变量名:
+measurevar <- "y"
+groupvars  <- c("x1","x2","x3")
+
+# 创建合适的字符串:
+paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ ")
+
+# 返回公式:
+as.formula(paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ "))
+```
+
+
+## 从公式中提取组分
+
+### 问题
+
+你想抽离公式的一部分用来使用。
+
+### 方案
+
+你可以把公式对象当作列表看待，使用 `[[` 操作符对其组分进行操作。
+
+```{r}
+f <- y ~ x1 + x2
+
+# 观察f结构
+str(f)
+
+# 获得每一部分
+f[[1]]
+f[[2]]
+f[[3]]
+
+# 转换为列表观察
+as.list(f)
+```
+
+如果公式左边没有任何东西，那么列表只有两个元素：
+
+```{r}
+f2 <- ~ x1 + x2
+as.list(f2)
+```
+
+公式的每一个元素都是一个符号或者语言对象（包含多个符号）：
+
+```{r}
+str(f[[1]])
+str(f[[2]])
+str(f[[3]])
+
+# 查看语言对象某部分
+str(f[[3]][[1]])
+str(f[[3]][[2]])
+str(f[[3]][[3]])
+
+```
+
+你可以使用 `as.character()` 或 `deparse()` 函数将它们转为字符串。 `deparse()` 函数可以返回一个看起来更为自然的结果：
+
+```{r}
+as.character(f[[1]])
+#> [1] "~"
+as.character(f[[2]])
+#> [1] "y"
+
+# 这里语言对象被强制转换为代表解析树的字符向量
+as.character(f[[3]])
+#> [1] "+"  "x1" "x2"
+
+# 使用 deparse() 获取更为自然的结果
+deparse(f[[3]])
+deparse(f)
+```
+
+正如我们在运行 `str(f)` 命令时看到的那样，公式对象也会捕捉调用它的环境。如果要抽取它，可以使用 `environment()` 函数：
+
+```{r}
+environment(f)
+```
+
+<!--chapter:end:04-formulas.Rmd-->
+
+# 数据的导入与导出
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## R载入文件中的数据 {#r-import-data-from-file}
+
+### 问题
+
+你想从文件中载入数据。
+
+### 方案
+
+#### 带分隔符的文本文件
+
+最简单的输入数据的方式就是将其保存为带分隔符（如：制表位或逗号）的文本文件。
+
+```r
+data <- read.csv("datafile.csv")
+
+# 导入一个没有表头的 CSV 文件
+data <- read.csv("datafile-noheader.csv", header=FALSE)
+```
+
+函数 `read.table()` 是一个更为常用的函数。它允许你设置分隔符，不管该文件是否有表头或者字符串是否有引号，等等。使用 `?read.table` 查看更多详细信息。
+
+```r
+data <- read.table("datafile-noheader.csv",
+                   header=FALSE,
+                   sep=","         # 制表位分隔的文件用 "\t"
+)
+```
+
+#### 打开文件的文件选择器
+
+有些平台可以使用 `file.choose()` 命令打开文件选择的对话窗口；而另一些平台则只会提示用户输入一个文件名。
+
+```r
+data <- read.csv(file.choose())
+```
+
+#### 把字符串看作因子（factor）或字符（character）
+
+默认条件下，数据中的字符串都被转换为因子。如果你用 `read.csv()` 载入数据，所有的文本列都会被视为因子，而实际上某些文本列被处理为字符串才更为合理。要实现这一点，可以使用 `stringsAsFactors=FALSE`:
+
+```r
+data <- read.csv("datafile.csv", stringsAsFactors=FALSE)
+
+# 将某一列转化为因子
+data$Sex <- factor(data$Sex)
+```
+
+另一种将全部文本列加载为因子，再把其中一些转换为字符的方法：
+
+```r
+data <- read.csv("datafile.csv")
+
+data$First <- as.character(data$First)
+data$Last  <- as.character(data$Last)
+
+# 另一种方法：转化名为 “First” 和 “Last” 的两列
+stringcols <- c("First","Last")
+data[stringcols] <- lapply(data[stringcols], as.character)
+```
+
+#### 从网上导入文件
+
+也可以从 URL 加载数据。下面这些(很长的) URL 可以加载相关文件。
+
+```{r}
+data <- read.csv(
+  "http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv"
+  )
+
+
+# 读取没有表头的 CSV 文件
+data <- read.csv(
+  "http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv", 
+  header=FALSE)
+
+# 手动添加表头
+names(data) <- c("First","Last","Sex","Number")
+```
+
+上述所使用的数据文件：
+
+[datafile.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv)：
+
+```
+"First","Last","Sex","Number"
+"Currer","Bell","F",2
+"Dr.","Seuss","M",49
+"","Student",NA,21
+```
+
+[datafile-noheader.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv):
+
+```
+"Currer","Bell","F",2
+"Dr.","Seuss","M",49
+"","Student",NA,21
+```
+
+#### 定宽文本文件
+
+假如你的数据列宽固定，如下：
+
+```
+  First     Last  Sex Number
+ Currer     Bell    F      2
+    Dr.    Seuss    M     49
+    ""   Student   NA     21
+```
+
+读取这种数据的一种方式是简单地使用 `read.table()` 函数 `strip.white=TRUE` ，可以清除额外的空格。
+
+```r
+read.table("clipboard", header=TRUE, strip.white=TRUE)
+```
+
+然而，数据文件里的某些列可能含有空格，也可能不包含空格。比如说下面的数据里，`scores` 列表示六个不同的测量值，每一个从 0 到 3 。
+
+```
+subject  sex  scores
+   N  1    M  113311
+   NE 2    F  112231
+   S  3    F  111221
+   W  4    M  011002
+```
+
+这种情况，你可能需要使用 `read.fwf()` 函数。如果你读的列名来自于文件，按照要求它们需要用分隔符（如：制表位，空格，逗号）分开。如果它们之间是通过多个空格来隔开的（如下例），你需要直接指定列的名称。
+
+```r
+# 指定列的名称
+read.fwf("myfile.txt",
+         c(7,5,-2,1,1,1,1,1,1), # 列的宽度，-2意味着放弃这些列
+         skip=1,                # 跳过第一行（包括表头）
+         col.names=c("subject","sex","s1","s2","s3","s4","s5","s6"),
+         strip.white=TRUE)      # 跳过每个数据的前导和尾随空格
+#>   subject sex s1 s2 s3 s4 s5 s6
+#> 1    N  1   M  1  1  3  3  1  1
+#> 2    NE 2   F  1  1  2  2  3  1
+#> 3    S  3   F  1  1  1  2  2  1
+#> 4    W  4   M  0  1  1  0  0  2
+# subject sex s1 s2 s3 s4 s5 s6
+#    N  1   M  1  1  3  3  1  1
+#    NE 2   F  1  1  2  2  3  1
+#    S  3   F  1  1  1  2  2  1
+#    W  4   M  0  1  1  0  0  2
+
+# 如果第一行如下：
+# subject,sex,scores
+# 我们可以使用 header=TRUE
+read.fwf("myfile.txt", c(7,5,-2,1,1,1,1,1,1), header=TRUE, strip.white=TRUE)
+#> Error in read.table(file = FILE, header = header, sep = sep, row.names = row.names, : more columns than column names
+# 错误：列数比列名数量多
+```
+
+#### Excel 文件
+
+`gdata` 包里的 `read.xls()` 函数可以读取 Excel 文件。
+
+```r
+library(gdata)
+data <- read.xls("data.xls")
+```
+
+**gdata** 包使用说明见 <http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets>。
+
+包的安装，见[安装和使用R包](#r-pkg-installation)。
+
+#### SPSS 数据
+
+**foreign** 包里的 `read.spss()` 函数可以读取 SPSS 文件。
+
+```r
+library(foreign)
+data <- read.spss("data.sav", to.data.frame=TRUE)
+```
+
+## 通过键盘和剪贴板把数据载入并保存到 R {#read-data-from-keyboard}
+
+### 问题
+
+你想用键盘输入数据，而不是从文件中载入。
+
+### 方案
+
+#### 数据输入
+
+假如你的数据如下：
+
+```
+size weight cost
+  small      5    6
+ medium      8   10
+  large     11    9
+```
+
+##### 通过键盘输入或从剪贴板载入数据
+
+从键盘上输入的方法之一是从标准输入读取（ `stdin()` ）。
+
+```r
+# 使用 read.table 和 stdin() 剪切和粘贴
+data <- read.table(stdin(), header=TRUE)
+# 系统将提示您输入:在这复制和粘贴文本
+
+# 或者：
+# data <- read.csv(stdin())
+```
+
+你也可以直接从剪贴板载入：
+
+```r
+# 首先将数据复制到剪贴板
+data <- read.table('clipboard', header=TRUE)
+
+# 或者：
+# data <- read.csv('clipboard')
+```
+
+##### 在脚本中载入数据
+
+前面的方法不能用来加载脚本文件中的数据，因为输入（通过键入或粘贴)必须发生在运行该命令之后。
+
+```{r}
+# 使用 read.table()
+data <- read.table(header=TRUE, text='
+    size weight cost
+   small      5    6
+  medium      8   10
+   large     11    9
+ ')
+```
+
+不同的数据格式(如：以逗号分隔，没有表头，等等)，选择 `read.table()` 可以设置。
+
+阅读[R载入文件中的数据](#r-import-data-from-file)查看更多信息。
+
+#### 数据输出
+
+默认情况下，R 会打印行名称。当你希望打印出来的表格可以被复制粘贴，那么最好将这一设定关闭。
+
+```{r}
+print(data, row.names=FALSE)
+```
+
+##### 写入可以复制粘贴或粘贴到剪贴板的数据
+
+可以将带分隔符的数据写入终端（ `stdout()` ），这样它就可以被复制粘贴到其他地方，也可以直接写入到剪贴板。
+
+```r
+write.csv(data, stdout(), row.names=FALSE)
+# "size","weight","cost"
+# "small",5,6
+# "medium",8,10
+# "large",11,9
+
+
+# 写到剪贴板(不支持 Mac 或 Unix)
+write.csv(data, 'clipboard', row.names=FALSE)
+```
+
+##### 输出 R 中的载入数据
+
+如果数据已经加载到 R，可以使用 `dput()` 保存数据。通过 `dput()` 得到的输出是一个命令，可以重建数据结构。这种方法的优点是，它可以保持各种数据类型的修改。举个例子，如果有一列包含各种数字的数据，并且你已经将这一列转化成了因子。这种方法将会在保留该数据类型的同时，只加载文本表格（如上所示）并将把它处理为数字。
+
+```r
+# 假如你已经载入数据
+
+dput(data)
+#> structure(list(size = structure(c(3L, 2L, 1L), .Label = c("large",
+#> "medium", "small"), class = "factor"), weight = c(5L, 8L, 11L
+#> ), cost = c(6L, 10L, 9L)), .Names = c("size", "weight", "cost"
+#> ), class = "data.frame", row.names = c(NA, -3L))
+
+# 之后，我们可以使用 dput 中输出，重新创建数据结构
+newdata <- structure(list(size = structure(c(3L, 2L, 1L), .Label = c("large",
+  "medium", "small"), class = "factor"), weight = c(5L, 8L, 11L
+  ), cost = c(6L, 10L, 9L)), .Names = c("size", "weight", "cost"
+  ), class = "data.frame", row.names = c(NA, -3L))
+```
+
+
+
+## 运行 R 脚本 {#run-r-script}
+
+### 问题
+
+你想从文本文件运行 R 代码
+
+### 方案
+
+使用 `source()` 函数。
+
+```r
+# 首先，找到正确的目录
+setwd('/home/username/desktop/rcode')
+
+source('analyze.r')
+```
+
+请注意，如果你想让你的脚本生成文本输出，你必须使用 `print()` 或 `cat()` 函数。
+
+```{r}
+x <- 1:10
+
+# 这在脚本中，不会启动任何命令
+x
+
+# 使用print()函数:
+print(x)
+
+# 更简单的输出: 没有行/列，没有文本
+cat(x)
+
+```
+
+另一种代替方法是：运行 `source()` 并加上 `print.eval=TRUE` 选项。
+
+## 用 R 把数据写入文件 {#r-write-data-into-file}
+
+### 问题
+
+你想把数据写入一个文件。
+
+### 方案
+
+#### 写到有分隔符的文本文件
+
+最简单的方式是用 `write.csv()` 。默认情况下，`write.csv()` 包含行名，但是这通常没必要，而且可能会导致混乱。
+
+```{r}
+# 一个简单的例子
+data <- read.table(header=TRUE, text='
+ subject sex size
+       1   M    7
+       2   F    NA
+       3   F    9
+       4   M   11
+ ')
+
+# 写入到文件，不显示行名
+write.csv(data, "data.csv", row.names=FALSE)
+
+# 替代 “NA”，输出空格
+write.csv(data, "data.csv", row.names=FALSE, na="")
+
+# 用制表符可以不显示行和列名
+write.table(data, "data.csv", sep="\t", row.names=FALSE, col.names=FALSE)
+```
+
+#### 以 R 的数据格式保存
+
+`write.csv()` 和 `write.table()` 是最适合与其他数据分析程序交互操作的函数。然而，他们不会保持数据结构中的特殊属性，如：该列是否为一个字符类型或因子，或因子的水平的顺序。为了实现这一点，我们应该将该数据写成适合 R 的特殊格式。
+
+下面是三种主要的方法：
+
+第一个方法是输出 R 源代码，代码运行时，该对象将被重新创建。这种方法应该适用于大部分数据对象，但它可能无法专一地重构一些较为复杂的数据对象。
+
+```r
+# 保存在一个能容易被 R 载入的文本文件中
+dump("data", "data.Rdmpd")
+# 可以同时保存多个对象
+dump(c("data", "data1"), "data.Rdmpd")
+
+# 再次加载数据
+source("data.Rdmpd")
+# 载入时，原始的数据名称将被自动使用
+```
+
+另一个方法是，在 RDS 格式中写入单个数据对象。这种格式可以是二进制或 ASCII。二进制更紧凑，而 ASCII 在配合版本控制系统（如 Git）方面则更有效率。
+
+```r
+# 在二进制 RDS 格式中保存一个简单的对象
+saveRDS(data, "data.rds")
+# 或者使用 ASCII 格式
+saveRDS(data, "data.rds", ascii=TRUE)
+
+# 再次载入:
+data <- readRDS("data.rds")
+```
+
+也可以将多个对象以 RData 格式保存到一个单一的文件。
+
+```r
+# 在二进制 RData 格式中保存多个对象
+save(data, file="data.RData")
+# 或者使用 ASCII 格式
+save(data, file="data.RData", ascii=TRUE)
+# 可以保存多个对象
+save(data, data1, file="data.RData")
+
+# 再次载入:
+load("data.RData")
+```
+
+`saveRDS()` 和 `save()` 的一个重要区别：对于前者，当你用 `readRDS()` 读取数据时，是你指定对象的名称；而对于后者，当你用 `load()` 载入数据，R 会自动使用该数据原来的对象名称。自动使用原始对象名称有时可以简化工作流程，但这种在不同的环境中都使用相同数据对象名称的设定也会成为一个缺点。
+
+
+## 用 R 写入文本，分析输出到文件 {#r-output-analysis}
+
+### 问题
+
+如果你想将输出信息写到文件。
+
+### 方案
+
+`sink()` 函数将会重定向输出到一个文件，而不是 R 的终端。请注意，如果您在脚本中使用`sink()`，并且在结果输出到终端前崩溃，那么你将不会看到任何对你命令的响应。在不带任何参数的情况下调用 `sink()` ，将返回输出到终端。
+
+```r
+# 开始写入到文件
+sink('analysis-output.txt')
+
+set.seed(12345)
+x <-rnorm(10,10,1)
+y <-rnorm(10,11,1)
+# 添加一些内容
+cat(sprintf("x has %d elements:\n", length(x)))
+print(x)
+cat("y =", y, "\n")
+
+cat("=============================\n")
+cat("T-test between x and y\n")
+cat("=============================\n")
+t.test(x,y)
+
+# 停止写入
+sink()
+
+
+# 附加到文件
+sink('analysis-output.txt', append=TRUE)
+cat("Some more stuff here...\n")
+sink()
+```
+
+输出文件的内容：
+
+```
+x has 10 elements:
+ [1] 10.585529 10.709466  9.890697  9.546503 10.605887  8.182044 10.630099  9.723816
+ [9]  9.715840  9.080678
+y = 10.88375 12.81731 11.37063 11.52022 10.24947 11.8169 10.11364 10.66842 12.12071 11.29872
+=============================
+T-test between x and y
+=============================
+
+    Welch Two Sample t-test
+
+data:  x and y
+t = -3.8326, df = 17.979, p-value = 0.001222
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.196802 -0.641042
+sample estimates:
+mean of x mean of y
+ 9.867056 11.285978
+
+Some more stuff here...
+```
+
+<!--chapter:end:05-io.Rmd-->
+
+# 数据操作
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 排序
+
+### 问题
+
+你想将一个向量，矩阵或列表排序。
+
+### 方案
+
+#### 向量
+
+```{r}
+# 生成一个随机向量
+v <- sample(101:110)
+
+# 排序
+sort(v)
+
+# 反向排序
+sort(v, decreasing=TRUE)
+```
+
+#### 列表
+
+对列表的一个或多个列进行排序，可以使用 **plyr** 包里的 `arrange()` 函数或者使用 R 的内置函数。`arrange()` 函数更容易使用，但需要额外安装包。
+
+```{r}
+# 生成一个列表
+df <- data.frame (id=1:4,
+            weight=c(20,27,24,22),
+            size=c("small", "large", "medium", "large"))
+df
+
+library(plyr)
+
+# 按照 "weight" 列排序，以下结果相同。
+arrange(df, weight)       # 使用 plyr 包里的 arrange 函数
+df[order(df$weight), ]    # 使用 R 内置函数
+
+# 以 size 为第一关键词, weight 为第二关键词排序
+arrange(df, size, weight)         # 使用 plyr 包里的 arrange 函数
+df[order(df$size, df$weight), ]   # 使用 R 内置函数
+
+# 所有列从左到右依次排序
+df[do.call(order, as.list(df)), ] 
+# 在这个特殊的例子中，顺序将保持不变
+```
+
+请注意，`size` 列是一个因子且按照因子水平进行排序。在这种情况下将自动按字母顺序排列（创建数据表格），所以**大**是第一而**小**是最后。
+
+##### 反向排序
+
+使用 `decreasing=TRUE` 可以反向排序。
+
+反向排序某一列的方法依赖于数据类型：
+
+- 数字：变量名前加一个`-`。例如：`df[order(-df$weight)]`
+- 因子：转换为整数，变量名前加一个`-`。例如：`df[order(-xtfrm(df$size)), ]`
+- 字符：没有简单的方法能做到这一点。一种方法是先转换为一个因子，然后如上所述。
+
+```{r}
+# 反向排序 weight 列，下面方法有相同结果：
+arrange(df, -weight)                      # 使用 plyr 包里的 arrange 函数
+df[order(df$weight, decreasing=TRUE), ]   # 使用 R 内置函数
+df[order(-df$weight), ]                   # 使用 R 内置函数
+
+# 升序排列 size ,然后降序排列 weight
+arrange(df, size, -weight)         # 使用 plyr 包里的 arrange 函数
+df[order(df$size, -df$weight), ]   # 使用 R 内置函数
+
+# 升序排列 size,然后降序排列 weight
+# 因子需要 xtfrm()
+arrange(df, -xtfrm(size), weight)         # 使用 plyr 包里的 arrange 函数
+df[order(-xtfrm(df$size), df$weight), ]   # 使用 R 内置函数
+```
+
+## 随机排序
+
+### 问题
+
+你想使一个数据结构随机排序。
+
+### 方案
+
+```{r}
+# 创建一个向量
+v <- 11:20
+
+# 随机化向量的顺序
+v <- sample(v)
+
+# 创建一个列表
+data <- data.frame(label=letters[1:5], number=11:15)
+data
+
+# 随机化列表的顺序
+data <- data[sample(1:nrow(data)), ]
+data
+```
+
+#### 注意
+
+为了使随机化可重复，你应该设置随机数生成器。详见：[生成随机数](#section-2.1)、[生成可重复的随机数序列](#section-2.2)。
+
+## 转换向量类型
+
+### 问题
+
+你想在数值向量、字符串向量和因子向量间做转换。
+
+### 方案
+
+假设你刚开始有一个数值型向量 `n`:
+
+```{r}
+n <- 10:14
+n
+```
+
+将这个数值型向量转换为其他两种类型（将结果保存在 `c` 和 `f` ）：
+
+```{r}
+# 数值型转换字符串
+c <- as.character(n)
+c
+# 数值型转换因子型
+f <- factor(n)
+f
+```
+
+将字符串向量转化为另外两种：
+
+```{r}
+# 数值
+as.numeric(c)
+
+# 字符串转换为因子
+factor(c)
+```
+
+把一个因子转变为一个字符串型向量很简单：
+
+```{r}
+# 因子转换为字符串
+as.character(f)
+```
+
+然而，将因子转化为数值型向量有点棘手。如果你使用`as.numberic`，它将会给你因子编码的数值，恐怕不是你想要的。
+
+```{r}
+as.numeric(f)
+
+# 另一种方式得到数字的编码，如果这是你想要的:
+unclass(f)
+```
+
+将因子转换为数值型的方法是先转化为字符串型，再转化为数值型。
+
+```{r}
+# 因子转换为数值型
+as.numeric(as.character(f))
+```
+
+## 查找并移除重复记录
+
+### 问题
+
+你想查找和（或）移除向量或列表里重复的条目。
+
+### 方案
+
+#### 向量
+
+```{r}
+# 生成一个向量
+set.seed(158)
+x <- round(rnorm(20, 10, 5))
+x
+
+# 对于每一个元素：它是否重复（第一个值不算）
+duplicated(x)
+
+# 重复条目的值
+# 注意“6”出现了三次，所以它有两个
+x[duplicated(x)]
+
+# 重复的条目无需重复出现
+unique(x[duplicated(x)])
+
+# 移除重复数据，下面两种方法效果一样:
+unique(x)
+x[!duplicated(x)]
+```
+
+#### 列表
+
+```{r}
+# 一个样本列表:
+df <- read.table(header=TRUE, text='
+ label value
+     A     4
+     B     3
+     C     6
+     B     3
+     B     1
+     A     2
+     A     4
+     A     4
+')
+
+
+# 每一行是否有重复？
+duplicated(df)
+
+# 显示重复的条目
+df[duplicated(df),]
+
+# 显示没有重复的条目 (行名可能不同，但值相同)
+unique(df[duplicated(df),])
+
+# 移除重复的数据，下面两种方法效果一样:
+unique(df)
+df[!duplicated(df),]
+```
+
+## NA 存在时进行向量或因子比较 {#compare-with-nas}
+
+### 问题
+
+你想在 `NA` 存在的情况下比较比较两个向量或因子并返回 `TRUE` 或 `FALSE`（而不是 `NA`）。
+
+### 方案
+
+假设你有一个两列（包含布尔值）的列表：
+
+```{r}
+df <- data.frame( a=c(TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,NA,NA,NA),
+                  b=c(TRUE,FALSE,NA,TRUE,FALSE,NA,TRUE,FALSE,NA))
+df
+```
+
+通常情况下，当你比较两个包含`NA`值的向量或因子时，原始值是`NA`，结果也将有`NA`。根据你的目的，这或许是是你想要的结果。
+
+```{r}
+df$a == df$b
+
+# 同样的比较，但是可以生成列表的另一列：
+data.frame(df, isSame = (df$a==df$b))
+```
+
+#### 可以与 `NA` 相比的函数
+
+这个比较函数会把`NA`赋予另一个值。如果一个向量的两项都是 `NA` ，则返回 `TRUE`；如果其中一个是 `NA`，则返回 `FALSE`；所有其他比较(无`NA`之间)的方式是一样的。
+
+```{r}
+# 这个函数将会返回 TRUE，当两个元素相同（包括两个 NA），其他情况返回 FALSE
+compareNA <- function(v1,v2) {
+    same <- (v1 == v2) | (is.na(v1) & is.na(v2))
+    same[is.na(same)] <- FALSE
+    return(same)
+}
+```
+
+#### 使用该函数的例子
+
+比较两个布尔向量：
+
+```{r}
+compareNA(df$a, df$b)
+
+# 同样的比较，生成另一列
+data.frame(df, isSame = compareNA(df$a,df$b))
+```
+
+它也能用于因子，即使因子的水平处于不同的次序：
+
+```{r}
+# 创建一个含因子的列表
+df1 <- data.frame(a = factor(c('x','x','x','y','y','y', NA, NA, NA)),
+                  b = factor(c('x','y', NA,'x','y', NA,'x','y', NA)))
+
+# 比较
+data.frame(df1, isSame = compareNA(df1$a, df1$b))
+
+
+# 也能用于因子，即使因子的水平处于不同的次序
+df1$b <- factor(df1$b, levels=c('y','x'))
+data.frame(df1, isSame = compareNA(df1$a, df1$b))
+```
+
+## 数据重新编码
+
+### 问题
+
+你想重新编码数据或从现有的数据中计算生产新的数据列。
+
+### 方案
+
+下面的例子将使用这些数据：
+
+```{r}
+data <- read.table(header=T, text='
+ subject sex control cond1 cond2
+       1   M     7.9  12.3  10.7
+       2   F     6.3  10.6  11.1
+       3   F     9.5  13.1  13.8
+       4   M    11.5  13.4  12.9
+')
+```
+
+#### 重新编码分类变量
+
+最简单的方法是使用 **plyr** 包里的 `revalue()` 或 `mapvalues()`。这可以令`M` 为 `1`、`F` 为 `2`，并把它放在一个新生产的列。注意，这两个函数均保存数据类型：如果输入一个因子，输出将会是一个因子；如果输入是一个字符串向量，输出将会是一个字符串向量。
+
+```{r}
+library(plyr)
+
+# 下面两行是等价的:
+data$scode <- revalue(data$sex, c("M"="1", "F"="2"))
+data$scode <- mapvalues(data$sex, from = c("M", "F"), to = c("1", "2"))
+data
+
+# data$sex是一个因子，因此data$scode也是因子
+```
+
+详见[映射向量的值](#section-6.7)。
+
+如果你不想依赖 **plyr**包，你可以使用 R 内置函数：
+
+```{r}
+data$scode[data$sex=="M"] <- "1"
+data$scode[data$sex=="F"] <- "2"
+
+# 把列转换为因子
+data$scode <- factor(data$scode)
+data
+```
+
+另一种方法是使用 `match` 函数：
+
+```{r}
+oldvalues <- c("M", "F")
+newvalues <- factor(c("g1","g2"))  # 转换为因子
+
+data$scode <- newvalues[ match(data$sex, oldvalues) ]
+data
+```
+
+#### 将一个连续变量重编码为分类变量
+
+标记 control 值小于 7 为 “low”，大于或等于 7 为 “high”：
+
+```{r}
+data$category[data$control< 7] <- "low"
+data$category[data$control>=7] <- "high"
+
+# 把列转换为因子
+data$category <- factor(data$category)
+data
+```
+
+用 `cut()` 函数，可以指定边限和新值：
+
+```{r}
+data$category <- cut(data$control,
+                     breaks=c(-Inf, 7, 9, Inf),
+                     labels=c("low","medium","high"))
+data
+```
+
+默认情况下，范围是左边开放、右边关闭，如(7，9] 。使用 `right= FALSE` 可以设置成左边关闭、右边开放，像 [7、9)。
+
+#### 计算得到一个新的连续变量
+
+假设您想添加一个新列，为三个量的和。
+
+```{r}
+data$total <- data$control + data$cond1 + data$cond2
+data
+```
+
+## 映射向量值
+
+### 问题
+
+你想将向量中所有值为 x 的实例改为值 y。
+
+### 方案
+
+```{r}
+# 创建一些样本数据
+str <- c("alpha", "beta", "gamma")
+num <- c(1, 2, 3)
+```
+
+最简单的方法是使用 `plyr` 包里的 `revalue()` 或 `mapvalues()`。
+
+```{r}
+library(plyr)
+revalue(str, c("beta"="two", "gamma"="three"))
+
+mapvalues(str, from = c("beta", "gamma"), to = c("two", "three"))
+
+
+# 对于数值型向量，revalue() 没作用，由于它使用一个命名了的向量，向量名一般是字符串而不是数值，但 mapvalues()仍然有作用
+mapvalues(num, from = c(2, 3), to = c(5, 6))
+```
+
+如果你不想依赖 **plyr**包，你可以使用 R 内置函数。注意，这些方法将直接修改向量；也就是说，你不需要把结果保存回变量。
+
+```{r}
+# 把"beta" 替换为 "two"
+str[str=="beta"] <- "two"
+str
+
+num[num==2] <- 5
+num
+```
+
+也可以使用R的字符串查找和替换函数来重新映射字符串向量的值。注意，`alpha` 前后的 `^` 和 `$` 确保整个字符串匹配。没有它们，如果有一个值为`alphabet`，它也会被匹配，替代 `onebet`。
+
+```{r}
+str <- c("alpha", "beta", "gamma")
+
+sub("^alpha$", "one", str)
+
+# 把所有列的 "a" 替代为 "X"
+gsub("a", "X", str)
+
+# gsub() 替代所有匹配的元素
+# sub() 只替代每一个元素首先匹配到的内容
+```
+
+## 重命名因子水平
+
+### 问题
+
+你想要重命名因子水平。
+
+### 方案
+
+```{r}
+# 处理一个因子的样例
+x <- factor(c("alpha","beta","gamma","alpha","beta"))
+x
+
+levels(x)
+```
+
+最简单的办法是使用 `plyr` 包中的 `revalue() `或者 `mapvalues()` 函数。
+
+```{r}
+library(plyr)
+revalue(x, c("beta"="two", "gamma"="three"))
+
+mapvalues(x, from = c("beta", "gamma"), to = c("two", "three"))
+```
+
+如果你不想要依赖 **plyr** 包，你可以使用 R 的内置函数进行以下处理。注意这些方法会直接修改变量`x`；你不需要将结果重新赋值回给`x`。
+
+```{r}
+# 通过名字重命名: change "beta" to "two"
+levels(x)[levels(x)=="beta"] <- "two"
+
+
+# 你也可以通过位置重命名，但这种做法比较危险（会因数据变化造成不可控结果），不值得推荐
+
+# 通过因子列表索引重命名: change third item, "gamma", to "three".
+levels(x)[3] <- "three"
+x
+
+# 重命名所有的因子水平
+levels(x) <- c("one","two","three")
+x
+```
+
+我们可以不使用 **plyr** 包而通过名字实现因子水平的重命名，但记住这只有在所有的水平都在列表中时才起作用，否则会返回 NA 以代替寻找不到的因子水平。
+
+```{r}
+# 用名字重命名所有因子
+x <- factor(c("alpha","beta","gamma","alpha","beta"))
+levels(x) <- list(A="alpha", B="beta", C="gamma")
+x
+```
+
+我们也可以使用 R 的字符串搜索与替换函数去重命名因子水平。注意字符`alpha`周围的`^`与`$`符号是用来确保整个字符串能够匹配（正则表达式）。如果没有它们，字符`alphabet`也能够被成功匹配并会被替换为`onbet`。
+
+```{r}
+# 一个样例
+x <- factor(c("alpha","beta","gamma","alpha","beta"))
+x
+
+levels(x) <- sub("^alpha$", "one", levels(x))
+x
+
+
+# 将所有的 "a" 替换为 "X"
+levels(x) <- gsub("a", "X", levels(x))
+x
+
+# gsub() 替代所有匹配的元素
+# sub() 只替代每一个元素首先匹配到的内容
+```
+
+### 更多参考
+
+匹配向量中值并将其替换为新的值操作类似，参见[映射向量值](#section-6.7)获取更多信息。
+
+## 重计算因子水平
+
+### 问题
+
+你想要重新计算一个因子的水平。这在因子水平实际并没有出现在数据中时非常有用。它可能发生在数据的导入或者当你移除一些行时。
+
+### 方案
+
+对于单个因子变量：
+
+```{r}
+# 创建额外的因子水平 (gamma)
+x <- factor(c("alpha","beta","alpha"), levels=c("alpha","beta","gamma"))
+x
+
+# 移除额外的因子水平
+x <- factor(x)
+x
+```
+
+当导入数据之后，你可能有一个混合因子变量和其他向量的数据框，然后想要重新计算所有因子的水平。你可以使用 `droplevels()` 函数实现这一点。
+
+```{r}
+# 创建一些因子的数据框 (有额外的因子水平)
+df <- data.frame(
+    x = factor(c("alpha","beta","alpha"), levels=c("alpha","beta","gamma")),
+    y = c(5,8,2),
+    z = factor(c("red","green","green"), levels=c("red","green","blue"))
+)
+
+# 显示因子水平 (with extra levels)
+df$x
+df$z
+
+
+# 丢掉额外因子水平
+df <- droplevels(df)
+
+# 再次显示因子，现在没有额外的因子水平了
+df$x
+df$z
+```
+
+### 另见
+
+想要重计算一个数据框中所有的因子变量列的因子水平，参见[重计算数据框所有因子列的水平](#section-6.16)。
+
+## 改变因子水平次序
+
+### 问题
+
+你想要改变因子水平出现的次序。
+
+### 方案
+
+R 中有两种不同类型的因子变量：**有序**和**无序**。比如{小，中，大}和｛钢笔，橡皮擦，铅笔｝。对于绝大多数分析而言，一个因子变量是有序还是无序并不重要。如果因子是**有序**的，那么这个因子水平的特定次序是重要的（小 < 中 < 大）。如果因子是**无序**的，那么因子水平同样会以一定的顺序出现，但这仅仅为了方便而已（钢笔，橡皮擦，铅笔） - 但有时它是重要的，例如它会指导结果如何输出，图形元素如何展示。
+
+一种改变因子次序的方式是对因子使用 `factor()` 函数并且直接指定它们的次序。下面这个例子中，`ordered()` 函数可以替换 `factor()` 函数。
+
+下面是这个例子的数据：
+
+```{r}
+# 创建一个错误次序的因子
+sizes <- factor(c("small", "large", "large", "small", "medium"))
+sizes
+```
+
+因子水平被显式地指定：
+
+```{r}
+sizes <- factor(sizes, levels = c("small", "medium", "large"))
+sizes
+```
+
+我们同样可以对有序因子这样操作：
+
+```{r}
+sizes <- ordered(c("small", "large", "large", "small", "medium"))
+sizes <- ordered(sizes, levels = c("small", "medium", "large"))
+sizes
+```
+
+另一种方式是使用 `relevel()` 函数在列表中制作一个特定水平（这对有序因子不起作用）。
+
+```{r}
+# 创建错误次序的因子
+sizes <- factor(c("small", "large", "large", "small", "medium"))
+sizes
+
+# 使得 medium 排最前面
+sizes <- relevel(sizes, "medium")
+sizes
+
+# 使得 small 排最前面
+sizes <- relevel(sizes, "small")
+sizes
+```
+
+当因子创建时，我们可以指定合适的顺序。
+
+```{r}
+sizes <- factor(c("small", "large", "large", "small", "medium"),
+                levels = c("small", "medium", "large"))
+sizes
+
+```
+
+**反转**因子水平次序。
+
+```{r}
+# 创建错误次序的因子
+sizes <- factor(c("small", "large", "large", "small", "medium"))
+sizes
+
+sizes <- factor(sizes, levels=rev(levels(sizes)))
+sizes
+```
+
+## 重命名数据框的列
+
+### 问题
+
+你想要给数据框的列重新命名。
+
+### 方案
+
+让我们从有三列的一个数据框开始：
+
+```{r}
+d <- data.frame(alpha=1:3, beta=4:6, gamma=7:9)
+d
+
+names(d)  
+
+```
+
+最简单的方式是使用 **plyr** 包的 `rename()` 函数：
+
+```{r}
+library(plyr)
+rename(d, c("beta"="two", "gamma"="three"))
+
+```
+
+如果你不想要依赖 **plyr** 包，可以使用下面的 R 内置函数。注意这些直接修改了`d`，意味着你不需要把结果保存回`d`。
+
+```{r}
+# 通过 name 函数重命名列：把 "beta" 改为 "two"
+names(d)[names(d)=="beta"] <- "two"
+d
+
+# 你也可以通过位置索引改变名字，但这种操作会有点危险，一旦你以后对数据做出改变，这些操作可能就不适用了。
+
+# 通过名字向量的位置索引重命名：改变第三项，将 "gamma" 改成 "three"
+names(d)[3] <- "three"
+d
+```
+
+也可以使用 R 的字符串搜索和替换函数来重命名列。注意`alpha`周围的`^`和`$`是确保全部字符串匹配。没有他们的话，如果存在一个叫 `alphabet` 的列也会匹配成功。
+
+```{r}
+names(d) <- sub("^alpha$", "one", names(d))
+d
+
+# 所有的列中，替换列名中的"t"为"X"
+names(d) <- gsub("t", "X", names(d))
+d
+
+# gsub() 替换每个列名中所有的匹配项
+# sub() 只替换每个列名中匹配的第一项
+```
+
+## 添加和移除数据框的列
+
+### 问题
+
+你想要对一个数据框添加或者移除一些列（变量）。
+
+### 方案
+
+这里有许多解决办法：
+
+```{r}
+data <- read.table(header=TRUE, text='
+ id weight
+  1     20
+  2     27
+  3     24
+')
+
+# 添加一列的办法
+data$size      <- c("small", "large", "medium")
+data[["size"]] <- c("small", "large", "medium")
+data[,"size"]  <- c("small", "large", "medium")
+data$size      <- 0   # 添加的变量所有行都是一样的值
+
+```
+
+```r
+# 移除列的办法
+data$size      <- NULL
+data[["size"]] <- NULL
+data[,"size"]  <- NULL
+data[[3]]      <- NULL
+data[,3]       <- NULL
+data           <- subset(data, select=-size)
+```
+
+## 对数据框的列重新排序
+
+### 问题
+
+你想要对一个数据框的列重新排序。
+
+### 方案
+
+```{r}
+# 一个样例数据框
+data <- read.table(header=TRUE, text='
+    id weight   size
+     1     20  small
+     2     27  large
+     3     24 medium
+')
+
+# 根据列名数字排序
+data[c(1,3,2)]
+
+# 如果你想要实际改变 `data`，需要把它重新赋值回 `data` 符号：
+# data <- data[c(1,3,2)]
+
+
+# 根据列名重新排序
+data[c("size", "id", "weight")]
+
+```
+
+上面例子中对数据框进行索引是将数据框作为一个列表（一个数据框实际上就是向量列表）。你也可以使用矩阵形式的索引方式：
+
+```{r}
+data[, c(1,3,2)]
+```
+
+矩阵形式索引的缺点在于当你只指定一列时结果会不同。下面例子中，返回的结果对象是一个**向量**而不是数据框。因为返回的数据类型并不能总是与矩阵索引保持一致，所以通常使用列表形式进行索引更为安全，或者在矩阵索引形式中指定 `drop=FALSE` 选项：
+
+```{r}
+# 列表形式的索引
+data[2]
+
+# 矩阵形式的索引——降维会变为一个向量
+data[,2]
+
+# 矩阵形式的索引，指定 drop=FALSE ——保留维度以保存数据框形式
+data[, 2, drop=FALSE]
+```
+
+## 合并数据框
+
+### 问题
+
+你想要基于一个给定的列合并两个数据框（像 SQL 的 **join**）。
+
+### 方案
+
+```{r}
+# 创建一个将 storyid 映射到 titles 上的数据框
+stories <- read.table(header=TRUE, text='
+   storyid  title
+    1       lions
+    2      tigers
+    3       bears
+')
+
+# 创建另一个有数据和 storyid 的数据框（没有 titles）
+data <- read.table(header=TRUE, text='
+    subject storyid rating
+          1       1    6.7
+          1       2    4.5
+          1       3    3.7
+          2       2    3.3
+          2       3    4.1
+          2       1    5.2
+')
+
+# 合并两个数据框
+merge(stories, data, "storyid")
+
+```
+
+如果两个数据框里你想要匹配的列有不同的名字，可以通过选项指定：
+
+```{r}
+# 下面使用的是 id 替换了 storyid
+stories2 <- read.table(header=TRUE, text='
+   id       title
+    1       lions
+    2      tigers
+    3       bears
+')
+
+# 合并两个数据框
+merge(x=stories2, y=data, by.x="id", by.y="storyid")
+
+# 注意结果的列名继承第一个数据框 
+```
+
+我们也可以合并多个列：
+
+```{r}
+# 制造更多的数据
+animals <- read.table(header=T, text='
+   size type         name
+  small  cat         lynx
+    big  cat        tiger
+  small  dog    chihuahua
+    big  dog "great dane"
+')
+
+observations <- read.table(header=T, text='
+   number  size type
+        1   big  cat
+        2 small  dog
+        3 small  dog
+        4   big  dog
+')
+
+merge(observations, animals, c("size","type"))
+```
+
+### 注意
+
+合并之后，改变列名的顺序可能是有用的，参见[对数据框的列重新排序](#section-6.13) 。
+
+## 比较数据框
+
+### 问题
+
+你想要比较两个或多个数据框并找到在超过一个数据框中出现的行，或者仅在一个数据框中出现的行。
+
+### 方案
+
+#### 一个例子
+
+假设你有下面三个数据框，你想要知道那些至少在两个数据框中出现的行。
+
+```{r}
+dfA <- data.frame(Subject=c(1,1,2,2), Response=c("X","X","X","X"))
+dfA
+
+dfB <- data.frame(Subject=c(1,2,3), Response=c("X","Y","X"))
+dfB
+
+dfC <- data.frame(Subject=c(1,2,3), Response=c("Z","Y","Z"))
+dfC
+
+```
+
+在 `dfA` 中，包括 (1,X) 的行同样出现在了 `dfB`，但是包含 (2,X) 的行没有出现在任何其他的数据框。相似地，`dfB` 包含的 (1,X) 出现在了 `dfA`，(2,Y) 出现在了 `dfC`，但是 (3,X) 没有出现在其他数据框。
+
+你可能想要标记在其他数据框中出现了的行，或者在每个数据框中都是唯一的行。
+
+
+#### 连接数据框
+
+进一步地，我们首先用一个可以识别每一行来自哪里的列来连接数据框。这里称为`Coder`变量因为它可能是由三个不同的人编码的数据。在这个例子中，你可能想要找到编码者相同之处（至少出现在两个数据框中的行），或者它们不同之处。
+
+```{r}
+dfA$Coder <- "A"
+dfB$Coder <- "B"
+dfC$Coder <- "C"
+
+df <- rbind(dfA, dfB, dfC)                    # 把它们粘在一起
+df <- df[,c("Coder", "Subject", "Response")]  # 重新排序
+df
+
+```
+
+如果你的数据一开始就是这种格式，那就不要将它们连接到一起啦。
+
+#### dupsBetweenGroups 函数
+
+该函数用来寻找不同组别的重复行：
+
+```{r}
+dupsBetweenGroups <- function (df, idcol) {
+    # df: the data frame
+    # idcol: the column which identifies the group each row belongs to
+
+    # Get the data columns to use for finding matches
+    datacols <- setdiff(names(df), idcol)
+
+    # Sort by idcol, then datacols. Save order so we can undo the sorting later.
+    sortorder <- do.call(order, df)
+    df <- df[sortorder,]
+
+    # Find duplicates within each id group (first copy not marked)
+    dupWithin <- duplicated(df)
+
+    # With duplicates within each group filtered out, find duplicates between groups. 
+    # Need to scan up and down with duplicated() because first copy is not marked.
+    dupBetween = rep(NA, nrow(df))
+    dupBetween[!dupWithin] <- duplicated(df[!dupWithin,datacols])
+    dupBetween[!dupWithin] <- duplicated(df[!dupWithin,datacols], fromLast=TRUE) | dupBetween[!dupWithin]
+
+    # ============= Replace NA's with previous non-NA value ==============
+    # This is why we sorted earlier - it was necessary to do this part efficiently
+
+    # Get indexes of non-NA's
+    goodIdx <- !is.na(dupBetween)
+
+    # These are the non-NA values from x only
+    # Add a leading NA for later use when we index into this vector
+    goodVals <- c(NA, dupBetween[goodIdx])
+
+    # Fill the indices of the output vector with the indices pulled from
+    # these offsets of goodVals. Add 1 to avoid indexing to zero.
+    fillIdx <- cumsum(goodIdx)+1
+
+    # The original vector, now with gaps filled
+    dupBetween <- goodVals[fillIdx]
+
+    # Undo the original sort
+    dupBetween[sortorder] <- dupBetween
+
+    # Return the vector of which entries are duplicated across groups
+    return(dupBetween)
+}
+
+```
+
+#### 寻找重复行
+
+使用在前文定义的函数 `dupsBetweenGroups`，我们可以找出在不同组别中重复的行。
+
+```{r}
+# 找出在不同组别中重复的行
+dupRows <- dupsBetweenGroups(df, "Coder")
+
+# 在数据框的旁边打印出来
+cbind(df, dup=dupRows)
+
+```
+
+注意这不会标记**在同一组**中的重复行，比如 Coder=A 时，有两行 Subject=2 以及 Response=X，但没有标记出来。
+
+#### 寻找唯一行
+
+同样可以找出在每一组中唯一出现的行。
+
+```{r}
+cbind(df, unique=!dupRows)
+```
+
+#### 拆分数据框
+
+如果你想要把连接的数据框拆分为三个原始的数据框
+
+```{r}
+# 保存df的结果
+dfDup <- cbind(df, dup=dupRows)
+
+dfA <- subset(dfDup, Coder=="A", select=-Coder)
+dfA
+
+dfB <- subset(dfDup, Coder=="B", select=-Coder)
+dfB
+
+dfC <- subset(dfDup, Coder=="C", select=-Coder)
+dfC
+```
+
+#### 忽略列
+
+有可能需要通过移除数据框的列来忽略一个或者多个列，结果又可以把原始完整的数据框连接起来。
+
+```{r}
+# 忽略 Subject 列——仅使用 Response 列
+dfNoSub <- subset(df, select=-Subject)
+dfNoSub
+
+# 检查重复行
+dupRows <- dupsBetweenGroups(dfNoSub, "Coder")
+
+# 把结果连接起来
+cbind(df, dup=dupRows)
+```
+
+### 注意
+
+想要寻找单个数据框中的重复行，参见[查找并移除重复记录](#section-6.4)。
+
+## 重计算数据框所有因子列的水平
+
+### 问题
+
+你想要重新计算一个数据框中所有因子列（变量）的因子水平。
+
+### 方案
+
+有时候在读入和清理数据之后，你会发现数据（数据框）结果中有的因子列有一些不存在的因子水平。
+
+例如，下面的`d`有一个空行。当它被读入时，因子列会出现水平""，它不应该是数据的一部分。
+
+```{r}
+d <- read.csv(header = TRUE, text='
+x,y,value
+a,one,1
+,,5
+b,two,4
+c,three,10
+')
+
+d
+
+str(d)
+
+```
+
+即便移除了空行，因子中仍有水平""：
+
+```{r}
+# 移除第二行
+d <- d[-2,]
+d
+
+str(d)
+
+```
+
+#### 使用 `droplevels`
+
+最简单的方式是使用 `droplevels()` 函数：
+
+```{r}
+d1 <- droplevels(d)
+str(d1)
+
+```
+
+#### 使用 `vapply` 和 `lapply`
+
+为了重新计算所有因子列的水平，我们使用以 `is.factor()` 为参数的 `vapply() `函数去找出哪些列是因子，然后再利用以 `factor() `函数为参数的 `lapply()` 操作将那些列重新计算因子水平。
+
+```{r}
+# 找出哪些列是因子
+factor_cols <- vapply(d, is.factor, logical(1))
+
+# 把 factor() 函数应用到那些列，并把结果赋回 d
+d[factor_cols] <- lapply(d[factor_cols], factor)
+str(d)
+
+```
+
+### 另见
+
+关于重计算一个因子变量水平的信息，参见[重计算因子水平](#section-6.9)。
+
+
+## 长宽格式数据互换
+
+### 问题
+
+你想要把数据从宽格式转换为长格式。
+
+R中许多函数希望输入的数据是长格式而不是宽格式。然而像 SPSS 软件经常使用宽格式数据。
+
+### 方案
+
+下面有两类方法：
+
+- **tidyr** 包的 `gather()` 和 `spread()` 函数。这 是**reshape2** 包的一个新接口。
+- **reshape2**包的 `melt()` 与 `dcast()` 函数。
+
+这里不包含其他一些实现的方法，因为这些方法不是很好使用：
+
+- `reshape()` 函数比较让人迷惑，因为它是 R 基础包的一部分，而不是 reshape2 包的一部分。
+- `stack()` 和 `unstack()`
+
+#### 样例数据
+
+这里使用的数据框包含同样数据的长、宽格式。它们接下来会被相互转换。
+
+```{r}
+olddata_wide <- read.table(header=TRUE, text='
+ subject sex control cond1 cond2
+       1   M     7.9  12.3  10.7
+       2   F     6.3  10.6  11.1
+       3   F     9.5  13.1  13.8
+       4   M    11.5  13.4  12.9
+')
+# 确保 subject 列是一个因子
+olddata_wide$subject <- factor(olddata_wide$subject)
+```
+
+```{r}
+olddata_long <- read.table(header=TRUE, text='
+ subject sex condition measurement
+       1   M   control         7.9
+       1   M     cond1        12.3
+       1   M     cond2        10.7
+       2   F   control         6.3
+       2   F     cond1        10.6
+       2   F     cond2        11.1
+       3   F   control         9.5
+       3   F     cond1        13.1
+       3   F     cond2        13.8
+       4   M   control        11.5
+       4   M     cond1        13.4
+       4   M     cond2        12.9
+')
+# 确保 subject 列是一个因子
+olddata_long$subject <- factor(olddata_long$subject)
+```
+
+#### tidyr
+
+##### 从宽格式到长格式
+
+使用 `gather`:
+
+```{r}
+olddata_wide
+
+library(tidyr)
+
+# gather() 的主要参数:
+# - data: 输入数据
+# - key: 分类key的列名
+# - value: 包含值的列名
+# - ...: 包换需要转换值的列名
+# - factor_key: 把新的合成列设置为因子
+data_long <- gather(olddata_wide, condition, measurement, control:cond2, factor_key=TRUE)
+data_long
+```
+
+在这个例子中，来源列通过 `control:cond2` 指定聚集到一起。这里的意思是使用位置上在 `control` 和 `conda2` 之间（包括 `control` 与 `conda2` ）的所有列。另一种使用的方式是单独为每一列命名，如下：
+
+```{r}
+gather(olddata_wide, condition, measurement, control, cond1, cond2)
+```
+
+如果你需要编程化使用`gather()`函数，可能需要使用包含列名的变量。想要实现它的话，你需要使用 `gather_()` 函数，它会使用字符串而不是没加引号的列名。
+
+```{r}
+keycol <- "condition"
+valuecol <- "measurement"
+gathercols <- c("control", "cond1", "cond2")
+
+gather_(olddata_wide, keycol, valuecol, gathercols)
+```
+
+可选内容：重命名变量列的因子水平并排序。
+
+```{r}
+# 重命名因子水平
+levels(data_long$condition)[levels(data_long$condition)=="cond1"] <- "first"
+levels(data_long$condition)[levels(data_long$condition)=="cond2"] <- "second"
+
+# 首先按照 subject 排序，然后按 condition
+data_long <- data_long[order(data_long$subject, data_long$condition), ]
+data_long
+```
+
+##### 从长格式到宽格式
+
+使用 `spread`:
+
+```{r}
+olddata_long
+
+library(tidyr)
+
+# spread() 主要参数:
+# - data: 数据对象
+# - key: 包含新列名的列名
+# - value: 包含值得列名
+data_wide <- spread(olddata_long, condition, measurement)
+data_wide
+```
+
+可选项：一些可以使数据看起来更易读的操作。
+
+```{r}
+# 重命名
+names(data_wide)[names(data_wide)=="cond1"] <- "first"
+names(data_wide)[names(data_wide)=="cond2"] <- "second"
+
+# 排序
+data_wide <- data_wide[, c(1,2,5,3,4)]
+data_wide
+```
+
+因子水平的顺序决定了列的顺序。水平次序能够在重塑之前被改变，或者列也可以在之后重新排序。
+
+#### reshape2
+
+##### 从宽格式到长格式
+
+使用 `melt`:
+
+```{r}
+olddata_wide
+
+library(reshape2)
+
+# 指定id.vars：需要保持的变量名
+melt(olddata_wide, id.vars=c("subject", "sex"))
+```
+
+`melt()` 的一些选项可以使得输出更好处理：
+
+```{r}
+data_long <- melt(olddata_wide,
+        # 变量ID，需要保持的变量名
+    id.vars=c("subject", "sex"),
+        # 来源列（被转换的）
+    measure.vars=c("control", "cond1", "cond2" ),
+        # 目的列的名字可以确定测量列数值的来自的原始列（变量）
+        # 这里 measurement 是数值，condition 指定了其来源
+    variable.name="condition",
+    value.name="measurement"
+)
+data_long
+```
+
+如果你不设定 `measure.vars`，`melt()` 函数会自动使用除 `id.vars` 的所有其他变量。反之亦然。
+
+如果你不指定 `variable.name`，它会把那列命名为`"variable"`，如果你不使用 `value.name` 变量，它会将它命名为 `"measurement"`。
+
+可选项：重命名变量列的因子水平。
+
+```{r}
+# 重命名因子
+levels(data_long$condition)[levels(data_long$condition)=="cond1"] <- "first"
+levels(data_long$condition)[levels(data_long$condition)=="cond2"] <- "second"
+
+# 首先按 subject 排序，然后按 condition 排序
+data_long <- data_long[ order(data_long$subject, data_long$condition), ]
+data_long
+```
+
+##### 从长格式到宽格式
+
+下面代码使用 `dcast` 函数重塑数据。这个函数用于数据框，如果你处理数组或矩阵，替换使用 `acast`。
+
+```{r}
+olddata_long
+
+# 信息:
+# "subject" 和 "sex" 是我们想要保留的列
+# "condition" 是我们想要放入新列名的列
+# "measurement" 包含数值
+
+library(reshape2)
+
+data_wide <- dcast(olddata_long, subject + sex ~ condition, value.var="measurement")
+data_wide
+```
+
+可选项：一些可以使数据看起来更易读的操作。
+
+```{r}
+# 重命名
+names(data_wide)[names(data_wide)=="cond1"] <- "first"
+names(data_wide)[names(data_wide)=="cond2"] <- "second"
+
+# 重排序
+data_wide <- data_wide[, c(1,2,5,3,4)]
+data_wide
+```
+
+因子水平的顺序决定了列的顺序。水平次序能够在重塑之前被改变，或者列也可以在之后重新排序。
+
+## 汇总数据
+
+### 问题
+
+你想要按照组别汇总你的数据（均值、标准差等等）。
+
+### 方案
+
+有三种方法描述基于一些特定变量的分组数据，然后对每一组使用汇总函数（像均值、标准差等等）。
+
+- `ddply()` 函数：它比较容易使用，但需要载入 **plyr** 包。这种方法可能就是你要找的。
+- `summaryBy()` 函数：它也比较容易使用，然而它需要载入 **doBy** 包。
+- `aggregate()` 函数，它比较难使用一点但内置于 R 中。
+
+假设你有以下数据并想求得每一组样本大小、均值的改变、标准差以及均值的标准误，而这里的组别是根据性别和条件指定的：**F-placebo**, **F-aspirin**, **M-placebo**和 **M-aspirin**。
+
+```{r}
+data <- read.table(header=TRUE, text='
+ subject sex condition before after change
+       1   F   placebo   10.1   6.9   -3.2
+       2   F   placebo    6.3   4.2   -2.1
+       3   M   aspirin   12.4   6.3   -6.1
+       4   F   placebo    8.1   6.1   -2.0
+       5   M   aspirin   15.2   9.9   -5.3
+       6   F   aspirin   10.9   7.0   -3.9
+       7   F   aspirin   11.6   8.5   -3.1
+       8   M   aspirin    9.5   3.0   -6.5
+       9   F   placebo   11.5   9.0   -2.5
+      10   M   placebo   11.9  11.0   -0.9
+      11   F   aspirin   11.4   8.0   -3.4
+      12   M   aspirin   10.0   4.4   -5.6
+      13   M   aspirin   12.5   5.4   -7.1
+      14   M   placebo   10.6  10.6    0.0
+      15   M   aspirin    9.1   4.3   -4.8
+      16   F   placebo   12.1  10.2   -1.9
+      17   F   placebo   11.0   8.8   -2.2
+      18   F   placebo   11.9  10.2   -1.7
+      19   M   aspirin    9.1   3.6   -5.5
+      20   M   placebo   13.5  12.4   -1.1
+      21   M   aspirin   12.0   7.5   -4.5
+      22   F   placebo    9.1   7.6   -1.5
+      23   M   placebo    9.9   8.0   -1.9
+      24   F   placebo    7.6   5.2   -2.4
+      25   F   placebo   11.8   9.7   -2.1
+      26   F   placebo   11.8  10.7   -1.1
+      27   F   aspirin   10.1   7.9   -2.2
+      28   M   aspirin   11.6   8.3   -3.3
+      29   F   aspirin   11.3   6.8   -4.5
+      30   F   placebo   10.3   8.3   -2.0
+ ')
+
+```
+
+#### 使用 ddply
+
+```{r}
+library(plyr)
+
+# 给每一组运行长度、均值、标准差等函数
+# 每一组依据性别+条件划分
+cdata <- ddply(data, c("sex", "condition"), summarise,
+               N    = length(change),
+               mean = mean(change),
+               sd   = sd(change),
+               se   = sd / sqrt(N)
+)
+cdata
+
+```
+
+##### 处理缺失值
+ 
+如果数据中存在 NA 值，需要给每个函数添加 `na.rm=TRUE` 标记去除缺失值。因为函数 `length()` 没有 `na.rm` 选项，所以可以使用 `sum(!is.na(...))`的方式对非缺失值进行计数。
+
+```{r}
+# 给数据加些 NA 值
+dataNA <- data
+dataNA$change[11:14] <- NA
+
+cdata <- ddply(dataNA, c("sex", "condition"), summarise,
+               N    = sum(!is.na(change)),
+               mean = mean(change, na.rm=TRUE),
+               sd   = sd(change, na.rm=TRUE),
+               se   = sd / sqrt(N)
+)
+cdata
+
+```
+
+##### 自动汇总函数
+
+不像我们刚才手动地指定想要的值然后计算标准误，这个函数可以自动处理所有的细节。它可以干以下的事情：
+
+- 寻找均值、标准差和计数
+- 寻找均值的标准误（**强调，如果你处理的是被试内变量这可能不是你想要的**)
+- 寻找 95% 的置信区间（也可以指定其他值）
+- 重命令结果数据集的变量名，这样更方便后续处理
+
+要使用的话，把函数放你的代码中然后像下面一样调用它。
+
+```{r}
+## Summarizes data.
+## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
+##   data: a data frame.
+##   measurevar: the name of a column that contains the variable to be summariezed
+##   groupvars: a vector containing names of columns that contain grouping variables
+##   na.rm: a boolean that indicates whether to ignore NA's
+##   conf.interval: the percent range of the confidence interval (default is 95%)
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,
+                      conf.interval=.95, .drop=TRUE) {
+    library(plyr)
+
+    # New version of length which can handle NA's: if na.rm==T, don't count them
+    length2 <- function (x, na.rm=FALSE) {
+        if (na.rm) sum(!is.na(x))
+        else       length(x)
+    }
+
+    # This does the summary. For each group's data frame, return a vector with
+    # N, mean, and sd
+    datac <- ddply(data, groupvars, .drop=.drop,
+      .fun = function(xx, col) {
+        c(N    = length2(xx[[col]], na.rm=na.rm),
+          mean = mean   (xx[[col]], na.rm=na.rm),
+          sd   = sd     (xx[[col]], na.rm=na.rm)
+        )
+      },
+      measurevar
+    )
+
+    # Rename the "mean" column    
+    datac <- rename(datac, c("mean" = measurevar))
+
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean
+
+    # Confidence interval multiplier for standard error
+    # Calculate t-statistic for confidence interval: 
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)
+    datac$ci <- datac$se * ciMult
+
+    return(datac)
+}
+
+```
+
+举个例子使用它（用95%的置信区间）。与之前手动计算这些步骤相比`summarySE`函数一步搞定：
+
+```{r}
+summarySE(data, measurevar="change", groupvars=c("sex", "condition"))
+
+# 使用 NA'的数据框, 使用 na.rm=TRUE
+summarySE(dataNA, measurevar="change", groupvars=c("sex", "condition"), na.rm=TRUE)
+
+```
+
+##### 用零填满空组合
+
+有时候汇总的数据框中存在因子的空组合——意思是因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。要做到这一点，当调用`ddply` 或 `summarySE` 时设置 `.drop=FALSE`。
+
+例子：
+
+```{r}
+# 首先移除所有 Male+Placebo 条目
+dataSub <- subset(data, !(sex=="M" & condition=="placebo"))
+
+# 如果我们汇总数据，在本来有 Male+Placebo 的地方会存在空行
+# 因为这个组合已经被我们删除了
+summarySE(dataSub, measurevar="change", groupvars=c("sex", "condition"))
+
+# 设置 .drop=FALSE 指定不要扔掉这个组合
+summarySE(dataSub, measurevar="change", groupvars=c("sex", "condition"), .drop=FALSE)
+
+```
+
+#### 使用summaryBy
+
+使用 `summarizeBy()` 函数瓦解数据：
+
+```{r}
+library(doBy)
+
+# 给每一组运行长度、均值、标准差等函数
+# 每一组依据性别+条件划分
+cdata <- summaryBy(change ~ sex + condition, data=data, FUN=c(length,mean,sd))
+cdata
+
+# 重命名 change.length 为 N
+names(cdata)[names(cdata)=="change.length"] <- "N"
+
+# 计算平均值的标准误差
+cdata$change.se <- cdata$change.sd / sqrt(cdata$N)
+cdata
+
+```
+
+注意，如果你有任何被试间变量，这些标准误值在比对组别差异时就没用了。
+
+##### 处理缺失值
+
+如果数据中存在 NA 值，你需要添加 `na.rm=TRUE` 选项。通常你可以在 `summaryBy()` 函数中设置，但 `length()` 函数识别不了这个选项。一种解决方式是根据 `length()` 函数定义一个新的取长度函数去处理NA值。
+
+```{r}
+# 新版的 length 函数可以处理 NA 值，如果 na.rm=T,则不对 NA 计数
+length2 <- function (x, na.rm=FALSE) {
+    if (na.rm) sum(!is.na(x))
+    else       length(x)
+}
+
+# 给数据添加一些 NA 值
+dataNA <- data
+dataNA$change[11:14] <- NA
+
+cdataNA <- summaryBy(change ~ sex + condition, data=dataNA,
+                     FUN=c(length2, mean, sd), na.rm=TRUE)
+cdataNA
+
+# 做些其他事情
+```
+
+##### 自动汇总函数
+
+> 注意这里的自动汇总函数与之前的不同，它是通过 `summaryBy()` 实现的
+
+不像我们刚才手动地指定想要的值然后计算标准误，这个函数可以自动处理所有的细节。它可以干以下的事情：
+
+- 寻找均值、标准差和计数
+- 寻找均值的标准误
+- 寻找95%的置信区间（也可以指定其他值）
+- 重命令结果数据集的变量名，这样更方便后续处理
+
+要使用的话，把函数放你的代码中然后像下面一样调用它。
+
+```{r}
+## Summarizes data.
+## Gives count, mean, standard deviation, standard error of the mean, and confidence 
+## interval (default 95%).
+##   data: a data frame.
+##   measurevar: the name of a column that contains the variable to be summariezed
+##   groupvars: a vector containing names of columns that contain grouping variables
+##   na.rm: a boolean that indicates whether to ignore NA's
+##   conf.interval: the percent range of the confidence interval (default is 95%)
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE, conf.interval=.95) {
+    library(doBy)
+
+    # New version of length which can handle NA's: if na.rm==T, don't count them
+    length2 <- function (x, na.rm=FALSE) {
+        if (na.rm) sum(!is.na(x))
+        else       length(x)
+    }
+
+    # Collapse the data
+    formula <- as.formula(paste(measurevar, paste(groupvars, collapse=" + "), sep=" ~ "))
+    datac <- summaryBy(formula, data=data, FUN=c(length2,mean,sd), na.rm=na.rm)
+
+    # Rename columns
+    names(datac)[ names(datac) == paste(measurevar, ".mean",    sep="") ] <- measurevar
+    names(datac)[ names(datac) == paste(measurevar, ".sd",      sep="") ] <- "sd"
+    names(datac)[ names(datac) == paste(measurevar, ".length2", sep="") ] <- "N"
+    
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean
+    
+    # Confidence interval multiplier for standard error
+    # Calculate t-statistic for confidence interval: 
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)
+    datac$ci <- datac$se * ciMult
+    
+    return(datac)
+}
+
+```
+
+举个例子使用它（用95%的置信区间）。与之前手动计算这些步骤相反，`summarySE()` 函数一步搞定：
+
+```{r}
+summarySE(data, measurevar="change", groupvars=c("sex","condition"))
+
+# 对于含有 NA 值得数据集，使用 na.rm=TRUE
+summarySE(dataNA, measurevar="change", groupvars=c("sex","condition"), na.rm=TRUE)
+```
+
+##### 用零填满空组合
+
+有时候汇总的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。
+
+这个例子将会用 0 填满缺失的组合：
+
+```{r}
+fillMissingCombs <- function(df, factors, measures) {
+
+    # 创建含因子水平组合的列表
+    levelList <- list()
+    for (f in factors) {  levelList[[f]] <- levels(df[,f])  }
+    
+    fullFactors <- expand.grid(levelList)
+    
+    dfFull <- merge(fullFactors, df, all.x=TRUE)
+    
+    # 将 measure 变量中的 NA 都替换为 0
+    for (m in measures) {
+      dfFull[is.na(dfFull[,m]), m] <- 0
+    }
+
+    return(dfFull)
+}
+
+```
+
+使用例子：
+
+```{r}
+# 首先移除所有 Male+Placebo 条目
+dataSub <- subset(data, !(sex=="M" & condition=="placebo"))
+
+# 如果我们汇总数据，在本来有 Male+Placebo 的地方会存在空行
+# 因为这个组合已经被我们删除了
+cdataSub <- summarySE(dataSub, measurevar="change", groupvars=c("sex", "condition"))
+cdataSub
+
+# 设置 .drop=FALSE 指定不要扔掉这个组合
+fillMissingCombs(cdataSub, factors=c("sex","condition"), measures=c("N","change","sd","se","ci"))
+
+```
+
+#### 使用 aggregate
+
+`aggregate()` 函数比较难用，但它内置于 R，所以不需要安装其他包。
+
+```{r}
+# 对每个目录 (sex*condition) 中的对象计数
+cdata <- aggregate(data["subject"], by=data[c("sex","condition")], FUN=length)
+cdata
+
+# 重命名 "subject" 列为 "N"
+names(cdata)[names(cdata)=="subject"] <- "N"
+cdata
+
+# 按性别排序
+cdata <- cdata[order(cdata$sex),]
+cdata
+
+# 我们也保留 before 和 after列：
+# 得到性别和条件下的平均影响大小
+# Get the average effect size by sex and condition
+cdata.means <- aggregate(data[c("before","after","change")], 
+                         by = data[c("sex","condition")], FUN=mean)
+cdata.means
+
+# 合并数据框
+cdata <- merge(cdata, cdata.means)
+cdata
+
+# 得到标准差
+cdata.sd <- aggregate(data["change"],
+                      by = data[c("sex","condition")], FUN=sd)
+# 重命名列
+names(cdata.sd)[names(cdata.sd)=="change"] <- "change.sd"
+cdata.sd
+
+# 合并
+cdata <- merge(cdata, cdata.sd)
+cdata
+
+# 计算标准误
+cdata$change.se <- cdata$change.sd / sqrt(cdata$N)
+cdata
+
+```
+
+如果你有 NA 值想要跳过，设置 `na.rm=TRUE`:
+
+```{r}
+cdata.means <- aggregate(data[c("before","after","change")], 
+                         by = data[c("sex","condition")],
+                         FUN=mean, na.rm=TRUE)
+cdata.means
+
+```
+
+## 数据框与列联表互换
+
+### 问题
+
+你想要在多种情况的一个数据框、每种情况类型计数的数据框以及一个列联表之间转换。
+
+### 方案
+
+这里有 3 种数据结构代表相同的信息，但是形式不同：
+
+- `cases`: 每一行代表一个情况的数据框
+- `ctable`: 一个**列联表**
+- `counts`: 计数的数据框，每行代表每一种组合的数目 
+
+```{r}
+# 每一行代表一种情况
+cases <- data.frame(
+    Sex=c("M", "M", "F", "F", "F"), 
+    Color=c("brown", "blue", "brown", "brown", "brown")
+)
+cases
+
+# 一个列联表
+ctable <- table(cases)
+ctable
+
+# 一个每种组合计数的表格
+counts <- data.frame(
+    Sex=c("F", "M", "F", "M"), 
+    Color=c("blue", "blue", "brown", "brown"),
+    Freq=c(0, 1, 3, 1)
+)
+counts
+
+```
+
+#### 将情况记录转为列联表
+
+将情况记录转为列联表（上面已经展示了）：
+
+```{r}
+ctable  <- table(cases)
+ctable
+
+# 如果你使用两个向量调用table函数，它将不会给维度添加名字（Sex和Color）
+table(cases$Sex, cases$Color)
+
+# 维度名可以通过`dnn`选项手动指定
+table(cases$Sex, cases$Color, dnn=c("Sex","Color"))
+```
+
+#### 将情况记录转为计数
+
+它可以用一个数据框代表每一种组合的计数。注意它被转换并存储在 `countdf` 对象中：
+
+```{r}
+# Cases to Counts
+countdf <- as.data.frame(table(cases))
+countdf
+
+```
+
+#### `countsToCases()` 函数
+
+这个函数使用在上面的例子中：
+
+```{r}
+# Convert from data frame of counts to data frame of cases.
+# `countcol` is the name of the column containing the counts
+countsToCases <- function(x, countcol = "Freq") {
+    # Get the row indices to pull from x
+    idx <- rep.int(seq_len(nrow(x)), x[[countcol]])
+
+    # Drop count column
+    x[[countcol]] <- NULL
+
+    # Get the rows from x
+    x[idx, ]
+}
+
+```
+
+#### 列联表转为情况记录
+
+```{r}
+countsToCases(as.data.frame(ctable))
+```
+
+注意，`countsToCases()` 函数定义在上面。
+
+#### 列联表转为计数
+
+```{r}
+as.data.frame(ctable)
+```
+
+（从这里我们可以看到上一个代码的中间效果）
+
+#### 计数转为情况记录
+
+```{r}
+countsToCases(countdf)
+```
+
+这相当于是列联表转为情况记录的第二步。
+
+#### 计数转为列联表
+
+```{r}
+xtabs(Freq ~ Sex+Color, data=countdf)
+```
+
+## 计算移动平均数
+
+### 问题
+
+你想要计算移动平均数。
+
+### 解决方案
+
+假设你的数据是带缺失值的噪声正弦波。
+
+```{r}
+set.seed(993)
+x <- 1:300
+y <- sin(x/20) + rnorm(300,sd=.1)
+y[251:255] <- NA
+
+```
+
+`filter()` 函数可以用来计算移动平均数。
+
+```{r}
+# 绘制未平滑的数据（灰色）
+plot(x, y, type="l", col=grey(.5))
+# 绘制网格
+grid()
+
+# 延迟平滑
+# 当前样本和之前 19 个样本的平均数（红色）
+f20 <- rep(1/20, 20)
+f20
+y_lag <- filter(y, f20, sides=1)
+lines(x, y_lag, col="red")
+
+
+# 对称性平滑：
+#计算当前样本，时间上将来样本和过去10个样本的平均数（蓝色）
+f21 <- rep(1/21,21)
+f21
+y_sym <- filter(y, f21, sides=2)
+lines(x, y_sym, col="blue")
+
+```
+
+
+`filter()` 会在遭遇缺失值时留下空缺，就像上面图中显示的一样。 
+
+一种处理缺失值的方法是简单地忽略它，不把它包含在平均数的计算中。这个功能可以由下面的函数实现：
+
+```{r}
+# x: the vector
+# n: the number of samples
+# centered: if FALSE, then average current sample and previous (n-1) samples
+#           if TRUE, then average symmetrically in past and future. (If n is even, use one more sample from future.)
+movingAverage <- function(x, n=1, centered=FALSE) {
+    
+    if (centered) {
+        before <- floor  ((n-1)/2)
+        after  <- ceiling((n-1)/2)
+    } else {
+        before <- n-1
+        after  <- 0
+    }
+
+    # Track the sum and count of number of non-NA items
+    s     <- rep(0, length(x))
+    count <- rep(0, length(x))
+    
+    # Add the centered data 
+    new <- x
+    # Add to count list wherever there isn't a 
+    count <- count + !is.na(new)
+    # Now replace NA_s with 0_s and add to total
+    new[is.na(new)] <- 0
+    s <- s + new
+    
+    # Add the data from before
+    i <- 1
+    while (i <= before) {
+        # This is the vector with offset values to add
+        new   <- c(rep(NA, i), x[1:(length(x)-i)])
+
+        count <- count + !is.na(new)
+        new[is.na(new)] <- 0
+        s <- s + new
+        
+        i <- i+1
+    }
+
+    # Add the data from after
+    i <- 1
+    while (i <= after) {
+        # This is the vector with offset values to add
+        new   <- c(x[(i+1):length(x)], rep(NA, i))
+       
+        count <- count + !is.na(new)
+        new[is.na(new)] <- 0
+        s <- s + new
+        
+        i <- i+1
+    }
+    
+    # return sum divided by count
+    s/count
+}
+
+
+# 用比较厚的线条绘制和之前一样的图
+plot(x, y, type="l", col=grey(.5))
+grid()
+y_lag <- filter(y, rep(1/20, 20), sides=1)
+lines(x, y_lag, col="red", lwd=4)         # 用红色表示延迟平均
+y_sym <- filter(y, rep(1/21,21), sides=2)
+lines(x, y_sym, col="blue", lwd=4)        # 用蓝色表示对称平均
+
+# 用上面定义的函数计算延迟平均
+y_lag_na.rm <- movingAverage(y, 20)
+lines(x, y_lag_na.rm, col="green", lwd=2)
+
+# 用上面定义的函数计算对称性平均
+y_sym_na.rm <- movingAverage(y, 21, TRUE)
+lines(x, y_sym_na.rm, col="green", lwd=2)
+```
+
+
+## 窗口平滑
+
+### 问题
+
+你想要计算序列给定窗口长度的平均数。这是平滑数据的一种方式。
+
+### 方案
+
+假设你有一个数值向量并且想要找出第一个连续四个数、第二个连续四个数等等如此的平均数。（就像用一个窗口在序列上移动，移动一次，计算一次）
+
+```{r}
+# 生成有22个（0-99）以内的随机数向量
+set.seed(123)
+x <- floor(runif(22)*100)
+x
+
+# 将向量长度取整到最接近的4的倍数
+newlength <- ceiling(length(x)/4)*4
+newlength
+
+# 给新增的数值取NA值
+x[newlength] <- NA
+x
+
+# 将它转换为4行的矩阵
+x <- matrix(x, nrow=4)
+x
+
+# 计算每一列的均值，忽略NA值
+colMeans(x, na.rm=TRUE)
+```
+
+## 寻找唯一值序列
+
+### 问题
+
+你需要找到一个向量或者因子的唯一值
+
+### 方案
+
+你可以通过在向量里迭代寻找唯一值，但这样做在 R 里是很慢的。一个比较快的方案是通过 `rle()` 函数：
+
+```{r}
+# 示例数据
+v <- c("A","A","A", "B","B","B","B", NA,NA, "C","C", "B", "C","C","C")
+v
+
+vr <- rle(v)
+vr
+```
+
+RLE 编码的数据能够通过 `inverse.rle()` 转换回到一个向量。
+
+```{r}
+inverse.rle(vr)
+```
+
+一个问题是每一个缺失值 `NA` 都会视为长度为1，即使 `NA` 是相邻的，不过可以通过用别的值替代 `NA` 来做到。对于数值变量，`Inf` 或者别的数字都可使用；对于字符变量，任何字符串都能使用。当然，特殊值不得以其他方式出现在向量中。
+
+```{r}
+w <- v
+w[is.na(w)] <- "ZZZ"
+w
+
+wr <- rle(w)
+wr
+
+# 在RLE编码数据中用NA代替ZZZ
+wr$values[ wr$values=="ZZZ" ] <- NA
+wr
+
+w2 <- inverse.rle(wr)
+w2
+```
+
+### 处理因子
+
+虽然因子基本上只是带有一些关于级别信息的整数向量，但是 `rle()` 函数不能处理因子。解决方案是手动将因子转换为整数向量或字符向量。使用整数向量速度快，内存效率高，这对于大型数据集可能很重要，但是很难理解。使用字符向量比较慢，需要更多的内存，但是更容易理解。
+
+```{r}
+# 假设这是我们要处理的向量
+f <- factor(v)
+f
+
+# 将向量级别保存到一个新的变量
+# 这个不是必须的，但是保存顺序是很有用的
+f_levels <- levels(f)
+f_levels
+
+fc <- as.character(f)
+fc[ is.na(fc) ] <- "ZZZ"
+fc
+
+fr <- rle(fc)
+fr
+
+# 在RLE编码数据中用 NA 代替 ZZZ
+fr$values[ fr$values=="ZZZ" ] <- NA
+fr
+
+# 将RLE编码数据转换成因子
+f2 <- inverse.rle(fr)
+f2 <- factor(f, levels=f_levels)
+f2
+```
+## 用最后一个非 NA 值填充 NA {#fill-na-with-last-value}
+
+### 问题
+
+你想要将非 NA 值代替向量或者因子中的 NA 值。
+
+### 方案
+
+这段代码展示了如何填充向量中的空白。如果需要重复执行此操作，请参阅下面的函数。该函数还可以用第一个确定的值填充第一个即为`NA`的情况，并正确处理因子。
+
+```{r}
+# 示例数据
+x <- c(NA,NA, "A","A", "B","B","B", NA,NA, "C", NA,NA,NA, "A","A","B", NA,NA)
+
+goodIdx <- !is.na(x)
+goodIdx
+
+# 这些是来自x的非NA数值
+# 加入领头的NA，后边会使用。用来进行索引
+goodVals <- c(NA, x[goodIdx])
+goodVals
+
+# 用来自输出向量的索引填充输出向量的索引
+# 这些补偿了goodVals。加1是为了避免索引为0
+fillIdx <- cumsum(goodIdx)+1
+fillIdx
+
+# 原本向量的值被填充了
+```
+
+#### 填充 NA 的函数
+
+此函数执行与上面代码相同的操作。它还可以用第一个良好的值填充第一个就是`NA`的情况，并正确处理因子。
+
+```{r}
+fillNAgaps <- function(x, firstBack=FALSE) {
+    ## 向量或因子中的 NA 被之前一个非 NA 值代替
+    ## 如果 firstBack 为 TRUE，将会对领头的 NA 填充第一个非 NA 值，否则不会
+    # 如果是一个因子，保存因子的水平，并转换为整数
+    lvls <- NULL
+    if (is.factor(x)) {
+        lvls <- levels(x)
+        x    <- as.integer(x)
+    }
+ 
+    goodIdx <- !is.na(x)
+ 
+    # 这些是来自于x的非NA值 
+    # 加入领头NA或者以第一个值代替，取决于firstBack参数
+    if (firstBack)   goodVals <- c(x[goodIdx][1], x[goodIdx])
+    else             goodVals <- c(NA,            x[goodIdx])
+
+	# 用来自输出向量的索引填充输出向量的索引
+	# 这些补偿了goodVals。加1是为了避免索引为0
+    fillIdx <- cumsum(goodIdx)+1
+    
+    x <- goodVals[fillIdx]
+
+    # 如果它最初是一个因子，那么将它转换回来
+    if (!is.null(lvls)) {
+        x <- factor(x, levels=seq_along(lvls), labels=lvls)
+    }
+
+    x
+}
+
+
+
+# 示例数据
+x <- c(NA,NA, "A","A", "B","B","B", NA,NA, "C", NA,NA,NA, "A","A","B", NA,NA)
+x
+
+fillNAgaps(x)
+
+# 对领头的 NA 以第一个非 NA 值进行填充
+fillNAgaps(x, firstBack=TRUE)
+
+# 因子数据也能使用
+y <- factor(x)
+y
+
+fillNAgaps(y)
+```
+
+#### 注释
+
+改编自来自于 **zoo** 包的 `na.locf()` 函数
+
+<!--chapter:end:06-manipulation.Rmd-->
+
+# 统计分析
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 回归和相关分析
+
+### 问题
+
+你想要做线性回归或相关分析。
+
+### 方案
+
+要处理的一些样例数据：
+
+```{r}
+# 制造一些数据
+# X 增加（大的干扰噪声）
+# Z 缓慢增加
+# 构建 Y，它与 X 变量负相关，与 X*Z 变量正相关
+set.seed(955)
+xvar <- 1:20 + rnorm(20,sd=3)
+zvar <- 1:20/4 + rnorm(20,sd=2)
+yvar <- -2*xvar + xvar*zvar/5 + 3 + rnorm(20,sd=4)
+
+# 通过组合已创建的向量来构建数据框
+dat <- data.frame(x=xvar, y=yvar, z=zvar)
+# 展示前 6 行
+head(dat)
+```
+
+#### 相关系数
+
+```{r}
+# 相关系数 - 默认使用 pearson 方法
+cor(dat$x, dat$y)
+```
+
+#### 相关矩阵（多个变量）
+
+同时可以对多个变量进行两两相关性分析，结果是一个 n*n 的平方矩阵或是数据框。
+
+```{r}
+# 变量之间的相关矩阵
+cor(dat)
+
+# 保留两位小数点
+round(cor(dat), 2)
+```
+
+#### 线性回归
+
+线性回归，当 `dat$x` 是预测变量时，`dat$y` 为响应变量。这可以使用一个数据框的两列，或者是直接使用数值向量。
+
+```{r}
+# 下面两个命令会显示一样的结果
+fit <- lm(y ~ x, data=dat)  # 使用数据框的 x 列和 y 列
+fit <- lm(dat$y ~ dat$x)     # 使用 dat$x 和 dat$y 进行拟合
+fit
+
+# 这说明预测 y = -0.2278 - 1.1829*x
+# 获取更详细的信息
+summary(fit)
+```
+
+#### 多个预测变量的线性回归（多元线性回归）
+
+使用 `y` 作为线性回归的响应变量，`x` 和 `z` 作为预测变量。
+
+注意下面的公式没有检测 `x` 与 `z` 之间的交互效应。
+
+```{r}
+# 这些都有相同的结果
+fit2 <- lm(y ~ x + z, data=dat)    # 使用数据框的 x,y,z 列
+fit2 <- lm(dat$y ~ dat$x + dat$z)  # 使用向量
+fit2
+
+summary(fit2)
+```
+
+##### 交互效应
+
+如何合适地构建多元线性回归并且检验交互效应非常复杂，这里不作讲述。这里我们仅仅用 `x` 和 `z` 变量以及它们之间的交互效应拟合模型。
+
+想要构建 `x` 与 `z` 之间的交互效应模型，需要添加 `x:z` 项。我们也可以使用公式 `x*z` 来代表 `x+z+x:z` 。
+
+```{r}
+# 下面两个公式等效
+fit3 <- lm(y ~ x * z, data=dat)
+fit3 <- lm(y ~ x + z + x:z, data=dat)
+fit3
+
+summary(fit3)
+```
+
+## t 检验
+
+### 问题
+
+你想要检验来自两个总体的样本是否有不同的均值（显著性差异），或者检验从一个总体抽取的样本均值和理论均值有显著性差异。
+
+### 方案
+
+#### 样本数据
+
+我们将使用内置的 `sleep` 数据集。
+
+```{r}
+sleep
+
+```
+
+我们将制造 `sleep` 数据的宽格式版本；下面我们将看看如何处理长格式和宽格式的数据。
+
+```{r}
+sleep_wide <- data.frame(
+    ID=1:10,
+    group1=sleep$extra[1:10],
+    group2=sleep$extra[11:20]
+)
+sleep_wide
+```
+
+#### 比较两组：独立双样本t检验
+
+假设有两组独立样本（我们这里忽略ID变量）。
+
+`t.test()` 函数能够操作像 `sleep` 这样的长格式数据——一列记录测量值，一列指定组别；或者操作两个单独的向量。
+
+```{r}
+# Welch t-test
+t.test(extra ~ group, sleep)
+
+# Same for wide data (two separate vectors)
+t.test(sleep_wide$group1, sleep_wide$group2)
+```
+
+默认，`t.test` 不假设有方差齐性（或称作方差同质）。默认的不是 Student t 检验而是使用了 Welch t 检验。注意 Welch t 检验结果中 df=17.776，这是因为对不同质方差进行了校正。要使用 Student t 检验的话，设置 `var.equal=TRUE` 。
+
+```{r}
+# Student t-test
+t.test(extra ~ group, sleep, var.equal=TRUE)
+
+# 针对宽数据相同的操作 (2个分离的向量)
+t.test(sleep_wide$group1, sleep_wide$group2, var.equal=TRUE)
+```
+
+#### 配对样本t检验
+
+你也可以使用配对样本 t 检验比较配对的数据。数据配对是指你可能有对某种药物治疗前后有观测值或者不同治疗有配对的研究对象。
+
+再次说明，`t-test()` 函数可以用于有分组变量的数据框或者两个向量。它依赖相对位置来决定配对。如果你使用有分组变量的长格式数据，group = 1 的第一行与group = 2 的第一行配对。确保数据排序好并且不存在缺失值是非常重要的；否则配对可以丢弃。这种情况中，我们能通过 `group` 和 `ID` 变量进行排序来确保顺序是一样的。
+
+```{r}
+# 按 group 和 ID排序
+sleep <- sleep[order(sleep$group, sleep$ID), ]
+
+# 配对 t-test
+t.test(extra ~ group, sleep, paired=TRUE)
+
+# 针对宽数据相同的操作 (2个分离的向量)
+t.test(sleep_wide$group1, sleep_wide$group2, paired=TRUE)
+```
+
+配对 t 检验等价于检测是否配对的观察值的总体均值是否为 0 。
+
+```{r}
+t.test(sleep_wide$group1 - sleep_wide$group2, mu=0, var.equal=TRUE)
+```
+
+#### 与期望的总体均值进行比较：单样本 t 检验
+
+假设你想要检测是否 `extra` 列的数据抽取自总体均值为0的总体。（这里忽略 `group` 与 `ID` 列）
+
+```{r}
+t.test(sleep$extra, mu=0)
+```
+
+## 频率检验
+
+### 问题
+
+你有分类数据然后想要检验是否这些数据值的频数分布是否与预期不符，或者是否组间的频数分布有（显著）差异。
+
+### 方案
+
+频数检验通常解决两类问题：
+
+1. 频数分布与预期或者理论的分布（比如 50% 的 yes，50% 的 no ）符合吗？（拟合优度检验）
+2. 两组或多组之间的频率分布有差异吗？（独立检验）
+
+通常用于解决这样问题的统计检验方法，分为**精确检验**与**近似检验**两种。
+
+|        |**期望分布**|**比较组别**|
+| ------ | :--------: | :----------: |
+| **精确** | 精确二项检验   | Fisher精确检验 |
+| **近似** | 卡方拟合优度   | 独立卡方检验     |
+
+**注意**：精确二项检验仅能用于有两个水平的单变量。Fisher 精确检验仅能用于二维列联表（比如，当存在一个独立变量和一个非独立变量时它可以使用；但不能用于两个独立变量和一个非独立变量的情况）。
+
+想要检验配对或被试内效应，我们可以使用 McNemar 检验。使用该检验必须满足存在两个水平的独立变量和两个水平的非独立变量。
+
+想要检验有重复测量的两个变量独立性，我们可以使用 Cochran-Mantel-Haenszel 检验。
+
+假设你有下面的数据，其中每一行代表一个记录：
+
+```{r}
+data <- read.table(header=TRUE, text='
+ condition result
+   control      0
+   control      0
+   control      0
+   control      0
+ treatment      1
+   control      0
+   control      0
+ treatment      0
+ treatment      1
+   control      1
+ treatment      1
+ treatment      1
+ treatment      1
+ treatment      1
+ treatment      0
+   control      0
+   control      1
+   control      0
+   control      1
+ treatment      0
+ treatment      1
+ treatment      0
+ treatment      0
+   control      0
+ treatment      1
+   control      0
+   control      0
+ treatment      1
+ treatment      0
+ treatment      1
+')
+```
+
+相比于以**记录**的数据框存储，你的数据可能是**计数**的数据框，或者是一个列联表。
+
+#### 拟合优度检验 （期望频率）
+
+##### 卡方检验
+
+想要检验假设：结果列 result（忽略条件 condition ）中的两个值在总体中几乎相等（50% - 50%）。
+
+```{r}
+#　为result列创建列联表，包含 0 和 1 两个值
+#　注意，"0" 和 "1" 是列名而不是实际的值
+ct <- table(data$result)
+ct
+
+# 也可以手动创建表格
+ct <- matrix(c(17,13), ncol=2)
+colnames(ct) <- c("0", "1")
+
+# 执行卡方检验
+chisq.test(ct)
+```
+
+想要检验有不同期望频率的样本（比如下面一个 0.75，一个 0.25 ）：
+
+```{r}
+# 概率表 —— 和必须为 1
+pt <- c(.75, .25)
+chisq.test(ct, p=pt)
+```
+
+如果你想要从检验结果中提取信息，可以将结果保存进一个变量，然后用 `str()` 函数查看变量信息，接着把你想要的部分取出来。例如：
+
+```{r}
+chi_res <- chisq.test(ct, p=pt)
+# 查看所有组分
+str(chi_res)
+
+# 获取卡方值
+chi_res$statistic
+
+# 获取p值
+chi_res$p.value
+```
+
+##### 精确二项检验
+
+精确二项检验仅能用于存在两个值的单变量数据。
+
+```{r}
+ct <- table(data$result)
+ct
+
+binom.test(ct, p=0.5)
+
+# 使用 75% 的期望概率——注意 1 在第二列，所以只需要令 p = 0.25
+binom.test(ct, p=0.25)
+```
+
+如果你想要从检验结果中提取信息，可以将结果保存进一个变量，然后用 `str()` 函数查看变量信息，接着把你想要的部分取出来。例如：
+
+```{r}
+bin_res <- binom.test(ct, p=0.25)
+# 字符串格式化后查看信息
+str(bin_res)
+
+# 获取 p 值
+bin_res$p.value
+
+# 获取 95% 置信区间
+bin_res$conf.int
+```
+
+#### 独立检验（比较组间）
+
+##### 卡方检验
+
+想要检验控制和处理组结果的频数差异，使用二维列联表。
+
+```{r}
+ct <- table(data$condition, data$result)
+ct
+
+chisq.test(ct)
+
+chisq.test(ct, correct=FALSE)
+```
+
+##### Fisher 精确检验
+
+对于小样本而言 Fisher 精确检验更为适合。小样本的 2x2 列表非常典型，样本更多、更复杂的列表计算强度非常大。当然，用R进行比较复杂的计算也是没有太大问题的。
+
+```{r}
+ct <- table(data$condition, data$result)
+ct
+
+fisher.test(ct)
+```
+
+##### Cochran-Mantel-Haenszel test
+
+Cochran-Mantel-Haenszel 检验 （或称为 Mantel-Haenszel 检验)）用于检验重复测量两离散变量的独立性。通常使用 2x2xK 列表表示，K是测量条件的次数。比如你想要指导是否一个处理（C vs. D）是否影响了恢复的概率（yes or no）。假设该处理一天监控测量三次——早上、中午和晚上，而你想要你的检验能够控制它。那么你可以使用 CMH 检验对 2x2x3 列联表进行操作，第三个变量是你想要控制的变量。
+
+R 中的 CMH 检验可以处理比 2x2xK 维度更高的数据，例如你处理 3x3xK 列联表。
+
+在接下来的例子里有三个变量：Location，Allele 和 Habitat。问题是——当控制 location 变量时，Allel（94 或非 94）和 Habitat（marine 或 estuarine）两个变量是否独立。
+
+```{r}
+fish <- read.table(header=TRUE, text='
+  Location Allele   Habitat Count
+ tillamook     94    marine    56
+ tillamook     94 estuarine    69
+ tillamook non-94    marine    40
+ tillamook non-94 estuarine    77
+   yaquina     94    marine    61
+   yaquina     94 estuarine   257
+   yaquina non-94    marine    57
+   yaquina non-94 estuarine   301
+     alsea     94    marine    73
+     alsea     94 estuarine    65
+     alsea non-94    marine    71
+     alsea non-94 estuarine    79
+    umpqua     94    marine    71
+    umpqua     94 estuarine    48
+    umpqua non-94    marine    55
+    umpqua non-94 estuarine    48
+')
+```
+
+注意上面的数据是**计数**的数据框，而不是像之前的例子是**记录**的数据框。这里我们使用 `xtabs()` 函数将它转换为列联表。
+
+```{r}
+# 制造一个三维的列联表，最后一个变量时要控制的 Location 变量
+ct <- xtabs(Count ~ Allele + Habitat + Location, data=fish)
+ct
+
+# 以扁平化显示
+ftable(ct)
+
+# 按指定方式进行变量输出
+ftable(ct, row.vars=c("Location","Allele"), col.vars="Habitat")
+
+mantelhaen.test(ct)
+```
+
+根据检验结果，当控制 Location 变量时 Allele 与 Habitat 变量存在相关（p = 0.025）。
+
+注意列联表的前两个维度处理是一致的，所以前后顺序变化都不会影响结果。而最后一个变量变化会导致结果的不同，下面是一个实例。
+
+```{r}
+# 下面两个看似不同的列联表，实际检验结果相同
+ct.1 <- xtabs(Count ~ Habitat + Allele + Location, data=fish)
+ct.2 <- xtabs(Count ~ Allele + Habitat + Location, data=fish)
+mantelhaen.test(ct.1)
+
+mantelhaen.test(ct.2)
+
+# 把 Allele 放到最后，结果不同了
+ct.3 <- xtabs(Count ~ Location + Habitat + Allele, data=fish)
+ct.4 <- xtabs(Count ~ Habitat + Location + Allele, data=fish)
+mantelhaen.test(ct.3)
+
+mantelhaen.test(ct.4)
+
+# 把 Habitat 放最后，结果也不同
+ct.5 <- xtabs(Count ~ Allele + Location + Habitat, data=fish)
+ct.6 <- xtabs(Count ~ Location + Allele + Habitat, data=fish)
+mantelhaen.test(ct.5)
+
+mantelhaen.test(ct.6)
+```
+
+#### McNemar 检验
+
+McNemar 检验概念上是频数数据的一个被试内检验。例如，假设你想要检验是否一个处理增加了一个人对某个问题反应「yes」的概率，而且你只有每个人处理前和处理后的数据。标准的卡方检验将不合适，因为它假设了组别是独立的。取而代之，我们可以使用 McNemar 检验。该检验仅适用于当存在一个独立变量的两次测量时。用于 McNemar 的列联表与用于卡方检验的非常相似，但结构上是不同的。
+
+假设你有下面的数据。每个对象有处理前和后的反应。
+
+```{r}
+data <- read.table(header=TRUE, text='
+ subject time result
+       1  pre      0
+       1 post      1
+       2  pre      1
+       2 post      1
+       3  pre      0
+       3 post      1
+       4  pre      1
+       4 post      0
+       5  pre      1
+       5 post      1
+       6  pre      0
+       6 post      1
+       7  pre      0
+       7 post      1
+       8  pre      0
+       8 post      1
+       9  pre      0
+       9 post      1
+      10  pre      1
+      10 post      1
+      11  pre      0
+      11 post      0
+      12  pre      1
+      12 post      1
+      13  pre      0
+      13 post      1
+      14  pre      0
+      14 post      0
+      15  pre      0
+      15 post      1
+')
+```
+
+```{r}
+library(tidyr)
+data_wide <- spread(data, time, result)
+data_wide
+```
+
+接下来从数据框的 pre 和 post 列生成列联表：
+
+```{r}
+ct <- table( data_wide[,c("pre","post")] )
+ct
+
+# 下面是用于标准卡方检验的列联表，注意差别
+table(data[,c("time","result")])
+```
+
+执行检验：
+
+```{r}
+mcnemar.test(ct)
+```
+
+对于小样本，它会使用连续校正。我们可以使用**精确**校正的 McNemar 检验替换这种校正方式，前者更加的精确，可通过 `exact2x2` 包获取。
+
+```{r}
+library(exact2x2)
+
+mcnemar.exact(ct)
+```
+
+## ANOVA
+
+### 问题
+
+你想要使用 ANOVA 比较多组之间的差异。
+
+### 方案
+
+假设这是你的数据：
+
+```{r}
+data <- read.table(header=TRUE, text='
+ subject sex   age before after
+       1   F   old    9.5   7.1
+       2   M   old   10.3  11.0
+       3   M   old    7.5   5.8
+       4   F   old   12.4   8.8
+       5   M   old   10.2   8.6
+       6   M   old   11.0   8.0
+       7   M young    9.1   3.0
+       8   F young    7.9   5.2
+       9   F   old    6.6   3.4
+      10   M young    7.7   4.0
+      11   M young    9.4   5.3
+      12   M   old   11.6  11.3
+      13   M young    9.9   4.6
+      14   F young    8.6   6.4
+      15   F young   14.3  13.5
+      16   F   old    9.2   4.7
+      17   M young    9.8   5.1
+      18   F   old    9.9   7.3
+      19   F young   13.0   9.5
+      20   M young   10.2   5.4
+      21   M young    9.0   3.7
+      22   F young    7.9   6.2
+      23   M   old   10.1  10.0
+      24   M young    9.0   1.7
+      25   M young    8.6   2.9
+      26   M young    9.4   3.2
+      27   M young    9.7   4.7
+      28   M young    9.3   4.9
+      29   F young   10.7   9.8
+      30   M   old    9.3   9.4
+')
+
+# 确保 subject 列是一个因子变量，这样不会当作连续变量对待
+data$subject <- factor(data$subject)
+```
+
+#### 单因素 ANOVA 分析
+
+```{r}
+# 单因素：
+# 独立变量: sex
+# 依赖变量: before
+aov1 <- aov(before ~ sex, data=data)
+summary(aov1)
+
+# 显示均值
+model.tables(aov1, "means")
+```
+
+#### 双因素 ANOVA 分析
+
+```{r}
+# 2x2:
+# 独立变量: sex
+# 独立变量: age
+# 依赖变量: after
+# 下面两种调用方式等价：
+aov2 <- aov(after ~ sex*age, data=data)
+aov2 <- aov(after ~ sex + age + sex:age, data=data)
+summary(aov2)
+
+# 显示均值
+model.tables(aov2, "means")
+```
+
+#### Tukey HSD post-hoc 检验
+
+```{r}
+TukeyHSD(aov2)
+```
+
+### 有受试内变量的 ANOVAs
+
+对于有受试内变量的 ANOVA 分析，数据必须满足为长格式。上面提到的数据都是宽格式，所以我们需要先转换数据格式（参见「长宽格式互相转换」）
+
+同样地，有受试内变量的 ANOVA 分析需要一个识别列。当前数据里是 `subject` 列。**识别变量必须是一个因子**，如果是数值类型，函数会解析错误导致不能正常工作。
+
+```{r}
+library(tidyr)
+
+# 原始数据
+# subject sex   age before after
+#       1   F   old    9.5   7.1
+#       2   M   old   10.3  11.0
+#       3   M   old    7.5   5.8
+
+# 转换为长格式
+data_long <- gather(data, time, value, before:after)
+# Look at first few rows
+head(data_long)
+
+# 确保subject列是一个因子
+data_long$subject <- factor(data_long$subject)
+```
+
+#### One-way within ANOVA
+
+首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。如果 `subject` 是数值向量，而不是因子，结果将会出错。
+
+```{r}
+# 独立变量 (被试内): time
+# 依赖变量:          value
+aov_time <- aov(value ~ time + Error(subject/time), data=data_long)
+summary(aov_time)
+
+# 因为一些原因，下面的代码不工作
+model.tables(aov_time, "means")
+```
+
+#### 混合设计 ANOVA
+
+首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。
+
+```{r}
+# 2x2 mixed:
+# 独立变量（被试间） : age
+# 独立变量（被试内） : time
+# 依赖变量:            value
+aov_age_time <- aov(value ~ age*time + Error(subject/time), data=data_long)
+summary(aov_age_time)
+
+# 因为数据不平衡，下面代码不会工作
+model.tables(aov_age_time, "means")
+```
+
+#### 更多被试内变量的 ANOVA
+
+下面这些例子使用的不是上面的数据，但可以解释怎么进行相应的处理。首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。
+
+```{r}
+# # 两个被试内变量
+# aov.ww <- aov(y ~ w1*w2 + Error(subject/(w1*w2)), data=data_long)
+#
+# # 1个被试间变量，两个被试内变量
+# aov.bww <- aov(y ~ b1*w1*w2 + Error(subject/(w1*w2)) + b1, data=data_long)
+#
+# # 两个被试间变量，一个被试内变量
+# aov.bww <- aov(y ~ b1*b2*w1 + Error(subject/(w1)) + b1*b2, data=data_long)
+```
+
+## 逻辑回归
+
+### 问题
+
+你想要运用逻辑回归分析。
+
+### 方案
+
+逻辑回归典型使用于当存在一个离散的响应变量（比如赢和输）和一个与响应变量（也称为结果变量、因变量）的概率或几率相关联的连续预测变量的情况。它也适用于有多个预测变量的分类预测。
+
+假设我们从内置的 `mtcars` 数据集的一部分开始，像下面这样，我们将 `vs` 作为响应变量，`mpg` 作为一个连续的预测变量，`am` 作为一个分类（离散）的预测变量。
+
+```{r}
+data(mtcars)
+dat <- subset(mtcars, select=c(mpg, am, vs))
+dat
+```
+
+#### 连续预测变量，离散响应变量
+
+如果数据集有一个离散变量和一个连续变量，并且连续变量离散变量概率的预测器（就像直线回归中 x 可以预测 y 一样，只不过是两个连续变量，而逻辑回归中被预测的是离散变量），逻辑回归可能适用。
+
+下面例子中，`mpg` 是连续预测变量，`vs` 是离散响应变量。.
+
+```{r}
+# 执行逻辑回归 —— 下面两种方式等效
+# logit是二项分布家族的默认模型
+logr_vm <- glm(vs ~ mpg, data=dat, family=binomial)
+logr_vm <- glm(vs ~ mpg, data=dat, family=binomial(link="logit"))
+```
+
+查看模型信息：
+
+```{r}
+# 输出模型信息
+logr_vm
+
+# 汇总该模型的更多信息
+summary(logr_vm)
+```
+
+##### 画图
+
+我们可以使用 `ggplot2` 或者基本图形绘制数据和逻辑回归结果。
+
+```{r}
+library(ggplot2)
+ggplot(dat, aes(x=mpg, y=vs)) + geom_point() +
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+par(mar = c(4, 4, 1, 1)) # 减少一些边缘使得图形显示更好些
+plot(dat$mpg, dat$vs)
+curve(predict(logr_vm, data.frame(mpg=x), type="response"), add=TRUE)
+```
+
+#### 离散预测变量，离散响应变量
+
+这个跟上面的操作大致相同，`am` 是一个离散的预测变量，`vs` 是一个离散的响应变量。
+
+```{r}
+# 执行逻辑回归
+logr_va <- glm(vs ~ am, data=dat, family=binomial)
+
+# 打印模型信息
+logr_va
+
+# 汇总模型的信息
+summary(logr_va)
+```
+
+##### 画图
+
+尽管图形可能会比连续预测变量的信息少，我们还是可以使用 `ggplot2` 或者基本图形绘制逻辑数据和回归结果。因为数据点大致在 4 个位置，我们可以使用抖动点避免叠加。
+
+```{r}
+library(ggplot2)
+ggplot(dat, aes(x=am, y=vs)) +
+  geom_point(shape=1, position=position_jitter(width=.05,height=.05)) +
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+par(mar = c(4, 4, 1, 1)) # 减少一些边缘使得图形显示更好些
+plot(jitter(dat$am, .2), jitter(dat$vs, .2))
+curve(predict(logr_va, data.frame(am=x), type="response"), add=TRUE)
+```
+
+#### 连续和离散预测变量，离散响应变量
+
+这跟先前的例子相似，这里 `mpg` 是连续预测变量，`am` 是离散预测变量，`vs` 是离散响应变量。
+
+```{r}
+logr_vma <- glm(vs ~ mpg + am, data=dat, family=binomial)
+logr_vma
+
+summary(logr_vma)
+```
+
+#### 有交互项的多个预测变量
+
+当有多个预测变量时我们可能需要检验交互项。交互项可以单独指定，像 `a + b + c + a:b + b:c + a:b:c`，或者它们可以使用 `a * b *c` 自动展开（这两种等效）。如果只是想指定部分可能的交互项，比如 `a` 与 `c` 有交互项，使用 `a + b + c + a:c`。
+
+```{r}
+# 执行逻辑回归，下面两种方式等效
+logr_vmai <- glm(vs ~ mpg * am, data=dat, family=binomial)
+logr_vmai <- glm(vs ~ mpg + am + mpg:am, data=dat, family=binomial)
+
+logr_vmai
+
+summary(logr_vmai)
+```
+
+## 变量同质性
+
+### 问题
+
+你想要（精确）检验样本的方差同质性（同方差，方差齐性）。**许多统计检验假设总体同方差**。
+
+### 方案
+
+有许多检验方差同质性的方式，下面列出三种：
+
+- **Bartlett’s test** - 如果数据服从正态分布，这是最好地检验方法。该方法对非正态数据非常敏感，如果数据不是正态的很可能返回假阳性的结果。
+- **Levene’s test** - 数据偏离正态性时比 Bartlett 检验更稳定（鲁棒性更好），内置于 `car` 包
+- **Fligner-Killeen test** - 这是一个非参数检验，数据偏离正态是非常稳定适用。
+
+对于所有的检验，零假设为总体方差相同（同质；**不是相等的意思**）；备择假设是至少两组样本（总体方差）不同。
+
+#### 样例数据
+
+这里的例子使用了 `InsectSprays` 和 `ToothGrowth` 数据集。`InsectSprays` 数据集有一个独立变量，而 `ToothGrowth` 数据集有两个独立变量。
+
+```{r}
+head(InsectSprays)
+
+tg      <- ToothGrowth
+tg$dose <- factor(tg$dose) # Treat this column as a factor, not numeric
+head(tg)
+```
+
+快速绘制数据集的箱线图：
+
+```{r}
+plot(count ~ spray, data = InsectSprays)
+```
+
+```{r}
+plot(len ~ interaction(dose,supp), data=ToothGrowth)
+```
+
+初一看好像数据集的方差都不同质，但这需要像下面一样进行合适的检验。
+
+#### Bartlett’s test
+
+有一个独立变量：
+
+```{r}
+bartlett.test(count ~ spray, data=InsectSprays)
+```
+
+有多个独立变量，必须使用 `interaction()` 函数将这些独立变量包裹为含所有因子组合的单个变量。如果不适应，那么会得到错误的自由度，因而 p 值也将是错误的。
+
+```{r}
+bartlett.test(len ~ interaction(supp,dose), data=ToothGrowth)
+
+bartlett.test(len ~ dose, data=ToothGrowth)
+```
+
+#### Levene’s test
+
+`leveneTest()` 函数是 **car** 包的一部分。
+
+有一个独立变量：
+
+```{r}
+library(car)
+
+leveneTest(count ~ spray, data=InsectSprays)
+```
+
+有两个独立变量。注意这里 `interaction` 函数不需要，因为该函数用于其他两个检验。
+
+```{r}
+leveneTest(len ~ supp*dose, data=tg)
+```
+
+#### Fligner-Killeen test
+
+有一个独立变量：
+
+```{r}
+fligner.test(count ~ spray, data=InsectSprays)
+```
+
+当处理多个独立变量时，这个 `fligner.test()` 函数有跟 `bartlett.test()` 相同的行为。必须使用 `interaction()` 函数。
+
+```{r}
+fligner.test(len ~ interaction(supp,dose), data=ToothGrowth)
+
+fligner.test(len ~ dose, data=ToothGrowth)
+```
+
+<!--chapter:end:07-stats.Rmd-->
+
+# 图形
+
+## 条形图与线图
+
+### 问题
+
+你想要创建基本的条形图与线图
+
+### 方案
+
+想要使用 ggplot2 绘制图形，数据必须是一个数据框，而且必须是长格式。
+
+#### 基本图形，离散 x-axis
+
+使用条形图，条形的高度通常代表这种不同的东西：
+
+* 每一组事件的**计数**，通过 `stat_bin` 指定，ggplot2 默认使用该选项
+* 数据集中某一列的**值**，通过 `stat_identity` 指定
+
+| x 轴   | 高度含义 | Common name |
+| -------- | -------- | ----------- |
+| **连续** | **计数** | 直方图      |
+| **离散** | **计数** | 条形图      |
+| **连续** | **数值** | 条形图      |
+| **离散** | **数值** | 条形图      |
+
+##### 有值的条形图
+
+这里有一些样例数据 (抽自 reshape2 包的 `tips` 数据集):
+
+```{r}
+dat <- data.frame(
+  time = factor(c("Lunch","Dinner"), levels=c("Lunch","Dinner")),
+  total_bill = c(14.89, 17.23)
+)
+dat
+
+# 导入 ggplot2 分析包
+library(ggplot2)
+```
+
+在这些例子中，条形的高度代表数据框某一列的**值**，所以使用 `stat="identity"` 而不是默认的 `stat="bin"`。
+
+这里使用的映射变量为：
+
+- `time`: x-axis 和有时填充颜色
+- `total_bill`: y-axis
+
+```{r}
+# 非常基本的条形图
+ggplot(data=dat, aes(x=time, y=total_bill)) +
+    geom_bar(stat="identity")
+
+# 按时间填充颜色
+ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
+    geom_bar(stat="identity")
+## 这和上面是一样的结果
+# ggplot(data=dat, aes(x=time, y=total_bill)) +
+#    geom_bar(aes(fill=time), stat="identity")
+# 添加黑色的边框线
+ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
+    geom_bar(colour="black", stat="identity")
+# 没有图例，因为这个信息是多余的
+ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
+    geom_bar(colour="black", stat="identity") +
+    guides(fill=FALSE)
+```
+
+![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-3.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-4.png)
+
+一个理想的条形图可能是下面这样的：
+
+```{r}
+# 添加题目，缩小箱宽，填充颜色，改变轴标签
+ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) + 
+    geom_bar(colour="black", fill="#DD8888", width=.8, stat="identity") + 
+    guides(fill=FALSE) +
+    xlab("Time of day") + ylab("Total bill") +
+    ggtitle("Average bill for 2 people")
+```
+
+![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-1.png)
+
+参见 [../Colors (ggplot2)](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)) 获取更多关于颜色的信息。
+
+##### 计数的条形图
+
+在下面例子中，条形高度代表事件的计数。
+
+我们直接使用 `reshape2` 的 `tips` 数据集。
+
+```{r}
+library(reshape2)
+# 查看头几行
+head(tips)
+```
+
+想要得到一个计数的条形图，不要映射变量到 `y`，使用 `stat="bin"` (默认就是这个) 而不是 `stat="identity"`:
+
+```{r}
+# 计数的条形图
+ggplot(data=tips, aes(x=day)) +
+    geom_bar(stat="count")
+## 和上面等同, 因为 stat="bin" 是默认
+# ggplot(data=tips, aes(x=day)) +
+#    geom_bar()
+```
+
+![plot of chunk unnamed-chunk-6](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-6-1.png)
+
+#### 线图
+
+对于线图，数据点必须分组从而R知道怎么连接这些点。如果只有一组的话，非常简单，设定 `group=1` 即可，如果是多组，需要设定分组变量。
+
+下面是使用的映射变量
+
+- `time`: x-axis
+- `total_bill`: y-axis
+
+```{r}
+# 基本的线图
+ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
+    geom_line()
+## This would have the same result as above
+# ggplot(data=dat, aes(x=time, y=total_bill)) +
+#     geom_line(aes(group=1))
+
+# 添加点
+ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
+    geom_line() +
+    geom_point()
+
+# 改变线和点的颜色
+# 改变线的类型和点的类型，用更粗的线、更大的点
+# 用红色填充点
+ggplot(data=dat, aes(x=time, y=total_bill, group=1)) + 
+    geom_line(colour="red", linetype="dashed", size=1.5) + 
+    geom_point(colour="red", size=4, shape=21, fill="white")
+```
+
+![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-7-2.png)![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-7-3.png)
+
+理想的线图可能像下面这样：
+
+```{r}
+# 设定 y 轴的范围
+# 改变轴标签
+ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
+    geom_line() +
+    geom_point() +
+    expand_limits(y=0) +
+    xlab("Time of day") + ylab("Total bill") +
+    ggtitle("Average bill for 2 people")
+```
+
+![plot of chunk unnamed-chunk-8](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-8-1.png)
+
+### 有更多变量的图
+
+下面这个数据将用于接下来的例子
+
+```{r}
+dat1 <- data.frame(
+    sex = factor(c("Female","Female","Male","Male")),
+    time = factor(c("Lunch","Dinner","Lunch","Dinner"), levels=c("Lunch","Dinner")),
+    total_bill = c(13.53, 16.81, 16.24, 17.42)
+)
+dat1
+```
+
+#### 条形图
+
+变量映射：
+
+- `time`: x-axis
+- `sex`: color fill
+- `total_bill`: y-axis.
+
+```{r}
+# 堆积条形图 -- 不常用
+ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
+    geom_bar(stat="identity")
+
+# 条形图，x 轴是 time, 颜色填充是 sex 
+ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
+    geom_bar(stat="identity", position=position_dodge())
+
+ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
+    geom_bar(stat="identity", position=position_dodge(), colour="black")
+
+# 改变颜色
+ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
+    geom_bar(stat="identity", position=position_dodge(), colour="black") +
+    scale_fill_manual(values=c("#999999", "#E69F00"))
+```
+
+![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-1.png)![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-2.png)![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-3.png)![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-4.png)
+
+改变映射是非常容易的
+
+```{r}
+# 条形图，x 轴是性别，颜色是时间
+ggplot(data=dat1, aes(x=sex, y=total_bill, fill=time)) +
+    geom_bar(stat="identity", position=position_dodge(), colour="black")
+```
+
+![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-11-1.png)
+
+#### 线图
+
+变量映射：
+
+- `time`: x-axis
+- `sex`: 线的颜色
+- `total_bill`: y-axis.
+
+想要绘制多条线，必须指定分组变量。
+
+```{r}
+# 基本的带点线图
+ggplot(data=dat1, aes(x=time, y=total_bill, group=sex)) +
+    geom_line() +
+    geom_point()
+
+# 将性别映射到颜色
+ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, colour=sex)) +
+    geom_line() +
+    geom_point()
+
+# 映射性别到不同的点类型
+ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex)) +
+    geom_line() +
+    geom_point()
+
+# 使用更粗的线、更大的点
+ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex)) + 
+    geom_line(size=1.5) + 
+    geom_point(size=3, fill="white") +
+    scale_shape_manual(values=c(22,21))
+```
+
+![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-3.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-4.png)
+
+更改颜色和线型变量的映射非常容易：
+
+```{r}
+ggplot(data=dat1, aes(x=sex, y=total_bill, group=time, shape=time, color=time)) +
+    geom_line() +
+    geom_point()
+```
+
+![plot of chunk unnamed-chunk-13](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-13-1.png)
+
+#### 完成的例子
+
+完成的例子可能像下面这样
+
+```{r}
+# 一个条形图
+ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) + 
+    geom_bar(colour="black", stat="identity",
+             position=position_dodge(),
+             size=.3) +                        # 更粗的线
+    scale_fill_hue(name="Sex of payer") +      # 设定图例标题
+    xlab("Time of day") + ylab("Total bill") + # 设定轴标签
+    ggtitle("Average bill for 2 people") +     # 设定题目
+    theme_bw()
+
+# 一个线图
+ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex, colour=sex)) + 
+    geom_line(aes(linetype=sex), size=1) +     # 按性别设定线型
+    geom_point(size=3, fill="white") +         # 使用更大的点，并用颜色填充
+    expand_limits(y=0) +                       # 将 0 包含仅 y 轴
+    scale_colour_hue(name="Sex of payer",      # 设定图例标题
+                     l=30)  +                  # 使用更深的颜色 (lightness=30)
+    scale_shape_manual(name="Sex of payer",
+                       values=c(22,21)) +      # 
+    scale_linetype_discrete(name="Sex of payer") +
+    xlab("Time of day") + ylab("Total bill") + # 设定轴标签
+    ggtitle("Average bill for 2 people") +     # 设定标题
+    theme_bw() +
+    theme(legend.position=c(.7, .4))           # 图例的位置
+```
+
+![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-14-2.png)
+
+为了保证上图的图例一致，必须指定 3 次。至于为何如此，点击 [这里](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)#With_lines_and_points)。
+
+### 使用数值 x-axis
+
+```{r}
+datn <- read.table(header=TRUE, text='
+supp dose length
+  OJ  0.5  13.23
+  OJ  1.0  22.70
+  OJ  2.0  26.06
+  VC  0.5   7.98
+  VC  1.0  16.77
+  VC  2.0  26.14
+')
+```
+
+来自 `ToothGrowth` 数据集。
+
+#### 当 x-axis 作为连续变量时
+
+我们可以用它绘制一个线图
+
+```{r}
+ggplot(data=datn, aes(x=dose, y=length, group=supp, colour=supp)) +
+    geom_line() +
+    geom_point()
+```
+
+![plot of chunk unnamed-chunk-16](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-16-1.png)
+
+#### 当 x-axis 作为分类变量时
+
+首先，我们要将该变量转换为因子。
+
+```{r}
+# 拷贝数据框并将它转换为因子
+datn2 <- datn
+datn2$dose <- factor(datn2$dose)
+ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
+    geom_line() +
+    geom_point()
+
+# 使用原始的数据框，但使用 factor 函数在绘图时转换
+ggplot(data=datn, aes(x=factor(dose), y=length, group=supp, colour=supp)) +
+    geom_line() +
+    geom_point()
+```
+
+![plot of chunk unnamed-chunk-17](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-17-1.png)![plot of chunk unnamed-chunk-17](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-17-2.png)
+
+当连续值作为分类变量使用时，也可以绘制条形图。
+
+```{r}
+ggplot(data=datn2, aes(x=dose, y=length, fill=supp)) +
+    geom_bar(stat="identity", position=position_dodge())
+
+ggplot(data=datn, aes(x=factor(dose), y=length, fill=supp)) +
+    geom_bar(stat="identity", position=position_dodge())
+```
+
+![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-18-1.png)![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-18-2.png)
+
+## 绘制均值和误差棒
+
+### 问题
+
+你想要为一个数据集绘制均值的误差棒。
+
+### 方案
+
+想要用 ggplot2 绘制图形，数据必须是数据框形式，而且是长格式（相对于宽格式）。 如果你的数据需要重构，请参考 [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) 获取更多信息。
+
+#### 示例数据
+
+下面的示例将使用 `ToothGrowth` 数据集。注意 `dose` 在这里是一个数值列， 一些情况下我们将它转换为因子变量将会更加有用。
+
+```{r}
+tg <- ToothGrowth
+head(tg)
+
+library(ggplot2)
+```
+
+首先，我们必须对数据进行统计汇总。 这可以通过多种方式实现，参考[this page](http://www.cookbook-r.com/Manipulating_data/Summarizing_data). 在这个案例中，我们将使用 `summarySE()` 函数，该函数代码在本页面的最下方 ( `summarySE` 函数的代码在使用前必须已经键入)。
+
+```{r}
+# install.packages('Rmisc')
+library(Rmisc)
+# summarySE 函数提供了标准差、标准误以及 95% 的置信区间
+tgc <- summarySE(tg, measurevar="len", groupvars=c("supp","dose"))
+tgc
+```
+
+### 线图
+
+数据统计总结后，我们就可以开始绘制图形了。这里是一些带误差棒的线图和点图，误差棒代表标准差、标准误或者是 95% 的置信区间。
+
+```{r}
+# 均值的标准误
+ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
+    geom_errorbar(aes(ymin=len-se, ymax=len+se), width=.1) +
+    geom_line() +
+    geom_point()
+
+# 发现误差棒重叠（dose=2.0），我们使用 position_dodge 将它们进行水平移动
+pd <- position_dodge(0.1) # move them .05 to the left and right
+
+ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
+    geom_errorbar(aes(ymin=len-se, ymax=len+se), width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd)
+
+# 使用 95% 置信区间替换标准误
+ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
+    geom_errorbar(aes(ymin=len-ci, ymax=len+ci), width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd)
+
+# 黑色的误差棒 - 注意 'group=supp' 的映射 -- 没有它，误差棒将不会避开（就是会重叠）。
+ggplot(tgc, aes(x=dose, y=len, colour=supp, group=supp)) + 
+    geom_errorbar(aes(ymin=len-ci, ymax=len+ci), colour="black", width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd, size=3)
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-1.png
+http://www.cookbook-r.com/Graphs/)
+![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-2.png
+http://www.cookbook-r.com/Graphs/)
+![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-3.png
+http://www.cookbook-r.com/Graphs/)
+![plot of chunk unnamed-chunk-4-4](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-4.png
+http://www.cookbook-r.com/Graphs/)
+
+一张完成的带误差棒（代表均值的标准误）的图形可能像下面显示的那样。最会画点，这样白色将会在线和误差棒的上面（这个需要理解图层概念，顺序不同展示的效果是不一样的）。
+
+```{r}
+ggplot(tgc, aes(x=dose, y=len, colour=supp, group=supp)) + 
+    geom_errorbar(aes(ymin=len-se, ymax=len+se), colour="black", width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd, size=3, shape=21, fill="white") + # 21的填充的圆
+    xlab("Dose (mg)") +
+    ylab("Tooth length") +
+    scale_colour_hue(name="Supplement type",    # 图例标签使用暗色
+                     breaks=c("OJ", "VC"),
+                     labels=c("Orange juice", "Ascorbic acid"),
+                     l=40) +                    # 使用暗色，亮度为40
+    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
+    expand_limits(y=0) +                        # 扩展范围
+    scale_y_continuous(breaks=0:20*4) +         # 每4个单位设置标记（y轴）
+    theme_bw() +
+    theme(legend.justification=c(1,0),
+          legend.position=c(1,0))               # 右下方放置图例
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-5-1.png)
+
+### 条形图
+
+条形图绘制误差棒也非常相似。 注意 `tgc$dose` 必须是一个因子。如果它是一个数值向量，将会不起作用。
+
+```{r}
+# 将dose转换为因子变量
+tgc2 <- tgc
+tgc2$dose <- factor(tgc2$dose)
+
+# 误差棒代表了均值的标准误
+ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    geom_errorbar(aes(ymin=len-se, ymax=len+se),
+                  width=.2,                    # 误差棒的宽度
+                  position=position_dodge(.9))
+
+
+# 使用95%的置信区间替换标准误
+ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    geom_errorbar(aes(ymin=len-ci, ymax=len+ci),
+                  width=.2,                    # 误差棒的宽度
+                  position=position_dodge(.9))
+```
+
+![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-6-2.png)
+
+一张绘制完成的图片像下面这样：
+
+```{r}
+ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity",
+             colour="black", # 使用黑色边框,
+             size=.3) +      # 将线变细
+    geom_errorbar(aes(ymin=len-se, ymax=len+se),
+                  size=.3,    # 将线变细
+                  width=.2,
+                  position=position_dodge(.9)) +
+    xlab("Dose (mg)") +
+    ylab("Tooth length") +
+    scale_fill_hue(name="Supplement type", # Legend label, use darker colors
+                   breaks=c("OJ", "VC"),
+                   labels=c("Orange juice", "Ascorbic acid")) +
+    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
+    scale_y_continuous(breaks=0:20*4) +
+    theme_bw()
+```
+
+![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-7-1.png)
+
+### 为组内变量添加误差棒
+
+当所有的变量都属于不同组别时，我们画标准误或者置信区间会显得非常简单直观。然而，当我们描绘的是组内变量（重复测量），那么添加标准误或者通常的置信区间可能会对不同条件下差异的推断产生误导作用。
+
+下面的方法来自 [Morey (2008)](http://tqmp.org/Content/vol04-2/p061/p061.html)，它是对 [Cousineau (2005)](http://tqmp.org/Content/vol01-1/p042/p042.html)的矫正，而它所做的就是 提供比 [Loftus and Masson (1994)](http://www.springerlink.com/content/n2r2t04244246k68/)更简单的方法。 你可以查看这些文章，以获得更多对组内变量误差棒问题的详细探讨和方案。
+
+这里有一个组内变量的数据集 (from Morey 2008): pre/post-test。
+
+```{r}
+dfw <- read.table(header=TRUE, text='
+ subject pretest posttest
+       1    59.4     64.5
+       2    46.4     52.4
+       3    46.0     49.7
+       4    49.0     48.7
+       5    32.5     37.4
+       6    45.2     49.5
+       7    60.3     59.9
+       8    54.3     54.1
+       9    45.4     49.6
+      10    38.9     48.5
+ ')
+
+# 将物体的 ID 作为因子变量对待
+dfw$subject <- factor(dfw$subject)
+```
+
+第一步是将该数据集转换为长格式。参见 [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) for more information about the conversion.
+
+```{r}
+# 转换为长格式
+library(reshape2)
+dfw_long <- melt(dfw,
+                 id.vars = "subject",
+                 measure.vars = c("pretest","posttest"),
+                 variable.name = "condition")
+
+dfw_long
+```
+
+使用 `summarySEwithin` 函数瓦解数据 (相关使用及定义 [bottom](<http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/#Helper>)).
+
+```{r}
+dfwc <- summarySEwithin(dfw_long, measurevar="value", withinvars="condition",
+                        idvar="subject", na.rm=FALSE, conf.interval=.95)
+
+dfwc
+
+library(ggplot2)
+# Make the graph with the 95% confidence interval
+ggplot(dfwc, aes(x=condition, y=value, group=1)) +
+    geom_line() +
+    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci)) +
+    geom_point(shape=21, size=3, fill="white") +
+    ylim(40,60)
+```
+
+![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-10-1.png)
+
+`value` 和 `value_norm` 列代表了未标准化和标准化后的值。详细信息参阅函数的相关使用部分
+
+#### 理解组内变量的误差棒
+
+这部分解释组内的误差棒值是如何计算出来的。这些步骤仅作解释目的；它们对于绘制误差棒是**非必需**的。
+
+下面独立数据的图形结果展示了组内变量 `condition` 存在连续一致的趋势，但使用常规的标准误（或者置信区间）则不能充分地展示这一点。Morey (2008) 和Cousineau (2005) 的方法本质是标准化数据去移除组间的变化，计算出这个标准化数据的变异程度。
+
+```{r}
+# Use a consistent y range
+ymax <- max(dfw_long$value)
+ymin <- min(dfw_long$value)
+
+# Plot the individuals
+ggplot(dfw_long, aes(x=condition, y=value, colour=subject, group=subject)) +
+    geom_line() + geom_point(shape=21, fill="white") + 
+    ylim(ymin,ymax)
+
+# 创造标准化的版本
+dfwNorm.long <- normDataWithin(data=dfw_long, idvar="subject", measurevar="value")
+
+# Plot the normed individuals
+ggplot(dfwNorm.long, aes(x=condition, y=valueNormed, colour=subject, group=subject)) +
+    geom_line() + geom_point(shape=21, fill="white") + 
+    ylim(ymin,ymax)
+```
+
+![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-11-2.png)
+
+针对正常（组间）方法和组内方法的误差棒差异在下面呈现。正常的方法计算出的误差棒用红色表示，组内方法的误差棒用黑色表示。
+
+```{r}
+# Instead of summarySEwithin, use summarySE, which treats condition as though it were a between-subjects variable
+dfwc_between <- summarySE(data=dfw_long, measurevar="value", groupvars="condition", na.rm=FALSE, conf.interval=.95)
+dfwc_between
+
+# 用红色显示组间的置信区间，用黑色展示组内的置信区间
+ggplot(dfwc_between, aes(x=condition, y=value, group=1)) +
+    geom_line() +
+    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci), colour="red") +
+    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci), data=dfwc) +
+    geom_point(shape=21, size=3, fill="white") +
+    ylim(ymin,ymax)
+```
+
+![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-12-1.png)
+
+#### 两个组内变量
+
+如果存在超过一个的组内变量，我们可以使用相同的函数 `summarySEwithin`。下面的数据集来自[Hays (1994)](http://books.google.com/books?id=zSi2AAAAIAAJ)，在 [Rouder and Morey (2005)](http://www.jstor.org/pss/40064075)中用来绘制这类的组内误差棒。
+
+```{r}
+data <- read.table(header=TRUE, text='
+ Subject RoundMono SquareMono RoundColor SquareColor
+       1        41         40         41          37
+       2        57         56         56          53
+       3        52         53         53          50
+       4        49         47         47          47
+       5        47         48         48          47
+       6        37         34         35          36
+       7        47         50         47          46
+       8        41         40         38          40
+       9        48         47         49          45
+      10        37         35         36          35
+      11        32         31         31          33
+      12        47         42         42          42
+')
+```
+
+数据集首先必须转换为长格式，列名显示了两个变量： 形状 (圆形/方形) 和配色方案 (黑白/有色).
+
+```{r}
+# 转换为长格式
+library(reshape2)
+data_long <- melt(data=data, id.var="Subject",
+                  measure.vars=c("RoundMono", "SquareMono", "RoundColor", "SquareColor"),
+                  variable.name="Condition")
+names(data_long)[names(data_long)=="value"] <- "Time"
+
+# 拆分 Condition 列为 Shape 和 ColorScheme
+data_long$Shape <- NA
+data_long$Shape[grepl("^Round",  data_long$Condition)] <- "Round"
+data_long$Shape[grepl("^Square", data_long$Condition)] <- "Square"
+data_long$Shape <- factor(data_long$Shape)
+
+data_long$ColorScheme <- NA
+data_long$ColorScheme[grepl("Mono$",  data_long$Condition)] <- "Monochromatic"
+data_long$ColorScheme[grepl("Color$", data_long$Condition)] <- "Colored"
+data_long$ColorScheme <- factor(data_long$ColorScheme, levels=c("Monochromatic","Colored"))
+
+# 删除 Condition 列 
+data_long$Condition <- NULL
+
+# 检查数据
+head(data_long)
+```
+
+现在可以进行统计汇总和绘图了。
+
+```{r}
+datac <- summarySEwithin(data_long, measurevar="Time", withinvars=c("Shape","ColorScheme"), idvar="Subject")
+datac
+
+library(ggplot2)
+ggplot(datac, aes(x=Shape, y=Time, fill=ColorScheme)) +
+    geom_bar(position=position_dodge(.9), colour="black", stat="identity") +
+    geom_errorbar(position=position_dodge(.9), width=.25, aes(ymin=Time-ci, ymax=Time+ci)) +
+    coord_cartesian(ylim=c(40,46)) +
+    scale_fill_manual(values=c("#CCCCCC","#FFFFFF")) +
+    scale_y_continuous(breaks=seq(1:100)) +
+    theme_bw() +
+    geom_hline(yintercept=38) 
+```
+
+![plot of chunk unnamed-chunk-15-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-15-1.png)
+
+### 注意标准化的均值
+
+函数 `summarySEWithin` 返回标准化和未标准化的均值。未标准化的均值只是简单地表示每组的均值。标准化的均值计算出来保证组间的均值是一样的。
+
+比如：
+
+```{r}
+dat <- read.table(header=TRUE, text='
+id trial gender dv
+ A     0   male  2
+ A     1   male  4
+ B     0   male  6
+ B     1   male  8
+ C     0 female 22
+ C     1 female 24
+ D     0 female 26
+ D     1 female 28
+')
+
+# 标准化和未标准化的均值是不同的
+summarySEwithin(dat, measurevar="dv", withinvars="trial", betweenvars="gender",
+                idvar="id")
+```
+
+### 助手函数
+
+如果你处理的仅仅是组间变量，那么 `summarySE` 是你代码中唯一需要使用的函数。如果你的数据里有组内变量，**并且**你想要矫正误差棒使得组间的变异被移除，就像 Loftus and Masson (1994) 里的那样，那么 `normDataWithin` 和 `summarySEwithin` 这两个函数必须加入你的代码中，然后调用 `summarySEwithin` 函数进行计算。
+
+```{r}
+## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
+##   data: a data frame.
+##   measurevar: the name of a column that contains the variable to be summariezed
+##   groupvars: a vector containing names of columns that contain grouping variables
+##   na.rm: a boolean that indicates whether to ignore NA's
+##   conf.interval: the percent range of the confidence interval (default is 95%)
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,
+                      conf.interval=.95, .drop=TRUE) {
+    library(plyr)
+
+    # New version of length which can handle NA's: if na.rm==T, don't count them
+    length2 <- function (x, na.rm=FALSE) {
+        if (na.rm) sum(!is.na(x))
+        else       length(x)
+    }
+
+    # This does the summary. For each group's data frame, return a vector with
+    # N, mean, and sd
+    datac <- ddply(data, groupvars, .drop=.drop,
+      .fun = function(xx, col) {
+        c(N    = length2(xx[[col]], na.rm=na.rm),
+          mean = mean   (xx[[col]], na.rm=na.rm),
+          sd   = sd     (xx[[col]], na.rm=na.rm)
+        )
+      },
+      measurevar
+    )
+
+    # Rename the "mean" column    
+    datac <- rename(datac, c("mean" = measurevar))
+
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean
+
+    # Confidence interval multiplier for standard error
+    # Calculate t-statistic for confidence interval: 
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)
+    datac$ci <- datac$se * ciMult
+
+    return(datac)
+}
+
+## Norms the data within specified groups in a data frame; it normalizes each
+## subject (identified by idvar) so that they have the same mean, within each group
+## specified by betweenvars.
+##   data: a data frame.
+##   idvar: the name of a column that identifies each subject (or matched subjects)
+##   measurevar: the name of a column that contains the variable to be summariezed
+##   betweenvars: a vector containing names of columns that are between-subjects variables
+##   na.rm: a boolean that indicates whether to ignore NA's
+normDataWithin <- function(data=NULL, idvar, measurevar, betweenvars=NULL,
+                           na.rm=FALSE, .drop=TRUE) {
+    library(plyr)
+
+    # Measure var on left, idvar + between vars on right of formula.
+    data.subjMean <- ddply(data, c(idvar, betweenvars), .drop=.drop,
+     .fun = function(xx, col, na.rm) {
+        c(subjMean = mean(xx[,col], na.rm=na.rm))
+      },
+      measurevar,
+      na.rm
+    )
+
+    # Put the subject means with original data
+    data <- merge(data, data.subjMean)
+
+    # Get the normalized data in a new column
+    measureNormedVar <- paste(measurevar, "_norm", sep="")
+    data[,measureNormedVar] <- data[,measurevar] - data[,"subjMean"] +
+                               mean(data[,measurevar], na.rm=na.rm)
+
+    # Remove this subject mean column
+    data$subjMean <- NULL
+
+    return(data)
+}
+
+## Summarizes data, handling within-subjects variables by removing inter-subject variability.
+## It will still work if there are no within-S variables.
+## Gives count, un-normed mean, normed mean (with same between-group mean),
+##   standard deviation, standard error of the mean, and confidence interval.
+## If there are within-subject variables, calculate adjusted values using method from Morey (2008).
+##   data: a data frame.
+##   measurevar: the name of a column that contains the variable to be summariezed
+##   betweenvars: a vector containing names of columns that are between-subjects variables
+##   withinvars: a vector containing names of columns that are within-subjects variables
+##   idvar: the name of a column that identifies each subject (or matched subjects)
+##   na.rm: a boolean that indicates whether to ignore NA's
+##   conf.interval: the percent range of the confidence interval (default is 95%)
+summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=NULL,
+                            idvar=NULL, na.rm=FALSE, conf.interval=.95, .drop=TRUE) {
+
+  # Ensure that the betweenvars and withinvars are factors
+  factorvars <- vapply(data[, c(betweenvars, withinvars), drop=FALSE],
+    FUN=is.factor, FUN.VALUE=logical(1))
+
+  if (!all(factorvars)) {
+    nonfactorvars <- names(factorvars)[!factorvars]
+    message("Automatically converting the following non-factors to factors: ",
+            paste(nonfactorvars, collapse = ", "))
+    data[nonfactorvars] <- lapply(data[nonfactorvars], factor)
+  }
+
+  # Get the means from the un-normed data
+  datac <- summarySE(data, measurevar, groupvars=c(betweenvars, withinvars),
+                     na.rm=na.rm, conf.interval=conf.interval, .drop=.drop)
+
+  # Drop all the unused columns (these will be calculated with normed data)
+  datac$sd <- NULL
+  datac$se <- NULL
+  datac$ci <- NULL
+
+  # Norm each subject's data
+  ndata <- normDataWithin(data, idvar, measurevar, betweenvars, na.rm, .drop=.drop)
+
+  # This is the name of the new column
+  measurevar_n <- paste(measurevar, "_norm", sep="")
+
+  # Collapse the normed data - now we can treat between and within vars the same
+  ndatac <- summarySE(ndata, measurevar_n, groupvars=c(betweenvars, withinvars),
+                      na.rm=na.rm, conf.interval=conf.interval, .drop=.drop)
+
+  # Apply correction from Morey (2008) to the standard error and confidence interval
+  #  Get the product of the number of conditions of within-S variables
+  nWithinGroups    <- prod(vapply(ndatac[,withinvars, drop=FALSE], FUN=nlevels,
+                           FUN.VALUE=numeric(1)))
+  correctionFactor <- sqrt( nWithinGroups / (nWithinGroups-1) )
+
+  # Apply the correction factor
+  ndatac$sd <- ndatac$sd * correctionFactor
+  ndatac$se <- ndatac$se * correctionFactor
+  ndatac$ci <- ndatac$ci * correctionFactor
+
+  # Combine the un-normed means with the normed results
+  merge(datac, ndatac)
+}
+```
+
+原文链接：< <http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/>>
+
+### 其他
+
+解决问题的方法不止作者提供的这一种，为了理解 ggplot2 是如何进行误差棒的计算和添加，我在 stackoverflow 上提交了一个关于[ggplot2使用SE还是 SD 作为默认误差棒的问题](https://stackoverflow.com/questions/46192556/errorbar-in-ggplot-is-using-sd-or-se-as-default)。有人就提出了快速简易的解答。回答者的共同观点是必须先进行数据的统计计算。我之前在其他博客上看到的使用 `stat_boxplot(geom="errorbar", width=.3)` 直接计算误差棒可能就有问题（难以解释它算的是 SD 还是 SE，我没有在帮助文档找到解释，我也不知道函数内部是如何计算的）。
+
+## ggplot | 绘制分布图
+
+### 问题
+
+你想要绘制一组数据的分布图。
+
+### 方案
+
+后面的例子中会使用以下这组简单的数据：
+
+```{r}
+set.seed(1234)
+dat <- data.frame(cond = factor(rep(c("A","B"), each=200)), 
+                   rating = c(rnorm(200),rnorm(200, mean=.8)))
+# 查看数据
+head(dat)
+
+library(ggplot2)
+```
+
+### 直方图和概率密度图
+
+`qplot` 函数能够用更简单的语法绘制出与  `ggplot` 相同的图像。然而，在实践过程中你会发现 `ggplot` 是更好的选择，因为 `qplot` 中很多参数的选项都会让人感到困惑。
+
+```{r}
+## 以 rating 为横轴绘制直方图，组距设为 0.5
+## 两种函数都可以绘制出相同的图:
+ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5)
+# qplot(dat$rating, binwidth=.5)
+# 绘制黑色边线，白色填充的图
+ggplot(dat, aes(x=rating)) +
+    geom_histogram(binwidth=.5, colour="black", fill="white")
+# 密度曲线
+ggplot(dat, aes(x=rating)) + geom_density()
+# 直方图与核密度曲线重叠
+ggplot(dat, aes(x=rating)) + 
+    geom_histogram(aes(y=..density..),      # 这里直方图以 density (密度)为y轴
+                   binwidth=.5,
+                   colour="black", fill="white") +
+    geom_density(alpha=.2, fill="#FF6666")  # 重合部分透明填充
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-2.png)
+![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-3.png)
+![plot of chunk unnamed-chunk-3-4](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-4.png)
+
+添加一条均值线
+
+```{r}
+ggplot(dat, aes(x=rating)) +
+    geom_histogram(binwidth=.5, colour="black", fill="white") +
+    geom_vline(aes(xintercept=mean(rating, na.rm=T)),   # 忽略缺失值
+               color="red", linetype="dashed", size=1)
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-4-1.png)
+
+### 多组数据的直方图和概率密度图
+
+```{r}
+# 重叠直方图
+ggplot(dat, aes(x=rating, fill=cond)) +
+    geom_histogram(binwidth=.5, alpha=.5, position="identity") # identity 表示将每个对象直接显示在图中，条形会彼此重叠。
+# 间隔直方图
+ggplot(dat, aes(x=rating, fill=cond)) +
+    geom_histogram(binwidth=.5, position="dodge") # dodge 表示将每组的条形依次并列放置。
+# 密度图
+ggplot(dat, aes(x=rating, colour=cond)) + geom_density()
+# 半透明填充的密度图
+ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-2.png)
+![plot of chunk unnamed-chunk-5-3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-3.png)
+![plot of chunk unnamed-chunk-5-4](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-4.png)
+
+在给每组数据添加均值线前，需要将每组数据的平均值赋值到一个新的数据框。
+
+```{r}
+# 求均值
+library(plyr)
+cdat <- ddply(dat, "cond", summarise, rating.mean=mean(rating))
+cdat
+
+# 给重叠直方图添加均值线
+ggplot(dat, aes(x=rating, fill=cond)) +
+    geom_histogram(binwidth=.5, alpha=.5, position="identity") +
+    geom_vline(data=cdat, aes(xintercept=rating.mean,  colour=cond),
+               linetype="dashed", size=1)
+# 给密度图添加均值线
+ggplot(dat, aes(x=rating, colour=cond)) +
+    geom_density() +
+    geom_vline(data=cdat, aes(xintercept=rating.mean,  colour=cond),
+               linetype="dashed", size=1)
+```
+
+![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-6-2.png)
+
+使用分面：
+
+```{r}
+ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5, colour="black", fill="white") + 
+    facet_grid(cond ~ .)
+# 使用之前的 cdat 添加均值线
+ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5, colour="black", fill="white") + 
+    facet_grid(cond ~ .) +
+    geom_vline(data=cdat, aes(xintercept=rating.mean),
+               linetype="dashed", size=1, colour="red")
+```
+
+![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-7-1.png)
+
+![plot of chunk unnamed-chunk-7-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-7-2.png)
+
+更多关于分面的细节可查看[Facets (ggplot2)](http://www.cookbook-r.com/Graphs/Facets_(ggplot2))
+
+## 箱型图
+
+```{r}
+# 绘制箱型图
+ggplot(dat, aes(x=cond, y=rating)) + geom_boxplot()
+# 对分组填充颜色
+ggplot(dat, aes(x=cond, y=rating, fill=cond)) + geom_boxplot()
+# 将上图中冗余的图例删除掉：
+ggplot(dat, aes(x=cond, y=rating, fill=cond)) + geom_boxplot() +
+    guides(fill=FALSE)
+# 坐标轴翻转
+ggplot(dat, aes(x=cond, y=rating, fill=cond)) + geom_boxplot() + 
+    guides(fill=FALSE) + coord_flip()
+```
+       
+![plot of chunk unnamed-chunk-8-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-8-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-2.png)
+![plot of chunk unnamed-chunk-8-3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-3.png)
+![plot of chunk unnamed-chunk-8-4](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-4.png)
+  
+同时可以通过 ` stat_summary` 来添加平均值。
+
+```{r}
+# 用菱形图标指征平均值，并调整参数使该图标变更大。
+ggplot(dat, aes(x=cond, y=rating)) + geom_boxplot() +
+    stat_summary(fun.y=mean, geom="point", shape=5, size=4)
+```
+
+![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-9-1.png)
+
+## ggplot | 散点图
+
+### 问题	
+
+你想要绘制一幅散点图。
+
+### 方案
+
+假设这是你的数据：
+
+```{r}
+set.seed(955)
+#创建一些噪声数据
+dat <- data.frame(cond = rep(c("A", "B"), each=10),
+                  xvar = 1:20 + rnorm(20,sd=3),
+                  yvar = 1:20 + rnorm(20,sd=3))
+head(dat)
+
+library(ggplot2)
+```
+
+#### 带回归线的基本散点图
+
+```{r}
+ggplot(dat, aes(x=xvar, y=yvar)) +
+    geom_point(shape=1)      # 使用空心圆
+
+ggplot(dat, aes(x=xvar, y=yvar)) +
+    geom_point(shape=1) +    # 使用空心圆
+    geom_smooth(method=lm)   # 添加回归线
+                             # (默认包含 95% 置信区间)
+
+ggplot(dat, aes(x=xvar, y=yvar)) +
+    geom_point(shape=1) +    # 使用空心圆
+    geom_smooth(method=lm,   # 添加回归线
+                se=FALSE)    # 不加置信区域
+
+
+ggplot(dat, aes(x=xvar, y=yvar)) +
+    geom_point(shape=1) +    # 使用空心圆
+    geom_smooth()            # 添加带置信区间的平滑拟合曲线
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-3.png)![plot of chunk unnamed-chunk-3-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-4.png)
+
+#### 通过其他变量设置颜色和形状
+
+```{r}
+# 根据 cond 设置颜色
+ggplot(dat, aes(x=xvar, y=yvar, color=cond)) + geom_point(shape=1)
+
+# 同上，但这里带了回归线
+ggplot(dat, aes(x=xvar, y=yvar, color=cond)) +
+    geom_point(shape=1) +
+    scale_colour_hue(l=50) + # 使用稍暗的调色板
+    geom_smooth(method=lm,   
+                se=FALSE)    
+
+# 拓展回归线到数据区域之外（带预测效果）
+ggplot(dat, aes(x=xvar, y=yvar, color=cond)) + geom_point(shape=1) +
+    scale_colour_hue(l=50) + 
+    geom_smooth(method=lm,   
+                se=FALSE,    
+                fullrange=TRUE) 
+
+# 根据 cond 设置形状
+ggplot(dat, aes(x=xvar, y=yvar, shape=cond)) + geom_point()
+
+# 同上，但形状不同
+ggplot(dat, aes(x=xvar, y=yvar, shape=cond)) + geom_point() +
+    scale_shape_manual(values=c(1,2))  # 使用圆和三角形
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-3.png)![plot of chunk unnamed-chunk-4-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-4.png)![plot of chunk unnamed-chunk-4-5](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-5.png)
+
+阅读 [Colors (ggplot2)](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)) 和 Shapes and line types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types) 获取更多信息
+
+#### 处理图像元素叠加
+
+如果你有很多数据点，或者你的数据是离散的，那么数据可能会覆盖到一起，这样就看不清楚同一个位置有多少数据了。
+
+```{r}
+# 取近似值
+dat$xrnd <- round(dat$xvar/5)*5
+dat$yrnd <- round(dat$yvar/5)*5
+
+# 让每个点都部分透明
+# 如果情况严重，可以使用更小的值
+ggplot(dat, aes(x=xrnd, y=yrnd)) +
+    geom_point(shape=19,      
+               alpha=1/4)     
+
+# 抖动点
+# 抖动范围在 x 轴上是 1，y 轴上是 0.5
+ggplot(dat, aes(x=xrnd, y=yrnd)) +
+    geom_point(shape=1,      
+               position=position_jitter(width=1,height=.5))
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-5-2.png)
+
+## ggplot | 标题
+
+### 问题
+
+你想给图形设定一个标题。
+
+### 方案
+
+一个不带标题的图形例子：
+
+```{r}
+library(ggplot2)
+bp <- ggplot(PlantGrowth, aes(x=group, y=weight)) + geom_boxplot()
+bp
+```
+
+![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-2-1.png)
+
+添加标题
+
+```{r}
+bp + ggtitle("Plant growth")
+## 等同于
+# bp + labs(title="Plant growth")
+# 如果标题比较长，可以用 \n 将它分成多行来显示
+bp + ggtitle("Plant growth with\ndifferent treatments")
+# 缩少行距并使用粗体
+bp + ggtitle("Plant growth with\ndifferent treatments") + 
+     theme(plot.title = element_text(lineheight=.8, face="bold"))
+```
+
+![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-2.png)
+![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-3.png)
+
+## ggplot|坐标轴
+
+### 问题
+
+你想要改变轴的顺序或方向。
+
+### 方案
+
+> 注意：下面的例子中提到的 `scale_y_continuous`、`ylim` 等，`y` 都可以替换为 `x`。
+
+下面使用内置的 `PlantGrowth` 数据集绘制一个基本的箱线图。
+
+```{r}
+library(ggplot2)
+
+bp <- ggplot(PlantGrowth, aes(x=group, y=weight)) +
+    geom_boxplot()
+bp
+```
+
+![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-2-1.png)
+
+#### 交换x和y轴
+
+交换 x 和 y 轴（让 x 垂直、y 水平）
+
+```{r}
+bp + coord_flip()
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-3-1.png)
+
+#### 离散轴
+
+##### 改变条目的顺序
+
+```{r}
+# 手动设定离散轴条目的顺序
+bp + scale_x_discrete(limits=c("trt1","trt2","ctrl"))
+
+## 逆转轴条目顺序
+# 获取因子水平
+flevels <- levels(PlantGrowth$group)
+flevels
+
+# 逆转顺序
+flevels <- rev(flevels)
+flevels
+
+bp + scale_x_discrete(limits=flevels)
+
+# 或者一行搞定
+bp + scale_x_discrete(limits = rev(levels(PlantGrowth$group)))
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-4-3.png)
+
+##### 设定标签
+
+对于离散变量，标签来自于因子水平。然而，有时候短的因子水平名字并不适合展示。
+
+```{r}
+bp + scale_x_discrete(breaks=c("ctrl", "trt1", "trt2"),
+                      labels=c("Control", "Treat 1", "Treat 2"))
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-5-1.png)
+
+```{r}
+# 隐藏 x 刻度、标签和网格线
+bp + scale_x_discrete(breaks=NULL)
+
+# 隐藏所有的刻度和标签（X 轴），保留网格线
+bp + theme(axis.ticks = element_blank(), axis.text.x = element_blank())
+```
+
+![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-6-1.png)![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-6-2.png)
+
+#### 连续轴
+
+##### 设定范围和反转轴方向
+
+如果你仅想简单地让轴包含某个值，可以使用 `expand_limits()`，它会进行拓展而不是拉伸。
+
+```{r}
+# 确保 y 轴包含 0
+bp + expand_limits(y=0)
+
+# 确保 y 轴包含 0 和 8
+bp + expand_limits(y=c(0,8))
+```
+
+![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-7-2.png)
+
+当然你也可以通过 y 刻度显式地指定。注意如果使用**任何** `scale_y_continuous` 命令，它会覆盖任何 `ylim` 命令，而且 `ylim` 会被忽略。
+
+```{r}
+## 设定连续值轴的范围
+# 下面是相等的操作
+bp + ylim(0, 8)
+# bp + scale_y_continuous(limits=c(0, 8))
+```
+
+![plot of chunk unnamed-chunk-8](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-8-1.png)
+
+如果使用上述方法让y轴的范围变小，任何超出范围的数据都会被忽略。有时候这会产生一些问题，读者需要注意。
+
+为了避免产生问题，你可以使用 `coord_cartesian`，相比于设定轴的范围，它设定数据可视化的区域。
+
+```{r}
+## 这两个操作一致，超出范围的数据被删除了，导致产生一个误导的箱线图 
+bp + ylim(5, 7.5)
+
+# bp + scale_y_continuous(limits=c(5, 7.5))
+
+# 使用 coord_cartesian "zooms" 区域
+bp + coord_cartesian(ylim=c(5, 7.5))
+
+# 直接指定刻度
+bp + coord_cartesian(ylim=c(5, 7.5)) + 
+    scale_y_continuous(breaks=seq(0, 10, 0.25))  # Ticks from 0-10, every .25
+```
+
+![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-9-1.png)![plot of chunk unnamed-chunk-9-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-9-2.png)![plot of chunk unnamed-chunk-9-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-9-3.png)
+
+##### 反转轴方向
+
+```{r}
+# 反转一个连续值轴的方向
+bp + scale_y_reverse()
+```
+
+![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-10-1.png)
+
+##### 设置和隐藏刻度标记
+
+```{r}
+# Setting the tick marks on an axis
+# This will show tick marks on every 0.25 from 1 to 10
+# The scale will show only the ones that are within range (3.50-6.25 in this case)
+bp + scale_y_continuous(breaks=seq(1,10,1/4))
+
+# 刻度不平等变化
+bp + scale_y_continuous(breaks=c(4, 4.25, 4.5, 5, 6,8))
+
+# 抑制标签和网格线
+bp + scale_y_continuous(breaks=NULL)
+
+# Hide tick marks and labels (on Y axis), but keep the gridlines
+bp + theme(axis.ticks = element_blank(), axis.text.y = element_blank())
+```
+
+![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-2.png)![plot of chunk unnamed-chunk-11-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-3.png)![plot of chunk unnamed-chunk-11-4](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-4.png)
+
+##### 轴转 log、sqrt 等
+
+默认轴是线性坐标，我们也可以将它转换为 log、幂、根等等。
+
+有两种办法可以转换一个轴，一是使用 *scale* 进行转换，另外是使用 *coordinate* 进行转换。使用前者需要在先弄好刻度和轴的范围之前转换，而使用后者则相反，需要在弄好刻度和轴范围之后转换。这将产生不太一样的显示效果，如下所示。
+
+```{r}
+# 创建指数分布数据
+set.seed(201)
+n <- 100
+dat <- data.frame(
+    xval = (1:n+rnorm(n,sd=5))/20,
+    yval = 2*2^((1:n+rnorm(n,sd=5))/20)
+)
+
+# 创建常规的散点图
+sp <- ggplot(dat, aes(xval, yval)) + geom_point()
+sp
+
+# log2 比例化（间隔相等）
+library(scales)     # 需要 scales 包
+sp + scale_y_continuous(trans=log2_trans())
+
+# log2 坐标转换，空间间隔不同
+sp + coord_trans(y="log2")
+```
+
+![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-3.png)
+
+在标度转换中，我们还可以指定刻度值，让它们显示指数。
+
+```{r}
+sp + scale_y_continuous(trans = log2_trans(),
+                        breaks = trans_breaks("log2", function(x) 2^x),
+                        labels = trans_format("log2", math_format(2^.x)))
+```
+
+![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-13-1.png)
+
+可以使用非常多的转换，参见 `?trans_new` 查看所有可用转换的列表。如果你所需要的转换不在该列表上，可以自己写一个转换函数。
+
+有一些非常便捷的函数：`scale_y_log10` 和 `scale_y_sqrt` （有对应的 x 版本）。
+
+```{r}
+set.seed(205)
+n <- 100
+dat10 <- data.frame(
+    xval = (1:n+rnorm(n,sd=5))/20,
+    yval = 10*10^((1:n+rnorm(n,sd=5))/20)
+)
+
+sp10 <- ggplot(dat10, aes(xval, yval)) + geom_point()
+
+# log10
+sp10 + scale_y_log10()
+
+# log10 with exponents on tick labels
+sp10 + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                     labels = trans_format("log10", math_format(10^.x)))
+```
+
+![plot of chunk unnamed-chunk-14-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-2.png)
+
+##### x 与 y 轴固定的比例
+
+设置 x 与 y 轴比例宽度也是可以的。
+
+```{r}
+# x 范围 0-10, y 范围 0-30
+set.seed(202)
+dat <- data.frame(
+    xval = runif(40,0,10),
+    yval = runif(40,0,30)
+)
+sp <- ggplot(dat, aes(xval, yval)) + geom_point()
+
+# 强制比例相等
+sp + coord_fixed()
+
+# 相等的标度变化，让 x 的 1 个单位等同 y 的 3 个单位
+sp + coord_fixed(ratio=1/3)
+```
+
+![plot of chunk unnamed-chunk-15](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-15-1.png)![plot of chunk unnamed-chunk-15](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-15-2.png)
+
+#### 轴标签和文字格式化
+
+设置和隐藏轴标签：
+
+```{r}
+bp + theme(axis.title.x = element_blank()) +   # 移除 x 轴标签
+     ylab("Weight (Kg)")                       # 设置 y 轴标签
+
+# 也可以通过标度设置
+# 注意这里 x 轴标签的空间仍然保留
+bp + scale_x_discrete(name="") +
+     scale_y_continuous(name="Weight (Kg)")
+```
+
+![plot of chunk unnamed-chunk-16-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-16-1.png)![plot of chunk unnamed-chunk-16-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-16-2.png)
+
+改变字体、颜色、旋转刻度标签：
+
+```{r}
+# Change font options:
+# X-axis label: bold, red, and 20 points
+# X-axis tick marks: rotate 90 degrees CCW, move to the left a bit (using vjust,
+#   since the labels are rotated), and 16 points
+bp + theme(axis.title.x = element_text(face="bold", colour="#990000", size=20),
+           axis.text.x  = element_text(angle=90, vjust=0.5, size=16))
+```
+
+![plot of chunk unnamed-chunk-17-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-17-1.png)
+
+#### 刻度标签
+
+你可能想将值显示为百分比、或美元、或科学计数法。这里可以使用**格式器**，它是一个可以改变文本的函数。
+
+```{r}
+# 标签格式器
+library(scales)   # 需要 scales 包
+bp + scale_y_continuous(labels=percent) +
+     scale_x_discrete(labels=abbreviate)  # 在这个例子中它没作用
+```
+
+![plot of chunk unnamed-chunk-18-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-18-1.png)
+
+连续标度格式器有 `comma`、`percent`、`dollar` 以及 `scientific`。离散标度格式器有 `abbreviate`、`date_format` 等。
+
+有时你需要自己创建格式化函数。下面的函数可以显示时间格式为 HH:MM:SS。
+
+```{r}
+# 自定义时间格式化函数
+timeHMS_formatter <- function(x) {
+    h <- floor(x/60)
+    m <- floor(x %% 60)
+    s <- round(60*(x %% 1))                   # Round to nearest second
+    lab <- sprintf('%02d:%02d:%02d', h, m, s) # Format the strings as HH:MM:SS
+    lab <- gsub('^00:', '', lab)              # Remove leading 00: if present
+    lab <- gsub('^0', '', lab)                # Remove leading 0 if present
+}
+
+bp + scale_y_continuous(label=timeHMS_formatter)
+```
+
+![plot of chunk unnamed-chunk-19-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-19-1.png)
+
+#### 隐藏网格线
+
+隐藏网格线：
+
+```{r}
+# 隐藏所有网格线
+bp + theme(panel.grid.minor=element_blank(),
+           panel.grid.major=element_blank())
+
+# 仅隐藏次级网格线
+bp + theme(panel.grid.minor=element_blank())
+```
+
+![plot of chunk unnamed-chunk-20](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-20-1.png)![plot of chunk unnamed-chunk-20](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-20-2.png)
+
+也可以仅隐藏水平或垂直网格线：
+
+```{r}
+# 隐藏所有垂直网格线
+bp + theme(panel.grid.minor.x=element_blank(),
+           panel.grid.major.x=element_blank())
+
+# 隐藏所有水平网格线
+bp + theme(panel.grid.minor.y=element_blank(),
+           panel.grid.major.y=element_blank())
+```
+
+![plot of chunk unnamed-chunk-21-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-21-1.png)![plot of chunk unnamed-chunk-21-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-21-2.png)
+
+## 图例 (ggplot2)
+
+### 问题
+
+你想用 ggplot2 修改图表中的图例。
+
+### 方案
+
+从带有默认选项的示例图开始：
+
+```
+library(ggplot2)
+bp <- ggplot(data=PlantGrowth, aes(x=group, y=weight, fill=group)) + geom_boxplot()
+bp
+```
+
+![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-2-1.png)
+
+#### 去除图例
+
+使用 `guides(fill=FALSE)`, 用想要的颜色替代填充色.
+
+你也可以用 `theme` 移除图表中所有的图例。
+
+```{r}
+# 删除特定美学的图例（填充）
+bp + guides(fill=FALSE)
+
+# 在指定比例时也可以这样做
+bp + scale_fill_discrete(guide=FALSE)
+
+# 这将移除所有的图例
+bp + theme(legend.position="none")
+```
+
+![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-4-1.png)
+
+#### 在图例中改变变量的顺序
+
+这会将变量的顺序更改为 trt1，ctrl，trt2:
+
+```
+bp + scale_fill_discrete(breaks=c("trt1","ctrl","trt2"))
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-5-1.png)
+
+根据指定颜色的方式，你可能必须使用不同的比例，例如 `scale_fill_manual`, `scale_colour_hue`, `scale_colour_manual`, `scale_shape_discrete`, `scale_linetype_discrete` 等等
+
+#### 反转图例中的条目顺序
+
+反转图例顺序:
+
+```{r}
+# 这两种方式等同:
+bp + guides(fill = guide_legend(reverse=TRUE))
+bp + scale_fill_discrete(guide = guide_legend(reverse=TRUE))
+
+# 你也可以直接修改比例尺：
+bp + scale_fill_discrete(breaks = rev(levels(PlantGrowth$group)))
+```
+
+![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-7-1.png)
+
+你可以使用不同的比例尺，例如 `scale_fill_manual`, `scale_colour_hue`, `scale_colour_manual`, `scale_shape_discrete`, `scale_linetype_discrete` 等等，而不是 `scale_fill_discrete`
+
+#### 隐藏图例标题
+
+这将隐藏图例标题:
+
+```{r}
+# 为了填充的图例移除标题
+bp + guides(fill=guide_legend(title=NULL))
+
+# 为了所有的图例移除标题
+bp + theme(legend.title=element_blank())
+```
+
+![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-9-1.png)
+
+#### 修改图例标题和标签的文字
+
+有两种方法可以更改图例标题和标签。 第一种方法是告诉 *scale* 使用具有不同的标题和标签。 第二种方法是更改数据框，使因子具有所需的形式。
+
+##### 使用比例尺
+
+图例可能由 `fill`, `colour`, `linetype`, `shape` 或其他因素所介导.
+
+##### 使用填充和颜色
+
+因为图例中的变量 `group` 被映射到颜色 `fill`，所以必须使用 `scale_fill_xxx`，其中 `xxx` 是将 `group` 的每个因子级别映射到不同颜色的方法。 默认设置是在每个因子级别的色轮上使用不同的色调，但也可以手动指定每个级别的颜色。
+
+```
+bp + scale_fill_discrete(name="Experimental\nCondition")
+
+bp + scale_fill_discrete(name="Experimental\nCondition",
+                         breaks=c("ctrl", "trt1", "trt2"),
+                         labels=c("Control", "Treatment 1", "Treatment 2"))
+
+# 使用手动刻度而不是色调
+bp + scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9"), 
+                       name="Experimental\nCondition",
+                       breaks=c("ctrl", "trt1", "trt2"),
+                       labels=c("Control", "Treatment 1", "Treatment 2"))
+```
+
+![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-10-1.png)![plot of chunk unnamed-chunk-10-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-10-2.png)![plot of chunk unnamed-chunk-10-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-10-3.png)
+
+请注意，这并未更改 x 轴标签。 有关如何修改轴标签的信息，请参见[Axes (ggplot2)](http://www.cookbook-r.com/Graphs/Axes_(ggplot2))。
+
+如果使用折线图，则可能需要使用 `scale_colour_xxx `或 `scale_shape_xxx` 而不是 `scale_fill_xxx`。 **颜色**映射到线条和点的颜色，而**填充**映射到区域填充的颜色。 **形状**映射到点的形状。
+
+我们将在这里为线图使用不同的数据集，因为 PlantGrowth 数据集不适用于折线图。
+
+```{r}
+# 一个不同的数据集
+df1 <- data.frame(
+    sex = factor(c("Female","Female","Male","Male")),
+    time = factor(c("Lunch","Dinner","Lunch","Dinner"), levels=c("Lunch","Dinner")),
+    total_bill = c(13.53, 16.81, 16.24, 17.42)
+)
+
+# 基本的图表
+lp <- ggplot(data=df1, aes(x=time, y=total_bill, group=sex, shape=sex)) + geom_line() + geom_point()
+lp
+
+# 更改图例
+lp + scale_shape_discrete(name  ="Payer",
+                          breaks=c("Female", "Male"),
+                          labels=c("Woman", "Man"))
+```
+
+![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-11-2.png)
+
+如果你同时使用 `colour` 和 `shape`，它们都需要给出比例规格。 否则会有两个独立的图例。
+
+```{r}
+# 指定颜色和形状
+lp1 <- ggplot(data=df1, aes(x=time, y=total_bill, group=sex, shape=sex, colour=sex)) + geom_line() + geom_point()
+lp1
+
+# 如果你仅仅指定颜色，将会发生
+lp1 + scale_colour_discrete(name  ="Payer",
+                            breaks=c("Female", "Male"),
+                            labels=c("Woman", "Man"))
+
+# 指定的颜色和形状
+lp1 + scale_colour_discrete(name  ="Payer",
+                            breaks=c("Female", "Male"),
+                            labels=c("Woman", "Man")) +
+      scale_shape_discrete(name  ="Payer",
+                           breaks=c("Female", "Male"),
+                           labels=c("Woman", "Man"))
+```
+
+![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-12-3.png)
+
+##### 比例尺的种类
+
+比例尺有很多种。 它们采用「scale_xxx_yyy」的形式。 以下是一些常用的 `xxx` 和 `yyy` 值：
+
+| **xxx**  | **描述**                      |
+| -------- | ----------------------------- |
+| colour   | 线和点的颜色     |
+| fill     | 填充区域的颜色 (比如：柱状图) |
+| 线条类型 | Solid/dashed/dotted lines     |
+| 形状     | 点的形状              |
+| 大小     | Size of points                |
+| alpha    | 不透明度/透明度               |
+
+| **yyy**    | **描述**                                           |
+| ---------- | -------------------------------------------------- |
+| hue        | 色轮的颜色相同                                     |
+| manual     | 手动指定的值（例如，颜色，点形状，线型）           |
+| gradient   | 颜色渐变                                           |
+| grey       | Shades of grey                                     |
+| discrete   | 不连续的值 (比如颜色，点的形状，线条类型，点的大小 |
+| continuous | 连续的值（透明度，颜色，点的大小）                 |
+
+#### 更改数据框中的因子
+
+更改图例标题和标签的另一种方法是直接修改数据框。
+
+```{r}
+pg <- PlantGrowth    # 把数据复制到新的数据框
+# 重命名列中的列和值
+levels(pg$group)[levels(pg$group)=="ctrl"] <- "Control"
+levels(pg$group)[levels(pg$group)=="trt1"] <- "Treatment 1"
+levels(pg$group)[levels(pg$group)=="trt2"] <- "Treatment 2"
+names(pg)[names(pg)=="group"]  <- "Experimental Condition"
+
+# 查看最终结果的几行
+head(pg)
+
+# 画图 
+ggplot(data=pg, aes(x=`Experimental Condition`, y=weight, fill=`Experimental Condition`)) +
+    geom_boxplot()
+```
+
+![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-13-1.png)
+
+图例标题“实验条件”很长，如果它被分成两行可能看起来更好，但是这种方法效果不好，因为你必须在列的名称中加上一个换行符。 另一种方法，有尺度，通常是更好的方法。
+
+另请注意使用反引号而不是引号。 由于变量名中的空格，它们是必需的。
+
+### 修改图例标题和标签的外观
+
+```{r}
+# 题目外观
+bp + theme(legend.title = element_text(colour="blue", size=16, face="bold"))
+
+# 标签外观
+bp + theme(legend.text = element_text(colour="blue", size = 16, face = "bold"))
+```
+
+![plot of chunk unnamed-chunk-14-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-14-2.png)
+
+### 修改图例框
+
+默认情况下，图例周围没有框。 添加框并修改其属性:
+
+```{r}
+bp + theme(legend.background = element_rect())
+bp + theme(legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+```
+
+![plot of chunk unnamed-chunk-15-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-15-1.png)![plot of chunk unnamed-chunk-15-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-15-2.png)
+
+### 改变图例位置
+
+将图例位置放在绘图区域外（左/右/上/下）:
+
+```{r}
+bp + theme(legend.position="top")
+```
+
+![plot of chunk unnamed-chunk-16-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-16-1.png)
+
+也可以将图例定位在绘图区域内。 请注意，下面的数字位置是相对于整个区域的，包括标题和标签，而不仅仅是绘图区域。
+
+```{r}
+# 将图例放在图表中，其中 x，y 为 0, 0（左下角）到 1, 1（右上角）
+bp + theme(legend.position=c(.5, .5))
+
+# 设置图例的「锚点」（左下角为 0, 0; 右上角为 1, 1）
+# 将图例框的左下角放在图的左下角
+bp + theme(legend.justification=c(0,0), legend.position=c(0,0))
+
+# 将图例框的右下角放在图表的右下角
+bp + theme(legend.justification=c(1,0), legend.position=c(1,0))
+```
+
+![plot of chunk unnamed-chunk-17-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-17-1.png)![plot of chunk unnamed-chunk-17-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-17-2.png)![plot of chunk unnamed-chunk-17-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-17-3.png)
+
+### 隐藏在图例中的斜线
+
+如果使用轮廓制作条形图（通过设置 color = 「black」），它将通过图例中的颜色绘制斜线。 没有内置的方法来删除斜杠，但可以覆盖它们。
+
+```{r}
+# 没有边缘线
+ggplot(data=PlantGrowth, aes(x=group, fill=group)) +
+    geom_bar()
+
+# 添加轮廓，但图例中会出现斜线
+ggplot(data=PlantGrowth, aes(x=group, fill=group)) +
+    geom_bar(colour="black")
+
+# 隐藏斜线：首先绘制没有轮廓的条形图并添加图例,
+# 然后用轮廓再次绘制条形图，但带有空白图例.
+ggplot(data=PlantGrowth, aes(x=group, fill=group)) +
+    geom_bar() +
+    geom_bar(colour="black", show.legend=FALSE)
+```
+
+![plot of chunk unnamed-chunk-18-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-18-1.png)![plot of chunk unnamed-chunk-18-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-18-2.png)![plot of chunk unnamed-chunk-18-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-18-3.png)
+
+### 注意
+
+更多信息，请看: <https://github.com/hadley/ggplot2/wiki/Legend-Attributes>
+
+## 线条 (ggplot2)
+
+### 问题
+
+你想要把线条加到图上
+
+### 方案
+
+#### 使用一个连续轴和一个分类轴
+
+```{r}
+# 一些样本数据
+dat <- read.table(header=TRUE, text='
+     cond result
+  control     10
+treatment   11.5
+')
+
+library(ggplot2)
+```
+
+##### 一条线段
+
+这些使用 `geom_hline`，因为y轴是连续的，但如果x轴是连续的，也可以使用 `geom_vline`（带有 `xintercept`）。
+
+```{r}
+# 基本柱状条
+bp <- ggplot(dat, aes(x=cond, y=result)) +
+    geom_bar(position=position_dodge(), stat="identity")
+bp
+
+# 添加水平线
+bp + geom_hline(aes(yintercept=12))
+
+# 使线条变红并变为虚线
+bp + geom_hline(aes(yintercept=12), colour="#990000", linetype="dashed")
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-3-3.png)
+
+##### 每个分类值的单独行
+
+要为每个条形成单独的行，请使用 `geom_errorbar`。 误差条没有高度 - 「ymin」 = 「ymax」。 由于某种原因，似乎有必要指定 `y`，即使它没有任何功能。
+
+```{r}
+# 为每个条形绘制单独的线条。 首先添加另一列到目前为止
+dat$hline <- c(9,12)
+dat
+
+# 需要重新指定 bp，因为数据已经改变
+bp <- ggplot(dat, aes(x=cond, y=result)) +
+    geom_bar(position=position_dodge(), stat="identity")
+
+# 为每个柱状图画分开的线条
+bp + geom_errorbar(aes(ymax=hline, ymin=hline), colour="#AA0000")
+
+# 让线条更细一点 
+bp + geom_errorbar(width=0.5, aes(ymax=hline, ymin=hline), colour="#AA0000")
+
+
+# 即使我们从第二个数据框获得 hline 值，也可以得到相同的结果
+# 使用 hline 定义数据框
+dat_hlines <- data.frame(cond=c("control","treatment"), hline=c(9,12))
+dat_hlines
+
+# 柱状图形来自 dat，但是线条来自 dat_hlines 
+bp + geom_errorbar(data=dat_hlines, aes(y=NULL, ymax=hline, ymin=hline), colour="#AA0000")
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-4-3.png)
+
+##### 分组栏上的线条
+
+可以在分组条上添加线条。 在这个例子中，实际上有四行（`hline` 的每个条目一行），但它看起来像两个，因为它们是相互重叠的。 我不认为可以避免这种情况，但它不会导致任何问题。
+
+```{r}
+dat <- read.table(header=TRUE, text='
+     cond group result hline
+  control     A     10     9
+treatment     A   11.5    12
+  control     B     12     9
+treatment     B     14    12
+')
+dat
+
+# 定义基本柱状图
+bp <- ggplot(dat, aes(x=cond, y=result, fill=group)) +
+    geom_bar(position=position_dodge(), stat="identity")
+bp
+
+# 误差线相互绘制 - 有四个但看起来像两个
+bp + geom_errorbar(aes(ymax=hline, ymin=hline), linetype="dashed")
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-5-2.png)
+
+#### 各个组合柱状图上的线条
+
+即使在分组时，也可以在每个单独的条上划线。
+
+```{r}
+dat <- read.table(header=TRUE, text='
+     cond group result hline
+  control     A     10    11
+treatment     A   11.5    12
+  control     B     12  12.5
+treatment     B     14    15
+')
+
+# 定义基本条形图
+bp <- ggplot(dat, aes(x=cond, y=result, fill=group)) +
+    geom_bar(position=position_dodge(), stat="identity")
+bp
+
+bp + geom_errorbar(aes(ymax=hline, ymin=hline), linetype="dashed",
+                   position=position_dodge())
+```
+
+![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-6-1.png)![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-6-2.png)
+
+#### 有两个连续轴
+
+样本数据如下
+
+```{r}
+dat <- read.table(header=TRUE, text='
+      cond xval yval
+   control 11.5 10.8
+   control  9.3 12.9
+   control  8.0  9.9
+   control 11.5 10.1
+   control  8.6  8.3
+   control  9.9  9.5
+   control  8.8  8.7
+   control 11.7 10.1
+   control  9.7  9.3
+   control  9.8 12.0
+ treatment 10.4 10.6
+ treatment 12.1  8.6
+ treatment 11.2 11.0
+ treatment 10.0  8.8
+ treatment 12.9  9.5
+ treatment  9.1 10.0
+ treatment 13.4  9.6
+ treatment 11.6  9.8
+ treatment 11.5  9.8
+ treatment 12.0 10.6
+')
+
+library(ggplot2)
+```
+
+##### 基础线条
+
+```
+# 基本的散点图
+sp <- ggplot(dat, aes(x=xval, y=yval, colour=cond)) + geom_point()
+
+# 添加一个水平线条
+sp + geom_hline(aes(yintercept=10))
+
+# 添加红色虚线垂直线
+sp + geom_hline(aes(yintercept=10)) +
+    geom_vline(aes(xintercept=11.5), colour="#BB0000", linetype="dashed")
+```
+
+![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-9-1.png)![plot of chunk unnamed-chunk-9-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-9-2.png)
+
+##### 画线为平均值
+
+还可以计算每个数据子集的平均值，按一些变量分组。 组意味着必须计算并存储在单独的数据框中，最简单的方法是使用 dplyr 包。 请注意，该行的y范围由数据确定。
+
+```{r}
+library(dplyr)
+lines <- dat %>%
+  group_by(cond) %>%
+  summarise(
+    x = mean(xval),
+    ymin = min(yval),
+    ymax = max(yval)
+  )
+
+# 为每组的平均 xval 添加彩色线条
+sp <- sp + 
+  geom_hline(aes(yintercept=10)) +
+  geom_linerange(aes(x=x, y=NULL, ymin=ymin, ymax=ymax), data=lines)
+sp
+```
+
+![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-10-1.png)
+
+##### 在分面使用线条
+
+一般来说，如果你加一条线，它将出现在所有的分面上.
+
+```{r}
+# 分面，基于cond
+spf <- sp + facet_grid(. ~ cond)
+spf
+
+# 用相同的值在所有的分面上画水平线
+spf + geom_hline(aes(yintercept=10))
+```
+
+![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-11-2.png)
+
+如果您希望不同的线条出现在不同的方面，有两个选项。 一种是创建具有所需线条值的新数据框。 另一种选择（控制更有限）是在 `geom_line（）` 中使用 `stat` 和 `xintercept`。
+
+```{r}
+dat_vlines <- data.frame(cond=levels(dat$cond), xval=c(10,11.5))
+dat_vlines
+
+spf + geom_hline(aes(yintercept=10)) +
+      geom_vline(aes(xintercept=xval), data=dat_vlines,
+                    colour="#990000", linetype="dashed")
+
+spf + geom_hline(aes(yintercept=10)) +
+     geom_linerange(aes(x=x, y=NULL, ymin=ymin, ymax=ymax), data=lines)
+```
+
+![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-12-2.png)
+
+## ggplot | 分面
+
+### 问题
+
+你想要根据一个或多个变量对数据进行分割并且绘制出该数据所有的子图。
+
+### 方案
+
+#### 样本数据
+
+以下例子将使用 `reshape2` 包中的 `tips` 数据集
+
+```{r}
+library(reshape2)
+# 查看头几行数据
+head(tips)
+```
+
+根据小费 (tip) 占总账单 (total_bill) 的百分比绘制散点图
+
+```{r}
+library(ggplot2)
+sp <- ggplot(tips, aes(x=total_bill, y=tip/total_bill)) + geom_point(shape=1)
+sp
+```
+
+![plot of chunk unnamed-chunk-31](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-3-1.png)
+
+#### facet_grid
+
+根据一个或多个变量对数据进行分割，生成的子图按照水平或垂直的方向进行排列。这一功能是通过赋予 `facet_grid()` 函数一个 `vertical ~ horizontal` 公式来实现的（这里所说的「公式」是 R 中的一种数据结构，而不是数学意义上的公式）。
+```{r}
+# 根据 "sex" 按垂直方向分割
+sp + facet_grid(sex ~ .)
+```
+
+![plot of chunk unnamed-chunk-41](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-4-1.png)
+
+```{r}
+# 根据 "sex" 按水平方向分割。
+sp + facet_grid(. ~ sex)
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-5-1.png)
+
+```{r}
+# 垂直方向以 "sex" 分割，水平方向以 "day" 分割。
+sp + facet_grid(sex ~ day)
+```
+
+![plot of chunk unnamed-chunk-61](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-6-1.png)
+
+#### facet_wrap
+
+除了能够根据**单个变量**在水平或垂直方向上对图进行分面，`facet_wrap()` 函数可以通过设置特定的行数或列数，让子图排列到一起。此时每个图像的上方都会有标签。
+
+```{r}
+# 以变量 `day` 进行水平分面，分面的行数为2。
+sp + facet_wrap( ~ day, ncol=2)
+```
+
+![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-7-1.png)
+
+#### 修改分面标签的外观
+
+```{r}
+sp + facet_grid(sex ~ day) +
+    theme(strip.text.x = element_text(size=8, angle=75),
+          strip.text.y = element_text(size=12, face="bold"),
+          strip.background = element_rect(colour="red", fill="#CCCCFF"))
+```
+
+![plot of chunk unnamed-chunk-8-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-8-1.png)
+
+#### 修改分面标签的文本
+
+修改分面标签内容有两种方法。最简单的方法是为原来的名字匹配一个新的名字向量。比方说对数据中 `sex` 的类别进行重新定义 Female==>Women, and Male==>Men:
+
+```{r}
+labels <- c(Female = "Women", Male = "Men")
+sp + facet_grid(. ~ sex, labeller=labeller(sex = labels))
+```
+
+另一个方法就是直接在数据框中修改，将你想要显示的标签赋值给相应的数据:
+
+```{r}
+tips2 <- tips
+levels(tips2$sex)[levels(tips2$sex)=="Female"] <- "Women"
+levels(tips2$sex)[levels(tips2$sex)=="Male"]   <- "Men"
+head(tips2, 3)
+
+# Both of these will give the same output:
+sp2 <- ggplot(tips2, aes(x=total_bill, y=tip/total_bill)) + geom_point(shape=1)
+sp2 + facet_grid(. ~ sex)
+```
+
+两种方法都能得到相同的结果：
+
+![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-11-1.png)
+
+`labeller()` 可以通过设定不同的 `函数` 来处理输入的字符向量。比方说 `Hmisc` 包里的  `capitalize` 函数可以将字符串的首字母变成大写。我们也可以这样来自定义函数，如下所示，将字符串中的字母倒序：
+
+```{r}
+# 对每个字符向量进行倒序：
+reverse <- function(strings) {
+    strings <- strsplit(strings, "")
+    vapply(strings, function(x) {
+        paste(rev(x), collapse = "")
+    }, FUN.VALUE = character(1))
+}
+sp + facet_grid(. ~ sex, labeller=labeller(sex = reverse))
+```
+
+![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-12-1.png)
+
+#### 设置标度
+
+一般而言，每幅图的坐标轴范围都是**固定不变**的，也就是说每幅图都拥有相同的尺寸和范围。你可以通过将 `scales` 设置为 `free`，`free_x` 或 `free_y` 来改变坐标轴范围。
+
+```{r}
+# 描绘一个 total_bill 的柱状图
+hp <- ggplot(tips, aes(x=total_bill)) + geom_histogram(binwidth=2,colour="white")
+# 根据性别和是否吸烟进行分面
+hp + facet_grid(sex ~ smoker)
+# 在同样的情况下设定 scales="free_y" (y 轴自由标度）
+hp + facet_grid(sex ~ smoker, scales="free_y")
+# 画布的缩放比例不变，但各分面的范围有所改变，因此每个分面的物理大小都不一致
+hp + facet_grid(sex ~ smoker, scales="free", space="free")
+```
+
+![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-13-2](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-13-2.png)
+![plot of chunk unnamed-chunk-13-3](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-13-3.png)
+
+## ggplot |多图
+
+### 问题
+
+你想把多个图形放到同一个页面中。
+
+### 方案
+
+最简单的方法就是使用 `multiplot` 函数，本页末尾处附有该函数的具体定义。如果它不能满足你的需求，你可以将其复制下来然后作出适当的修改。
+首先，构建并保存图像但不需要对它们进行渲染，这些图像的细节并不重要。你只需要将这些图像对象储存为变量。
+
+```{r}
+# 以下例子使用的是 ggplot2 包中自带的 Chickweight 数据集
+#第一幅图像
+p1 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) +
+    geom_line() +
+    ggtitle("Growth curve for individual chicks")
+
+#第二幅图像
+p2 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet)) +
+    geom_point(alpha=.3) +
+    geom_smooth(alpha=.2, size=1) +
+    ggtitle("Fitted growth curve per diet")
+
+#第三幅图像
+p3 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, colour=Diet)) +
+    geom_density() +
+    ggtitle("Final weight, by diet")
+
+#第四幅图像
+p4 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
+    geom_histogram(colour="black", binwidth=50) +
+    facet_grid(Diet ~ .) +
+    ggtitle("Final weight, by diet") +
+    theme(legend.position="none")    #为了避免冗余，这里不添加图例
+```
+
+这些图像都构建好了后，我们可以用 `multiplot` 对它们进行渲染。下面将这些图形分成两列进行展示：
+
+```{r}
+multiplot(p1, p2, p3, p4, cols=2)
+#> `geom_smooth()`  函数设置成 method = 'loess'
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/figure/unnamed-chunk-3-1.png)
+
+### multiplot 函数
+
+定义：`multiplot ` 函数可以将任意数量的图像对象作为参数，或者可以构建一个图像对象列表传递到该函数的 `plotlist` 参数中。
+
+```{r}
+# 多图功能
+#
+# ggplot 对象可以直接放入 `…` 中，也可以传递到 `plotlist` 里（这里的 ggplot 对象以列表形式存在）
+# - cols: 图像的列数
+# - layout: 用来指定布局的一组矩阵。当其存在时，可以忽略 `cols` 参数。
+#
+# 假设 layout 参数是 matrix(c(1,2,3,3), nrow=2, byrow = TRUE),
+# 那么第一幅图像会位于左上方，第二幅图会在右上方，而
+# 第三幅图会占据整个下方。
+#
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+
+# 从参数 `…`中建立一个列表然后 plotlist
+plots <- c(list(...), plotlist)
+
+numPlots = length(plots)
+# 假如 layout 是 NULL, 那么可以用 `cols` 来定义布局
+  if (is.null(layout)) {
+    # 创建面板
+    # ncol: 图像的列数
+    # nrow: 根据上述给定的列数，计算所需要的行数   
+   layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+if (numPlots==1) {
+    print(plots[[1]])
+} else {
+    # 创建页面
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+# 让每一幅图像排列在正确的位置
+    for (i in 1:numPlots) {
+      # 获取包含这一子图所在区域的坐标 matrix i,j
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+```
+
+## 颜色（ggplot2)
+
+###  问题
+
+你想在图表中用 ggplot2 添加颜色
+
+### 方案
+
+在 ggplot2 中设置颜色，对相互区分不同变量会有些困难，因为这些颜色有一样的亮度，且对色盲者不太友好。一个比较好的通用解决方案是使用对色盲友好的调色。
+
+#### 样本数据
+
+这两个数据集将用来产生下面的图表
+
+```{r}
+ # 两个变量
+df <- read.table(header=TRUE, text='
+ cond yval
+    A 2
+    B 2.5
+    C 1.6
+')
+
+# 三个变量
+df2 <- read.table(header=TRUE, text='
+ cond1 cond2 yval
+    A      I 2
+    A      J 2.5
+    A      K 1.6
+    B      I 2.2
+    B      J 2.4
+    B      K 1.2
+    C      I 1.7
+    C      J 2.3
+    C      K 1.9
+')
+```
+
+#### 简单的颜色设置
+
+有颜色的线条和点可以直接用 'colour = "red" ', 用颜色名称代替「red」。填充的对象的颜色，例如柱状条，可以用 'fill="red" 来进行设置。
+
+如果你想用任何其他非常规颜色，用十六进位码来设置颜色更容易，比如 「#FF6699」。（看下面的十六进位码颜色图）
+
+```{r}
+library(ggplot2)
+# 设置：黑色柱状条
+ggplot(df, aes(x=cond, y=yval)) + geom_bar(stat="identity")
+# 柱状条外用红色边线
+ggplot(df, aes(x=cond, y=yval)) + geom_bar(stat="identity", colour="#FF9999") 
+# 红色填充，黑色边线
+ggplot(df, aes(x=cond, y=yval)) + geom_bar(stat="identity", fill="#FF9999", colour="black")
+
+# 标准黑色线条和点
+ggplot(df, aes(x=cond, y=yval)) + 
+    geom_line(aes(group=1)) +     
+    geom_point(size=3)
+# 蓝黑色线条，红色点
+ggplot(df, aes(x=cond, y=yval)) + 
+    geom_line(aes(group=1), colour="#000099") +  # 蓝线
+    geom_point(size=3, colour="#CC0000")         # 红点
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-3.png)![plot of chunk unnamed-chunk-3-4](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-4.png)![plot of chunk unnamed-chunk-3-5](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-5.png)
+
+#### 将变量值映射到颜色
+
+不用全局改变颜色，你可以将变量映射到颜色——换言之，通过把颜色放到 aes() 说明中，可以设置条件性变量。
+
+```{r}
+# 柱状条: x 和填充都依赖于cond2
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity")
+
+# 其他数据集的柱状条；填充依赖于cond2
+ggplot(df2, aes(x=cond1, y=yval)) + 
+    geom_bar(aes(fill=cond2),   # 填充依赖于cond2
+             stat="identity",
+             colour="black",    # 所有都是黑色轮廓线
+             position=position_dodge()) # 把线条并排放置而非堆叠
+
+# 线和点；颜色依赖于cond2
+ggplot(df2, aes(x=cond1, y=yval)) + 
+    geom_line(aes(colour=cond2, group=cond2)) + # 颜色分组都依赖于cond2
+    geom_point(aes(colour=cond2),               # 颜色依赖于cond2
+               size=3)                          # 更大的点，不同的形状
+## 以上操作等价; 但把 "colour=cond2" 移到全局的映射用aes() 
+# ggplot(df2, aes(x=cond1, y=yval, colour=cond2)) + 
+#    geom_line(aes(group=cond2)) +
+#    geom_point(size=3)
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-4-3.png)
+
+#### 对色盲友好的颜色
+
+这些是对色盲友好的颜色色板，一个用灰色，一个用黑色
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-2.png)
+
+为了用 ggplot2, 我们在一个变量里储存颜色色板，然后之后调用。
+
+```{r}
+# 灰色的颜色色板:
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# 黑色的颜色色板k:
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# 为了填充颜色，加
+scale_fill_manual(values=cbPalette)
+
+# 为了在点线中使用颜色，加
+scale_colour_manual(values=cbPalette)
+```
+
+这个颜色集来源于网站： <http://jfly.iam.u-tokyo.ac.jp/color/>:
+
+![Colorblind palette](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/colorblind_palette.jpg)
+
+#### 颜色选择
+
+默认情况下，离散比例的颜色围绕 HSL 色环均匀分布。 例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔 120°; 等等。 用于不同级别的颜色如下所示：
+
+![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-7-1.png)
+
+默认颜色选择使用 `scale_fill_hue（）` 和 `scale_colour_hue（）`。 例如，在这些情况下添加这些命令是多余的：
+
+```{r}
+# 这两个是等价的; 默认使用scale_fill_hue（）
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity")
+# ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + scale_fill_hue()
+
+#  这两个是等价的; 默认使用scale_colour_hue（）
+ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2)
+# ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2) + scale_colour_hue()
+```
+
+![plot of chunk unnamed-chunk-8-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-8-1.png)![plot of chunk unnamed-chunk-8-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-8-2.png)
+
+#### 设置亮度和饱和度（色度）
+
+虽然 `scale_fill_hue（）` 和 `scale_colour_hue（）` 在上面是多余的，但是当你想要改变默认值时，可以使用它们，比如改变亮度或色度。
+
+```{r}
+# 使用 luminance = 45, 而不是默认 65
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
+    scale_fill_hue(l=40)
+
+# 从 100 到 50 减少饱和度（亮度）, 增加亮度
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
+    scale_fill_hue(c=45, l=80)
+
+# 注意：使用 scale_colour_hue() 设置线和点
+```
+
+![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-9-1.png)![plot of chunk unnamed-chunk-9-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-9-2.png)
+
+This is a chart of colors with luminance=45:
+
+![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-10-1.png)
+
+#### 调色板：Color Brewer
+
+您还可以使用其他色标，例如从 RColorBrewer 包中获取的色标。 请参阅下面的 RColorBrewer 调色板图表。
+
+```{r}
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
+    scale_fill_brewer()
+
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
+    scale_fill_brewer(palette="Set1")
+
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
+    scale_fill_brewer(palette="Spectral")
+
+# 注意: 使用 scale_colour_brewer() 设置点和线条
+```
+
+![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-11-2.png)![plot of chunk unnamed-chunk-11-3](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-11-3.png)
+
+#### 调色板：手动定义
+
+最后，您可以使用 `scale_fill_manual（）` 定义自己的颜色集。 有关选择特定颜色的帮助，请参阅下面的十六进制代码表。
+
+```{r}
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + 
+    scale_fill_manual(values=c("red", "blue", "green"))
+
+ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + 
+    scale_fill_manual(values=c("#CC6666", "#9999CC", "#66CC99"))
+
+# 注意：使用 scale_colour_manual() 设置线条和点
+```
+
+![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-12-2.png)
+
+#### 连续的颜色
+
+```{r}
+# 产生一些数据
+set.seed(133)
+df <- data.frame(xval=rnorm(50), yval=rnorm(50))
+
+# 依赖 yval设置颜色
+ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point()
+
+# 使用不同的渐变
+ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point() + 
+    scale_colour_gradientn(colours=rainbow(4))
+```
+
+![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-13-1.png)![plot of chunk unnamed-chunk-13-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-13-2.png)
+
+#### 比色图表
+
+#### 十六进制色码图
+
+颜色可以指定为十六进制RGB三元组合，例如「#0066CC」。 前两位数字是红色，接下来的两位是绿色，最后两位是蓝色。 每个值的范围从 00 到 FF，以十六进制（base-16）表示，在 base-10 中等于 0 和 255。 例如，在下表中，「#FFFFFF」为白色，「#990000」为深红色。
+
+![img](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png)
+
+(色码图来源于 [http://www.visibone.com](http://www.visibone.com/))
+
+#### RColorBrewer 调色板图表
+
+![plot of chunk unnamed-chunk-14-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png)
+
+## 图形混杂-输出到文件 PDF-PNG-TIFF-SVG
+
+### 问题
+
+你想将图形保存到文件。
+
+### 方案
+
+R 中有好几种命令可以直接将图形导出为文件而不是打印到屏幕上。另外，你必须通过 `dev.off()` 命令告诉 R 你已经完成作图了，否则你的图形是不会显示出来的。
+
+#### PDF格式
+
+PDF 是一种矢量文件格式。一般我们都更倾向于将图形输出为矢量图文件，因为这样的图无论怎样缩放都不会出现像素点。矢量图文件的大小通常要比位图文件要小，除非该文件里包含了过多的内容。（比如说一张散点图内包含了上千个点，这时候就会造成矢量图大而位图小。）
+
+```{r}
+pdf("plots.pdf")
+dev.off()
+```
+
+PDF 默认是 7x7 英寸，并且每个图形都单独占一页。这个尺寸是可以更改的：
+
+```{r}
+# 6x3 inches
+pdf("plots.pdf", width=6, height=3)
+# 10x6 cm
+pdf("plots.pdf", width=10/2.54, height=6/2.54)
+```
+
+如果你想在 Inkscape 或者 Illustrator 这样的矢量图编辑器中修改你的文件，图形中的一些绘制点有可能看上去更像是字母而并非原来的圆形或方形等。为了防止这种情况的发生可以输入：
+
+```{r}
+pdf("plots.pdf", useDingbats=FALSE)
+```
+
+#### SVG 格式
+
+SVG 是另一种矢量图。默认的  `svg()` 命令无法将多页图形输出到一个文件中，因为大部分的 SVG 浏览软件无法处理多页的 SVG 文件。后面的 PNG 内容中将涉及如何输出到多个文件。
+
+```{r}
+svg("plots.svg")
+dev.off()
+```
+
+SVG 文件比 PDF 文件更适合矢量图编辑器。
+
+#### PNG/TIFF格式
+
+PNG 和 TIFF 是位图（栅格图像），对它们进行缩放时可能会出现像素点。
+
+```{r}
+png("plot.png")
+# 或者 tiff("plot.tiff")
+dev.off()
+```
+
+输出的图像默认尺寸为 480x480 像素，分辨率为 72dpi （即 6.66x6.66 英寸）
+
+当分辨率增加时文本与图像元素的大小也会（以像素为单位）增加。这是因为这些元素的大小只与图像的物理大小有关（比如 4x4 英寸），而与图像的像素大小无关。例如，一个 12 磅的字符高度为 12/72 = 1/6 英寸，在分辨率为 72dpi 的情况下，它共包含 12 个像素点；而在分辨率放大到 120dpi 时，它就含有 20 个像素点了。
+
+以下创建一个大小为 480x240 像素，分辨率为 120dpi 的图像,其实际大小相当于 4x2 英寸。
+
+```{r}
+png("plot.png", width=480, height=240, res=120)
+dev.off()
+```
+
+如果你要创建不止一张图像，必须对每张图像执行一个新的 `png()` 命令，或者将 `%d` 放置到文件名中:
+
+```{r}
+png("plot-%d.png")
+dev.off()
+```
+上述代码会生成 plot-1.png, plot-2.png 等系列文件。
+
+#### 对于不支持 PDF 格式的程序 （MS Office）
+有些不支持 PDF 文件导入的程序一般都需要高分辨率的 PNG 或 TIFF 文件。比如说微软 Office 无法导入 PDF 格式文件。而对于印刷出版物，则需要使用 300dpi 的图像。
+
+```{r}
+# 绘制一幅 6x6 英寸，300dpi 的图像
+ppi <- 300
+png("plot.png", width=6*ppi, height=6*ppi, res=ppi)
+dev.off()
+```
+#### ggplot2
+
+如果你在脚本或函数中使用 `ggplot2` 进行绘图，必须使用 `print()` 命令确保图像得到渲染。
+
+```{r}
+# 无效命令
+pdf("plots.pdf")
+dev.off()
+# 正确的做法
+pdf("plots.pdf")
+dev.off()
+```
+从屏幕中保存一个 ggplot2 图像为文件，你可以使用 `ggsave()`。
+
+```{r}
+ggsave("plot.pdf")
+ggsave("plot.pdf", width=4, height=4)
+# 将图形保存为 400x400，100 ppi的文件
+ggsave("plot.png", width=4, height=4, dpi=100)
+```
+
+#### 保存屏幕中的图像
+
+如果你的屏幕中已经有一张图像了，可以将其保存为位图。
+
+这是一种将屏幕中的对象作出从像素到像素的拷贝，不过这种操作很大概率只能在 Linux 和 Mac 的 X11 系统下得以实现：
+
+```{r}
+# 在屏幕中绘制一张图形
+# plot(1:3, 1:3)
+# savePlot("myplot.png",) # 错误运行
+```
+
+这一步是保存屏幕当前图像，并且根据不同的设备对图像进行重新渲染，图像大小可能会因此发生变化。如果你需要图形大小固定，则需要以像素为单位对尺寸进行指定。
+
+```{r}
+# 在屏幕中绘制图像
+plot(1:3, 1:3)
+dev.copy(pdf,"myplot.pdf", width=4, height=4)
+dev.off()
+# 等同于：
+# pdf("myplot.pdf", width=4, height=4)
+# dev.off()
+dev.copy(png,"myplot.png", width=400, height=400)
+dev.off()
+```
+
+## 图形混杂-形状和线形
+
+### 问题
+
+你想在图形中使用不同的形状和线条。
+
+### 方案
+![unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-2-1.png)
+
+![plot of chunk line_types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/line_types-1.png)
+
+在输出位图时，对符号 15-18 的渲染可能不具抗锯齿性，即无论这些图形的绘制是否来自同一个平台，这些符号都有可能会被拉伸变形，出现像素点，或者无法居中。符号 19 和 21-25 在填充部分外周会有边框线，在大部分情况下这种边线在渲染时其边缘都是平滑的。另外，要使符号 21-25 显示实心填充，需要指定与边线颜色 (`col`) 一致的填充 (`bg`) 颜色，否则这些符号将会是空心的。
+
+#### 标准图形
+
+通过 `pch` 选项来设置符号形状, 并且通过 `lty` 和 `lwd` 来设定线条的类型和粗细。线条的类型可以通过名字或数字来指定。
+
+```{r}
+set.seed(331)
+
+# 绘制一些点线
+# 设定绘画范围
+par(mar=c(3,3,2,2))
+plot(NA, xlim=c(1,4), ylim=c(0,1))
+
+# 绘制实心圆和实线
+points(1:4, runif(4), type="b", pch=19)
+# 添加空心方框和粗虚线
+points(1:4, runif(4), type="b", pch=0,  lty=2, lwd=3)
+
+points(1:4, runif(4), type="b", pch=23,   # 菱形符号
+       lty="dotted", cex=2,               # 点状线, 符号形状放大一倍
+       col="#000099", bg="#FF6666")       # 线条蓝色，符号形状红色填充
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-3-1.png)
+
+#### ggplot2
+
+在调用 ggplot2 的情况下，可以对图中的符号形状和线条类型进行全局的部署（比方说你想让所有数据点都是方形，所有的线条都为虚线），或者通过一个变量来调整它们。
+
+```{r}
+# 示例数据
+df <- read.table(header=T, text='
+  cond xval yval
+     A    1  2.0
+     A    2  2.5
+     B    1  3.0
+     B    2  2.0
+')
+
+library(ggplot2)
+
+# 使用标准的线条和符号形状作图
+# 用 group = cond 表示点线之间的对应关系
+ggplot(df, aes(x=xval, y=yval, group = cond)) +
+    geom_line() +
+    geom_point()
+
+# 设置全局的符号形状和线条类型
+ggplot(df, aes(x=xval, y=yval, group = cond)) +
+    geom_line(linetype="dashed",  # 虚线
+              size = 1.5) +       # 加粗
+    geom_point(shape = 0,         # 空心方块
+               size = 4)          # 放大形状
+
+# 通过变量 cond 调整符号图形和线类型
+ggplot(df, aes(x=xval, y=yval, group = cond)) +
+    geom_line(aes(linetype=cond), # cond 决定线条类型
+              size = 1.5) +       # 线条加粗
+    geom_point(aes(shape=cond),   # cond 决定形状
+               size = 4)          # 放大形状
+
+# 在上述的基础上同时改变所使用的线条和形状
+ggplot(df, aes(x=xval, y=yval, group = cond)) +
+    geom_line(aes(linetype=cond), # cond 决定线条类型
+              size = 1.5) +       # 线条加粗
+    geom_point(aes(shape=cond),   # cond 决定形状
+               size = 4) +        # 放大形状
+    scale_shape_manual(values=c(6,5)) +                  # 更改形状
+    scale_linetype_manual(values=c("dotdash", "dotted")) # 更改线条类型
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-2.png)
+![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-3.png)
+![plot of chunk unnamed-chunk-4-4](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-4.png)
+
+一般来说 ggplot2 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以使用 `scale_shape(solid=FALSE)`。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。
+
+```{r}
+# 空心形状
+ggplot(df, aes(x=xval, y=yval, group = cond)) +
+    geom_line(aes(linetype=cond), # cond 决定线条类型
+              size = 1.5) +       # 线条加粗
+    geom_point(aes(shape=cond),   # cond 决定符号形状
+               size = 4)  +       # 放大形状
+    scale_shape(solid=FALSE)
+
+# 白色填充形状
+ggplot(df, aes(x=xval, y=yval, group = cond)) +
+    geom_line(aes(linetype=cond), # cond 决定线条类型
+              size = 1.5) +       # 线条加粗
+    geom_point(aes(shape=cond),   # cond 决定符号形状
+               fill = "white",    # 白色填充
+               size = 4)  +       # 放大形状
+    scale_shape_manual(values=c(21,24))  # 形状：实心圆和三角形
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-5-2.png)
+
+#### 附录
+
+以下代码会生成本章节开头所示的图表。
+
+```{r}
+par(mar=c(0,0,0,0))
+
+# 设定绘图区域
+plot(NA, xlim=c(0,1), ylim=c(6.5, -0.5),
+    xaxt="n", yaxt="n",
+    xlab=NA, ylab=NA )
+
+# 画线条
+for (i in 0:6) {
+    points(c(0.25,1), c(i,i), lty=i, lwd=2, type="l")
+}
+# 添加标签
+text(0, 0, "0. 'blank'"   ,  adj=c(0,.5))
+text(0, 1, "1. 'solid'"   ,  adj=c(0,.5))
+text(0, 2, "2. 'dashed'"  ,  adj=c(0,.5))
+text(0, 3, "3. 'dotted'"  ,  adj=c(0,.5))
+text(0, 4, "4. 'dotdash'" ,  adj=c(0,.5))
+text(0, 5, "5. 'longdash'",  adj=c(0,.5))
+text(0, 6, "6. 'twodash'" ,  adj=c(0,.5))
+```
+
+## 图形混杂-字体
+
+### 问题
+
+你想在图像中使用不同的字体。
+
+### 方案
+
+更新: 查看 [extrafont](https://github.com/wch/extrafont) 包相关内容，该包能更好地支持 PDF 和 Windows 位图中的字体设定。 
+
+R 在一般情况下都不能很好地支持字体的显示。在不同的操作系统和不同的输出格式中都会出现不一样的结果。
+
+#### geom_text
+
+通过 ggplot2 中的 `geom_text` or `annotate` , 你可以对图形文本中的一系列属性进行设置。 `geom_text` 用于将数据框中的文本加入到图表中，而 `annotate` 则用于往图表中添加单个文本元素。
+
+Name | Default value
+:---|:---
+`size` | 5
+`family` |`""` (sans)
+`fontface` | `plain`
+`lineheight` |	1.2
+`angle` |	0
+`hjust` |	0.5
+`vjust` |	0.5
+
+注意这里 `size` 的单位是毫米, 而非磅。
+
+```{r}
+dat <- data.frame(
+    y = 1:3,
+    text = c("This is text", "Text with\nmultiple lines", "Some more text")
+)
+
+library(ggplot2)
+p <- ggplot(dat, aes(x=1, y=y)) + 
+       scale_y_continuous(limits=c(0.5, 3.5), breaks=NULL) +
+       scale_x_continuous(breaks=NULL)
+
+p + geom_text(aes(label=text))
+
+p + geom_text(aes(label=text), family="Times", fontface="italic", lineheight=.8) +
+    annotate(geom="text", x=1, y=1.5, label="Annotation text", colour="red",
+             size=7, family="Courier", fontface="bold", angle=30)
+```
+
+![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-2-1.png)
+![plot of chunk unnamed-chunk-2-2](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-2-2.png)
+
+#### themes and element_text
+
+在管理类似标题，图注，坐标轴标签等元素时，可以使用 `element_text`, 其参数设置跟 `geom_text` 基本一致, 除了  `size` 的单位是 **points** (而非 mm), 还有就是它用的是 `face` 而不是 `fontface` 。默认情况下，`size` 取决于元素，比如图形标题的字体总是比刻度标签的大。
+
+```{r}
+p + geom_point() +
+    ggtitle("This is a Title") +
+    theme(plot.title=element_text(family="Times", face="bold", size=20))
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-3-1.png)
+
+#### 字体表格
+
+你可以运行下列代码来生成一张不同字体的图形表。 每种字体都有**简称**和**字体标准家族名称**，定义字体时使用其中一种即可。
+
+```{r}
+fonttable <- read.table(header=TRUE, sep=",", stringsAsFactors=FALSE,
+                        text='
+Short,Canonical
+mono,Courier
+sans,Helvetica
+serif,Times
+,AvantGarde
+,Bookman
+,Helvetica-Narrow
+,NewCenturySchoolbook
+,Palatino
+,URWGothic
+,URWBookman
+,NimbusMon
+URWHelvetica,NimbusSan
+,NimbusSanCond
+,CenturySch
+,URWPalladio
+URWTimes,NimbusRom
+')
+
+fonttable$pos <- 1:nrow(fonttable)
+
+library(reshape2)
+fonttable <- melt(fonttable, id.vars="pos", measure.vars=c("Short","Canonical"),
+                  variable.name="NameType", value.name="Font")
+
+# 创建一个分面形式的图表。确保因子的顺序是正确的
+facetable <- data.frame(Face = factor(c("plain","bold","italic","bold.italic"),
+                                      levels = c("plain","bold","italic","bold.italic")))
+
+fullfonts <- merge(fonttable, facetable)
+
+library(ggplot2)
+pf <- ggplot(fullfonts, aes(x=NameType, y=pos)) + 
+             geom_text(aes(label=Font, family=Font, fontface=Face)) +
+             facet_wrap(~ Face, ncol=2)
+```
+
+在屏幕中查看:
+
+```{r}
+pf
+```
+
+你在屏幕中所看见的不一定跟你输出为 PNG 或 PDF 格式后的结果完全一样。查看 PNG 格式的输出结果： 
+
+```{r}
+png('fonttable.png', width=720, height=720, res=72)
+print(pf)
+dev.off()
+```
+
+需要注意的是，对于生成这张图片的操作系统来说，大部分的字体（位于顶部）是不兼容的，只有一些基础字体（位于底部）是可以使用的。
+
+![unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-7-1.png)
+
+PDF 格式输出结果(以下示例图已从 PDF 格式转化为 PNG 格式）:
+
+```{r}
+pdf('fonttable.pdf', width=10, height=10)
+print(pf)
+dev.off()
+#  用 GraphicsMagick 将 PDF 转化为PNG格式:
+# system("gm convert -resize 720x720 -background white fonttable.pdf fonttable-pdf.png")
+```
+
+PDF 设备对于不同字体的支持比 PNG 设备更好。基本所有的字体都能兼容。(虽然这些字体并不一定很好看):
+
+![PDF font table, converted to PNG](http://www.cookbook-r.com/Graphs/Fonts/fonttable-pdf.png)
+
+## 图形混杂-抗混淆位图输出
+
+### 问题
+
+你想要在 **windows** 操作环境下保存抗锯齿的位图结果（[**anti-aliasing bitmap**](https://www.computerhope.com/jargon/a/antialias.htm)）。
+
+### 方案
+
+类似于 **png** 和 **jpeg** 的标准图形设备可以将图形保存成 **cairo、Xlib、 quartz** 三种不同的文件格式。当使用 **cairo**，我们便可以获得抗锯齿化的图形结果。在 **MacOS** 和 **linux** 系统下，自动将图片保存为 **cairo** 格式，但是在 **windows** 系统下的相应参数是 **NULL**。
+
+绘图示例（如下）：
+
+```{r}
+# 设置伪随机数种子
+set.seed(1)
+#生成符合正态分布的100个随机数
+x = rnorm(100)
+png("antialiasing_1.png", type="cairo")
+plot(x)
+dev.off()
+```
+
+在 **windows** 系统环境下不可强行使用 **type="cairo"**，需要借助 **Cairo 工具包**获取抗锯齿化结果。
+
+```{r}
+# 安装Cairo包
+# install.packages("Cairo")
+library("Cairo")
+# 设置伪随机数种子
+set.seed(1)
+#生成符合正态分布的100个随机数
+x = rnorm(100)
+Cairo(width = 540, height = 380, file="antialiasing_2.png", type="png", bg="white")
+plot(x)
+dev.off() 
+```
+
+#### 提示
+
+有关该部分的更多相关信息，参看[Efficient R programming](https://csgillespie.github.io/efficientR/cairo-type.html)。
+
+## 标准绘图 | 散点图
+
+### 问题
+
+你想要创建一个散点图
+
+### 方案
+
+假设下面是你的数据：
+
+```{r}
+set.seed(955)
+# 给数据添加一些随机噪声
+dat <- data.frame(xvar = 1:20 + rnorm(20,sd=3),
+                  yvar = 1:20 + rnorm(20,sd=3),
+                  zvar = 1:20 + rnorm(20,sd=3))
+
+head(dat)
+```
+
+#### 基本的散点图
+
+```{r}
+# 使用向量 xvar 和 yvar 绘制点图
+plot(dat$xvar, dat$yvar)
+
+# 跟上一句代码一致，但这里是用公式实现
+plot(yvar ~ xvar, dat)
+
+# 添加一条回归线
+fitline <- lm(dat$yvar ~ dat$xvar)
+abline(fitline)
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-3-2.png)
+
+#### 散点图矩阵
+
+如果你想要比较多个变量，可以创建一个散点图矩阵
+
+```{r}
+# 一个散点图矩阵
+plot(dat[,1:3])
+
+# 添加回归线
+# 在对角添加histogram/boxplot/density/qqplot
+library(car)
+scatterplotMatrix(dat[,1:3],
+                   diagonal="histogram",
+                   smooth=FALSE)
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-4-2.png)
+
+想要查看对应的相关矩阵，查看 [../../Statistical analysis/Regression and correlation](https://github.com/ShixiangWang/Cookbook-for-R-Chinese/blob/master/cookbook/Statistical_analysis/%E5%9B%9E%E5%BD%92%E5%92%8C%E7%9B%B8%E5%85%B3.md)。
+
+想要可视化相关矩阵，查看 [../Correlation matrix](http://www.cookbook-r.com/Graphs/Correlation_matrix)。
+
+## 标准绘图|箱线图
+
+### 问题
+
+你想要绘制一个箱线图。
+
+### 方案
+
+该方案教你如何快速地使用标准绘图方法绘制简单的箱线图。
+
+#### 样例数据
+
+这里的例子使用 `ToothGrowth` 数据集，它有两个独立变量以及一个依赖变量。
+
+```{r}
+head(ToothGrowth)
+```
+
+在不同 `supp` 和 `dose` 条件下，变量 `len` 的箱线图:
+
+```{r}
+boxplot(len ~ supp, data=ToothGrowth)
+
+# 即使 `dose` 是一个数值型变量，`boxplot` 也会将其转换为因子 
+boxplot(len ~ dose, data=ToothGrowth)
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-3-2.png)
+
+组合 `supp` 和 `dose` 不同水平（即交互项）下 `len` 的箱线图
+
+```{r}
+boxplot(len ~ interaction(dose,supp), data=ToothGrowth)
+```
+
+![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-4-1.png)
+
+注意 `plot` 除了添加了横轴标签和不会自动将数值变量转换为因子变量，它与 `boxplot` 有非常相似的输出。
+
+```{r}
+plot(len ~ interaction(dose,supp), data=ToothGrowth)
+```
+
+![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-5-1.png)
+
+## 标准绘图 - QQ 图
+
+### 问题
+
+你想要对你自己的数据分布与其他的分布进行比较。这常用语检查是否一个样本是否服从正态分布，以及两个样本是抽取自同一分布。
+
+### 方案
+
+假设这是你的数据：
+
+```{r}
+set.seed(183)
+# 正态分布的数值
+x <- rnorm(80, mean=50, sd=5)
+
+# 均匀分布的数值
+z <- runif(80)
+# 比较用rnorm()抽样的数据分布与正态分布的差异
+qqnorm(x)
+qqline(x)
+
+# 比较数据的4次幂分布与正态分布的差异
+qqnorm(x^4)
+qqline(x^4)
+
+# 比较均匀分布抽取的数据与正态分布的差异
+qqnorm(z)
+qqline(z)
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Q-Q_plot/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Q-Q_plot/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Q-Q_plot/figure/unnamed-chunk-3-3.png)
+
+## 其他有趣图形-相关矩阵
+
+### 问题
+
+你想要可视化多元变量间的相关性强度。
+
+### 方案
+
+假设所要分析的数据（如下）：
+
+```{r}
+# 设置伪随机数种子
+set.seed(955)
+#生成符合正态分布的20个随机数
+vvar <- 1:20 + rnorm(20,sd=3)
+wvar <- 1:20 + rnorm(20,sd=5)
+xvar <- 20:1 + rnorm(20,sd=3)
+yvar <- (1:20)/2 + rnorm(20, sd=10)
+zvar <- rnorm(20, sd=6)
+
+# 使用向量生成数据框（向量名为列名）
+data <- data.frame(vvar, wvar, xvar, yvar, zvar)
+head(data)
+```
+
+可视化上述数据：
+
+```{r}
+# 导入以椭圆表征相关性强度的分析包
+library(ellipse)
+
+# 生成相关矩阵表
+ctab <- cor(data)
+# 表中数据保留两位小数
+round(ctab, 2)
+
+# 设置简化边幅并绘制相关性图
+plotcorr(ctab, mar = c(0.1, 0.1, 0.1, 0.1))
+
+# 使用颜色表征相关性强度
+colorfun <- colorRamp(c("#CC0000","white","#3366CC"), space="Lab")
+plotcorr(ctab, col=rgb(colorfun((ctab+1)/2), maxColorValue=255),
+         mar = c(0.1, 0.1, 0.1, 0.1))
+```
+
+![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Correlation_matrix/figure/unnamed-chunk-3-1.png)
+
+![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Correlation_matrix/figure/unnamed-chunk-3-2.png)
+
+### 提示
+
+有关生成关联表（数字）的更多信息，参看[../../Statistical analysis/Regression and correlation](http://www.cookbook-r.com/Statistical_analysis/Regression_and_correlation)。
+
+<!--chapter:end:08-graphs.Rmd-->
+
+# 脚本与函数
+
+## 创建和运行一个脚本
+
+计算细菌基因组核心蛋白相似性
+
+- 应用场景：
+
+细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界/门/纲/目/科/属/种）。
+
+在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。
+
+- 简要过程：
+
+两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。
+
+### 参考文献：
+
+[A Proposed Genus Boundary for the Prokaryotes Based on Genomic Insights](https://jb.asm.org/content/196/12/2210)
+
+Qi-Long Qin *et al.*
+
+**以下 R 脚本都是在 windows 操作平台上进行的**
+
+```R
+# 下载所分析的基因组数据（蛋白序列）
+# 存放于 Rawdata 文件夹中
+if (!dir.exists('Rawdata')) {
+  dir.create('Rawdata')
+}
+
+# 示例-1: Pseudomonas aeruginosa
+# ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_protein.faa.gz
+
+# 示例-2: Acinetobacter baumannii
+# ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/746/645/GCF_000746645.1_ASM74664v1/GCF_000746645.1_ASM74664v1_protein.faa.gz
+
+# 使用 R.utils 中的 gunzip 解压缩
+library(R.utils)
+
+download.file("ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_protein.faa.gz",
+              destfile = "Rawdata/Pseudomonas_aeruginosa.faa.gz")
+gunzip("Rawdata/Pseudomonas_aeruginosa.faa.gz")
+
+download.file("ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/746/645/GCF_000746645.1_ASM74664v1/GCF_000746645.1_ASM74664v1_protein.faa.gz",
+              destfile = "Rawdata/Acinetobacter_baumannii.faa.gz")
+gunzip("Rawdata/Acinetobacter_baumannii.faa.gz")
+```
+
+```R
+# 使用 dbplyr 对数据框中的某列去重复
+library(dbplyr)
+# 使用 seqinr 格式化 fasta 格式的序列
+library(seqinr)
+
+# 检查存放中间过程文件的文件夹是否存在
+if (!dir.exists('Database')) {
+  dir.create('Database')
+}
+
+if (!dir.exists('Result')) {
+  dir.create('Result')
+}
+
+# 获取所有待分析基因组文件名
+genome.files <- list.files('Rawdata')
+
+# 对所有的待分析基因组建库
+for (gn in genome.files) {
+  header.file <- strsplit(gn,'.',fixed = T)[[1]][1]
+  commond.makedb <- paste0('diamond.exe makedb --in Rawdata/',
+                           gn, ' --db Database/', header.file)
+  system(commond.makedb)
+}
+
+# 获取多基因组的两两比对的组合数据集
+genome.comn <- combn(genome.files,2)
+
+# 计算核心蛋白相似性的骨架命令
+blast.comm1 <- 'diamond.exe blastp -q Rawdata/'
+blast.comm2 <- ' -d Database/'
+blast.comm3 <- ' -e 1e-5 --id 40 -o Result/'
+
+# 建立新变量，保存运算结果
+pocp.vector <- c()
+
+for (i in (1:dim(genome.comn)[2]) ) {
+  a.genome <- genome.comn[,i][1]
+  b.genome <- genome.comn[,i][2]
+
+  a.header <- strsplit(a.genome,'.',fixed = T)[[1]][1]
+  b.header <- strsplit(b.genome,'.',fixed = T)[[1]][1]
+
+  a.genome.seq <- read.fasta(paste0('Rawdata/', a.genome),'AA')
+  b.genome.seq <- read.fasta(paste0('Rawdata/', b.genome),'AA')
+
+  a.total <- length(a.genome.seq)
+  b.total <- length(b.genome.seq)
+
+  str(a.genome.seq)
+  str(b.genome.seq)
+
+  a.seq.list <- names(a.genome.seq)
+  b.seq.list <- names(b.genome.seq)
+  a.seq.length <- c()
+
+  for (nm in a.seq.list) {
+    tmp.len <- length(a.genome.seq[[which(a.seq.list == nm)]])
+    a.seq.length <- append(a.seq.length, tmp.len)
+  }
+  b.seq.length <- c()
+
+  for (nm in b.seq.list) {
+    tmp.len <- length(b.genome.seq[[which(b.seq.list == nm)]])
+    b.seq.length <- append(b.seq.length, tmp.len)
+  }
+
+  a.seq.df <- data.frame(a.seq.list, a.seq.length)
+  colnames(a.seq.df) <- c('V1','length')
+  b.seq.df <- data.frame(b.seq.list, b.seq.length)
+  colnames(b.seq.df) <- c('V1','length')
+
+  print(paste0('-- Blasting: ',a.header,' - VS - ',b.header))
+
+  # 「正向」-- A 为查询，B 为参考数据库
+  result.forward <- paste0(a.header,'_VS_',b.header,'.tab')
+  system(paste0(blast.comm1, a.genome,
+                blast.comm2, b.header,
+                blast.comm3, result.forward))
+  df.forward <- read.table(paste0('Result/',result.forward),
+                           header = F,sep = '\t',
+                           stringsAsFactors = F)
+  df.forward <- df.forward  %>%  distinct(V1,.keep_all = T)
+  df.forward <- merge(df.forward, a.seq.df, by = 'V1', all.x = T)
+  df.forward$align <- df.forward$V4 / df.forward$length
+  df.forward <- df.forward[which(df.forward$V3 > 40 & df.forward$align > 0.5 & df.forward$V11 < 1e-5),]
+  C1 <- dim(df.forward)[1]
+
+  # 「反向」-- B 为查询，A 为参考数据库
+  result.backward <- paste0(b.header,'_VS_',a.header,'.tab')
+  system(paste0(blast.comm1, b.genome,
+                blast.comm2, a.header,
+                blast.comm3, result.backward))
+  df.backward <- read.table(paste0('Result/',result.backward),
+                           header = F,sep = '\t',
+                           stringsAsFactors = F)
+  df.backward <- df.backward %>% distinct(V1,.keep_all = T)
+  df.backward <- merge(df.backward, b.seq.df, by = 'V1', all.x = T)
+  df.backward$align <- df.backward$V4 / df.backward$length
+  df.backward <- df.backward[which(df.backward$V3 > 40 & df.backward$align > 0.5 & df.backward$V11 < 1e-5),]
+  C2 <- dim(df.backward)[1]
+
+  pocp <- (C1 + C2)/(a.total + b.total)
+  pocp.vector <- append(pocp.vector, paste0(a.header,'\t',b.header,'\t',pocp))
+
+  print(paste0('-- Pair blast done: ',a.header,' - VS - ',b.header))
+  print(paste0('-- The POCP : ', pocp))
+  print('----------------------------------')
+}
+
+write(pocp.vector, 'resultPOCP.txt')
+
+# 删除分析过程中的冗余文件
+unlink("Database", recursive = TRUE)
+unlink("Result", recursive = TRUE)
+
+# 重新创建新文件夹
+dir.create('Database')
+dir.create('Result')
+```
+
+#### 提示：
+
+更多关于 POCP 计算的相关 tips，请点击[这里-跳转](https://github.com/2015qyliang/POCP)
+
+## 调试脚本或函数
+
+### 问题
+
+您想要调试脚本或函数。
+
+### 方案
+
+将其插入您要开始调试的位置的代码中：
+
+```R
+browser()
+```
+
+当 R 解释器到达该行时，它将暂停您的代码，您将能够查看和更改变量。
+
+在浏览器中，键入这些字母将执行以下操作
+	
+|c  | 继续 |
+| :------------- | :------------- |
+| **n (or Return)** |  **下一步** |
+| **Q** | **放弃** |
+| **Ctrl-C** | **回到顶级**|
+
+在浏览器中，您可以看到当前范围中的变量。
+
+```R
+ls()
+```
+
+要为函数中的每一行暂停和启动浏览器
+
+```R
+debug(myfunction)
+myfunction(x)
+```
+### **有用的选择**
+
+默认情况下，每次在浏览器提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：
+
+```R
+options(browserNLdisabled=TRUE)
+```
+
+要在抛出错误时开始调试，请在抛出错误的函数之前运行此命令
+
+```R
+options(error=recover)
+```
+
+如果您希望每次启动R时都设置这些选项，则可以将它们放在 ~/.Rprofile 文件中。
+
+
+## 测量经过的时间
+
+### **问题**
+
+您想要测量运行特定代码块所需的时间。
+
+### 方案
+
+该 ```system.time()``` 函数将测量在R中运行某些东西所需的时间。
+
+```{r}
+system.time({
+    # Do something that takes time
+    x <- 1:100000
+    for (i in seq_along(x))  x[i] <- x[i]+1
+})
+```
+
+输出意味着运行代码块需要 0.153 秒。
+
+## 获取包中的函数和对象列表
+
+### 问题
+
+你想知道包里有什么。
+
+### 方案
+
+此代码段将列出包中的函数和对象。
+
+```R
+# Using search() in a new R session says that these packages are 
+# loaded by default:
+# "package:stats"     "package:graphics" 
+# "package:grDevices" "package:utils"     "package:datasets" 
+# "package:methods"   "package:base"  
+
+# Others that are useful:
+# gplots
+# ggplot2, reshape, plyr
+
+showPackageContents <- function (packageName) {
+
+    # Get a list of things contained in a particular package
+    funlist <- objects(packageName)
+
+    # Remove things that don't start with a letter
+    idx <- grep('^[a-zA-Z][a-zA-Z0-9._]*', funlist)
+    funlist <- funlist[idx]
+
+    # Remove things that contain arrow <-
+    idx <- grep('<-', funlist)
+    if (length(idx)!=0)
+        funlist <- funlist[-idx]
+
+    # Make a data frame to keep track of status
+    objectlist <- data.frame(name=funlist,
+                             primitive=FALSE,
+                             func=FALSE,
+                             object=FALSE,
+                             constant=FALSE,
+                             stringsAsFactors=F)
+
+    for (i in 1:nrow(objectlist)) {
+        fname <- objectlist$name[i]
+        if (exists(fname)) {
+            obj <- get(fname)
+            if (is.primitive(obj)) {
+                objectlist$primitive[i] <- TRUE
+            }
+            if (is.function(obj)) {
+                objectlist$func[i] <- TRUE
+            }
+            if (is.object(obj)) {
+                objectlist$object[i] <- TRUE
+            }
+            
+            # I think these are generally constants
+            if (is.vector(obj)) {
+                objectlist$constant[i] <- TRUE
+            }
+           
+        
+        }  
+    }
+
+    cat(packageName)
+        
+    cat("\n================================================\n")
+    cat("Primitive functions: \n")
+    cat(objectlist$name[objectlist$primitive])
+    cat("\n")
+
+    cat("\n================================================\n")
+    cat("Non-primitive functions: \n")
+    cat(objectlist$name[objectlist$func  &  !objectlist$primitive])
+    cat("\n")
+
+    cat("\n================================================\n")
+    cat("Constants: \n")
+    cat(objectlist$name[objectlist$constant])
+    cat("\n")
+
+    cat("\n================================================\n")
+    cat("Objects: \n")
+    cat(objectlist$name[objectlist$object])
+    cat("\n")
+}
+
+# Run the function using base package
+showPackageContents("package:base")
+```
+
+<!--chapter:end:09-scripts-and-funs.Rmd-->
+
+# 工具
+
+## 生成拉丁方
+
+### 问题
+
+你想要生成平衡序列用于实验。
+
+### 方案
+
+函数 `latinsquare()` (在下方定义) 可以被用来生成[拉丁方](https://baike.baidu.com/item/%E6%8B%89%E4%B8%81%E6%96%B9%E8%AE%BE%E8%AE%A1/8707472)。
+
+```R
+latinsquare(4)
+#>      [,1] [,2] [,3] [,4]
+#> [1,]    1    2    4    3
+#> [2,]    2    1    3    4
+#> [3,]    3    4    1    2
+#> [4,]    4    3    2    1
+
+
+# 生成两个大小为 4 的拉丁方(按顺序排列)
+latinsquare(4, reps=2)
+#>      [,1] [,2] [,3] [,4]
+#> [1,]    3    4    1    2
+#> [2,]    4    3    2    1
+#> [3,]    1    2    4    3
+#> [4,]    2    1    3    4
+#> [5,]    4    2    1    3
+#> [6,]    2    3    4    1
+#> [7,]    1    4    3    2
+#> [8,]    3    1    2    4
+
+
+# 在调用该函数时最好加入一个随机种子 (random seed)，这样可以使得生成的拉丁方具有可重复性。
+# 如下所示，这样做每次都会得到同一序列的拉丁方。
+latinsquare(4, reps=2, seed=5873)
+#>      [,1] [,2] [,3] [,4]
+#> [1,]    1    4    2    3
+#> [2,]    4    1    3    2
+#> [3,]    2    3    4    1
+#> [4,]    3    2    1    4
+#> [5,]    3    2    4    1
+#> [6,]    1    4    2    3
+#> [7,]    4    3    1    2
+#> [8,]    2    1    3    4
+
+```
+
+存在大小为 4 的 拉丁方 576 个。函数 `latinsquare` 会随机选择其中 `n` 个并以序列形式返回它们。这被称为**重复拉丁方设计** 。
+
+一旦你生成了自己的拉丁方，你需要进行检查确保不存在许多重复的序列，因为这中情况在小型拉丁方中非常普遍 (3x3 or 4x4)。
+
+#### 生成拉丁方的函数
+
+这个函数一定程度上使用了[暴力算法(brute-force algorithm)](http://www-igm.univ-mlv.fr/~lecroq/string/node3.html)来生成每个拉丁方，有时候它会因为没有可用的数字放入给定的位置而失败。这种情况下，它会再做尝试。可能存在一种更好的办法吧，但我并不清楚。
+
+```R
+## - len 指定的是拉丁方的大小
+## - reps 是拉丁方的重复数-即给出多少个拉丁方
+## - seed 给定一个随机种子，这样可以保证生成的拉丁方是可重复的。
+## - returnstrings 告诉函数为每个拉丁方返回一个字符串向量而不是返回一个巨大的矩阵，这个参数可以用来检查生成拉丁方的随机性。
+latinsquare <- function(len, reps=1, seed=NA, returnstrings=FALSE) {
+
+    # 保存旧的随机种子并使用新的（如果有）
+    if (!is.na(seed)) {
+        if (exists(".Random.seed"))  { saved.seed <- .Random.seed }
+        else                         { saved.seed <- NA }
+        set.seed(seed)
+    }
+
+    # 这个矩阵包含了全部独立的拉丁方
+    allsq <- matrix(nrow=reps*len, ncol=len)
+
+    # 如果需要，为每个拉丁方阵储存一个字符串 id
+    if (returnstrings) {  squareid <- vector(mode = "character", length = reps) }
+
+    # 从向量中获取一个随机元素。(如果 x 里只有一个元素，那么内置的示例函数会很诡异地发生不一样的运行）
+    sample1 <- function(x) {
+        if (length(x)==1) { return(x) }
+        else              { return(sample(x,1)) }
+    }
+
+    # 生成 n 个独立的拉丁方阵
+    for (n in 1:reps) {
+
+        # 生成一个空的方阵
+        sq <- matrix(nrow=len, ncol=len)
+
+        # 如果我们从左上角开始依次填满这个方阵，那么某些拉丁方阵出现的概率就会比其他的大
+        # 因此我们需要在方阵中随机地序列填充
+        # 步骤大概如下：
+        # - 随机选择一个 NA 的单元格 (可以称之为目标单元格)
+        # - 找出与目标单元格同行或同列的所有 NA 单元格
+        # - 填充目标单元格
+        # - 填充同行/同列的其他单元格
+        # - 如果因为所有的数字都已被使用而无法继续填充单元格，那么就退出并重新开始填充一个新的方阵。
+        # 简言之就是选择一个空单元格，填充它。然后以随机顺序填充与其“交叉”的其他空单元格。
+        # 如果只是完全地随机填充（而没有沿着交叉方向），那么失败的概率非常高。
+
+        while (any(is.na(sq))) {
+
+            # 随机选择一个当前值为 NA 的单元格
+            k <- sample1(which(is.na(sq)))
+
+            i <- (k-1) %% len +1       # Get the row num
+            j <- floor((k-1) / len) +1 # Get the col num
+
+            # 在以 i,j 为中心的“交叉点”中找到其他为 NA 的单元格
+            sqrow <- sq[i,]
+            sqcol <- sq[,j]
+
+            # 一个包含了所有 NA 单元格坐标的矩阵
+            openCell <-rbind( cbind(which(is.na(sqcol)), j),
+                              cbind(i, which(is.na(sqrow))))
+            # 随机化填充顺序
+            openCell <- openCell[sample(nrow(openCell)),]
+
+            # 将中心单元格放到列表的最上面，这样保证从它开始填充方阵
+            openCell <- rbind(c(i,j), openCell)
+            # There will now be three entries for the center cell, so remove duplicated entries
+            # 要确保它是一个矩阵--否则，如果只是一行数据，它将会返回成一个向量并引起错误。
+            openCell <- matrix(openCell[!duplicated(openCell),], ncol=2)
+
+            # 填充中心位置，然后填充交叉方向上的其他空格
+            for (c in 1:nrow(openCell)) {
+                # The current cell to fill
+                ci <- openCell[c,1]
+                cj <- openCell[c,2]
+                # 获取以 i,j 为中心的“交叉”方向上中未使用的数字
+                freeNum <- which(!(1:len %in% c(sq[ci,], sq[,cj])))
+
+                # 填充这些位置
+                if (length(freeNum)>0) { sq[ci,cj] <- sample1(freeNum) }
+                else  {
+                    # Failed attempt - no available numbers
+                    # Re-generate empty square
+                    sq <- matrix(nrow=len, ncol=len)
+
+                    # Break out of loop
+                    break;
+                }
+            }
+        }
+
+        # 将这单个拉丁方储存到包含所有拉丁方的矩阵中
+        allsqrows <- ((n-1)*len) + 1:len
+        allsq[allsqrows,] <- sq
+
+        # 如果有需要，储存一个代表这个拉丁方的字符串。
+        # 每个拉丁方都有一个唯一的字符串代号
+        if (returnstrings) { squareid[n] <- paste(sq, collapse="") }
+
+    }
+
+    # 恢复旧的随机种子（如果有）
+    if (!is.na(seed) && !is.na(saved.seed)) { .Random.seed <- saved.seed }
+
+    if (returnstrings) { return(squareid) }
+    else               { return(allsq) }
+}
+
+```
+
+#### 检查函数的随机性
+
+一些生成拉丁方的算法并不是非常的随机。`4x4` 的拉丁方有 576 种，它们每一种都应该有相等的概率被生成，但有一些算法没法做到这一点。我们也许没有必要去检查上面函的随机性数，但如果要做这里确实可以通过一些代码来实现。我们运行下面的代码可以发现前面使用的算法其随机分布并不是很好。
+
+这个代码创建 10,000 个 `4x4` 的拉丁方，然后计算这 576 个唯一拉丁方出现的频数。计数结果应该形成一个不是特别宽的正态分布；否则这个分布就不是很随机了。我相信期望的标准差是根号(10000/576)（假设随机生成拉丁方）。
+
+```R
+# 设置要生成拉丁方的大小和数量
+squaresize    <- 4
+numsquares    <- 10000
+
+# 获取指定大小的拉丁方的数量(unique square?)
+# There is not a general solution to finding the number of unique nxn squares
+# so we just hard-code the values here. (From http://oeis.org/A002860)
+uniquesquares <- c(1, 2, 12, 576, 161280, 812851200)[squaresize]
+
+# 生成拉丁方
+s <- latinsquare(squaresize, numsquares, seed=122, returnstrings=TRUE)
+
+# 获取所有拉丁方阵的列表，并且进行计数
+slist   <- rle(sort(s))
+scounts <- slist[[1]]
+
+hist(scounts, breaks=(min(scounts):(max(scounts)+1)-.5))
+cat(sprintf("Expected and actual standard deviation: %.4f, %.4f\n",
+              sqrt(numsquares/uniquesquares), sd(scounts) ))
+#> 期望和实际的标准差: 4.1667, 4.0883
+```
+
+![img](http://upload-images.jianshu.io/upload_images/3884693-b79269fb8d324316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+<!--chapter:end:10-tools.Rmd-->
+
+\cleardoublepage 
+
+# (APPENDIX) 附录 {-}
+
+# 资料推荐 {#materials}
+
+## 书籍
+
+- [《R for Data Science》](https://r4ds.had.co.nz/index.html)
+
+## 网站
+
+## 列表
+
+
+<!--chapter:end:11-append.Rmd-->
+
+`r if (knitr:::is_html_output()) '# 参考文献 {#references .unnumbered}'`
+
+```{r include=FALSE}
+# 自动生成 R 包的参考文献
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+<!--chapter:end:12-references.Rmd-->
+

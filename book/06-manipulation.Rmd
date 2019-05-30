@@ -1223,7 +1223,7 @@ library(reshape2)
 melt(olddata_wide, id.vars=c("subject", "sex"))
 ```
 
-`melt` 的一些选项可以使得输出更好处理：
+`melt()` 的一些选项可以使得输出更好处理：
 
 ```{r}
 data_long <- melt(olddata_wide,
@@ -1239,7 +1239,7 @@ data_long <- melt(olddata_wide,
 data_long
 ```
 
-如果你不设定 `measure.vars`，`melt` 函数会自动使用除 `id.vars` 的所有其他变量。反之亦然。
+如果你不设定 `measure.vars`，`melt()` 函数会自动使用除 `id.vars` 的所有其他变量。反之亦然。
 
 如果你不指定 `variable.name`，它会把那列命名为`"variable"`，如果你不使用 `value.name` 变量，它会将它命名为 `"measurement"`。
 
@@ -1262,7 +1262,7 @@ data_long
 ```{r}
 olddata_long
 
-# 来源:
+# 信息:
 # "subject" 和 "sex" 是我们想要保留的列
 # "condition" 是我们想要放入新列名的列
 # "measurement" 包含数值
@@ -1287,15 +1287,15 @@ data_wide
 
 因子水平的顺序决定了列的顺序。水平次序能够在重塑之前被改变，或者列也可以在之后重新排序。
 
-## 总结数据
+## 汇总数据
 
 ### 问题
 
-你想要按照组别总结你的数据（均值、标准差等等）。
+你想要按照组别汇总你的数据（均值、标准差等等）。
 
 ### 方案
 
-有三种方法描述基于一些特定变量的分组数据，然后对每一组使用总结函数（像均值、标准差等等）。
+有三种方法描述基于一些特定变量的分组数据，然后对每一组使用汇总函数（像均值、标准差等等）。
 
 - `ddply()` 函数：它比较容易使用，但需要载入 **plyr** 包。这种方法可能就是你要找的。
 - `summaryBy()` 函数：它也比较容易使用，然而它需要载入 **doBy** 包。
@@ -1376,7 +1376,7 @@ cdata
 
 ```
 
-##### 自动总结函数
+##### 自动汇总函数
 
 不像我们刚才手动地指定想要的值然后计算标准误，这个函数可以自动处理所有的细节。它可以干以下的事情：
 
@@ -1445,7 +1445,7 @@ summarySE(dataNA, measurevar="change", groupvars=c("sex", "condition"), na.rm=TR
 
 ##### 用零填满空组合
 
-有时候总结的数据框中存在因子的空组合——意思是因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。要做到这一点，当调用`ddply` 或 `summarySE` 时设置 `.drop=FALSE`。
+有时候汇总的数据框中存在因子的空组合——意思是因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。要做到这一点，当调用`ddply` 或 `summarySE` 时设置 `.drop=FALSE`。
 
 例子：
 
@@ -1453,7 +1453,7 @@ summarySE(dataNA, measurevar="change", groupvars=c("sex", "condition"), na.rm=TR
 # 首先移除所有 Male+Placebo 条目
 dataSub <- subset(data, !(sex=="M" & condition=="placebo"))
 
-# 如果我们总结数据，在本来有 Male+Placebo 的地方会存在空行
+# 如果我们汇总数据，在本来有 Male+Placebo 的地方会存在空行
 # 因为这个组合已经被我们删除了
 summarySE(dataSub, measurevar="change", groupvars=c("sex", "condition"))
 
@@ -1507,9 +1507,9 @@ cdataNA
 # 做些其他事情
 ```
 
-##### 自动总结函数
+##### 自动汇总函数
 
-> 注意这里的自动总结函数与之前的不同，它是通过 `summaryBy` 实现的
+> 注意这里的自动汇总函数与之前的不同，它是通过 `summaryBy()` 实现的
 
 不像我们刚才手动地指定想要的值然后计算标准误，这个函数可以自动处理所有的细节。它可以干以下的事情：
 
@@ -1565,20 +1565,20 @@ summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE, conf.i
 ```{r}
 summarySE(data, measurevar="change", groupvars=c("sex","condition"))
 
-# With a data set with NA's, use na.rm=TRUE
+# 对于含有 NA 值得数据集，使用 na.rm=TRUE
 summarySE(dataNA, measurevar="change", groupvars=c("sex","condition"), na.rm=TRUE)
 ```
 
 ##### 用零填满空组合
 
-有时候总结的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。
+有时候汇总的数据框中存在因子的空组合 - 这意思是，因子组合可能存在，但原始数据框里又没有实际出现。它在自动填满有 NA 值的数据框时有用。
 
 这个例子将会用 0 填满缺失的组合：
 
 ```{r}
 fillMissingCombs <- function(df, factors, measures) {
 
-    # Make a list of the combinations of factor levels
+    # 创建含因子水平组合的列表
     levelList <- list()
     for (f in factors) {  levelList[[f]] <- levels(df[,f])  }
     
@@ -1586,7 +1586,7 @@ fillMissingCombs <- function(df, factors, measures) {
     
     dfFull <- merge(fullFactors, df, all.x=TRUE)
     
-    # Wherever there is an NA in the measure vars, replace with 0
+    # 将 measure 变量中的 NA 都替换为 0
     for (m in measures) {
       dfFull[is.na(dfFull[,m]), m] <- 0
     }
@@ -1602,7 +1602,7 @@ fillMissingCombs <- function(df, factors, measures) {
 # 首先移除所有 Male+Placebo 条目
 dataSub <- subset(data, !(sex=="M" & condition=="placebo"))
 
-# 如果我们总结数据，在本来有 Male+Placebo 的地方会存在空行
+# 如果我们汇总数据，在本来有 Male+Placebo 的地方会存在空行
 # 因为这个组合已经被我们删除了
 cdataSub <- summarySE(dataSub, measurevar="change", groupvars=c("sex", "condition"))
 cdataSub
@@ -1720,7 +1720,7 @@ table(cases$Sex, cases$Color, dnn=c("Sex","Color"))
 
 #### 将情况记录转为计数
 
-它可以用一个数据框代表每一种组合的计数。注意它被转换并存储在 `countdf` 变量中：
+它可以用一个数据框代表每一种组合的计数。注意它被转换并存储在 `countdf` 对象中：
 
 ```{r}
 # Cases to Counts
@@ -1729,7 +1729,7 @@ countdf
 
 ```
 
-#### `countsToCases` 函数
+#### `countsToCases()` 函数
 
 这个函数使用在上面的例子中：
 
@@ -1753,10 +1753,9 @@ countsToCases <- function(x, countcol = "Freq") {
 
 ```{r}
 countsToCases(as.data.frame(ctable))
-
 ```
 
-注意 countsToCases 函数定义在上面。
+注意，`countsToCases()` 函数定义在上面。
 
 #### 列联表转为计数
 
