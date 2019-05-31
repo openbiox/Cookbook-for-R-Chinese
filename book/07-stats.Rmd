@@ -838,3 +838,7 @@ fligner.test(len ~ interaction(supp,dose), data=ToothGrowth)
 
 fligner.test(len ~ dose, data=ToothGrowth)
 ```
+
+```{r, include=FALSE}
+detachAllPackages()
+```

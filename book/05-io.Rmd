@@ -464,3 +464,7 @@ mean of x mean of y
 
 Some more stuff here...
 ```
+
+```{r, include=FALSE}
+detachAllPackages()
+```

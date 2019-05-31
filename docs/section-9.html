@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 9 章 脚本与函数 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 9 章 脚本与函数 | Cookbook for R 中文版本">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="第 9 章 脚本与函数 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 9 章 脚本与函数 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -22,15 +21,15 @@
   <meta name="twitter:description" content="第 9 章 脚本与函数 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）">
-<meta name="author" content="王诗翔 等（译）">
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-05-06">
+<meta name="date" content="2019-06-01" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="section-8.html">
@@ -134,12 +133,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
 <li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
-<li class="chapter" data-level="" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i>安装和使用 R 包</a></li>
-<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 数据结构的索引</a></li>
-<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 获取数据结构的子集</a></li>
-<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 创建填满值的向量</a></li>
-<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 变量信息</a></li>
-<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.5</b> NULL，NA，NaN 的处理</a></li>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 数字</a><ul>
 <li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
@@ -149,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 字符串</a><ul>
-<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep,sub,gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
 <li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 公式</a><ul>
@@ -157,18 +156,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
-<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#-r"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
-<li class="chapter" data-level="5.3" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
-<li class="chapter" data-level="5.4" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
-<li class="chapter" data-level="5.5" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="section-5.html"><a href="section-5.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="section-5.html"><a href="section-5.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="section-5.html"><a href="section-5.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
 <li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
 <li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
 <li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
-<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#na-"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
 <li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
 <li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
 <li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
@@ -181,12 +180,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
 <li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
 <li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
-<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 总结数据</a></li>
+<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
 <li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
 <li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
 <li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
 <li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
-<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#-na--na"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
 <li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
@@ -221,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 脚本与函数</a><ul>
 <li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 创建和运行一个脚本</a></li>
 <li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 调试脚本或函数</a></li>
-<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量经过的时间</a></li>
+<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量运行的时间</a></li>
 <li class="chapter" data-level="9.4" data-path="section-9.html"><a href="section-9.html#section-9.4"><i class="fa fa-check"></i><b>9.4</b> 获取包中的函数和对象列表</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 工具</a><ul>
@@ -231,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
 <li class="chapter" data-level="A.1" data-path="09-scripts-and-funs.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
 <li class="chapter" data-level="A.2" data-path="09-scripts-and-funs.html"><a href="#section-A.2"><i class="fa fa-check"></i><b>A.2</b> 网站</a></li>
-<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-1"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
+<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-2"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -258,20 +257,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">第 9 章</span> 脚本与函数</h1>
 <div id="section-9.1" class="section level2">
 <h2><span class="header-section-number">9.1</span> 创建和运行一个脚本</h2>
-<p>计算细菌基因组核心蛋白相似性</p>
+<div id="-68" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> 问题</h3>
+<p>你想要创建和运行一个脚本。</p>
+</div>
+<div id="-67" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> 方案</h3>
+<p>R 脚本通常是以 <code>.R</code> 为文件拓展名的纯文本文件。因此创建R脚本可以是任意的文本编辑器，R 最佳的集成开发环境是 <a href="https://www.rstudio.com/">RStudio</a>，它开源并有免费的桌面版本和服务器版本发布，推荐读者下载、安装和使用。</p>
+<p>在类 Unix 系统中，除了编辑器，我们还可以使用终端命令。例如，创建一个输出 <code>Hello world!</code> 的 R 脚本。</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&#39;cat(&quot;Hello world!&quot;)&#39;</span> <span class="op">&gt;</span> test.R</code></pre>
+<p>运行 R 脚本可以在 R 控制台使用 <code>source()</code>函数。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;test.R&quot;</span>, <span class="dt">print.eval =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; Hello world!</span></code></pre>
+<p>也可以在终端中使用 <code>RScript</code> 执行。</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">RScript</span> test.R
+<span class="co">#&gt; Using library: /Volumes/Data/R_Library as main package library</span>
+<span class="co">#&gt; Using R temp dirctory: /Volumes/Data/Rtmp</span>
+<span class="co">#&gt; Hello world!</span></code></pre>
+</div>
+<div id="section-9.1.3" class="section level3">
+<h3><span class="header-section-number">9.1.3</span> 案例：计算细菌基因组核心蛋白相似性</h3>
 <ul>
-<li>应用场景：</li>
-</ul>
+<li><p>应用场景</p>
 <p>细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界/门/纲/目/科/属/种）。</p>
-<p>在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。</p>
-<ul>
-<li>简要过程：</li>
+<p>在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。</p></li>
+<li><p>简要过程</p>
+<p>两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。</p></li>
+<li><p>参考文献</p>
+<p>Qin, Q. L., Xie, B. B., Zhang, X. Y., Chen, X. L., Zhou, B. C., Zhou, J., … &amp; Zhang, Y. Z. (2014). A proposed genus boundary for the prokaryotes based on genomic insights. Journal of bacteriology, 196(12), 2210-2215.</p></li>
 </ul>
-<p>两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。</p>
-<div id="section-9.1.1" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> 参考文献：</h3>
-<p><a href="https://jb.asm.org/content/196/12/2210">A Proposed Genus Boundary for the Prokaryotes Based on Genomic Insights</a></p>
-<p>Qi-Long Qin <em>et al.</em></p>
 <p><strong>以下 R 脚本都是在 windows 操作平台上进行的</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 下载所分析的基因组数据（蛋白序列）</span>
 <span class="co"># 存放于 Rawdata 文件夹中</span>
@@ -415,23 +429,23 @@ pocp.vector &lt;-<span class="st"> </span><span class="kw">c</span>()
 <span class="kw">dir.create</span>(<span class="st">&#39;Database&#39;</span>)
 <span class="kw">dir.create</span>(<span class="st">&#39;Result&#39;</span>)</code></pre>
 <div id="-2" class="section level4">
-<h4><span class="header-section-number">9.1.1.1</span> 提示：</h4>
-<p>更多关于 POCP 计算的相关 tips，请点击<a href="https://github.com/2015qyliang/POCP">这里-跳转</a></p>
+<h4><span class="header-section-number">9.1.3.1</span> 提示</h4>
+<p>更多关于 POCP 计算的相关技巧，请点击<a href="https://github.com/2015qyliang/POCP">这里阅读</a>。</p>
 </div>
 </div>
 </div>
 <div id="section-9.2" class="section level2">
 <h2><span class="header-section-number">9.2</span> 调试脚本或函数</h2>
-<div id="-68" class="section level3">
+<div id="-69" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> 问题</h3>
 <p>您想要调试脚本或函数。</p>
 </div>
-<div id="-67" class="section level3">
+<div id="-68" class="section level3">
 <h3><span class="header-section-number">9.2.2</span> 方案</h3>
 <p>将其插入您要开始调试的位置的代码中：</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browser</span>()</code></pre>
-<p>当 R 解释器到达该行时，它将暂停您的代码，您将能够查看和更改变量。</p>
-<p>在浏览器中，键入这些字母将执行以下操作</p>
+<p>当 R 解释器到达该行时，它将暂停你的代码，您将能够查看和更改变量。</p>
+<p>在控制台中，键入这些字母将执行以下操作</p>
 <table>
 <thead>
 <tr class="header">
@@ -454,74 +468,72 @@ pocp.vector &lt;-<span class="st"> </span><span class="kw">c</span>()
 </tr>
 </tbody>
 </table>
-<p>在浏览器中，您可以看到当前范围中的变量。</p>
+<p>在控制台中，你可以看到当前范围中的变量。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
 <p>要为函数中的每一行暂停和启动浏览器</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">debug</span>(myfunction)
 <span class="kw">myfunction</span>(x)</code></pre>
 </div>
 <div id="section-9.2.3" class="section level3">
-<h3><span class="header-section-number">9.2.3</span> <strong>有用的选择</strong></h3>
-<p>默认情况下，每次在浏览器提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：</p>
+<h3><span class="header-section-number">9.2.3</span> 有用的选项</h3>
+<p>默认情况下，每次在提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">browserNLdisabled=</span><span class="ot">TRUE</span>)</code></pre>
 <p>要在抛出错误时开始调试，请在抛出错误的函数之前运行此命令</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">error=</span>recover)</code></pre>
-<p>如果您希望每次启动R时都设置这些选项，则可以将它们放在 ~/.Rprofile 文件中。</p>
+<p>如果你希望每次启动R时都设置这些选项，则可以将它们放在 <code>~/.Rprofile</code> 文件中。</p>
 </div>
 </div>
 <div id="section-9.3" class="section level2">
-<h2><span class="header-section-number">9.3</span> 测量经过的时间</h2>
-<div id="-69" class="section level3">
-<h3><span class="header-section-number">9.3.1</span> <strong>问题</strong></h3>
+<h2><span class="header-section-number">9.3</span> 测量运行的时间</h2>
+<div id="-70" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> 问题</h3>
 <p>您想要测量运行特定代码块所需的时间。</p>
 </div>
-<div id="-68" class="section level3">
+<div id="-69" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> 方案</h3>
-<p>该 <code>system.time()</code> 函数将测量在R中运行某些东西所需的时间。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
-    <span class="co"># Do something that takes time</span>
+<p><code>system.time()</code> 函数将测量在 R 中运行某些东西所需的时间。</p>
+<pre class="sourceCode r"><code class="sourceCode r">tm &lt;-<span class="st"> </span><span class="kw">system.time</span>({
+    <span class="co"># 做一些消耗时间的事情</span>
     x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100000</span>
     <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x))  x[i] &lt;-<span class="st"> </span>x[i]<span class="op">+</span><span class="dv">1</span>
 })
+tm
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.144   0.002   0.153</span></code></pre>
-<p>输出意味着运行代码块需要 0.153 秒。</p>
+<span class="co">#&gt;    0.01    0.00    0.01</span></code></pre>
+<p>输出显示运行代码块需要 0.01 秒。</p>
 </div>
 </div>
 <div id="section-9.4" class="section level2">
 <h2><span class="header-section-number">9.4</span> 获取包中的函数和对象列表</h2>
-<div id="-70" class="section level3">
+<div id="-71" class="section level3">
 <h3><span class="header-section-number">9.4.1</span> 问题</h3>
 <p>你想知道包里有什么。</p>
 </div>
-<div id="-69" class="section level3">
+<div id="-70" class="section level3">
 <h3><span class="header-section-number">9.4.2</span> 方案</h3>
-<p>此代码段将列出包中的函数和对象。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using search() in a new R session says that these packages are </span>
-<span class="co"># loaded by default:</span>
-<span class="co"># &quot;package:stats&quot;     &quot;package:graphics&quot; </span>
-<span class="co"># &quot;package:grDevices&quot; &quot;package:utils&quot;     &quot;package:datasets&quot; </span>
-<span class="co"># &quot;package:methods&quot;   &quot;package:base&quot;  </span>
+<p>在一个新的 R 会话中使用 <code>search()</code> 可以查看默认加载的包。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">search</span>()
+<span class="co">#&gt; [1] &quot;.GlobalEnv&quot;        &quot;package:stats&quot;    </span>
+<span class="co">#&gt; [3] &quot;package:graphics&quot;  &quot;package:grDevices&quot;</span>
+<span class="co">#&gt; [5] &quot;package:utils&quot;     &quot;package:datasets&quot; </span>
+<span class="co">#&gt; [7] &quot;package:methods&quot;   &quot;Autoloads&quot;        </span>
+<span class="co">#&gt; [9] &quot;package:base&quot;</span></code></pre>
+<p>以下提供的函数能够列出包中的函数和对象。</p>
+<pre class="sourceCode r"><code class="sourceCode r">showPackageContents &lt;-<span class="st"> </span><span class="cf">function</span> (packageName) {
 
-<span class="co"># Others that are useful:</span>
-<span class="co"># gplots</span>
-<span class="co"># ggplot2, reshape, plyr</span>
-
-showPackageContents &lt;-<span class="st"> </span><span class="cf">function</span> (packageName) {
-
-    <span class="co"># Get a list of things contained in a particular package</span>
+    <span class="co"># 获取特定包所有内容的列表</span>
     funlist &lt;-<span class="st"> </span><span class="kw">objects</span>(packageName)
 
-    <span class="co"># Remove things that don&#39;t start with a letter</span>
+    <span class="co"># 移除不以字母开头的东西</span>
     idx &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&#39;^[a-zA-Z][a-zA-Z0-9._]*&#39;</span>, funlist)
     funlist &lt;-<span class="st"> </span>funlist[idx]
 
-    <span class="co"># Remove things that contain arrow &lt;-</span>
+    <span class="co"># 移除包含箭头 &lt;- 的东西</span>
     idx &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&#39;&lt;-&#39;</span>, funlist)
     <span class="cf">if</span> (<span class="kw">length</span>(idx)<span class="op">!=</span><span class="dv">0</span>)
         funlist &lt;-<span class="st"> </span>funlist[<span class="op">-</span>idx]
 
-    <span class="co"># Make a data frame to keep track of status</span>
+    <span class="co"># 创建一个数据框保存数据</span>
     objectlist &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span>funlist,
                              <span class="dt">primitive=</span><span class="ot">FALSE</span>,
                              <span class="dt">func=</span><span class="ot">FALSE</span>,
@@ -543,7 +555,7 @@ showPackageContents &lt;-<span class="st"> </span><span class="cf">function</spa
                 objectlist<span class="op">$</span>object[i] &lt;-<span class="st"> </span><span class="ot">TRUE</span>
             }
             
-            <span class="co"># I think these are generally constants</span>
+            <span class="co"># 我认为这些基本是常量</span>
             <span class="cf">if</span> (<span class="kw">is.vector</span>(obj)) {
                 objectlist<span class="op">$</span>constant[i] &lt;-<span class="st"> </span><span class="ot">TRUE</span>
             }
@@ -573,10 +585,25 @@ showPackageContents &lt;-<span class="st"> </span><span class="cf">function</spa
     <span class="kw">cat</span>(<span class="st">&quot;Objects: </span><span class="ch">\n</span><span class="st">&quot;</span>)
     <span class="kw">cat</span>(objectlist<span class="op">$</span>name[objectlist<span class="op">$</span>object])
     <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-}
-
-<span class="co"># Run the function using base package</span>
-<span class="kw">showPackageContents</span>(<span class="st">&quot;package:base&quot;</span>)</code></pre>
+}</code></pre>
+<p>以 <strong>base</strong> 包作为示例测试：</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">showPackageContents</span>(<span class="st">&quot;package:base&quot;</span>)
+<span class="co">#&gt; package:base</span>
+<span class="co">#&gt; ================================================</span>
+<span class="co">#&gt; Primitive functions: </span>
+<span class="co">#&gt; abs acos acosh all any anyNA Arg as.call as.character as.complex as.double as.environment as.integer as.logical as.numeric as.raw asin asinh atan atanh attr attributes baseenv break browser call ceiling class Conj cos cosh cospi cummax cummin cumprod cumsum digamma dim dimnames emptyenv enc2native enc2utf8 exp expm1 expression floor for forceAndCall function gamma gc.time globalenv if Im interactive invisible is.array is.atomic is.call is.character is.complex is.double is.environment is.expression is.finite is.function is.infinite is.integer is.language is.list is.logical is.matrix is.na is.name is.nan is.null is.numeric is.object is.pairlist is.raw is.recursive is.single is.symbol isS4 lazyLoadDBfetch length lgamma list log log10 log1p log2 max min missing Mod names nargs next nzchar oldClass on.exit pos.to.env proc.time prod quote range Re rep repeat retracemem return round seq_along seq_len seq.int sign signif sin sinh sinpi sqrt standardGeneric substitute sum switch tan tanh tanpi tracemem trigamma trunc unclass untracemem UseMethod while xtfrm</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ================================================</span>
+<span class="co">#&gt; Non-primitive functions: </span>
+<span class="co">#&gt; abbreviate addNA addTaskCallback agrep agrepl alist all.equal all.equal.character all.equal.default all.equal.environment all.equal.envRefClass all.equal.factor all.equal.formula all.equal.language all.equal.list all.equal.numeric all.equal.POSIXt all.equal.raw all.names all.vars allowInterrupts anyDuplicated anyDuplicated.array anyDuplicated.data.frame anyDuplicated.default anyDuplicated.matrix anyNA.numeric_version anyNA.POSIXlt aperm aperm.default aperm.table append apply args array arrayInd as.array as.array.default as.character.condition as.character.Date as.character.default as.character.error as.character.factor as.character.hexmode as.character.numeric_version as.character.octmode as.character.POSIXt as.character.srcref as.data.frame as.data.frame.array as.data.frame.AsIs as.data.frame.character as.data.frame.complex as.data.frame.data.frame as.data.frame.Date as.data.frame.default as.data.frame.difftime as.data.frame.factor as.data.frame.integer as.data.frame.list as.data.frame.logical as.data.frame.matrix as.data.frame.model.matrix as.data.frame.noquote as.data.frame.numeric as.data.frame.numeric_version as.data.frame.ordered as.data.frame.POSIXct as.data.frame.POSIXlt as.data.frame.raw as.data.frame.table as.data.frame.ts as.data.frame.vector as.Date as.Date.character as.Date.default as.Date.factor as.Date.numeric as.Date.POSIXct as.Date.POSIXlt as.difftime as.double.difftime as.double.POSIXlt as.expression as.expression.default as.factor as.function as.function.default as.hexmode as.list as.list.data.frame as.list.Date as.list.default as.list.environment as.list.factor as.list.function as.list.numeric_version as.list.POSIXct as.list.POSIXlt as.logical.factor as.matrix as.matrix.data.frame as.matrix.default as.matrix.noquote as.matrix.POSIXlt as.name as.null as.null.default as.numeric_version as.octmode as.ordered as.package_version as.pairlist as.POSIXct as.POSIXct.Date as.POSIXct.default as.POSIXct.numeric as.POSIXct.POSIXlt as.POSIXlt as.POSIXlt.character as.POSIXlt.Date as.POSIXlt.default as.POSIXlt.factor as.POSIXlt.numeric as.POSIXlt.POSIXct as.qr as.single as.single.default as.symbol as.table as.table.default as.vector as.vector.factor asNamespace asplit asS3 asS4 assign atan2 attach attachNamespace attr.all.equal autoload autoloader backsolve basename besselI besselJ besselK besselY beta bindingIsActive bindingIsLocked bindtextdomain bitwAnd bitwNot bitwOr bitwShiftL bitwShiftR bitwXor body bquote browserCondition browserSetDebug browserText builtins by by.data.frame by.default bzfile c.Date c.difftime c.noquote c.numeric_version c.POSIXct c.POSIXlt c.warnings callCC capabilities casefold cat cbind cbind.data.frame char.expand character charmatch charToRaw chartr check_tzones chkDots chol chol.default chol2inv choose clearPushBack close close.connection close.srcfile close.srcfilealias closeAllConnections col colMeans colnames colSums commandArgs comment complex computeRestarts conditionCall conditionCall.condition conditionMessage conditionMessage.condition conflictRules conflicts contributors crossprod Cstack_info curlGetHeaders cut cut.Date cut.default cut.POSIXt data.class data.frame data.matrix date debug debuggingState debugonce default.stringsAsFactors delayedAssign deparse det detach determinant determinant.matrix dget diag diff diff.Date diff.default diff.difftime diff.POSIXt difftime dim.data.frame dimnames.data.frame dir dir.create dir.exists dirname do.call dontCheck double dput dQuote drop droplevels droplevels.data.frame droplevels.factor dump duplicated duplicated.array duplicated.data.frame duplicated.default duplicated.matrix duplicated.numeric_version duplicated.POSIXlt duplicated.warnings dyn.load dyn.unload dynGet eapply eigen encodeString Encoding endsWith enquote env.profile environment environmentIsLocked environmentName errorCondition eval eval.parent evalq exists expand.grid extSoftVersion factor factorial fifo file file.access file.append file.choose file.copy file.create file.exists file.info file.link file.mode file.mtime file.path file.remove file.rename file.show file.size file.symlink Filter Find find.package findInterval findPackageEnv findRestart flush flush.connection force formals format format.AsIs format.data.frame format.Date format.default format.difftime format.factor format.hexmode format.info format.libraryIQR format.numeric_version format.octmode format.packageInfo format.POSIXct format.POSIXlt format.pval format.summaryDefault formatC formatDL forwardsolve gc gcinfo gctorture gctorture2 get get0 getAllConnections getCallingDLL getCallingDLLe getConnection getDLLRegisteredRoutines getDLLRegisteredRoutines.character getDLLRegisteredRoutines.DLLInfo getElement geterrmessage getExportedValue getHook getLoadedDLLs getNamespace getNamespaceExports getNamespaceImports getNamespaceInfo getNamespaceName getNamespaceUsers getNamespaceVersion getNativeSymbolInfo getOption getRversion getSrcLines getTaskCallbackNames gettext gettextf getwd gl gregexpr grep grepl grepRaw grouping gsub gzcon gzfile I iconv iconvlist icuGetCollate icuSetCollate identical identity ifelse importIntoEnv inherits integer interaction intersect intToBits intToUtf8 inverse.rle invokeRestart invokeRestartInteractively is.data.frame is.element is.factor is.loaded is.na.data.frame is.na.numeric_version is.na.POSIXlt is.numeric_version is.numeric.Date is.numeric.difftime is.numeric.POSIXt is.ordered is.package_version is.primitive is.qr is.R is.table is.unsorted is.vector isatty isBaseNamespace isdebugged isFALSE isIncomplete isNamespace isNamespaceLoaded ISOdate ISOdatetime isOpen isRestart isSeekable isSymmetric isSymmetric.matrix isTRUE jitter julian julian.Date julian.POSIXt kappa kappa.default kappa.lm kappa.qr kronecker l10n_info La_library La_version La.svd labels.default lapply lazyLoad lazyLoadDBexec lbeta lchoose length.POSIXlt lengths levels levels.default lfactorial libcurlVersion library library.dynam library.dynam.unload licence license list.dirs list.files list2env load loadedNamespaces loadingNamespaceInfo loadNamespace local lockBinding lockEnvironment logb logical lower.tri ls make.names make.unique makeActiveBinding Map mapply margin.table mat.or.vec match match.arg match.call match.fun Math.data.frame Math.Date Math.difftime Math.factor Math.POSIXt matrix max.col mean mean.Date mean.default mean.difftime mean.POSIXct mean.POSIXlt mem.limits mem.maxNSize mem.maxVSize memCompress memDecompress memory.profile merge merge.data.frame merge.default message mget mode months months.Date months.POSIXt names.POSIXlt namespaceExport namespaceImport namespaceImportClasses namespaceImportFrom namespaceImportMethods nchar ncol NCOL Negate new.env NextMethod ngettext nlevels noquote norm normalizePath nrow NROW nullfile numeric numeric_version objects OlsonNames open open.connection open.srcfile open.srcfilealias open.srcfilecopy Ops.data.frame Ops.Date Ops.difftime Ops.factor Ops.numeric_version Ops.ordered Ops.POSIXt options order ordered outer package_version packageEvent packageHasNamespace packageNotFoundError packageStartupMessage packBits pairlist parent.env parent.frame parse parseNamespaceFile paste paste0 path.expand path.package pcre_config pipe pmatch pmax pmax.int pmin pmin.int polyroot Position pretty pretty.default prettyNum print print.AsIs print.by print.condition print.connection print.data.frame print.Date print.default print.difftime print.Dlist print.DLLInfo print.DLLInfoList print.DLLRegisteredRoutines print.eigen print.factor print.function print.hexmode print.libraryIQR print.listof print.NativeRoutineList print.noquote print.numeric_version print.octmode print.packageInfo print.POSIXct print.POSIXlt print.proc_time print.restart print.rle print.simple.list print.srcfile print.srcref print.summary.table print.summary.warnings print.summaryDefault print.table print.warnings prmatrix prop.table provideDimnames psigamma pushBack pushBackLength q qr qr.coef qr.default qr.fitted qr.Q qr.qty qr.qy qr.R qr.resid qr.solve qr.X quarters quarters.Date quarters.POSIXt quit R_system_version R.home R.Version range.default rank rapply raw rawConnection rawConnectionValue rawShift rawToBits rawToChar rbind rbind.data.frame rcond read.dcf readBin readChar readline readLines readRDS readRenviron Recall Reduce reg.finalizer regexec regexpr registerS3method registerS3methods regmatches remove removeTaskCallback rep_len rep.Date rep.factor rep.int rep.numeric_version rep.POSIXct rep.POSIXlt replace replicate require requireNamespace restartDescription restartFormals returnValue rev rev.default rle rm RNGkind RNGversion round.Date round.POSIXt row row.names row.names.data.frame row.names.default rowMeans rownames rowsum rowsum.data.frame rowsum.default rowSums sample sample.int sapply save save.image saveRDS scale scale.default scan search searchpaths seek seek.connection seq seq.Date seq.default seq.POSIXt sequence serialize set.seed setdiff setequal setHook setNamespaceInfo setSessionTimeLimit setTimeLimit setwd showConnections shQuote signalCondition simpleCondition simpleError simpleMessage simpleWarning simplify2array single sink sink.number slice.index socketConnection socketSelect solve solve.default solve.qr sort sort.default sort.int sort.list sort.POSIXlt source split split.data.frame split.Date split.default split.POSIXct sprintf sQuote srcfile srcfilealias srcfilecopy srcref startsWith stderr stdin stdout stop stopifnot storage.mode str2expression str2lang strftime strptime strrep strsplit strtoi strtrim structure strwrap sub subset subset.data.frame subset.default subset.matrix substr substring summary summary.connection summary.data.frame Summary.data.frame summary.Date Summary.Date summary.default Summary.difftime summary.factor Summary.factor summary.matrix Summary.numeric_version Summary.ordered summary.POSIXct Summary.POSIXct summary.POSIXlt Summary.POSIXlt summary.proc_time summary.srcfile summary.srcref summary.table summary.warnings suppressMessages suppressPackageStartupMessages suppressWarnings suspendInterrupts svd sweep sys.call sys.calls Sys.chmod Sys.Date sys.frame sys.frames sys.function Sys.getenv Sys.getlocale Sys.getpid Sys.glob Sys.info sys.load.image Sys.localeconv sys.nframe sys.on.exit sys.parent sys.parents Sys.readlink sys.save.image Sys.setenv Sys.setFileTime Sys.setlocale Sys.sleep sys.source sys.status Sys.time Sys.timezone Sys.umask Sys.unsetenv Sys.which system system.file system.time system2 t.data.frame t.default table tabulate tapply taskCallbackManager tcrossprod tempdir tempfile textConnection textConnectionValue tolower topenv toString toString.default toupper trace traceback tracingState transform transform.data.frame transform.default trimws trunc.Date trunc.POSIXt truncate truncate.connection try tryCatch typeof undebug union unique unique.array unique.data.frame unique.default unique.matrix unique.numeric_version unique.POSIXlt unique.warnings units units.difftime unix.time unlink unlist unloadNamespace unlockBinding unname unserialize unsplit untrace unz upper.tri url utf8ToInt validEnc validUTF8 vapply vector Vectorize warning warningCondition warnings weekdays weekdays.Date weekdays.POSIXt which which.max which.min with with.default withAutoprint withCallingHandlers within within.data.frame within.list withRestarts withVisible write write.dcf writeBin writeChar writeLines xor xpdrows.data.frame xtfrm.AsIs xtfrm.Date xtfrm.default xtfrm.difftime xtfrm.factor xtfrm.numeric_version xtfrm.POSIXct xtfrm.POSIXlt xzfile zapsmall</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ================================================</span>
+<span class="co">#&gt; Constants: </span>
+<span class="co">#&gt; c F labels letters LETTERS month.abb month.name pi R.version.string t T</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ================================================</span>
+<span class="co">#&gt; Objects: </span>
+<span class="co">#&gt; kronecker R.version version</span></code></pre>
 
 </div>
 </div>

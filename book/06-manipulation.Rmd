@@ -2094,4 +2094,8 @@ fillNAgaps(y)
 
 #### 注释
 
-改编自来自于 **zoo** 包的 `na.locf()` 函数
+改编自来自于 **zoo** 包的 `na.locf()` 函数。
+
+```{r, include=FALSE}
+detachAllPackages()
+```

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 3 章 字符串 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 3 章 字符串 | Cookbook for R 中文版本">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="第 3 章 字符串 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 3 章 字符串 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -22,15 +21,15 @@
   <meta name="twitter:description" content="第 3 章 字符串 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）">
-<meta name="author" content="王诗翔 等（译）">
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-05-06">
+<meta name="date" content="2019-06-01" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="section-2.html">
@@ -134,12 +133,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
 <li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
-<li class="chapter" data-level="" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i>安装和使用 R 包</a></li>
-<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 数据结构的索引</a></li>
-<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 获取数据结构的子集</a></li>
-<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 创建填满值的向量</a></li>
-<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 变量信息</a></li>
-<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.5</b> NULL，NA，NaN 的处理</a></li>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 数字</a><ul>
 <li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
@@ -149,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 字符串</a><ul>
-<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep,sub,gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
 <li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 公式</a><ul>
@@ -157,18 +156,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
-<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#-r"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
-<li class="chapter" data-level="5.3" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
-<li class="chapter" data-level="5.4" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
-<li class="chapter" data-level="5.5" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="section-5.html"><a href="section-5.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="section-5.html"><a href="section-5.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="section-5.html"><a href="section-5.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
 <li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
 <li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
 <li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
-<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#na-"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
 <li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
 <li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
 <li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
@@ -181,12 +180,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
 <li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
 <li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
-<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 总结数据</a></li>
+<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
 <li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
 <li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
 <li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
 <li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
-<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#-na--na"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
 <li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
@@ -221,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 脚本与函数</a><ul>
 <li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 创建和运行一个脚本</a></li>
 <li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 调试脚本或函数</a></li>
-<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量经过的时间</a></li>
+<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量运行的时间</a></li>
 <li class="chapter" data-level="9.4" data-path="section-9.html"><a href="section-9.html#section-9.4"><i class="fa fa-check"></i><b>9.4</b> 获取包中的函数和对象列表</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 工具</a><ul>
@@ -231,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
 <li class="chapter" data-level="A.1" data-path="03-strings.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
 <li class="chapter" data-level="A.2" data-path="03-strings.html"><a href="#section-A.2"><i class="fa fa-check"></i><b>A.2</b> 网站</a></li>
-<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-1"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
+<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-2"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -257,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="section-3" class="section level1">
 <h1><span class="header-section-number">第 3 章</span> 字符串</h1>
 <div id="-grepsubgsub-" class="section level2">
-<h2><span class="header-section-number">3.1</span> 使用 grep,sub,gsub 进行搜索和替换</h2>
+<h2><span class="header-section-number">3.1</span> 使用 grep、sub、gsub 进行搜索和替换</h2>
 <div id="-11" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> 问题</h3>
 <p>你想要搜索或替换字符串中特定的文本。</p>
@@ -269,28 +268,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.1.2.1</span> 文本搜索</h4>
 <p><code>grep()</code> 和 <code>grepl()</code> 函数输入的第一个参数都是带有正则表达式的字符串或者固定的字符串（需要设定选项 <code>fixed=TRUE</code> ），它们的不同之处是前者返回匹配的索引或值向量，而后者返回一个逻辑向量。</p>
 <p>下面通过简单的例子理解它们的用法和区别：从小写字母向量中搜索 <code>c</code>。</p>
-<pre><code>&gt; grep(&quot;c&quot;, letters)
-[1] 3
-&gt; grepl(&quot;c&quot;, letters)
- [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[19] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;c&quot;</span>, letters)
+<span class="co">#&gt; [1] 3</span>
+<span class="kw">grepl</span>(<span class="st">&quot;c&quot;</span>, letters)
+<span class="co">#&gt;  [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</span>
+<span class="co">#&gt;  [9] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
+<span class="co">#&gt; [17] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
+<span class="co">#&gt; [25] FALSE FALSE</span></code></pre>
 <p><code>grep()</code> 函数设定选项 <code>value=TRUE</code> 可以返回匹配的值。</p>
-<pre><code>&gt; grep(&quot;c&quot;, letters, value = TRUE)
-[1] &quot;c&quot;
-&gt; grep(&quot;c&quot;, c(&quot;dog&quot;, &quot;cat&quot;), value = TRUE)
-[1] &quot;cat&quot;</code></pre>
+<pre><code>grep(&quot;c&quot;, letters, value = TRUE)
+grep(&quot;c&quot;, c(&quot;dog&quot;, &quot;cat&quot;), value = TRUE)</code></pre>
 <p>正则表达式提供了一种表达字符模式的强大方式（详情查看 <code>?regex</code>），我们可以将它应用于文本的搜索中。例如，我们想搜索字符向量中有4个数字连续出现的字符：</p>
-<pre><code>&gt; grep(&quot;\\d{4}&quot;, c(&quot;This will not match&quot;, &quot;2018-04-11, This will match&quot;))
-[1] 2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{4}&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;This will not match&quot;</span>, <span class="st">&quot;2018-04-11, This will match&quot;</span>))
+<span class="co">#&gt; [1] 2</span></code></pre>
 </div>
 <div id="section-3.1.2.2" class="section level4">
 <h4><span class="header-section-number">3.1.2.2</span> 文本替换</h4>
 <p>大部分情况下我们不仅仅想搜索到文本，而且还想要在搜索的基础上进行替换，这可以通过 <code>sub()</code> 和 <code>gsub()</code> 函数实现。这两个函数参数是一样的，第一个参数是搜索模式，第二个参数是替换模式，第三个参数是要操作的字符向量。两个函数的区别是前者只会替换字符串中第一个匹配的模式，而 <code>gsub()</code>（ <code>g</code> 是 <code>global</code> 的缩写）会替换字符串中所有匹配模式。</p>
 <p>例如，我们想要将字符向量中的年份全部替换为 2019。</p>
-<pre><code>&gt; sub(pattern = &quot;\\d{4}&quot;,replacement = &quot;2019&quot;, x = c(&quot;This will not match&quot;, &quot;2018-04-11, 2017-04-11&quot;, &quot;2018-04-12&quot;))
-[1] &quot;This will not match&quot;    &quot;2019-04-11, 2017-04-11&quot; &quot;2019-04-12&quot;            
-&gt; gsub(pattern = &quot;\\d{4}&quot;,replacement = &quot;2019&quot;, x = c(&quot;This will not match&quot;, &quot;2018-04-11, 2017-04-11&quot;, &quot;2018-04-12&quot;))
-[1] &quot;This will not match&quot;    &quot;2019-04-11, 2019-04-11&quot; &quot;2019-04-12&quot;   </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sub</span>(<span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{4}&quot;</span>,<span class="dt">replacement =</span> <span class="st">&quot;2019&quot;</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;This will not match&quot;</span>, <span class="st">&quot;2018-04-11, 2017-04-11&quot;</span>, <span class="st">&quot;2018-04-12&quot;</span>))
+<span class="co">#&gt; [1] &quot;This will not match&quot;    &quot;2019-04-11, 2017-04-11&quot;</span>
+<span class="co">#&gt; [3] &quot;2019-04-12&quot;</span>
+          
+<span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{4}&quot;</span>,<span class="dt">replacement =</span> <span class="st">&quot;2019&quot;</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;This will not match&quot;</span>, <span class="st">&quot;2018-04-11, 2017-04-11&quot;</span>, <span class="st">&quot;2018-04-12&quot;</span>))
+<span class="co">#&gt; [1] &quot;This will not match&quot;    &quot;2019-04-11, 2019-04-11&quot;</span>
+<span class="co">#&gt; [3] &quot;2019-04-12&quot;</span></code></pre>
 <p>要操作的对象第二个元素包含2个可以匹配的模式，使用 <code>sub()</code> 只会将第一个替换为 2019，而使用 <code>gsub()</code> 会将所有能够匹配的模式都替换为 2019。</p>
 </div>
 </div>
@@ -309,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> &quot;apple&quot;</span>
 b &lt;-<span class="st"> &quot;banana&quot;</span>
 
-<span class="co"># 将a,b变量内容连到一起，并用空格隔开</span>
+<span class="co"># 将a、b变量内容连到一起，并用空格隔开</span>
 <span class="kw">paste</span>(a, b)
 <span class="co">#&gt; [1] &quot;apple banana&quot;</span>
 
@@ -323,7 +325,6 @@ b &lt;-<span class="st"> &quot;banana&quot;</span>
 <span class="kw">paste</span>(a, b, <span class="dt">sep=</span><span class="st">&quot;, &quot;</span>)
 <span class="co">#&gt; [1] &quot;apple, banana&quot;</span>
 
-
 <span class="co"># 设定一个字符向量</span>
 d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fig&quot;</span>, <span class="st">&quot;grapefruit&quot;</span>, <span class="st">&quot;honeydew&quot;</span>)
 
@@ -334,7 +335,8 @@ d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot
 <span class="co"># 如果输入是一个标量和一个向量， 结果会将标量与向量里每个元素放到一起</span>
 <span class="co"># 并返回一个向量（译者注：R向量化操作的循环对齐原则）：</span>
 <span class="kw">paste</span>(a, d)
-<span class="co">#&gt; [1] &quot;apple fig&quot;        &quot;apple grapefruit&quot; &quot;apple honeydew&quot;</span>
+<span class="co">#&gt; [1] &quot;apple fig&quot;        &quot;apple grapefruit&quot;</span>
+<span class="co">#&gt; [3] &quot;apple honeydew&quot;</span>
 
 <span class="co"># 使用 sep 和 collapse 参数:</span>
 <span class="kw">paste</span>(a, d, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>, <span class="dt">collapse=</span><span class="st">&quot;, &quot;</span>)
@@ -368,11 +370,11 @@ d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot
 <span class="kw">sprintf</span>(<span class="st">&quot;%+f&quot;</span>, pi)        <span class="co"># &quot;+3.141593&quot;</span>
 <span class="kw">sprintf</span>(<span class="st">&quot;% f&quot;</span>, pi)        <span class="co"># &quot; 3.141593&quot;</span>
 <span class="kw">sprintf</span>(<span class="st">&quot;%-10f&quot;</span>, pi)      <span class="co"># &quot;3.141593  &quot;   (左对齐)</span>
-<span class="kw">sprintf</span>(<span class="st">&quot;%e&quot;</span>, pi)         <span class="co">#&quot;3.141593e+00&quot;</span>
+<span class="kw">sprintf</span>(<span class="st">&quot;%e&quot;</span>, pi)         <span class="co"># &quot;3.141593e+00&quot;</span>
 <span class="kw">sprintf</span>(<span class="st">&quot;%E&quot;</span>, pi)         <span class="co"># &quot;3.141593E+00&quot;</span>
 <span class="kw">sprintf</span>(<span class="st">&quot;%g&quot;</span>, pi)         <span class="co"># &quot;3.14159&quot;</span>
 <span class="kw">sprintf</span>(<span class="st">&quot;%g&quot;</span>,   <span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>pi) <span class="co"># &quot;3.14159e+06&quot;  (指数化)</span>
-<span class="kw">sprintf</span>(<span class="st">&quot;%.9g&quot;</span>, <span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>pi) <span class="co"># &quot;3141592.65&quot;   (&quot;修正&quot;)</span>
+<span class="kw">sprintf</span>(<span class="st">&quot;%.9g&quot;</span>, <span class="fl">1e6</span> <span class="op">*</span><span class="st"> </span>pi) <span class="co"># &quot;3141592.65&quot;   (固定)</span>
 <span class="kw">sprintf</span>(<span class="st">&quot;%G&quot;</span>, <span class="fl">1e-6</span> <span class="op">*</span><span class="st"> </span>pi)  <span class="co"># &quot;3.14159E-06&quot;</span></code></pre>
 <p>在 <code>%m.nf</code> 格式规范中：<code>m</code> 代表域宽，它是输出字符串中字符的最小位数，可以以空格或 0 开头。<code>n</code> 代表精度，它指小数点后的数字位数。</p>
 <p>其他混合操作：</p>
@@ -386,7 +388,7 @@ d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot
 </div>
 <div id="-3" class="section level4">
 <h4><span class="header-section-number">3.2.2.3</span> 注意</h4>
-<p>关于更多脚本输出的信息可以查看<a href="http://www.cookbook-r.com/Data_input_and_output/Writing_text_and_output_from_analyses_to_a_file">this page</a>。</p>
+<p>关于更多脚本输出的信息可以查看<a href="section-5.html#r-output-analysis">用 R 写入文本，分析输出到文件</a>。</p>
 
 </div>
 </div>

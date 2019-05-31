@@ -3045,3 +3045,8 @@ plotcorr(ctab, col=rgb(colorfun((ctab+1)/2), maxColorValue=255),
 ### 提示
 
 有关生成关联表（数字）的更多信息，参看[../../Statistical analysis/Regression and correlation](http://www.cookbook-r.com/Statistical_analysis/Regression_and_correlation)。
+
+
+```{r, include=FALSE}
+detachAllPackages()
+```

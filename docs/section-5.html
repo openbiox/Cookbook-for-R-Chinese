@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 5 章 数据的导入与导出 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 5 章 数据的导入与导出 | Cookbook for R 中文版本">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="第 5 章 数据的导入与导出 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 5 章 数据的导入与导出 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -22,15 +21,15 @@
   <meta name="twitter:description" content="第 5 章 数据的导入与导出 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）">
-<meta name="author" content="王诗翔 等（译）">
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-05-06">
+<meta name="date" content="2019-06-01" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="section-4.html">
@@ -134,12 +133,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
 <li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
-<li class="chapter" data-level="" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i>安装和使用 R 包</a></li>
-<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 数据结构的索引</a></li>
-<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 获取数据结构的子集</a></li>
-<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 创建填满值的向量</a></li>
-<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 变量信息</a></li>
-<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.5</b> NULL，NA，NaN 的处理</a></li>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 数字</a><ul>
 <li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
@@ -149,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 字符串</a><ul>
-<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep,sub,gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
 <li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 公式</a><ul>
@@ -157,18 +156,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
-<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#-r"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
-<li class="chapter" data-level="5.3" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
-<li class="chapter" data-level="5.4" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
-<li class="chapter" data-level="5.5" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="section-5.html"><a href="section-5.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="section-5.html"><a href="section-5.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="section-5.html"><a href="section-5.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
 <li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
 <li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
 <li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
-<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#na-"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
 <li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
 <li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
 <li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
@@ -181,12 +180,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
 <li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
 <li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
-<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 总结数据</a></li>
+<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
 <li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
 <li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
 <li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
 <li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
-<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#-na--na"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
 <li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
@@ -221,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 脚本与函数</a><ul>
 <li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 创建和运行一个脚本</a></li>
 <li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 调试脚本或函数</a></li>
-<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量经过的时间</a></li>
+<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量运行的时间</a></li>
 <li class="chapter" data-level="9.4" data-path="section-9.html"><a href="section-9.html#section-9.4"><i class="fa fa-check"></i><b>9.4</b> 获取包中的函数和对象列表</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 工具</a><ul>
@@ -231,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
 <li class="chapter" data-level="A.1" data-path="05-io.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
 <li class="chapter" data-level="A.2" data-path="05-io.html"><a href="#section-A.2"><i class="fa fa-check"></i><b>A.2</b> 网站</a></li>
-<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-1"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
+<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-2"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -256,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="section-5" class="section level1">
 <h1><span class="header-section-number">第 5 章</span> 数据的导入与导出</h1>
-<div id="r" class="section level2">
+<div id="r-import-data-from-file" class="section level2">
 <h2><span class="header-section-number">5.1</span> R载入文件中的数据</h2>
 <div id="-15" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> 问题</h3>
@@ -301,41 +300,45 @@ data[stringcols] &lt;-<span class="st"> </span><span class="kw">lapply</span>(da
 </div>
 <div id="section-5.1.2.4" class="section level4">
 <h4><span class="header-section-number">5.1.2.4</span> 从网上导入文件</h4>
-<p>也可以从 URL 加载数据。这些(很长的) URL 可以加载相关文件。</p>
-<pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv&quot;</span>)
+<p>也可以从 URL 加载数据。下面这些(很长的) URL 可以加载相关文件。</p>
+<pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(
+  <span class="st">&quot;http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv&quot;</span>
+  )
 
 
 <span class="co"># 读取没有表头的 CSV 文件</span>
-data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)
+data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(
+  <span class="st">&quot;http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv&quot;</span>, 
+  <span class="dt">header=</span><span class="ot">FALSE</span>)
 
 <span class="co"># 手动添加表头</span>
 <span class="kw">names</span>(data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;First&quot;</span>,<span class="st">&quot;Last&quot;</span>,<span class="st">&quot;Sex&quot;</span>,<span class="st">&quot;Number&quot;</span>)</code></pre>
 <p>上述所使用的数据文件：</p>
 <p><a href="http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv">datafile.csv</a>：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;First&quot;</span>,<span class="st">&quot;Last&quot;</span>,<span class="st">&quot;Sex&quot;</span>,<span class="st">&quot;Number&quot;</span>
-<span class="st">&quot;Currer&quot;</span>,<span class="st">&quot;Bell&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="dv">2</span>
-<span class="st">&quot;Dr.&quot;</span>,<span class="st">&quot;Seuss&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="dv">49</span>
-<span class="st">&quot;&quot;</span>,<span class="st">&quot;Student&quot;</span>,<span class="ot">NA</span>,<span class="dv">21</span></code></pre>
+<pre><code>&quot;First&quot;,&quot;Last&quot;,&quot;Sex&quot;,&quot;Number&quot;
+&quot;Currer&quot;,&quot;Bell&quot;,&quot;F&quot;,2
+&quot;Dr.&quot;,&quot;Seuss&quot;,&quot;M&quot;,49
+&quot;&quot;,&quot;Student&quot;,NA,21</code></pre>
 <p><a href="http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv">datafile-noheader.csv</a>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Currer&quot;</span>,<span class="st">&quot;Bell&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="dv">2</span>
-<span class="st">&quot;Dr.&quot;</span>,<span class="st">&quot;Seuss&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="dv">49</span>
-<span class="st">&quot;&quot;</span>,<span class="st">&quot;Student&quot;</span>,<span class="ot">NA</span>,<span class="dv">21</span></code></pre>
+<pre><code>&quot;Currer&quot;,&quot;Bell&quot;,&quot;F&quot;,2
+&quot;Dr.&quot;,&quot;Seuss&quot;,&quot;M&quot;,49
+&quot;&quot;,&quot;Student&quot;,NA,21</code></pre>
 </div>
 <div id="section-5.1.2.5" class="section level4">
 <h4><span class="header-section-number">5.1.2.5</span> 定宽文本文件</h4>
-<p>假如你的数据列宽固定，如下例：</p>
-<pre class="sourceCode r"><code class="sourceCode r">  First     Last  Sex Number
- Currer     Bell    F      <span class="dv">2</span>
-    Dr.    Seuss    M     <span class="dv">49</span>
-    <span class="st">&quot;&quot;</span>   Student   <span class="ot">NA</span>     <span class="dv">21</span></code></pre>
+<p>假如你的数据列宽固定，如下：</p>
+<pre><code>  First     Last  Sex Number
+ Currer     Bell    F      2
+    Dr.    Seuss    M     49
+    &quot;&quot;   Student   NA     21</code></pre>
 <p>读取这种数据的一种方式是简单地使用 <code>read.table()</code> 函数 <code>strip.white=TRUE</code> ，可以清除额外的空格。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.table</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">strip.white=</span><span class="ot">TRUE</span>)</code></pre>
 <p>然而，数据文件里的某些列可能含有空格，也可能不包含空格。比如说下面的数据里，<code>scores</code> 列表示六个不同的测量值，每一个从 0 到 3 。</p>
-<pre class="sourceCode r"><code class="sourceCode r">subject  sex  scores
-   N  <span class="dv">1</span>    M  <span class="dv">113311</span>
-   NE <span class="dv">2</span>    F  <span class="dv">112231</span>
-   S  <span class="dv">3</span>    F  <span class="dv">111221</span>
-   W  <span class="dv">4</span>    M  <span class="dv">011002</span></code></pre>
+<pre><code>subject  sex  scores
+   N  1    M  113311
+   NE 2    F  112231
+   S  3    F  111221
+   W  4    M  011002</code></pre>
 <p>这种情况，你可能需要使用 <code>read.fwf()</code> 函数。如果你读的列名来自于文件，按照要求它们需要用分隔符（如：制表位，空格，逗号）分开。如果它们之间是通过多个空格来隔开的（如下例），你需要直接指定列的名称。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 指定列的名称</span>
 <span class="kw">read.fwf</span>(<span class="st">&quot;myfile.txt&quot;</span>,
@@ -363,21 +366,21 @@ data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class=
 </div>
 <div id="excel-" class="section level4">
 <h4><span class="header-section-number">5.1.2.6</span> Excel 文件</h4>
-<p><code>gdata</code> 包里的 <code>read.xls</code> 函数可以读取 Excel 文件。</p>
+<p><code>gdata</code> 包里的 <code>read.xls()</code> 函数可以读取 Excel 文件。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gdata)
 data &lt;-<span class="st"> </span><span class="kw">read.xls</span>(<span class="st">&quot;data.xls&quot;</span>)</code></pre>
-<p><code>gdata</code> 包，见 <a href="http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets" class="uri">http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets</a>.</p>
-<p>包的安装，见 <a href="http://www.jianshu.com/p/51d9a18117ee">Basics-安装和使用R包</a></p>
+<p><strong>gdata</strong> 包使用说明见 <a href="http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets" class="uri">http://cran.r-project.org/doc/manuals/R-data.html#Reading-Excel-spreadsheets</a>。</p>
+<p>包的安装，见<a href="chapter1.html#r-pkg-installation">安装和使用R包</a>。</p>
 </div>
 <div id="spss-" class="section level4">
 <h4><span class="header-section-number">5.1.2.7</span> SPSS 数据</h4>
-<p><code>foreign</code> 包里的 <code>read.spss</code> 函数可以读取 SPSS 文件。</p>
+<p><strong>foreign</strong> 包里的 <code>read.spss()</code> 函数可以读取 SPSS 文件。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign)
 data &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;data.sav&quot;</span>, <span class="dt">to.data.frame=</span><span class="ot">TRUE</span>)</code></pre>
 </div>
 </div>
 </div>
-<div id="-r" class="section level2">
+<div id="read-data-from-keyboard" class="section level2">
 <h2><span class="header-section-number">5.2</span> 通过键盘和剪贴板把数据载入并保存到 R</h2>
 <div id="-16" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> 问题</h3>
@@ -388,10 +391,10 @@ data &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class
 <div id="section-5.2.2.1" class="section level4">
 <h4><span class="header-section-number">5.2.2.1</span> 数据输入</h4>
 <p>假如你的数据如下：</p>
-<pre class="sourceCode r"><code class="sourceCode r">size weight cost
-  small      <span class="dv">5</span>    <span class="dv">6</span>
- medium      <span class="dv">8</span>   <span class="dv">10</span>
-  large     <span class="dv">11</span>    <span class="dv">9</span></code></pre>
+<pre><code>size weight cost
+  small      5    6
+ medium      8   10
+  large     11    9</code></pre>
 <div id="section-5.2.2.1.1" class="section level5">
 <h5><span class="header-section-number">5.2.2.1.1</span> 通过键盘输入或从剪贴板载入数据</h5>
 <p>从键盘上输入的方法之一是从标准输入读取（ <code>stdin()</code> ）。</p>
@@ -419,7 +422,7 @@ data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span clas
 <span class="st">   large     11    9</span>
 <span class="st"> &#39;</span>)</code></pre>
 <p>不同的数据格式(如：以逗号分隔，没有表头，等等)，选择 <code>read.table()</code> 可以设置。</p>
-<p>见 <a href="http://www.jianshu.com/p/2a3f55ef4188">Data input and output-R载入文件中的数据</a>查看更多信息。</p>
+<p>阅读<a href="section-5.html#r-import-data-from-file">R载入文件中的数据</a>查看更多信息。</p>
 </div>
 </div>
 <div id="section-5.2.2.2" class="section level4">
@@ -463,7 +466,7 @@ newdata &lt;-<span class="st"> </span><span class="kw">structure</span>(<span cl
 </div>
 </div>
 </div>
-<div id="-r-" class="section level2">
+<div id="run-r-script" class="section level2">
 <h2><span class="header-section-number">5.3</span> 运行 R 脚本</h2>
 <div id="-17" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> 问题</h3>
@@ -481,19 +484,19 @@ newdata &lt;-<span class="st"> </span><span class="kw">structure</span>(<span cl
 
 <span class="co"># 这在脚本中，不会启动任何命令</span>
 x
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
 
 <span class="co"># 使用print()函数:</span>
 <span class="kw">print</span>(x)
-<span class="co">#&gt; [1]  1  2  3  4  5  6  7  8  9 10</span>
-
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
 
 <span class="co"># 更简单的输出: 没有行/列，没有文本</span>
 <span class="kw">cat</span>(x)
-<span class="co">#&gt; 1  2  3  4  5  6  7  8  9 10</span></code></pre>
+<span class="co">#&gt; 1 2 3 4 5 6 7 8 9 10</span></code></pre>
 <p>另一种代替方法是：运行 <code>source()</code> 并加上 <code>print.eval=TRUE</code> 选项。</p>
 </div>
 </div>
-<div id="-r-" class="section level2">
+<div id="r-write-data-into-file" class="section level2">
 <h2><span class="header-section-number">5.4</span> 用 R 把数据写入文件</h2>
 <div id="-18" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> 问题</h3>
@@ -557,11 +560,11 @@ data &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="
 </div>
 </div>
 </div>
-<div id="-r-" class="section level2">
+<div id="r-output-analysis" class="section level2">
 <h2><span class="header-section-number">5.5</span> 用 R 写入文本，分析输出到文件</h2>
 <div id="-19" class="section level3">
 <h3><span class="header-section-number">5.5.1</span> 问题</h3>
-<p>如果你想写出到文件</p>
+<p>如果你想将输出信息写到文件。</p>
 </div>
 <div id="-19" class="section level3">
 <h3><span class="header-section-number">5.5.2</span> 方案</h3>
@@ -591,24 +594,24 @@ y &lt;-<span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv"
 <span class="kw">cat</span>(<span class="st">&quot;Some more stuff here...</span><span class="ch">\n</span><span class="st">&quot;</span>)
 <span class="kw">sink</span>()</code></pre>
 <p>输出文件的内容：</p>
-<pre class="sourceCode r"><code class="sourceCode r">x has <span class="dv">10</span> elements<span class="op">:</span>
-<span class="st"> </span>[<span class="dv">1</span>] <span class="fl">10.585529</span> <span class="fl">10.709466</span>  <span class="fl">9.890697</span>  <span class="fl">9.546503</span> <span class="fl">10.605887</span>  <span class="fl">8.182044</span> <span class="fl">10.630099</span>  <span class="fl">9.723816</span>
- [<span class="dv">9</span>]  <span class="fl">9.715840</span>  <span class="fl">9.080678</span>
-y =<span class="st"> </span><span class="fl">10.88375</span> <span class="fl">12.81731</span> <span class="fl">11.37063</span> <span class="fl">11.52022</span> <span class="fl">10.24947</span> <span class="fl">11.8169</span> <span class="fl">10.11364</span> <span class="fl">10.66842</span> <span class="fl">12.12071</span> <span class="fl">11.29872</span>
-<span class="op">==</span><span class="er">===========================</span>
-T<span class="op">-</span>test between x and y
-<span class="op">==</span><span class="er">===========================</span>
+<pre><code>x has 10 elements:
+ [1] 10.585529 10.709466  9.890697  9.546503 10.605887  8.182044 10.630099  9.723816
+ [9]  9.715840  9.080678
+y = 10.88375 12.81731 11.37063 11.52022 10.24947 11.8169 10.11364 10.66842 12.12071 11.29872
+=============================
+T-test between x and y
+=============================
 
-<span class="st">    </span>Welch Two Sample t<span class="op">-</span>test
+    Welch Two Sample t-test
 
-data<span class="op">:</span><span class="st">  </span>x and y
-t =<span class="st"> </span><span class="fl">-3.8326</span>, df =<span class="st"> </span><span class="fl">17.979</span>, p<span class="op">-</span>value =<span class="st"> </span><span class="fl">0.001222</span>
-alternative hypothesis<span class="op">:</span><span class="st"> </span>true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span>
-<span class="dv">95</span> percent confidence interval<span class="op">:</span>
-<span class="st"> </span><span class="fl">-2.196802</span> <span class="fl">-0.641042</span>
-sample estimates<span class="op">:</span>
+data:  x and y
+t = -3.8326, df = 17.979, p-value = 0.001222
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.196802 -0.641042
+sample estimates:
 mean of x mean of y
- <span class="fl">9.867056</span> <span class="fl">11.285978</span>
+ 9.867056 11.285978
 
 Some more stuff here...</code></pre>
 

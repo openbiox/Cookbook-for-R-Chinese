@@ -110,3 +110,7 @@ deparse(f)
 ```{r}
 environment(f)
 ```
+
+```{r, include=FALSE}
+detachAllPackages()
+```

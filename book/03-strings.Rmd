@@ -153,3 +153,7 @@ sprintf("A single percent sign here %%")
 #### 注意
 
 关于更多脚本输出的信息可以查看[用 R 写入文本，分析输出到文件](#r-output-analysis)。
+
+```{r, include=FALSE}
+detachAllPackages()
+```

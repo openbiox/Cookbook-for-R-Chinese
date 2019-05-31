@@ -1,28 +1,62 @@
 # 脚本与函数
 
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ## 创建和运行一个脚本
 
-计算细菌基因组核心蛋白相似性
+### 问题
 
-- 应用场景：
+你想要创建和运行一个脚本。
 
-细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界/门/纲/目/科/属/种）。
+### 方案
 
-在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。
+R 脚本通常是以 `.R` 为文件拓展名的纯文本文件。因此创建R脚本可以是任意的文本编辑器，R 最佳的集成开发环境是 [RStudio](https://www.rstudio.com/)，它开源并有免费的桌面版本和服务器版本发布，推荐读者下载、安装和使用。
 
-- 简要过程：
+在类 Unix 系统中，除了编辑器，我们还可以使用终端命令。例如，创建一个输出 `Hello world!` 的 R 脚本。
 
-两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。
+```{bash}
+echo 'cat("Hello world!")' > test.R
+```
 
-### 参考文献：
+运行 R 脚本可以在 R 控制台使用 `source()`函数。
 
-[A Proposed Genus Boundary for the Prokaryotes Based on Genomic Insights](https://jb.asm.org/content/196/12/2210)
+```{r}
+source("test.R", print.eval = TRUE)
+```
 
-Qi-Long Qin *et al.*
+也可以在终端中使用 `RScript` 执行。
+
+```{bash}
+RScript test.R
+```
+
+
+
+### 案例：计算细菌基因组核心蛋白相似性
+
+- 应用场景
+
+  细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界/门/纲/目/科/属/种）。
+
+  在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。
+
+- 简要过程
+
+  两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。
+
+- 参考文献
+
+  Qin, Q. L., Xie, B. B., Zhang, X. Y., Chen, X. L., Zhou, B. C., Zhou, J., ... & Zhang, Y. Z. (2014). A proposed genus boundary for the prokaryotes based on genomic insights. Journal of bacteriology, 196(12), 2210-2215.
+
 
 **以下 R 脚本都是在 windows 操作平台上进行的**
 
-```R
+```r
 # 下载所分析的基因组数据（蛋白序列）
 # 存放于 Rawdata 文件夹中
 if (!dir.exists('Rawdata')) {
@@ -169,9 +203,9 @@ dir.create('Database')
 dir.create('Result')
 ```
 
-#### 提示：
+#### 提示
 
-更多关于 POCP 计算的相关 tips，请点击[这里-跳转](https://github.com/2015qyliang/POCP)
+更多关于 POCP 计算的相关技巧，请点击[这里阅读](https://github.com/2015qyliang/POCP)。
 
 ## 调试脚本或函数
 
@@ -183,13 +217,13 @@ dir.create('Result')
 
 将其插入您要开始调试的位置的代码中：
 
-```R
+```r
 browser()
 ```
 
-当 R 解释器到达该行时，它将暂停您的代码，您将能够查看和更改变量。
+当 R 解释器到达该行时，它将暂停你的代码，您将能够查看和更改变量。
 
-在浏览器中，键入这些字母将执行以下操作
+在控制台中，键入这些字母将执行以下操作
 	
 |c  | 继续 |
 | :------------- | :------------- |
@@ -197,54 +231,55 @@ browser()
 | **Q** | **放弃** |
 | **Ctrl-C** | **回到顶级**|
 
-在浏览器中，您可以看到当前范围中的变量。
+在控制台中，你可以看到当前范围中的变量。
 
-```R
+```r
 ls()
 ```
 
 要为函数中的每一行暂停和启动浏览器
 
-```R
+```r
 debug(myfunction)
 myfunction(x)
 ```
-### **有用的选择**
+### 有用的选项
 
-默认情况下，每次在浏览器提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：
+默认情况下，每次在提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：
 
-```R
+```r
 options(browserNLdisabled=TRUE)
 ```
 
 要在抛出错误时开始调试，请在抛出错误的函数之前运行此命令
 
-```R
+```r
 options(error=recover)
 ```
 
-如果您希望每次启动R时都设置这些选项，则可以将它们放在 ~/.Rprofile 文件中。
+如果你希望每次启动R时都设置这些选项，则可以将它们放在 `~/.Rprofile` 文件中。
 
 
-## 测量经过的时间
+## 测量运行的时间
 
-### **问题**
+### 问题
 
 您想要测量运行特定代码块所需的时间。
 
 ### 方案
 
-该 ```system.time()``` 函数将测量在R中运行某些东西所需的时间。
+`system.time()` 函数将测量在 R 中运行某些东西所需的时间。
 
 ```{r}
-system.time({
-    # Do something that takes time
+tm <- system.time({
+    # 做一些消耗时间的事情
     x <- 1:100000
     for (i in seq_along(x))  x[i] <- x[i]+1
 })
+tm
 ```
 
-输出意味着运行代码块需要 0.153 秒。
+输出显示运行代码块需要 `r tm[1]` 秒。
 
 ## 获取包中的函数和对象列表
 
@@ -254,34 +289,30 @@ system.time({
 
 ### 方案
 
-此代码段将列出包中的函数和对象。
+在一个新的 R 会话中使用 `search()` 可以查看默认加载的包。
 
-```R
-# Using search() in a new R session says that these packages are 
-# loaded by default:
-# "package:stats"     "package:graphics" 
-# "package:grDevices" "package:utils"     "package:datasets" 
-# "package:methods"   "package:base"  
+```{r}
+search()
+```
 
-# Others that are useful:
-# gplots
-# ggplot2, reshape, plyr
+以下提供的函数能够列出包中的函数和对象。
 
+```{r}
 showPackageContents <- function (packageName) {
 
-    # Get a list of things contained in a particular package
+    # 获取特定包所有内容的列表
     funlist <- objects(packageName)
 
-    # Remove things that don't start with a letter
+    # 移除不以字母开头的东西
     idx <- grep('^[a-zA-Z][a-zA-Z0-9._]*', funlist)
     funlist <- funlist[idx]
 
-    # Remove things that contain arrow <-
+    # 移除包含箭头 <- 的东西
     idx <- grep('<-', funlist)
     if (length(idx)!=0)
         funlist <- funlist[-idx]
 
-    # Make a data frame to keep track of status
+    # 创建一个数据框保存数据
     objectlist <- data.frame(name=funlist,
                              primitive=FALSE,
                              func=FALSE,
@@ -303,7 +334,7 @@ showPackageContents <- function (packageName) {
                 objectlist$object[i] <- TRUE
             }
             
-            # I think these are generally constants
+            # 我认为这些基本是常量
             if (is.vector(obj)) {
                 objectlist$constant[i] <- TRUE
             }
@@ -335,6 +366,14 @@ showPackageContents <- function (packageName) {
     cat("\n")
 }
 
-# Run the function using base package
+```
+
+以 **base** 包作为示例测试：
+
+```{r}
 showPackageContents("package:base")
+```
+
+```{r, include=FALSE}
+detachAllPackages()
 ```

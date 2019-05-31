@@ -400,9 +400,9 @@ vz[!is.nan(vz)]
 也有无限值 `Inf` 和 `-Inf`，及其相应的函数 `is.finite()` 和 `is.infinite()`。
 
 
-
-
-
+```{r, include=FALSE}
+detachAllPackages()
+```
 
 
 

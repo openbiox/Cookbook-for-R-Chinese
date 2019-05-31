@@ -241,3 +241,7 @@ x
 ### 方案
 
 不存在通用的解决方案，因为这个问题通常是由于非整数（浮点数）在计算机和 R 中的存储方式所导致的。可以通过网址 <http://www.mathworks.com/support/tech-notes/1100/1108.html> 查阅更多信息。虽然里面使用 Matlab 代码写的，但是基本与 R 一致。
+
+```{r, include=FALSE}
+detachAllPackages()
+```
