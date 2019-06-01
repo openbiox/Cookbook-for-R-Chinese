@@ -1,4 +1,4 @@
-# 图形
+# ggplot2
 
 ## 条形图与线图
 
@@ -8,7 +8,7 @@
 
 ### 方案
 
-想要使用 ggplot2 绘制图形，数据必须是一个数据框，而且必须是长格式。
+想要使用 **ggplot2** 绘制图形，数据必须是一个数据框，而且必须是长格式。
 
 #### 基本图形，离散 x-axis
 
@@ -26,7 +26,7 @@
 
 ##### 有值的条形图
 
-这里有一些样例数据 (抽自 reshape2 包的 `tips` 数据集):
+这里有一些样例数据 (抽自 **reshape2** 包的 `tips` 数据集):
 
 ```{r}
 dat <- data.frame(
@@ -50,7 +50,6 @@ library(ggplot2)
 # 非常基本的条形图
 ggplot(data=dat, aes(x=time, y=total_bill)) +
     geom_bar(stat="identity")
-
 # 按时间填充颜色
 ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
     geom_bar(stat="identity")
@@ -66,7 +65,6 @@ ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
     guides(fill=FALSE)
 ```
 
-![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-3.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-3-4.png)
 
 一个理想的条形图可能是下面这样的：
 
@@ -79,9 +77,8 @@ ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
     ggtitle("Average bill for 2 people")
 ```
 
-![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-1.png)
 
-参见 [../Colors (ggplot2)](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)) 获取更多关于颜色的信息。
+查看[颜色](#ggplot2-colors) 获取更多关于颜色的信息。
 
 ##### 计数的条形图
 
@@ -106,7 +103,6 @@ ggplot(data=tips, aes(x=day)) +
 #    geom_bar()
 ```
 
-![plot of chunk unnamed-chunk-6](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-6-1.png)
 
 #### 线图
 
@@ -114,22 +110,20 @@ ggplot(data=tips, aes(x=day)) +
 
 下面是使用的映射变量
 
-- `time`: x-axis
-- `total_bill`: y-axis
+- `time`: x 轴
+- `total_bill`: y 轴
 
 ```{r}
 # 基本的线图
 ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
     geom_line()
-## This would have the same result as above
+## 与上面结果一致
 # ggplot(data=dat, aes(x=time, y=total_bill)) +
 #     geom_line(aes(group=1))
-
 # 添加点
 ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
     geom_line() +
     geom_point()
-
 # 改变线和点的颜色
 # 改变线的类型和点的类型，用更粗的线、更大的点
 # 用红色填充点
@@ -137,8 +131,6 @@ ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
     geom_line(colour="red", linetype="dashed", size=1.5) + 
     geom_point(colour="red", size=4, shape=21, fill="white")
 ```
-
-![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-7-2.png)![plot of chunk unnamed-chunk-7](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-7-3.png)
 
 理想的线图可能像下面这样：
 
@@ -152,8 +144,6 @@ ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
     xlab("Time of day") + ylab("Total bill") +
     ggtitle("Average bill for 2 people")
 ```
-
-![plot of chunk unnamed-chunk-8](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-8-1.png)
 
 ### 有更多变量的图
 
@@ -172,31 +162,26 @@ dat1
 
 变量映射：
 
-- `time`: x-axis
-- `sex`: color fill
-- `total_bill`: y-axis.
+- `time`: x 轴
+- `sex`: 颜色填充
+- `total_bill`: y 轴
 
 ```{r}
 # 堆积条形图 -- 不常用
 ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
     geom_bar(stat="identity")
-
 # 条形图，x 轴是 time, 颜色填充是 sex 
 ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
     geom_bar(stat="identity", position=position_dodge())
-
 ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
     geom_bar(stat="identity", position=position_dodge(), colour="black")
-
 # 改变颜色
 ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
     geom_bar(stat="identity", position=position_dodge(), colour="black") +
     scale_fill_manual(values=c("#999999", "#E69F00"))
 ```
 
-![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-1.png)![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-2.png)![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-3.png)![plot of chunk unnamed-chunk-10](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-10-4.png)
-
-改变映射是非常容易的
+改变映射是非常容易的：
 
 ```{r}
 # 条形图，x 轴是性别，颜色是时间
@@ -204,15 +189,13 @@ ggplot(data=dat1, aes(x=sex, y=total_bill, fill=time)) +
     geom_bar(stat="identity", position=position_dodge(), colour="black")
 ```
 
-![plot of chunk unnamed-chunk-11](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-11-1.png)
-
 #### 线图
 
 变量映射：
 
-- `time`: x-axis
+- `time`: x 轴
 - `sex`: 线的颜色
-- `total_bill`: y-axis.
+- `total_bill`: y 轴
 
 想要绘制多条线，必须指定分组变量。
 
@@ -221,25 +204,20 @@ ggplot(data=dat1, aes(x=sex, y=total_bill, fill=time)) +
 ggplot(data=dat1, aes(x=time, y=total_bill, group=sex)) +
     geom_line() +
     geom_point()
-
 # 将性别映射到颜色
 ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, colour=sex)) +
     geom_line() +
     geom_point()
-
 # 映射性别到不同的点类型
 ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex)) +
     geom_line() +
     geom_point()
-
 # 使用更粗的线、更大的点
 ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex)) + 
     geom_line(size=1.5) + 
     geom_point(size=3, fill="white") +
     scale_shape_manual(values=c(22,21))
 ```
-
-![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-3.png)![plot of chunk unnamed-chunk-12](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-12-4.png)
 
 更改颜色和线型变量的映射非常容易：
 
@@ -249,11 +227,10 @@ ggplot(data=dat1, aes(x=sex, y=total_bill, group=time, shape=time, color=time)) 
     geom_point()
 ```
 
-![plot of chunk unnamed-chunk-13](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-13-1.png)
 
 #### 完成的例子
 
-完成的例子可能像下面这样
+完成的例子可能像下面这样：
 
 ```{r}
 # 一个条形图
@@ -265,7 +242,6 @@ ggplot(data=dat1, aes(x=time, y=total_bill, fill=sex)) +
     xlab("Time of day") + ylab("Total bill") + # 设定轴标签
     ggtitle("Average bill for 2 people") +     # 设定题目
     theme_bw()
-
 # 一个线图
 ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex, colour=sex)) + 
     geom_line(aes(linetype=sex), size=1) +     # 按性别设定线型
@@ -282,9 +258,8 @@ ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex, colour=sex)) +
     theme(legend.position=c(.7, .4))           # 图例的位置
 ```
 
-![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-14-2.png)
 
-为了保证上图的图例一致，必须指定 3 次。至于为何如此，点击 [这里](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)#With_lines_and_points)。
+为了保证上图的图例一致，必须指定 3 次。至于为何如此，查看[图例](#ggplot2-legends)。
 
 ### 使用数值 x-axis
 
@@ -312,8 +287,6 @@ ggplot(data=datn, aes(x=dose, y=length, group=supp, colour=supp)) +
     geom_point()
 ```
 
-![plot of chunk unnamed-chunk-16](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-16-1.png)
-
 #### 当 x-axis 作为分类变量时
 
 首先，我们要将该变量转换为因子。
@@ -325,14 +298,12 @@ datn2$dose <- factor(datn2$dose)
 ggplot(data=datn2, aes(x=dose, y=length, group=supp, colour=supp)) +
     geom_line() +
     geom_point()
-
 # 使用原始的数据框，但使用 factor 函数在绘图时转换
 ggplot(data=datn, aes(x=factor(dose), y=length, group=supp, colour=supp)) +
     geom_line() +
     geom_point()
 ```
 
-![plot of chunk unnamed-chunk-17](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-17-1.png)![plot of chunk unnamed-chunk-17](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-17-2.png)
 
 当连续值作为分类变量使用时，也可以绘制条形图。
 
@@ -344,8 +315,6 @@ ggplot(data=datn, aes(x=factor(dose), y=length, fill=supp)) +
     geom_bar(stat="identity", position=position_dodge())
 ```
 
-![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-18-1.png)![plot of chunk unnamed-chunk-18](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-18-2.png)
-
 ## 绘制均值和误差棒
 
 ### 问题
@@ -354,347 +323,11 @@ ggplot(data=datn, aes(x=factor(dose), y=length, fill=supp)) +
 
 ### 方案
 
-想要用 ggplot2 绘制图形，数据必须是数据框形式，而且是长格式（相对于宽格式）。 如果你的数据需要重构，请参考 [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) 获取更多信息。
+想要用 ggplot2 绘制图形，数据必须是数据框形式，而且是长格式（相对于宽格式）。如果你的数据需要重构，请参考[长宽格式转换](#section-6.17)获取更多信息。
 
-#### 示例数据
+#### 助手函数
 
-下面的示例将使用 `ToothGrowth` 数据集。注意 `dose` 在这里是一个数值列， 一些情况下我们将它转换为因子变量将会更加有用。
-
-```{r}
-tg <- ToothGrowth
-head(tg)
-
-library(ggplot2)
-```
-
-首先，我们必须对数据进行统计汇总。 这可以通过多种方式实现，参考[this page](http://www.cookbook-r.com/Manipulating_data/Summarizing_data). 在这个案例中，我们将使用 `summarySE()` 函数，该函数代码在本页面的最下方 ( `summarySE` 函数的代码在使用前必须已经键入)。
-
-```{r}
-# install.packages('Rmisc')
-library(Rmisc)
-# summarySE 函数提供了标准差、标准误以及 95% 的置信区间
-tgc <- summarySE(tg, measurevar="len", groupvars=c("supp","dose"))
-tgc
-```
-
-### 线图
-
-数据统计总结后，我们就可以开始绘制图形了。这里是一些带误差棒的线图和点图，误差棒代表标准差、标准误或者是 95% 的置信区间。
-
-```{r}
-# 均值的标准误
-ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
-    geom_errorbar(aes(ymin=len-se, ymax=len+se), width=.1) +
-    geom_line() +
-    geom_point()
-
-# 发现误差棒重叠（dose=2.0），我们使用 position_dodge 将它们进行水平移动
-pd <- position_dodge(0.1) # move them .05 to the left and right
-
-ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
-    geom_errorbar(aes(ymin=len-se, ymax=len+se), width=.1, position=pd) +
-    geom_line(position=pd) +
-    geom_point(position=pd)
-
-# 使用 95% 置信区间替换标准误
-ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
-    geom_errorbar(aes(ymin=len-ci, ymax=len+ci), width=.1, position=pd) +
-    geom_line(position=pd) +
-    geom_point(position=pd)
-
-# 黑色的误差棒 - 注意 'group=supp' 的映射 -- 没有它，误差棒将不会避开（就是会重叠）。
-ggplot(tgc, aes(x=dose, y=len, colour=supp, group=supp)) + 
-    geom_errorbar(aes(ymin=len-ci, ymax=len+ci), colour="black", width=.1, position=pd) +
-    geom_line(position=pd) +
-    geom_point(position=pd, size=3)
-```
-
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-1.png
-http://www.cookbook-r.com/Graphs/)
-![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-2.png
-http://www.cookbook-r.com/Graphs/)
-![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-3.png
-http://www.cookbook-r.com/Graphs/)
-![plot of chunk unnamed-chunk-4-4](http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/figure/unnamed-chunk-4-4.png
-http://www.cookbook-r.com/Graphs/)
-
-一张完成的带误差棒（代表均值的标准误）的图形可能像下面显示的那样。最会画点，这样白色将会在线和误差棒的上面（这个需要理解图层概念，顺序不同展示的效果是不一样的）。
-
-```{r}
-ggplot(tgc, aes(x=dose, y=len, colour=supp, group=supp)) + 
-    geom_errorbar(aes(ymin=len-se, ymax=len+se), colour="black", width=.1, position=pd) +
-    geom_line(position=pd) +
-    geom_point(position=pd, size=3, shape=21, fill="white") + # 21的填充的圆
-    xlab("Dose (mg)") +
-    ylab("Tooth length") +
-    scale_colour_hue(name="Supplement type",    # 图例标签使用暗色
-                     breaks=c("OJ", "VC"),
-                     labels=c("Orange juice", "Ascorbic acid"),
-                     l=40) +                    # 使用暗色，亮度为40
-    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
-    expand_limits(y=0) +                        # 扩展范围
-    scale_y_continuous(breaks=0:20*4) +         # 每4个单位设置标记（y轴）
-    theme_bw() +
-    theme(legend.justification=c(1,0),
-          legend.position=c(1,0))               # 右下方放置图例
-```
-
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-5-1.png)
-
-### 条形图
-
-条形图绘制误差棒也非常相似。 注意 `tgc$dose` 必须是一个因子。如果它是一个数值向量，将会不起作用。
-
-```{r}
-# 将dose转换为因子变量
-tgc2 <- tgc
-tgc2$dose <- factor(tgc2$dose)
-
-# 误差棒代表了均值的标准误
-ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
-    geom_bar(position=position_dodge(), stat="identity") +
-    geom_errorbar(aes(ymin=len-se, ymax=len+se),
-                  width=.2,                    # 误差棒的宽度
-                  position=position_dodge(.9))
-
-
-# 使用95%的置信区间替换标准误
-ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
-    geom_bar(position=position_dodge(), stat="identity") +
-    geom_errorbar(aes(ymin=len-ci, ymax=len+ci),
-                  width=.2,                    # 误差棒的宽度
-                  position=position_dodge(.9))
-```
-
-![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-6-1.png)
-![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-6-2.png)
-
-一张绘制完成的图片像下面这样：
-
-```{r}
-ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
-    geom_bar(position=position_dodge(), stat="identity",
-             colour="black", # 使用黑色边框,
-             size=.3) +      # 将线变细
-    geom_errorbar(aes(ymin=len-se, ymax=len+se),
-                  size=.3,    # 将线变细
-                  width=.2,
-                  position=position_dodge(.9)) +
-    xlab("Dose (mg)") +
-    ylab("Tooth length") +
-    scale_fill_hue(name="Supplement type", # Legend label, use darker colors
-                   breaks=c("OJ", "VC"),
-                   labels=c("Orange juice", "Ascorbic acid")) +
-    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
-    scale_y_continuous(breaks=0:20*4) +
-    theme_bw()
-```
-
-![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-7-1.png)
-
-### 为组内变量添加误差棒
-
-当所有的变量都属于不同组别时，我们画标准误或者置信区间会显得非常简单直观。然而，当我们描绘的是组内变量（重复测量），那么添加标准误或者通常的置信区间可能会对不同条件下差异的推断产生误导作用。
-
-下面的方法来自 [Morey (2008)](http://tqmp.org/Content/vol04-2/p061/p061.html)，它是对 [Cousineau (2005)](http://tqmp.org/Content/vol01-1/p042/p042.html)的矫正，而它所做的就是 提供比 [Loftus and Masson (1994)](http://www.springerlink.com/content/n2r2t04244246k68/)更简单的方法。 你可以查看这些文章，以获得更多对组内变量误差棒问题的详细探讨和方案。
-
-这里有一个组内变量的数据集 (from Morey 2008): pre/post-test。
-
-```{r}
-dfw <- read.table(header=TRUE, text='
- subject pretest posttest
-       1    59.4     64.5
-       2    46.4     52.4
-       3    46.0     49.7
-       4    49.0     48.7
-       5    32.5     37.4
-       6    45.2     49.5
-       7    60.3     59.9
-       8    54.3     54.1
-       9    45.4     49.6
-      10    38.9     48.5
- ')
-
-# 将物体的 ID 作为因子变量对待
-dfw$subject <- factor(dfw$subject)
-```
-
-第一步是将该数据集转换为长格式。参见 [this page](http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format) for more information about the conversion.
-
-```{r}
-# 转换为长格式
-library(reshape2)
-dfw_long <- melt(dfw,
-                 id.vars = "subject",
-                 measure.vars = c("pretest","posttest"),
-                 variable.name = "condition")
-
-dfw_long
-```
-
-使用 `summarySEwithin` 函数瓦解数据 (相关使用及定义 [bottom](<http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/#Helper>)).
-
-```{r}
-dfwc <- summarySEwithin(dfw_long, measurevar="value", withinvars="condition",
-                        idvar="subject", na.rm=FALSE, conf.interval=.95)
-
-dfwc
-
-library(ggplot2)
-# Make the graph with the 95% confidence interval
-ggplot(dfwc, aes(x=condition, y=value, group=1)) +
-    geom_line() +
-    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci)) +
-    geom_point(shape=21, size=3, fill="white") +
-    ylim(40,60)
-```
-
-![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-10-1.png)
-
-`value` 和 `value_norm` 列代表了未标准化和标准化后的值。详细信息参阅函数的相关使用部分
-
-#### 理解组内变量的误差棒
-
-这部分解释组内的误差棒值是如何计算出来的。这些步骤仅作解释目的；它们对于绘制误差棒是**非必需**的。
-
-下面独立数据的图形结果展示了组内变量 `condition` 存在连续一致的趋势，但使用常规的标准误（或者置信区间）则不能充分地展示这一点。Morey (2008) 和Cousineau (2005) 的方法本质是标准化数据去移除组间的变化，计算出这个标准化数据的变异程度。
-
-```{r}
-# Use a consistent y range
-ymax <- max(dfw_long$value)
-ymin <- min(dfw_long$value)
-
-# Plot the individuals
-ggplot(dfw_long, aes(x=condition, y=value, colour=subject, group=subject)) +
-    geom_line() + geom_point(shape=21, fill="white") + 
-    ylim(ymin,ymax)
-
-# 创造标准化的版本
-dfwNorm.long <- normDataWithin(data=dfw_long, idvar="subject", measurevar="value")
-
-# Plot the normed individuals
-ggplot(dfwNorm.long, aes(x=condition, y=valueNormed, colour=subject, group=subject)) +
-    geom_line() + geom_point(shape=21, fill="white") + 
-    ylim(ymin,ymax)
-```
-
-![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-11-1.png)
-![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-11-2.png)
-
-针对正常（组间）方法和组内方法的误差棒差异在下面呈现。正常的方法计算出的误差棒用红色表示，组内方法的误差棒用黑色表示。
-
-```{r}
-# Instead of summarySEwithin, use summarySE, which treats condition as though it were a between-subjects variable
-dfwc_between <- summarySE(data=dfw_long, measurevar="value", groupvars="condition", na.rm=FALSE, conf.interval=.95)
-dfwc_between
-
-# 用红色显示组间的置信区间，用黑色展示组内的置信区间
-ggplot(dfwc_between, aes(x=condition, y=value, group=1)) +
-    geom_line() +
-    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci), colour="red") +
-    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci), data=dfwc) +
-    geom_point(shape=21, size=3, fill="white") +
-    ylim(ymin,ymax)
-```
-
-![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-12-1.png)
-
-#### 两个组内变量
-
-如果存在超过一个的组内变量，我们可以使用相同的函数 `summarySEwithin`。下面的数据集来自[Hays (1994)](http://books.google.com/books?id=zSi2AAAAIAAJ)，在 [Rouder and Morey (2005)](http://www.jstor.org/pss/40064075)中用来绘制这类的组内误差棒。
-
-```{r}
-data <- read.table(header=TRUE, text='
- Subject RoundMono SquareMono RoundColor SquareColor
-       1        41         40         41          37
-       2        57         56         56          53
-       3        52         53         53          50
-       4        49         47         47          47
-       5        47         48         48          47
-       6        37         34         35          36
-       7        47         50         47          46
-       8        41         40         38          40
-       9        48         47         49          45
-      10        37         35         36          35
-      11        32         31         31          33
-      12        47         42         42          42
-')
-```
-
-数据集首先必须转换为长格式，列名显示了两个变量： 形状 (圆形/方形) 和配色方案 (黑白/有色).
-
-```{r}
-# 转换为长格式
-library(reshape2)
-data_long <- melt(data=data, id.var="Subject",
-                  measure.vars=c("RoundMono", "SquareMono", "RoundColor", "SquareColor"),
-                  variable.name="Condition")
-names(data_long)[names(data_long)=="value"] <- "Time"
-
-# 拆分 Condition 列为 Shape 和 ColorScheme
-data_long$Shape <- NA
-data_long$Shape[grepl("^Round",  data_long$Condition)] <- "Round"
-data_long$Shape[grepl("^Square", data_long$Condition)] <- "Square"
-data_long$Shape <- factor(data_long$Shape)
-
-data_long$ColorScheme <- NA
-data_long$ColorScheme[grepl("Mono$",  data_long$Condition)] <- "Monochromatic"
-data_long$ColorScheme[grepl("Color$", data_long$Condition)] <- "Colored"
-data_long$ColorScheme <- factor(data_long$ColorScheme, levels=c("Monochromatic","Colored"))
-
-# 删除 Condition 列 
-data_long$Condition <- NULL
-
-# 检查数据
-head(data_long)
-```
-
-现在可以进行统计汇总和绘图了。
-
-```{r}
-datac <- summarySEwithin(data_long, measurevar="Time", withinvars=c("Shape","ColorScheme"), idvar="Subject")
-datac
-
-library(ggplot2)
-ggplot(datac, aes(x=Shape, y=Time, fill=ColorScheme)) +
-    geom_bar(position=position_dodge(.9), colour="black", stat="identity") +
-    geom_errorbar(position=position_dodge(.9), width=.25, aes(ymin=Time-ci, ymax=Time+ci)) +
-    coord_cartesian(ylim=c(40,46)) +
-    scale_fill_manual(values=c("#CCCCCC","#FFFFFF")) +
-    scale_y_continuous(breaks=seq(1:100)) +
-    theme_bw() +
-    geom_hline(yintercept=38) 
-```
-
-![plot of chunk unnamed-chunk-15-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-15-1.png)
-
-### 注意标准化的均值
-
-函数 `summarySEWithin` 返回标准化和未标准化的均值。未标准化的均值只是简单地表示每组的均值。标准化的均值计算出来保证组间的均值是一样的。
-
-比如：
-
-```{r}
-dat <- read.table(header=TRUE, text='
-id trial gender dv
- A     0   male  2
- A     1   male  4
- B     0   male  6
- B     1   male  8
- C     0 female 22
- C     1 female 24
- D     0 female 26
- D     1 female 28
-')
-
-# 标准化和未标准化的均值是不同的
-summarySEwithin(dat, measurevar="dv", withinvars="trial", betweenvars="gender",
-                idvar="id")
-```
-
-### 助手函数
-
-如果你处理的仅仅是组间变量，那么 `summarySE` 是你代码中唯一需要使用的函数。如果你的数据里有组内变量，**并且**你想要矫正误差棒使得组间的变异被移除，就像 Loftus and Masson (1994) 里的那样，那么 `normDataWithin` 和 `summarySEwithin` 这两个函数必须加入你的代码中，然后调用 `summarySEwithin` 函数进行计算。
+如果你处理的仅仅是组间变量，那么 `summarySE()` 是你代码中唯一需要使用的函数。如果你的数据里有组内变量，**并且**你想要矫正误差棒使得组间的变异被移除，就像 Loftus and Masson (1994) 里的那样，那么 `normDataWithin()` 和 `summarySEwithin()` 这两个函数必须加入你的代码中，然后调用 `summarySEwithin()` 函数进行计算。
 
 ```{r}
 ## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).
@@ -835,7 +468,321 @@ summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=
 }
 ```
 
-原文链接：< <http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/>>
+
+#### 示例数据
+
+下面的示例将使用 `ToothGrowth` 数据集。注意 `dose` 在这里是一个数值列，一些情况下我们将它转换为因子变量将会更加有用。
+
+```{r}
+tg <- ToothGrowth
+head(tg)
+
+library(ggplot2)
+```
+
+首先，我们必须对数据进行统计汇总。 这可以通过多种方式实现，参阅[汇总数据](#section-6.18)。在这个案例中，我们将使用 `summarySE()` 函数( 确保`summarySE()` 函数的代码在使用前已经键入)。
+
+```{r}
+# install.packages('Rmisc')
+library(Rmisc)
+# summarySE 函数提供了标准差、标准误以及 95% 的置信区间
+tgc <- summarySE(tg, measurevar="len", groupvars=c("supp","dose"))
+tgc
+```
+
+#### 线图
+
+数据统计总结后，我们就可以开始绘制图形了。这里是一些带误差棒的线图和点图，误差棒代表标准差、标准误或者是 95% 的置信区间。
+
+```{r}
+# 均值的标准误
+ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
+    geom_errorbar(aes(ymin=len-se, ymax=len+se), width=.1) +
+    geom_line() +
+    geom_point()
+
+# 发现误差棒重叠（dose=2.0），我们使用 position_dodge 将它们进行水平移动
+pd <- position_dodge(0.1) # move them .05 to the left and right
+
+ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
+    geom_errorbar(aes(ymin=len-se, ymax=len+se), width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd)
+
+# 使用 95% 置信区间替换标准误
+ggplot(tgc, aes(x=dose, y=len, colour=supp)) + 
+    geom_errorbar(aes(ymin=len-ci, ymax=len+ci), width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd)
+
+# 黑色的误差棒 - 注意 'group=supp' 的映射 -- 没有它，误差棒将不会避开（就是会重叠）。
+ggplot(tgc, aes(x=dose, y=len, colour=supp, group=supp)) + 
+    geom_errorbar(aes(ymin=len-ci, ymax=len+ci), colour="black", width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd, size=3)
+```
+
+一张完成的带误差棒（代表均值的标准误）的图形可能像下面显示的那样。最会画点，这样白色将会在线和误差棒的上面（这个需要理解图层概念，顺序不同展示的效果是不一样的）。
+
+```{r}
+ggplot(tgc, aes(x=dose, y=len, colour=supp, group=supp)) + 
+    geom_errorbar(aes(ymin=len-se, ymax=len+se), colour="black", width=.1, position=pd) +
+    geom_line(position=pd) +
+    geom_point(position=pd, size=3, shape=21, fill="white") + # 21的填充的圆
+    xlab("Dose (mg)") +
+    ylab("Tooth length") +
+    scale_colour_hue(name="Supplement type",    # 图例标签使用暗色
+                     breaks=c("OJ", "VC"),
+                     labels=c("Orange juice", "Ascorbic acid"),
+                     l=40) +                    # 使用暗色，亮度为40
+    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
+    expand_limits(y=0) +                        # 扩展范围
+    scale_y_continuous(breaks=0:20*4) +         # 每4个单位设置标记（y轴）
+    theme_bw() +
+    theme(legend.justification=c(1,0),
+          legend.position=c(1,0))               # 右下方放置图例
+```
+
+#### 条形图
+
+条形图绘制误差棒也非常相似。 注意 `tgc$dose` 必须是一个因子。如果它是一个数值向量，将会不起作用。
+
+```{r}
+# 将dose转换为因子变量
+tgc2 <- tgc
+tgc2$dose <- factor(tgc2$dose)
+
+# 误差棒代表了均值的标准误
+ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    geom_errorbar(aes(ymin=len-se, ymax=len+se),
+                  width=.2,                    # 误差棒的宽度
+                  position=position_dodge(.9))
+# 使用95%的置信区间替换标准误
+ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    geom_errorbar(aes(ymin=len-ci, ymax=len+ci),
+                  width=.2,                    # 误差棒的宽度
+                  position=position_dodge(.9))
+```
+
+
+一张绘制完成的图片像下面这样：
+
+```{r}
+ggplot(tgc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity",
+             colour="black", # 使用黑色边框,
+             size=.3) +      # 将线变细
+    geom_errorbar(aes(ymin=len-se, ymax=len+se),
+                  size=.3,    # 将线变细
+                  width=.2,
+                  position=position_dodge(.9)) +
+    xlab("Dose (mg)") +
+    ylab("Tooth length") +
+    scale_fill_hue(name="Supplement type", # Legend label, use darker colors
+                   breaks=c("OJ", "VC"),
+                   labels=c("Orange juice", "Ascorbic acid")) +
+    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
+    scale_y_continuous(breaks=0:20*4) +
+    theme_bw()
+```
+
+
+#### 为组内变量添加误差棒
+
+当所有的变量都属于不同组别时，我们画标准误或者置信区间会显得非常简单直观。然而，当我们描绘的是组内变量（重复测量），那么添加标准误或者通常的置信区间可能会对不同条件下差异的推断产生误导作用。
+
+下面的方法来自 [Morey (2008)](http://tqmp.org/Content/vol04-2/p061/p061.html)，它是对 [Cousineau (2005)](http://tqmp.org/Content/vol01-1/p042/p042.html)的矫正，而它所做的就是 提供比 [Loftus and Masson (1994)](http://www.springerlink.com/content/n2r2t04244246k68/)更简单的方法。 你可以查看这些文章，以获得更多对组内变量误差棒问题的详细探讨和方案。
+
+这里有一个组内变量的数据集 (来自 Morey 2008): pre/post-test。
+
+```{r}
+dfw <- read.table(header=TRUE, text='
+ subject pretest posttest
+       1    59.4     64.5
+       2    46.4     52.4
+       3    46.0     49.7
+       4    49.0     48.7
+       5    32.5     37.4
+       6    45.2     49.5
+       7    60.3     59.9
+       8    54.3     54.1
+       9    45.4     49.6
+      10    38.9     48.5
+ ')
+
+# 将物体的 ID 作为因子变量对待
+dfw$subject <- factor(dfw$subject)
+```
+
+第一步是将该数据集转换为长格式，参见[长宽格式数据互换](#section-6.17)获取更多信息。
+
+```{r}
+# 转换为长格式
+library(reshape2)
+dfw_long <- melt(dfw,
+                 id.vars = "subject",
+                 measure.vars = c("pretest","posttest"),
+                 variable.name = "condition")
+
+dfw_long
+```
+
+使用 `summarySEwithin()` 函数瓦解数据。
+
+```{r}
+dfwc <- summarySEwithin(dfw_long, measurevar="value", withinvars="condition",
+                        idvar="subject", na.rm=FALSE, conf.interval=.95)
+
+dfwc
+
+library(ggplot2)
+# 创建带 95% 置信区间的图形
+ggplot(dfwc, aes(x=condition, y=value, group=1)) +
+    geom_line() +
+    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci)) +
+    geom_point(shape=21, size=3, fill="white") +
+    ylim(40,60)
+```
+
+`value` 和 `value_norm` 列代表了未标准化和标准化后的值。
+
+#### 理解组内变量的误差棒
+
+这部分解释组内的误差棒值是如何计算出来的。这些步骤仅作解释目的；它们对于绘制误差棒是**非必需**的。
+
+下面独立数据的图形结果展示了组内变量 `condition` 存在连续一致的趋势，但使用常规的标准误（或者置信区间）则不能充分地展示这一点。Morey (2008) 和Cousineau (2005) 的方法本质是标准化数据去移除组间的变化，计算出这个标准化数据的变异程度。
+
+```{r}
+# Use a consistent y range
+ymax <- max(dfw_long$value)
+ymin <- min(dfw_long$value)
+
+# Plot the individuals
+ggplot(dfw_long, aes(x=condition, y=value, colour=subject, group=subject)) +
+    geom_line() + geom_point(shape=21, fill="white") + 
+    ylim(ymin,ymax)
+
+# 创造标准化的版本
+dfwNorm.long <- normDataWithin(data=dfw_long, idvar="subject", measurevar="value")
+
+# Plot the normed individuals
+ggplot(dfwNorm.long, aes(x=condition, y=valueNormed, colour=subject, group=subject)) +
+    geom_line() + geom_point(shape=21, fill="white") + 
+    ylim(ymin,ymax)
+```
+
+
+针对正常（组间）方法和组内方法的误差棒差异在下面呈现。正常的方法计算出的误差棒用红色表示，组内方法的误差棒用黑色表示。
+
+```{r}
+# Instead of summarySEwithin, use summarySE, which treats condition as though it were a between-subjects variable
+dfwc_between <- summarySE(data=dfw_long, measurevar="value", groupvars="condition", na.rm=FALSE, conf.interval=.95)
+dfwc_between
+
+# 用红色显示组间的置信区间，用黑色展示组内的置信区间
+ggplot(dfwc_between, aes(x=condition, y=value, group=1)) +
+    geom_line() +
+    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci), colour="red") +
+    geom_errorbar(width=.1, aes(ymin=value-ci, ymax=value+ci), data=dfwc) +
+    geom_point(shape=21, size=3, fill="white") +
+    ylim(ymin,ymax)
+```
+
+#### 两个组内变量
+
+如果存在超过一个的组内变量，我们可以使用相同的函数 `summarySEwithin`。下面的数据集来自[Hays (1994)](http://books.google.com/books?id=zSi2AAAAIAAJ)，在 [Rouder and Morey (2005)](http://www.jstor.org/pss/40064075)中用来绘制这类的组内误差棒。
+
+```{r}
+data <- read.table(header=TRUE, text='
+ Subject RoundMono SquareMono RoundColor SquareColor
+       1        41         40         41          37
+       2        57         56         56          53
+       3        52         53         53          50
+       4        49         47         47          47
+       5        47         48         48          47
+       6        37         34         35          36
+       7        47         50         47          46
+       8        41         40         38          40
+       9        48         47         49          45
+      10        37         35         36          35
+      11        32         31         31          33
+      12        47         42         42          42
+')
+```
+
+数据集首先必须转换为长格式，列名显示了两个变量： 形状 (圆形/方形) 和配色方案 (黑白/有色)。
+
+```{r}
+# 转换为长格式
+library(reshape2)
+data_long <- melt(data=data, id.var="Subject",
+                  measure.vars=c("RoundMono", "SquareMono", "RoundColor", "SquareColor"),
+                  variable.name="Condition")
+names(data_long)[names(data_long)=="value"] <- "Time"
+
+# 拆分 Condition 列为 Shape 和 ColorScheme
+data_long$Shape <- NA
+data_long$Shape[grepl("^Round",  data_long$Condition)] <- "Round"
+data_long$Shape[grepl("^Square", data_long$Condition)] <- "Square"
+data_long$Shape <- factor(data_long$Shape)
+
+data_long$ColorScheme <- NA
+data_long$ColorScheme[grepl("Mono$",  data_long$Condition)] <- "Monochromatic"
+data_long$ColorScheme[grepl("Color$", data_long$Condition)] <- "Colored"
+data_long$ColorScheme <- factor(data_long$ColorScheme, levels=c("Monochromatic","Colored"))
+
+# 删除 Condition 列 
+data_long$Condition <- NULL
+
+# 检查数据
+head(data_long)
+```
+
+现在可以进行统计汇总和绘图了。
+
+```{r}
+datac <- summarySEwithin(data_long, measurevar="Time", withinvars=c("Shape","ColorScheme"), idvar="Subject")
+datac
+
+library(ggplot2)
+ggplot(datac, aes(x=Shape, y=Time, fill=ColorScheme)) +
+    geom_bar(position=position_dodge(.9), colour="black", stat="identity") +
+    geom_errorbar(position=position_dodge(.9), width=.25, aes(ymin=Time-ci, ymax=Time+ci)) +
+    coord_cartesian(ylim=c(40,46)) +
+    scale_fill_manual(values=c("#CCCCCC","#FFFFFF")) +
+    scale_y_continuous(breaks=seq(1:100)) +
+    theme_bw() +
+    geom_hline(yintercept=38) 
+```
+
+![plot of chunk unnamed-chunk-15-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-15-1.png)
+
+### 注意标准化的均值
+
+函数 `summarySEWithin` 返回标准化和未标准化的均值。未标准化的均值只是简单地表示每组的均值。标准化的均值计算出来保证组间的均值是一样的。
+
+比如：
+
+```{r}
+dat <- read.table(header=TRUE, text='
+id trial gender dv
+ A     0   male  2
+ A     1   male  4
+ B     0   male  6
+ B     1   male  8
+ C     0 female 22
+ C     1 female 24
+ D     0 female 26
+ D     1 female 28
+')
+
+# 标准化和未标准化的均值是不同的
+summarySEwithin(dat, measurevar="dv", withinvars="trial", betweenvars="gender",
+                idvar="id")
+```
+
 
 ### 其他
 
@@ -1456,7 +1403,7 @@ bp + theme(panel.grid.minor.y=element_blank(),
 
 ![plot of chunk unnamed-chunk-21-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-21-1.png)![plot of chunk unnamed-chunk-21-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-21-2.png)
 
-## 图例 (ggplot2)
+## 图例 {#ggplot2-legends}
 
 ### 问题
 
@@ -1466,13 +1413,11 @@ bp + theme(panel.grid.minor.y=element_blank(),
 
 从带有默认选项的示例图开始：
 
-```
+```{r}
 library(ggplot2)
 bp <- ggplot(data=PlantGrowth, aes(x=group, y=weight, fill=group)) + geom_boxplot()
 bp
 ```
-
-![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-2-1.png)
 
 #### 去除图例
 
@@ -2185,7 +2130,7 @@ print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
 }
 ```
 
-## 颜色（ggplot2)
+## 颜色 {#ggplot2-colors}
 
 ###  问题
 
@@ -2412,641 +2357,5 @@ ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point() +
 
 ![plot of chunk unnamed-chunk-14-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png)
 
-## 图形混杂-输出到文件 PDF-PNG-TIFF-SVG
 
-### 问题
 
-你想将图形保存到文件。
-
-### 方案
-
-R 中有好几种命令可以直接将图形导出为文件而不是打印到屏幕上。另外，你必须通过 `dev.off()` 命令告诉 R 你已经完成作图了，否则你的图形是不会显示出来的。
-
-#### PDF格式
-
-PDF 是一种矢量文件格式。一般我们都更倾向于将图形输出为矢量图文件，因为这样的图无论怎样缩放都不会出现像素点。矢量图文件的大小通常要比位图文件要小，除非该文件里包含了过多的内容。（比如说一张散点图内包含了上千个点，这时候就会造成矢量图大而位图小。）
-
-```{r}
-pdf("plots.pdf")
-dev.off()
-```
-
-PDF 默认是 7x7 英寸，并且每个图形都单独占一页。这个尺寸是可以更改的：
-
-```{r}
-# 6x3 inches
-pdf("plots.pdf", width=6, height=3)
-# 10x6 cm
-pdf("plots.pdf", width=10/2.54, height=6/2.54)
-```
-
-如果你想在 Inkscape 或者 Illustrator 这样的矢量图编辑器中修改你的文件，图形中的一些绘制点有可能看上去更像是字母而并非原来的圆形或方形等。为了防止这种情况的发生可以输入：
-
-```{r}
-pdf("plots.pdf", useDingbats=FALSE)
-```
-
-#### SVG 格式
-
-SVG 是另一种矢量图。默认的  `svg()` 命令无法将多页图形输出到一个文件中，因为大部分的 SVG 浏览软件无法处理多页的 SVG 文件。后面的 PNG 内容中将涉及如何输出到多个文件。
-
-```{r}
-svg("plots.svg")
-dev.off()
-```
-
-SVG 文件比 PDF 文件更适合矢量图编辑器。
-
-#### PNG/TIFF格式
-
-PNG 和 TIFF 是位图（栅格图像），对它们进行缩放时可能会出现像素点。
-
-```{r}
-png("plot.png")
-# 或者 tiff("plot.tiff")
-dev.off()
-```
-
-输出的图像默认尺寸为 480x480 像素，分辨率为 72dpi （即 6.66x6.66 英寸）
-
-当分辨率增加时文本与图像元素的大小也会（以像素为单位）增加。这是因为这些元素的大小只与图像的物理大小有关（比如 4x4 英寸），而与图像的像素大小无关。例如，一个 12 磅的字符高度为 12/72 = 1/6 英寸，在分辨率为 72dpi 的情况下，它共包含 12 个像素点；而在分辨率放大到 120dpi 时，它就含有 20 个像素点了。
-
-以下创建一个大小为 480x240 像素，分辨率为 120dpi 的图像,其实际大小相当于 4x2 英寸。
-
-```{r}
-png("plot.png", width=480, height=240, res=120)
-dev.off()
-```
-
-如果你要创建不止一张图像，必须对每张图像执行一个新的 `png()` 命令，或者将 `%d` 放置到文件名中:
-
-```{r}
-png("plot-%d.png")
-dev.off()
-```
-上述代码会生成 plot-1.png, plot-2.png 等系列文件。
-
-#### 对于不支持 PDF 格式的程序 （MS Office）
-有些不支持 PDF 文件导入的程序一般都需要高分辨率的 PNG 或 TIFF 文件。比如说微软 Office 无法导入 PDF 格式文件。而对于印刷出版物，则需要使用 300dpi 的图像。
-
-```{r}
-# 绘制一幅 6x6 英寸，300dpi 的图像
-ppi <- 300
-png("plot.png", width=6*ppi, height=6*ppi, res=ppi)
-dev.off()
-```
-#### ggplot2
-
-如果你在脚本或函数中使用 `ggplot2` 进行绘图，必须使用 `print()` 命令确保图像得到渲染。
-
-```{r}
-# 无效命令
-pdf("plots.pdf")
-dev.off()
-# 正确的做法
-pdf("plots.pdf")
-dev.off()
-```
-从屏幕中保存一个 ggplot2 图像为文件，你可以使用 `ggsave()`。
-
-```{r}
-ggsave("plot.pdf")
-ggsave("plot.pdf", width=4, height=4)
-# 将图形保存为 400x400，100 ppi的文件
-ggsave("plot.png", width=4, height=4, dpi=100)
-```
-
-#### 保存屏幕中的图像
-
-如果你的屏幕中已经有一张图像了，可以将其保存为位图。
-
-这是一种将屏幕中的对象作出从像素到像素的拷贝，不过这种操作很大概率只能在 Linux 和 Mac 的 X11 系统下得以实现：
-
-```{r}
-# 在屏幕中绘制一张图形
-# plot(1:3, 1:3)
-# savePlot("myplot.png",) # 错误运行
-```
-
-这一步是保存屏幕当前图像，并且根据不同的设备对图像进行重新渲染，图像大小可能会因此发生变化。如果你需要图形大小固定，则需要以像素为单位对尺寸进行指定。
-
-```{r}
-# 在屏幕中绘制图像
-plot(1:3, 1:3)
-dev.copy(pdf,"myplot.pdf", width=4, height=4)
-dev.off()
-# 等同于：
-# pdf("myplot.pdf", width=4, height=4)
-# dev.off()
-dev.copy(png,"myplot.png", width=400, height=400)
-dev.off()
-```
-
-## 图形混杂-形状和线形
-
-### 问题
-
-你想在图形中使用不同的形状和线条。
-
-### 方案
-![unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-2-1.png)
-
-![plot of chunk line_types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/line_types-1.png)
-
-在输出位图时，对符号 15-18 的渲染可能不具抗锯齿性，即无论这些图形的绘制是否来自同一个平台，这些符号都有可能会被拉伸变形，出现像素点，或者无法居中。符号 19 和 21-25 在填充部分外周会有边框线，在大部分情况下这种边线在渲染时其边缘都是平滑的。另外，要使符号 21-25 显示实心填充，需要指定与边线颜色 (`col`) 一致的填充 (`bg`) 颜色，否则这些符号将会是空心的。
-
-#### 标准图形
-
-通过 `pch` 选项来设置符号形状, 并且通过 `lty` 和 `lwd` 来设定线条的类型和粗细。线条的类型可以通过名字或数字来指定。
-
-```{r}
-set.seed(331)
-
-# 绘制一些点线
-# 设定绘画范围
-par(mar=c(3,3,2,2))
-plot(NA, xlim=c(1,4), ylim=c(0,1))
-
-# 绘制实心圆和实线
-points(1:4, runif(4), type="b", pch=19)
-# 添加空心方框和粗虚线
-points(1:4, runif(4), type="b", pch=0,  lty=2, lwd=3)
-
-points(1:4, runif(4), type="b", pch=23,   # 菱形符号
-       lty="dotted", cex=2,               # 点状线, 符号形状放大一倍
-       col="#000099", bg="#FF6666")       # 线条蓝色，符号形状红色填充
-```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-3-1.png)
-
-#### ggplot2
-
-在调用 ggplot2 的情况下，可以对图中的符号形状和线条类型进行全局的部署（比方说你想让所有数据点都是方形，所有的线条都为虚线），或者通过一个变量来调整它们。
-
-```{r}
-# 示例数据
-df <- read.table(header=T, text='
-  cond xval yval
-     A    1  2.0
-     A    2  2.5
-     B    1  3.0
-     B    2  2.0
-')
-
-library(ggplot2)
-
-# 使用标准的线条和符号形状作图
-# 用 group = cond 表示点线之间的对应关系
-ggplot(df, aes(x=xval, y=yval, group = cond)) +
-    geom_line() +
-    geom_point()
-
-# 设置全局的符号形状和线条类型
-ggplot(df, aes(x=xval, y=yval, group = cond)) +
-    geom_line(linetype="dashed",  # 虚线
-              size = 1.5) +       # 加粗
-    geom_point(shape = 0,         # 空心方块
-               size = 4)          # 放大形状
-
-# 通过变量 cond 调整符号图形和线类型
-ggplot(df, aes(x=xval, y=yval, group = cond)) +
-    geom_line(aes(linetype=cond), # cond 决定线条类型
-              size = 1.5) +       # 线条加粗
-    geom_point(aes(shape=cond),   # cond 决定形状
-               size = 4)          # 放大形状
-
-# 在上述的基础上同时改变所使用的线条和形状
-ggplot(df, aes(x=xval, y=yval, group = cond)) +
-    geom_line(aes(linetype=cond), # cond 决定线条类型
-              size = 1.5) +       # 线条加粗
-    geom_point(aes(shape=cond),   # cond 决定形状
-               size = 4) +        # 放大形状
-    scale_shape_manual(values=c(6,5)) +                  # 更改形状
-    scale_linetype_manual(values=c("dotdash", "dotted")) # 更改线条类型
-```
-
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-1.png)
-![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-2.png)
-![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-3.png)
-![plot of chunk unnamed-chunk-4-4](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-4-4.png)
-
-一般来说 ggplot2 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以使用 `scale_shape(solid=FALSE)`。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。
-
-```{r}
-# 空心形状
-ggplot(df, aes(x=xval, y=yval, group = cond)) +
-    geom_line(aes(linetype=cond), # cond 决定线条类型
-              size = 1.5) +       # 线条加粗
-    geom_point(aes(shape=cond),   # cond 决定符号形状
-               size = 4)  +       # 放大形状
-    scale_shape(solid=FALSE)
-
-# 白色填充形状
-ggplot(df, aes(x=xval, y=yval, group = cond)) +
-    geom_line(aes(linetype=cond), # cond 决定线条类型
-              size = 1.5) +       # 线条加粗
-    geom_point(aes(shape=cond),   # cond 决定符号形状
-               fill = "white",    # 白色填充
-               size = 4)  +       # 放大形状
-    scale_shape_manual(values=c(21,24))  # 形状：实心圆和三角形
-```
-
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-5-1.png)
-![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/figure/unnamed-chunk-5-2.png)
-
-#### 附录
-
-以下代码会生成本章节开头所示的图表。
-
-```{r}
-par(mar=c(0,0,0,0))
-
-# 设定绘图区域
-plot(NA, xlim=c(0,1), ylim=c(6.5, -0.5),
-    xaxt="n", yaxt="n",
-    xlab=NA, ylab=NA )
-
-# 画线条
-for (i in 0:6) {
-    points(c(0.25,1), c(i,i), lty=i, lwd=2, type="l")
-}
-# 添加标签
-text(0, 0, "0. 'blank'"   ,  adj=c(0,.5))
-text(0, 1, "1. 'solid'"   ,  adj=c(0,.5))
-text(0, 2, "2. 'dashed'"  ,  adj=c(0,.5))
-text(0, 3, "3. 'dotted'"  ,  adj=c(0,.5))
-text(0, 4, "4. 'dotdash'" ,  adj=c(0,.5))
-text(0, 5, "5. 'longdash'",  adj=c(0,.5))
-text(0, 6, "6. 'twodash'" ,  adj=c(0,.5))
-```
-
-## 图形混杂-字体
-
-### 问题
-
-你想在图像中使用不同的字体。
-
-### 方案
-
-更新: 查看 [extrafont](https://github.com/wch/extrafont) 包相关内容，该包能更好地支持 PDF 和 Windows 位图中的字体设定。 
-
-R 在一般情况下都不能很好地支持字体的显示。在不同的操作系统和不同的输出格式中都会出现不一样的结果。
-
-#### geom_text
-
-通过 ggplot2 中的 `geom_text` or `annotate` , 你可以对图形文本中的一系列属性进行设置。 `geom_text` 用于将数据框中的文本加入到图表中，而 `annotate` 则用于往图表中添加单个文本元素。
-
-Name | Default value
-:---|:---
-`size` | 5
-`family` |`""` (sans)
-`fontface` | `plain`
-`lineheight` |	1.2
-`angle` |	0
-`hjust` |	0.5
-`vjust` |	0.5
-
-注意这里 `size` 的单位是毫米, 而非磅。
-
-```{r}
-dat <- data.frame(
-    y = 1:3,
-    text = c("This is text", "Text with\nmultiple lines", "Some more text")
-)
-
-library(ggplot2)
-p <- ggplot(dat, aes(x=1, y=y)) + 
-       scale_y_continuous(limits=c(0.5, 3.5), breaks=NULL) +
-       scale_x_continuous(breaks=NULL)
-
-p + geom_text(aes(label=text))
-
-p + geom_text(aes(label=text), family="Times", fontface="italic", lineheight=.8) +
-    annotate(geom="text", x=1, y=1.5, label="Annotation text", colour="red",
-             size=7, family="Courier", fontface="bold", angle=30)
-```
-
-![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-2-1.png)
-![plot of chunk unnamed-chunk-2-2](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-2-2.png)
-
-#### themes and element_text
-
-在管理类似标题，图注，坐标轴标签等元素时，可以使用 `element_text`, 其参数设置跟 `geom_text` 基本一致, 除了  `size` 的单位是 **points** (而非 mm), 还有就是它用的是 `face` 而不是 `fontface` 。默认情况下，`size` 取决于元素，比如图形标题的字体总是比刻度标签的大。
-
-```{r}
-p + geom_point() +
-    ggtitle("This is a Title") +
-    theme(plot.title=element_text(family="Times", face="bold", size=20))
-```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-3-1.png)
-
-#### 字体表格
-
-你可以运行下列代码来生成一张不同字体的图形表。 每种字体都有**简称**和**字体标准家族名称**，定义字体时使用其中一种即可。
-
-```{r}
-fonttable <- read.table(header=TRUE, sep=",", stringsAsFactors=FALSE,
-                        text='
-Short,Canonical
-mono,Courier
-sans,Helvetica
-serif,Times
-,AvantGarde
-,Bookman
-,Helvetica-Narrow
-,NewCenturySchoolbook
-,Palatino
-,URWGothic
-,URWBookman
-,NimbusMon
-URWHelvetica,NimbusSan
-,NimbusSanCond
-,CenturySch
-,URWPalladio
-URWTimes,NimbusRom
-')
-
-fonttable$pos <- 1:nrow(fonttable)
-
-library(reshape2)
-fonttable <- melt(fonttable, id.vars="pos", measure.vars=c("Short","Canonical"),
-                  variable.name="NameType", value.name="Font")
-
-# 创建一个分面形式的图表。确保因子的顺序是正确的
-facetable <- data.frame(Face = factor(c("plain","bold","italic","bold.italic"),
-                                      levels = c("plain","bold","italic","bold.italic")))
-
-fullfonts <- merge(fonttable, facetable)
-
-library(ggplot2)
-pf <- ggplot(fullfonts, aes(x=NameType, y=pos)) + 
-             geom_text(aes(label=Font, family=Font, fontface=Face)) +
-             facet_wrap(~ Face, ncol=2)
-```
-
-在屏幕中查看:
-
-```{r}
-pf
-```
-
-你在屏幕中所看见的不一定跟你输出为 PNG 或 PDF 格式后的结果完全一样。查看 PNG 格式的输出结果： 
-
-```{r}
-png('fonttable.png', width=720, height=720, res=72)
-print(pf)
-dev.off()
-```
-
-需要注意的是，对于生成这张图片的操作系统来说，大部分的字体（位于顶部）是不兼容的，只有一些基础字体（位于底部）是可以使用的。
-
-![unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Fonts/figure/unnamed-chunk-7-1.png)
-
-PDF 格式输出结果(以下示例图已从 PDF 格式转化为 PNG 格式）:
-
-```{r}
-pdf('fonttable.pdf', width=10, height=10)
-print(pf)
-dev.off()
-#  用 GraphicsMagick 将 PDF 转化为PNG格式:
-# system("gm convert -resize 720x720 -background white fonttable.pdf fonttable-pdf.png")
-```
-
-PDF 设备对于不同字体的支持比 PNG 设备更好。基本所有的字体都能兼容。(虽然这些字体并不一定很好看):
-
-![PDF font table, converted to PNG](http://www.cookbook-r.com/Graphs/Fonts/fonttable-pdf.png)
-
-## 图形混杂-抗混淆位图输出
-
-### 问题
-
-你想要在 **windows** 操作环境下保存抗锯齿的位图结果（[**anti-aliasing bitmap**](https://www.computerhope.com/jargon/a/antialias.htm)）。
-
-### 方案
-
-类似于 **png** 和 **jpeg** 的标准图形设备可以将图形保存成 **cairo、Xlib、 quartz** 三种不同的文件格式。当使用 **cairo**，我们便可以获得抗锯齿化的图形结果。在 **MacOS** 和 **linux** 系统下，自动将图片保存为 **cairo** 格式，但是在 **windows** 系统下的相应参数是 **NULL**。
-
-绘图示例（如下）：
-
-```{r}
-# 设置伪随机数种子
-set.seed(1)
-#生成符合正态分布的100个随机数
-x = rnorm(100)
-png("antialiasing_1.png", type="cairo")
-plot(x)
-dev.off()
-```
-
-在 **windows** 系统环境下不可强行使用 **type="cairo"**，需要借助 **Cairo 工具包**获取抗锯齿化结果。
-
-```{r}
-# 安装Cairo包
-# install.packages("Cairo")
-library("Cairo")
-# 设置伪随机数种子
-set.seed(1)
-#生成符合正态分布的100个随机数
-x = rnorm(100)
-Cairo(width = 540, height = 380, file="antialiasing_2.png", type="png", bg="white")
-plot(x)
-dev.off() 
-```
-
-#### 提示
-
-有关该部分的更多相关信息，参看[Efficient R programming](https://csgillespie.github.io/efficientR/cairo-type.html)。
-
-## 标准绘图 | 散点图
-
-### 问题
-
-你想要创建一个散点图
-
-### 方案
-
-假设下面是你的数据：
-
-```{r}
-set.seed(955)
-# 给数据添加一些随机噪声
-dat <- data.frame(xvar = 1:20 + rnorm(20,sd=3),
-                  yvar = 1:20 + rnorm(20,sd=3),
-                  zvar = 1:20 + rnorm(20,sd=3))
-
-head(dat)
-```
-
-#### 基本的散点图
-
-```{r}
-# 使用向量 xvar 和 yvar 绘制点图
-plot(dat$xvar, dat$yvar)
-
-# 跟上一句代码一致，但这里是用公式实现
-plot(yvar ~ xvar, dat)
-
-# 添加一条回归线
-fitline <- lm(dat$yvar ~ dat$xvar)
-abline(fitline)
-```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-3-2.png)
-
-#### 散点图矩阵
-
-如果你想要比较多个变量，可以创建一个散点图矩阵
-
-```{r}
-# 一个散点图矩阵
-plot(dat[,1:3])
-
-# 添加回归线
-# 在对角添加histogram/boxplot/density/qqplot
-library(car)
-scatterplotMatrix(dat[,1:3],
-                   diagonal="histogram",
-                   smooth=FALSE)
-```
-
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Scatterplot/figure/unnamed-chunk-4-2.png)
-
-想要查看对应的相关矩阵，查看 [../../Statistical analysis/Regression and correlation](https://github.com/ShixiangWang/Cookbook-for-R-Chinese/blob/master/cookbook/Statistical_analysis/%E5%9B%9E%E5%BD%92%E5%92%8C%E7%9B%B8%E5%85%B3.md)。
-
-想要可视化相关矩阵，查看 [../Correlation matrix](http://www.cookbook-r.com/Graphs/Correlation_matrix)。
-
-## 标准绘图|箱线图
-
-### 问题
-
-你想要绘制一个箱线图。
-
-### 方案
-
-该方案教你如何快速地使用标准绘图方法绘制简单的箱线图。
-
-#### 样例数据
-
-这里的例子使用 `ToothGrowth` 数据集，它有两个独立变量以及一个依赖变量。
-
-```{r}
-head(ToothGrowth)
-```
-
-在不同 `supp` 和 `dose` 条件下，变量 `len` 的箱线图:
-
-```{r}
-boxplot(len ~ supp, data=ToothGrowth)
-
-# 即使 `dose` 是一个数值型变量，`boxplot` 也会将其转换为因子 
-boxplot(len ~ dose, data=ToothGrowth)
-```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-3-2.png)
-
-组合 `supp` 和 `dose` 不同水平（即交互项）下 `len` 的箱线图
-
-```{r}
-boxplot(len ~ interaction(dose,supp), data=ToothGrowth)
-```
-
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-4-1.png)
-
-注意 `plot` 除了添加了横轴标签和不会自动将数值变量转换为因子变量，它与 `boxplot` 有非常相似的输出。
-
-```{r}
-plot(len ~ interaction(dose,supp), data=ToothGrowth)
-```
-
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Box_plot/figure/unnamed-chunk-5-1.png)
-
-## 标准绘图 - QQ 图
-
-### 问题
-
-你想要对你自己的数据分布与其他的分布进行比较。这常用语检查是否一个样本是否服从正态分布，以及两个样本是抽取自同一分布。
-
-### 方案
-
-假设这是你的数据：
-
-```{r}
-set.seed(183)
-# 正态分布的数值
-x <- rnorm(80, mean=50, sd=5)
-
-# 均匀分布的数值
-z <- runif(80)
-# 比较用rnorm()抽样的数据分布与正态分布的差异
-qqnorm(x)
-qqline(x)
-
-# 比较数据的4次幂分布与正态分布的差异
-qqnorm(x^4)
-qqline(x^4)
-
-# 比较均匀分布抽取的数据与正态分布的差异
-qqnorm(z)
-qqline(z)
-```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Q-Q_plot/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Q-Q_plot/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Q-Q_plot/figure/unnamed-chunk-3-3.png)
-
-## 其他有趣图形-相关矩阵
-
-### 问题
-
-你想要可视化多元变量间的相关性强度。
-
-### 方案
-
-假设所要分析的数据（如下）：
-
-```{r}
-# 设置伪随机数种子
-set.seed(955)
-#生成符合正态分布的20个随机数
-vvar <- 1:20 + rnorm(20,sd=3)
-wvar <- 1:20 + rnorm(20,sd=5)
-xvar <- 20:1 + rnorm(20,sd=3)
-yvar <- (1:20)/2 + rnorm(20, sd=10)
-zvar <- rnorm(20, sd=6)
-
-# 使用向量生成数据框（向量名为列名）
-data <- data.frame(vvar, wvar, xvar, yvar, zvar)
-head(data)
-```
-
-可视化上述数据：
-
-```{r}
-# 导入以椭圆表征相关性强度的分析包
-library(ellipse)
-
-# 生成相关矩阵表
-ctab <- cor(data)
-# 表中数据保留两位小数
-round(ctab, 2)
-
-# 设置简化边幅并绘制相关性图
-plotcorr(ctab, mar = c(0.1, 0.1, 0.1, 0.1))
-
-# 使用颜色表征相关性强度
-colorfun <- colorRamp(c("#CC0000","white","#3366CC"), space="Lab")
-plotcorr(ctab, col=rgb(colorfun((ctab+1)/2), maxColorValue=255),
-         mar = c(0.1, 0.1, 0.1, 0.1))
-```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Correlation_matrix/figure/unnamed-chunk-3-1.png)
-
-![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Correlation_matrix/figure/unnamed-chunk-3-2.png)
-
-### 提示
-
-有关生成关联表（数字）的更多信息，参看[../../Statistical analysis/Regression and correlation](http://www.cookbook-r.com/Statistical_analysis/Regression_and_correlation)。
-
-
-```{r, include=FALSE}
-detachAllPackages()
-```

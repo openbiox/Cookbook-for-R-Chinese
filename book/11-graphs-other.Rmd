@@ -1,0 +1,58 @@
+# 其他有趣图形
+
+```{r, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## 相关矩阵 {#corr-mat}
+
+### 问题
+
+你想要可视化多元变量间的相关性强度。
+
+### 方案
+
+假设所要分析的数据（如下）：
+
+```{r}
+# 设置伪随机数种子
+set.seed(955)
+#生成符合正态分布的20个随机数
+vvar <- 1:20 + rnorm(20,sd=3)
+wvar <- 1:20 + rnorm(20,sd=5)
+xvar <- 20:1 + rnorm(20,sd=3)
+yvar <- (1:20)/2 + rnorm(20, sd=10)
+zvar <- rnorm(20, sd=6)
+
+# 使用向量生成数据框（向量名为列名）
+data <- data.frame(vvar, wvar, xvar, yvar, zvar)
+head(data)
+```
+
+可视化上述数据：
+
+```{r}
+# 导入以椭圆表征相关性强度的分析包
+library(ellipse)
+
+# 生成相关矩阵表
+ctab <- cor(data)
+# 表中数据保留两位小数
+round(ctab, 2)
+
+# 设置简化边幅并绘制相关性图
+plotcorr(ctab, mar = c(0.1, 0.1, 0.1, 0.1))
+# 使用颜色表征相关性强度
+colorfun <- colorRamp(c("#CC0000","white","#3366CC"), space="Lab")
+plotcorr(ctab, col=rgb(colorfun((ctab+1)/2), maxColorValue=255),
+         mar = c(0.1, 0.1, 0.1, 0.1))
+```
+
+#### 提示
+
+有关生成数值关联表的更多信息，查看[回归和相关分析](#section-7.1)。
+
+
