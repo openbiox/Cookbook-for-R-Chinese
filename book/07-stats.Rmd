@@ -42,7 +42,7 @@ cor(dat$x, dat$y)
 
 #### 相关矩阵（多个变量）
 
-同时可以对多个变量进行两两相关性分析，结果是一个 n*n 的平方矩阵或是数据框。
+同时可以对多个变量进行两两相关性分析，结果是一个 nxn 的平方矩阵或是数据框。
 
 ```{r}
 # 变量之间的相关矩阵
@@ -111,7 +111,6 @@ summary(fit3)
 
 ```{r}
 sleep
-
 ```
 
 我们将制造 `sleep` 数据的宽格式版本；下面我们将看看如何处理长格式和宽格式的数据。
@@ -125,24 +124,24 @@ sleep_wide <- data.frame(
 sleep_wide
 ```
 
-#### 比较两组：独立双样本t检验
+#### 比较两组：独立双样本 t 检验
 
 假设有两组独立样本（我们这里忽略ID变量）。
 
 `t.test()` 函数能够操作像 `sleep` 这样的长格式数据——一列记录测量值，一列指定组别；或者操作两个单独的向量。
 
 ```{r}
-# Welch t-test
+# Welch t 检验
 t.test(extra ~ group, sleep)
 
-# Same for wide data (two separate vectors)
+# 2 个独立的向量
 t.test(sleep_wide$group1, sleep_wide$group2)
 ```
 
-默认，`t.test` 不假设有方差齐性（或称作方差同质）。默认的不是 Student t 检验而是使用了 Welch t 检验。注意 Welch t 检验结果中 df=17.776，这是因为对不同质方差进行了校正。要使用 Student t 检验的话，设置 `var.equal=TRUE` 。
+默认，t 检验不假设有方差齐性（或称作方差同质）。默认的不是 Student t 检验而是使用了 Welch t 检验。注意 Welch t 检验结果中 `df=17.776`，这是因为对不同质方差进行了校正。要使用 Student t 检验的话，设置 `var.equal=TRUE` 。
 
 ```{r}
-# Student t-test
+# Student t 检验
 t.test(extra ~ group, sleep, var.equal=TRUE)
 
 # 针对宽数据相同的操作 (2个分离的向量)
@@ -153,7 +152,7 @@ t.test(sleep_wide$group1, sleep_wide$group2, var.equal=TRUE)
 
 你也可以使用配对样本 t 检验比较配对的数据。数据配对是指你可能有对某种药物治疗前后有观测值或者不同治疗有配对的研究对象。
 
-再次说明，`t-test()` 函数可以用于有分组变量的数据框或者两个向量。它依赖相对位置来决定配对。如果你使用有分组变量的长格式数据，group = 1 的第一行与group = 2 的第一行配对。确保数据排序好并且不存在缺失值是非常重要的；否则配对可以丢弃。这种情况中，我们能通过 `group` 和 `ID` 变量进行排序来确保顺序是一样的。
+再次说明，`t-test()` 函数可以用于有分组变量的数据框或者两个向量。它依赖相对位置来决定配对。如果你使用有分组变量的长格式数据，group 1 的第一行与 group 2 的第一行配对。确保数据排序好并且不存在缺失值是非常重要的；否则配对可以丢弃。这种情况中，我们能通过 `group` 和 `ID` 变量进行排序来确保顺序是一样的。
 
 ```{r}
 # 按 group 和 ID排序
@@ -174,7 +173,7 @@ t.test(sleep_wide$group1 - sleep_wide$group2, mu=0, var.equal=TRUE)
 
 #### 与期望的总体均值进行比较：单样本 t 检验
 
-假设你想要检测是否 `extra` 列的数据抽取自总体均值为0的总体。（这里忽略 `group` 与 `ID` 列）
+假设你想要检测是否 `extra` 列的数据抽取自总体均值为0的总体（这里忽略 `group` 与 `ID` 列）。
 
 ```{r}
 t.test(sleep$extra, mu=0)
@@ -342,13 +341,13 @@ ct
 fisher.test(ct)
 ```
 
-##### Cochran-Mantel-Haenszel test
+##### Cochran-Mantel-Haenszel 检验
 
 Cochran-Mantel-Haenszel 检验 （或称为 Mantel-Haenszel 检验)）用于检验重复测量两离散变量的独立性。通常使用 2x2xK 列表表示，K是测量条件的次数。比如你想要指导是否一个处理（C vs. D）是否影响了恢复的概率（yes or no）。假设该处理一天监控测量三次——早上、中午和晚上，而你想要你的检验能够控制它。那么你可以使用 CMH 检验对 2x2x3 列联表进行操作，第三个变量是你想要控制的变量。
 
 R 中的 CMH 检验可以处理比 2x2xK 维度更高的数据，例如你处理 3x3xK 列联表。
 
-在接下来的例子里有三个变量：Location，Allele 和 Habitat。问题是——当控制 location 变量时，Allel（94 或非 94）和 Habitat（marine 或 estuarine）两个变量是否独立。
+在接下来的例子里有三个变量：Location、Allele 和 Habitat。问题是——当控制 location 变量时，Allel（94 或非 94）和 Habitat（marine 或 estuarine）两个变量是否独立。
 
 ```{r}
 fish <- read.table(header=TRUE, text='
@@ -463,7 +462,7 @@ data_wide <- spread(data, time, result)
 data_wide
 ```
 
-接下来从数据框的 pre 和 post 列生成列联表：
+接下来从数据框的 `pre` 和 `post` 列生成列联表：
 
 ```{r}
 ct <- table( data_wide[,c("pre","post")] )
@@ -573,7 +572,7 @@ TukeyHSD(aov2)
 
 ### 有受试内变量的 ANOVAs
 
-对于有受试内变量的 ANOVA 分析，数据必须满足为长格式。上面提到的数据都是宽格式，所以我们需要先转换数据格式（参见「长宽格式互相转换」）
+对于有受试内变量的 ANOVA 分析，数据必须满足为长格式。上面提到的数据都是宽格式，所以我们需要先转换数据格式（参见[长宽格式互相转换](#section-6.17)）。
 
 同样地，有受试内变量的 ANOVA 分析需要一个识别列。当前数据里是 `subject` 列。**识别变量必须是一个因子**，如果是数值类型，函数会解析错误导致不能正常工作。
 
@@ -595,7 +594,7 @@ head(data_long)
 data_long$subject <- factor(data_long$subject)
 ```
 
-#### One-way within ANOVA
+#### 单因素被试内 ANOVA
 
 首先，像上面展示的一样将数据从宽格式转换到长格式并确保 `subject` 列是因子变量。如果 `subject` 是数值向量，而不是因子，结果将会出错。
 
@@ -683,7 +682,7 @@ summary(logr_vm)
 
 ##### 画图
 
-我们可以使用 `ggplot2` 或者基本图形绘制数据和逻辑回归结果。
+我们可以使用 **ggplot2** 或者基本图形绘制数据和逻辑回归结果。
 
 ```{r}
 library(ggplot2)
@@ -712,7 +711,7 @@ summary(logr_va)
 
 ##### 画图
 
-尽管图形可能会比连续预测变量的信息少，我们还是可以使用 `ggplot2` 或者基本图形绘制逻辑数据和回归结果。因为数据点大致在 4 个位置，我们可以使用抖动点避免叠加。
+尽管图形可能会比连续预测变量的信息少，我们还是可以使用 **ggplot2** 或者基本图形绘制逻辑数据和回归结果。因为数据点大致在 4 个位置，我们可以使用抖动点避免叠加。
 
 ```{r}
 library(ggplot2)
@@ -760,7 +759,7 @@ summary(logr_vmai)
 有许多检验方差同质性的方式，下面列出三种：
 
 - **Bartlett’s test** - 如果数据服从正态分布，这是最好地检验方法。该方法对非正态数据非常敏感，如果数据不是正态的很可能返回假阳性的结果。
-- **Levene’s test** - 数据偏离正态性时比 Bartlett 检验更稳定（鲁棒性更好），内置于 `car` 包
+- **Levene’s test** - 数据偏离正态性时比 Bartlett 检验更稳定（鲁棒性更好），内置于 **car** 包
 - **Fligner-Killeen test** - 这是一个非参数检验，数据偏离正态是非常稳定适用。
 
 对于所有的检验，零假设为总体方差相同（同质；**不是相等的意思**）；备择假设是至少两组样本（总体方差）不同。
@@ -789,7 +788,7 @@ plot(len ~ interaction(dose,supp), data=ToothGrowth)
 
 初一看好像数据集的方差都不同质，但这需要像下面一样进行合适的检验。
 
-#### Bartlett’s test
+#### Bartlett 检验
 
 有一个独立变量：
 
@@ -805,7 +804,7 @@ bartlett.test(len ~ interaction(supp,dose), data=ToothGrowth)
 bartlett.test(len ~ dose, data=ToothGrowth)
 ```
 
-#### Levene’s test
+#### Levene 检验
 
 `leveneTest()` 函数是 **car** 包的一部分。
 
@@ -817,13 +816,13 @@ library(car)
 leveneTest(count ~ spray, data=InsectSprays)
 ```
 
-有两个独立变量。注意这里 `interaction` 函数不需要，因为该函数用于其他两个检验。
+有两个独立变量。注意这里 `interaction()` 函数不需要，因为该函数用于其他两个检验。
 
 ```{r}
 leveneTest(len ~ supp*dose, data=tg)
 ```
 
-#### Fligner-Killeen test
+#### Fligner-Killeen 检验
 
 有一个独立变量：
 

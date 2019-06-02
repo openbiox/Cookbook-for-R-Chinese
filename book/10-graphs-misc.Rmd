@@ -95,7 +95,7 @@ dev.off()
 
 #### ggplot2
 
-如果你在脚本或函数中使用 `ggplot2` 进行绘图，必须使用 `print()` 命令确保图像得到渲染。
+如果你在脚本或函数中使用 **ggplot2** 进行绘图，必须使用 `print()` 命令确保图像得到渲染。
 
 ```{r, eval=FALSE}
 # 无效命令
@@ -108,7 +108,7 @@ print(qplot(...))
 dev.off()
 ```
 
-从屏幕中保存一个 ggplot2 图像为文件，你可以使用 `ggsave()`。
+从屏幕中保存一个 ggplot 图像为文件，你可以使用 `ggsave()`。
 
 ```{r, eval=FALSE}
 ggsave("plot.pdf")
@@ -186,7 +186,7 @@ points(1:4, runif(4), type="b", pch=23,   # 菱形符号
 
 #### ggplot2
 
-在调用 ggplot2 的情况下，可以对图中的符号形状和线条类型进行全局的部署（比方说你想让所有数据点都是方形，所有的线条都为虚线），或者通过一个变量来调整它们。
+在调用 **ggplot2** 的情况下，可以对图中的符号形状和线条类型进行全局的部署（比方说你想让所有数据点都是方形，所有的线条都为虚线），或者通过一个变量来调整它们。
 
 ```{r}
 # 示例数据
@@ -227,7 +227,7 @@ ggplot(df, aes(x=xval, y=yval, group = cond)) +
     scale_linetype_manual(values=c("dotdash", "dotted")) # 更改线条类型
 ```
 
-一般来说 ggplot2 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以使用 `scale_shape(solid=FALSE)`。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。
+一般来说 **ggplot2** 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以设定 `scale_shape(solid=FALSE)`。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。
 
 ```{r}
 # 空心形状
@@ -288,7 +288,7 @@ R 在一般情况下都不能很好地支持字体的显示。在不同的操作
 
 #### geom_text
 
-通过 ggplot2 中的 `geom_text` or `annotate` , 你可以对图形文本中的一系列属性进行设置。 `geom_text` 用于将数据框中的文本加入到图表中，而 `annotate` 则用于往图表中添加单个文本元素。
+通过 **ggplot2** 中的 `geom_text()` or `annotate()` , 你可以对图形文本中的一系列属性进行设置。 `geom_text()` 用于将数据框中的文本加入到图表中，而 `annotate()` 则用于往图表中添加单个文本元素。
 
 Name | Default value
 :---|:---
@@ -320,9 +320,9 @@ p + geom_text(aes(label=text), family="Times", fontface="italic", lineheight=.8)
 ```
 
 
-#### themes and element_text
+#### theme() 和 element_text()
 
-在管理类似标题，图注，坐标轴标签等元素时，可以使用 `element_text`, 其参数设置跟 `geom_text` 基本一致, 除了  `size` 的单位是 **points** (而非 mm), 还有就是它用的是 `face` 而不是 `fontface` 。默认情况下，`size` 取决于元素，比如图形标题的字体总是比刻度标签的大。
+在管理类似标题，图注，坐标轴标签等元素时，可以使用 `element_text()`, 其参数设置跟 `geom_text()` 基本一致, 除了  `size` 的单位是 **points** (而非 mm), 还有就是它用的是 `face` 而不是 `fontface` 。默认情况下，`size` 取决于元素，比如图形标题的字体总是比刻度标签的大。
 
 ```{r}
 p + geom_point() +
@@ -415,11 +415,11 @@ knitr::include_graphics("http://www.cookbook-r.com/Graphs/Fonts/fonttable-pdf.pn
 
 ### 问题
 
-你想要在 **windows** 操作环境下保存抗锯齿的位图结果（[**anti-aliasing bitmap**](https://www.computerhope.com/jargon/a/antialias.htm)）。
+你想要在 **windows** 操作环境下保存抗锯齿的位图结果（[**抗锯齿位图介绍**](https://www.computerhope.com/jargon/a/antialias.htm)）。
 
 ### 方案
 
-类似于 **png** 和 **jpeg** 的标准图形设备可以将图形保存成 **cairo、Xlib、 quartz** 三种不同的文件格式。当使用 **cairo**，我们便可以获得抗锯齿化的图形结果。在 **MacOS** 和 **linux** 系统下，自动将图片保存为 **cairo** 格式，但是在 **windows** 系统下的相应参数是 **NULL**。
+类似于 **png** 和 **jpeg** 的标准图形设备可以将图形保存成 **cairo、Xlib、 quartz** 三种不同的文件格式。当使用 **cairo**，我们便可以获得抗锯齿化的图形结果。在 **MacOS** 和 **linux** 系统下，自动将图片保存为 **cairo** 格式，但是在 **windows** 系统下的相应参数是 `NULL`。
 
 绘图示例：
 
@@ -438,7 +438,7 @@ knitr::include_graphics("antialiasing_1.png")
 ```
 
 
-在 **windows** 系统环境下不可强行使用 **type="cairo"**，需要借助 **Cairo 工具包**获取抗锯齿化结果。
+在 **windows** 系统环境下不可强行使用 `type="cairo"`，需要借助 **Cairo** 工具包获取抗锯齿化结果。
 
 ```{r}
 # 安装Cairo包

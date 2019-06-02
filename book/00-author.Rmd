@@ -2,6 +2,4 @@
 
 Winston Chang <winston@stdout.org>
 
-Winston is a software engineer at RStudio, and is a developer for the Shiny, ggplot2, and devtools packages. He holds a Ph.D. in psychology from Northwestern University and is the author of R Graphics Cookbook, published by O’Reilly Media.
-
-Source: <https://resources.rstudio.com/authors/winston-chang>
+Winston 是 RStudio 的软件工程师，他是软件包 **Shiny**、**ggplot2** 和 **devtools** 的开发者。他获得西北大学的心理学专业博士学位，也是 O'Reilly Media 出版的《R Graphics Cookbook》的作者。

@@ -36,7 +36,6 @@ RScript test.R
 ```
 
 
-
 ### 案例：计算细菌基因组核心蛋白相似性
 
 - 应用场景
@@ -54,7 +53,7 @@ RScript test.R
   Qin, Q. L., Xie, B. B., Zhang, X. Y., Chen, X. L., Zhou, B. C., Zhou, J., ... & Zhang, Y. Z. (2014). A proposed genus boundary for the prokaryotes based on genomic insights. Journal of bacteriology, 196(12), 2210-2215.
 
 
-**以下 R 脚本都是在 windows 操作平台上进行的**
+**以下 R 脚本都是在 windows 操作平台上进行的**。
 
 ```r
 # 下载所分析的基因组数据（蛋白序列）

@@ -7,8 +7,17 @@
 ## 书籍
 
 - [《R for Data Science》](https://r4ds.had.co.nz/index.html)
+- [《Advanced R》](https://adv-r.hadley.nz/)
+- [《R Markdown: The Definitive Guide》](https://bookdown.org/yihui/rmarkdown/)
+
+## R 包
+
+- [bookdown](https://github.com/rstudio/bookdown) - 使用 R Markdown 创建技术文档。
 
 ## 网站
 
+- [bookdown](https://bookdown.org/home/) - 包含一系列由 **bookdown** 创建的书籍，大部分与 R 语言相关，有非常高的学习和参考价值。
+
 ## 列表
+
 

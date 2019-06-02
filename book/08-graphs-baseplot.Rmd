@@ -169,7 +169,7 @@ boxplot(len ~ interaction(dose,supp), data=ToothGrowth)
 ```
 
 
-注意 `plot` 除了添加了横轴标签和不会自动将数值变量转换为因子变量，它与 `boxplot` 有非常相似的输出。
+注意 `plot()` 除了添加了横轴标签和不会自动将数值变量转换为因子变量，它与 `boxplot()` 有非常相似的输出。
 
 ```{r}
 plot(len ~ interaction(dose,supp), data=ToothGrowth)

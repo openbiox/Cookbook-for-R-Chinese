@@ -45,7 +45,7 @@ data <- read.csv(file.choose())
 
 #### 把字符串看作因子（factor）或字符（character）
 
-默认条件下，数据中的字符串都被转换为因子。如果你用 `read.csv()` 载入数据，所有的文本列都会被视为因子，而实际上某些文本列被处理为字符串才更为合理。要实现这一点，可以使用 `stringsAsFactors=FALSE`:
+默认条件下，数据中的字符串都被转换为因子。如果你用 `read.csv()` 载入数据，所有的文本列都会被视为因子，而实际上某些文本列被处理为字符串才更为合理。要实现这一点，可以设定 `stringsAsFactors=FALSE`:
 
 ```r
 data <- read.csv("datafile.csv", stringsAsFactors=FALSE)
@@ -69,7 +69,7 @@ data[stringcols] <- lapply(data[stringcols], as.character)
 
 #### 从网上导入文件
 
-也可以从 URL 加载数据。下面这些(很长的) URL 可以加载相关文件。
+也可以从 URL 加载数据。下面这些(很长的) URL 可以描述了将要加载的相关文件。
 
 ```{r}
 data <- read.csv(
@@ -86,24 +86,24 @@ data <- read.csv(
 names(data) <- c("First","Last","Sex","Number")
 ```
 
-上述所使用的数据文件：
+上述所使用的数据文件及内容：
 
-[datafile.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv)：
+- [datafile.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile.csv)：
 
-```
-"First","Last","Sex","Number"
-"Currer","Bell","F",2
-"Dr.","Seuss","M",49
-"","Student",NA,21
-```
+  ```
+  "First","Last","Sex","Number"
+  "Currer","Bell","F",2
+  "Dr.","Seuss","M",49
+  "","Student",NA,21
+  ```
 
-[datafile-noheader.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv):
+- [datafile-noheader.csv](http://www.cookbook-r.com/Data_input_and_output/Loading_data_from_a_file/datafile-noheader.csv):
 
-```
-"Currer","Bell","F",2
-"Dr.","Seuss","M",49
-"","Student",NA,21
-```
+  ```
+  "Currer","Bell","F",2
+  "Dr.","Seuss","M",49
+  "","Student",NA,21
+  ```
 
 #### 定宽文本文件
 
@@ -116,7 +116,7 @@ names(data) <- c("First","Last","Sex","Number")
     ""   Student   NA     21
 ```
 
-读取这种数据的一种方式是简单地使用 `read.table()` 函数 `strip.white=TRUE` ，可以清除额外的空格。
+读取这种数据的一种方式是简单地使用 `read.table()` 函数 `strip.white=TRUE`，可以清除额外的空格。
 
 ```r
 read.table("clipboard", header=TRUE, strip.white=TRUE)
@@ -162,7 +162,7 @@ read.fwf("myfile.txt", c(7,5,-2,1,1,1,1,1,1), header=TRUE, strip.white=TRUE)
 
 #### Excel 文件
 
-`gdata` 包里的 `read.xls()` 函数可以读取 Excel 文件。
+**gdata** 包里的 `read.xls()` 函数可以读取 Excel 文件。
 
 ```r
 library(gdata)
@@ -286,8 +286,6 @@ newdata <- structure(list(size = structure(c(3L, 2L, 1L), .Label = c("large",
   ), class = "data.frame", row.names = c(NA, -3L))
 ```
 
-
-
 ## 运行 R 脚本 {#run-r-script}
 
 ### 问题
@@ -318,7 +316,6 @@ print(x)
 
 # 更简单的输出: 没有行/列，没有文本
 cat(x)
-
 ```
 
 另一种代替方法是：运行 `source()` 并加上 `print.eval=TRUE` 选项。
