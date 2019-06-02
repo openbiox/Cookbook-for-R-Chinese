@@ -330,7 +330,7 @@ ggplot(data=datn, aes(x=factor(dose), y=length, fill=supp)) +
 
 ### 方案
 
-想要用 ggplot2 绘制图形，数据必须是数据框形式，而且是长格式（相对于宽格式）。如果你的数据需要重构，请参考[长宽格式转换](#section-6.17)获取更多信息。
+想要用 **ggplot2** 绘制图形，数据必须是数据框形式，而且是长格式（相对于宽格式）。如果你的数据需要重构，请参考[长宽格式转换](#section-6.17)获取更多信息。
 
 #### 助手函数
 
@@ -483,7 +483,6 @@ summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=
 ```{r}
 tg <- ToothGrowth
 head(tg)
-
 library(ggplot2)
 ```
 
@@ -662,11 +661,11 @@ ggplot(dfwc, aes(x=condition, y=value, group=1)) +
 下面独立数据的图形结果展示了组内变量 `condition` 存在连续一致的趋势，但使用常规的标准误（或者置信区间）则不能充分地展示这一点。Morey (2008) 和Cousineau (2005) 的方法本质是标准化数据去移除组间的变化，计算出这个标准化数据的变异程度。
 
 ```{r}
-# Use a consistent y range
+# 使用一致的 y 轴范围
 ymax <- max(dfw_long$value)
 ymin <- min(dfw_long$value)
 
-# Plot the individuals
+# 绘制个体数据
 ggplot(dfw_long, aes(x=condition, y=value, colour=subject, group=subject)) +
     geom_line() + geom_point(shape=21, fill="white") + 
     ylim(ymin,ymax)
@@ -674,8 +673,8 @@ ggplot(dfw_long, aes(x=condition, y=value, colour=subject, group=subject)) +
 # 创造标准化的版本
 dfwNorm.long <- normDataWithin(data=dfw_long, idvar="subject", measurevar="value")
 
-# Plot the normed individuals
-ggplot(dfwNorm.long, aes(x=condition, y=valueNormed, colour=subject, group=subject)) +
+# 绘制标准化的个体数据
+ggplot(dfwNorm.long, aes(x=condition, y=value_norm, colour=subject, group=subject)) +
     geom_line() + geom_point(shape=21, fill="white") + 
     ylim(ymin,ymax)
 ```
@@ -699,7 +698,7 @@ ggplot(dfwc_between, aes(x=condition, y=value, group=1)) +
 
 #### 两个组内变量
 
-如果存在超过一个的组内变量，我们可以使用相同的函数 `summarySEwithin`。下面的数据集来自[Hays (1994)](http://books.google.com/books?id=zSi2AAAAIAAJ)，在 [Rouder and Morey (2005)](http://www.jstor.org/pss/40064075)中用来绘制这类的组内误差线。
+如果存在超过一个的组内变量，我们可以使用相同的函数 `summarySEwithin`。下面的数据集来自 [Hays (1994)](http://books.google.com/books?id=zSi2AAAAIAAJ)，在 [Rouder and Morey (2005)](http://www.jstor.org/pss/40064075) 中用来绘制这类的组内误差线。
 
 ```{r}
 data <- read.table(header=TRUE, text='
@@ -764,11 +763,9 @@ ggplot(datac, aes(x=Shape, y=Time, fill=ColorScheme)) +
     geom_hline(yintercept=38) 
 ```
 
-![plot of chunk unnamed-chunk-15-1](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/figure/unnamed-chunk-15-1.png)
-
 ### 注意标准化的均值
 
-函数 `summarySEWithin` 返回标准化和未标准化的均值。未标准化的均值只是简单地表示每组的均值。标准化的均值计算出来保证组间的均值是一样的。
+函数 `summarySEWithin()` 返回标准化和未标准化的均值。未标准化的均值只是简单地表示每组的均值。标准化的均值计算出来保证组间的均值是一样的。
 
 比如：
 
@@ -793,9 +790,9 @@ summarySEwithin(dat, measurevar="dv", withinvars="trial", betweenvars="gender",
 
 ### 其他
 
-解决问题的方法不止作者提供的这一种，为了理解 ggplot2 是如何进行误差线的计算和添加，我在 stackoverflow 上提交了一个关于 [ggplot2 使用 SE 还是 SD 作为默认误差线的问题](https://stackoverflow.com/questions/46192556/errorbar-in-ggplot-is-using-sd-or-se-as-default)。有人就给出了快速简易的解答。回答者的共同观点是必须先进行数据的统计计算。我之前在其他博客上看到使用 `stat_boxplot(geom="errorbar", width=.3)` 直接计算误差线可能就有问题（难以解释它算的是 SD 还是 SE，我没有在帮助文档找到解释，我也不知道函数内部是如何计算的）。
+解决问题的方法不止作者提供的这一种，为了理解 **ggplot2** 是如何进行误差线的计算和添加，我在 stackoverflow 上提交了一个关于 [ggplot2 使用 SE 还是 SD 作为默认误差线的问题](https://stackoverflow.com/questions/46192556/errorbar-in-ggplot-is-using-sd-or-se-as-default)。有人就给出了快速简易的解答。回答者的共同观点是必须先进行数据的统计计算。我之前在其他博客上看到使用 `stat_boxplot(geom="errorbar", width=.3)` 直接计算误差线可能就有问题（难以解释它算的是 SD 还是 SE）。
 
-## 绘制分布图(ggplot2)
+## 分布图
 
 ### 问题
 
@@ -815,13 +812,13 @@ head(dat)
 library(ggplot2)
 ```
 
-### 直方图和概率密度图
+#### 直方图和概率密度图
 
-`qplot` 函数能够用更简单的语法绘制出与  `ggplot` 相同的图像。然而，在实践过程中你会发现 `ggplot` 是更好的选择，因为 `qplot` 中很多参数的选项都会让人感到困惑。
+`qplot()` 函数能够用更简单的语法绘制出与  `ggplot()` 相同的图像。然而，在实践过程中你会发现 `ggplot()` 是更好的选择，因为 `qplot()` 中很多参数的选项都会让人感到困惑。
 
 ```{r}
-## 以 rating 为横轴绘制直方图，组距设为 0.5
-## 两种函数都可以绘制出相同的图:
+# 以 rating 为横轴绘制直方图，组距设为 0.5
+# 两种函数都可以绘制出相同的图:
 ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5)
 # qplot(dat$rating, binwidth=.5)
 # 绘制黑色边线，白色填充的图
@@ -837,12 +834,7 @@ ggplot(dat, aes(x=rating)) +
     geom_density(alpha=.2, fill="#FF6666")  # 重合部分透明填充
 ```
 
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-1.png)
-![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-2.png)
-![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-3.png)
-![plot of chunk unnamed-chunk-3-4](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-3-4.png)
-
-添加一条均值线
+添加一条均值线：
 
 ```{r}
 ggplot(dat, aes(x=rating)) +
@@ -851,9 +843,8 @@ ggplot(dat, aes(x=rating)) +
                color="red", linetype="dashed", size=1)
 ```
 
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-4-1.png)
 
-### 多组数据的直方图和概率密度图
+#### 多组数据的直方图和概率密度图
 
 ```{r}
 # 重叠直方图
@@ -867,11 +858,6 @@ ggplot(dat, aes(x=rating, colour=cond)) + geom_density()
 # 半透明填充的密度图
 ggplot(dat, aes(x=rating, fill=cond)) + geom_density(alpha=.3)
 ```
-
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-1.png)
-![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-2.png)
-![plot of chunk unnamed-chunk-5-3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-3.png)
-![plot of chunk unnamed-chunk-5-4](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-5-4.png)
 
 在给每组数据添加均值线前，需要将每组数据的平均值赋值到一个新的数据框。
 
@@ -893,9 +879,6 @@ ggplot(dat, aes(x=rating, colour=cond)) +
                linetype="dashed", size=1)
 ```
 
-![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-6-1.png)
-![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-6-2.png)
-
 使用分面：
 
 ```{r}
@@ -908,13 +891,9 @@ ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5, colour="black", fill="w
                linetype="dashed", size=1, colour="red")
 ```
 
-![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-7-1.png)
-
-![plot of chunk unnamed-chunk-7-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-7-2.png)
-
 更多关于分面的细节可查看 [分面](#ggplot-facet)
 
-## 箱型图
+#### 箱型图
 
 ```{r}
 # 绘制箱型图
@@ -928,13 +907,8 @@ ggplot(dat, aes(x=cond, y=rating, fill=cond)) + geom_boxplot() +
 ggplot(dat, aes(x=cond, y=rating, fill=cond)) + geom_boxplot() + 
     guides(fill=FALSE) + coord_flip()
 ```
-       
-![plot of chunk unnamed-chunk-8-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-1.png)
-![plot of chunk unnamed-chunk-8-2](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-2.png)
-![plot of chunk unnamed-chunk-8-3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-3.png)
-![plot of chunk unnamed-chunk-8-4](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-8-4.png)
-  
-同时可以通过 ` stat_summary` 来添加平均值。
+
+同时可以通过 ` stat_summary()` 来添加平均值。
 
 ```{r}
 # 用菱形图标指征平均值，并调整参数使该图标变更大。
@@ -942,9 +916,7 @@ ggplot(dat, aes(x=cond, y=rating)) + geom_boxplot() +
     stat_summary(fun.y=mean, geom="point", shape=5, size=4)
 ```
 
-![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/figure/unnamed-chunk-9-1.png)
-
-## 散点图 (ggplot)
+## 散点图
 
 ### 问题	
 
@@ -987,8 +959,6 @@ ggplot(dat, aes(x=xvar, y=yvar)) +
     geom_smooth()            # 添加带置信区间的平滑拟合曲线
 ```
 
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-3.png)![plot of chunk unnamed-chunk-3-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-3-4.png)
-
 #### 通过其他变量设置颜色和形状
 
 ```{r}
@@ -1017,9 +987,6 @@ ggplot(dat, aes(x=xvar, y=yvar, shape=cond)) + geom_point() +
     scale_shape_manual(values=c(1,2))  # 使用圆和三角形
 ```
 
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-3.png)![plot of chunk unnamed-chunk-4-4](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-4.png)![plot of chunk unnamed-chunk-4-5](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-4-5.png)
-
-
 查看 [颜色](#ggplot2-colors) 获取更多关于颜色的信息。查看 [形状与线形](#shape-and-linetype) 获取更多相关内容。
 
 #### 处理图像元素叠加
@@ -1044,9 +1011,7 @@ ggplot(dat, aes(x=xrnd, y=yrnd)) +
                position=position_jitter(width=1,height=.5))
 ```
 
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Scatterplots_(ggplot2)/figure/unnamed-chunk-5-2.png)
-
-## 标题 (ggplot)
+## 标题
 
 ### 问题
 
@@ -1062,9 +1027,7 @@ bp <- ggplot(PlantGrowth, aes(x=group, y=weight)) + geom_boxplot()
 bp
 ```
 
-![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-2-1.png)
-
-添加标题
+添加标题：
 
 ```{r}
 bp + ggtitle("Plant growth")
@@ -1077,11 +1040,7 @@ bp + ggtitle("Plant growth with\ndifferent treatments") +
      theme(plot.title = element_text(lineheight=.8, face="bold"))
 ```
 
-![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-1.png)
-![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-2.png)
-![plot of chunk unnamed-chunk-3](http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/figure/unnamed-chunk-3-3.png)
-
-## 坐标轴 (ggplot) {#ggplot2-axes}
+## 坐标轴 {#ggplot2-axes}
 
 ### 问题
 
@@ -1089,7 +1048,7 @@ bp + ggtitle("Plant growth with\ndifferent treatments") +
 
 ### 方案
 
-> 注意：下面的例子中提到的 `scale_y_continuous`、`ylim` 等，`y` 都可以替换为 `x`。
+> 注意：下面的例子中提到的 `scale_y_continuous()`、`ylim()` 等函数名中，`y` 都可以替换为 `x`。
 
 下面使用内置的 `PlantGrowth` 数据集绘制一个基本的箱线图。
 
@@ -1101,17 +1060,13 @@ bp <- ggplot(PlantGrowth, aes(x=group, y=weight)) +
 bp
 ```
 
-![plot of chunk unnamed-chunk-2-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-2-1.png)
+#### 交换 x 和 y 轴
 
-#### 交换x和y轴
-
-交换 x 和 y 轴（让 x 垂直、y 水平）
+交换 x 和 y 轴（让 x 垂直、y 水平）。
 
 ```{r}
 bp + coord_flip()
 ```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-3-1.png)
 
 #### 离散轴
 
@@ -1136,8 +1091,6 @@ bp + scale_x_discrete(limits=flevels)
 bp + scale_x_discrete(limits = rev(levels(PlantGrowth$group)))
 ```
 
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-4-3.png)
-
 ##### 设定标签
 
 对于离散变量，标签来自于因子水平。然而，有时候短的因子水平名字并不适合展示。
@@ -1147,8 +1100,6 @@ bp + scale_x_discrete(breaks=c("ctrl", "trt1", "trt2"),
                       labels=c("Control", "Treat 1", "Treat 2"))
 ```
 
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-5-1.png)
-
 ```{r}
 # 隐藏 x 刻度、标签和网格线
 bp + scale_x_discrete(breaks=NULL)
@@ -1156,8 +1107,6 @@ bp + scale_x_discrete(breaks=NULL)
 # 隐藏所有的刻度和标签（X 轴），保留网格线
 bp + theme(axis.ticks = element_blank(), axis.text.x = element_blank())
 ```
-
-![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-6-1.png)![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-6-2.png)
 
 #### 连续轴
 
@@ -1173,27 +1122,22 @@ bp + expand_limits(y=0)
 bp + expand_limits(y=c(0,8))
 ```
 
-![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-7-2.png)
-
 当然你也可以通过 y 刻度显式地指定。注意如果使用**任何** `scale_y_continuous` 命令，它会覆盖任何 `ylim` 命令，而且 `ylim` 会被忽略。
 
 ```{r}
-## 设定连续值轴的范围
-# 下面是相等的操作
+# 设定连续值轴的范围
+# 下面是相同的操作
 bp + ylim(0, 8)
 # bp + scale_y_continuous(limits=c(0, 8))
 ```
 
-![plot of chunk unnamed-chunk-8](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-8-1.png)
+如果使用上述方法让 y 轴的范围变小，任何超出范围的数据都会被忽略。有时候这会产生一些问题，读者需要注意。
 
-如果使用上述方法让y轴的范围变小，任何超出范围的数据都会被忽略。有时候这会产生一些问题，读者需要注意。
-
-为了避免产生问题，你可以使用 `coord_cartesian`，相比于设定轴的范围，它设定数据可视化的区域。
+为了避免产生问题，你可以使用 `coord_cartesian()`，相比于设定轴的范围，它设定数据可视化的区域。
 
 ```{r}
-## 这两个操作一致，超出范围的数据被删除了，导致产生一个误导的箱线图 
+# 这两个操作一致，超出范围的数据被删除了，导致产生一个误导的箱线图 
 bp + ylim(5, 7.5)
-
 # bp + scale_y_continuous(limits=c(5, 7.5))
 
 # 使用 coord_cartesian "zooms" 区域
@@ -1204,16 +1148,12 @@ bp + coord_cartesian(ylim=c(5, 7.5)) +
     scale_y_continuous(breaks=seq(0, 10, 0.25))  # Ticks from 0-10, every .25
 ```
 
-![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-9-1.png)![plot of chunk unnamed-chunk-9-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-9-2.png)![plot of chunk unnamed-chunk-9-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-9-3.png)
-
 ##### 反转轴方向
 
 ```{r}
 # 反转一个连续值轴的方向
 bp + scale_y_reverse()
 ```
-
-![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-10-1.png)
 
 ##### 设置和隐藏刻度标记
 
@@ -1233,9 +1173,7 @@ bp + scale_y_continuous(breaks=NULL)
 bp + theme(axis.ticks = element_blank(), axis.text.y = element_blank())
 ```
 
-![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-2.png)![plot of chunk unnamed-chunk-11-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-3.png)![plot of chunk unnamed-chunk-11-4](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-11-4.png)
-
-##### 轴转 log、sqrt 等
+##### 轴刻度 log、sqrt 等转换
 
 默认轴是线性坐标，我们也可以将它转换为 log、幂、根等等。
 
@@ -1262,8 +1200,6 @@ sp + scale_y_continuous(trans=log2_trans())
 sp + coord_trans(y="log2")
 ```
 
-![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12-3](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-12-3.png)
-
 在标度转换中，我们还可以指定刻度值，让它们显示指数。
 
 ```{r}
@@ -1271,8 +1207,6 @@ sp + scale_y_continuous(trans = log2_trans(),
                         breaks = trans_breaks("log2", function(x) 2^x),
                         labels = trans_format("log2", math_format(2^.x)))
 ```
-
-![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-13-1.png)
 
 可以使用非常多的转换，参见 `?trans_new` 查看所有可用转换的列表。如果你所需要的转换不在该列表上，可以自己写一个转换函数。
 
@@ -1296,8 +1230,6 @@ sp10 + scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
                      labels = trans_format("log10", math_format(10^.x)))
 ```
 
-![plot of chunk unnamed-chunk-14-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-14-2.png)
-
 ##### x 与 y 轴固定的比例
 
 设置 x 与 y 轴比例宽度也是可以的。
@@ -1318,8 +1250,6 @@ sp + coord_fixed()
 sp + coord_fixed(ratio=1/3)
 ```
 
-![plot of chunk unnamed-chunk-15](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-15-1.png)![plot of chunk unnamed-chunk-15](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-15-2.png)
-
 #### 轴标签和文字格式化
 
 设置和隐藏轴标签：
@@ -1334,8 +1264,6 @@ bp + scale_x_discrete(name="") +
      scale_y_continuous(name="Weight (Kg)")
 ```
 
-![plot of chunk unnamed-chunk-16-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-16-1.png)![plot of chunk unnamed-chunk-16-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-16-2.png)
-
 改变字体、颜色、旋转刻度标签：
 
 ```{r}
@@ -1347,8 +1275,6 @@ bp + theme(axis.title.x = element_text(face="bold", colour="#990000", size=20),
            axis.text.x  = element_text(angle=90, vjust=0.5, size=16))
 ```
 
-![plot of chunk unnamed-chunk-17-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-17-1.png)
-
 #### 刻度标签
 
 你可能想将值显示为百分比、或美元、或科学计数法。这里可以使用**格式器**，它是一个可以改变文本的函数。
@@ -1359,8 +1285,6 @@ library(scales)   # 需要 scales 包
 bp + scale_y_continuous(labels=percent) +
      scale_x_discrete(labels=abbreviate)  # 在这个例子中它没作用
 ```
-
-![plot of chunk unnamed-chunk-18-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-18-1.png)
 
 连续标度格式器有 `comma`、`percent`、`dollar` 以及 `scientific`。离散标度格式器有 `abbreviate`、`date_format` 等。
 
@@ -1380,8 +1304,6 @@ timeHMS_formatter <- function(x) {
 bp + scale_y_continuous(label=timeHMS_formatter)
 ```
 
-![plot of chunk unnamed-chunk-19-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-19-1.png)
-
 #### 隐藏网格线
 
 隐藏网格线：
@@ -1395,8 +1317,6 @@ bp + theme(panel.grid.minor=element_blank(),
 bp + theme(panel.grid.minor=element_blank())
 ```
 
-![plot of chunk unnamed-chunk-20](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-20-1.png)![plot of chunk unnamed-chunk-20](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-20-2.png)
-
 也可以仅隐藏水平或垂直网格线：
 
 ```{r}
@@ -1409,13 +1329,11 @@ bp + theme(panel.grid.minor.y=element_blank(),
            panel.grid.major.y=element_blank())
 ```
 
-![plot of chunk unnamed-chunk-21-1](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-21-1.png)![plot of chunk unnamed-chunk-21-2](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/figure/unnamed-chunk-21-2.png)
-
-## 图例 (ggplot2) {#ggplot2-legends}
+## 图例 {#ggplot2-legends}
 
 ### 问题
 
-你想用 ggplot2 修改图表中的图例。
+你想用 **ggplot2** 修改图表中的图例。
 
 ### 方案
 
@@ -1444,19 +1362,15 @@ bp + scale_fill_discrete(guide=FALSE)
 bp + theme(legend.position="none")
 ```
 
-![plot of chunk unnamed-chunk-4](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-4-1.png)
-
 #### 在图例中改变变量的顺序
 
 这会将变量的顺序更改为 trt1，ctrl，trt2:
 
-```
+```{r}
 bp + scale_fill_discrete(breaks=c("trt1","ctrl","trt2"))
 ```
 
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-5-1.png)
-
-根据指定颜色的方式，你可能必须使用不同的比例，例如 `scale_fill_manual`, `scale_colour_hue`, `scale_colour_manual`, `scale_shape_discrete`, `scale_linetype_discrete` 等等
+根据指定颜色的方式，你可能必须使用不同的比例，如 `scale_fill_manual()`, `scale_colour_hue()`, `scale_colour_manual()`, `scale_shape_discrete()`, `scale_linetype_discrete()` 等。
 
 #### 反转图例中的条目顺序
 
@@ -1471,9 +1385,7 @@ bp + scale_fill_discrete(guide = guide_legend(reverse=TRUE))
 bp + scale_fill_discrete(breaks = rev(levels(PlantGrowth$group)))
 ```
 
-![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-7-1.png)
-
-你可以使用不同的比例尺，例如 `scale_fill_manual`, `scale_colour_hue`, `scale_colour_manual`, `scale_shape_discrete`, `scale_linetype_discrete` 等等，而不是 `scale_fill_discrete`
+你可以使用不同的比例尺，如 `scale_fill_manual()`, `scale_colour_hue()`, `scale_colour_manual()`, `scale_shape_discrete()`, `scale_linetype_discrete()` 等，而不是 `scale_fill_discrete()`。
 
 #### 隐藏图例标题
 
@@ -1487,8 +1399,6 @@ bp + guides(fill=guide_legend(title=NULL))
 bp + theme(legend.title=element_blank())
 ```
 
-![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-9-1.png)
-
 #### 修改图例标题和标签的文字
 
 有两种方法可以更改图例标题和标签。 第一种方法是告诉 *scale* 使用具有不同的标题和标签。 第二种方法是更改数据框，使因子具有所需的形式。
@@ -1500,7 +1410,6 @@ bp + theme(legend.title=element_blank())
 ##### 使用填充和颜色
 
 因为图例中的变量 `group` 被映射到颜色 `fill`，所以必须使用 `scale_fill_xxx`，其中 `xxx` 是将 `group` 的每个因子级别映射到不同颜色的方法。 默认设置是在每个因子级别的色轮上使用不同的色调，但也可以手动指定每个级别的颜色。
-
 
 ```{r}
 bp + scale_fill_discrete(name="Experimental\nCondition")
@@ -1516,11 +1425,9 @@ bp + scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9"),
                        labels=c("Control", "Treatment 1", "Treatment 2"))
 ```
 
-![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-10-1.png)![plot of chunk unnamed-chunk-10-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-10-2.png)![plot of chunk unnamed-chunk-10-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-10-3.png)
+请注意，这并未更改 x 轴标签。 有关如何修改轴标签的信息，请参见[坐标轴](#ggplot2-axes)。
 
-请注意，这并未更改 x 轴标签。 有关如何修改轴标签的信息，请参见[坐标轴 (ggplot2)](#ggplot2-axes)。
-
-如果使用折线图，则可能需要使用 `scale_colour_xxx `或 `scale_shape_xxx` 而不是 `scale_fill_xxx`。 **颜色**映射到线条和点的颜色，而**填充**映射到区域填充的颜色。 **形状**映射到点的形状。
+如果使用折线图，则可能需要使用 `scale_colour_xxx()` 或 `scale_shape_xxx()` 而不是 `scale_fill_xxx()`。 **颜色**映射到线条和点的颜色，而**填充**映射到区域填充的颜色。 **形状**映射到点的形状。
 
 我们将在这里为线图使用不同的数据集，因为 PlantGrowth 数据集不适用于折线图。
 
@@ -1542,8 +1449,6 @@ lp + scale_shape_discrete(name  ="Payer",
                           labels=c("Woman", "Man"))
 ```
 
-![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-11-2.png)
-
 如果你同时使用 `colour` 和 `shape`，它们都需要给出比例规格。 否则会有两个独立的图例。
 
 ```{r}
@@ -1564,8 +1469,6 @@ lp1 + scale_colour_discrete(name  ="Payer",
                            breaks=c("Female", "Male"),
                            labels=c("Woman", "Man"))
 ```
-
-![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-12-3.png)
 
 ##### 比例尺的种类
 
@@ -1609,13 +1512,11 @@ ggplot(data=pg, aes(x=`Experimental Condition`, y=weight, fill=`Experimental Con
     geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-13-1.png)
-
 图例标题“实验条件”很长，如果它被分成两行可能看起来更好，但是这种方法效果不好，因为你必须在列的名称中加上一个换行符。另一种方法，有尺度，通常是更好的方法。
 
 另请注意使用反引号而不是引号。由于变量名中的空格，它们是必需的。
 
-### 修改图例标题和标签的外观
+#### 修改图例标题和标签的外观
 
 ```{r}
 # 题目外观
@@ -1625,9 +1526,7 @@ bp + theme(legend.title = element_text(colour="blue", size=16, face="bold"))
 bp + theme(legend.text = element_text(colour="blue", size = 16, face = "bold"))
 ```
 
-![plot of chunk unnamed-chunk-14-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-14-2.png)
-
-### 修改图例框
+#### 修改图例框
 
 默认情况下，图例周围没有框。 添加框并修改其属性:
 
@@ -1636,17 +1535,13 @@ bp + theme(legend.background = element_rect())
 bp + theme(legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 ```
 
-![plot of chunk unnamed-chunk-15-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-15-1.png)![plot of chunk unnamed-chunk-15-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-15-2.png)
-
-### 改变图例位置
+#### 改变图例位置
 
 将图例位置放在绘图区域外（左/右/上/下）:
 
 ```{r}
 bp + theme(legend.position="top")
 ```
-
-![plot of chunk unnamed-chunk-16-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-16-1.png)
 
 也可以将图例定位在绘图区域内。 请注意，下面的数字位置是相对于整个区域的，包括标题和标签，而不仅仅是绘图区域。
 
@@ -1662,11 +1557,9 @@ bp + theme(legend.justification=c(0,0), legend.position=c(0,0))
 bp + theme(legend.justification=c(1,0), legend.position=c(1,0))
 ```
 
-![plot of chunk unnamed-chunk-17-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-17-1.png)![plot of chunk unnamed-chunk-17-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-17-2.png)![plot of chunk unnamed-chunk-17-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-17-3.png)
+#### 隐藏在图例中的斜线
 
-### 隐藏在图例中的斜线
-
-如果使用轮廓制作条形图（通过设置 color = 「black」），它将通过图例中的颜色绘制斜线。 没有内置的方法来删除斜杠，但可以覆盖它们。
+如果使用轮廓制作条形图（通过设置 color = "black"），它将通过图例中的颜色绘制斜线。 没有内置的方法来删除斜杠，但可以覆盖它们。
 
 ```{r}
 # 没有边缘线
@@ -1684,17 +1577,15 @@ ggplot(data=PlantGrowth, aes(x=group, fill=group)) +
     geom_bar(colour="black", show.legend=FALSE)
 ```
 
-![plot of chunk unnamed-chunk-18-1](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-18-1.png)![plot of chunk unnamed-chunk-18-2](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-18-2.png)![plot of chunk unnamed-chunk-18-3](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/figure/unnamed-chunk-18-3.png)
-
 ### 注意
 
-更多信息，请看: <https://github.com/hadley/ggplot2/wiki/Legend-Attributes>
+更多信息，请看: <https://github.com/hadley/ggplot2/wiki/Legend-Attributes>。
 
-## 线条 (ggplot2)
+## 线条
 
 ### 问题
 
-你想要把线条加到图上
+你想要把线条加到图上。
 
 ### 方案
 
@@ -1713,7 +1604,7 @@ library(ggplot2)
 
 ##### 一条线段
 
-这些使用 `geom_hline`，因为y轴是连续的，但如果x轴是连续的，也可以使用 `geom_vline`（带有 `xintercept`）。
+这些使用 `geom_hline()`，因为y轴是连续的，但如果x轴是连续的，也可以使用 `geom_vline()`（带有 `xintercept`）。
 
 ```{r}
 # 基本柱状条
@@ -1728,11 +1619,9 @@ bp + geom_hline(aes(yintercept=12))
 bp + geom_hline(aes(yintercept=12), colour="#990000", linetype="dashed")
 ```
 
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-3-3.png)
-
 ##### 每个分类值的单独行
 
-要为每个条形成单独的行，请使用 `geom_errorbar`。 误差条没有高度 - 「ymin」 = 「ymax」。 由于某种原因，似乎有必要指定 `y`，即使它没有任何功能。
+要为每个条形成单独的行，请使用 `geom_errorbar()`。
 
 ```{r}
 # 为每个条形绘制单独的线条。 首先添加另一列到目前为止
@@ -1759,8 +1648,6 @@ dat_hlines
 bp + geom_errorbar(data=dat_hlines, aes(y=NULL, ymax=hline, ymin=hline), colour="#AA0000")
 ```
 
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-4-3.png)
-
 ##### 分组栏上的线条
 
 可以在分组条上添加线条。 在这个例子中，实际上有四行（`hline` 的每个条目一行），但它看起来像两个，因为它们是相互重叠的。 我不认为可以避免这种情况，但它不会导致任何问题。
@@ -1784,8 +1671,6 @@ bp
 bp + geom_errorbar(aes(ymax=hline, ymin=hline), linetype="dashed")
 ```
 
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-5-2.png)
-
 #### 各个组合柱状图上的线条
 
 即使在分组时，也可以在每个单独的条上划线。
@@ -1808,11 +1693,9 @@ bp + geom_errorbar(aes(ymax=hline, ymin=hline), linetype="dashed",
                    position=position_dodge())
 ```
 
-![plot of chunk unnamed-chunk-6-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-6-1.png)![plot of chunk unnamed-chunk-6-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-6-2.png)
-
 #### 有两个连续轴
 
-样本数据如下
+样本数据如下：
 
 ```{r}
 dat <- read.table(header=TRUE, text='
@@ -1856,11 +1739,9 @@ sp + geom_hline(aes(yintercept=10)) +
     geom_vline(aes(xintercept=11.5), colour="#BB0000", linetype="dashed")
 ```
 
-![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-9-1.png)![plot of chunk unnamed-chunk-9-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-9-2.png)
-
 ##### 画线为平均值
 
-还可以计算每个数据子集的平均值，按一些变量分组。 组意味着必须计算并存储在单独的数据框中，最简单的方法是使用 dplyr 包。 请注意，该行的y范围由数据确定。
+还可以按一些变量分组计算每个数据子集的平均值。 组别必须计算并存储在单独的列中，最简单的方法是使用 **dplyr** 包。请注意，该行的 y 范围由数据确定。
 
 ```{r}
 library(dplyr)
@@ -1879,11 +1760,9 @@ sp <- sp +
 sp
 ```
 
-![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-10-1.png)
-
 ##### 在分面使用线条
 
-一般来说，如果你加一条线，它将出现在所有的分面上.
+一般来说，如果你加一条线，它将出现在所有的分面上。
 
 ```{r}
 # 分面，基于cond
@@ -1894,9 +1773,7 @@ spf
 spf + geom_hline(aes(yintercept=10))
 ```
 
-![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-11-2.png)
-
-如果你希望不同的线条出现在不同的方面，有两个选项。 一种是创建具有所需线条值的新数据框。 另一种选择（控制更有限）是在 `geom_line（）` 中使用 `stat` 和 `xintercept`。
+如果你希望不同的线条出现在不同的方面，有两个选项。 一种是创建具有所需线条值的新数据框。 另一种选择（控制更有限）是在 `geom_line()` 中设定 `stat` 和 `xintercept`。
 
 ```{r}
 dat_vlines <- data.frame(cond=levels(dat$cond), xval=c(10,11.5))
@@ -1910,9 +1787,7 @@ spf + geom_hline(aes(yintercept=10)) +
      geom_linerange(aes(x=x, y=NULL, ymin=ymin, ymax=ymax), data=lines)
 ```
 
-![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Lines_(ggplot2)/figure/unnamed-chunk-12-2.png)
-
-## 分面 (ggplot) {#ggplot-facet}
+## 分面 {#ggplot-facet}
 
 ### 问题
 
@@ -1922,7 +1797,7 @@ spf + geom_hline(aes(yintercept=10)) +
 
 #### 样本数据
 
-以下例子将使用 `reshape2` 包中的 `tips` 数据集
+以下例子将使用 **reshape2** 包中的 `tips` 数据集
 
 ```{r}
 library(reshape2)
@@ -1938,8 +1813,6 @@ sp <- ggplot(tips, aes(x=total_bill, y=tip/total_bill)) + geom_point(shape=1)
 sp
 ```
 
-![plot of chunk unnamed-chunk-31](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-3-1.png)
-
 #### facet_grid
 
 根据一个或多个变量对数据进行分割，生成的子图按照水平或垂直的方向进行排列。这一功能是通过赋予 `facet_grid()` 函数一个 `vertical ~ horizontal` 公式来实现的（这里所说的「公式」是 R 中的一种数据结构，而不是数学意义上的公式）。
@@ -1949,21 +1822,15 @@ sp
 sp + facet_grid(sex ~ .)
 ```
 
-![plot of chunk unnamed-chunk-41](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-4-1.png)
-
 ```{r}
 # 根据 "sex" 按水平方向分割。
 sp + facet_grid(. ~ sex)
 ```
 
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-5-1.png)
-
 ```{r}
 # 垂直方向以 "sex" 分割，水平方向以 "day" 分割。
 sp + facet_grid(sex ~ day)
 ```
-
-![plot of chunk unnamed-chunk-61](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-6-1.png)
 
 #### facet_wrap
 
@@ -1974,8 +1841,6 @@ sp + facet_grid(sex ~ day)
 sp + facet_wrap( ~ day, ncol=2)
 ```
 
-![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-7-1.png)
-
 #### 修改分面标签的外观
 
 ```{r}
@@ -1985,11 +1850,9 @@ sp + facet_grid(sex ~ day) +
           strip.background = element_rect(colour="red", fill="#CCCCFF"))
 ```
 
-![plot of chunk unnamed-chunk-8-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-8-1.png)
-
 #### 修改分面标签的文本
 
-修改分面标签内容有两种方法。最简单的方法是为原来的名字匹配一个新的名字向量。比方说对数据中 `sex` 的类别进行重新定义 Female==>Women, and Male==>Men:
+修改分面标签内容有两种方法。最简单的方法是为原来的名字匹配一个新的名字向量。例如，对数据中 `sex` 的类别进行重新定义 Female==>Women 和 Male==>Men：
 
 ```{r}
 labels <- c(Female = "Women", Male = "Men")
@@ -2004,16 +1867,13 @@ levels(tips2$sex)[levels(tips2$sex)=="Female"] <- "Women"
 levels(tips2$sex)[levels(tips2$sex)=="Male"]   <- "Men"
 head(tips2, 3)
 
-# Both of these will give the same output:
 sp2 <- ggplot(tips2, aes(x=total_bill, y=tip/total_bill)) + geom_point(shape=1)
 sp2 + facet_grid(. ~ sex)
 ```
 
-两种方法都能得到相同的结果：
+两种方法都能得到相同的结果。
 
-![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-11-1.png)
-
-`labeller()` 可以通过设定不同的 `函数` 来处理输入的字符向量。比方说 `Hmisc` 包里的  `capitalize` 函数可以将字符串的首字母变成大写。我们也可以这样来自定义函数，如下所示，将字符串中的字母倒序：
+`labeller()` 可以通过设定不同的 `函数` 来处理输入的字符向量。比方说 `Hmisc` 包里的 `capitalize` 函数可以将字符串的首字母变成大写。我们也可以这样来自定义函数，如下所示，将字符串中的字母倒序：
 
 ```{r}
 # 对每个字符向量进行倒序：
@@ -2025,8 +1885,6 @@ reverse <- function(strings) {
 }
 sp + facet_grid(. ~ sex, labeller=labeller(sex = reverse))
 ```
-
-![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-12-1.png)
 
 #### 设置标度
 
@@ -2043,11 +1901,7 @@ hp + facet_grid(sex ~ smoker, scales="free_y")
 hp + facet_grid(sex ~ smoker, scales="free", space="free")
 ```
 
-![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-13-1.png)
-![plot of chunk unnamed-chunk-13-2](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-13-2.png)
-![plot of chunk unnamed-chunk-13-3](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/figure/unnamed-chunk-13-3.png)
-
-## 多图 (ggplot)
+## 多图
 
 ### 问题
 
@@ -2055,47 +1909,9 @@ hp + facet_grid(sex ~ smoker, scales="free", space="free")
 
 ### 方案
 
-最简单的方法就是使用 `multiplot` 函数，本页末尾处附有该函数的具体定义。如果它不能满足你的需求，你可以将其复制下来然后作出适当的修改。
-首先，构建并保存图像但不需要对它们进行渲染，这些图像的细节并不重要。你只需要将这些图像对象储存为变量。
+最简单的方法就是使用 `multiplot()` 函数。
 
-```{r}
-# 以下例子使用的是 ggplot2 包中自带的 Chickweight 数据集
-#第一幅图像
-p1 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) +
-    geom_line() +
-    ggtitle("Growth curve for individual chicks")
-
-#第二幅图像
-p2 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet)) +
-    geom_point(alpha=.3) +
-    geom_smooth(alpha=.2, size=1) +
-    ggtitle("Fitted growth curve per diet")
-
-#第三幅图像
-p3 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, colour=Diet)) +
-    geom_density() +
-    ggtitle("Final weight, by diet")
-
-#第四幅图像
-p4 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
-    geom_histogram(colour="black", binwidth=50) +
-    facet_grid(Diet ~ .) +
-    ggtitle("Final weight, by diet") +
-    theme(legend.position="none")    #为了避免冗余，这里不添加图例
-```
-
-这些图像都构建好了后，我们可以用 `multiplot` 对它们进行渲染。下面将这些图形分成两列进行展示：
-
-```{r}
-multiplot(p1, p2, p3, p4, cols=2)
-#> `geom_smooth()`  函数设置成 method = 'loess'
-```
-
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/figure/unnamed-chunk-3-1.png)
-
-### multiplot 函数
-
-定义：`multiplot ` 函数可以将任意数量的图像对象作为参数，或者可以构建一个图像对象列表传递到该函数的 `plotlist` 参数中。
+`multiplot()` 函数可以将任意数量的图像对象作为参数，或者可以构建一个图像对象列表传递到该函数的 `plotlist` 参数中。
 
 ```{r}
 # 多图功能
@@ -2140,6 +1956,43 @@ print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
 }
 ```
 
+如果它不能满足你的需求，你可以将其复制下来然后作出适当的修改。
+
+首先，构建并保存图像但不需要对它们进行渲染，这些图像的细节并不重要。你只需要将这些图像对象储存为变量。
+
+```{r}
+# 以下例子使用的是 ggplot2 包中自带的 Chickweight 数据集
+#第一幅图像
+p1 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) +
+    geom_line() +
+    ggtitle("Growth curve for individual chicks")
+
+#第二幅图像
+p2 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet)) +
+    geom_point(alpha=.3) +
+    geom_smooth(alpha=.2, size=1) +
+    ggtitle("Fitted growth curve per diet")
+
+#第三幅图像
+p3 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, colour=Diet)) +
+    geom_density() +
+    ggtitle("Final weight, by diet")
+
+#第四幅图像
+p4 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
+    geom_histogram(colour="black", binwidth=50) +
+    facet_grid(Diet ~ .) +
+    ggtitle("Final weight, by diet") +
+    theme(legend.position="none")    #为了避免冗余，这里不添加图例
+```
+
+这些图像都构建好了后，我们可以用 `multiplot()` 对它们进行渲染。下面将这些图形分成两列进行展示：
+
+```{r}
+multiplot(p1, p2, p3, p4, cols=2)
+#> `geom_smooth()`  函数设置成 method = 'loess'
+```
+
 ## 颜色 {#ggplot2-colors}
 
 ### 问题
@@ -2152,7 +2005,7 @@ print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
 
 #### 样本数据
 
-这两个数据集将用来产生下面的图表
+这两个数据集将用来产生下面的图表：
 
 ```{r}
  # 两个变量
@@ -2180,9 +2033,9 @@ df2 <- read.table(header=TRUE, text='
 
 #### 简单的颜色设置
 
-有颜色的线条和点可以直接用 'colour = "red" ', 用颜色名称代替「red」。填充的对象的颜色，例如柱状条，可以用 'fill="red" 来进行设置。
+有颜色的线条和点可以直接用 `colour = "red"`, 用颜色名称代替「red」。填充的对象的颜色，如柱状条，可以用 `fill="red"` 来进行设置。
 
-如果你想用任何其他非常规颜色，用十六进位码来设置颜色更容易，比如 「#FF6699」。（看下面的十六进位码颜色图）
+如果你想用任何其他非常规颜色，用十六进位码来设置颜色更容易，比如「#FF6699」。
 
 ```{r}
 library(ggplot2)
@@ -2203,11 +2056,9 @@ ggplot(df, aes(x=cond, y=yval)) +
     geom_point(size=3, colour="#CC0000")         # 红点
 ```
 
-![plot of chunk unnamed-chunk-3-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-1.png)![plot of chunk unnamed-chunk-3-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-2.png)![plot of chunk unnamed-chunk-3-3](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-3.png)![plot of chunk unnamed-chunk-3-4](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-4.png)![plot of chunk unnamed-chunk-3-5](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-3-5.png)
-
 #### 将变量值映射到颜色
 
-不用全局改变颜色，你可以将变量映射到颜色——换言之，通过把颜色放到 aes() 说明中，可以设置条件性变量。
+不用全局改变颜色，你可以将变量映射到颜色——换言之，通过把颜色放到 `aes()` 函数中，可以设置条件性变量。
 
 ```{r}
 # 柱状条: x 和填充都依赖于cond2
@@ -2225,13 +2076,11 @@ ggplot(df2, aes(x=cond1, y=yval)) +
     geom_line(aes(colour=cond2, group=cond2)) + # 颜色分组都依赖于cond2
     geom_point(aes(colour=cond2),               # 颜色依赖于cond2
                size=3)                          # 更大的点，不同的形状
-## 以上操作等价; 但把 "colour=cond2" 移到全局的映射用aes() 
+# 以上操作等价; 但把 "colour=cond2" 移到全局的映射用aes() 
 # ggplot(df2, aes(x=cond1, y=yval, colour=cond2)) + 
 #    geom_line(aes(group=cond2)) +
 #    geom_point(size=3)
 ```
-
-![plot of chunk unnamed-chunk-4-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-4-1.png)![plot of chunk unnamed-chunk-4-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-4-2.png)![plot of chunk unnamed-chunk-4-3](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-4-3.png)
 
 #### 对色盲友好的颜色 {#colorblind-friendly}
 
@@ -2239,25 +2088,22 @@ ggplot(df2, aes(x=cond1, y=yval)) +
 
 ![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-2.png)
 
-为了用 ggplot2, 我们在一个变量里储存颜色色板，然后之后调用。
+为了用 **ggplot2**, 我们在一个变量里储存颜色色板，然后之后调用。
 
 ```{r}
 # 灰色的颜色色板:
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
 # 黑色的颜色色板k:
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
 # 为了填充颜色，加
 scale_fill_manual(values=cbPalette)
-
 # 为了在点线中使用颜色，加
 scale_colour_manual(values=cbPalette)
 ```
 
-这个颜色集来源于网站： <http://jfly.iam.u-tokyo.ac.jp/color/>:
+这个颜色集来源于网站： <http://jfly.iam.u-tokyo.ac.jp/color/>。
 
-![Colorblind palette](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/colorblind_palette.jpg)
+![色盲友好调色板](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/colorblind_palette.jpg)
 
 #### 颜色选择
 
@@ -2265,23 +2111,21 @@ scale_colour_manual(values=cbPalette)
 
 ![plot of chunk unnamed-chunk-7-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-7-1.png)
 
-默认颜色选择使用 `scale_fill_hue（）` 和 `scale_colour_hue（）`。 例如，在以下情况下添加这些命令是多余的：
+默认颜色选择使用 `scale_fill_hue()` 和 `scale_colour_hue()`。 例如，在以下情况下添加这些命令是多余的：
 
 ```{r}
-# 这两个是等价的; 默认使用scale_fill_hue（）
+# 这两个是等价的; 默认使用scale_fill_hue()
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity")
 # ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + scale_fill_hue()
 
-#  这两个是等价的; 默认使用scale_colour_hue（）
+#  这两个是等价的; 默认使用scale_colour_hue()
 ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2)
 # ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2) + scale_colour_hue()
 ```
 
-![plot of chunk unnamed-chunk-8-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-8-1.png)![plot of chunk unnamed-chunk-8-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-8-2.png)
-
 #### 设置亮度和饱和度（色度）
 
-虽然 `scale_fill_hue（）` 和 `scale_colour_hue（）` 在上面是多余的，但是当你想要改变默认值时，可以使用它们，比如改变亮度或色度。
+虽然 `scale_fill_hue()` 和 `scale_colour_hue()` 在上面是多余的，但是当你想要改变默认值时，可以使用它们，比如改变亮度或色度。
 
 ```{r}
 # 使用 luminance = 45, 而不是默认 65
@@ -2291,19 +2135,16 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 # 从 100 到 50 减少饱和度（亮度）, 增加亮度
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_hue(c=45, l=80)
-
 # 注意：使用 scale_colour_hue() 设置线和点
 ```
 
-![plot of chunk unnamed-chunk-9-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-9-1.png)![plot of chunk unnamed-chunk-9-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-9-2.png)
+亮度为 45 时的颜色图表:
 
-亮度为45时的颜色图表:
-
-![plot of chunk unnamed-chunk-10-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-10-1.png)
+![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-10-1.png)
 
 #### 调色板：Color Brewer
 
-你还可以使用其他颜色标度，例如从 RColorBrewer 包中获取。 请参阅下面的 RColorBrewer 调色板图表。
+你还可以使用其他颜色标度，例如从 **RColorBrewer** 包中获取。 请参阅下面的 **RColorBrewer**s 调色板图表。
 
 ```{r}
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
@@ -2318,11 +2159,9 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 # 注意: 使用 scale_colour_brewer() 设置点和线条
 ```
 
-![plot of chunk unnamed-chunk-11-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-11-1.png)![plot of chunk unnamed-chunk-11-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-11-2.png)![plot of chunk unnamed-chunk-11-3](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-11-3.png)
-
 #### 调色板：手动定义
 
-最后，你可以使用 `scale_fill_manual（）` 定义自己的颜色集。 有关选择特定颜色的帮助，请参阅下面的十六进制代码表。
+最后，你可以使用 `scale_fill_manual()` 定义自己的颜色集。 有关选择特定颜色的帮助，请参阅下面的十六进制代码表。
 
 ```{r}
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + 
@@ -2333,8 +2172,6 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 
 # 注意：使用 scale_colour_manual() 设置线条和点
 ```
-
-![plot of chunk unnamed-chunk-12-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-12-2.png)
 
 #### 连续颜色
 
@@ -2351,21 +2188,19 @@ ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point() +
     scale_colour_gradientn(colours=rainbow(4))
 ```
 
-![plot of chunk unnamed-chunk-13-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-13-1.png)![plot of chunk unnamed-chunk-13-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-13-2.png)
-
 #### 比色图表
 
 #### 十六进制色码图
 
 颜色可以指定为十六进制 RGB 三元组合，例如「#0066CC」。 前两位数字是红色，接下来的两位是绿色，最后两位是蓝色。 每个值的范围从 00 到 FF，以十六进制（base-16）表示，在 base-10 中等于 0 和 255。 例如，在下表中，「#FFFFFF」为白色，「#990000」为深红色。
 
-![img](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png)
+![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png)
 
-(色码图来源于 [http://www.visibone.com](http://www.visibone.com/))
+> 色码图来源于 [http://www.visibone.com](http://www.visibone.com/)
 
 #### RColorBrewer 调色板图表
 
-![plot of chunk unnamed-chunk-14-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png)
+![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png)
 
 
 

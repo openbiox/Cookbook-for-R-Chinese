@@ -26,6 +26,8 @@ options(
 #   if (system.file(package = pkg) == '') install.packages(pkg)
 # })
 
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE, tidy = TRUE, fig.align = "center")
+
 # from https://stackoverflow.com/questions/7505547/detach-all-packages-while-working-in-r
 detachAllPackages <- function() {
 
