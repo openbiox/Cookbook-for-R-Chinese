@@ -144,7 +144,7 @@ dev.copy(png,"myplot.png", width=400, height=400)
 dev.off()
 ```
 
-## 形状和线形
+## 形状和线形 {#shape-and-linetype}
 
 ### 问题
 
