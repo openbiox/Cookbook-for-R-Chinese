@@ -25,7 +25,7 @@
 <meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-06-02" />
+<meta name="date" content="2019-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,69 +50,6 @@
 
 
 
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -130,7 +67,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#section-0.1"><i class="fa fa-check"></i><b>0.1</b> 问题与反馈</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#section-0.2"><i class="fa fa-check"></i><b>0.2</b> 致谢</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
 <li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
@@ -264,22 +204,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Cookbook for R 中文版</h1>
 <p class="author"><em>Winston Chang（著）</em></p>
 <p class="author"><em>王诗翔 等（译）</em></p>
-<p class="date"><em>2019-06-02</em></p>
+<p class="date"><em>2019-06-03</em></p>
 </div>
 <div id="e5898de8a880" class="section level1 unnumbered">
 <h1>前言</h1>
-<p>这是“Cookbook for R 中文版”的网站。这本书以直观明了的问题/需求和方案为基本内容向读者介绍R的基础和如何解决常见的分析问题：读者将会学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本，以及其他工具。这本书是R问题方案参考手册，建议读者配合系统的R语言读物使用，如<a href="https://r4ds.had.co.nz/index.html">《R for Data Science》</a>。</p>
-<p>这个网站是（永久）免费的，它以<a href="http://creativecommons.net.cn/licenses/meet-the-licenses/">署名-非商业使用-禁止演绎</a>CC许可协议发布。如果你想要该书的实体版本，请期待它的出版。</p>
-<p>非常感谢以下成员的参与，如果不是他们，这本中文书再过两年也不会跟大家见面。</p>
+<p>这里是“Cookbook for R 中文版”的网站，本书内容的翻译由<a href="https://openbiox.org/">生物信息学创新协作小组 Openbiox</a> 完成翻译并维护。这本书以直观明了的问题/需求和方案为基本内容向读者介绍R的基础和如何解决常见的分析问题：从阅读中读者可以学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本等内容。这本书是R问题方案参考手册，建议读者配合系统的R语言读物使用，如<a href="https://r4ds.had.co.nz/index.html">《R for Data Science》</a>。</p>
+<p>推荐读者阅读本书的两种方式：</p>
 <ul>
-<li>陈颖珊</li>
-<li>梁其云</li>
-<li>王慧美</li>
-<li>熊逸</li>
-<li>杨芮</li>
-<li>张浩浩</li>
-<li>赵飞</li>
+<li>将它看作常见的技术教程书籍，按照章节目录依次阅读</li>
+<li>将它看作问答列表，在实际遇到问题时根据书籍目录翻阅查找相关解决方案</li>
 </ul>
+<p>这个网站是（永久）免费的，它以<a href="http://creativecommons.net.cn/licenses/meet-the-licenses/">署名-非商业使用-禁止演绎 CC 许可协议</a>发布。如果你想要该书的实体版本，请期待它的出版。</p>
+<div id="section-0.1" class="section level2">
+<h2><span class="header-section-number">0.1</span> 问题与反馈</h2>
+<p>网站所有网页的源文件均用 R Markdown 撰写。如果您在网站发现了任何错误，恳请点击菜单栏上的 “编辑” 按钮，并在 Github 上向我们提交合并请求。如果读者有任何的疑问或者遇到以下提到的内容不当之处，请通过<a href="https://github.com/openbiox/Cookbook-for-R-Chinese/issues">创建 GitHub issue</a>与我们联系。</p>
+<ul>
+<li>翻译内容不通顺，影响阅读体验</li>
+<li>中英文括号的错误使用，如 <code>()</code> 写成了 <code>（）</code>，<code>。</code>写成了 <code>.</code></li>
+<li>包名没有以加粗的方式标识，如 <strong>ggplot2</strong> 包应当显示成 <strong>ggplot2</strong>，而不是 ggplot2 或 <code>ggplot2</code></li>
+<li>函数名后没有伴随成对的英文括号，如表明 <code>summary</code> 是函数时应写为 <code>summary()</code>，而 <code>summary</code> 这种写法则应该表示的是对象、数据框的列名或选项等</li>
+<li>网页链接点击跳转不正确</li>
+<li>标题的层次结构不对，比如本来是 4 级标成了 3 级 或 5 级</li>
+<li>排版不好或存在问题</li>
+<li>…</li>
+</ul>
+<p>另外，有小部分代码注释存在没有翻译的现象，如果不影响读者阅读，请忽略它们。如果您觉得它严重影响了您的理解，请反馈给我们或提交相关内容所有的翻译（而不是一行）。</p>
+<p>如果您存在一些分析问题，而且认为它是大多数人可能都会遇到的，想要寻求通用的解决方案，也可以反馈，我们会想办法解决并更新到相应章节下。</p>
+</div>
+<div id="section-0.2" class="section level2">
+<h2><span class="header-section-number">0.2</span> 致谢</h2>
+<p>下表列出参与人员及贡献简要描述（以姓名的首字母排序），如果不是他们，这本中文书再过两年也不会跟大家见面。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">贡献者</th>
+<th align="left">贡献内容简述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">陈颖珊</td>
+<td align="left">xxx</td>
+</tr>
+<tr class="even">
+<td align="left">梁其云</td>
+<td align="left">xxx</td>
+</tr>
+<tr class="odd">
+<td align="left">王慧美</td>
+<td align="left">xxx</td>
+</tr>
+<tr class="even">
+<td align="left">王诗翔</td>
+<td align="left">x</td>
+</tr>
+<tr class="odd">
+<td align="left">熊逸</td>
+<td align="left">xxx</td>
+</tr>
+<tr class="even">
+<td align="left">杨芮</td>
+<td align="left">xxx</td>
+</tr>
+<tr class="odd">
+<td align="left">赵飞</td>
+<td align="left">xxx</td>
+</tr>
+<tr class="even">
+<td align="left">张浩浩</td>
+<td align="left">xxx</td>
+</tr>
+</tbody>
+</table>
 
 <p class="flushright">
 王诗翔<br />
@@ -287,6 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 
 
+</div>
 </div>
             </section>
 
