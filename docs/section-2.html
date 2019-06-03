@@ -276,36 +276,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.1.2</span> 方案</h3>
 <p>要生成均匀分布的随机数，可以使用 <code>runif()</code> 函数，它的默认范围是从 0 到 1。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">1</span>)
-<span class="co">#&gt; [1] 0.2518</span>
+<span class="co">#&gt; [1] 0.7789</span>
 
 <span class="co"># 得到 4 个数字的向量</span>
 <span class="kw">runif</span>(<span class="dv">4</span>)
-<span class="co">#&gt; [1] 0.4005 0.1020 0.4145 0.2976</span>
+<span class="co">#&gt; [1] 0.3926 0.9156 0.8331 0.9808</span>
 
 <span class="co"># 得到 3 个范围在 0 到 100 的随机数向量</span>
 <span class="kw">runif</span>(<span class="dv">3</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)
-<span class="co">#&gt; [1] 35.11 42.17 64.98</span>
+<span class="co">#&gt; [1] 21.51 82.88 28.63</span>
 
 <span class="co"># 得到 3 个范围在 0 到 100 的整数 使用 max=101</span>
 <span class="co"># 因为它永远不可能等于 101，这里利用 floor</span>
 <span class="co"># 函数实现向下取整数</span>
 <span class="kw">floor</span>(<span class="kw">runif</span>(<span class="dv">3</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">101</span>))
-<span class="co">#&gt; [1] 57 58 90</span>
+<span class="co">#&gt; [1] 73 91 35</span>
 
 <span class="co"># 以下方式得到的结果一样</span>
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1]  5 27 71</span>
+<span class="co">#&gt; [1] 22 92 95</span>
 
 <span class="co"># 生成无重复的随机整数</span>
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">FALSE</span>)
-<span class="co">#&gt; [1] 36 11 97</span></code></pre>
+<span class="co">#&gt; [1] 32 37 13</span></code></pre>
 <p>要生成服从正态分布的数字，使用 <code>rnorm()</code> 函数，该函数默认均值是 0，标准差是 1。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>)
-<span class="co">#&gt; [1]  0.1914  0.3767 -1.9499 -2.2040</span>
+<span class="co">#&gt; [1]  1.3164 -0.2025 -0.5490  0.9001</span>
 
 <span class="co"># 使用不同的均值和标准差</span>
 <span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)
-<span class="co">#&gt; [1] 39.17 45.41 39.40 34.01</span>
+<span class="co">#&gt; [1] 55.50 31.72 54.03 29.25</span>
 
 <span class="co"># 通过直方图检查分布是否正确</span>
 x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">400</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)

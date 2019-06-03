@@ -458,7 +458,7 @@ scounts &lt;-<span class="st"> </span>slist[[<span class="dv">1</span>]]
 
 <span class="kw">hist</span>(scounts, <span class="dt">breaks =</span> (<span class="kw">min</span>(scounts)<span class="op">:</span>(<span class="kw">max</span>(scounts) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">-</span><span class="st"> </span>
 <span class="st">  </span><span class="fl">0.5</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-400-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-405-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Expected and actual standard deviation: %.4f, %.4f</span><span class="ch">\n</span><span class="st">&quot;</span>, 
   <span class="kw">sqrt</span>(numsquares<span class="op">/</span>uniquesquares), <span class="kw">sd</span>(scounts)))
 <span class="co">#&gt; Expected and actual standard deviation: 4.1667, 4.2087</span></code></pre>

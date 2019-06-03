@@ -3,7 +3,10 @@
 ```{r, include=F}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  tidy = TRUE, 
+  fig.align = "center", 
+  strip.white = TRUE
 )
 ```
 
@@ -84,7 +87,7 @@ ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
 ```
 
 
-查看[颜色](#ggplot2-colors) 获取更多关于颜色的信息。
+查看[颜色](#ggplot2-colors)获取更多关于颜色的信息。
 
 ##### 计数的条形图
 
@@ -113,7 +116,7 @@ ggplot(data=tips, aes(x=day)) +
 
 对于线图，数据点必须分组从而 R 知道怎么连接这些点。如果只有一组的话，非常简单，设定 `group=1` 即可，如果是多组，需要设定分组变量。
 
-下面是使用的映射变量
+下面是使用的映射变量：
 
 - `time`: x 轴
 - `total_bill`: y 轴
@@ -151,7 +154,7 @@ ggplot(data=dat, aes(x=time, y=total_bill, group=1)) +
 ```
 
 
-查看[颜色](#ggplot2-colors) 获取更多关于颜色的信息。查看[形状与线形](#shape-and-linetype) 获取更多相关内容。
+查看[颜色](#ggplot2-colors)获取更多关于颜色的信息。查看[形状与线形](#shape-and-linetype) 获取更多相关内容。
 
 ### 有更多变量的图
 
@@ -197,7 +200,7 @@ ggplot(data=dat1, aes(x=sex, y=total_bill, fill=time)) +
     geom_bar(stat="identity", position=position_dodge(), colour="black")
 ```
 
-查看[颜色](#ggplot2-colors) 获取更多关于颜色的信息。
+查看[颜色](#ggplot2-colors)获取更多关于颜色的信息。
 
 #### 线图
 
@@ -237,7 +240,7 @@ ggplot(data=dat1, aes(x=sex, y=total_bill, group=time, shape=time, color=time)) 
     geom_point()
 ```
 
-查看[颜色](#ggplot2-colors) 获取更多关于颜色的信息。查看[形状与线形](#shape-and-linetype) 获取更多相关内容。
+查看[颜色](#ggplot2-colors)获取更多关于颜色的信息。查看[形状与线形](#shape-and-linetype)获取更多相关内容。
 
 #### 完成的例子
 
@@ -274,7 +277,7 @@ ggplot(data=dat1, aes(x=time, y=total_bill, group=sex, shape=sex, colour=sex)) +
 
 ### 使用数值 x-axis
 
-当 x 轴上的变量是数字时，有时需要将其视为连续变量，有时需要将其视为分类变量。在该数据集中，剂量应该是值为 0.5, 1.0 和 2.0 的数值变量。作图时，将这些值视为相同类别可能很有用。
+当 x 轴上的变量是数字时，有时需要将其视为连续变量，有时需要将其视为分类变量。在该数据集中，剂量应该是值为 `0.5`, `1.0` 和 `2.0` 的数值变量。作图时，将这些值视为相同类别可能很有用。
 
 ```{r}
 datn <- read.table(header=TRUE, text='
@@ -607,7 +610,7 @@ ggplot(tgc2, aes(x=dose, y=len, fill=supp)) +
 
 下面的方法来自 [Morey (2008)](http://tqmp.org/Content/vol04-2/p061/p061.html)，它是对 [Cousineau (2005)](http://tqmp.org/Content/vol01-1/p042/p042.html)的矫正，而它所做的就是 提供比 [Loftus and Masson (1994)](http://www.springerlink.com/content/n2r2t04244246k68/)更简单的方法。 你可以查看这些文章，以获得更多对组内变量误差线问题的详细探讨和方案。
 
-这里有一个组内变量的数据集 (来自 Morey 2008): pre/post-test。
+这里有一个组内变量的数据集 (来自 Morey 2008)，包含 `pre/post-test`。
 
 ```{r}
 dfw <- read.table(header=TRUE, text='
@@ -628,7 +631,7 @@ dfw <- read.table(header=TRUE, text='
 dfw$subject <- factor(dfw$subject)
 ```
 
-第一步是将该数据集转换为长格式，参见 [长宽格式数据互换](#section-6.17) 获取更多信息。
+第一步是将该数据集转换为长格式，参见[长宽格式数据互换](#section-6.17)获取更多信息。
 
 ```{r}
 # 转换为长格式
@@ -897,7 +900,7 @@ ggplot(dat, aes(x=rating)) + geom_histogram(binwidth=.5, colour="black", fill="w
                linetype="dashed", size=1, colour="red")
 ```
 
-更多关于分面的细节可查看 [分面](#ggplot-facet)
+更多关于分面的细节可查看[分面](#ggplot-facet)
 
 #### 箱型图
 
@@ -993,7 +996,7 @@ ggplot(dat, aes(x=xvar, y=yvar, shape=cond)) + geom_point() +
     scale_shape_manual(values=c(1,2))  # 使用圆和三角形
 ```
 
-查看 [颜色](#ggplot2-colors) 获取更多关于颜色的信息。查看 [形状与线形](#shape-and-linetype) 获取更多相关内容。
+查看[颜色](#ggplot2-colors)获取更多关于颜色的信息。查看[形状与线形](#shape-and-linetype)获取更多相关内容。
 
 #### 处理图像元素叠加
 
@@ -1216,7 +1219,7 @@ sp + scale_y_continuous(trans = log2_trans(),
 
 可以使用非常多的转换，参见 `?trans_new` 查看所有可用转换的列表。如果你所需要的转换不在该列表上，可以自己写一个转换函数。
 
-有一些非常便捷的函数：`scale_y_log10` 和 `scale_y_sqrt` （有对应的 x 版本）。
+有一些非常便捷的函数：`scale_y_log10()` 和 `scale_y_sqrt()` （有对应的 x 版本）。
 
 ```{r}
 set.seed(205)
@@ -1318,7 +1321,6 @@ bp + scale_y_continuous(label=timeHMS_formatter)
 # 隐藏所有网格线
 bp + theme(panel.grid.minor=element_blank(),
            panel.grid.major=element_blank())
-
 # 仅隐藏次级网格线
 bp + theme(panel.grid.minor=element_blank())
 ```
@@ -1329,7 +1331,6 @@ bp + theme(panel.grid.minor=element_blank())
 # 隐藏所有垂直网格线
 bp + theme(panel.grid.minor.x=element_blank(),
            panel.grid.major.x=element_blank())
-
 # 隐藏所有水平网格线
 bp + theme(panel.grid.minor.y=element_blank(),
            panel.grid.major.y=element_blank())
@@ -1360,10 +1361,8 @@ bp
 ```{r}
 # 删除特定美学的图例（填充）
 bp + guides(fill=FALSE)
-
 # 在指定比例时也可以这样做
 bp + scale_fill_discrete(guide=FALSE)
-
 # 这将移除所有的图例
 bp + theme(legend.position="none")
 ```
@@ -1386,7 +1385,6 @@ bp + scale_fill_discrete(breaks=c("trt1","ctrl","trt2"))
 # 这两种方式等同:
 bp + guides(fill = guide_legend(reverse=TRUE))
 bp + scale_fill_discrete(guide = guide_legend(reverse=TRUE))
-
 # 你也可以直接修改比例尺：
 bp + scale_fill_discrete(breaks = rev(levels(PlantGrowth$group)))
 ```
@@ -1419,11 +1417,9 @@ bp + theme(legend.title=element_blank())
 
 ```{r}
 bp + scale_fill_discrete(name="Experimental\nCondition")
-
 bp + scale_fill_discrete(name="Experimental\nCondition",
                          breaks=c("ctrl", "trt1", "trt2"),
                          labels=c("Control", "Treatment 1", "Treatment 2"))
-
 # 使用手动刻度而不是色调
 bp + scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9"), 
                        name="Experimental\nCondition",
@@ -1617,10 +1613,8 @@ library(ggplot2)
 bp <- ggplot(dat, aes(x=cond, y=result)) +
     geom_bar(position=position_dodge(), stat="identity")
 bp
-
 # 添加水平线
 bp + geom_hline(aes(yintercept=12))
-
 # 使线条变红并变为虚线
 bp + geom_hline(aes(yintercept=12), colour="#990000", linetype="dashed")
 ```
@@ -1694,7 +1688,6 @@ treatment     B     14    15
 bp <- ggplot(dat, aes(x=cond, y=result, fill=group)) +
     geom_bar(position=position_dodge(), stat="identity")
 bp
-
 bp + geom_errorbar(aes(ymax=hline, ymin=hline), linetype="dashed",
                    position=position_dodge())
 ```
@@ -1736,10 +1729,8 @@ library(ggplot2)
 ```{r}
 # 基本的散点图
 sp <- ggplot(dat, aes(x=xval, y=yval, colour=cond)) + geom_point()
-
 # 添加一个水平线条
 sp + geom_hline(aes(yintercept=10))
-
 # 添加红色虚线垂直线
 sp + geom_hline(aes(yintercept=10)) +
     geom_vline(aes(xintercept=11.5), colour="#BB0000", linetype="dashed")
@@ -1774,7 +1765,6 @@ sp
 # 分面，基于cond
 spf <- sp + facet_grid(. ~ cond)
 spf
-
 # 用相同的值在所有的分面上画水平线
 spf + geom_hline(aes(yintercept=10))
 ```
@@ -1784,11 +1774,9 @@ spf + geom_hline(aes(yintercept=10))
 ```{r}
 dat_vlines <- data.frame(cond=levels(dat$cond), xval=c(10,11.5))
 dat_vlines
-
 spf + geom_hline(aes(yintercept=10)) +
       geom_vline(aes(xintercept=xval), data=dat_vlines,
                     colour="#990000", linetype="dashed")
-
 spf + geom_hline(aes(yintercept=10)) +
      geom_linerange(aes(x=x, y=NULL, ymin=ymin, ymax=ymax), data=lines)
 ```
@@ -1872,7 +1860,6 @@ tips2 <- tips
 levels(tips2$sex)[levels(tips2$sex)=="Female"] <- "Women"
 levels(tips2$sex)[levels(tips2$sex)=="Male"]   <- "Men"
 head(tips2, 3)
-
 sp2 <- ggplot(tips2, aes(x=total_bill, y=tip/total_bill)) + geom_point(shape=1)
 sp2 + facet_grid(. ~ sex)
 ```
@@ -1996,7 +1983,6 @@ p4 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
 
 ```{r}
 multiplot(p1, p2, p3, p4, cols=2)
-#> `geom_smooth()`  函数设置成 method = 'loess'
 ```
 
 ## 颜色 {#ggplot2-colors}
@@ -2007,7 +1993,7 @@ multiplot(p1, p2, p3, p4, cols=2)
 
 ### 方案
 
-在 **ggplot2** 中设置颜色，对相互区分不同变量会有些困难，因为这些颜色有一样的亮度，且对色盲者不太友好。一个比较好的通用解决方案是使用对 [色盲友好](#colorblind-friendly) 的颜色。
+在 **ggplot2** 中设置颜色，对相互区分不同变量会有些困难，因为这些颜色有一样的亮度，且对色盲者不太友好。一个比较好的通用解决方案是使用对[色盲友好](#colorblind-friendly)的颜色。
 
 #### 样本数据
 
@@ -2092,7 +2078,7 @@ ggplot(df2, aes(x=cond1, y=yval)) +
 
 下面这些是对色盲友好的颜色色板，一个用灰色，一个用黑色：
 
-![plot of chunk unnamed-chunk-5-1](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-1.png)![plot of chunk unnamed-chunk-5-2](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-2.png)
+![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-1.png)![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-2.png)
 
 为了用 **ggplot2**, 我们在一个变量里储存颜色色板，然后之后调用。
 
@@ -2109,13 +2095,18 @@ scale_colour_manual(values=cbPalette)
 
 这个颜色集来源于网站： <http://jfly.iam.u-tokyo.ac.jp/color/>。
 
-![色盲友好调色板](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/colorblind_palette.jpg)
+
+```{r, fig.cap="色盲友好调色板", echo=F}
+knitr::include_graphics("http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/colorblind_palette.jpg")
+```
 
 #### 颜色选择
 
-默认情况下，离散比例的颜色围绕 HSL 色环均匀分布。 例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔 120° 等等。用于不同级别的颜色如下所示：
+默认情况下，离散比例的颜色围绕 HSL 色环均匀分布。例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔 120° 等等。用于不同级别的颜色如下所示：
 
-![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-7-1.png)
+```{r, fig.cap="均匀色环", echo=F}
+knitr::include_graphics("http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-7-1.png")
+```
 
 默认颜色选择使用 `scale_fill_hue()` 和 `scale_colour_hue()`。 例如，在以下情况下添加这些命令是多余的：
 
@@ -2123,8 +2114,7 @@ scale_colour_manual(values=cbPalette)
 # 这两个是等价的; 默认使用scale_fill_hue()
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity")
 # ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + scale_fill_hue()
-
-#  这两个是等价的; 默认使用scale_colour_hue()
+# 这两个是等价的; 默认使用scale_colour_hue()
 ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2)
 # ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2) + scale_colour_hue()
 ```
@@ -2137,7 +2127,6 @@ ggplot(df, aes(x=cond, y=yval, colour=cond)) + geom_point(size=2)
 # 使用 luminance = 45, 而不是默认 65
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_hue(l=40)
-
 # 从 100 到 50 减少饱和度（亮度）, 增加亮度
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_hue(c=45, l=80)
@@ -2146,7 +2135,9 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 
 亮度为 45 时的颜色图表:
 
-![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-10-1.png)
+```{r, echo=F}
+knitr::include_graphics("http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-10-1.png")
+```
 
 #### 调色板：Color Brewer
 
@@ -2155,13 +2146,10 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 ```{r}
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_brewer()
-
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_brewer(palette="Set1")
-
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
     scale_fill_brewer(palette="Spectral")
-
 # 注意: 使用 scale_colour_brewer() 设置点和线条
 ```
 
@@ -2172,10 +2160,8 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 ```{r}
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + 
     scale_fill_manual(values=c("red", "blue", "green"))
-
 ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") + 
     scale_fill_manual(values=c("#CC6666", "#9999CC", "#66CC99"))
-
 # 注意：使用 scale_colour_manual() 设置线条和点
 ```
 
@@ -2185,10 +2171,8 @@ ggplot(df, aes(x=cond, y=yval, fill=cond)) + geom_bar(stat="identity") +
 # 产生一些数据
 set.seed(133)
 df <- data.frame(xval=rnorm(50), yval=rnorm(50))
-
 # 依赖 yval设置颜色
 ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point()
-
 # 使用不同的渐变
 ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point() + 
     scale_colour_gradientn(colours=rainbow(4))
@@ -2200,13 +2184,14 @@ ggplot(df, aes(x=xval, y=yval, colour=yval)) + geom_point() +
 
 颜色可以指定为十六进制 RGB 三元组合，例如 `#0066CC`。 前两位数字是红色，接下来的两位是绿色，最后两位是蓝色。 每个值的范围从 00 到 FF，以十六进制（base-16）表示，在 base-10 中等于 0 和 255。 例如，在下表中，`#FFFFFF` 为白色，`#990000` 为深红色。
 
-![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png)
+```{r, fig.cap="色码图", echo=F}
+knitr::include_graphics("http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png")
+```
 
 > 色码图来源于 [http://www.visibone.com](http://www.visibone.com/)
 
 #### RColorBrewer 调色板图表
 
-![](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png)
-
-
-
+```{r, fig.cap="调色板图表", echo=F}
+knitr::include_graphics("http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png")
+```

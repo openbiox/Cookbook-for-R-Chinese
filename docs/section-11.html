@@ -319,13 +319,13 @@ ctab &lt;-<span class="st"> </span><span class="kw">cor</span>(data)
 
 <span class="co"># 设置简化边幅并绘制相关性图</span>
 <span class="kw">plotcorr</span>(ctab, <span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-388-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-393-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使用颜色表征相关性强度</span>
 colorfun &lt;-<span class="st"> </span><span class="kw">colorRamp</span>(<span class="kw">c</span>(<span class="st">&quot;#CC0000&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#3366CC&quot;</span>), 
   <span class="dt">space =</span> <span class="st">&quot;Lab&quot;</span>)
 <span class="kw">plotcorr</span>(ctab, <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="kw">colorfun</span>((ctab <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span>), <span class="dt">maxColorValue =</span> <span class="dv">255</span>), 
   <span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-388-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-393-2.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="-1" class="section level4">
 <h4><span class="header-section-number">11.1.2.1</span> 提示</h4>
 <p>有关生成数值关联表的更多信息，查看<a href="section-7.html#section-7.1">回归和相关分析</a>。</p>

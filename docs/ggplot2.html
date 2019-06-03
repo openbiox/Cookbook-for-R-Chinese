@@ -355,7 +355,7 @@ dat
     <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Time of day&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Total bill&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Average bill for 2 people&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-243-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a> 获取更多关于颜色的信息。</p>
+<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a>获取更多关于颜色的信息。</p>
 </div>
 <div id="section-9.1.2.1.2" class="section level5">
 <h5><span class="header-section-number">9.1.2.1.2</span> 计数的条形图</h5>
@@ -382,7 +382,7 @@ dat
 <div id="section-9.1.2.2" class="section level4">
 <h4><span class="header-section-number">9.1.2.2</span> 线图</h4>
 <p>对于线图，数据点必须分组从而 R 知道怎么连接这些点。如果只有一组的话，非常简单，设定 <code>group=1</code> 即可，如果是多组，需要设定分组变量。</p>
-<p>下面是使用的映射变量</p>
+<p>下面是使用的映射变量：</p>
 <ul>
 <li><code>time</code>: x 轴</li>
 <li><code>total_bill</code>: y 轴</li>
@@ -409,7 +409,7 @@ dat
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">expand_limits</span>(<span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Time of day&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Total bill&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Average bill for 2 people&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-247-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a> 获取更多关于颜色的信息。查看<a href="section-10.html#shape-and-linetype">形状与线形</a> 获取更多相关内容。</p>
+<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a>获取更多关于颜色的信息。查看<a href="section-10.html#shape-and-linetype">形状与线形</a> 获取更多相关内容。</p>
 </div>
 </div>
 <div id="section-9.1.3" class="section level3">
@@ -457,7 +457,7 @@ dat1
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="kw">position_dodge</span>(), 
     <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-250-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a> 获取更多关于颜色的信息。</p>
+<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a>获取更多关于颜色的信息。</p>
 </div>
 <div id="-1" class="section level4">
 <h4><span class="header-section-number">9.1.3.2</span> 线图</h4>
@@ -490,7 +490,7 @@ dat1
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> dat1, <span class="kw">aes</span>(<span class="dt">x =</span> sex, <span class="dt">y =</span> total_bill, <span class="dt">group =</span> time, 
   <span class="dt">shape =</span> time, <span class="dt">color =</span> time)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-252-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a> 获取更多关于颜色的信息。查看<a href="section-10.html#shape-and-linetype">形状与线形</a> 获取更多相关内容。</p>
+<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a>获取更多关于颜色的信息。查看<a href="section-10.html#shape-and-linetype">形状与线形</a>获取更多相关内容。</p>
 </div>
 <div id="section-9.1.3.3" class="section level4">
 <h4><span class="header-section-number">9.1.3.3</span> 完成的例子</h4>
@@ -525,7 +525,7 @@ dat1
 </div>
 <div id="-x-axis" class="section level3">
 <h3><span class="header-section-number">9.1.4</span> 使用数值 x-axis</h3>
-<p>当 x 轴上的变量是数字时，有时需要将其视为连续变量，有时需要将其视为分类变量。在该数据集中，剂量应该是值为 0.5, 1.0 和 2.0 的数值变量。作图时，将这些值视为相同类别可能很有用。</p>
+<p>当 x 轴上的变量是数字时，有时需要将其视为连续变量，有时需要将其视为分类变量。在该数据集中，剂量应该是值为 <code>0.5</code>, <code>1.0</code> 和 <code>2.0</code> 的数值变量。作图时，将这些值视为相同类别可能很有用。</p>
 <pre class="sourceCode r"><code class="sourceCode r">datn &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">text =</span> <span class="st">&quot;</span>
 <span class="st">supp dose length</span>
 <span class="st">  OJ  0.5  13.23</span>
@@ -860,7 +860,7 @@ tgc2<span class="op">$</span>dose &lt;-<span class="st"> </span><span class="kw"
 <h4><span class="header-section-number">9.2.2.5</span> 为组内变量添加误差线</h4>
 <p>当所有的变量都属于不同组别时，我们画标准误或者置信区间会显得非常简单直观。然而，当我们描绘的是组内变量（重复测量），那么添加标准误或者通常的置信区间可能会对不同条件下差异的推断产生误导作用。</p>
 <p>下面的方法来自 <a href="http://tqmp.org/Content/vol04-2/p061/p061.html">Morey (2008)</a>，它是对 <a href="http://tqmp.org/Content/vol01-1/p042/p042.html">Cousineau (2005)</a>的矫正，而它所做的就是 提供比 <a href="http://www.springerlink.com/content/n2r2t04244246k68/">Loftus and Masson (1994)</a>更简单的方法。 你可以查看这些文章，以获得更多对组内变量误差线问题的详细探讨和方案。</p>
-<p>这里有一个组内变量的数据集 (来自 Morey 2008): pre/post-test。</p>
+<p>这里有一个组内变量的数据集 (来自 Morey 2008)，包含 <code>pre/post-test</code>。</p>
 <pre class="sourceCode r"><code class="sourceCode r">dfw &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">text =</span> <span class="st">&quot;</span>
 <span class="st"> subject pretest posttest</span>
 <span class="st">     1    59.4     64.5</span>
@@ -877,7 +877,7 @@ tgc2<span class="op">$</span>dose &lt;-<span class="st"> </span><span class="kw"
 
 <span class="co"># 将物体的 ID 作为因子变量对待</span>
 dfw<span class="op">$</span>subject &lt;-<span class="st"> </span><span class="kw">factor</span>(dfw<span class="op">$</span>subject)</code></pre>
-<p>第一步是将该数据集转换为长格式，参见 <a href="section-6.html#section-6.17">长宽格式数据互换</a> 获取更多信息。</p>
+<p>第一步是将该数据集转换为长格式，参见<a href="section-6.html#section-6.17">长宽格式数据互换</a>获取更多信息。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 转换为长格式</span>
 <span class="kw">library</span>(reshape2)
 dfw_long &lt;-<span class="st"> </span><span class="kw">melt</span>(dfw, <span class="dt">id.vars =</span> <span class="st">&quot;subject&quot;</span>, <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;pretest&quot;</span>, 
@@ -1173,7 +1173,7 @@ cdat
 <span class="st">  </span>.) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> cdat, <span class="kw">aes</span>(<span class="dt">xintercept =</span> rating.mean), 
   <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-279-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>更多关于分面的细节可查看 <a href="ggplot2.html#ggplot-facet">分面</a></p>
+<p>更多关于分面的细节可查看<a href="ggplot2.html#ggplot-facet">分面</a></p>
 </div>
 <div id="section-9.3.2.3" class="section level4">
 <h4><span class="header-section-number">9.3.2.3</span> 箱型图</h4>
@@ -1278,7 +1278,7 @@ dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class
 <span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>xvar, <span class="dt">y=</span>yvar, <span class="dt">shape=</span>cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">scale_shape_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))  <span class="co"># 使用圆和三角形</span></code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-284-5.png" width="672" style="display: block; margin: auto;" /></p>
-<p>查看 <a href="ggplot2.html#ggplot2-colors">颜色</a> 获取更多关于颜色的信息。查看 <a href="section-10.html#shape-and-linetype">形状与线形</a> 获取更多相关内容。</p>
+<p>查看<a href="ggplot2.html#ggplot2-colors">颜色</a>获取更多关于颜色的信息。查看<a href="section-10.html#shape-and-linetype">形状与线形</a>获取更多相关内容。</p>
 </div>
 <div id="section-9.4.2.3" class="section level4">
 <h4><span class="header-section-number">9.4.2.3</span> 处理图像元素叠加</h4>
@@ -1481,7 +1481,7 @@ sp <span class="op">+</span><span class="st"> </span><span class="kw">coord_tran
   <span class="cf">function</span>(x) <span class="dv">2</span><span class="op">^</span>x), <span class="dt">labels =</span> <span class="kw">trans_format</span>(<span class="st">&quot;log2&quot;</span>, <span class="kw">math_format</span>(<span class="dv">2</span><span class="op">^</span>.x)))</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-299-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>可以使用非常多的转换，参见 <code>?trans_new</code> 查看所有可用转换的列表。如果你所需要的转换不在该列表上，可以自己写一个转换函数。</p>
-<p>有一些非常便捷的函数：<code>scale_y_log10</code> 和 <code>scale_y_sqrt</code> （有对应的 x 版本）。</p>
+<p>有一些非常便捷的函数：<code>scale_y_log10()</code> 和 <code>scale_y_sqrt()</code> （有对应的 x 版本）。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">205</span>)
 n &lt;-<span class="st"> </span><span class="dv">100</span>
 dat10 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">xval =</span> (<span class="dv">1</span><span class="op">:</span>n <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">sd =</span> <span class="dv">5</span>))<span class="op">/</span><span class="dv">20</span>, 
@@ -1566,16 +1566,14 @@ bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_co
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 隐藏所有网格线</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(), <span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>())</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-306-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 仅隐藏次级网格线</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 仅隐藏次级网格线</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-306-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>也可以仅隐藏水平或垂直网格线：</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 隐藏所有垂直网格线</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>(), <span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>())</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-307-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 隐藏所有水平网格线</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 隐藏所有水平网格线</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor.y =</span> <span class="kw">element_blank</span>(), <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>())</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-307-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
@@ -1602,12 +1600,10 @@ bp</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 删除特定美学的图例（填充）</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="ot">FALSE</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-309-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 在指定比例时也可以这样做</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在指定比例时也可以这样做</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-309-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 这将移除所有的图例</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 这将移除所有的图例</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-309-3.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
@@ -1626,8 +1622,7 @@ bp <span class="op">+</span><span class="st"> </span><span class="kw">guides</sp
 <p><img src="bookdown_files/figure-html/unnamed-chunk-311-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">guide =</span> <span class="kw">guide_legend</span>(<span class="dt">reverse =</span> <span class="ot">TRUE</span>))</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-311-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 你也可以直接修改比例尺：</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 你也可以直接修改比例尺：</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">breaks =</span> <span class="kw">rev</span>(<span class="kw">levels</span>(PlantGrowth<span class="op">$</span>group)))</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-311-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>你可以使用不同的比例尺，如 <code>scale_fill_manual()</code>, <code>scale_colour_hue()</code>, <code>scale_colour_manual()</code>, <code>scale_shape_discrete()</code>, <code>scale_linetype_discrete()</code> 等，而不是 <code>scale_fill_discrete()</code>。</p>
@@ -1655,13 +1650,11 @@ bp <span class="op">+</span><span class="st"> </span><span class="kw">theme</spa
 <p>因为图例中的变量 <code>group</code> 被映射到颜色 <code>fill</code>，所以必须使用 <code>scale_fill_xxx</code>，其中 <code>xxx</code> 是将 <code>group</code> 的每个因子级别映射到不同颜色的方法。 默认设置是在每个因子级别的色轮上使用不同的色调，但也可以手动指定每个级别的颜色。</p>
 <pre class="sourceCode r"><code class="sourceCode r">bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Experimental</span><span class="ch">\n</span><span class="st">Condition&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-313-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Experimental</span><span class="ch">\n</span><span class="st">Condition&quot;</span>, 
+<pre class="sourceCode r"><code class="sourceCode r">bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Experimental</span><span class="ch">\n</span><span class="st">Condition&quot;</span>, 
   <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="st">&quot;ctrl&quot;</span>, <span class="st">&quot;trt1&quot;</span>, <span class="st">&quot;trt2&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, 
     <span class="st">&quot;Treatment 1&quot;</span>, <span class="st">&quot;Treatment 2&quot;</span>))</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-313-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 使用手动刻度而不是色调</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使用手动刻度而不是色调</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#999999&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>, 
   <span class="st">&quot;#56B4E9&quot;</span>), <span class="dt">name =</span> <span class="st">&quot;Experimental</span><span class="ch">\n</span><span class="st">Condition&quot;</span>, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="st">&quot;ctrl&quot;</span>, 
   <span class="st">&quot;trt1&quot;</span>, <span class="st">&quot;trt2&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment 1&quot;</span>, 
@@ -1899,12 +1892,10 @@ bp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat, <span class
   <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)
 bp</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-323-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 添加水平线</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 添加水平线</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">12</span>))</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-323-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 使线条变红并变为虚线</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使线条变红并变为虚线</span>
 bp <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">12</span>), <span class="dt">colour =</span> <span class="st">&quot;#990000&quot;</span>, 
   <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-323-3.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1991,8 +1982,7 @@ bp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat, <span class
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)
 bp</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-326-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-bp <span class="op">+</span><span class="st"> </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymax =</span> hline, <span class="dt">ymin =</span> hline), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, 
+<pre class="sourceCode r"><code class="sourceCode r">bp <span class="op">+</span><span class="st"> </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymax =</span> hline, <span class="dt">ymin =</span> hline), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, 
   <span class="dt">position =</span> <span class="kw">position_dodge</span>())</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-326-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
@@ -2029,12 +2019,10 @@ bp <span class="op">+</span><span class="st"> </span><span class="kw">geom_error
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 基本的散点图</span>
 sp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> xval, <span class="dt">y =</span> yval, <span class="dt">colour =</span> cond)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()
-
 <span class="co"># 添加一个水平线条</span>
 sp <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">10</span>))</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-328-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 添加红色虚线垂直线</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 添加红色虚线垂直线</span>
 sp <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">10</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="fl">11.5</span>), 
   <span class="dt">colour =</span> <span class="st">&quot;#BB0000&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-328-2.png" width="672" style="display: block; margin: auto;" /></p>
@@ -2074,8 +2062,7 @@ sp</code></pre>
 spf &lt;-<span class="st"> </span>sp <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>cond)
 spf</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-330-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 用相同的值在所有的分面上画水平线</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 用相同的值在所有的分面上画水平线</span>
 spf <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">10</span>))</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-330-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>如果你希望不同的线条出现在不同的方面，有两个选项。 一种是创建具有所需线条值的新数据框。 另一种选择（控制更有限）是在 <code>geom_line()</code> 中设定 <code>stat</code> 和 <code>xintercept</code>。</p>
@@ -2085,12 +2072,10 @@ dat_vlines
 <span class="co">#&gt;        cond xval</span>
 <span class="co">#&gt; 1   control 10.0</span>
 <span class="co">#&gt; 2 treatment 11.5</span>
-
 spf <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">10</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> xval), 
   <span class="dt">data =</span> dat_vlines, <span class="dt">colour =</span> <span class="st">&quot;#990000&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-331-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-spf <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">10</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, 
+<pre class="sourceCode r"><code class="sourceCode r">spf <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="dv">10</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, 
   <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">ymin =</span> ymin, <span class="dt">ymax =</span> ymax), <span class="dt">data =</span> lines)</code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-331-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
@@ -2168,7 +2153,6 @@ sp <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid
 <span class="co">#&gt; 1      16.99 1.01 Women     No Sun Dinner    2</span>
 <span class="co">#&gt; 2      10.34 1.66   Men     No Sun Dinner    3</span>
 <span class="co">#&gt; 3      21.01 3.50   Men     No Sun Dinner    3</span>
-
 sp2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(tips2, <span class="kw">aes</span>(<span class="dt">x =</span> total_bill, <span class="dt">y =</span> tip<span class="op">/</span>total_bill)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">1</span>)
 sp2 <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>sex)</code></pre>
@@ -2278,7 +2262,6 @@ p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw"
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">multiplot</span>(p1, p2, p3, p4, <span class="dt">cols =</span> <span class="dv">2</span>)
 <span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></code></pre>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-345-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># &gt; `geom_smooth()` 函数设置成 method = &#39;loess&#39;</span></code></pre>
 </div>
 </div>
 <div id="ggplot2-colors" class="section level2">
@@ -2289,7 +2272,7 @@ p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw"
 </div>
 <div id="-62" class="section level3">
 <h3><span class="header-section-number">9.11.2</span> 方案</h3>
-<p>在 <strong>ggplot2</strong> 中设置颜色，对相互区分不同变量会有些困难，因为这些颜色有一样的亮度，且对色盲者不太友好。一个比较好的通用解决方案是使用对 <a href="ggplot2.html#colorblind-friendly">色盲友好</a> 的颜色。</p>
+<p>在 <strong>ggplot2</strong> 中设置颜色，对相互区分不同变量会有些困难，因为这些颜色有一样的亮度，且对色盲者不太友好。一个比较好的通用解决方案是使用对<a href="ggplot2.html#colorblind-friendly">色盲友好</a>的颜色。</p>
 <div id="-2" class="section level4">
 <h4><span class="header-section-number">9.11.2.1</span> 样本数据</h4>
 <p>这两个数据集将用来产生下面的图表：</p>
@@ -2370,7 +2353,7 @@ df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class
 <div id="colorblind-friendly" class="section level4">
 <h4><span class="header-section-number">9.11.2.4</span> 对色盲友好的颜色</h4>
 <p>下面这些是对色盲友好的颜色色板，一个用灰色，一个用黑色：</p>
-<p><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5-1" /><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-2.png" alt="plot of chunk unnamed-chunk-5-2" /></p>
+<p><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-1.png" /><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-5-2.png" /></p>
 <p>为了用 <strong>ggplot2</strong>, 我们在一个变量里储存颜色色板，然后之后调用。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 灰色的颜色色板:</span>
 cbPalette &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#999999&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>, <span class="st">&quot;#56B4E9&quot;</span>, <span class="st">&quot;#009E73&quot;</span>, 
@@ -2469,25 +2452,31 @@ cbbPalette &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="
 <span class="co">#&gt;     transform_df: function</span>
 <span class="co">#&gt;     super:  &lt;ggproto object: Class ScaleDiscrete, Scale, gg&gt;</span></code></pre>
 <p>这个颜色集来源于网站： <a href="http://jfly.iam.u-tokyo.ac.jp/color/" class="uri">http://jfly.iam.u-tokyo.ac.jp/color/</a>。</p>
-<div class="figure">
-<img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/colorblind_palette.jpg" alt="色盲友好调色板" />
-<p class="caption">色盲友好调色板</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-350"></span>
+<img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/colorblind_palette.jpg" alt="色盲友好调色板"  />
+<p class="caption">
+图 9.1: 色盲友好调色板
+</p>
 </div>
 </div>
 <div id="section-9.11.2.5" class="section level4">
 <h4><span class="header-section-number">9.11.2.5</span> 颜色选择</h4>
-<p>默认情况下，离散比例的颜色围绕 HSL 色环均匀分布。 例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔 120° 等等。用于不同级别的颜色如下所示：</p>
-<p><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-7-1.png" /></p>
+<p>默认情况下，离散比例的颜色围绕 HSL 色环均匀分布。例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔 120° 等等。用于不同级别的颜色如下所示：</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-351"></span>
+<img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-7-1.png" alt="均匀色环"  />
+<p class="caption">
+图 9.2: 均匀色环
+</p>
+</div>
 <p>默认颜色选择使用 <code>scale_fill_hue()</code> 和 <code>scale_colour_hue()</code>。 例如，在以下情况下添加这些命令是多余的：</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 这两个是等价的; 默认使用scale_fill_hue()</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-350-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-352-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ggplot(df, aes(x=cond, y=yval, fill=cond)) +</span>
 <span class="co"># geom_bar(stat=&#39;identity&#39;) + scale_fill_hue()</span>
-
 <span class="co"># 这两个是等价的; 默认使用scale_colour_hue()</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">colour =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-350-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-352-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ggplot(df, aes(x=cond, y=yval, colour=cond)) +</span>
 <span class="co"># geom_point(size=2) + scale_colour_hue()</span></code></pre>
 </div>
@@ -2497,60 +2486,52 @@ cbbPalette &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使用 luminance = 45, 而不是默认 65</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_hue</span>(<span class="dt">l =</span> <span class="dv">40</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-351-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 从 100 到 50 减少饱和度（亮度）, 增加亮度</span>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-353-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 从 100 到 50 减少饱和度（亮度）, 增加亮度</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_hue</span>(<span class="dt">c =</span> <span class="dv">45</span>, <span class="dt">l =</span> <span class="dv">80</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-351-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-353-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 注意：使用 scale_colour_hue() 设置线和点</span></code></pre>
 <p>亮度为 45 时的颜色图表:</p>
-<p><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-10-1.png" /></p>
+<p><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="color-brewer" class="section level4">
 <h4><span class="header-section-number">9.11.2.7</span> 调色板：Color Brewer</h4>
 <p>你还可以使用其他颜色标度，例如从 <strong>RColorBrewer</strong> 包中获取。 请参阅下面的 <strong>RColorBrewer</strong>s 调色板图表。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>()</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-352-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-355-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-352-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-355-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-352-3.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 注意: 使用 scale_colour_brewer() 设置点和线条</span></code></pre>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-355-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 注意: 使用 scale_colour_brewer() 设置点和线条</span></code></pre>
 </div>
 <div id="section-9.11.2.8" class="section level4">
 <h4><span class="header-section-number">9.11.2.8</span> 调色板：手动定义</h4>
 <p>最后，你可以使用 <code>scale_fill_manual()</code> 定义自己的颜色集。 有关选择特定颜色的帮助，请参阅下面的十六进制代码表。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-353-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-356-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> cond, <span class="dt">y =</span> yval, <span class="dt">fill =</span> cond)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#CC6666&quot;</span>, <span class="st">&quot;#9999CC&quot;</span>, <span class="st">&quot;#66CC99&quot;</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-353-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 注意：使用 scale_colour_manual() 设置线条和点</span></code></pre>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-356-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 注意：使用 scale_colour_manual() 设置线条和点</span></code></pre>
 </div>
 <div id="section-9.11.2.9" class="section level4">
 <h4><span class="header-section-number">9.11.2.9</span> 连续颜色</h4>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 产生一些数据</span>
 <span class="kw">set.seed</span>(<span class="dv">133</span>)
 df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">xval =</span> <span class="kw">rnorm</span>(<span class="dv">50</span>), <span class="dt">yval =</span> <span class="kw">rnorm</span>(<span class="dv">50</span>))
-
 <span class="co"># 依赖 yval设置颜色</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> xval, <span class="dt">y =</span> yval, <span class="dt">colour =</span> yval)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-354-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 使用不同的渐变</span>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-357-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使用不同的渐变</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> xval, <span class="dt">y =</span> yval, <span class="dt">colour =</span> yval)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_colour_gradientn</span>(<span class="dt">colours =</span> <span class="kw">rainbow</span>(<span class="dv">4</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-354-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-357-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="section-9.11.2.10" class="section level4">
 <h4><span class="header-section-number">9.11.2.10</span> 比色图表</h4>
@@ -2558,14 +2539,24 @@ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class=
 <div id="section-9.11.2.11" class="section level4">
 <h4><span class="header-section-number">9.11.2.11</span> 十六进制色码图</h4>
 <p>颜色可以指定为十六进制 RGB 三元组合，例如 <code>#0066CC</code>。 前两位数字是红色，接下来的两位是绿色，最后两位是蓝色。 每个值的范围从 00 到 FF，以十六进制（base-16）表示，在 base-10 中等于 0 和 255。 例如，在下表中，<code>#FFFFFF</code> 为白色，<code>#990000</code> 为深红色。</p>
-<p><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-358"></span>
+<img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/hextable.png" alt="色码图"  />
+<p class="caption">
+图 9.3: 色码图
+</p>
+</div>
 <blockquote>
 <p>色码图来源于 <a href="http://www.visibone.com/">http://www.visibone.com</a></p>
 </blockquote>
 </div>
 <div id="rcolorbrewer-" class="section level4">
 <h4><span class="header-section-number">9.11.2.12</span> RColorBrewer 调色板图表</h4>
-<p><img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-359"></span>
+<img src="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/figure/unnamed-chunk-14-1.png" alt="调色板图表"  />
+<p class="caption">
+图 9.4: 调色板图表
+</p>
+</div>
 
 </div>
 </div>

@@ -381,7 +381,7 @@ ppi &lt;-<span class="st"> </span><span class="dv">300</span>
 <span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">pch=</span><span class="dv">23</span>,   <span class="co"># 菱形符号</span>
        <span class="dt">lty=</span><span class="st">&quot;dotted&quot;</span>, <span class="dt">cex=</span><span class="dv">2</span>,               <span class="co"># 点状线, 符号形状放大一倍</span>
        <span class="dt">col=</span><span class="st">&quot;#000099&quot;</span>, <span class="dt">bg=</span><span class="st">&quot;#FF6666&quot;</span>)       <span class="co"># 线条蓝色，符号形状红色填充</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-370-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-375-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ggplot2-2" class="section level4">
 <h4><span class="header-section-number">10.2.2.2</span> ggplot2</h4>
@@ -402,21 +402,21 @@ df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-371-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 设置全局的符号形状和线条类型</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>,  <span class="co"># 虚线</span>
               <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st">       </span><span class="co"># 加粗</span>
 <span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">0</span>,         <span class="co"># 空心方块</span>
                <span class="dt">size =</span> <span class="dv">4</span>)          <span class="co"># 放大形状</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-371-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 通过变量 cond 调整符号图形和线类型</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>cond), <span class="co"># cond 决定线条类型</span>
               <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st">       </span><span class="co"># 线条加粗</span>
 <span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>cond),   <span class="co"># cond 决定形状</span>
                <span class="dt">size =</span> <span class="dv">4</span>)          <span class="co"># 放大形状</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-371-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-3.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在上述的基础上同时改变所使用的线条和形状</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>cond), <span class="co"># cond 决定线条类型</span>
@@ -425,7 +425,7 @@ df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
                <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st">        </span><span class="co"># 放大形状</span>
 <span class="st">    </span><span class="kw">scale_shape_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">5</span>)) <span class="op">+</span><span class="st">                  </span><span class="co"># 更改形状</span>
 <span class="st">    </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;dotted&quot;</span>)) <span class="co"># 更改线条类型</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-371-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>一般来说 <strong>ggplot2</strong> 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以设定 <code>scale_shape(solid=FALSE)</code>。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 空心形状</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
@@ -434,7 +434,7 @@ df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
 <span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>cond),   <span class="co"># cond 决定符号形状</span>
                <span class="dt">size =</span> <span class="dv">4</span>)  <span class="op">+</span><span class="st">       </span><span class="co"># 放大形状</span>
 <span class="st">    </span><span class="kw">scale_shape</span>(<span class="dt">solid=</span><span class="ot">FALSE</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-372-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-377-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># 白色填充形状</span>
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
@@ -444,7 +444,7 @@ df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
                <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,    <span class="co"># 白色填充</span>
                <span class="dt">size =</span> <span class="dv">4</span>)  <span class="op">+</span><span class="st">       </span><span class="co"># 放大形状</span>
 <span class="st">    </span><span class="kw">scale_shape_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="dv">21</span>,<span class="dv">24</span>))  <span class="co"># 形状：实心圆和三角形</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-372-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-377-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="section-10.2.2.3" class="section level4">
 <h4><span class="header-section-number">10.2.2.3</span> 附录</h4>
@@ -467,7 +467,7 @@ df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class=
 <span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="st">&quot;4. &#39;dotdash&#39;&quot;</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))
 <span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="st">&quot;5. &#39;longdash&#39;&quot;</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))
 <span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="st">&quot;6. &#39;twodash&#39;&quot;</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-373-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-378-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -531,19 +531,19 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat, <span class=
   <span class="fl">3.5</span>), <span class="dt">breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="ot">NULL</span>)
 
 p <span class="op">+</span><span class="st"> </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> text))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-374-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-379-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> text), <span class="dt">family =</span> <span class="st">&quot;Times&quot;</span>, <span class="dt">fontface =</span> <span class="st">&quot;italic&quot;</span>, 
   <span class="dt">lineheight =</span> <span class="fl">0.8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="fl">1.5</span>, 
   <span class="dt">label =</span> <span class="st">&quot;Annotation text&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">7</span>, 
   <span class="dt">family =</span> <span class="st">&quot;Courier&quot;</span>, <span class="dt">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="dt">angle =</span> <span class="dv">30</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-374-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-379-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="theme--element_text" class="section level4">
 <h4><span class="header-section-number">10.3.2.2</span> theme() 和 element_text()</h4>
 <p>在管理类似标题，图注，坐标轴标签等元素时，可以使用 <code>element_text()</code>, 其参数设置跟 <code>geom_text()</code> 基本一致, 除了 <code>size</code> 的单位是 <strong>points</strong> (而非 mm), 还有就是它用的是 <code>face</code> 而不是 <code>fontface</code> 。默认情况下，<code>size</code> 取决于元素，比如图形标题的字体总是比刻度标签的大。</p>
 <pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;This is a Title&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;Times&quot;</span>, 
   <span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="dt">size =</span> <span class="dv">20</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-375-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-380-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="section-10.3.2.3" class="section level4">
 <h4><span class="header-section-number">10.3.2.3</span> 字体表格</h4>
@@ -588,7 +588,7 @@ pf &lt;-<span class="st"> </span><span class="kw">ggplot</span>(fullfonts, <span
   <span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre>
 <p>在屏幕中查看:</p>
 <pre class="sourceCode r"><code class="sourceCode r">pf</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-377-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-382-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>你在屏幕中所看见的不一定跟你输出为 PNG 或 PDF 格式后的结果完全一样。查看 PNG 格式的输出结果：</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">png</span>(<span class="st">&quot;fonttable.png&quot;</span>, <span class="dt">width =</span> <span class="dv">720</span>, <span class="dt">height =</span> <span class="dv">720</span>, <span class="dt">res =</span> <span class="dv">72</span>)
 <span class="kw">print</span>(pf)
@@ -636,7 +636,7 @@ x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</
 <span class="kw">Cairo</span>(<span class="dt">width =</span> <span class="dv">540</span>, <span class="dt">height =</span> <span class="dv">380</span>, <span class="dt">file =</span> <span class="st">&quot;antialiasing_2.png&quot;</span>, 
   <span class="dt">type =</span> <span class="st">&quot;png&quot;</span>, <span class="dt">bg =</span> <span class="st">&quot;white&quot;</span>)
 <span class="kw">plot</span>(x)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-384-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-389-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dev.off</span>()
 <span class="co">#&gt; quartz_off_screen </span>
 <span class="co">#&gt;                 2</span></code></pre>
