@@ -38,7 +38,7 @@ system("cp -rf _book/* ../docs")
 cp -rf _book/* ../docs
 ```
 
-# 贡献列表
+## 贡献列表
 
 * 陈颖珊
 * 梁其云
