@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>第 13 章 工具 | Cookbook for R 中文版</title>
+  <meta name="description" content="第 13 章 工具 | Cookbook for R 中文版本">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="第 13 章 工具 | Cookbook for R 中文版" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 13 章 工具 | Cookbook for R 中文版本" />
+  <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 13 章 工具 | Cookbook for R 中文版" />
+  
+  <meta name="twitter:description" content="第 13 章 工具 | Cookbook for R 中文版本" />
+  
+
+<meta name="author" content="Winston Chang（著）">
+<meta name="author" content="王诗翔 等（译）">
+
+
+<meta name="date" content="2019-06-03">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="section-12.html">
+<link rel="next" href="materials.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#section-0.1"><i class="fa fa-check"></i><b>0.1</b> 问题与反馈</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#section-0.2"><i class="fa fa-check"></i><b>0.2</b> 致谢</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 数字</a><ul>
+<li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
+<li class="chapter" data-level="2.2" data-path="section-2.html"><a href="section-2.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 生成可重复的随机序列</a></li>
+<li class="chapter" data-level="2.3" data-path="section-2.html"><a href="section-2.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 保持随机数生成器的状态</a></li>
+<li class="chapter" data-level="2.4" data-path="section-2.html"><a href="section-2.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 对数值取整</a></li>
+<li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 字符串</a><ul>
+<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 公式</a><ul>
+<li class="chapter" data-level="4.1" data-path="section-4.html"><a href="section-4.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 通过字符串创建公式</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a><ul>
+<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="section-5.html"><a href="section-5.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="section-5.html"><a href="section-5.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="section-5.html"><a href="section-5.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 重计算因子水平</a></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 改变因子水平次序</a></li>
+<li class="chapter" data-level="6.11" data-path="section-6.html"><a href="section-6.html#section-6.11"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a></li>
+<li class="chapter" data-level="6.12" data-path="section-6.html"><a href="section-6.html#section-6.12"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a></li>
+<li class="chapter" data-level="6.13" data-path="section-6.html"><a href="section-6.html#section-6.13"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a></li>
+<li class="chapter" data-level="6.14" data-path="section-6.html"><a href="section-6.html#section-6.14"><i class="fa fa-check"></i><b>6.14</b> 合并数据框</a></li>
+<li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
+<li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
+<li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
+<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
+<li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
+<li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
+<li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
+<li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
+<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#t-"><i class="fa fa-check"></i><b>7.2</b> t 检验</a></li>
+<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#section-7.3"><i class="fa fa-check"></i><b>7.3</b> 频率检验</a></li>
+<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a></li>
+<li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#section-7.5"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a></li>
+<li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#section-7.6"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 标准绘图</a><ul>
+<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 直方图和密度图</a></li>
+<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 散点图</a></li>
+<li class="chapter" data-level="8.3" data-path="section-8.html"><a href="section-8.html#section-8.3"><i class="fa fa-check"></i><b>8.3</b> 箱线图</a></li>
+<li class="chapter" data-level="8.4" data-path="section-8.html"><a href="section-8.html#qq-plot"><i class="fa fa-check"></i><b>8.4</b> QQ 图</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>9</b> ggplot2</a><ul>
+<li class="chapter" data-level="9.1" data-path="ggplot2.html"><a href="ggplot2.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 条形图与线图</a></li>
+<li class="chapter" data-level="9.2" data-path="ggplot2.html"><a href="ggplot2.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 绘制均值和误差线</a></li>
+<li class="chapter" data-level="9.3" data-path="ggplot2.html"><a href="ggplot2.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 分布图</a></li>
+<li class="chapter" data-level="9.4" data-path="chapter1.html"><a href="chapter1.html#-1"><i class="fa fa-check"></i><b>9.4</b> 散点图</a></li>
+<li class="chapter" data-level="9.5" data-path="ggplot2.html"><a href="ggplot2.html#section-9.5"><i class="fa fa-check"></i><b>9.5</b> 标题</a></li>
+<li class="chapter" data-level="9.6" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.6</b> 坐标轴</a></li>
+<li class="chapter" data-level="9.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-legends"><i class="fa fa-check"></i><b>9.7</b> 图例</a></li>
+<li class="chapter" data-level="9.8" data-path="ggplot2.html"><a href="ggplot2.html#section-9.8"><i class="fa fa-check"></i><b>9.8</b> 线条</a></li>
+<li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-facet"><i class="fa fa-check"></i><b>9.9</b> 分面</a></li>
+<li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#section-9.10"><i class="fa fa-check"></i><b>9.10</b> 多图</a></li>
+<li class="chapter" data-level="9.11" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-colors"><i class="fa fa-check"></i><b>9.11</b> 颜色</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 图形混杂</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#-pdf-png-tiff-svg"><i class="fa fa-check"></i><b>10.1</b> 输出到文件 PDF-PNG-TIFF-SVG</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#shape-and-linetype"><i class="fa fa-check"></i><b>10.2</b> 形状和线形</a></li>
+<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 字体</a></li>
+<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 抗混淆位图输出</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-11.html"><a href="section-11.html"><i class="fa fa-check"></i><b>11</b> 其他有趣图形</a><ul>
+<li class="chapter" data-level="11.1" data-path="section-11.html"><a href="section-11.html#corr-mat"><i class="fa fa-check"></i><b>11.1</b> 相关矩阵</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-12.html"><a href="section-12.html"><i class="fa fa-check"></i><b>12</b> 脚本与函数</a><ul>
+<li class="chapter" data-level="12.1" data-path="section-12.html"><a href="section-12.html#section-12.1"><i class="fa fa-check"></i><b>12.1</b> 创建和运行一个脚本</a></li>
+<li class="chapter" data-level="12.2" data-path="section-12.html"><a href="section-12.html#section-12.2"><i class="fa fa-check"></i><b>12.2</b> 调试脚本或函数</a></li>
+<li class="chapter" data-level="12.3" data-path="section-12.html"><a href="section-12.html#section-12.3"><i class="fa fa-check"></i><b>12.3</b> 测量运行的时间</a></li>
+<li class="chapter" data-level="12.4" data-path="section-12.html"><a href="section-12.html#section-12.4"><i class="fa fa-check"></i><b>12.4</b> 获取包中的函数和对象列表</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-13.html"><a href="section-13.html"><i class="fa fa-check"></i><b>13</b> 工具</a><ul>
+<li class="chapter" data-level="13.1" data-path="section-13.html"><a href="section-13.html#section-13.1"><i class="fa fa-check"></i><b>13.1</b> 生成拉丁方</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
+<li class="chapter" data-level="A.1" data-path="13-tools.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
+<li class="chapter" data-level="A.2" data-path="materials.html"><a href="materials.html#r-"><i class="fa fa-check"></i><b>A.2</b> R 包</a></li>
+<li class="chapter" data-level="A.3" data-path="13-tools.html"><a href="#section-A.3"><i class="fa fa-check"></i><b>A.3</b> 网站</a></li>
+<li class="chapter" data-level="A.4" data-path="chapter1.html"><a href="chapter1.html#-2"><i class="fa fa-check"></i><b>A.4</b> 列表</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cookbook for R 中文版</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-13" class="section level1">
+<h1><span class="header-section-number">第 13 章</span> 工具</h1>
+<div id="section-13.1" class="section level2">
+<h2><span class="header-section-number">13.1</span> 生成拉丁方</h2>
+<div id="-73" class="section level3">
+<h3><span class="header-section-number">13.1.1</span> 问题</h3>
+<p>你想要生成平衡序列用于实验。</p>
+</div>
+<div id="-72" class="section level3">
+<h3><span class="header-section-number">13.1.2</span> 方案</h3>
+<p>函数 <code>latinsquare()</code> (在下方定义) 可以被用来生成<a href="https://baike.baidu.com/item/%E6%8B%89%E4%B8%81%E6%96%B9%E8%AE%BE%E8%AE%A1/8707472">拉丁方</a>。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">latinsquare</span>(<span class="dv">4</span>)
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    1    2    4    3</span>
+<span class="co">#&gt; [2,]    2    1    3    4</span>
+<span class="co">#&gt; [3,]    3    4    1    2</span>
+<span class="co">#&gt; [4,]    4    3    2    1</span>
+
+
+<span class="co"># 生成两个大小为 4 的拉丁方(按顺序排列)</span>
+<span class="kw">latinsquare</span>(<span class="dv">4</span>, <span class="dt">reps=</span><span class="dv">2</span>)
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    3    4    1    2</span>
+<span class="co">#&gt; [2,]    4    3    2    1</span>
+<span class="co">#&gt; [3,]    1    2    4    3</span>
+<span class="co">#&gt; [4,]    2    1    3    4</span>
+<span class="co">#&gt; [5,]    4    2    1    3</span>
+<span class="co">#&gt; [6,]    2    3    4    1</span>
+<span class="co">#&gt; [7,]    1    4    3    2</span>
+<span class="co">#&gt; [8,]    3    1    2    4</span>
+
+
+<span class="co"># 在调用该函数时最好加入一个随机种子 (random seed)，这样可以使得生成的拉丁方具有可重复性。</span>
+<span class="co"># 如下所示，这样做每次都会得到同一序列的拉丁方。</span>
+<span class="kw">latinsquare</span>(<span class="dv">4</span>, <span class="dt">reps=</span><span class="dv">2</span>, <span class="dt">seed=</span><span class="dv">5873</span>)
+<span class="co">#&gt;      [,1] [,2] [,3] [,4]</span>
+<span class="co">#&gt; [1,]    1    4    2    3</span>
+<span class="co">#&gt; [2,]    4    1    3    2</span>
+<span class="co">#&gt; [3,]    2    3    4    1</span>
+<span class="co">#&gt; [4,]    3    2    1    4</span>
+<span class="co">#&gt; [5,]    3    2    4    1</span>
+<span class="co">#&gt; [6,]    1    4    2    3</span>
+<span class="co">#&gt; [7,]    4    3    1    2</span>
+<span class="co">#&gt; [8,]    2    1    3    4</span></code></pre>
+<p>存在大小为 4 的 拉丁方 576 个。函数 <code>latinsquare</code> 会随机选择其中 <code>n</code> 个并以序列形式返回它们。这被称为<strong>重复拉丁方设计</strong> 。</p>
+<p>一旦你生成了自己的拉丁方，你需要进行检查确保不存在许多重复的序列，因为这中情况在小型拉丁方中非常普遍 (3x3 or 4x4)。</p>
+<div id="section-13.1.2.1" class="section level4">
+<h4><span class="header-section-number">13.1.2.1</span> 生成拉丁方的函数</h4>
+<p>这个函数一定程度上使用了<a href="http://www-igm.univ-mlv.fr/~lecroq/string/node3.html">暴力算法</a>来生成每个拉丁方，有时候它会因为没有可用的数字放入给定的位置而失败。这种情况下，它会再做尝试。可能存在一种更好的办法吧，但我并不清楚。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## - len 指定的是拉丁方的大小 - reps</span>
+<span class="co">## 是拉丁方的重复数-即给出多少个拉丁方 - seed</span>
+<span class="co">## 给定一个随机种子，这样可以保证生成的拉丁方是可重复的。</span>
+<span class="co">## - returnstrings</span>
+<span class="co">## 告诉函数为每个拉丁方返回一个字符串向量而不是返回一个巨大的矩阵，这个参数可以用来检查生成拉丁方的随机性。</span>
+latinsquare &lt;-<span class="st"> </span><span class="cf">function</span>(len, <span class="dt">reps =</span> <span class="dv">1</span>, <span class="dt">seed =</span> <span class="ot">NA</span>, <span class="dt">returnstrings =</span> <span class="ot">FALSE</span>) {
+  
+  <span class="co"># 保存旧的随机种子并使用新的（如果有）</span>
+  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.na</span>(seed)) {
+    <span class="cf">if</span> (<span class="kw">exists</span>(<span class="st">&quot;.Random.seed&quot;</span>)) {
+      saved.seed &lt;-<span class="st"> </span>.Random.seed
+    } <span class="cf">else</span> {
+      saved.seed &lt;-<span class="st"> </span><span class="ot">NA</span>
+    }
+    <span class="kw">set.seed</span>(seed)
+  }
+  
+  <span class="co"># 这个矩阵包含了全部独立的拉丁方</span>
+  allsq &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> reps <span class="op">*</span><span class="st"> </span>len, <span class="dt">ncol =</span> len)
+  
+  <span class="co"># 如果需要，为每个拉丁方阵储存一个字符串 id</span>
+  <span class="cf">if</span> (returnstrings) {
+    squareid &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;character&quot;</span>, <span class="dt">length =</span> reps)
+  }
+  
+  <span class="co"># 从向量中获取一个随机元素。(如果 x</span>
+  <span class="co"># 里只有一个元素，那么内置的示例函数会很诡异地发生不一样的运行）</span>
+  sample1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+    <span class="cf">if</span> (<span class="kw">length</span>(x) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) {
+      <span class="kw">return</span>(x)
+    } <span class="cf">else</span> {
+      <span class="kw">return</span>(<span class="kw">sample</span>(x, <span class="dv">1</span>))
+    }
+  }
+  
+  <span class="co"># 生成 n 个独立的拉丁方阵</span>
+  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>reps) {
+    
+    <span class="co"># 生成一个空的方阵</span>
+    sq &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> len, <span class="dt">ncol =</span> len)
+    
+    <span class="co"># 如果我们从左上角开始依次填满这个方阵，那么某些拉丁方阵出现的概率就会比其他的大</span>
+    <span class="co"># 因此我们需要在方阵中随机地序列填充 步骤大概如下： -</span>
+    <span class="co"># 随机选择一个 NA 的单元格 (可以称之为目标单元格) -</span>
+    <span class="co"># 找出与目标单元格同行或同列的所有 NA 单元格 -</span>
+    <span class="co"># 填充目标单元格 - 填充同行/同列的其他单元格 -</span>
+    <span class="co"># 如果因为所有的数字都已被使用而无法继续填充单元格，那么就退出并重新开始填充一个新的方阵。</span>
+    <span class="co"># 简言之就是选择一个空单元格，填充它。然后以随机顺序填充与其“交叉”的其他空单元格。</span>
+    <span class="co"># 如果只是完全地随机填充（而没有沿着交叉方向），那么失败的概率非常高。</span>
+    
+    <span class="cf">while</span> (<span class="kw">any</span>(<span class="kw">is.na</span>(sq))) {
+      
+      <span class="co"># 随机选择一个当前值为 NA 的单元格</span>
+      k &lt;-<span class="st"> </span><span class="kw">sample1</span>(<span class="kw">which</span>(<span class="kw">is.na</span>(sq)))
+      
+      i &lt;-<span class="st"> </span>(k <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">%%</span>len <span class="op">+</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># 获取行号</span>
+      j &lt;-<span class="st"> </span><span class="kw">floor</span>((k <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span>len) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># 获取列号</span>
+      
+      <span class="co"># 在以 i,j 为中心的“交叉点”中找到其他为 NA 的单元格</span>
+      sqrow &lt;-<span class="st"> </span>sq[i, ]
+      sqcol &lt;-<span class="st"> </span>sq[, j]
+      
+      <span class="co"># 一个包含了所有 NA 单元格坐标的矩阵</span>
+      openCell &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">cbind</span>(<span class="kw">which</span>(<span class="kw">is.na</span>(sqcol)), 
+        j), <span class="kw">cbind</span>(i, <span class="kw">which</span>(<span class="kw">is.na</span>(sqrow))))
+      <span class="co"># 随机化填充顺序</span>
+      openCell &lt;-<span class="st"> </span>openCell[<span class="kw">sample</span>(<span class="kw">nrow</span>(openCell)), 
+        ]
+      
+      <span class="co"># 将中心单元格放到列表的最上面，这样保证从它开始填充方阵</span>
+      openCell &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(i, j), openCell)
+      <span class="co"># There will now be three entries for the center cell,</span>
+      <span class="co"># so remove duplicated entries</span>
+      <span class="co"># 要确保它是一个矩阵--否则，如果只是一行数据，它将会返回成一个向量并引起错误。</span>
+      openCell &lt;-<span class="st"> </span><span class="kw">matrix</span>(openCell[<span class="op">!</span><span class="kw">duplicated</span>(openCell), 
+        ], <span class="dt">ncol =</span> <span class="dv">2</span>)
+      
+      <span class="co"># 填充中心位置，然后填充交叉方向上的其他空格</span>
+      <span class="cf">for</span> (c <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(openCell)) {
+        <span class="co"># The current cell to fill</span>
+        ci &lt;-<span class="st"> </span>openCell[c, <span class="dv">1</span>]
+        cj &lt;-<span class="st"> </span>openCell[c, <span class="dv">2</span>]
+        <span class="co"># 获取以 i,j 为中心的“交叉”方向上中未使用的数字</span>
+        freeNum &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span>(<span class="dv">1</span><span class="op">:</span>len <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(sq[ci, ], 
+          sq[, cj])))
+        
+        <span class="co"># 填充这些位置</span>
+        <span class="cf">if</span> (<span class="kw">length</span>(freeNum) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
+          sq[ci, cj] &lt;-<span class="st"> </span><span class="kw">sample1</span>(freeNum)
+        } <span class="cf">else</span> {
+          <span class="co"># 错误的尝试 - 没有可获取的数值 重新生成空方阵</span>
+          sq &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> len, <span class="dt">ncol =</span> len)
+          
+          <span class="co"># 跳出循环</span>
+          <span class="cf">break</span>
+        }
+      }
+    }
+    
+    <span class="co"># 将这单个拉丁方储存到包含所有拉丁方的矩阵中</span>
+    allsqrows &lt;-<span class="st"> </span>((n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>len) <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span>len
+    allsq[allsqrows, ] &lt;-<span class="st"> </span>sq
+    
+    <span class="co"># 如果有需要，储存一个代表这个拉丁方的字符串。</span>
+    <span class="co"># 每个拉丁方都有一个唯一的字符串代号</span>
+    <span class="cf">if</span> (returnstrings) {
+      squareid[n] &lt;-<span class="st"> </span><span class="kw">paste</span>(sq, <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)
+    }
+    
+  }
+  
+  <span class="co"># 恢复旧的随机种子（如果有）</span>
+  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.na</span>(seed) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(saved.seed)) {
+    .Random.seed &lt;-<span class="st"> </span>saved.seed
+  }
+  
+  <span class="cf">if</span> (returnstrings) {
+    <span class="kw">return</span>(squareid)
+  } <span class="cf">else</span> {
+    <span class="kw">return</span>(allsq)
+  }
+}</code></pre>
+</div>
+<div id="section-13.1.2.2" class="section level4">
+<h4><span class="header-section-number">13.1.2.2</span> 检查函数的随机性</h4>
+<p>一些生成拉丁方的算法并不是非常的随机。4x4 的拉丁方有 576 种，它们每一种都应该有相等的概率被生成，但有一些算法没法做到这一点。我们也许没有必要去检查上面函的随机性数，但如果要做这里确实可以通过一些代码来实现。我们运行下面的代码可以发现前面使用的算法其随机分布并不是很好。</p>
+<p>这个代码创建 10,000 个 4x4 的拉丁方，然后计算这 576 个唯一拉丁方出现的频数。计数结果应该形成一个不是特别宽的正态分布；否则这个分布就不是很随机了。我相信期望的标准差是根号（10000/576）（假设随机生成拉丁方）。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 设置要生成拉丁方的大小和数量</span>
+squaresize &lt;-<span class="st"> </span><span class="dv">4</span>
+numsquares &lt;-<span class="st"> </span><span class="dv">10000</span>
+
+<span class="co"># 获取指定大小的拉丁方的数量 (唯一方阵) 没有寻找到唯一的</span>
+<span class="co"># nxn 方阵的通用解法 因此我们这里直接硬编码值 (来自</span>
+<span class="co"># http://oeis.org/A002860)</span>
+uniquesquares &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">576</span>, <span class="dv">161280</span>, <span class="dv">812851200</span>)[squaresize]
+
+<span class="co"># 生成拉丁方</span>
+s &lt;-<span class="st"> </span><span class="kw">latinsquare</span>(squaresize, numsquares, <span class="dt">seed =</span> <span class="dv">122</span>, <span class="dt">returnstrings =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># 获取所有拉丁方阵的列表，并且进行计数</span>
+slist &lt;-<span class="st"> </span><span class="kw">rle</span>(<span class="kw">sort</span>(s))
+scounts &lt;-<span class="st"> </span>slist[[<span class="dv">1</span>]]
+
+<span class="kw">hist</span>(scounts, <span class="dt">breaks =</span> (<span class="kw">min</span>(scounts)<span class="op">:</span>(<span class="kw">max</span>(scounts) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">-</span><span class="st"> </span>
+<span class="st">  </span><span class="fl">0.5</span>))</code></pre>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-400-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="kw">sprintf</span>(<span class="st">&quot;Expected and actual standard deviation: %.4f, %.4f</span><span class="ch">\n</span><span class="st">&quot;</span>, 
+  <span class="kw">sqrt</span>(numsquares<span class="op">/</span>uniquesquares), <span class="kw">sd</span>(scounts)))
+<span class="co">#&gt; Expected and actual standard deviation: 4.1667, 4.2087</span></code></pre>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-12.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="materials.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/13-tools.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

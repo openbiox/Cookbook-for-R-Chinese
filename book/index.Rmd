@@ -79,7 +79,9 @@ contr = readr::read_csv("contributors.csv")
 knitr::kable(contr)
 ```
 
-最后，感谢我的女朋友周丹，如果不是她时刻的敦促，我无法对业余工作投入持续的热情和精力。
+也要感谢原作者 Winston Chang，如果不是他无私的贡献和卓越的创作才华，我们不可能学习到如此实用且有趣的知识。
+
+最后，感谢我的女朋友周丹，如果不是她时刻的敦促，我无法对这个翻译项目投入持续的热情和精力。
 
 ```{block2, type='flushright', html.tag='p'}
 王诗翔  
