@@ -44,7 +44,7 @@ detachAllPackages <- function() {
 
 # 前言 {-}
 
-这里是[《Cookbook for R》](http://www.cookbook-r.com/)中文版的网站，本站内容的翻译由[生物信息学创新协作小组 Openbiox](https://openbiox.org/) 完成翻译并维护。这里以直观明了的问题/需求和方案为基本内容向读者介绍 R 的基础和如何解决常见的分析问题：从阅读中读者可以学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本等内容。这本书是 R 诸多问题解决方案的参考手册，建议读者配合系统的 R 语言读物使用，如[《R for Data Science》](https://r4ds.had.co.nz/index.html)。
+这里是[《Cookbook for R》](http://www.cookbook-r.com/)中文版的网站，本站内容的翻译由[生物信息学创新协作小组 Openbiox](https://openbiox.org/) 完成翻译并维护。这里以直观明了的问题/需求和方案为基本内容向读者介绍 R 的基础和如何解决常见的分析问题。从阅读中读者可以学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本等内容。这本书是 R 诸多问题解决方案的参考手册，建议读者配合系统的 R 语言读物使用，如[《R for Data Science》](https://r4ds.had.co.nz/index.html)。
 
 推荐读者阅读本书的两种方式：
 
