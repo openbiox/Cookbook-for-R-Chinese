@@ -1,46 +1,47 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第 9 章 图形混杂 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 9 章 图形混杂 | Cookbook for R 中文版本" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>第 9 章 脚本与函数 | Cookbook for R 中文版</title>
+  <meta name="description" content="第 9 章 脚本与函数 | Cookbook for R 中文版本">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="第 9 章 图形混杂 | Cookbook for R 中文版" />
+  <meta property="og:title" content="第 9 章 脚本与函数 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="第 9 章 图形混杂 | Cookbook for R 中文版本" />
+  <meta property="og:description" content="第 9 章 脚本与函数 | Cookbook for R 中文版本" />
   <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第 9 章 图形混杂 | Cookbook for R 中文版" />
+  <meta name="twitter:title" content="第 9 章 脚本与函数 | Cookbook for R 中文版" />
   
-  <meta name="twitter:description" content="第 9 章 图形混杂 | Cookbook for R 中文版本" />
+  <meta name="twitter:description" content="第 9 章 脚本与函数 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）" />
-<meta name="author" content="王诗翔 等（译）" />
+<meta name="author" content="Winston Chang（著）">
+<meta name="author" content="王诗翔 等（译）">
 
 
-<meta name="date" content="2019-06-01" />
+<meta name="date" content="2019-05-06">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 <link rel="prev" href="section-8.html">
 <link rel="next" href="section-10.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -130,15 +131,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>欢迎</a></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
 <li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
-<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
-<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
-<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
-<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
-<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
-<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
+<li class="chapter" data-level="" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i>安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 变量信息</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.5</b> NULL，NA，NaN 的处理</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 数字</a><ul>
 <li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
@@ -148,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 字符串</a><ul>
-<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep,sub,gsub 进行搜索和替换</a></li>
 <li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 公式</a><ul>
@@ -156,18 +157,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
-<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
-<li class="chapter" data-level="5.3" data-path="section-5.html"><a href="section-5.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
-<li class="chapter" data-level="5.4" data-path="section-5.html"><a href="section-5.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
-<li class="chapter" data-level="5.5" data-path="section-5.html"><a href="section-5.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#-r"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="chapter1.html"><a href="chapter1.html#-r-"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
 <li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
 <li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
 <li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
-<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#na-"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
 <li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
 <li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
 <li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
@@ -180,12 +181,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
 <li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
 <li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
-<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
+<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 总结数据</a></li>
 <li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
 <li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
 <li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
 <li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
-<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#-na--na"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
 <li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
@@ -195,49 +196,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#section-7.5"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a></li>
 <li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#section-7.6"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 标准绘图</a><ul>
-<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 直方图和密度图</a></li>
-<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 散点图</a></li>
-<li class="chapter" data-level="8.3" data-path="section-8.html"><a href="section-8.html#section-8.3"><i class="fa fa-check"></i><b>8.3</b> 箱线图</a></li>
-<li class="chapter" data-level="8.4" data-path="section-8.html"><a href="section-8.html#qq-plot"><i class="fa fa-check"></i><b>8.4</b> QQ 图</a></li>
+<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 图形</a><ul>
+<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 条形图与线图</a></li>
+<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 绘制均值和误差棒</a></li>
+<li class="chapter" data-level="8.3" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.3</b> ggplot | 绘制分布图</a></li>
+<li class="chapter" data-level="8.4" data-path="section-8.html"><a href="section-8.html#section-8.4"><i class="fa fa-check"></i><b>8.4</b> 箱型图</a></li>
+<li class="chapter" data-level="8.5" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.5</b> ggplot | 散点图</a></li>
+<li class="chapter" data-level="8.6" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.6</b> ggplot | 标题</a></li>
+<li class="chapter" data-level="8.7" data-path="section-8.html"><a href="section-8.html#ggplot"><i class="fa fa-check"></i><b>8.7</b> ggplot|坐标轴</a></li>
+<li class="chapter" data-level="8.8" data-path="section-8.html"><a href="section-8.html#-ggplot2"><i class="fa fa-check"></i><b>8.8</b> 图例 (ggplot2)</a></li>
+<li class="chapter" data-level="8.9" data-path="section-8.html"><a href="section-8.html#-ggplot2"><i class="fa fa-check"></i><b>8.9</b> 线条 (ggplot2)</a></li>
+<li class="chapter" data-level="8.10" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.10</b> ggplot | 分面</a></li>
+<li class="chapter" data-level="8.11" data-path="section-8.html"><a href="section-8.html#ggplot-"><i class="fa fa-check"></i><b>8.11</b> ggplot |多图</a></li>
+<li class="chapter" data-level="8.12" data-path="section-8.html"><a href="section-8.html#ggplot2"><i class="fa fa-check"></i><b>8.12</b> 颜色（ggplot2)</a></li>
+<li class="chapter" data-level="8.13" data-path="section-8.html"><a href="section-8.html#--pdf-png-tiff-svg"><i class="fa fa-check"></i><b>8.13</b> 图形混杂-输出到文件 PDF-PNG-TIFF-SVG</a></li>
+<li class="chapter" data-level="8.14" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.14</b> 图形混杂-形状和线形</a></li>
+<li class="chapter" data-level="8.15" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.15</b> 图形混杂-字体</a></li>
+<li class="chapter" data-level="8.16" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.16</b> 图形混杂-抗混淆位图输出</a></li>
+<li class="chapter" data-level="8.17" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.17</b> 标准绘图 | 散点图</a></li>
+<li class="chapter" data-level="8.18" data-path="section-8.html"><a href="section-8.html#section-8.18"><i class="fa fa-check"></i><b>8.18</b> 标准绘图|箱线图</a></li>
+<li class="chapter" data-level="8.19" data-path="section-8.html"><a href="section-8.html#---qq-"><i class="fa fa-check"></i><b>8.19</b> 标准绘图 - QQ 图</a></li>
+<li class="chapter" data-level="8.20" data-path="section-7.html"><a href="section-7.html#-"><i class="fa fa-check"></i><b>8.20</b> 其他有趣图形-相关矩阵</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 图形混杂</a><ul>
-<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#-pdf-png-tiff-svg"><i class="fa fa-check"></i><b>9.1</b> 输出到文件 PDF-PNG-TIFF-SVG</a></li>
-<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 形状和线形</a></li>
-<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 字体</a></li>
-<li class="chapter" data-level="9.4" data-path="section-9.html"><a href="section-9.html#section-9.4"><i class="fa fa-check"></i><b>9.4</b> 抗混淆位图输出</a></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 脚本与函数</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 创建和运行一个脚本</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 调试脚本或函数</a></li>
+<li class="chapter" data-level="9.3" data-path="section-9.html"><a href="section-9.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 测量经过的时间</a></li>
+<li class="chapter" data-level="9.4" data-path="section-9.html"><a href="section-9.html#section-9.4"><i class="fa fa-check"></i><b>9.4</b> 获取包中的函数和对象列表</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 其他有趣图形</a><ul>
-<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#corr-mat"><i class="fa fa-check"></i><b>10.1</b> 相关矩阵</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="section-11.html"><a href="section-11.html"><i class="fa fa-check"></i><b>11</b> 图形</a><ul>
-<li class="chapter" data-level="11.1" data-path="section-11.html"><a href="section-11.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 条形图与线图</a></li>
-<li class="chapter" data-level="11.2" data-path="section-11.html"><a href="section-11.html#section-11.2"><i class="fa fa-check"></i><b>11.2</b> 绘制均值和误差棒</a></li>
-<li class="chapter" data-level="11.3" data-path="section-11.html"><a href="section-11.html#ggplot-"><i class="fa fa-check"></i><b>11.3</b> ggplot | 绘制分布图</a></li>
-<li class="chapter" data-level="11.4" data-path="section-11.html"><a href="section-11.html#section-11.4"><i class="fa fa-check"></i><b>11.4</b> 箱型图</a></li>
-<li class="chapter" data-level="11.5" data-path="section-11.html"><a href="section-11.html#ggplot-"><i class="fa fa-check"></i><b>11.5</b> ggplot | 散点图</a></li>
-<li class="chapter" data-level="11.6" data-path="section-11.html"><a href="section-11.html#ggplot-"><i class="fa fa-check"></i><b>11.6</b> ggplot | 标题</a></li>
-<li class="chapter" data-level="11.7" data-path="section-11.html"><a href="section-11.html#ggplot"><i class="fa fa-check"></i><b>11.7</b> ggplot|坐标轴</a></li>
-<li class="chapter" data-level="11.8" data-path="section-11.html"><a href="section-11.html#-ggplot2"><i class="fa fa-check"></i><b>11.8</b> 图例 (ggplot2)</a></li>
-<li class="chapter" data-level="11.9" data-path="section-11.html"><a href="section-11.html#-ggplot2"><i class="fa fa-check"></i><b>11.9</b> 线条 (ggplot2)</a></li>
-<li class="chapter" data-level="11.10" data-path="section-11.html"><a href="section-11.html#ggplot-"><i class="fa fa-check"></i><b>11.10</b> ggplot | 分面</a></li>
-<li class="chapter" data-level="11.11" data-path="section-11.html"><a href="section-11.html#ggplot-"><i class="fa fa-check"></i><b>11.11</b> ggplot |多图</a></li>
-<li class="chapter" data-level="11.12" data-path="section-9.html"><a href="section-9.html#ggplot2"><i class="fa fa-check"></i><b>11.12</b> 颜色（ggplot2)</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="section-12.html"><a href="section-12.html"><i class="fa fa-check"></i><b>12</b> 脚本与函数</a><ul>
-<li class="chapter" data-level="12.1" data-path="section-12.html"><a href="section-12.html#section-12.1"><i class="fa fa-check"></i><b>12.1</b> 创建和运行一个脚本</a></li>
-<li class="chapter" data-level="12.2" data-path="section-12.html"><a href="section-12.html#section-12.2"><i class="fa fa-check"></i><b>12.2</b> 调试脚本或函数</a></li>
-<li class="chapter" data-level="12.3" data-path="section-12.html"><a href="section-12.html#section-12.3"><i class="fa fa-check"></i><b>12.3</b> 测量运行的时间</a></li>
-<li class="chapter" data-level="12.4" data-path="section-12.html"><a href="section-12.html#section-12.4"><i class="fa fa-check"></i><b>12.4</b> 获取包中的函数和对象列表</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="section-13.html"><a href="section-13.html"><i class="fa fa-check"></i><b>13</b> 工具</a><ul>
-<li class="chapter" data-level="13.1" data-path="section-13.html"><a href="section-13.html#section-13.1"><i class="fa fa-check"></i><b>13.1</b> 生成拉丁方</a></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 生成拉丁方</a></li>
 </ul></li>
 <li class="appendix"><span><b>附录</b></span></li>
 <li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
-<li class="chapter" data-level="A.1" data-path="08-graphs-misc.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
-<li class="chapter" data-level="A.2" data-path="08-graphs-misc.html"><a href="#section-A.2"><i class="fa fa-check"></i><b>A.2</b> 网站</a></li>
-<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-2"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
+<li class="chapter" data-level="A.1" data-path="09-scripts-and-funs.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
+<li class="chapter" data-level="A.2" data-path="09-scripts-and-funs.html"><a href="#section-A.2"><i class="fa fa-check"></i><b>A.2</b> 网站</a></li>
+<li class="chapter" data-level="A.3" data-path="chapter1.html"><a href="chapter1.html#-1"><i class="fa fa-check"></i><b>A.3</b> 列表</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -261,395 +255,329 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="section-9" class="section level1">
-<h1><span class="header-section-number">第 9 章</span> 图形混杂</h1>
-<div id="-pdf-png-tiff-svg" class="section level2">
-<h2><span class="header-section-number">9.1</span> 输出到文件 PDF-PNG-TIFF-SVG</h2>
-<div id="-53" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> 问题</h3>
-<p>你想将图形保存到文件。</p>
-</div>
-<div id="-52" class="section level3">
-<h3><span class="header-section-number">9.1.2</span> 方案</h3>
-<p>R 中有好几种命令可以直接将图形导出为文件而不是打印到屏幕上。另外，你必须通过 <code>dev.off()</code> 命令告诉 R 你已经完成作图了，否则你的图形是不会显示出来的。</p>
-<div id="pdf" class="section level4">
-<h4><span class="header-section-number">9.1.2.1</span> PDF格式</h4>
-<p>PDF 是一种矢量文件格式。一般我们都更倾向于将图形输出为矢量图文件，因为这样的图无论怎样缩放都不会出现像素点。矢量图文件的大小通常要比位图文件要小，除非该文件里包含了过多的内容（比如说一张散点图内包含了上千个点，这时候就会造成矢量图大而位图小）。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>)
-<span class="kw">dev.off</span>()</code></pre>
-<p>PDF 默认是 7x7 英寸，并且每个图形都单独占一页。这个尺寸是可以更改的：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 6x3 英寸</span>
-<span class="kw">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">6</span>, <span class="dt">height=</span><span class="dv">3</span>)
-<span class="co"># 10x6 厘米</span>
-<span class="kw">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">10</span><span class="op">/</span><span class="fl">2.54</span>, <span class="dt">height=</span><span class="dv">6</span><span class="op">/</span><span class="fl">2.54</span>)</code></pre>
-<p>如果你想在 Inkscape 或者 Illustrator 这样的矢量图编辑器中修改你的文件，图形中的一些绘制点有可能看上去更像是字母而并非原来的圆形或方形等。为了防止这种情况的发生可以输入：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>, <span class="dt">useDingbats=</span><span class="ot">FALSE</span>)</code></pre>
-</div>
-<div id="svg-" class="section level4">
-<h4><span class="header-section-number">9.1.2.2</span> SVG 格式</h4>
-<p>SVG 是另一种矢量图。默认的 <code>svg()</code> 命令无法将多页图形输出到一个文件中，因为大部分的 SVG 浏览软件无法处理多页的 SVG 文件。后面的 PNG 内容中将涉及如何输出到多个文件。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">svg</span>(<span class="st">&quot;plots.svg&quot;</span>)
-<span class="kw">dev.off</span>()</code></pre>
-<p>SVG 文件比 PDF 文件更适合矢量图编辑器。</p>
-</div>
-<div id="pngtiff" class="section level4">
-<h4><span class="header-section-number">9.1.2.3</span> PNG/TIFF格式</h4>
-<p>PNG 和 TIFF 是位图（栅格图像），对它们进行缩放时可能会出现像素点。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">png</span>(<span class="st">&quot;plot.png&quot;</span>)
-<span class="co"># 或者 tiff(&quot;plot.tiff&quot;)</span>
-<span class="kw">dev.off</span>()</code></pre>
-<p>输出的图像默认尺寸为 480x480 像素，分辨率为 72dpi （即 6.66x6.66 英寸）</p>
-<p>当分辨率增加时文本与图像元素的大小也会（以像素为单位）增加。这是因为这些元素的大小只与图像的物理大小有关（比如 4x4 英寸），而与图像的像素大小无关。例如，一个 12 磅的字符高度为 12/72 = 1/6 英寸，在分辨率为 72dpi 的情况下，它共包含 12 个像素点；而在分辨率放大到 120dpi 时，它就含有 20 个像素点了。</p>
-<p>以下创建一个大小为 480x240 像素，分辨率为 120dpi 的图像,其实际大小相当于 4x2 英寸。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">png</span>(<span class="st">&quot;plot.png&quot;</span>, <span class="dt">width=</span><span class="dv">480</span>, <span class="dt">height=</span><span class="dv">240</span>, <span class="dt">res=</span><span class="dv">120</span>)
-<span class="kw">dev.off</span>()</code></pre>
-<p>如果你要创建不止一张图像，必须对每张图像执行一个新的 <code>png()</code> 命令，或者将 <code>%d</code> 放置到文件名中:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">png</span>(<span class="st">&quot;plot-%d.png&quot;</span>)
-<span class="kw">dev.off</span>()</code></pre>
-<p>上述代码会生成 plot-1.png, plot-2.png 等系列文件。</p>
-</div>
-<div id="-pdf--ms-office" class="section level4">
-<h4><span class="header-section-number">9.1.2.4</span> 对于不支持 PDF 格式的程序 （MS Office）</h4>
-<p>有些不支持 PDF 文件导入的程序一般都需要高分辨率的 PNG 或 TIFF 文件。比如说微软 Office 无法导入 PDF 格式文件。而对于印刷出版物，则需要使用 300dpi 的图像。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 绘制一幅 6x6 英寸，300dpi 的图像</span>
-ppi &lt;-<span class="st"> </span><span class="dv">300</span>
-<span class="kw">png</span>(<span class="st">&quot;plot.png&quot;</span>, <span class="dt">width=</span><span class="dv">6</span><span class="op">*</span>ppi, <span class="dt">height=</span><span class="dv">6</span><span class="op">*</span>ppi, <span class="dt">res=</span>ppi)
-<span class="kw">plot</span>(...)
-<span class="kw">dev.off</span>()</code></pre>
-</div>
-<div id="ggplot2" class="section level4">
-<h4><span class="header-section-number">9.1.2.5</span> ggplot2</h4>
-<p>如果你在脚本或函数中使用 <code>ggplot2</code> 进行绘图，必须使用 <code>print()</code> 命令确保图像得到渲染。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 无效命令</span>
-<span class="kw">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>)
-<span class="kw">qplot</span>(...)
-<span class="kw">dev.off</span>()
-<span class="co"># 正确的做法</span>
-<span class="kw">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>)
-<span class="kw">print</span>(<span class="kw">qplot</span>(...))
-<span class="kw">dev.off</span>()</code></pre>
-<p>从屏幕中保存一个 ggplot2 图像为文件，你可以使用 <code>ggsave()</code>。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;plot.pdf&quot;</span>)
-<span class="kw">ggsave</span>(<span class="st">&quot;plot.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">4</span>, <span class="dt">height=</span><span class="dv">4</span>)
-<span class="co"># 将图形保存为 400x400，100 ppi的文件</span>
-<span class="kw">ggsave</span>(<span class="st">&quot;plot.png&quot;</span>, <span class="dt">width=</span><span class="dv">4</span>, <span class="dt">height=</span><span class="dv">4</span>, <span class="dt">dpi=</span><span class="dv">100</span>)</code></pre>
-</div>
-<div id="section-9.1.2.6" class="section level4">
-<h4><span class="header-section-number">9.1.2.6</span> 保存屏幕中的图像</h4>
-<p>如果你的屏幕中已经有一张图像了，可以将其保存为位图。</p>
-<p>这是一种将屏幕中的对象作出从像素到像素的拷贝，不过这种操作很大概率只能在 Linux 和 Mac 的 X11 系统下得以实现：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在屏幕中绘制一张图形</span>
-<span class="kw">plot</span>(...)
-<span class="kw">savePlot</span>(<span class="st">&quot;myplot.png&quot;</span>)</code></pre>
-<p>这一步是保存屏幕当前图像，并且根据不同的设备对图像进行重新渲染，图像大小可能会因此发生变化。如果你需要图形大小固定，则需要以像素为单位对尺寸进行指定。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在屏幕中绘制图像</span>
-<span class="kw">plot</span>(...)
-<span class="kw">dev.copy</span>(pdf,<span class="st">&quot;myplot.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">4</span>, <span class="dt">height=</span><span class="dv">4</span>)
-<span class="kw">dev.off</span>()
-<span class="co"># 等同于：</span>
-<span class="co"># pdf(&quot;myplot.pdf&quot;, width=4, height=4)</span>
-<span class="co"># plot(...)</span>
-<span class="co"># dev.off()</span>
-<span class="kw">dev.copy</span>(png,<span class="st">&quot;myplot.png&quot;</span>, <span class="dt">width=</span><span class="dv">400</span>, <span class="dt">height=</span><span class="dv">400</span>)
-<span class="kw">dev.off</span>()</code></pre>
+<h1><span class="header-section-number">第 9 章</span> 脚本与函数</h1>
+<div id="section-9.1" class="section level2">
+<h2><span class="header-section-number">9.1</span> 创建和运行一个脚本</h2>
+<p>计算细菌基因组核心蛋白相似性</p>
+<ul>
+<li>应用场景：</li>
+</ul>
+<p>细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界/门/纲/目/科/属/种）。</p>
+<p>在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。</p>
+<ul>
+<li>简要过程：</li>
+</ul>
+<p>两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。</p>
+<div id="section-9.1.1" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> 参考文献：</h3>
+<p><a href="https://jb.asm.org/content/196/12/2210">A Proposed Genus Boundary for the Prokaryotes Based on Genomic Insights</a></p>
+<p>Qi-Long Qin <em>et al.</em></p>
+<p><strong>以下 R 脚本都是在 windows 操作平台上进行的</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 下载所分析的基因组数据（蛋白序列）</span>
+<span class="co"># 存放于 Rawdata 文件夹中</span>
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">dir.exists</span>(<span class="st">&#39;Rawdata&#39;</span>)) {
+  <span class="kw">dir.create</span>(<span class="st">&#39;Rawdata&#39;</span>)
+}
+
+<span class="co"># 示例-1: Pseudomonas aeruginosa</span>
+<span class="co"># ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_protein.faa.gz</span>
+
+<span class="co"># 示例-2: Acinetobacter baumannii</span>
+<span class="co"># ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/746/645/GCF_000746645.1_ASM74664v1/GCF_000746645.1_ASM74664v1_protein.faa.gz</span>
+
+<span class="co"># 使用 R.utils 中的 gunzip 解压缩</span>
+<span class="kw">library</span>(R.utils)
+
+<span class="kw">download.file</span>(<span class="st">&quot;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_protein.faa.gz&quot;</span>,
+              <span class="dt">destfile =</span> <span class="st">&quot;Rawdata/Pseudomonas_aeruginosa.faa.gz&quot;</span>)
+<span class="kw">gunzip</span>(<span class="st">&quot;Rawdata/Pseudomonas_aeruginosa.faa.gz&quot;</span>)
+
+<span class="kw">download.file</span>(<span class="st">&quot;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/746/645/GCF_000746645.1_ASM74664v1/GCF_000746645.1_ASM74664v1_protein.faa.gz&quot;</span>,
+              <span class="dt">destfile =</span> <span class="st">&quot;Rawdata/Acinetobacter_baumannii.faa.gz&quot;</span>)
+<span class="kw">gunzip</span>(<span class="st">&quot;Rawdata/Acinetobacter_baumannii.faa.gz&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 使用 dbplyr 对数据框中的某列去重复</span>
+<span class="kw">library</span>(dbplyr)
+<span class="co"># 使用 seqinr 格式化 fasta 格式的序列</span>
+<span class="kw">library</span>(seqinr)
+
+<span class="co"># 检查存放中间过程文件的文件夹是否存在</span>
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">dir.exists</span>(<span class="st">&#39;Database&#39;</span>)) {
+  <span class="kw">dir.create</span>(<span class="st">&#39;Database&#39;</span>)
+}
+
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">dir.exists</span>(<span class="st">&#39;Result&#39;</span>)) {
+  <span class="kw">dir.create</span>(<span class="st">&#39;Result&#39;</span>)
+}
+
+<span class="co"># 获取所有待分析基因组文件名</span>
+genome.files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;Rawdata&#39;</span>)
+
+<span class="co"># 对所有的待分析基因组建库</span>
+<span class="cf">for</span> (gn <span class="cf">in</span> genome.files) {
+  header.file &lt;-<span class="st"> </span><span class="kw">strsplit</span>(gn,<span class="st">&#39;.&#39;</span>,<span class="dt">fixed =</span> T)[[<span class="dv">1</span>]][<span class="dv">1</span>]
+  commond.makedb &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&#39;diamond.exe makedb --in Rawdata/&#39;</span>,
+                           gn, <span class="st">&#39; --db Database/&#39;</span>, header.file)
+  <span class="kw">system</span>(commond.makedb)
+}
+
+<span class="co"># 获取多基因组的两两比对的组合数据集</span>
+genome.comn &lt;-<span class="st"> </span><span class="kw">combn</span>(genome.files,<span class="dv">2</span>)
+
+<span class="co"># 计算核心蛋白相似性的骨架命令</span>
+blast.comm1 &lt;-<span class="st"> &#39;diamond.exe blastp -q Rawdata/&#39;</span>
+blast.comm2 &lt;-<span class="st"> &#39; -d Database/&#39;</span>
+blast.comm3 &lt;-<span class="st"> &#39; -e 1e-5 --id 40 -o Result/&#39;</span>
+
+<span class="co"># 建立新变量，保存运算结果</span>
+pocp.vector &lt;-<span class="st"> </span><span class="kw">c</span>()
+
+<span class="cf">for</span> (i <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span><span class="kw">dim</span>(genome.comn)[<span class="dv">2</span>]) ) {
+  a.genome &lt;-<span class="st"> </span>genome.comn[,i][<span class="dv">1</span>]
+  b.genome &lt;-<span class="st"> </span>genome.comn[,i][<span class="dv">2</span>]
+
+  a.header &lt;-<span class="st"> </span><span class="kw">strsplit</span>(a.genome,<span class="st">&#39;.&#39;</span>,<span class="dt">fixed =</span> T)[[<span class="dv">1</span>]][<span class="dv">1</span>]
+  b.header &lt;-<span class="st"> </span><span class="kw">strsplit</span>(b.genome,<span class="st">&#39;.&#39;</span>,<span class="dt">fixed =</span> T)[[<span class="dv">1</span>]][<span class="dv">1</span>]
+
+  a.genome.seq &lt;-<span class="st"> </span><span class="kw">read.fasta</span>(<span class="kw">paste0</span>(<span class="st">&#39;Rawdata/&#39;</span>, a.genome),<span class="st">&#39;AA&#39;</span>)
+  b.genome.seq &lt;-<span class="st"> </span><span class="kw">read.fasta</span>(<span class="kw">paste0</span>(<span class="st">&#39;Rawdata/&#39;</span>, b.genome),<span class="st">&#39;AA&#39;</span>)
+
+  a.total &lt;-<span class="st"> </span><span class="kw">length</span>(a.genome.seq)
+  b.total &lt;-<span class="st"> </span><span class="kw">length</span>(b.genome.seq)
+
+  <span class="kw">str</span>(a.genome.seq)
+  <span class="kw">str</span>(b.genome.seq)
+
+  a.seq.list &lt;-<span class="st"> </span><span class="kw">names</span>(a.genome.seq)
+  b.seq.list &lt;-<span class="st"> </span><span class="kw">names</span>(b.genome.seq)
+  a.seq.length &lt;-<span class="st"> </span><span class="kw">c</span>()
+
+  <span class="cf">for</span> (nm <span class="cf">in</span> a.seq.list) {
+    tmp.len &lt;-<span class="st"> </span><span class="kw">length</span>(a.genome.seq[[<span class="kw">which</span>(a.seq.list <span class="op">==</span><span class="st"> </span>nm)]])
+    a.seq.length &lt;-<span class="st"> </span><span class="kw">append</span>(a.seq.length, tmp.len)
+  }
+  b.seq.length &lt;-<span class="st"> </span><span class="kw">c</span>()
+
+  <span class="cf">for</span> (nm <span class="cf">in</span> b.seq.list) {
+    tmp.len &lt;-<span class="st"> </span><span class="kw">length</span>(b.genome.seq[[<span class="kw">which</span>(b.seq.list <span class="op">==</span><span class="st"> </span>nm)]])
+    b.seq.length &lt;-<span class="st"> </span><span class="kw">append</span>(b.seq.length, tmp.len)
+  }
+
+  a.seq.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(a.seq.list, a.seq.length)
+  <span class="kw">colnames</span>(a.seq.df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;V1&#39;</span>,<span class="st">&#39;length&#39;</span>)
+  b.seq.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(b.seq.list, b.seq.length)
+  <span class="kw">colnames</span>(b.seq.df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;V1&#39;</span>,<span class="st">&#39;length&#39;</span>)
+
+  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;-- Blasting: &#39;</span>,a.header,<span class="st">&#39; - VS - &#39;</span>,b.header))
+
+  <span class="co"># 「正向」-- A 为查询，B 为参考数据库</span>
+  result.forward &lt;-<span class="st"> </span><span class="kw">paste0</span>(a.header,<span class="st">&#39;_VS_&#39;</span>,b.header,<span class="st">&#39;.tab&#39;</span>)
+  <span class="kw">system</span>(<span class="kw">paste0</span>(blast.comm1, a.genome,
+                blast.comm2, b.header,
+                blast.comm3, result.forward))
+  df.forward &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">paste0</span>(<span class="st">&#39;Result/&#39;</span>,result.forward),
+                           <span class="dt">header =</span> F,<span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>,
+                           <span class="dt">stringsAsFactors =</span> F)
+  df.forward &lt;-<span class="st"> </span>df.forward  <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">distinct</span>(V1,<span class="dt">.keep_all =</span> T)
+  df.forward &lt;-<span class="st"> </span><span class="kw">merge</span>(df.forward, a.seq.df, <span class="dt">by =</span> <span class="st">&#39;V1&#39;</span>, <span class="dt">all.x =</span> T)
+  df.forward<span class="op">$</span>align &lt;-<span class="st"> </span>df.forward<span class="op">$</span>V4 <span class="op">/</span><span class="st"> </span>df.forward<span class="op">$</span>length
+  df.forward &lt;-<span class="st"> </span>df.forward[<span class="kw">which</span>(df.forward<span class="op">$</span>V3 <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>df.forward<span class="op">$</span>align <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">&amp;</span><span class="st"> </span>df.forward<span class="op">$</span>V11 <span class="op">&lt;</span><span class="st"> </span><span class="fl">1e-5</span>),]
+  C1 &lt;-<span class="st"> </span><span class="kw">dim</span>(df.forward)[<span class="dv">1</span>]
+
+  <span class="co"># 「反向」-- B 为查询，A 为参考数据库</span>
+  result.backward &lt;-<span class="st"> </span><span class="kw">paste0</span>(b.header,<span class="st">&#39;_VS_&#39;</span>,a.header,<span class="st">&#39;.tab&#39;</span>)
+  <span class="kw">system</span>(<span class="kw">paste0</span>(blast.comm1, b.genome,
+                blast.comm2, a.header,
+                blast.comm3, result.backward))
+  df.backward &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">paste0</span>(<span class="st">&#39;Result/&#39;</span>,result.backward),
+                           <span class="dt">header =</span> F,<span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>,
+                           <span class="dt">stringsAsFactors =</span> F)
+  df.backward &lt;-<span class="st"> </span>df.backward <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">distinct</span>(V1,<span class="dt">.keep_all =</span> T)
+  df.backward &lt;-<span class="st"> </span><span class="kw">merge</span>(df.backward, b.seq.df, <span class="dt">by =</span> <span class="st">&#39;V1&#39;</span>, <span class="dt">all.x =</span> T)
+  df.backward<span class="op">$</span>align &lt;-<span class="st"> </span>df.backward<span class="op">$</span>V4 <span class="op">/</span><span class="st"> </span>df.backward<span class="op">$</span>length
+  df.backward &lt;-<span class="st"> </span>df.backward[<span class="kw">which</span>(df.backward<span class="op">$</span>V3 <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>df.backward<span class="op">$</span>align <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">&amp;</span><span class="st"> </span>df.backward<span class="op">$</span>V11 <span class="op">&lt;</span><span class="st"> </span><span class="fl">1e-5</span>),]
+  C2 &lt;-<span class="st"> </span><span class="kw">dim</span>(df.backward)[<span class="dv">1</span>]
+
+  pocp &lt;-<span class="st"> </span>(C1 <span class="op">+</span><span class="st"> </span>C2)<span class="op">/</span>(a.total <span class="op">+</span><span class="st"> </span>b.total)
+  pocp.vector &lt;-<span class="st"> </span><span class="kw">append</span>(pocp.vector, <span class="kw">paste0</span>(a.header,<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>,b.header,<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>,pocp))
+
+  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;-- Pair blast done: &#39;</span>,a.header,<span class="st">&#39; - VS - &#39;</span>,b.header))
+  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;-- The POCP : &#39;</span>, pocp))
+  <span class="kw">print</span>(<span class="st">&#39;----------------------------------&#39;</span>)
+}
+
+<span class="kw">write</span>(pocp.vector, <span class="st">&#39;resultPOCP.txt&#39;</span>)
+
+<span class="co"># 删除分析过程中的冗余文件</span>
+<span class="kw">unlink</span>(<span class="st">&quot;Database&quot;</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
+<span class="kw">unlink</span>(<span class="st">&quot;Result&quot;</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># 重新创建新文件夹</span>
+<span class="kw">dir.create</span>(<span class="st">&#39;Database&#39;</span>)
+<span class="kw">dir.create</span>(<span class="st">&#39;Result&#39;</span>)</code></pre>
+<div id="-2" class="section level4">
+<h4><span class="header-section-number">9.1.1.1</span> 提示：</h4>
+<p>更多关于 POCP 计算的相关 tips，请点击<a href="https://github.com/2015qyliang/POCP">这里-跳转</a></p>
 </div>
 </div>
 </div>
 <div id="section-9.2" class="section level2">
-<h2><span class="header-section-number">9.2</span> 形状和线形</h2>
-<div id="-54" class="section level3">
+<h2><span class="header-section-number">9.2</span> 调试脚本或函数</h2>
+<div id="-68" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> 问题</h3>
-<p>你想在图形中使用不同的形状和线条。</p>
+<p>您想要调试脚本或函数。</p>
 </div>
-<div id="-53" class="section level3">
+<div id="-67" class="section level3">
 <h3><span class="header-section-number">9.2.2</span> 方案</h3>
-<p>在输出位图时，对符号 15-18 的渲染可能不具抗锯齿性，即无论这些图形的绘制是否来自同一个平台，这些符号都有可能会被拉伸变形，出现像素点，或者无法居中。符号 19 和 21-25 在填充部分外周会有边框线，在大部分情况下这种边线在渲染时其边缘都是平滑的。另外，要使符号 21-25 显示实心填充，需要指定与边线颜色 (<code>col</code>) 一致的填充 (<code>bg</code>) 颜色，否则这些符号将会是空心的。</p>
-<div id="section-9.2.2.1" class="section level4">
-<h4><span class="header-section-number">9.2.2.1</span> 标准图形</h4>
-<p>通过 <code>pch</code> 选项来设置符号形状, 并且通过 <code>lty</code> 和 <code>lwd</code> 来设定线条的类型和粗细。线条的类型可以通过名字或数字来指定。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">331</span>)
-
-<span class="co"># 绘制一些点线</span>
-<span class="co"># 设定绘画范围</span>
-<span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))
-<span class="kw">plot</span>(<span class="ot">NA</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))
-<span class="co"># 绘制实心圆和实线</span>
-<span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">pch=</span><span class="dv">19</span>)
-<span class="co"># 添加空心方框和粗虚线</span>
-<span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">pch=</span><span class="dv">0</span>,  <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
-<span class="kw">points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">pch=</span><span class="dv">23</span>,   <span class="co"># 菱形符号</span>
-       <span class="dt">lty=</span><span class="st">&quot;dotted&quot;</span>, <span class="dt">cex=</span><span class="dv">2</span>,               <span class="co"># 点状线, 符号形状放大一倍</span>
-       <span class="dt">col=</span><span class="st">&quot;#000099&quot;</span>, <span class="dt">bg=</span><span class="st">&quot;#FF6666&quot;</span>)       <span class="co"># 线条蓝色，符号形状红色填充</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-</div>
-<div id="ggplot2-1" class="section level4">
-<h4><span class="header-section-number">9.2.2.2</span> ggplot2</h4>
-<p>在调用 ggplot2 的情况下，可以对图中的符号形状和线条类型进行全局的部署（比方说你想让所有数据点都是方形，所有的线条都为虚线），或者通过一个变量来调整它们。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 示例数据</span>
-df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span>T, <span class="dt">text=</span><span class="st">&#39;</span>
-<span class="st">  cond xval yval</span>
-<span class="st">     A    1  2.0</span>
-<span class="st">     A    2  2.5</span>
-<span class="st">     B    1  3.0</span>
-<span class="st">     B    2  2.0</span>
-<span class="st">&#39;</span>)
-
-<span class="kw">library</span>(ggplot2)
-<span class="co">#&gt; Registered S3 methods overwritten by &#39;ggplot2&#39;:</span>
-<span class="co">#&gt;   method         from </span>
-<span class="co">#&gt;   [.quosures     rlang</span>
-<span class="co">#&gt;   c.quosures     rlang</span>
-<span class="co">#&gt;   print.quosures rlang</span>
-
-<span class="co"># 使用标准的线条和符号形状作图</span>
-<span class="co"># 用 group = cond 表示点线之间的对应关系</span>
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 设置全局的符号形状和线条类型</span>
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>,  <span class="co"># 虚线</span>
-              <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st">       </span><span class="co"># 加粗</span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">0</span>,         <span class="co"># 空心方块</span>
-               <span class="dt">size =</span> <span class="dv">4</span>)          <span class="co"># 放大形状</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 通过变量 cond 调整符号图形和线类型</span>
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>cond), <span class="co"># cond 决定线条类型</span>
-              <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st">       </span><span class="co"># 线条加粗</span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>cond),   <span class="co"># cond 决定形状</span>
-               <span class="dt">size =</span> <span class="dv">4</span>)          <span class="co"># 放大形状</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-17-3.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在上述的基础上同时改变所使用的线条和形状</span>
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>cond), <span class="co"># cond 决定线条类型</span>
-              <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st">       </span><span class="co"># 线条加粗</span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>cond),   <span class="co"># cond 决定形状</span>
-               <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st">        </span><span class="co"># 放大形状</span>
-<span class="st">    </span><span class="kw">scale_shape_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">5</span>)) <span class="op">+</span><span class="st">                  </span><span class="co"># 更改形状</span>
-<span class="st">    </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;dotted&quot;</span>)) <span class="co"># 更改线条类型</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-17-4.png" width="672" /></p>
-<p>一般来说 ggplot2 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以使用 <code>scale_shape(solid=FALSE)</code>。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 空心形状</span>
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>cond), <span class="co"># cond 决定线条类型</span>
-              <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st">       </span><span class="co"># 线条加粗</span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>cond),   <span class="co"># cond 决定符号形状</span>
-               <span class="dt">size =</span> <span class="dv">4</span>)  <span class="op">+</span><span class="st">       </span><span class="co"># 放大形状</span>
-<span class="st">    </span><span class="kw">scale_shape</span>(<span class="dt">solid=</span><span class="ot">FALSE</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># 白色填充形状</span>
-<span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x=</span>xval, <span class="dt">y=</span>yval, <span class="dt">group =</span> cond)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype=</span>cond), <span class="co"># cond 决定线条类型</span>
-              <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st">       </span><span class="co"># 线条加粗</span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape=</span>cond),   <span class="co"># cond 决定符号形状</span>
-               <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>,    <span class="co"># 白色填充</span>
-               <span class="dt">size =</span> <span class="dv">4</span>)  <span class="op">+</span><span class="st">       </span><span class="co"># 放大形状</span>
-<span class="st">    </span><span class="kw">scale_shape_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="dv">21</span>,<span class="dv">24</span>))  <span class="co"># 形状：实心圆和三角形</span></code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
-</div>
-<div id="section-9.2.2.3" class="section level4">
-<h4><span class="header-section-number">9.2.2.3</span> 附录</h4>
-<p>以下代码会生成本章节开头所示的图表。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
-
-<span class="co"># 设定绘图区域</span>
-<span class="kw">plot</span>(<span class="ot">NA</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="fl">6.5</span>, <span class="fl">-0.5</span>),
-    <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>, <span class="dt">yaxt=</span><span class="st">&quot;n&quot;</span>,
-    <span class="dt">xlab=</span><span class="ot">NA</span>, <span class="dt">ylab=</span><span class="ot">NA</span> )
-
-<span class="co"># 画线条</span>
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span><span class="dv">6</span>) {
-    <span class="kw">points</span>(<span class="kw">c</span>(<span class="fl">0.25</span>,<span class="dv">1</span>), <span class="kw">c</span>(i,i), <span class="dt">lty=</span>i, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>)
-}
-<span class="co"># 添加标签</span>
-<span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;0. &#39;blank&#39;&quot;</span>   ,  <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))
-<span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="st">&quot;1. &#39;solid&#39;&quot;</span>   ,  <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))
-<span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="st">&quot;2. &#39;dashed&#39;&quot;</span>  ,  <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))
-<span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="st">&quot;3. &#39;dotted&#39;&quot;</span>  ,  <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))
-<span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="st">&quot;4. &#39;dotdash&#39;&quot;</span> ,  <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))
-<span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="st">&quot;5. &#39;longdash&#39;&quot;</span>,  <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))
-<span class="kw">text</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="st">&quot;6. &#39;twodash&#39;&quot;</span> ,  <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-</div>
-</div>
-</div>
-<div id="section-9.3" class="section level2">
-<h2><span class="header-section-number">9.3</span> 字体</h2>
-<div id="-55" class="section level3">
-<h3><span class="header-section-number">9.3.1</span> 问题</h3>
-<p>你想在图像中使用不同的字体。</p>
-</div>
-<div id="-54" class="section level3">
-<h3><span class="header-section-number">9.3.2</span> 方案</h3>
-<p>更新: 查看 <a href="https://github.com/wch/extrafont"><strong>extrafont</strong></a> 包相关内容，该包能更好地支持 PDF 和 Windows 位图中的字体设定。</p>
-<p>R 在一般情况下都不能很好地支持字体的显示。在不同的操作系统和不同的输出格式中都会出现不一样的结果。</p>
-<div id="geom_text" class="section level4">
-<h4><span class="header-section-number">9.3.2.1</span> geom_text</h4>
-<p>通过 ggplot2 中的 <code>geom_text</code> or <code>annotate</code> , 你可以对图形文本中的一系列属性进行设置。 <code>geom_text</code> 用于将数据框中的文本加入到图表中，而 <code>annotate</code> 则用于往图表中添加单个文本元素。</p>
+<p>将其插入您要开始调试的位置的代码中：</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browser</span>()</code></pre>
+<p>当 R 解释器到达该行时，它将暂停您的代码，您将能够查看和更改变量。</p>
+<p>在浏览器中，键入这些字母将执行以下操作</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Name</th>
-<th align="left">Default value</th>
+<th align="left">c</th>
+<th align="left">继续</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>size</code></td>
-<td align="left">5</td>
+<td align="left"><strong>n (or Return)</strong></td>
+<td align="left"><strong>下一步</strong></td>
 </tr>
 <tr class="even">
-<td align="left"><code>family</code></td>
-<td align="left"><code>&quot;&quot;</code> (sans)</td>
+<td align="left"><strong>Q</strong></td>
+<td align="left"><strong>放弃</strong></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>fontface</code></td>
-<td align="left"><code>plain</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>lineheight</code></td>
-<td align="left">1.2</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>angle</code></td>
-<td align="left">0</td>
-</tr>
-<tr class="even">
-<td align="left"><code>hjust</code></td>
-<td align="left">0.5</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>vjust</code></td>
-<td align="left">0.5</td>
+<td align="left"><strong>Ctrl-C</strong></td>
+<td align="left"><strong>回到顶级</strong></td>
 </tr>
 </tbody>
 </table>
-<p>注意这里 <code>size</code> 的单位是毫米, 而非磅。</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-    <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,
-    <span class="dt">text =</span> <span class="kw">c</span>(<span class="st">&quot;This is text&quot;</span>, <span class="st">&quot;Text with</span><span class="ch">\n</span><span class="st">multiple lines&quot;</span>, <span class="st">&quot;Some more text&quot;</span>)
-)
-
-<span class="kw">library</span>(ggplot2)
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span>y)) <span class="op">+</span><span class="st"> </span>
-<span class="st">       </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">3.5</span>), <span class="dt">breaks=</span><span class="ot">NULL</span>) <span class="op">+</span>
-<span class="st">       </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="ot">NULL</span>)
-
-p <span class="op">+</span><span class="st"> </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>text))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>text), <span class="dt">family=</span><span class="st">&quot;Times&quot;</span>, <span class="dt">fontface=</span><span class="st">&quot;italic&quot;</span>, <span class="dt">lineheight=</span>.<span class="dv">8</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">annotate</span>(<span class="dt">geom=</span><span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span><span class="fl">1.5</span>, <span class="dt">label=</span><span class="st">&quot;Annotation text&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>,
-             <span class="dt">size=</span><span class="dv">7</span>, <span class="dt">family=</span><span class="st">&quot;Courier&quot;</span>, <span class="dt">fontface=</span><span class="st">&quot;bold&quot;</span>, <span class="dt">angle=</span><span class="dv">30</span>)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+<p>在浏览器中，您可以看到当前范围中的变量。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre>
+<p>要为函数中的每一行暂停和启动浏览器</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">debug</span>(myfunction)
+<span class="kw">myfunction</span>(x)</code></pre>
 </div>
-<div id="themes-and-element_text" class="section level4">
-<h4><span class="header-section-number">9.3.2.2</span> themes and element_text</h4>
-<p>在管理类似标题，图注，坐标轴标签等元素时，可以使用 <code>element_text</code>, 其参数设置跟 <code>geom_text</code> 基本一致, 除了 <code>size</code> 的单位是 <strong>points</strong> (而非 mm), 还有就是它用的是 <code>face</code> 而不是 <code>fontface</code> 。默认情况下，<code>size</code> 取决于元素，比如图形标题的字体总是比刻度标签的大。</p>
-<pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;This is a Title&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title=</span><span class="kw">element_text</span>(<span class="dt">family=</span><span class="st">&quot;Times&quot;</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>, <span class="dt">size=</span><span class="dv">20</span>))</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div id="section-9.2.3" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> <strong>有用的选择</strong></h3>
+<p>默认情况下，每次在浏览器提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">browserNLdisabled=</span><span class="ot">TRUE</span>)</code></pre>
+<p>要在抛出错误时开始调试，请在抛出错误的函数之前运行此命令</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">error=</span>recover)</code></pre>
+<p>如果您希望每次启动R时都设置这些选项，则可以将它们放在 ~/.Rprofile 文件中。</p>
 </div>
-<div id="section-9.3.2.3" class="section level4">
-<h4><span class="header-section-number">9.3.2.3</span> 字体表格</h4>
-<p>你可以运行下列代码来生成一张不同字体的图形表。 每种字体都有<strong>简称</strong>和<strong>字体标准家族名称</strong>，定义字体时使用其中一种即可。</p>
-<pre class="sourceCode r"><code class="sourceCode r">fonttable &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>,
-                        <span class="dt">text=</span><span class="st">&#39;</span>
-<span class="st">Short,Canonical</span>
-<span class="st">mono,Courier</span>
-<span class="st">sans,Helvetica</span>
-<span class="st">serif,Times</span>
-<span class="st">,AvantGarde</span>
-<span class="st">,Bookman</span>
-<span class="st">,Helvetica-Narrow</span>
-<span class="st">,NewCenturySchoolbook</span>
-<span class="st">,Palatino</span>
-<span class="st">,URWGothic</span>
-<span class="st">,URWBookman</span>
-<span class="st">,NimbusMon</span>
-<span class="st">URWHelvetica,NimbusSan</span>
-<span class="st">,NimbusSanCond</span>
-<span class="st">,CenturySch</span>
-<span class="st">,URWPalladio</span>
-<span class="st">URWTimes,NimbusRom</span>
-<span class="st">&#39;</span>)
-
-fonttable<span class="op">$</span>pos &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(fonttable)
-
-<span class="kw">library</span>(reshape2)
-fonttable &lt;-<span class="st"> </span><span class="kw">melt</span>(fonttable, <span class="dt">id.vars=</span><span class="st">&quot;pos&quot;</span>, <span class="dt">measure.vars=</span><span class="kw">c</span>(<span class="st">&quot;Short&quot;</span>,<span class="st">&quot;Canonical&quot;</span>),
-                  <span class="dt">variable.name=</span><span class="st">&quot;NameType&quot;</span>, <span class="dt">value.name=</span><span class="st">&quot;Font&quot;</span>)
-
-<span class="co"># 创建一个分面形式的图表。确保因子的顺序是正确的</span>
-facetable &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Face =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;plain&quot;</span>,<span class="st">&quot;bold&quot;</span>,<span class="st">&quot;italic&quot;</span>,<span class="st">&quot;bold.italic&quot;</span>),
-                                      <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;plain&quot;</span>,<span class="st">&quot;bold&quot;</span>,<span class="st">&quot;italic&quot;</span>,<span class="st">&quot;bold.italic&quot;</span>)))
-
-fullfonts &lt;-<span class="st"> </span><span class="kw">merge</span>(fonttable, facetable)
-
-<span class="kw">library</span>(ggplot2)
-pf &lt;-<span class="st"> </span><span class="kw">ggplot</span>(fullfonts, <span class="kw">aes</span>(<span class="dt">x=</span>NameType, <span class="dt">y=</span>pos)) <span class="op">+</span><span class="st"> </span>
-<span class="st">             </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Font, <span class="dt">family=</span>Font, <span class="dt">fontface=</span>Face)) <span class="op">+</span>
-<span class="st">             </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Face, <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre>
-<p>在屏幕中查看:</p>
-<pre class="sourceCode r"><code class="sourceCode r">pf</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-<p>你在屏幕中所看见的不一定跟你输出为 PNG 或 PDF 格式后的结果完全一样。查看 PNG 格式的输出结果：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">png</span>(<span class="st">&#39;fonttable.png&#39;</span>, <span class="dt">width=</span><span class="dv">720</span>, <span class="dt">height=</span><span class="dv">720</span>, <span class="dt">res=</span><span class="dv">72</span>)
-<span class="kw">print</span>(pf)
-<span class="kw">dev.off</span>()
-<span class="co">#&gt; quartz_off_screen </span>
-<span class="co">#&gt;                 2</span></code></pre>
-<p>需要注意的是，对于生成这张图片的操作系统来说，大部分的字体（位于顶部）是不兼容的，只有一些基础字体（位于底部）是可以使用的。</p>
-<p>PDF 格式输出结果(以下示例图已从 PDF 格式转化为 PNG 格式）:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="st">&#39;fonttable.pdf&#39;</span>, <span class="dt">width=</span><span class="dv">10</span>, <span class="dt">height=</span><span class="dv">10</span>)
-<span class="kw">print</span>(pf)
-<span class="kw">dev.off</span>()
-<span class="co">#  用 GraphicsMagick 将 PDF 转化为PNG格式:</span>
-<span class="co"># system(&quot;gm convert -resize 720x720 -background white fonttable.pdf fonttable-pdf.png&quot;)</span></code></pre>
-<p>PDF 设备对于不同字体的支持比 PNG 设备更好。基本所有的字体都能兼容（虽然这些字体并不一定很好看）。</p>
 </div>
+<div id="section-9.3" class="section level2">
+<h2><span class="header-section-number">9.3</span> 测量经过的时间</h2>
+<div id="-69" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> <strong>问题</strong></h3>
+<p>您想要测量运行特定代码块所需的时间。</p>
+</div>
+<div id="-68" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> 方案</h3>
+<p>该 <code>system.time()</code> 函数将测量在R中运行某些东西所需的时间。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
+    <span class="co"># Do something that takes time</span>
+    x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100000</span>
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x))  x[i] &lt;-<span class="st"> </span>x[i]<span class="op">+</span><span class="dv">1</span>
+})
+<span class="co">#&gt;    user  system elapsed </span>
+<span class="co">#&gt;   0.144   0.002   0.153</span></code></pre>
+<p>输出意味着运行代码块需要 0.153 秒。</p>
 </div>
 </div>
 <div id="section-9.4" class="section level2">
-<h2><span class="header-section-number">9.4</span> 抗混淆位图输出</h2>
-<div id="-56" class="section level3">
+<h2><span class="header-section-number">9.4</span> 获取包中的函数和对象列表</h2>
+<div id="-70" class="section level3">
 <h3><span class="header-section-number">9.4.1</span> 问题</h3>
-<p>你想要在 <strong>windows</strong> 操作环境下保存抗锯齿的位图结果（<a href="https://www.computerhope.com/jargon/a/antialias.htm"><strong>anti-aliasing bitmap</strong></a>）。</p>
+<p>你想知道包里有什么。</p>
 </div>
-<div id="-55" class="section level3">
+<div id="-69" class="section level3">
 <h3><span class="header-section-number">9.4.2</span> 方案</h3>
-<p>类似于 <strong>png</strong> 和 <strong>jpeg</strong> 的标准图形设备可以将图形保存成 <strong>cairo、Xlib、 quartz</strong> 三种不同的文件格式。当使用 <strong>cairo</strong>，我们便可以获得抗锯齿化的图形结果。在 <strong>MacOS</strong> 和 <strong>linux</strong> 系统下，自动将图片保存为 <strong>cairo</strong> 格式，但是在 <strong>windows</strong> 系统下的相应参数是 <strong>NULL</strong>。</p>
-<p>绘图示例：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 设置伪随机数种子</span>
-<span class="kw">set.seed</span>(<span class="dv">1</span>)
-<span class="co">#生成符合正态分布的100个随机数</span>
-x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
-<span class="kw">png</span>(<span class="st">&quot;antialiasing_1.png&quot;</span>, <span class="dt">type=</span><span class="st">&quot;cairo&quot;</span>)
-<span class="kw">plot</span>(x)
-<span class="kw">dev.off</span>()
-<span class="co">#&gt; quartz_off_screen </span>
-<span class="co">#&gt;                 2</span></code></pre>
-<p>在 <strong>windows</strong> 系统环境下不可强行使用 <strong>type=“cairo”</strong>，需要借助 <strong>Cairo 工具包</strong>获取抗锯齿化结果。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 安装Cairo包</span>
-<span class="co"># install.packages(&quot;Cairo&quot;)</span>
-<span class="kw">library</span>(<span class="st">&quot;Cairo&quot;</span>)
-<span class="co"># 设置伪随机数种子</span>
-<span class="kw">set.seed</span>(<span class="dv">1</span>)
-<span class="co">#生成符合正态分布的100个随机数</span>
-x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
-<span class="kw">Cairo</span>(<span class="dt">width =</span> <span class="dv">540</span>, <span class="dt">height =</span> <span class="dv">380</span>, <span class="dt">file=</span><span class="st">&quot;antialiasing_2.png&quot;</span>, <span class="dt">type=</span><span class="st">&quot;png&quot;</span>, <span class="dt">bg=</span><span class="st">&quot;white&quot;</span>)
-<span class="kw">plot</span>(x)</code></pre>
-<p><img src="bookdown_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dev.off</span>() 
-<span class="co">#&gt; quartz_off_screen </span>
-<span class="co">#&gt;                 2</span></code></pre>
-<div id="section-9.4.2.1" class="section level4">
-<h4><span class="header-section-number">9.4.2.1</span> 提示</h4>
-<p>有关该部分的更多相关信息，参阅 <a href="https://csgillespie.github.io/efficientR/cairo-type.html">Efficient R programming</a>。</p>
+<p>此代码段将列出包中的函数和对象。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using search() in a new R session says that these packages are </span>
+<span class="co"># loaded by default:</span>
+<span class="co"># &quot;package:stats&quot;     &quot;package:graphics&quot; </span>
+<span class="co"># &quot;package:grDevices&quot; &quot;package:utils&quot;     &quot;package:datasets&quot; </span>
+<span class="co"># &quot;package:methods&quot;   &quot;package:base&quot;  </span>
 
-</div>
+<span class="co"># Others that are useful:</span>
+<span class="co"># gplots</span>
+<span class="co"># ggplot2, reshape, plyr</span>
+
+showPackageContents &lt;-<span class="st"> </span><span class="cf">function</span> (packageName) {
+
+    <span class="co"># Get a list of things contained in a particular package</span>
+    funlist &lt;-<span class="st"> </span><span class="kw">objects</span>(packageName)
+
+    <span class="co"># Remove things that don&#39;t start with a letter</span>
+    idx &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&#39;^[a-zA-Z][a-zA-Z0-9._]*&#39;</span>, funlist)
+    funlist &lt;-<span class="st"> </span>funlist[idx]
+
+    <span class="co"># Remove things that contain arrow &lt;-</span>
+    idx &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&#39;&lt;-&#39;</span>, funlist)
+    <span class="cf">if</span> (<span class="kw">length</span>(idx)<span class="op">!=</span><span class="dv">0</span>)
+        funlist &lt;-<span class="st"> </span>funlist[<span class="op">-</span>idx]
+
+    <span class="co"># Make a data frame to keep track of status</span>
+    objectlist &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name=</span>funlist,
+                             <span class="dt">primitive=</span><span class="ot">FALSE</span>,
+                             <span class="dt">func=</span><span class="ot">FALSE</span>,
+                             <span class="dt">object=</span><span class="ot">FALSE</span>,
+                             <span class="dt">constant=</span><span class="ot">FALSE</span>,
+                             <span class="dt">stringsAsFactors=</span>F)
+
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(objectlist)) {
+        fname &lt;-<span class="st"> </span>objectlist<span class="op">$</span>name[i]
+        <span class="cf">if</span> (<span class="kw">exists</span>(fname)) {
+            obj &lt;-<span class="st"> </span><span class="kw">get</span>(fname)
+            <span class="cf">if</span> (<span class="kw">is.primitive</span>(obj)) {
+                objectlist<span class="op">$</span>primitive[i] &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+            }
+            <span class="cf">if</span> (<span class="kw">is.function</span>(obj)) {
+                objectlist<span class="op">$</span>func[i] &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+            }
+            <span class="cf">if</span> (<span class="kw">is.object</span>(obj)) {
+                objectlist<span class="op">$</span>object[i] &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+            }
+            
+            <span class="co"># I think these are generally constants</span>
+            <span class="cf">if</span> (<span class="kw">is.vector</span>(obj)) {
+                objectlist<span class="op">$</span>constant[i] &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+            }
+           
+        
+        }  
+    }
+
+    <span class="kw">cat</span>(packageName)
+        
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">================================================</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;Primitive functions: </span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(objectlist<span class="op">$</span>name[objectlist<span class="op">$</span>primitive])
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">================================================</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;Non-primitive functions: </span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(objectlist<span class="op">$</span>name[objectlist<span class="op">$</span>func  <span class="op">&amp;</span><span class="st">  </span><span class="op">!</span>objectlist<span class="op">$</span>primitive])
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">================================================</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;Constants: </span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(objectlist<span class="op">$</span>name[objectlist<span class="op">$</span>constant])
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">================================================</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(<span class="st">&quot;Objects: </span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">cat</span>(objectlist<span class="op">$</span>name[objectlist<span class="op">$</span>object])
+    <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+}
+
+<span class="co"># Run the function using base package</span>
+<span class="kw">showPackageContents</span>(<span class="st">&quot;package:base&quot;</span>)</code></pre>
+
 </div>
 </div>
 </div>
@@ -662,13 +590,13 @@ x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</
 <a href="section-10.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -689,7 +617,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/08-graphs-misc.Rmd",
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/09-scripts-and-funs.Rmd",
 "text": "编辑"
 },
 "history": {

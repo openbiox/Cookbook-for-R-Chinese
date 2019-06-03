@@ -1,19 +1,44 @@
-# Cookbook for R 中文翻译
+# Cookbook for R 中文版
 
-> [Cookbook for R 中文版](https://github.com/openbiox/Cookbook-for-R-Chinese/) 是由[Openbiox小组](https://github.com/openbiox)实时维护的[Cookbook for R](http://www.cookbook-r.com/)中文版。
->
-> - 阅读文档请点击 👉 <https://openbiox.github.io/Cookbook-for-R-Chinese/>
+[Cookbook for R 中文版](https://github.com/openbiox/Cookbook-for-R-Chinese/) 是由 [Openbiox 小组](https://github.com/openbiox)第一批创建和维护的[Cookbook for R](http://www.cookbook-r.com/)中文翻译项目。
 
-## 如何翻译和修改
+阅读请点击 👉 <https://openbiox.github.io/Cookbook-for-R-Chinese/>
 
-目前参考以下两个文档进行翻译的提交与校对以及该仓库所有内容的修改。
+## 问题与反馈
 
-* [关于如何提交翻译以及后续更新的教程](https://github.com/xitu/gold-miner/wiki/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E7%BF%BB%E8%AF%91%E4%BB%A5%E5%8F%8A%E5%90%8E%E7%BB%AD%E6%9B%B4%E6%96%B0%E7%9A%84%E6%95%99%E7%A8%8B)
-* [参与校对的正确姿势](https://github.com/xitu/gold-miner/wiki/%E5%8F%82%E4%B8%8E%E6%A0%A1%E5%AF%B9%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF)
+网站所有网页的源文件均用 R Markdown 撰写。如果你在网站发现了任何错误，恳请点击菜单栏上的 “编辑” 按钮，并在 Github 上向我们提交合并请求。如果读者有任何的疑问或者遇到以下提到的内容不当之处，请通过[创建 GitHub issue](https://github.com/openbiox/Cookbook-for-R-Chinese/issues)与我们联系。
 
-基本流程比较简单：Fork仓库->修改->提交PR->审查并通过->下一轮
+- 翻译内容不通顺，影响阅读体验
+- 中英文括号的错误使用，如 `()` 写成了 `（）`，`。`写成了 `.`
+- 包名没有以加粗的方式标识，如 **ggplot2** 包应当显示成 **ggplot2**，而不是 ggplot2 或 `ggplot2`
+- 函数名后没有伴随成对的英文括号，如表明 `summary` 是函数时应写为 `summary()`，而 `summary` 这种写法则应该表示的是对象、数据框的列名或选项等
+- 网页链接点击跳转不正确
+- 标题的层次结构不对，比如本来是 4 级标成了 3 级 或 5 级
+- 排版不好或存在问题
+- ...
 
-## 贡献列表
+另外，有小部分代码注释存在没有翻译的现象，如果不影响读者阅读，请忽略它们。如果你觉得它严重影响了你的理解，请反馈给我们或提交相关内容所有的翻译（而不是一行）。
+
+如果你存在一些分析问题，而且认为它是大多数人可能都会遇到的，想要寻求通用的解决方案，也可以反馈，我们会想办法解决并更新到相应章节下。
+
+
+### 更新
+
+推荐使用 RStudio 编辑文档，修改后使用工具栏上的 **Preview** 按钮预览更新，它也会在 `_book` 目录下更新相应的网页文件。
+
+然后在 R 中使用下面命令（保证工作目录是`book/`）将文档拷贝到网站实际显示的目录下。
+
+```
+system("cp -rf _book/* ../docs")
+```
+
+或 Shell 下使用：
+
+```
+cp -rf _book/* ../docs
+```
+
+# 贡献列表
 
 * 陈颖珊
 * 梁其云
@@ -26,7 +51,7 @@
 
 ## 许可
 
-文档正在完善中，未经允许禁止任何形式的转载。
-
 [Apache 许可 2.0](LICENSE)
+
+
 

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Cookbook for R 中文版</title>
-  <meta name="description" content="Cookbook for R 中文版本" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="description" content="Cookbook for R 中文版本">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -21,15 +22,15 @@
   <meta name="twitter:description" content="Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）" />
-<meta name="author" content="王诗翔 等（译）" />
+<meta name="author" content="Winston Chang（著）">
+<meta name="author" content="王诗翔 等（译）">
 
 
-<meta name="date" content="2019-06-03" />
+<meta name="date" content="2019-06-03">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 
@@ -208,16 +209,16 @@
 </div>
 <div id="e5898de8a880" class="section level1 unnumbered">
 <h1>前言</h1>
-<p>这里是“Cookbook for R 中文版”的网站，本书内容的翻译由<a href="https://openbiox.org/">生物信息学创新协作小组 Openbiox</a> 完成翻译并维护。这本书以直观明了的问题/需求和方案为基本内容向读者介绍R的基础和如何解决常见的分析问题：从阅读中读者可以学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本等内容。这本书是R问题方案参考手册，建议读者配合系统的R语言读物使用，如<a href="https://r4ds.had.co.nz/index.html">《R for Data Science》</a>。</p>
+<p>这里是<a href="http://www.cookbook-r.com/">《Cookbook for R》</a>中文版的网站，本站内容的翻译由<a href="https://openbiox.org/">生物信息学创新协作小组 Openbiox</a> 完成翻译并维护。这里以直观明了的问题/需求和方案为基本内容向读者介绍 R 的基础和如何解决常见的分析问题：从阅读中读者可以学习安装和使用三方包、操作基础的数据类型，学习数据的导入、操作和可视化，学习统计分析和编写脚本等内容。这本书是 R 诸多问题解决方案的参考手册，建议读者配合系统的 R 语言读物使用，如<a href="https://r4ds.had.co.nz/index.html">《R for Data Science》</a>。</p>
 <p>推荐读者阅读本书的两种方式：</p>
 <ul>
 <li>将它看作常见的技术教程书籍，按照章节目录依次阅读</li>
 <li>将它看作问答列表，在实际遇到问题时根据书籍目录翻阅查找相关解决方案</li>
 </ul>
-<p>这个网站是（永久）免费的，它以<a href="http://creativecommons.net.cn/licenses/meet-the-licenses/">署名-非商业使用-禁止演绎 CC 许可协议</a>发布。如果你想要该书的实体版本，请期待它的出版。</p>
+<p>这个网站是（永久）免费的，它以<a href="http://creativecommons.net.cn/licenses/meet-the-licenses/">署名-非商业使用-禁止演绎 CC 许可协议</a>发布。目前该站点内容还没有纸质出版，如果读者是出版人员，并有意愿负责出版该书，请通过 <a href="mailto:committee@openbiox.org" class="email">committee@openbiox.org</a> 联系我们。</p>
 <div id="section-0.1" class="section level2">
 <h2><span class="header-section-number">0.1</span> 问题与反馈</h2>
-<p>网站所有网页的源文件均用 R Markdown 撰写。如果您在网站发现了任何错误，恳请点击菜单栏上的 “编辑” 按钮，并在 Github 上向我们提交合并请求。如果读者有任何的疑问或者遇到以下提到的内容不当之处，请通过<a href="https://github.com/openbiox/Cookbook-for-R-Chinese/issues">创建 GitHub issue</a>与我们联系。</p>
+<p>网站所有网页的源文件均用 R Markdown 撰写。如果你在网站发现了任何错误，恳请点击菜单栏上的 “编辑” 按钮，并在 Github 上向我们提交合并请求。如果读者有任何的疑问或者遇到以下提到的内容不当之处，请通过<a href="https://github.com/openbiox/Cookbook-for-R-Chinese/issues">创建 GitHub issue</a> 与我们联系。</p>
 <ul>
 <li>翻译内容不通顺，影响阅读体验</li>
 <li>中英文括号的错误使用，如 <code>()</code> 写成了 <code>（）</code>，<code>。</code>写成了 <code>.</code></li>
@@ -228,12 +229,12 @@
 <li>排版不好或存在问题</li>
 <li>…</li>
 </ul>
-<p>另外，有小部分代码注释存在没有翻译的现象，如果不影响读者阅读，请忽略它们。如果您觉得它严重影响了您的理解，请反馈给我们或提交相关内容所有的翻译（而不是一行）。</p>
-<p>如果您存在一些分析问题，而且认为它是大多数人可能都会遇到的，想要寻求通用的解决方案，也可以反馈，我们会想办法解决并更新到相应章节下。</p>
+<p>另外，有小部分代码注释存在没有翻译的现象，如果不影响读者阅读，请忽略它们。如果你觉得它严重影响了你的理解，请反馈给我们或提交相关内容所有的翻译（而不是一行）。</p>
+<p>如果你存在一些分析问题，而且认为它是大多数人可能都会遇到的，想要寻求通用的解决方案，也可以反馈，我们会想办法解决并更新到相应章节下。</p>
 </div>
 <div id="section-0.2" class="section level2">
 <h2><span class="header-section-number">0.2</span> 致谢</h2>
-<p>下表列出参与人员及贡献简要描述（以姓名的首字母排序），如果不是他们，这本中文书再过两年也不会跟大家见面。</p>
+<p>2017 年我在简书开始发布<a href="http://www.cookbook-r.com/">《Cookbook for R》</a>内容的翻译，近两年后的今天所有的内容终于都以完整的姿态展现在读者的面前。2019 年 3 月以前，这里大部分内容还是散乱存储在 GitHub 中的文档，层次混乱、存在各种问题。本项目最需要感谢的是新生的 <a href="https://github.com/openbiox">Openbiox 小组</a>，我通过 Openbiox 创建翻译项目并招募了一批志趣相投的成员，在 3 个月的业余时间里，一起完成了所有内容的翻译、校对、整理等工作。下表列出了项目所有贡献人员及简要描述（以姓名的首字母排序），如果不是他们，这本中文书再过两年也不会跟大家见面。</p>
 <table>
 <thead>
 <tr class="header">
@@ -256,7 +257,7 @@
 </tr>
 <tr class="even">
 <td align="left">王诗翔</td>
-<td align="left">x</td>
+<td align="left">项目负责人；主要译者</td>
 </tr>
 <tr class="odd">
 <td align="left">熊逸</td>
@@ -276,6 +277,7 @@
 </tr>
 </tbody>
 </table>
+<p>最后，感谢我的女朋友周丹，如果不是她时刻的敦促，我无法对业余工作投入持续的热情和精力。</p>
 
 <p class="flushright">
 王诗翔<br />
