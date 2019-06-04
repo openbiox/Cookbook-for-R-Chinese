@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 8 章 标准绘图 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 8 章 标准绘图 | Cookbook for R 中文版本">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="第 8 章 标准绘图 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 8 章 标准绘图 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -22,15 +21,15 @@
   <meta name="twitter:description" content="第 8 章 标准绘图 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）">
-<meta name="author" content="王诗翔 等（译）">
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-06-03">
+<meta name="date" content="2019-06-04" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="section-7.html">
@@ -338,9 +337,6 @@ boundaries
 <p><img src="bookdown_files/figure-html/unnamed-chunk-230-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>sm</strong> 包也引入了一种绘制多个密度图的方式，输入数据必须是数据框。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sm)
-<span class="co">#&gt; Warning in fun(libname, pkgname): couldn&#39;t connect to</span>
-<span class="co">#&gt; display &quot;/private/tmp/com.apple.launchd.aGFOp8QcsU/</span>
-<span class="co">#&gt; org.macosforge.xquartz:0&quot;</span>
 <span class="co">#&gt; Package &#39;sm&#39;, version 2.2-5.6: type help(sm) for summary information</span>
 <span class="kw">sm.density.compare</span>(data<span class="op">$</span>rating, data<span class="op">$</span>cond)
 <span class="co"># 添加一个图例 (颜色编号从2往上升)</span>
@@ -391,7 +387,7 @@ fitline &lt;-<span class="st"> </span><span class="kw">lm</span>(dat<span class=
 <p><img src="bookdown_files/figure-html/unnamed-chunk-234-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 添加回归线 在对角添加histogram/boxplot/density/qqplot</span>
 <span class="kw">library</span>(car)
-<span class="co">#&gt; Loading required package: carData</span>
+<span class="co">#&gt; 载入需要的程辑包：carData</span>
 <span class="kw">scatterplotMatrix</span>(dat[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">diagonal =</span> <span class="st">&quot;histogram&quot;</span>, <span class="dt">smooth =</span> <span class="ot">FALSE</span>)
 <span class="co">#&gt; Warning in applyDefaults(diagonal, defaults =</span>
 <span class="co">#&gt; list(method = &quot;adaptiveDensity&quot;), : unnamed diag</span>

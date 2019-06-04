@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 12 章 脚本与函数 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 12 章 脚本与函数 | Cookbook for R 中文版本">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="第 12 章 脚本与函数 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 12 章 脚本与函数 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -22,15 +21,15 @@
   <meta name="twitter:description" content="第 12 章 脚本与函数 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）">
-<meta name="author" content="王诗翔 等（译）">
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-06-03">
+<meta name="date" content="2019-06-04" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="section-11.html">
@@ -509,9 +508,9 @@ pocp.vector &lt;-<span class="st"> </span><span class="kw">c</span>()
   <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) x[i] &lt;-<span class="st"> </span>x[i] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 })
 tm
-<span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.010   0.002   0.011</span></code></pre>
-<p>输出显示运行代码块需要 0.01 秒。</p>
+<span class="co">#&gt;  用户  系统  流逝 </span>
+<span class="co">#&gt; 0.011 0.002 0.013</span></code></pre>
+<p>输出显示运行代码块需要 0.011 秒。</p>
 </div>
 </div>
 <div id="section-12.4" class="section level2">
@@ -531,10 +530,11 @@ tm
 <span class="co">#&gt;  [9] &quot;package:lattice&quot;   &quot;package:reshape2&quot; </span>
 <span class="co">#&gt; [11] &quot;package:ggplot2&quot;   &quot;package:car&quot;      </span>
 <span class="co">#&gt; [13] &quot;package:carData&quot;   &quot;package:sm&quot;       </span>
-<span class="co">#&gt; [15] &quot;package:stats&quot;     &quot;package:graphics&quot; </span>
-<span class="co">#&gt; [17] &quot;package:grDevices&quot; &quot;package:utils&quot;    </span>
-<span class="co">#&gt; [19] &quot;package:datasets&quot;  &quot;package:methods&quot;  </span>
-<span class="co">#&gt; [21] &quot;Autoloads&quot;         &quot;package:base&quot;</span></code></pre>
+<span class="co">#&gt; [15] &quot;tools:rstudio&quot;     &quot;package:stats&quot;    </span>
+<span class="co">#&gt; [17] &quot;package:graphics&quot;  &quot;package:grDevices&quot;</span>
+<span class="co">#&gt; [19] &quot;package:utils&quot;     &quot;package:datasets&quot; </span>
+<span class="co">#&gt; [21] &quot;package:methods&quot;   &quot;Autoloads&quot;        </span>
+<span class="co">#&gt; [23] &quot;package:base&quot;</span></code></pre>
 <p>以下提供的函数能够列出包中的函数和对象。</p>
 <pre class="sourceCode r"><code class="sourceCode r">showPackageContents &lt;-<span class="st"> </span><span class="cf">function</span>(packageName) {
   

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 2 章 数字 | Cookbook for R 中文版</title>
-  <meta name="description" content="第 2 章 数字 | Cookbook for R 中文版本">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="第 2 章 数字 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 2 章 数字 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -22,15 +21,15 @@
   <meta name="twitter:description" content="第 2 章 数字 | Cookbook for R 中文版本" />
   
 
-<meta name="author" content="Winston Chang（著）">
-<meta name="author" content="王诗翔 等（译）">
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-06-03">
+<meta name="date" content="2019-06-04" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="chapter1.html">
@@ -276,36 +275,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.1.2</span> 方案</h3>
 <p>要生成均匀分布的随机数，可以使用 <code>runif()</code> 函数，它的默认范围是从 0 到 1。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">1</span>)
-<span class="co">#&gt; [1] 0.7789</span>
+<span class="co">#&gt; [1] 0.4886</span>
 
 <span class="co"># 得到 4 个数字的向量</span>
 <span class="kw">runif</span>(<span class="dv">4</span>)
-<span class="co">#&gt; [1] 0.3926 0.9156 0.8331 0.9808</span>
+<span class="co">#&gt; [1] 0.5755 0.9172 0.5241 0.4211</span>
 
 <span class="co"># 得到 3 个范围在 0 到 100 的随机数向量</span>
 <span class="kw">runif</span>(<span class="dv">3</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)
-<span class="co">#&gt; [1] 21.51 82.88 28.63</span>
+<span class="co">#&gt; [1] 90.780  3.247 95.858</span>
 
 <span class="co"># 得到 3 个范围在 0 到 100 的整数 使用 max=101</span>
 <span class="co"># 因为它永远不可能等于 101，这里利用 floor</span>
 <span class="co"># 函数实现向下取整数</span>
 <span class="kw">floor</span>(<span class="kw">runif</span>(<span class="dv">3</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">101</span>))
-<span class="co">#&gt; [1] 73 91 35</span>
+<span class="co">#&gt; [1] 67 61 61</span>
 
 <span class="co"># 以下方式得到的结果一样</span>
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] 22 92 95</span>
+<span class="co">#&gt; [1] 68 31 22</span>
 
 <span class="co"># 生成无重复的随机整数</span>
 <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">FALSE</span>)
-<span class="co">#&gt; [1] 32 37 13</span></code></pre>
+<span class="co">#&gt; [1] 93 41 12</span></code></pre>
 <p>要生成服从正态分布的数字，使用 <code>rnorm()</code> 函数，该函数默认均值是 0，标准差是 1。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>)
-<span class="co">#&gt; [1]  1.3164 -0.2025 -0.5490  0.9001</span>
+<span class="co">#&gt; [1] -1.66344 -0.30947  0.08984 -1.00811</span>
 
 <span class="co"># 使用不同的均值和标准差</span>
 <span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)
-<span class="co">#&gt; [1] 55.50 31.72 54.03 29.25</span>
+<span class="co">#&gt; [1] 45.19 52.19 50.27 41.64</span>
 
 <span class="co"># 通过直方图检查分布是否正确</span>
 x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">400</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)
