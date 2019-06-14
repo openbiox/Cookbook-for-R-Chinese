@@ -25,7 +25,7 @@
 <meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-06-04" />
+<meta name="date" content="2019-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1109,8 +1109,8 @@ ct
 <span class="co">#&gt; 0.05</span></code></pre>
 <p>对于小样本，它会使用连续校正。我们可以使用<strong>精确</strong>校正的 McNemar 检验替换这种校正方式，前者更加的精确，可通过 <code>exact2x2</code> 包获取。</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(exact2x2)
-<span class="co">#&gt; 载入需要的程辑包：exactci</span>
-<span class="co">#&gt; 载入需要的程辑包：ssanv</span>
+<span class="co">#&gt; Loading required package: exactci</span>
+<span class="co">#&gt; Loading required package: ssanv</span>
 
 <span class="kw">mcnemar.exact</span>(ct)
 <span class="co">#&gt; </span>
@@ -1713,7 +1713,7 @@ tg<span class="op">$</span>dose &lt;-<span class="st"> </span><span class="kw">f
 <p><code>leveneTest()</code> 函数是 <strong>car</strong> 包的一部分。</p>
 <p>有一个独立变量：</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
-<span class="co">#&gt; 载入需要的程辑包：carData</span>
+<span class="co">#&gt; Loading required package: carData</span>
 
 <span class="kw">leveneTest</span>(count <span class="op">~</span><span class="st"> </span>spray, <span class="dt">data =</span> InsectSprays)
 <span class="co">#&gt; Levene&#39;s Test for Homogeneity of Variance (center = median)</span>

@@ -25,7 +25,7 @@
 <meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-06-04" />
+<meta name="date" content="2019-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -508,8 +508,8 @@ pocp.vector &lt;-<span class="st"> </span><span class="kw">c</span>()
   <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) x[i] &lt;-<span class="st"> </span>x[i] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 })
 tm
-<span class="co">#&gt;  用户  系统  流逝 </span>
-<span class="co">#&gt; 0.011 0.002 0.013</span></code></pre>
+<span class="co">#&gt;    user  system elapsed </span>
+<span class="co">#&gt;   0.011   0.001   0.011</span></code></pre>
 <p>输出显示运行代码块需要 0.011 秒。</p>
 </div>
 </div>
@@ -530,11 +530,10 @@ tm
 <span class="co">#&gt;  [9] &quot;package:lattice&quot;   &quot;package:reshape2&quot; </span>
 <span class="co">#&gt; [11] &quot;package:ggplot2&quot;   &quot;package:car&quot;      </span>
 <span class="co">#&gt; [13] &quot;package:carData&quot;   &quot;package:sm&quot;       </span>
-<span class="co">#&gt; [15] &quot;tools:rstudio&quot;     &quot;package:stats&quot;    </span>
-<span class="co">#&gt; [17] &quot;package:graphics&quot;  &quot;package:grDevices&quot;</span>
-<span class="co">#&gt; [19] &quot;package:utils&quot;     &quot;package:datasets&quot; </span>
-<span class="co">#&gt; [21] &quot;package:methods&quot;   &quot;Autoloads&quot;        </span>
-<span class="co">#&gt; [23] &quot;package:base&quot;</span></code></pre>
+<span class="co">#&gt; [15] &quot;package:stats&quot;     &quot;package:graphics&quot; </span>
+<span class="co">#&gt; [17] &quot;package:grDevices&quot; &quot;package:utils&quot;    </span>
+<span class="co">#&gt; [19] &quot;package:datasets&quot;  &quot;package:methods&quot;  </span>
+<span class="co">#&gt; [21] &quot;Autoloads&quot;         &quot;package:base&quot;</span></code></pre>
 <p>以下提供的函数能够列出包中的函数和对象。</p>
 <pre class="sourceCode r"><code class="sourceCode r">showPackageContents &lt;-<span class="st"> </span><span class="cf">function</span>(packageName) {
   
