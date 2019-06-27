@@ -51,7 +51,6 @@ cp -rf _book/* ../docs
 
 ## 许可
 
-[ACC BY-SA 3.0 协议](https://creativecommons.org/licenses/by-sa/3.0/deed.zh
-
+[ACC BY-SA 3.0 协议](https://creativecommons.org/licenses/by-sa/3.0/deed.zh)
 
 
