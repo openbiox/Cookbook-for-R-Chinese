@@ -51,7 +51,7 @@ detachAllPackages <- function() {
 - 将它看作常见的技术教程书籍，按照章节目录依次阅读
 - 将它看作问答列表，在实际遇到问题时根据书籍目录翻阅查找相关解决方案
 
-这个网站是（永久）免费的，它以[署名-非商业使用-禁止演绎 CC 许可协议](http://creativecommons.net.cn/licenses/meet-the-licenses/)发布。目前该站点内容还没有纸质出版，如果读者是出版人员，并有意愿负责出版该书，请通过 <committee@openbiox.org> 联系我们。
+这个网站是（永久）免费的，它以原文所遵循的[CC BY-SA 3.0 协议](https://creativecommons.org/licenses/by-sa/3.0/deed.zh)发布。目前该站点内容还没有纸质出版，如果读者是出版人员，并有意愿负责出版该书，请通过 <committee@openbiox.org> 联系我们。
 
 ## 问题与反馈
 

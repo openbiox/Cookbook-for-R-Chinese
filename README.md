@@ -51,7 +51,7 @@ cp -rf _book/* ../docs
 
 ## 许可
 
-[Apache 许可 2.0](LICENSE)
+[ACC BY-SA 3.0 协议](https://creativecommons.org/licenses/by-sa/3.0/deed.zh
 
 
 
