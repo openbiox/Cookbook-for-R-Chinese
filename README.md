@@ -1,4 +1,4 @@
-# Cookbook for R 中文版
+# Cookbook for R 中文版 <img src="https://github.com/openbiox/openbiox-wiki/blob/master/static/img/logo-long.png" align="right" width="200"/>
 
 [Cookbook for R 中文版](https://github.com/openbiox/Cookbook-for-R-Chinese/) 是由 [Openbiox 小组](https://github.com/openbiox)第一批创建和维护的[Cookbook for R](http://www.cookbook-r.com/)中文翻译项目。
 
