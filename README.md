@@ -1,5 +1,7 @@
 # Cookbook for R 中文版 <img src="https://github.com/openbiox/openbiox-wiki/blob/master/static/img/logo-long.png" align="right" width="200"/>
 
+[![HitCount](http://hits.dwyl.io/openbiox/Cookbook-for-R-Chinese.svg)](http://hits.dwyl.io/openbiox/Cookbook-for-R-Chinese)
+
 [Cookbook for R 中文版](https://github.com/openbiox/Cookbook-for-R-Chinese/) 是由 [Openbiox 小组](https://github.com/openbiox)第一批创建和维护的[Cookbook for R](http://www.cookbook-r.com/)中文翻译项目。
 
 阅读请点击 👉 <https://openbiox.github.io/Cookbook-for-R-Chinese/>
