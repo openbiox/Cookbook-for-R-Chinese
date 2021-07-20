@@ -1,6 +1,6 @@
 # Cookbook for R 中文版 <img src="https://github.com/openbiox/openbiox-wiki/blob/master/static/img/logo-long.png" align="right" width="200"/>
 
-[![HitCount](http://hits.dwyl.io/openbiox/Cookbook-for-R-Chinese.svg)](http://hits.dwyl.io/openbiox/Cookbook-for-R-Chinese)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fopenbiox%2FCookbook-for-R-Chinese&count_bg=%2379C83D&title_bg=%23555555&icon=postwoman.svg&icon_color=%23E7E7E7&title=visits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 [Cookbook for R 中文版](https://github.com/openbiox/Cookbook-for-R-Chinese/) 是由 [Openbiox 小组](https://github.com/openbiox)第一批创建和维护的[Cookbook for R](http://www.cookbook-r.com/)中文翻译项目。
 
