@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 12 章 脚本与函数 | Cookbook for R 中文版</title>
+  <meta name="description" content="第 12 章 脚本与函数 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 12 章 脚本与函数 | Cookbook for R 中文版" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 12 章 脚本与函数 | Cookbook for R 中文版本" />
+  <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 12 章 脚本与函数 | Cookbook for R 中文版" />
+  
+  <meta name="twitter:description" content="第 12 章 脚本与函数 | Cookbook for R 中文版本" />
+  
+
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
+
+
+<meta name="date" content="2021-08-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="其他有趣图形.html"/>
+<link rel="next" href="工具.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#问题与反馈"><i class="fa fa-check"></i><b>0.1</b> 问题与反馈</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i><b>0.2</b> 致谢</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#数据结构的索引"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#获取数据结构的子集"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#创建填满值的向量"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#变量信息"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-的处理"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数字.html"><a href="数字.html"><i class="fa fa-check"></i><b>2</b> 数字</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数字.html"><a href="数字.html#生成随机数"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
+<li class="chapter" data-level="2.2" data-path="数字.html"><a href="数字.html#生成可重复的随机序列"><i class="fa fa-check"></i><b>2.2</b> 生成可重复的随机序列</a></li>
+<li class="chapter" data-level="2.3" data-path="数字.html"><a href="数字.html#保持随机数生成器的状态"><i class="fa fa-check"></i><b>2.3</b> 保持随机数生成器的状态</a></li>
+<li class="chapter" data-level="2.4" data-path="数字.html"><a href="数字.html#对数值取整"><i class="fa fa-check"></i><b>2.4</b> 对数值取整</a></li>
+<li class="chapter" data-level="2.5" data-path="数字.html"><a href="数字.html#比较浮点数"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="字符串.html"><a href="字符串.html"><i class="fa fa-check"></i><b>3</b> 字符串</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="字符串.html"><a href="字符串.html#使用-grepsubgsub-进行搜索和替换"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.2" data-path="字符串.html"><a href="字符串.html#通过变量创建字符串"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="公式.html"><a href="公式.html"><i class="fa fa-check"></i><b>4</b> 公式</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="公式.html"><a href="公式.html#通过字符串创建公式"><i class="fa fa-check"></i><b>4.1</b> 通过字符串创建公式</a></li>
+<li class="chapter" data-level="4.2" data-path="公式.html"><a href="公式.html#从公式中提取组分"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="数据操作.html"><a href="数据操作.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="数据操作.html"><a href="数据操作.html#排序"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
+<li class="chapter" data-level="6.2" data-path="数据操作.html"><a href="数据操作.html#随机排序"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
+<li class="chapter" data-level="6.3" data-path="数据操作.html"><a href="数据操作.html#转换向量类型"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
+<li class="chapter" data-level="6.4" data-path="数据操作.html"><a href="数据操作.html#查找并移除重复记录"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
+<li class="chapter" data-level="6.5" data-path="数据操作.html"><a href="数据操作.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.6" data-path="数据操作.html"><a href="数据操作.html#数据重新编码"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
+<li class="chapter" data-level="6.7" data-path="数据操作.html"><a href="数据操作.html#映射向量值"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
+<li class="chapter" data-level="6.8" data-path="数据操作.html"><a href="数据操作.html#重命名因子水平"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
+<li class="chapter" data-level="6.9" data-path="数据操作.html"><a href="数据操作.html#重计算因子水平"><i class="fa fa-check"></i><b>6.9</b> 重计算因子水平</a></li>
+<li class="chapter" data-level="6.10" data-path="数据操作.html"><a href="数据操作.html#改变因子水平次序"><i class="fa fa-check"></i><b>6.10</b> 改变因子水平次序</a></li>
+<li class="chapter" data-level="6.11" data-path="数据操作.html"><a href="数据操作.html#重命名数据框的列"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a></li>
+<li class="chapter" data-level="6.12" data-path="数据操作.html"><a href="数据操作.html#添加和移除数据框的列"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a></li>
+<li class="chapter" data-level="6.13" data-path="数据操作.html"><a href="数据操作.html#对数据框的列重新排序"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a></li>
+<li class="chapter" data-level="6.14" data-path="数据操作.html"><a href="数据操作.html#合并数据框"><i class="fa fa-check"></i><b>6.14</b> 合并数据框</a></li>
+<li class="chapter" data-level="6.15" data-path="数据操作.html"><a href="数据操作.html#比较数据框"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
+<li class="chapter" data-level="6.16" data-path="数据操作.html"><a href="数据操作.html#重计算数据框所有因子列的水平"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
+<li class="chapter" data-level="6.17" data-path="数据操作.html"><a href="数据操作.html#长宽格式数据互换"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
+<li class="chapter" data-level="6.18" data-path="数据操作.html"><a href="数据操作.html#汇总数据"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
+<li class="chapter" data-level="6.19" data-path="数据操作.html"><a href="数据操作.html#数据框与列联表互换"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
+<li class="chapter" data-level="6.20" data-path="数据操作.html"><a href="数据操作.html#计算移动平均数"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
+<li class="chapter" data-level="6.21" data-path="数据操作.html"><a href="数据操作.html#窗口平滑"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
+<li class="chapter" data-level="6.22" data-path="数据操作.html"><a href="数据操作.html#寻找唯一值序列"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
+<li class="chapter" data-level="6.23" data-path="数据操作.html"><a href="数据操作.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="统计分析.html"><a href="统计分析.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="统计分析.html"><a href="统计分析.html#回归和相关分析"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
+<li class="chapter" data-level="7.2" data-path="统计分析.html"><a href="统计分析.html#t-检验"><i class="fa fa-check"></i><b>7.2</b> t 检验</a></li>
+<li class="chapter" data-level="7.3" data-path="统计分析.html"><a href="统计分析.html#频率检验"><i class="fa fa-check"></i><b>7.3</b> 频率检验</a></li>
+<li class="chapter" data-level="7.4" data-path="统计分析.html"><a href="统计分析.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a></li>
+<li class="chapter" data-level="7.5" data-path="统计分析.html"><a href="统计分析.html#逻辑回归"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a></li>
+<li class="chapter" data-level="7.6" data-path="统计分析.html"><a href="统计分析.html#变量同质性"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="标准绘图.html"><a href="标准绘图.html"><i class="fa fa-check"></i><b>8</b> 标准绘图</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="标准绘图.html"><a href="标准绘图.html#直方图和密度图"><i class="fa fa-check"></i><b>8.1</b> 直方图和密度图</a></li>
+<li class="chapter" data-level="8.2" data-path="标准绘图.html"><a href="标准绘图.html#散点图"><i class="fa fa-check"></i><b>8.2</b> 散点图</a></li>
+<li class="chapter" data-level="8.3" data-path="标准绘图.html"><a href="标准绘图.html#箱线图"><i class="fa fa-check"></i><b>8.3</b> 箱线图</a></li>
+<li class="chapter" data-level="8.4" data-path="标准绘图.html"><a href="标准绘图.html#qq-plot"><i class="fa fa-check"></i><b>8.4</b> QQ 图</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>9</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ggplot2.html"><a href="ggplot2.html#条形图与线图"><i class="fa fa-check"></i><b>9.1</b> 条形图与线图</a></li>
+<li class="chapter" data-level="9.2" data-path="ggplot2.html"><a href="ggplot2.html#绘制均值和误差线"><i class="fa fa-check"></i><b>9.2</b> 绘制均值和误差线</a></li>
+<li class="chapter" data-level="9.3" data-path="ggplot2.html"><a href="ggplot2.html#分布图"><i class="fa fa-check"></i><b>9.3</b> 分布图</a></li>
+<li class="chapter" data-level="9.4" data-path="ggplot2.html"><a href="ggplot2.html#散点图-1"><i class="fa fa-check"></i><b>9.4</b> 散点图</a></li>
+<li class="chapter" data-level="9.5" data-path="ggplot2.html"><a href="ggplot2.html#标题"><i class="fa fa-check"></i><b>9.5</b> 标题</a></li>
+<li class="chapter" data-level="9.6" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.6</b> 坐标轴</a></li>
+<li class="chapter" data-level="9.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-legends"><i class="fa fa-check"></i><b>9.7</b> 图例</a></li>
+<li class="chapter" data-level="9.8" data-path="ggplot2.html"><a href="ggplot2.html#线条"><i class="fa fa-check"></i><b>9.8</b> 线条</a></li>
+<li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-facet"><i class="fa fa-check"></i><b>9.9</b> 分面</a></li>
+<li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#多图"><i class="fa fa-check"></i><b>9.10</b> 多图</a></li>
+<li class="chapter" data-level="9.11" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-colors"><i class="fa fa-check"></i><b>9.11</b> 颜色</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="图形混杂.html"><a href="图形混杂.html"><i class="fa fa-check"></i><b>10</b> 图形混杂</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="图形混杂.html"><a href="图形混杂.html#输出到文件-pdf-png-tiff-svg"><i class="fa fa-check"></i><b>10.1</b> 输出到文件 PDF-PNG-TIFF-SVG</a></li>
+<li class="chapter" data-level="10.2" data-path="图形混杂.html"><a href="图形混杂.html#shape-and-linetype"><i class="fa fa-check"></i><b>10.2</b> 形状和线形</a></li>
+<li class="chapter" data-level="10.3" data-path="图形混杂.html"><a href="图形混杂.html#字体"><i class="fa fa-check"></i><b>10.3</b> 字体</a></li>
+<li class="chapter" data-level="10.4" data-path="图形混杂.html"><a href="图形混杂.html#抗混淆位图输出"><i class="fa fa-check"></i><b>10.4</b> 抗混淆位图输出</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="其他有趣图形.html"><a href="其他有趣图形.html"><i class="fa fa-check"></i><b>11</b> 其他有趣图形</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="其他有趣图形.html"><a href="其他有趣图形.html#corr-mat"><i class="fa fa-check"></i><b>11.1</b> 相关矩阵</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="脚本与函数.html"><a href="脚本与函数.html"><i class="fa fa-check"></i><b>12</b> 脚本与函数</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="脚本与函数.html"><a href="脚本与函数.html#创建和运行一个脚本"><i class="fa fa-check"></i><b>12.1</b> 创建和运行一个脚本</a></li>
+<li class="chapter" data-level="12.2" data-path="脚本与函数.html"><a href="脚本与函数.html#调试脚本或函数"><i class="fa fa-check"></i><b>12.2</b> 调试脚本或函数</a></li>
+<li class="chapter" data-level="12.3" data-path="脚本与函数.html"><a href="脚本与函数.html#测量运行的时间"><i class="fa fa-check"></i><b>12.3</b> 测量运行的时间</a></li>
+<li class="chapter" data-level="12.4" data-path="脚本与函数.html"><a href="脚本与函数.html#获取包中的函数和对象列表"><i class="fa fa-check"></i><b>12.4</b> 获取包中的函数和对象列表</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="工具.html"><a href="工具.html"><i class="fa fa-check"></i><b>13</b> 工具</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="工具.html"><a href="工具.html#生成拉丁方"><i class="fa fa-check"></i><b>13.1</b> 生成拉丁方</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="materials.html"><a href="materials.html#书籍"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
+<li class="chapter" data-level="A.2" data-path="materials.html"><a href="materials.html#r-包"><i class="fa fa-check"></i><b>A.2</b> R 包</a></li>
+<li class="chapter" data-level="A.3" data-path="materials.html"><a href="materials.html#网站"><i class="fa fa-check"></i><b>A.3</b> 网站</a></li>
+<li class="chapter" data-level="A.4" data-path="materials.html"><a href="materials.html#列表-2"><i class="fa fa-check"></i><b>A.4</b> 列表</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cookbook for R 中文版</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="脚本与函数" class="section level1" number="12">
+<h1><span class="header-section-number">第 12 章</span> 脚本与函数</h1>
+<div id="创建和运行一个脚本" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> 创建和运行一个脚本</h2>
+<div id="问题-69" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> 问题</h3>
+<p>你想要创建和运行一个脚本。</p>
+</div>
+<div id="方案-68" class="section level3" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> 方案</h3>
+<p>R 脚本通常是以 <code>.R</code> 为文件拓展名的纯文本文件。因此创建R脚本可以是任意的文本编辑器，R 最佳的集成开发环境是 <a href="https://www.rstudio.com/">RStudio</a>，它开源并有免费的桌面版本和服务器版本发布，推荐读者下载、安装和使用。</p>
+<p>在类 Unix 系统中，除了编辑器，我们还可以使用终端命令。例如，创建一个输出 <code>Hello world!</code> 的 R 脚本。</p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb512-1"><a href="脚本与函数.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;cat(&quot;Hello world!&quot;)&#39;</span> <span class="op">&gt;</span> test.R</span></code></pre></div>
+<p>运行 R 脚本可以在 R 控制台使用 <code>source()</code>函数。</p>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="脚本与函数.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;test.R&quot;</span>, <span class="at">print.eval =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb513-2"><a href="脚本与函数.html#cb513-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hello world!</span></span></code></pre></div>
+<p>也可以在终端中使用 <code>RScript</code> 执行。</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb514-1"><a href="脚本与函数.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="ex">RScript</span> test.R</span>
+<span id="cb514-2"><a href="脚本与函数.html#cb514-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Using library: /Volumes/Extra/R/R_Library</span></span>
+<span id="cb514-3"><a href="脚本与函数.html#cb514-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Using temp directory: /Volumes/Extra/Rtmp</span></span>
+<span id="cb514-4"><a href="脚本与函数.html#cb514-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hello world!</span></span></code></pre></div>
+</div>
+<div id="案例计算细菌基因组核心蛋白相似性" class="section level3" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> 案例：计算细菌基因组核心蛋白相似性</h3>
+<ul>
+<li><p>应用场景</p>
+<p>细菌分类学研究中，需要借助基因组水平的相似度来界定是否属于新物种，是否是一个未发现的新属水平或者新科水平，乃至更高的分类学单元（界/门/纲/目/科/属/种）。</p>
+<p>在基因组的核酸水平研究中，有诸如 dDDH（数字化 DNA 分子杂交）、核苷酸平均相似度（Average Nucleotide Identity，ANI）等指标来界定是否属于新物种；而在基因组蛋白质水平相类似的指标较少，比如氨基酸平均相似度（Average Amino acid Identity，AAI）和保守蛋白比率（percentage of conserved proteins，POCP）等。</p></li>
+<li><p>简要过程</p>
+<p>两两比对细菌基因组的蛋白序列，互为参考数据库进行 blastp 比对（A 作数据库，B 查询；B 作数据库，A 查询），数据筛选的标准是：一致度大于 40%，查询片段的长度大于原片段长度的 50%，e 值小于 1e-5。</p></li>
+<li><p>参考文献</p>
+<p>Qin, Q. L., Xie, B. B., Zhang, X. Y., Chen, X. L., Zhou, B. C., Zhou, J., … &amp; Zhang, Y. Z. (2014). A proposed genus boundary for the prokaryotes based on genomic insights. Journal of bacteriology, 196(12), 2210-2215.</p></li>
+</ul>
+<p><strong>以下 R 脚本都是在 windows 操作平台上进行的</strong>。</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="脚本与函数.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 下载所分析的基因组数据（蛋白序列）</span></span>
+<span id="cb515-2"><a href="脚本与函数.html#cb515-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 存放于 Rawdata 文件夹中</span></span>
+<span id="cb515-3"><a href="脚本与函数.html#cb515-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&#39;Rawdata&#39;</span>)) {</span>
+<span id="cb515-4"><a href="脚本与函数.html#cb515-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">&#39;Rawdata&#39;</span>)</span>
+<span id="cb515-5"><a href="脚本与函数.html#cb515-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb515-6"><a href="脚本与函数.html#cb515-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-7"><a href="脚本与函数.html#cb515-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例-1: Pseudomonas aeruginosa</span></span>
+<span id="cb515-8"><a href="脚本与函数.html#cb515-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_protein.faa.gz</span></span>
+<span id="cb515-9"><a href="脚本与函数.html#cb515-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-10"><a href="脚本与函数.html#cb515-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例-2: Acinetobacter baumannii</span></span>
+<span id="cb515-11"><a href="脚本与函数.html#cb515-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/746/645/GCF_000746645.1_ASM74664v1/GCF_000746645.1_ASM74664v1_protein.faa.gz</span></span>
+<span id="cb515-12"><a href="脚本与函数.html#cb515-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-13"><a href="脚本与函数.html#cb515-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 R.utils 中的 gunzip 解压缩</span></span>
+<span id="cb515-14"><a href="脚本与函数.html#cb515-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(R.utils)</span>
+<span id="cb515-15"><a href="脚本与函数.html#cb515-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-16"><a href="脚本与函数.html#cb515-16" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/006/765/GCF_000006765.1_ASM676v1/GCF_000006765.1_ASM676v1_protein.faa.gz&quot;</span>,</span>
+<span id="cb515-17"><a href="脚本与函数.html#cb515-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;Rawdata/Pseudomonas_aeruginosa.faa.gz&quot;</span>)</span>
+<span id="cb515-18"><a href="脚本与函数.html#cb515-18" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span>(<span class="st">&quot;Rawdata/Pseudomonas_aeruginosa.faa.gz&quot;</span>)</span>
+<span id="cb515-19"><a href="脚本与函数.html#cb515-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-20"><a href="脚本与函数.html#cb515-20" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/746/645/GCF_000746645.1_ASM74664v1/GCF_000746645.1_ASM74664v1_protein.faa.gz&quot;</span>,</span>
+<span id="cb515-21"><a href="脚本与函数.html#cb515-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">&quot;Rawdata/Acinetobacter_baumannii.faa.gz&quot;</span>)</span>
+<span id="cb515-22"><a href="脚本与函数.html#cb515-22" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span>(<span class="st">&quot;Rawdata/Acinetobacter_baumannii.faa.gz&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="脚本与函数.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 dbplyr 对数据框中的某列去重复</span></span>
+<span id="cb516-2"><a href="脚本与函数.html#cb516-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb516-3"><a href="脚本与函数.html#cb516-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 seqinr 格式化 fasta 格式的序列</span></span>
+<span id="cb516-4"><a href="脚本与函数.html#cb516-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(seqinr)</span>
+<span id="cb516-5"><a href="脚本与函数.html#cb516-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-6"><a href="脚本与函数.html#cb516-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查存放中间过程文件的文件夹是否存在</span></span>
+<span id="cb516-7"><a href="脚本与函数.html#cb516-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&#39;Database&#39;</span>)) {</span>
+<span id="cb516-8"><a href="脚本与函数.html#cb516-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">&#39;Database&#39;</span>)</span>
+<span id="cb516-9"><a href="脚本与函数.html#cb516-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb516-10"><a href="脚本与函数.html#cb516-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-11"><a href="脚本与函数.html#cb516-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&#39;Result&#39;</span>)) {</span>
+<span id="cb516-12"><a href="脚本与函数.html#cb516-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">&#39;Result&#39;</span>)</span>
+<span id="cb516-13"><a href="脚本与函数.html#cb516-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb516-14"><a href="脚本与函数.html#cb516-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-15"><a href="脚本与函数.html#cb516-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取所有待分析基因组文件名</span></span>
+<span id="cb516-16"><a href="脚本与函数.html#cb516-16" aria-hidden="true" tabindex="-1"></a>genome.files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&#39;Rawdata&#39;</span>)</span>
+<span id="cb516-17"><a href="脚本与函数.html#cb516-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-18"><a href="脚本与函数.html#cb516-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 对所有的待分析基因组建库</span></span>
+<span id="cb516-19"><a href="脚本与函数.html#cb516-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (gn <span class="cf">in</span> genome.files) {</span>
+<span id="cb516-20"><a href="脚本与函数.html#cb516-20" aria-hidden="true" tabindex="-1"></a>  header.file <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(gn,<span class="st">&#39;.&#39;</span>,<span class="at">fixed =</span> T)[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb516-21"><a href="脚本与函数.html#cb516-21" aria-hidden="true" tabindex="-1"></a>  commond.makedb <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&#39;diamond.exe makedb --in Rawdata/&#39;</span>,</span>
+<span id="cb516-22"><a href="脚本与函数.html#cb516-22" aria-hidden="true" tabindex="-1"></a>                           gn, <span class="st">&#39; --db Database/&#39;</span>, header.file)</span>
+<span id="cb516-23"><a href="脚本与函数.html#cb516-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system</span>(commond.makedb)</span>
+<span id="cb516-24"><a href="脚本与函数.html#cb516-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb516-25"><a href="脚本与函数.html#cb516-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-26"><a href="脚本与函数.html#cb516-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取多基因组的两两比对的组合数据集</span></span>
+<span id="cb516-27"><a href="脚本与函数.html#cb516-27" aria-hidden="true" tabindex="-1"></a>genome.comn <span class="ot">&lt;-</span> <span class="fu">combn</span>(genome.files,<span class="dv">2</span>)</span>
+<span id="cb516-28"><a href="脚本与函数.html#cb516-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-29"><a href="脚本与函数.html#cb516-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算核心蛋白相似性的骨架命令</span></span>
+<span id="cb516-30"><a href="脚本与函数.html#cb516-30" aria-hidden="true" tabindex="-1"></a>blast.comm1 <span class="ot">&lt;-</span> <span class="st">&#39;diamond.exe blastp -q Rawdata/&#39;</span></span>
+<span id="cb516-31"><a href="脚本与函数.html#cb516-31" aria-hidden="true" tabindex="-1"></a>blast.comm2 <span class="ot">&lt;-</span> <span class="st">&#39; -d Database/&#39;</span></span>
+<span id="cb516-32"><a href="脚本与函数.html#cb516-32" aria-hidden="true" tabindex="-1"></a>blast.comm3 <span class="ot">&lt;-</span> <span class="st">&#39; -e 1e-5 --id 40 -o Result/&#39;</span></span>
+<span id="cb516-33"><a href="脚本与函数.html#cb516-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-34"><a href="脚本与函数.html#cb516-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 建立新变量，保存运算结果</span></span>
+<span id="cb516-35"><a href="脚本与函数.html#cb516-35" aria-hidden="true" tabindex="-1"></a>pocp.vector <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb516-36"><a href="脚本与函数.html#cb516-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-37"><a href="脚本与函数.html#cb516-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(genome.comn)[<span class="dv">2</span>]) ) {</span>
+<span id="cb516-38"><a href="脚本与函数.html#cb516-38" aria-hidden="true" tabindex="-1"></a>  a.genome <span class="ot">&lt;-</span> genome.comn[,i][<span class="dv">1</span>]</span>
+<span id="cb516-39"><a href="脚本与函数.html#cb516-39" aria-hidden="true" tabindex="-1"></a>  b.genome <span class="ot">&lt;-</span> genome.comn[,i][<span class="dv">2</span>]</span>
+<span id="cb516-40"><a href="脚本与函数.html#cb516-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-41"><a href="脚本与函数.html#cb516-41" aria-hidden="true" tabindex="-1"></a>  a.header <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(a.genome,<span class="st">&#39;.&#39;</span>,<span class="at">fixed =</span> T)[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb516-42"><a href="脚本与函数.html#cb516-42" aria-hidden="true" tabindex="-1"></a>  b.header <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(b.genome,<span class="st">&#39;.&#39;</span>,<span class="at">fixed =</span> T)[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb516-43"><a href="脚本与函数.html#cb516-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-44"><a href="脚本与函数.html#cb516-44" aria-hidden="true" tabindex="-1"></a>  a.genome.seq <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="fu">paste0</span>(<span class="st">&#39;Rawdata/&#39;</span>, a.genome),<span class="st">&#39;AA&#39;</span>)</span>
+<span id="cb516-45"><a href="脚本与函数.html#cb516-45" aria-hidden="true" tabindex="-1"></a>  b.genome.seq <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="fu">paste0</span>(<span class="st">&#39;Rawdata/&#39;</span>, b.genome),<span class="st">&#39;AA&#39;</span>)</span>
+<span id="cb516-46"><a href="脚本与函数.html#cb516-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-47"><a href="脚本与函数.html#cb516-47" aria-hidden="true" tabindex="-1"></a>  a.total <span class="ot">&lt;-</span> <span class="fu">length</span>(a.genome.seq)</span>
+<span id="cb516-48"><a href="脚本与函数.html#cb516-48" aria-hidden="true" tabindex="-1"></a>  b.total <span class="ot">&lt;-</span> <span class="fu">length</span>(b.genome.seq)</span>
+<span id="cb516-49"><a href="脚本与函数.html#cb516-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-50"><a href="脚本与函数.html#cb516-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>(a.genome.seq)</span>
+<span id="cb516-51"><a href="脚本与函数.html#cb516-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>(b.genome.seq)</span>
+<span id="cb516-52"><a href="脚本与函数.html#cb516-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-53"><a href="脚本与函数.html#cb516-53" aria-hidden="true" tabindex="-1"></a>  a.seq.list <span class="ot">&lt;-</span> <span class="fu">names</span>(a.genome.seq)</span>
+<span id="cb516-54"><a href="脚本与函数.html#cb516-54" aria-hidden="true" tabindex="-1"></a>  b.seq.list <span class="ot">&lt;-</span> <span class="fu">names</span>(b.genome.seq)</span>
+<span id="cb516-55"><a href="脚本与函数.html#cb516-55" aria-hidden="true" tabindex="-1"></a>  a.seq.length <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb516-56"><a href="脚本与函数.html#cb516-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-57"><a href="脚本与函数.html#cb516-57" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (nm <span class="cf">in</span> a.seq.list) {</span>
+<span id="cb516-58"><a href="脚本与函数.html#cb516-58" aria-hidden="true" tabindex="-1"></a>    tmp.len <span class="ot">&lt;-</span> <span class="fu">length</span>(a.genome.seq[[<span class="fu">which</span>(a.seq.list <span class="sc">==</span> nm)]])</span>
+<span id="cb516-59"><a href="脚本与函数.html#cb516-59" aria-hidden="true" tabindex="-1"></a>    a.seq.length <span class="ot">&lt;-</span> <span class="fu">append</span>(a.seq.length, tmp.len)</span>
+<span id="cb516-60"><a href="脚本与函数.html#cb516-60" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb516-61"><a href="脚本与函数.html#cb516-61" aria-hidden="true" tabindex="-1"></a>  b.seq.length <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb516-62"><a href="脚本与函数.html#cb516-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-63"><a href="脚本与函数.html#cb516-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (nm <span class="cf">in</span> b.seq.list) {</span>
+<span id="cb516-64"><a href="脚本与函数.html#cb516-64" aria-hidden="true" tabindex="-1"></a>    tmp.len <span class="ot">&lt;-</span> <span class="fu">length</span>(b.genome.seq[[<span class="fu">which</span>(b.seq.list <span class="sc">==</span> nm)]])</span>
+<span id="cb516-65"><a href="脚本与函数.html#cb516-65" aria-hidden="true" tabindex="-1"></a>    b.seq.length <span class="ot">&lt;-</span> <span class="fu">append</span>(b.seq.length, tmp.len)</span>
+<span id="cb516-66"><a href="脚本与函数.html#cb516-66" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb516-67"><a href="脚本与函数.html#cb516-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-68"><a href="脚本与函数.html#cb516-68" aria-hidden="true" tabindex="-1"></a>  a.seq.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(a.seq.list, a.seq.length)</span>
+<span id="cb516-69"><a href="脚本与函数.html#cb516-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(a.seq.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;V1&#39;</span>,<span class="st">&#39;length&#39;</span>)</span>
+<span id="cb516-70"><a href="脚本与函数.html#cb516-70" aria-hidden="true" tabindex="-1"></a>  b.seq.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(b.seq.list, b.seq.length)</span>
+<span id="cb516-71"><a href="脚本与函数.html#cb516-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(b.seq.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;V1&#39;</span>,<span class="st">&#39;length&#39;</span>)</span>
+<span id="cb516-72"><a href="脚本与函数.html#cb516-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-73"><a href="脚本与函数.html#cb516-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&#39;-- Blasting: &#39;</span>,a.header,<span class="st">&#39; - VS - &#39;</span>,b.header))</span>
+<span id="cb516-74"><a href="脚本与函数.html#cb516-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-75"><a href="脚本与函数.html#cb516-75" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 「正向」-- A 为查询，B 为参考数据库</span></span>
+<span id="cb516-76"><a href="脚本与函数.html#cb516-76" aria-hidden="true" tabindex="-1"></a>  result.forward <span class="ot">&lt;-</span> <span class="fu">paste0</span>(a.header,<span class="st">&#39;_VS_&#39;</span>,b.header,<span class="st">&#39;.tab&#39;</span>)</span>
+<span id="cb516-77"><a href="脚本与函数.html#cb516-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system</span>(<span class="fu">paste0</span>(blast.comm1, a.genome,</span>
+<span id="cb516-78"><a href="脚本与函数.html#cb516-78" aria-hidden="true" tabindex="-1"></a>                blast.comm2, b.header,</span>
+<span id="cb516-79"><a href="脚本与函数.html#cb516-79" aria-hidden="true" tabindex="-1"></a>                blast.comm3, result.forward))</span>
+<span id="cb516-80"><a href="脚本与函数.html#cb516-80" aria-hidden="true" tabindex="-1"></a>  df.forward <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(<span class="st">&#39;Result/&#39;</span>,result.forward),</span>
+<span id="cb516-81"><a href="脚本与函数.html#cb516-81" aria-hidden="true" tabindex="-1"></a>                           <span class="at">header =</span> F,<span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,</span>
+<span id="cb516-82"><a href="脚本与函数.html#cb516-82" aria-hidden="true" tabindex="-1"></a>                           <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb516-83"><a href="脚本与函数.html#cb516-83" aria-hidden="true" tabindex="-1"></a>  df.forward <span class="ot">&lt;-</span> df.forward  <span class="sc">%&gt;%</span>  <span class="fu">distinct</span>(V1,<span class="at">.keep_all =</span> T)</span>
+<span id="cb516-84"><a href="脚本与函数.html#cb516-84" aria-hidden="true" tabindex="-1"></a>  df.forward <span class="ot">&lt;-</span> <span class="fu">merge</span>(df.forward, a.seq.df, <span class="at">by =</span> <span class="st">&#39;V1&#39;</span>, <span class="at">all.x =</span> T)</span>
+<span id="cb516-85"><a href="脚本与函数.html#cb516-85" aria-hidden="true" tabindex="-1"></a>  df.forward<span class="sc">$</span>align <span class="ot">&lt;-</span> df.forward<span class="sc">$</span>V4 <span class="sc">/</span> df.forward<span class="sc">$</span>length</span>
+<span id="cb516-86"><a href="脚本与函数.html#cb516-86" aria-hidden="true" tabindex="-1"></a>  df.forward <span class="ot">&lt;-</span> df.forward[<span class="fu">which</span>(df.forward<span class="sc">$</span>V3 <span class="sc">&gt;</span> <span class="dv">40</span> <span class="sc">&amp;</span> df.forward<span class="sc">$</span>align <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> df.forward<span class="sc">$</span>V11 <span class="sc">&lt;</span> <span class="fl">1e-5</span>),]</span>
+<span id="cb516-87"><a href="脚本与函数.html#cb516-87" aria-hidden="true" tabindex="-1"></a>  C1 <span class="ot">&lt;-</span> <span class="fu">dim</span>(df.forward)[<span class="dv">1</span>]</span>
+<span id="cb516-88"><a href="脚本与函数.html#cb516-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-89"><a href="脚本与函数.html#cb516-89" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 「反向」-- B 为查询，A 为参考数据库</span></span>
+<span id="cb516-90"><a href="脚本与函数.html#cb516-90" aria-hidden="true" tabindex="-1"></a>  result.backward <span class="ot">&lt;-</span> <span class="fu">paste0</span>(b.header,<span class="st">&#39;_VS_&#39;</span>,a.header,<span class="st">&#39;.tab&#39;</span>)</span>
+<span id="cb516-91"><a href="脚本与函数.html#cb516-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system</span>(<span class="fu">paste0</span>(blast.comm1, b.genome,</span>
+<span id="cb516-92"><a href="脚本与函数.html#cb516-92" aria-hidden="true" tabindex="-1"></a>                blast.comm2, a.header,</span>
+<span id="cb516-93"><a href="脚本与函数.html#cb516-93" aria-hidden="true" tabindex="-1"></a>                blast.comm3, result.backward))</span>
+<span id="cb516-94"><a href="脚本与函数.html#cb516-94" aria-hidden="true" tabindex="-1"></a>  df.backward <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(<span class="st">&#39;Result/&#39;</span>,result.backward),</span>
+<span id="cb516-95"><a href="脚本与函数.html#cb516-95" aria-hidden="true" tabindex="-1"></a>                           <span class="at">header =</span> F,<span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,</span>
+<span id="cb516-96"><a href="脚本与函数.html#cb516-96" aria-hidden="true" tabindex="-1"></a>                           <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb516-97"><a href="脚本与函数.html#cb516-97" aria-hidden="true" tabindex="-1"></a>  df.backward <span class="ot">&lt;-</span> df.backward <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(V1,<span class="at">.keep_all =</span> T)</span>
+<span id="cb516-98"><a href="脚本与函数.html#cb516-98" aria-hidden="true" tabindex="-1"></a>  df.backward <span class="ot">&lt;-</span> <span class="fu">merge</span>(df.backward, b.seq.df, <span class="at">by =</span> <span class="st">&#39;V1&#39;</span>, <span class="at">all.x =</span> T)</span>
+<span id="cb516-99"><a href="脚本与函数.html#cb516-99" aria-hidden="true" tabindex="-1"></a>  df.backward<span class="sc">$</span>align <span class="ot">&lt;-</span> df.backward<span class="sc">$</span>V4 <span class="sc">/</span> df.backward<span class="sc">$</span>length</span>
+<span id="cb516-100"><a href="脚本与函数.html#cb516-100" aria-hidden="true" tabindex="-1"></a>  df.backward <span class="ot">&lt;-</span> df.backward[<span class="fu">which</span>(df.backward<span class="sc">$</span>V3 <span class="sc">&gt;</span> <span class="dv">40</span> <span class="sc">&amp;</span> df.backward<span class="sc">$</span>align <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> df.backward<span class="sc">$</span>V11 <span class="sc">&lt;</span> <span class="fl">1e-5</span>),]</span>
+<span id="cb516-101"><a href="脚本与函数.html#cb516-101" aria-hidden="true" tabindex="-1"></a>  C2 <span class="ot">&lt;-</span> <span class="fu">dim</span>(df.backward)[<span class="dv">1</span>]</span>
+<span id="cb516-102"><a href="脚本与函数.html#cb516-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-103"><a href="脚本与函数.html#cb516-103" aria-hidden="true" tabindex="-1"></a>  pocp <span class="ot">&lt;-</span> (C1 <span class="sc">+</span> C2)<span class="sc">/</span>(a.total <span class="sc">+</span> b.total)</span>
+<span id="cb516-104"><a href="脚本与函数.html#cb516-104" aria-hidden="true" tabindex="-1"></a>  pocp.vector <span class="ot">&lt;-</span> <span class="fu">append</span>(pocp.vector, <span class="fu">paste0</span>(a.header,<span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,b.header,<span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,pocp))</span>
+<span id="cb516-105"><a href="脚本与函数.html#cb516-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-106"><a href="脚本与函数.html#cb516-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&#39;-- Pair blast done: &#39;</span>,a.header,<span class="st">&#39; - VS - &#39;</span>,b.header))</span>
+<span id="cb516-107"><a href="脚本与函数.html#cb516-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&#39;-- The POCP : &#39;</span>, pocp))</span>
+<span id="cb516-108"><a href="脚本与函数.html#cb516-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;----------------------------------&#39;</span>)</span>
+<span id="cb516-109"><a href="脚本与函数.html#cb516-109" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb516-110"><a href="脚本与函数.html#cb516-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-111"><a href="脚本与函数.html#cb516-111" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(pocp.vector, <span class="st">&#39;resultPOCP.txt&#39;</span>)</span>
+<span id="cb516-112"><a href="脚本与函数.html#cb516-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-113"><a href="脚本与函数.html#cb516-113" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除分析过程中的冗余文件</span></span>
+<span id="cb516-114"><a href="脚本与函数.html#cb516-114" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">&quot;Database&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb516-115"><a href="脚本与函数.html#cb516-115" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">&quot;Result&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb516-116"><a href="脚本与函数.html#cb516-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-117"><a href="脚本与函数.html#cb516-117" aria-hidden="true" tabindex="-1"></a><span class="co"># 重新创建新文件夹</span></span>
+<span id="cb516-118"><a href="脚本与函数.html#cb516-118" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&#39;Database&#39;</span>)</span>
+<span id="cb516-119"><a href="脚本与函数.html#cb516-119" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&#39;Result&#39;</span>)</span></code></pre></div>
+<div id="提示-2" class="section level4" number="12.1.3.1">
+<h4><span class="header-section-number">12.1.3.1</span> 提示</h4>
+<p>更多关于 POCP 计算的相关技巧，请点击<a href="https://github.com/2015qyliang/POCP">这里阅读</a>。</p>
+</div>
+</div>
+</div>
+<div id="调试脚本或函数" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> 调试脚本或函数</h2>
+<div id="问题-70" class="section level3" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> 问题</h3>
+<p>您想要调试脚本或函数。</p>
+</div>
+<div id="方案-69" class="section level3" number="12.2.2">
+<h3><span class="header-section-number">12.2.2</span> 方案</h3>
+<p>将其插入您要开始调试的位置的代码中：</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="脚本与函数.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">browser</span>()</span></code></pre></div>
+<p>当 R 解释器到达该行时，它将暂停你的代码，您将能够查看和更改变量。</p>
+<p>在控制台中，键入这些字母将执行以下操作</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">c</th>
+<th align="left">继续</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>n (or Return)</strong></td>
+<td align="left"><strong>下一步</strong></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Q</strong></td>
+<td align="left"><strong>放弃</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Ctrl-C</strong></td>
+<td align="left"><strong>回到顶级</strong></td>
+</tr>
+</tbody>
+</table>
+<p>在控制台中，你可以看到当前范围中的变量。</p>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="脚本与函数.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<p>要为函数中的每一行暂停和启动浏览器</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="脚本与函数.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">debug</span>(myfunction)</span>
+<span id="cb519-2"><a href="脚本与函数.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">myfunction</span>(x)</span></code></pre></div>
+</div>
+<div id="有用的选项" class="section level3" number="12.2.3">
+<h3><span class="header-section-number">12.2.3</span> 有用的选项</h3>
+<p>默认情况下，每次在提示符下按 Enter 键，它都会运行下一步。这相当于按 n，然后按 Enter 键。这可能很烦人。要禁用它，请使用：</p>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="脚本与函数.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">browserNLdisabled=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>要在抛出错误时开始调试，请在抛出错误的函数之前运行此命令</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="脚本与函数.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">error=</span>recover)</span></code></pre></div>
+<p>如果你希望每次启动R时都设置这些选项，则可以将它们放在 <code>~/.Rprofile</code> 文件中。</p>
+</div>
+</div>
+<div id="测量运行的时间" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> 测量运行的时间</h2>
+<div id="问题-71" class="section level3" number="12.3.1">
+<h3><span class="header-section-number">12.3.1</span> 问题</h3>
+<p>您想要测量运行特定代码块所需的时间。</p>
+</div>
+<div id="方案-70" class="section level3" number="12.3.2">
+<h3><span class="header-section-number">12.3.2</span> 方案</h3>
+<p><code>system.time()</code> 函数将测量在 R 中运行某些东西所需的时间。</p>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="脚本与函数.html#cb522-1" aria-hidden="true" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">system.time</span>({</span>
+<span id="cb522-2"><a href="脚本与函数.html#cb522-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 做一些消耗时间的事情</span></span>
+<span id="cb522-3"><a href="脚本与函数.html#cb522-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e+05</span></span>
+<span id="cb522-4"><a href="脚本与函数.html#cb522-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(x)) x[i] <span class="ot">&lt;-</span> x[i] <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb522-5"><a href="脚本与函数.html#cb522-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb522-6"><a href="脚本与函数.html#cb522-6" aria-hidden="true" tabindex="-1"></a>tm</span>
+<span id="cb522-7"><a href="脚本与函数.html#cb522-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  用户  系统  流逝 </span></span>
+<span id="cb522-8"><a href="脚本与函数.html#cb522-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.007 0.001 0.008</span></span></code></pre></div>
+<p>输出显示运行代码块需要 0.007 秒。</p>
+</div>
+</div>
+<div id="获取包中的函数和对象列表" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> 获取包中的函数和对象列表</h2>
+<div id="问题-72" class="section level3" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> 问题</h3>
+<p>你想知道包里有什么。</p>
+</div>
+<div id="方案-71" class="section level3" number="12.4.2">
+<h3><span class="header-section-number">12.4.2</span> 方案</h3>
+<p>在一个新的 R 会话中使用 <code>search()</code> 可以查看默认加载的包。</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="脚本与函数.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span>
+<span id="cb523-2"><a href="脚本与函数.html#cb523-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;.GlobalEnv&quot;        &quot;package:ellipse&quot;  </span></span>
+<span id="cb523-3"><a href="脚本与函数.html#cb523-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;package:Cairo&quot;     &quot;package:grid&quot;     </span></span>
+<span id="cb523-4"><a href="脚本与函数.html#cb523-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;package:dplyr&quot;     &quot;package:scales&quot;   </span></span>
+<span id="cb523-5"><a href="脚本与函数.html#cb523-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;package:Rmisc&quot;     &quot;package:plyr&quot;     </span></span>
+<span id="cb523-6"><a href="脚本与函数.html#cb523-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;package:lattice&quot;   &quot;package:reshape2&quot; </span></span>
+<span id="cb523-7"><a href="脚本与函数.html#cb523-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;package:ggplot2&quot;   &quot;package:car&quot;      </span></span>
+<span id="cb523-8"><a href="脚本与函数.html#cb523-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;package:carData&quot;   &quot;package:sm&quot;       </span></span>
+<span id="cb523-9"><a href="脚本与函数.html#cb523-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] &quot;package:stats&quot;     &quot;package:graphics&quot; </span></span>
+<span id="cb523-10"><a href="脚本与函数.html#cb523-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] &quot;package:grDevices&quot; &quot;package:utils&quot;    </span></span>
+<span id="cb523-11"><a href="脚本与函数.html#cb523-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;package:datasets&quot;  &quot;package:methods&quot;  </span></span>
+<span id="cb523-12"><a href="脚本与函数.html#cb523-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] &quot;Autoloads&quot;         &quot;package:base&quot;</span></span></code></pre></div>
+<p>以下提供的函数能够列出包中的函数和对象。</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="脚本与函数.html#cb524-1" aria-hidden="true" tabindex="-1"></a>showPackageContents <span class="ot">&lt;-</span> <span class="cf">function</span>(packageName) {</span>
+<span id="cb524-2"><a href="脚本与函数.html#cb524-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-3"><a href="脚本与函数.html#cb524-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 获取特定包所有内容的列表</span></span>
+<span id="cb524-4"><a href="脚本与函数.html#cb524-4" aria-hidden="true" tabindex="-1"></a>  funlist <span class="ot">&lt;-</span> <span class="fu">objects</span>(packageName)</span>
+<span id="cb524-5"><a href="脚本与函数.html#cb524-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-6"><a href="脚本与函数.html#cb524-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 移除不以字母开头的东西</span></span>
+<span id="cb524-7"><a href="脚本与函数.html#cb524-7" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;^[a-zA-Z][a-zA-Z0-9._]*&quot;</span>, funlist)</span>
+<span id="cb524-8"><a href="脚本与函数.html#cb524-8" aria-hidden="true" tabindex="-1"></a>  funlist <span class="ot">&lt;-</span> funlist[idx]</span>
+<span id="cb524-9"><a href="脚本与函数.html#cb524-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-10"><a href="脚本与函数.html#cb524-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 移除包含箭头 &lt;- 的东西</span></span>
+<span id="cb524-11"><a href="脚本与函数.html#cb524-11" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;&lt;-&quot;</span>, funlist)</span>
+<span id="cb524-12"><a href="脚本与函数.html#cb524-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(idx) <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb524-13"><a href="脚本与函数.html#cb524-13" aria-hidden="true" tabindex="-1"></a>    funlist <span class="ot">&lt;-</span> funlist[<span class="sc">-</span>idx]</span>
+<span id="cb524-14"><a href="脚本与函数.html#cb524-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-15"><a href="脚本与函数.html#cb524-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 创建一个数据框保存数据</span></span>
+<span id="cb524-16"><a href="脚本与函数.html#cb524-16" aria-hidden="true" tabindex="-1"></a>  objectlist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> funlist, <span class="at">primitive =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb524-17"><a href="脚本与函数.html#cb524-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">func =</span> <span class="cn">FALSE</span>, <span class="at">object =</span> <span class="cn">FALSE</span>, <span class="at">constant =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb524-18"><a href="脚本与函数.html#cb524-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb524-19"><a href="脚本与函数.html#cb524-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-20"><a href="脚本与函数.html#cb524-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(objectlist)) {</span>
+<span id="cb524-21"><a href="脚本与函数.html#cb524-21" aria-hidden="true" tabindex="-1"></a>    fname <span class="ot">&lt;-</span> objectlist<span class="sc">$</span>name[i]</span>
+<span id="cb524-22"><a href="脚本与函数.html#cb524-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">exists</span>(fname)) {</span>
+<span id="cb524-23"><a href="脚本与函数.html#cb524-23" aria-hidden="true" tabindex="-1"></a>      obj <span class="ot">&lt;-</span> <span class="fu">get</span>(fname)</span>
+<span id="cb524-24"><a href="脚本与函数.html#cb524-24" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.primitive</span>(obj)) {</span>
+<span id="cb524-25"><a href="脚本与函数.html#cb524-25" aria-hidden="true" tabindex="-1"></a>        objectlist<span class="sc">$</span>primitive[i] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb524-26"><a href="脚本与函数.html#cb524-26" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb524-27"><a href="脚本与函数.html#cb524-27" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.function</span>(obj)) {</span>
+<span id="cb524-28"><a href="脚本与函数.html#cb524-28" aria-hidden="true" tabindex="-1"></a>        objectlist<span class="sc">$</span>func[i] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb524-29"><a href="脚本与函数.html#cb524-29" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb524-30"><a href="脚本与函数.html#cb524-30" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.object</span>(obj)) {</span>
+<span id="cb524-31"><a href="脚本与函数.html#cb524-31" aria-hidden="true" tabindex="-1"></a>        objectlist<span class="sc">$</span>object[i] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb524-32"><a href="脚本与函数.html#cb524-32" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb524-33"><a href="脚本与函数.html#cb524-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-34"><a href="脚本与函数.html#cb524-34" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 我认为这些基本是常量</span></span>
+<span id="cb524-35"><a href="脚本与函数.html#cb524-35" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.vector</span>(obj)) {</span>
+<span id="cb524-36"><a href="脚本与函数.html#cb524-36" aria-hidden="true" tabindex="-1"></a>        objectlist<span class="sc">$</span>constant[i] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb524-37"><a href="脚本与函数.html#cb524-37" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb524-38"><a href="脚本与函数.html#cb524-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-39"><a href="脚本与函数.html#cb524-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb524-40"><a href="脚本与函数.html#cb524-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb524-41"><a href="脚本与函数.html#cb524-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-42"><a href="脚本与函数.html#cb524-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(packageName)</span>
+<span id="cb524-43"><a href="脚本与函数.html#cb524-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-44"><a href="脚本与函数.html#cb524-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">================================================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-45"><a href="脚本与函数.html#cb524-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Primitive functions: </span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-46"><a href="脚本与函数.html#cb524-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(objectlist<span class="sc">$</span>name[objectlist<span class="sc">$</span>primitive])</span>
+<span id="cb524-47"><a href="脚本与函数.html#cb524-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-48"><a href="脚本与函数.html#cb524-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-49"><a href="脚本与函数.html#cb524-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">================================================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-50"><a href="脚本与函数.html#cb524-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Non-primitive functions: </span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-51"><a href="脚本与函数.html#cb524-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(objectlist<span class="sc">$</span>name[objectlist<span class="sc">$</span>func <span class="sc">&amp;</span> <span class="sc">!</span>objectlist<span class="sc">$</span>primitive])</span>
+<span id="cb524-52"><a href="脚本与函数.html#cb524-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-53"><a href="脚本与函数.html#cb524-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-54"><a href="脚本与函数.html#cb524-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">================================================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-55"><a href="脚本与函数.html#cb524-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Constants: </span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-56"><a href="脚本与函数.html#cb524-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(objectlist<span class="sc">$</span>name[objectlist<span class="sc">$</span>constant])</span>
+<span id="cb524-57"><a href="脚本与函数.html#cb524-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-58"><a href="脚本与函数.html#cb524-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-59"><a href="脚本与函数.html#cb524-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">================================================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-60"><a href="脚本与函数.html#cb524-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Objects: </span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-61"><a href="脚本与函数.html#cb524-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(objectlist<span class="sc">$</span>name[objectlist<span class="sc">$</span>object])</span>
+<span id="cb524-62"><a href="脚本与函数.html#cb524-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb524-63"><a href="脚本与函数.html#cb524-63" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>以 <strong>base</strong> 包作为示例测试：</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="脚本与函数.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">showPackageContents</span>(<span class="st">&quot;package:base&quot;</span>)</span>
+<span id="cb525-2"><a href="脚本与函数.html#cb525-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; package:base</span></span>
+<span id="cb525-3"><a href="脚本与函数.html#cb525-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ================================================</span></span>
+<span id="cb525-4"><a href="脚本与函数.html#cb525-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Primitive functions: </span></span>
+<span id="cb525-5"><a href="脚本与函数.html#cb525-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; abs acos acosh all any anyNA Arg as.call as.character as.complex as.double as.environment as.integer as.logical as.numeric as.raw asin asinh atan atanh attr attributes baseenv break browser call ceiling class Conj cos cosh cospi cummax cummin cumprod cumsum digamma dim dimnames emptyenv enc2native enc2utf8 exp expm1 expression floor for forceAndCall function gamma gc.time globalenv if Im interactive invisible is.array is.atomic is.call is.character is.complex is.double is.environment is.expression is.finite is.function is.infinite is.integer is.language is.list is.logical is.matrix is.na is.name is.nan is.null is.numeric is.object is.pairlist is.raw is.recursive is.single is.symbol isS4 lazyLoadDBfetch length lgamma list log log10 log1p log2 max min missing Mod names nargs next nzchar oldClass on.exit pos.to.env proc.time prod quote range Re rep repeat retracemem return round seq_along seq_len seq.int sign signif sin sinh sinpi sqrt standardGeneric substitute sum switch tan tanh tanpi tracemem trigamma trunc unclass untracemem UseMethod while xtfrm</span></span>
+<span id="cb525-6"><a href="脚本与函数.html#cb525-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb525-7"><a href="脚本与函数.html#cb525-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ================================================</span></span>
+<span id="cb525-8"><a href="脚本与函数.html#cb525-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Non-primitive functions: </span></span>
+<span id="cb525-9"><a href="脚本与函数.html#cb525-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; abbreviate activeBindingFunction addNA addTaskCallback agrep agrepl alist all.equal all.equal.character all.equal.default all.equal.environment all.equal.envRefClass all.equal.factor all.equal.formula all.equal.function all.equal.language all.equal.list all.equal.numeric all.equal.POSIXt all.equal.raw all.names all.vars allowInterrupts anyDuplicated anyDuplicated.array anyDuplicated.data.frame anyDuplicated.default anyDuplicated.matrix anyNA.data.frame anyNA.numeric_version anyNA.POSIXlt aperm aperm.default aperm.table append apply args array arrayInd as.array as.array.default as.character.condition as.character.Date as.character.default as.character.error as.character.factor as.character.hexmode as.character.numeric_version as.character.octmode as.character.POSIXt as.character.srcref as.data.frame as.data.frame.array as.data.frame.AsIs as.data.frame.character as.data.frame.complex as.data.frame.data.frame as.data.frame.Date as.data.frame.default as.data.frame.difftime as.data.frame.factor as.data.frame.integer as.data.frame.list as.data.frame.logical as.data.frame.matrix as.data.frame.model.matrix as.data.frame.noquote as.data.frame.numeric as.data.frame.numeric_version as.data.frame.ordered as.data.frame.POSIXct as.data.frame.POSIXlt as.data.frame.raw as.data.frame.table as.data.frame.ts as.data.frame.vector as.Date as.Date.character as.Date.default as.Date.factor as.Date.numeric as.Date.POSIXct as.Date.POSIXlt as.difftime as.double.difftime as.double.POSIXlt as.expression as.expression.default as.factor as.function as.function.default as.hexmode as.list as.list.data.frame as.list.Date as.list.default as.list.difftime as.list.environment as.list.factor as.list.function as.list.numeric_version as.list.POSIXct as.list.POSIXlt as.logical.factor as.matrix as.matrix.data.frame as.matrix.default as.matrix.noquote as.matrix.POSIXlt as.name as.null as.null.default as.numeric_version as.octmode as.ordered as.package_version as.pairlist as.POSIXct as.POSIXct.Date as.POSIXct.default as.POSIXct.numeric as.POSIXct.POSIXlt as.POSIXlt as.POSIXlt.character as.POSIXlt.Date as.POSIXlt.default as.POSIXlt.factor as.POSIXlt.numeric as.POSIXlt.POSIXct as.qr as.single as.single.default as.symbol as.table as.table.default as.vector as.vector.factor asNamespace asplit asS3 asS4 assign atan2 attach attachNamespace attr.all.equal autoload autoloader backsolve basename besselI besselJ besselK besselY beta bindingIsActive bindingIsLocked bindtextdomain bitwAnd bitwNot bitwOr bitwShiftL bitwShiftR bitwXor body bquote browserCondition browserSetDebug browserText builtins by by.data.frame by.default bzfile c.Date c.difftime c.factor c.noquote c.numeric_version c.POSIXct c.POSIXlt c.warnings callCC capabilities casefold cat cbind cbind.data.frame char.expand character charmatch charToRaw chartr check_tzones chkDots chol chol.default chol2inv choose clearPushBack close close.connection close.srcfile close.srcfilealias closeAllConnections col colMeans colnames colSums commandArgs comment complex computeRestarts conditionCall conditionCall.condition conditionMessage conditionMessage.condition conflictRules conflicts contributors crossprod Cstack_info curlGetHeaders cut cut.Date cut.default cut.POSIXt data.class data.frame data.matrix date debug debuggingState debugonce default.stringsAsFactors delayedAssign deparse deparse1 det detach determinant determinant.matrix dget diag diff diff.Date diff.default diff.difftime diff.POSIXt difftime dim.data.frame dimnames.data.frame dir dir.create dir.exists dirname do.call dontCheck double dput dQuote drop droplevels droplevels.data.frame droplevels.factor dump duplicated duplicated.array duplicated.data.frame duplicated.default duplicated.matrix duplicated.numeric_version duplicated.POSIXlt duplicated.warnings dyn.load dyn.unload dynGet eapply eigen encodeString Encoding endsWith enquote env.profile environment environmentIsLocked environmentName errorCondition eval eval.parent evalq exists expand.grid extSoftVersion factor factorial fifo file file.access file.append file.choose file.copy file.create file.exists file.info file.link file.mode file.mtime file.path file.remove file.rename file.show file.size file.symlink Filter Find find.package findInterval findPackageEnv findRestart flush flush.connection force formals format format.AsIs format.data.frame format.Date format.default format.difftime format.factor format.hexmode format.info format.libraryIQR format.numeric_version format.octmode format.packageInfo format.POSIXct format.POSIXlt format.pval format.summaryDefault formatC formatDL forwardsolve gc gcinfo gctorture gctorture2 get get0 getAllConnections getCallingDLL getCallingDLLe getConnection getDLLRegisteredRoutines getDLLRegisteredRoutines.character getDLLRegisteredRoutines.DLLInfo getElement geterrmessage getExportedValue getHook getLoadedDLLs getNamespace getNamespaceExports getNamespaceImports getNamespaceInfo getNamespaceName getNamespaceUsers getNamespaceVersion getNativeSymbolInfo getOption getRversion getSrcLines getTaskCallbackNames gettext gettextf getwd gl globalCallingHandlers gregexec gregexpr grep grepl grepRaw grouping gsub gzcon gzfile I iconv iconvlist icuGetCollate icuSetCollate identical identity ifelse importIntoEnv infoRDS inherits integer interaction intersect intToBits intToUtf8 inverse.rle invokeRestart invokeRestartInteractively is.data.frame is.element is.factor is.loaded is.na.data.frame is.na.numeric_version is.na.POSIXlt is.numeric_version is.numeric.Date is.numeric.difftime is.numeric.POSIXt is.ordered is.package_version is.primitive is.qr is.R is.table is.unsorted is.vector isa isatty isBaseNamespace isdebugged isFALSE isIncomplete isNamespace isNamespaceLoaded ISOdate ISOdatetime isOpen isRestart isSeekable isSymmetric isSymmetric.matrix isTRUE jitter julian julian.Date julian.POSIXt kappa kappa.default kappa.lm kappa.qr kronecker l10n_info La_library La_version La.svd labels.default lapply lazyLoad lazyLoadDBexec lbeta lchoose length.POSIXlt lengths levels levels.default lfactorial libcurlVersion library library.dynam library.dynam.unload licence license list.dirs list.files list2DF list2env load loadedNamespaces loadingNamespaceInfo loadNamespace local lockBinding lockEnvironment logb logical lower.tri ls make.names make.unique makeActiveBinding Map mapply margin.table marginSums mat.or.vec match match.arg match.call match.fun Math.data.frame Math.Date Math.difftime Math.factor Math.POSIXt matrix max.col mean mean.Date mean.default mean.difftime mean.POSIXct mean.POSIXlt mem.maxNSize mem.maxVSize memCompress memDecompress memory.profile merge merge.data.frame merge.default message mget mode months months.Date months.POSIXt names.POSIXlt namespaceExport namespaceImport namespaceImportClasses namespaceImportFrom namespaceImportMethods nchar ncol NCOL Negate new.env NextMethod ngettext nlevels noquote norm normalizePath nrow NROW nullfile numeric numeric_version numToBits numToInts objects OlsonNames open open.connection open.srcfile open.srcfilealias open.srcfilecopy Ops.data.frame Ops.Date Ops.difftime Ops.factor Ops.numeric_version Ops.ordered Ops.POSIXt options order ordered outer package_version packageEvent packageHasNamespace packageNotFoundError packageStartupMessage packBits pairlist parent.env parent.frame parse parseNamespaceFile paste paste0 path.expand path.package pcre_config pipe plot pmatch pmax pmax.int pmin pmin.int polyroot pretty pretty.default prettyNum print print.AsIs print.by print.condition print.connection print.data.frame print.Date print.default print.difftime print.Dlist print.DLLInfo print.DLLInfoList print.DLLRegisteredRoutines print.eigen print.factor print.function print.hexmode print.libraryIQR print.listof print.NativeRoutineList print.noquote print.numeric_version print.octmode print.packageInfo print.POSIXct print.POSIXlt print.proc_time print.restart print.rle print.simple.list print.srcfile print.srcref print.summary.table print.summary.warnings print.summaryDefault print.table print.warnings prmatrix prop.table proportions provideDimnames psigamma pushBack pushBackLength q qr qr.coef qr.default qr.fitted qr.Q qr.qty qr.qy qr.R qr.resid qr.solve qr.X quarters quarters.Date quarters.POSIXt quit R_system_version R.home R.Version range.default rank rapply raw rawConnection rawConnectionValue rawShift rawToBits rawToChar rbind rbind.data.frame rcond read.dcf readBin readChar readline readLines readRDS readRenviron Recall Reduce reg.finalizer regexec regexpr registerS3method registerS3methods regmatches remove removeTaskCallback rep_len rep.Date rep.difftime rep.factor rep.int rep.numeric_version rep.POSIXct rep.POSIXlt replace replicate require requireNamespace restartDescription restartFormals returnValue rev rev.default rle rm RNGkind RNGversion round.Date round.POSIXt row row.names row.names.data.frame row.names.default rowMeans rownames rowsum rowsum.data.frame rowsum.default rowSums sample sample.int sapply save save.image saveRDS scale scale.default scan search searchpaths seek seek.connection seq seq.Date seq.default seq.POSIXt sequence sequence.default serialize serverSocket set.seed setdiff setequal setHook setNamespaceInfo setSessionTimeLimit setTimeLimit setwd showConnections shQuote signalCondition simpleCondition simpleError simpleMessage simpleWarning simplify2array single sink sink.number slice.index socketAccept socketConnection socketSelect socketTimeout solve solve.default solve.qr sort sort.default sort.int sort.list sort.POSIXlt source split split.data.frame split.Date split.default split.POSIXct sprintf sQuote srcfile srcfilealias srcfilecopy srcref startsWith stderr stdin stdout stop stopifnot storage.mode str2expression str2lang strftime strptime strrep strsplit strtoi strtrim structure strwrap sub subset subset.data.frame subset.default subset.matrix substr substring summary summary.connection summary.data.frame Summary.data.frame summary.Date Summary.Date summary.default Summary.difftime summary.factor Summary.factor summary.matrix Summary.numeric_version Summary.ordered summary.POSIXct Summary.POSIXct summary.POSIXlt Summary.POSIXlt summary.proc_time summary.srcfile summary.srcref summary.table summary.warnings suppressMessages suppressPackageStartupMessages suppressWarnings suspendInterrupts svd sweep sys.call sys.calls Sys.chmod Sys.Date sys.frame sys.frames sys.function Sys.getenv Sys.getlocale Sys.getpid Sys.glob Sys.info sys.load.image Sys.localeconv sys.nframe sys.on.exit sys.parent sys.parents Sys.readlink sys.save.image Sys.setenv Sys.setFileTime Sys.setlocale Sys.sleep sys.source sys.status Sys.time Sys.timezone Sys.umask Sys.unsetenv Sys.which system system.file system.time system2 t.data.frame t.default table tabulate tapply taskCallbackManager tcrossprod tempdir tempfile textConnection textConnectionValue tolower topenv toString toString.default toupper trace traceback tracingState transform transform.data.frame transform.default trimws trunc.Date trunc.POSIXt truncate truncate.connection try tryCatch tryInvokeRestart typeof undebug union unique unique.array unique.data.frame unique.default unique.matrix unique.numeric_version unique.POSIXlt unique.warnings units units.difftime unix.time unlink unlist unloadNamespace unlockBinding unname unserialize unsplit untrace unz upper.tri url utf8ToInt validEnc validUTF8 vapply vector Vectorize warning warningCondition warnings weekdays weekdays.Date weekdays.POSIXt which which.max which.min with with.default withAutoprint withCallingHandlers within within.data.frame within.list withRestarts withVisible write write.dcf writeBin writeChar writeLines xor xpdrows.data.frame xtfrm.AsIs xtfrm.data.frame xtfrm.Date xtfrm.default xtfrm.difftime xtfrm.factor xtfrm.numeric_version xtfrm.POSIXct xtfrm.POSIXlt xzfile zapsmall</span></span>
+<span id="cb525-10"><a href="脚本与函数.html#cb525-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb525-11"><a href="脚本与函数.html#cb525-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ================================================</span></span>
+<span id="cb525-12"><a href="脚本与函数.html#cb525-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Constants: </span></span>
+<span id="cb525-13"><a href="脚本与函数.html#cb525-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c F labels letters LETTERS month.abb month.name pi R.version.string t T</span></span>
+<span id="cb525-14"><a href="脚本与函数.html#cb525-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb525-15"><a href="脚本与函数.html#cb525-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ================================================</span></span>
+<span id="cb525-16"><a href="脚本与函数.html#cb525-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Objects: </span></span>
+<span id="cb525-17"><a href="脚本与函数.html#cb525-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; kronecker Position R.version version</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="其他有趣图形.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="工具.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/12-scripts-and-funs.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

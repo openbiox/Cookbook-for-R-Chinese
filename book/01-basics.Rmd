@@ -51,7 +51,7 @@ tb = tibble::tribble(
   "installed.packages", "返回一个矩阵，包含所有已安装的包信息",
   "available.packages", "返回一个矩阵，包含资源库上所有可用的R包",
   "old.packages", "返回一个矩阵，显示所有已安装的包中具有新版本的包",
-  "new.packages", "返回一个矩阵，包含所有已安装的包信",
+  "new.packages", "返回一个向量，包含所有CRAN等资源仓库存在但本地未安装的包名",
   "download.packages", "下载一系列R包到本地目录",
   "install.packages", "从资源库下载安装一系列R包",
   "remove.packages", "移除一系列已安装的R包",

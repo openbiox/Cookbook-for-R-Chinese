@@ -4,3 +4,4 @@
 bookdown::render_book(".")
 #bookdown::render_book(".", output_format="all")
 system("cp -rf _book/* ../docs")
+

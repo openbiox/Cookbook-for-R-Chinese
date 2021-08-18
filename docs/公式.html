@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 4 章 公式 | Cookbook for R 中文版</title>
+  <meta name="description" content="第 4 章 公式 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 4 章 公式 | Cookbook for R 中文版" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 4 章 公式 | Cookbook for R 中文版本" />
+  <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 4 章 公式 | Cookbook for R 中文版" />
+  
+  <meta name="twitter:description" content="第 4 章 公式 | Cookbook for R 中文版本" />
+  
+
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
+
+
+<meta name="date" content="2021-08-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="字符串.html"/>
+<link rel="next" href="数据的导入与导出.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#问题与反馈"><i class="fa fa-check"></i><b>0.1</b> 问题与反馈</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i><b>0.2</b> 致谢</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#数据结构的索引"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#获取数据结构的子集"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#创建填满值的向量"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#变量信息"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-的处理"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数字.html"><a href="数字.html"><i class="fa fa-check"></i><b>2</b> 数字</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数字.html"><a href="数字.html#生成随机数"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
+<li class="chapter" data-level="2.2" data-path="数字.html"><a href="数字.html#生成可重复的随机序列"><i class="fa fa-check"></i><b>2.2</b> 生成可重复的随机序列</a></li>
+<li class="chapter" data-level="2.3" data-path="数字.html"><a href="数字.html#保持随机数生成器的状态"><i class="fa fa-check"></i><b>2.3</b> 保持随机数生成器的状态</a></li>
+<li class="chapter" data-level="2.4" data-path="数字.html"><a href="数字.html#对数值取整"><i class="fa fa-check"></i><b>2.4</b> 对数值取整</a></li>
+<li class="chapter" data-level="2.5" data-path="数字.html"><a href="数字.html#比较浮点数"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="字符串.html"><a href="字符串.html"><i class="fa fa-check"></i><b>3</b> 字符串</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="字符串.html"><a href="字符串.html#使用-grepsubgsub-进行搜索和替换"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.2" data-path="字符串.html"><a href="字符串.html#通过变量创建字符串"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="公式.html"><a href="公式.html"><i class="fa fa-check"></i><b>4</b> 公式</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="公式.html"><a href="公式.html#通过字符串创建公式"><i class="fa fa-check"></i><b>4.1</b> 通过字符串创建公式</a></li>
+<li class="chapter" data-level="4.2" data-path="公式.html"><a href="公式.html#从公式中提取组分"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="数据操作.html"><a href="数据操作.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="数据操作.html"><a href="数据操作.html#排序"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
+<li class="chapter" data-level="6.2" data-path="数据操作.html"><a href="数据操作.html#随机排序"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
+<li class="chapter" data-level="6.3" data-path="数据操作.html"><a href="数据操作.html#转换向量类型"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
+<li class="chapter" data-level="6.4" data-path="数据操作.html"><a href="数据操作.html#查找并移除重复记录"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
+<li class="chapter" data-level="6.5" data-path="数据操作.html"><a href="数据操作.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.6" data-path="数据操作.html"><a href="数据操作.html#数据重新编码"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
+<li class="chapter" data-level="6.7" data-path="数据操作.html"><a href="数据操作.html#映射向量值"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
+<li class="chapter" data-level="6.8" data-path="数据操作.html"><a href="数据操作.html#重命名因子水平"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
+<li class="chapter" data-level="6.9" data-path="数据操作.html"><a href="数据操作.html#重计算因子水平"><i class="fa fa-check"></i><b>6.9</b> 重计算因子水平</a></li>
+<li class="chapter" data-level="6.10" data-path="数据操作.html"><a href="数据操作.html#改变因子水平次序"><i class="fa fa-check"></i><b>6.10</b> 改变因子水平次序</a></li>
+<li class="chapter" data-level="6.11" data-path="数据操作.html"><a href="数据操作.html#重命名数据框的列"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a></li>
+<li class="chapter" data-level="6.12" data-path="数据操作.html"><a href="数据操作.html#添加和移除数据框的列"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a></li>
+<li class="chapter" data-level="6.13" data-path="数据操作.html"><a href="数据操作.html#对数据框的列重新排序"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a></li>
+<li class="chapter" data-level="6.14" data-path="数据操作.html"><a href="数据操作.html#合并数据框"><i class="fa fa-check"></i><b>6.14</b> 合并数据框</a></li>
+<li class="chapter" data-level="6.15" data-path="数据操作.html"><a href="数据操作.html#比较数据框"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
+<li class="chapter" data-level="6.16" data-path="数据操作.html"><a href="数据操作.html#重计算数据框所有因子列的水平"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
+<li class="chapter" data-level="6.17" data-path="数据操作.html"><a href="数据操作.html#长宽格式数据互换"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
+<li class="chapter" data-level="6.18" data-path="数据操作.html"><a href="数据操作.html#汇总数据"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
+<li class="chapter" data-level="6.19" data-path="数据操作.html"><a href="数据操作.html#数据框与列联表互换"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
+<li class="chapter" data-level="6.20" data-path="数据操作.html"><a href="数据操作.html#计算移动平均数"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
+<li class="chapter" data-level="6.21" data-path="数据操作.html"><a href="数据操作.html#窗口平滑"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
+<li class="chapter" data-level="6.22" data-path="数据操作.html"><a href="数据操作.html#寻找唯一值序列"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
+<li class="chapter" data-level="6.23" data-path="数据操作.html"><a href="数据操作.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="统计分析.html"><a href="统计分析.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="统计分析.html"><a href="统计分析.html#回归和相关分析"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
+<li class="chapter" data-level="7.2" data-path="统计分析.html"><a href="统计分析.html#t-检验"><i class="fa fa-check"></i><b>7.2</b> t 检验</a></li>
+<li class="chapter" data-level="7.3" data-path="统计分析.html"><a href="统计分析.html#频率检验"><i class="fa fa-check"></i><b>7.3</b> 频率检验</a></li>
+<li class="chapter" data-level="7.4" data-path="统计分析.html"><a href="统计分析.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a></li>
+<li class="chapter" data-level="7.5" data-path="统计分析.html"><a href="统计分析.html#逻辑回归"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a></li>
+<li class="chapter" data-level="7.6" data-path="统计分析.html"><a href="统计分析.html#变量同质性"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="标准绘图.html"><a href="标准绘图.html"><i class="fa fa-check"></i><b>8</b> 标准绘图</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="标准绘图.html"><a href="标准绘图.html#直方图和密度图"><i class="fa fa-check"></i><b>8.1</b> 直方图和密度图</a></li>
+<li class="chapter" data-level="8.2" data-path="标准绘图.html"><a href="标准绘图.html#散点图"><i class="fa fa-check"></i><b>8.2</b> 散点图</a></li>
+<li class="chapter" data-level="8.3" data-path="标准绘图.html"><a href="标准绘图.html#箱线图"><i class="fa fa-check"></i><b>8.3</b> 箱线图</a></li>
+<li class="chapter" data-level="8.4" data-path="标准绘图.html"><a href="标准绘图.html#qq-plot"><i class="fa fa-check"></i><b>8.4</b> QQ 图</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>9</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ggplot2.html"><a href="ggplot2.html#条形图与线图"><i class="fa fa-check"></i><b>9.1</b> 条形图与线图</a></li>
+<li class="chapter" data-level="9.2" data-path="ggplot2.html"><a href="ggplot2.html#绘制均值和误差线"><i class="fa fa-check"></i><b>9.2</b> 绘制均值和误差线</a></li>
+<li class="chapter" data-level="9.3" data-path="ggplot2.html"><a href="ggplot2.html#分布图"><i class="fa fa-check"></i><b>9.3</b> 分布图</a></li>
+<li class="chapter" data-level="9.4" data-path="ggplot2.html"><a href="ggplot2.html#散点图-1"><i class="fa fa-check"></i><b>9.4</b> 散点图</a></li>
+<li class="chapter" data-level="9.5" data-path="ggplot2.html"><a href="ggplot2.html#标题"><i class="fa fa-check"></i><b>9.5</b> 标题</a></li>
+<li class="chapter" data-level="9.6" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.6</b> 坐标轴</a></li>
+<li class="chapter" data-level="9.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-legends"><i class="fa fa-check"></i><b>9.7</b> 图例</a></li>
+<li class="chapter" data-level="9.8" data-path="ggplot2.html"><a href="ggplot2.html#线条"><i class="fa fa-check"></i><b>9.8</b> 线条</a></li>
+<li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-facet"><i class="fa fa-check"></i><b>9.9</b> 分面</a></li>
+<li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#多图"><i class="fa fa-check"></i><b>9.10</b> 多图</a></li>
+<li class="chapter" data-level="9.11" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-colors"><i class="fa fa-check"></i><b>9.11</b> 颜色</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="图形混杂.html"><a href="图形混杂.html"><i class="fa fa-check"></i><b>10</b> 图形混杂</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="图形混杂.html"><a href="图形混杂.html#输出到文件-pdf-png-tiff-svg"><i class="fa fa-check"></i><b>10.1</b> 输出到文件 PDF-PNG-TIFF-SVG</a></li>
+<li class="chapter" data-level="10.2" data-path="图形混杂.html"><a href="图形混杂.html#shape-and-linetype"><i class="fa fa-check"></i><b>10.2</b> 形状和线形</a></li>
+<li class="chapter" data-level="10.3" data-path="图形混杂.html"><a href="图形混杂.html#字体"><i class="fa fa-check"></i><b>10.3</b> 字体</a></li>
+<li class="chapter" data-level="10.4" data-path="图形混杂.html"><a href="图形混杂.html#抗混淆位图输出"><i class="fa fa-check"></i><b>10.4</b> 抗混淆位图输出</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="其他有趣图形.html"><a href="其他有趣图形.html"><i class="fa fa-check"></i><b>11</b> 其他有趣图形</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="其他有趣图形.html"><a href="其他有趣图形.html#corr-mat"><i class="fa fa-check"></i><b>11.1</b> 相关矩阵</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="脚本与函数.html"><a href="脚本与函数.html"><i class="fa fa-check"></i><b>12</b> 脚本与函数</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="脚本与函数.html"><a href="脚本与函数.html#创建和运行一个脚本"><i class="fa fa-check"></i><b>12.1</b> 创建和运行一个脚本</a></li>
+<li class="chapter" data-level="12.2" data-path="脚本与函数.html"><a href="脚本与函数.html#调试脚本或函数"><i class="fa fa-check"></i><b>12.2</b> 调试脚本或函数</a></li>
+<li class="chapter" data-level="12.3" data-path="脚本与函数.html"><a href="脚本与函数.html#测量运行的时间"><i class="fa fa-check"></i><b>12.3</b> 测量运行的时间</a></li>
+<li class="chapter" data-level="12.4" data-path="脚本与函数.html"><a href="脚本与函数.html#获取包中的函数和对象列表"><i class="fa fa-check"></i><b>12.4</b> 获取包中的函数和对象列表</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="工具.html"><a href="工具.html"><i class="fa fa-check"></i><b>13</b> 工具</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="工具.html"><a href="工具.html#生成拉丁方"><i class="fa fa-check"></i><b>13.1</b> 生成拉丁方</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="materials.html"><a href="materials.html#书籍"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
+<li class="chapter" data-level="A.2" data-path="materials.html"><a href="materials.html#r-包"><i class="fa fa-check"></i><b>A.2</b> R 包</a></li>
+<li class="chapter" data-level="A.3" data-path="materials.html"><a href="materials.html#网站"><i class="fa fa-check"></i><b>A.3</b> 网站</a></li>
+<li class="chapter" data-level="A.4" data-path="materials.html"><a href="materials.html#列表-2"><i class="fa fa-check"></i><b>A.4</b> 列表</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cookbook for R 中文版</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="公式" class="section level1" number="4">
+<h1><span class="header-section-number">第 4 章</span> 公式</h1>
+<div id="通过字符串创建公式" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 通过字符串创建公式</h2>
+<div id="问题-13" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 问题</h3>
+<p>你想通过字符串创建公式。</p>
+</div>
+<div id="方案-13" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 方案</h3>
+<p>通过字符串的方式来创建公式是非常有用的。这通常用于需要将公式参数当做字符串传入函数中。</p>
+<p>最基础实用的方法就是调用函数 <code>as.formula()</code>:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="公式.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 这将返回一个字符串</span></span>
+<span id="cb42-2"><a href="公式.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;y ~ x1 + x2&quot;</span></span>
+<span id="cb42-3"><a href="公式.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;y ~ x1 + x2&quot;</span></span>
+<span id="cb42-4"><a href="公式.html#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="公式.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 这将返回一个公式</span></span>
+<span id="cb42-6"><a href="公式.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as.formula</span>(<span class="st">&quot;y ~ x1 + x2&quot;</span>)</span>
+<span id="cb42-7"><a href="公式.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y ~ x1 + x2</span></span></code></pre></div>
+<p>下面是一个简单实例：</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="公式.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 存在一些变量名:</span></span>
+<span id="cb43-2"><a href="公式.html#cb43-2" aria-hidden="true" tabindex="-1"></a>measurevar <span class="ot">&lt;-</span> <span class="st">&quot;y&quot;</span></span>
+<span id="cb43-3"><a href="公式.html#cb43-3" aria-hidden="true" tabindex="-1"></a>groupvars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>, <span class="st">&quot;x3&quot;</span>)</span>
+<span id="cb43-4"><a href="公式.html#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="公式.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建合适的字符串:</span></span>
+<span id="cb43-6"><a href="公式.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(measurevar, <span class="fu">paste</span>(groupvars, <span class="at">collapse =</span> <span class="st">&quot; + &quot;</span>), <span class="at">sep =</span> <span class="st">&quot; ~ &quot;</span>)</span>
+<span id="cb43-7"><a href="公式.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;y ~ x1 + x2 + x3&quot;</span></span>
+<span id="cb43-8"><a href="公式.html#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="公式.html#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 返回公式:</span></span>
+<span id="cb43-10"><a href="公式.html#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">as.formula</span>(<span class="fu">paste</span>(measurevar, <span class="fu">paste</span>(groupvars, <span class="at">collapse =</span> <span class="st">&quot; + &quot;</span>),</span>
+<span id="cb43-11"><a href="公式.html#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot; ~ &quot;</span>))</span>
+<span id="cb43-12"><a href="公式.html#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y ~ x1 + x2 + x3</span></span></code></pre></div>
+</div>
+</div>
+<div id="从公式中提取组分" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 从公式中提取组分</h2>
+<div id="问题-14" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> 问题</h3>
+<p>你想抽离公式的一部分用来使用。</p>
+</div>
+<div id="方案-14" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> 方案</h3>
+<p>你可以把公式对象当作列表看待，使用 <code>[[</code> 操作符对其组分进行操作。</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="公式.html#cb44-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> y <span class="sc">~</span> x1 <span class="sc">+</span> x2</span>
+<span id="cb44-2"><a href="公式.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="公式.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 观察f结构</span></span>
+<span id="cb44-4"><a href="公式.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(f)</span>
+<span id="cb44-5"><a href="公式.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Class &#39;formula&#39;  language y ~ x1 + x2</span></span>
+<span id="cb44-6"><a href="公式.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt;</span></span>
+<span id="cb44-7"><a href="公式.html#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="公式.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 获得每一部分</span></span>
+<span id="cb44-9"><a href="公式.html#cb44-9" aria-hidden="true" tabindex="-1"></a>f[[<span class="dv">1</span>]]</span>
+<span id="cb44-10"><a href="公式.html#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `~`</span></span>
+<span id="cb44-11"><a href="公式.html#cb44-11" aria-hidden="true" tabindex="-1"></a>f[[<span class="dv">2</span>]]</span>
+<span id="cb44-12"><a href="公式.html#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y</span></span>
+<span id="cb44-13"><a href="公式.html#cb44-13" aria-hidden="true" tabindex="-1"></a>f[[<span class="dv">3</span>]]</span>
+<span id="cb44-14"><a href="公式.html#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 + x2</span></span>
+<span id="cb44-15"><a href="公式.html#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="公式.html#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 转换为列表观察</span></span>
+<span id="cb44-17"><a href="公式.html#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="fu">as.list</span>(f)</span>
+<span id="cb44-18"><a href="公式.html#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb44-19"><a href="公式.html#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `~`</span></span>
+<span id="cb44-20"><a href="公式.html#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb44-21"><a href="公式.html#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb44-22"><a href="公式.html#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y</span></span>
+<span id="cb44-23"><a href="公式.html#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb44-24"><a href="公式.html#cb44-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb44-25"><a href="公式.html#cb44-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 + x2</span></span></code></pre></div>
+<p>如果公式左边没有任何东西，那么列表只有两个元素：</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="公式.html#cb45-1" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="er">~</span>x1 <span class="sc">+</span> x2</span>
+<span id="cb45-2"><a href="公式.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.list</span>(f2)</span>
+<span id="cb45-3"><a href="公式.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb45-4"><a href="公式.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `~`</span></span>
+<span id="cb45-5"><a href="公式.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb45-6"><a href="公式.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb45-7"><a href="公式.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 + x2</span></span></code></pre></div>
+<p>公式的每一个元素都是一个符号或者语言对象（包含多个符号）：</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="公式.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(f[[<span class="dv">1</span>]])</span>
+<span id="cb46-2"><a href="公式.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  symbol ~</span></span>
+<span id="cb46-3"><a href="公式.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(f[[<span class="dv">2</span>]])</span>
+<span id="cb46-4"><a href="公式.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  symbol y</span></span>
+<span id="cb46-5"><a href="公式.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(f[[<span class="dv">3</span>]])</span>
+<span id="cb46-6"><a href="公式.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  language x1 + x2</span></span>
+<span id="cb46-7"><a href="公式.html#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="公式.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看语言对象某部分</span></span>
+<span id="cb46-9"><a href="公式.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(f[[<span class="dv">3</span>]][[<span class="dv">1</span>]])</span>
+<span id="cb46-10"><a href="公式.html#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  symbol +</span></span>
+<span id="cb46-11"><a href="公式.html#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(f[[<span class="dv">3</span>]][[<span class="dv">2</span>]])</span>
+<span id="cb46-12"><a href="公式.html#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  symbol x1</span></span>
+<span id="cb46-13"><a href="公式.html#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(f[[<span class="dv">3</span>]][[<span class="dv">3</span>]])</span>
+<span id="cb46-14"><a href="公式.html#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  symbol x2</span></span></code></pre></div>
+<p>你可以使用 <code>as.character()</code> 或 <code>deparse()</code> 函数将它们转为字符串。 <code>deparse()</code> 函数可以返回一个看起来更为自然的结果：</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="公式.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(f[[<span class="dv">1</span>]])</span>
+<span id="cb47-2"><a href="公式.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;~&quot;</span></span>
+<span id="cb47-3"><a href="公式.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; [1] &#39;~&#39;</span></span>
+<span id="cb47-4"><a href="公式.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(f[[<span class="dv">2</span>]])</span>
+<span id="cb47-5"><a href="公式.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;y&quot;</span></span>
+<span id="cb47-6"><a href="公式.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; [1] &#39;y&#39;</span></span>
+<span id="cb47-7"><a href="公式.html#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="公式.html#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 这里语言对象被强制转换为代表解析树的字符向量</span></span>
+<span id="cb47-9"><a href="公式.html#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(f[[<span class="dv">3</span>]])</span>
+<span id="cb47-10"><a href="公式.html#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;+&quot;  &quot;x1&quot; &quot;x2&quot;</span></span>
+<span id="cb47-11"><a href="公式.html#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; [1] &#39;+&#39; &#39;x1&#39; &#39;x2&#39;</span></span>
+<span id="cb47-12"><a href="公式.html#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="公式.html#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 deparse() 获取更为自然的结果</span></span>
+<span id="cb47-14"><a href="公式.html#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="fu">deparse</span>(f[[<span class="dv">3</span>]])</span>
+<span id="cb47-15"><a href="公式.html#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;x1 + x2&quot;</span></span>
+<span id="cb47-16"><a href="公式.html#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="fu">deparse</span>(f)</span>
+<span id="cb47-17"><a href="公式.html#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;y ~ x1 + x2&quot;</span></span></code></pre></div>
+<p>正如我们在运行 <code>str(f)</code> 命令时看到的那样，公式对象也会捕捉调用它的环境。如果要抽取它，可以使用 <code>environment()</code> 函数：</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="公式.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">environment</span>(f)</span>
+<span id="cb48-2"><a href="公式.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;environment: R_GlobalEnv&gt;</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="字符串.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="数据的导入与导出.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/04-formulas.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

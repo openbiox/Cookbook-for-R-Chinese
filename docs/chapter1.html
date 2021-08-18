@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第 1 章 基础 | Cookbook for R 中文版</title>
   <meta name="description" content="第 1 章 基础 | Cookbook for R 中文版本" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第 1 章 基础 | Cookbook for R 中文版" />
   <meta property="og:type" content="book" />
@@ -25,22 +25,24 @@
 <meta name="author" content="王诗翔 等（译）" />
 
 
-<meta name="date" content="2019-06-27" />
+<meta name="date" content="2021-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="author.html">
-<link rel="next" href="section-2.html">
-<script src="libs/jquery/jquery.min.js"></script>
+<link rel="prev" href="author.html"/>
+<link rel="next" href="数字.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -48,29 +50,34 @@
 
 
 
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -114,6 +121,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
@@ -130,117 +138,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#section-0.1"><i class="fa fa-check"></i><b>0.1</b> 问题与反馈</a></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#section-0.2"><i class="fa fa-check"></i><b>0.2</b> 致谢</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#问题与反馈"><i class="fa fa-check"></i><b>0.1</b> 问题与反馈</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i><b>0.2</b> 致谢</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
-<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a><ul>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
-<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
-<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
-<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
-<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
-<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#数据结构的索引"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#获取数据结构的子集"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#创建填满值的向量"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#变量信息"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-的处理"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 数字</a><ul>
-<li class="chapter" data-level="2.1" data-path="section-2.html"><a href="section-2.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
-<li class="chapter" data-level="2.2" data-path="section-2.html"><a href="section-2.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 生成可重复的随机序列</a></li>
-<li class="chapter" data-level="2.3" data-path="section-2.html"><a href="section-2.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 保持随机数生成器的状态</a></li>
-<li class="chapter" data-level="2.4" data-path="section-2.html"><a href="section-2.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 对数值取整</a></li>
-<li class="chapter" data-level="2.5" data-path="section-2.html"><a href="section-2.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
+<li class="chapter" data-level="2" data-path="数字.html"><a href="数字.html"><i class="fa fa-check"></i><b>2</b> 数字</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数字.html"><a href="数字.html#生成随机数"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
+<li class="chapter" data-level="2.2" data-path="数字.html"><a href="数字.html#生成可重复的随机序列"><i class="fa fa-check"></i><b>2.2</b> 生成可重复的随机序列</a></li>
+<li class="chapter" data-level="2.3" data-path="数字.html"><a href="数字.html#保持随机数生成器的状态"><i class="fa fa-check"></i><b>2.3</b> 保持随机数生成器的状态</a></li>
+<li class="chapter" data-level="2.4" data-path="数字.html"><a href="数字.html#对数值取整"><i class="fa fa-check"></i><b>2.4</b> 对数值取整</a></li>
+<li class="chapter" data-level="2.5" data-path="数字.html"><a href="数字.html#比较浮点数"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="section-3.html"><a href="section-3.html"><i class="fa fa-check"></i><b>3</b> 字符串</a><ul>
-<li class="chapter" data-level="3.1" data-path="section-3.html"><a href="section-3.html#-grepsubgsub-"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
-<li class="chapter" data-level="3.2" data-path="section-3.html"><a href="section-3.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
+<li class="chapter" data-level="3" data-path="字符串.html"><a href="字符串.html"><i class="fa fa-check"></i><b>3</b> 字符串</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="字符串.html"><a href="字符串.html#使用-grepsubgsub-进行搜索和替换"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.2" data-path="字符串.html"><a href="字符串.html#通过变量创建字符串"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 公式</a><ul>
-<li class="chapter" data-level="4.1" data-path="section-4.html"><a href="section-4.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 通过字符串创建公式</a></li>
-<li class="chapter" data-level="4.2" data-path="section-4.html"><a href="section-4.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
+<li class="chapter" data-level="4" data-path="公式.html"><a href="公式.html"><i class="fa fa-check"></i><b>4</b> 公式</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="公式.html"><a href="公式.html#通过字符串创建公式"><i class="fa fa-check"></i><b>4.1</b> 通过字符串创建公式</a></li>
+<li class="chapter" data-level="4.2" data-path="公式.html"><a href="公式.html#从公式中提取组分"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-5.html"><a href="section-5.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
-<li class="chapter" data-level="5.2" data-path="section-5.html"><a href="section-5.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
-<li class="chapter" data-level="5.3" data-path="section-5.html"><a href="section-5.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
-<li class="chapter" data-level="5.4" data-path="section-5.html"><a href="section-5.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
-<li class="chapter" data-level="5.5" data-path="section-5.html"><a href="section-5.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+<li class="chapter" data-level="5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
-<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
-<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
-<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
-<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
-<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
-<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
-<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
-<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
-<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 重计算因子水平</a></li>
-<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 改变因子水平次序</a></li>
-<li class="chapter" data-level="6.11" data-path="section-6.html"><a href="section-6.html#section-6.11"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a></li>
-<li class="chapter" data-level="6.12" data-path="section-6.html"><a href="section-6.html#section-6.12"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a></li>
-<li class="chapter" data-level="6.13" data-path="section-6.html"><a href="section-6.html#section-6.13"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a></li>
-<li class="chapter" data-level="6.14" data-path="section-6.html"><a href="section-6.html#section-6.14"><i class="fa fa-check"></i><b>6.14</b> 合并数据框</a></li>
-<li class="chapter" data-level="6.15" data-path="section-6.html"><a href="section-6.html#section-6.15"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
-<li class="chapter" data-level="6.16" data-path="section-6.html"><a href="section-6.html#section-6.16"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
-<li class="chapter" data-level="6.17" data-path="section-6.html"><a href="section-6.html#section-6.17"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
-<li class="chapter" data-level="6.18" data-path="section-6.html"><a href="section-6.html#section-6.18"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
-<li class="chapter" data-level="6.19" data-path="section-6.html"><a href="section-6.html#section-6.19"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
-<li class="chapter" data-level="6.20" data-path="section-6.html"><a href="section-6.html#section-6.20"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
-<li class="chapter" data-level="6.21" data-path="section-6.html"><a href="section-6.html#section-6.21"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
-<li class="chapter" data-level="6.22" data-path="section-6.html"><a href="section-6.html#section-6.22"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
-<li class="chapter" data-level="6.23" data-path="section-6.html"><a href="section-6.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+<li class="chapter" data-level="6" data-path="数据操作.html"><a href="数据操作.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="数据操作.html"><a href="数据操作.html#排序"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
+<li class="chapter" data-level="6.2" data-path="数据操作.html"><a href="数据操作.html#随机排序"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
+<li class="chapter" data-level="6.3" data-path="数据操作.html"><a href="数据操作.html#转换向量类型"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
+<li class="chapter" data-level="6.4" data-path="数据操作.html"><a href="数据操作.html#查找并移除重复记录"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
+<li class="chapter" data-level="6.5" data-path="数据操作.html"><a href="数据操作.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.6" data-path="数据操作.html"><a href="数据操作.html#数据重新编码"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
+<li class="chapter" data-level="6.7" data-path="数据操作.html"><a href="数据操作.html#映射向量值"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
+<li class="chapter" data-level="6.8" data-path="数据操作.html"><a href="数据操作.html#重命名因子水平"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
+<li class="chapter" data-level="6.9" data-path="数据操作.html"><a href="数据操作.html#重计算因子水平"><i class="fa fa-check"></i><b>6.9</b> 重计算因子水平</a></li>
+<li class="chapter" data-level="6.10" data-path="数据操作.html"><a href="数据操作.html#改变因子水平次序"><i class="fa fa-check"></i><b>6.10</b> 改变因子水平次序</a></li>
+<li class="chapter" data-level="6.11" data-path="数据操作.html"><a href="数据操作.html#重命名数据框的列"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a></li>
+<li class="chapter" data-level="6.12" data-path="数据操作.html"><a href="数据操作.html#添加和移除数据框的列"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a></li>
+<li class="chapter" data-level="6.13" data-path="数据操作.html"><a href="数据操作.html#对数据框的列重新排序"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a></li>
+<li class="chapter" data-level="6.14" data-path="数据操作.html"><a href="数据操作.html#合并数据框"><i class="fa fa-check"></i><b>6.14</b> 合并数据框</a></li>
+<li class="chapter" data-level="6.15" data-path="数据操作.html"><a href="数据操作.html#比较数据框"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
+<li class="chapter" data-level="6.16" data-path="数据操作.html"><a href="数据操作.html#重计算数据框所有因子列的水平"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
+<li class="chapter" data-level="6.17" data-path="数据操作.html"><a href="数据操作.html#长宽格式数据互换"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
+<li class="chapter" data-level="6.18" data-path="数据操作.html"><a href="数据操作.html#汇总数据"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
+<li class="chapter" data-level="6.19" data-path="数据操作.html"><a href="数据操作.html#数据框与列联表互换"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
+<li class="chapter" data-level="6.20" data-path="数据操作.html"><a href="数据操作.html#计算移动平均数"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
+<li class="chapter" data-level="6.21" data-path="数据操作.html"><a href="数据操作.html#窗口平滑"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
+<li class="chapter" data-level="6.22" data-path="数据操作.html"><a href="数据操作.html#寻找唯一值序列"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
+<li class="chapter" data-level="6.23" data-path="数据操作.html"><a href="数据操作.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a><ul>
-<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
-<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#t-"><i class="fa fa-check"></i><b>7.2</b> t 检验</a></li>
-<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#section-7.3"><i class="fa fa-check"></i><b>7.3</b> 频率检验</a></li>
-<li class="chapter" data-level="7.4" data-path="section-7.html"><a href="section-7.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a></li>
-<li class="chapter" data-level="7.5" data-path="section-7.html"><a href="section-7.html#section-7.5"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a></li>
-<li class="chapter" data-level="7.6" data-path="section-7.html"><a href="section-7.html#section-7.6"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a></li>
+<li class="chapter" data-level="7" data-path="统计分析.html"><a href="统计分析.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="统计分析.html"><a href="统计分析.html#回归和相关分析"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
+<li class="chapter" data-level="7.2" data-path="统计分析.html"><a href="统计分析.html#t-检验"><i class="fa fa-check"></i><b>7.2</b> t 检验</a></li>
+<li class="chapter" data-level="7.3" data-path="统计分析.html"><a href="统计分析.html#频率检验"><i class="fa fa-check"></i><b>7.3</b> 频率检验</a></li>
+<li class="chapter" data-level="7.4" data-path="统计分析.html"><a href="统计分析.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a></li>
+<li class="chapter" data-level="7.5" data-path="统计分析.html"><a href="统计分析.html#逻辑回归"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a></li>
+<li class="chapter" data-level="7.6" data-path="统计分析.html"><a href="统计分析.html#变量同质性"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="section-8.html"><a href="section-8.html"><i class="fa fa-check"></i><b>8</b> 标准绘图</a><ul>
-<li class="chapter" data-level="8.1" data-path="section-8.html"><a href="section-8.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 直方图和密度图</a></li>
-<li class="chapter" data-level="8.2" data-path="section-8.html"><a href="section-8.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> 散点图</a></li>
-<li class="chapter" data-level="8.3" data-path="section-8.html"><a href="section-8.html#section-8.3"><i class="fa fa-check"></i><b>8.3</b> 箱线图</a></li>
-<li class="chapter" data-level="8.4" data-path="section-8.html"><a href="section-8.html#qq-plot"><i class="fa fa-check"></i><b>8.4</b> QQ 图</a></li>
+<li class="chapter" data-level="8" data-path="标准绘图.html"><a href="标准绘图.html"><i class="fa fa-check"></i><b>8</b> 标准绘图</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="标准绘图.html"><a href="标准绘图.html#直方图和密度图"><i class="fa fa-check"></i><b>8.1</b> 直方图和密度图</a></li>
+<li class="chapter" data-level="8.2" data-path="标准绘图.html"><a href="标准绘图.html#散点图"><i class="fa fa-check"></i><b>8.2</b> 散点图</a></li>
+<li class="chapter" data-level="8.3" data-path="标准绘图.html"><a href="标准绘图.html#箱线图"><i class="fa fa-check"></i><b>8.3</b> 箱线图</a></li>
+<li class="chapter" data-level="8.4" data-path="标准绘图.html"><a href="标准绘图.html#qq-plot"><i class="fa fa-check"></i><b>8.4</b> QQ 图</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>9</b> ggplot2</a><ul>
-<li class="chapter" data-level="9.1" data-path="ggplot2.html"><a href="ggplot2.html#section-9.1"><i class="fa fa-check"></i><b>9.1</b> 条形图与线图</a></li>
-<li class="chapter" data-level="9.2" data-path="ggplot2.html"><a href="ggplot2.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 绘制均值和误差线</a></li>
-<li class="chapter" data-level="9.3" data-path="ggplot2.html"><a href="ggplot2.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> 分布图</a></li>
-<li class="chapter" data-level="9.4" data-path="chapter1.html"><a href="chapter1.html#-1"><i class="fa fa-check"></i><b>9.4</b> 散点图</a></li>
-<li class="chapter" data-level="9.5" data-path="ggplot2.html"><a href="ggplot2.html#section-9.5"><i class="fa fa-check"></i><b>9.5</b> 标题</a></li>
+<li class="chapter" data-level="9" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>9</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ggplot2.html"><a href="ggplot2.html#条形图与线图"><i class="fa fa-check"></i><b>9.1</b> 条形图与线图</a></li>
+<li class="chapter" data-level="9.2" data-path="ggplot2.html"><a href="ggplot2.html#绘制均值和误差线"><i class="fa fa-check"></i><b>9.2</b> 绘制均值和误差线</a></li>
+<li class="chapter" data-level="9.3" data-path="ggplot2.html"><a href="ggplot2.html#分布图"><i class="fa fa-check"></i><b>9.3</b> 分布图</a></li>
+<li class="chapter" data-level="9.4" data-path="ggplot2.html"><a href="ggplot2.html#散点图-1"><i class="fa fa-check"></i><b>9.4</b> 散点图</a></li>
+<li class="chapter" data-level="9.5" data-path="ggplot2.html"><a href="ggplot2.html#标题"><i class="fa fa-check"></i><b>9.5</b> 标题</a></li>
 <li class="chapter" data-level="9.6" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.6</b> 坐标轴</a></li>
 <li class="chapter" data-level="9.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-legends"><i class="fa fa-check"></i><b>9.7</b> 图例</a></li>
-<li class="chapter" data-level="9.8" data-path="ggplot2.html"><a href="ggplot2.html#section-9.8"><i class="fa fa-check"></i><b>9.8</b> 线条</a></li>
+<li class="chapter" data-level="9.8" data-path="ggplot2.html"><a href="ggplot2.html#线条"><i class="fa fa-check"></i><b>9.8</b> 线条</a></li>
 <li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-facet"><i class="fa fa-check"></i><b>9.9</b> 分面</a></li>
-<li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#section-9.10"><i class="fa fa-check"></i><b>9.10</b> 多图</a></li>
+<li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#多图"><i class="fa fa-check"></i><b>9.10</b> 多图</a></li>
 <li class="chapter" data-level="9.11" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-colors"><i class="fa fa-check"></i><b>9.11</b> 颜色</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 图形混杂</a><ul>
-<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#-pdf-png-tiff-svg"><i class="fa fa-check"></i><b>10.1</b> 输出到文件 PDF-PNG-TIFF-SVG</a></li>
-<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#shape-and-linetype"><i class="fa fa-check"></i><b>10.2</b> 形状和线形</a></li>
-<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 字体</a></li>
-<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 抗混淆位图输出</a></li>
+<li class="chapter" data-level="10" data-path="图形混杂.html"><a href="图形混杂.html"><i class="fa fa-check"></i><b>10</b> 图形混杂</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="图形混杂.html"><a href="图形混杂.html#输出到文件-pdf-png-tiff-svg"><i class="fa fa-check"></i><b>10.1</b> 输出到文件 PDF-PNG-TIFF-SVG</a></li>
+<li class="chapter" data-level="10.2" data-path="图形混杂.html"><a href="图形混杂.html#shape-and-linetype"><i class="fa fa-check"></i><b>10.2</b> 形状和线形</a></li>
+<li class="chapter" data-level="10.3" data-path="图形混杂.html"><a href="图形混杂.html#字体"><i class="fa fa-check"></i><b>10.3</b> 字体</a></li>
+<li class="chapter" data-level="10.4" data-path="图形混杂.html"><a href="图形混杂.html#抗混淆位图输出"><i class="fa fa-check"></i><b>10.4</b> 抗混淆位图输出</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="section-11.html"><a href="section-11.html"><i class="fa fa-check"></i><b>11</b> 其他有趣图形</a><ul>
-<li class="chapter" data-level="11.1" data-path="section-11.html"><a href="section-11.html#corr-mat"><i class="fa fa-check"></i><b>11.1</b> 相关矩阵</a></li>
+<li class="chapter" data-level="11" data-path="其他有趣图形.html"><a href="其他有趣图形.html"><i class="fa fa-check"></i><b>11</b> 其他有趣图形</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="其他有趣图形.html"><a href="其他有趣图形.html#corr-mat"><i class="fa fa-check"></i><b>11.1</b> 相关矩阵</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="section-12.html"><a href="section-12.html"><i class="fa fa-check"></i><b>12</b> 脚本与函数</a><ul>
-<li class="chapter" data-level="12.1" data-path="section-12.html"><a href="section-12.html#section-12.1"><i class="fa fa-check"></i><b>12.1</b> 创建和运行一个脚本</a></li>
-<li class="chapter" data-level="12.2" data-path="section-12.html"><a href="section-12.html#section-12.2"><i class="fa fa-check"></i><b>12.2</b> 调试脚本或函数</a></li>
-<li class="chapter" data-level="12.3" data-path="section-12.html"><a href="section-12.html#section-12.3"><i class="fa fa-check"></i><b>12.3</b> 测量运行的时间</a></li>
-<li class="chapter" data-level="12.4" data-path="section-12.html"><a href="section-12.html#section-12.4"><i class="fa fa-check"></i><b>12.4</b> 获取包中的函数和对象列表</a></li>
+<li class="chapter" data-level="12" data-path="脚本与函数.html"><a href="脚本与函数.html"><i class="fa fa-check"></i><b>12</b> 脚本与函数</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="脚本与函数.html"><a href="脚本与函数.html#创建和运行一个脚本"><i class="fa fa-check"></i><b>12.1</b> 创建和运行一个脚本</a></li>
+<li class="chapter" data-level="12.2" data-path="脚本与函数.html"><a href="脚本与函数.html#调试脚本或函数"><i class="fa fa-check"></i><b>12.2</b> 调试脚本或函数</a></li>
+<li class="chapter" data-level="12.3" data-path="脚本与函数.html"><a href="脚本与函数.html#测量运行的时间"><i class="fa fa-check"></i><b>12.3</b> 测量运行的时间</a></li>
+<li class="chapter" data-level="12.4" data-path="脚本与函数.html"><a href="脚本与函数.html#获取包中的函数和对象列表"><i class="fa fa-check"></i><b>12.4</b> 获取包中的函数和对象列表</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="section-13.html"><a href="section-13.html"><i class="fa fa-check"></i><b>13</b> 工具</a><ul>
-<li class="chapter" data-level="13.1" data-path="section-13.html"><a href="section-13.html#section-13.1"><i class="fa fa-check"></i><b>13.1</b> 生成拉丁方</a></li>
+<li class="chapter" data-level="13" data-path="工具.html"><a href="工具.html"><i class="fa fa-check"></i><b>13</b> 工具</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="工具.html"><a href="工具.html#生成拉丁方"><i class="fa fa-check"></i><b>13.1</b> 生成拉丁方</a></li>
 </ul></li>
 <li class="appendix"><span><b>附录</b></span></li>
-<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a><ul>
-<li class="chapter" data-level="A.1" data-path="01-basics.html"><a href="#section-A.1"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
-<li class="chapter" data-level="A.2" data-path="materials.html"><a href="materials.html#r-"><i class="fa fa-check"></i><b>A.2</b> R 包</a></li>
-<li class="chapter" data-level="A.3" data-path="01-basics.html"><a href="#section-A.3"><i class="fa fa-check"></i><b>A.3</b> 网站</a></li>
-<li class="chapter" data-level="A.4" data-path="chapter1.html"><a href="chapter1.html#-2"><i class="fa fa-check"></i><b>A.4</b> 列表</a></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="materials.html"><a href="materials.html#书籍"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
+<li class="chapter" data-level="A.2" data-path="materials.html"><a href="materials.html#r-包"><i class="fa fa-check"></i><b>A.2</b> R 包</a></li>
+<li class="chapter" data-level="A.3" data-path="materials.html"><a href="materials.html#网站"><i class="fa fa-check"></i><b>A.3</b> 网站</a></li>
+<li class="chapter" data-level="A.4" data-path="materials.html"><a href="materials.html#列表-2"><i class="fa fa-check"></i><b>A.4</b> 列表</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -263,15 +286,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter1" class="section level1">
+<div id="chapter1" class="section level1" number="1">
 <h1><span class="header-section-number">第 1 章</span> 基础</h1>
-<div id="r-pkg-installation" class="section level2">
+<div id="r-pkg-installation" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> 安装和使用 R 包</h2>
-<div id="section-1.1.1" class="section level3">
+<div id="问题" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> 问题</h3>
 <p>你想安装和使用一个 R 包。</p>
 </div>
-<div id="section-1.1.2" class="section level3">
+<div id="方案" class="section level3" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> 方案</h3>
 <p>如果你正在使用支持 R 的图形界面软件，应该存在通过菜单栏方式安装 R 包的选项（例如，常用的 Rstudio 中，可以点击菜单栏 <strong>Tools</strong> 中的 <strong>Install Packages…</strong> 进行 R 包的安装）。这里主要介绍如何用命令行来安装 R 包，如下所示：</p>
 <pre><code>install.packages(&quot;reshape2&quot;)  # reshap2为包名</code></pre>
@@ -282,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>update.packages()</code></pre>
 <p>如果你在 Linux 系统上使用 R ，管理员可能已经在系统上安装了一些 R 包，由于普通用户没有更改权限，所以你可能不能以上述方式对 R 包更新。</p>
 </div>
-<div id="e585b6e4bb96" class="section level3 unnumbered">
+<div id="其他" class="section level3 unnumbered">
 <h3>其他</h3>
 <p>导入包也可以使用<code>require()</code>函数。下表显示了 R 包安装相关的命令及描述。</p>
 <table>
@@ -308,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td align="left">new.packages</td>
-<td align="left">返回一个矩阵，包含所有已安装的包信</td>
+<td align="left">返回一个向量，包含所有CRAN等资源仓库存在但本地未安装的包名</td>
 </tr>
 <tr class="odd">
 <td align="left">download.packages</td>
@@ -337,394 +360,392 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>从其他资源库安装 R 包</strong></p>
 <p><strong>devtools</strong> 包提供了从其他流行的 Git 资源库或其他 URL 上安装 R 包的工具。</p>
 <p>例如，我们想安装开发版本的 <strong>ggplot2</strong> 包，可以使用下面命令：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 如果没有安装devtools，需要先安装</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">library</span>(devtools)
-<span class="kw">install_github</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="chapter1.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 如果没有安装devtools，需要先安装</span></span>
+<span id="cb5-2"><a href="chapter1.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb5-3"><a href="chapter1.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb5-4"><a href="chapter1.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="section-1.2" class="section level2">
+<div id="数据结构的索引" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> 数据结构的索引</h2>
-<div id="-1" class="section level3">
+<div id="问题-1" class="section level3" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> 问题</h3>
 <p>你想获得数据结构的一部分。</p>
 </div>
-<div id="-1" class="section level3">
+<div id="方案-1" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> 方案</h3>
 <p>可以使用数字索引或通过使用适当长度的布尔向量来提取向量、矩阵或数据框中的元素。
 以下例子中使用了多种方式来解决这一问题。</p>
-<div id="section-1.2.2.1" class="section level4">
+<div id="使用数字和名称进行索引" class="section level4" number="1.2.2.1">
 <h4><span class="header-section-number">1.2.2.1</span> 使用数字和名称进行索引</h4>
 <p>对于向量</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 样本向量</span>
-v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)
-v[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)]
-<span class="co">#&gt; [1] 4 4 3</span>
-v[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]
-<span class="co">#&gt; [1] 4 4 3</span>
-v[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>)]
-<span class="co">#&gt; [1] 4 3 4</span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="chapter1.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 样本向量</span></span>
+<span id="cb6-2"><a href="chapter1.html#cb6-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb6-3"><a href="chapter1.html#cb6-3" aria-hidden="true" tabindex="-1"></a>v[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)]</span>
+<span id="cb6-4"><a href="chapter1.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 4 3</span></span>
+<span id="cb6-5"><a href="chapter1.html#cb6-5" aria-hidden="true" tabindex="-1"></a>v[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb6-6"><a href="chapter1.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 4 3</span></span>
+<span id="cb6-7"><a href="chapter1.html#cb6-7" aria-hidden="true" tabindex="-1"></a>v[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>)]</span>
+<span id="cb6-8"><a href="chapter1.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 3 4</span></span></code></pre></div>
 <p>对于数据框：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 创建样本数据框</span>
-data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header =</span> T, <span class="dt">text =</span> <span class="st">&quot;</span>
-<span class="st"> subject sex size</span>
-<span class="st">     1   M    7</span>
-<span class="st">     2   F    6</span>
-<span class="st">     3   F    9</span>
-<span class="st">     4   M   11</span>
-<span class="st"> &quot;</span>)
-
-<span class="co"># 获取位于第一行第三列的元素</span>
-data[<span class="dv">1</span>, <span class="dv">3</span>]
-<span class="co">#&gt; [1] 7</span>
-data[<span class="dv">1</span>, <span class="st">&quot;size&quot;</span>]
-<span class="co">#&gt; [1] 7</span>
-
-<span class="co"># 获取第1行和第2行所有列上的元素</span>
-data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-data[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-
-<span class="co"># 获取一，二两行第二列上的元素</span>
-data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">2</span>]
-<span class="co">#&gt; [1] M F</span>
-<span class="co">#&gt; Levels: F M</span>
-data[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>]
-<span class="co">#&gt; [1] M F</span>
-<span class="co">#&gt; Levels: F M</span>
-
-<span class="co"># 获取行1和2，名为“sex”和 &#39;size&#39;的列</span>
-data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;size&quot;</span>)]
-<span class="co">#&gt;   sex size</span>
-<span class="co">#&gt; 1   M    7</span>
-<span class="co">#&gt; 2   F    6</span>
-data[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]
-<span class="co">#&gt;   sex size</span>
-<span class="co">#&gt; 1   M    7</span>
-<span class="co">#&gt; 2   F    6</span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="chapter1.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建样本数据框</span></span>
+<span id="cb7-2"><a href="chapter1.html#cb7-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">header =</span> T, <span class="at">text =</span> <span class="st">&quot;</span></span>
+<span id="cb7-3"><a href="chapter1.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st"> subject sex size</span></span>
+<span id="cb7-4"><a href="chapter1.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">       1   M    7</span></span>
+<span id="cb7-5"><a href="chapter1.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">       2   F    6</span></span>
+<span id="cb7-6"><a href="chapter1.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">       3   F    9</span></span>
+<span id="cb7-7"><a href="chapter1.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">       4   M   11</span></span>
+<span id="cb7-8"><a href="chapter1.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st"> &quot;</span>)</span>
+<span id="cb7-9"><a href="chapter1.html#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="chapter1.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取位于第一行第三列的元素</span></span>
+<span id="cb7-11"><a href="chapter1.html#cb7-11" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span>, <span class="dv">3</span>]</span>
+<span id="cb7-12"><a href="chapter1.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span>
+<span id="cb7-13"><a href="chapter1.html#cb7-13" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span>, <span class="st">&quot;size&quot;</span>]</span>
+<span id="cb7-14"><a href="chapter1.html#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span>
+<span id="cb7-15"><a href="chapter1.html#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="chapter1.html#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取第1行和第2行所有列上的元素</span></span>
+<span id="cb7-17"><a href="chapter1.html#cb7-17" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ]</span>
+<span id="cb7-18"><a href="chapter1.html#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb7-19"><a href="chapter1.html#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb7-20"><a href="chapter1.html#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb7-21"><a href="chapter1.html#cb7-21" aria-hidden="true" tabindex="-1"></a>data[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), ]</span>
+<span id="cb7-22"><a href="chapter1.html#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb7-23"><a href="chapter1.html#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb7-24"><a href="chapter1.html#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb7-25"><a href="chapter1.html#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="chapter1.html#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取一，二两行第二列上的元素</span></span>
+<span id="cb7-27"><a href="chapter1.html#cb7-27" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb7-28"><a href="chapter1.html#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;M&quot; &quot;F&quot;</span></span>
+<span id="cb7-29"><a href="chapter1.html#cb7-29" aria-hidden="true" tabindex="-1"></a>data[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>]</span>
+<span id="cb7-30"><a href="chapter1.html#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;M&quot; &quot;F&quot;</span></span>
+<span id="cb7-31"><a href="chapter1.html#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="chapter1.html#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取行1和2，名为“sex”和 &#39;size&#39;的列</span></span>
+<span id="cb7-33"><a href="chapter1.html#cb7-33" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;size&quot;</span>)]</span>
+<span id="cb7-34"><a href="chapter1.html#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex size</span></span>
+<span id="cb7-35"><a href="chapter1.html#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   M    7</span></span>
+<span id="cb7-36"><a href="chapter1.html#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   F    6</span></span>
+<span id="cb7-37"><a href="chapter1.html#cb7-37" aria-hidden="true" tabindex="-1"></a>data[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]</span>
+<span id="cb7-38"><a href="chapter1.html#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex size</span></span>
+<span id="cb7-39"><a href="chapter1.html#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   M    7</span></span>
+<span id="cb7-40"><a href="chapter1.html#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   F    6</span></span></code></pre></div>
 </div>
-<div id="section-1.2.2.2" class="section level4">
+<div id="使用布尔向量进行索引" class="section level4" number="1.2.2.2">
 <h4><span class="header-section-number">1.2.2.2</span> 使用布尔向量进行索引</h4>
 <p>向量 <code>v</code> 同上。</p>
-<pre class="sourceCode r"><code class="sourceCode r">v <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>
-<span class="co">#&gt; [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE</span>
-v[v <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]
-<span class="co">#&gt; [1] 4 4 3 3</span>
-v[<span class="kw">c</span>(F, T, T, T, F, F, T)]
-<span class="co">#&gt; [1] 4 4 3 3</span></code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chapter1.html#cb8-1" aria-hidden="true" tabindex="-1"></a>v <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb8-2"><a href="chapter1.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE</span></span>
+<span id="cb8-3"><a href="chapter1.html#cb8-3" aria-hidden="true" tabindex="-1"></a>v[v <span class="sc">&gt;</span> <span class="dv">2</span>]</span>
+<span id="cb8-4"><a href="chapter1.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 4 3 3</span></span>
+<span id="cb8-5"><a href="chapter1.html#cb8-5" aria-hidden="true" tabindex="-1"></a>v[<span class="fu">c</span>(F, T, T, T, F, F, T)]</span>
+<span id="cb8-6"><a href="chapter1.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 4 3 3</span></span></code></pre></div>
 <p>数据框同上。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 一个布尔向量</span>
-data<span class="op">$</span>subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>
-<span class="co">#&gt; [1]  TRUE  TRUE FALSE FALSE</span>
-data[data<span class="op">$</span>subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>, ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-data[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>), ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-<span class="co"># 也可以获取TRUE的数字索引</span>
-<span class="kw">which</span>(data<span class="op">$</span>subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>)
-<span class="co">#&gt; [1] 1 2</span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="chapter1.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 一个布尔向量</span></span>
+<span id="cb9-2"><a href="chapter1.html#cb9-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>subject <span class="sc">&lt;</span> <span class="dv">3</span></span>
+<span id="cb9-3"><a href="chapter1.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE FALSE</span></span>
+<span id="cb9-4"><a href="chapter1.html#cb9-4" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>subject <span class="sc">&lt;</span> <span class="dv">3</span>, ]</span>
+<span id="cb9-5"><a href="chapter1.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb9-6"><a href="chapter1.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb9-7"><a href="chapter1.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb9-8"><a href="chapter1.html#cb9-8" aria-hidden="true" tabindex="-1"></a>data[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>), ]</span>
+<span id="cb9-9"><a href="chapter1.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb9-10"><a href="chapter1.html#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb9-11"><a href="chapter1.html#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb9-12"><a href="chapter1.html#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 也可以获取TRUE的数字索引</span></span>
+<span id="cb9-13"><a href="chapter1.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(data<span class="sc">$</span>subject <span class="sc">&lt;</span> <span class="dv">3</span>)</span>
+<span id="cb9-14"><a href="chapter1.html#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code></pre></div>
 </div>
-<div id="section-1.2.2.3" class="section level4">
+<div id="负索引" class="section level4" number="1.2.2.3">
 <h4><span class="header-section-number">1.2.2.3</span> 负索引</h4>
 <p>与其他某些编程语言不同，当您在 R 中使用负数进行索引时，并不意味着从后向前索引。相反，它意味着按照通常的从前往后顺序删除索引中的元素。</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 还是这个向量</span>
-v
-<span class="co">#&gt; [1] 1 4 4 3 2 2 3</span>
-
-<span class="co"># 删除第一个</span>
-v[<span class="op">-</span><span class="dv">1</span>]
-<span class="co">#&gt; [1] 4 4 3 2 2 3</span>
-
-<span class="co"># 删除前三个</span>
-v[<span class="op">-</span><span class="dv">1</span><span class="op">:-</span><span class="dv">3</span>]
-<span class="co">#&gt; [1] 3 2 2 3</span>
-
-<span class="co"># 只删除最后一个</span>
-v[<span class="op">-</span><span class="kw">length</span>(v)]
-<span class="co">#&gt; [1] 1 4 4 3 2 2</span></code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="chapter1.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 还是这个向量</span></span>
+<span id="cb10-2"><a href="chapter1.html#cb10-2" aria-hidden="true" tabindex="-1"></a>v</span>
+<span id="cb10-3"><a href="chapter1.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 4 4 3 2 2 3</span></span>
+<span id="cb10-4"><a href="chapter1.html#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="chapter1.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除第一个</span></span>
+<span id="cb10-6"><a href="chapter1.html#cb10-6" aria-hidden="true" tabindex="-1"></a>v[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb10-7"><a href="chapter1.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 4 3 2 2 3</span></span>
+<span id="cb10-8"><a href="chapter1.html#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="chapter1.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除前三个</span></span>
+<span id="cb10-10"><a href="chapter1.html#cb10-10" aria-hidden="true" tabindex="-1"></a>v[<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span>
+<span id="cb10-11"><a href="chapter1.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3 2 2 3</span></span>
+<span id="cb10-12"><a href="chapter1.html#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="chapter1.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 只删除最后一个</span></span>
+<span id="cb10-14"><a href="chapter1.html#cb10-14" aria-hidden="true" tabindex="-1"></a>v[<span class="sc">-</span><span class="fu">length</span>(v)]</span>
+<span id="cb10-15"><a href="chapter1.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 4 4 3 2 2</span></span></code></pre></div>
 </div>
 </div>
 </div>
-<div id="section-1.3" class="section level2">
+<div id="获取数据结构的子集" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> 获取数据结构的子集</h2>
-<div id="-2" class="section level3">
+<div id="问题-2" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> 问题</h3>
 <p>你想得到一个由向量、矩阵或数据框里元素组成的子集。</p>
 </div>
-<div id="-2" class="section level3">
+<div id="方案-2" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> 方案</h3>
 <p>为了基于一些条件准则获得子集，可以使用 <code>subset()</code> 函数或者是方括号索引。 两种方式均在下方举例说明。</p>
-<pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)
-<span class="kw">subset</span>(v, v <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>)
-<span class="co">#&gt; [1] 1 2 2</span>
-v[v <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>]
-<span class="co">#&gt; [1] 1 2 2</span>
-
-<span class="co"># 另一个向量</span>
-t &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>)
-
-<span class="co"># 删除 &#39;small&#39; 这一项</span>
-<span class="kw">subset</span>(t, t <span class="op">!=</span><span class="st"> &quot;small&quot;</span>)
-<span class="co">#&gt; [1] &quot;large&quot;  &quot;medium&quot;</span>
-t[t <span class="op">!=</span><span class="st"> &quot;small&quot;</span>]
-<span class="co">#&gt; [1] &quot;large&quot;  &quot;medium&quot;</span></code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="chapter1.html#cb11-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb11-2"><a href="chapter1.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(v, v <span class="sc">&lt;</span> <span class="dv">3</span>)</span>
+<span id="cb11-3"><a href="chapter1.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 2</span></span>
+<span id="cb11-4"><a href="chapter1.html#cb11-4" aria-hidden="true" tabindex="-1"></a>v[v <span class="sc">&lt;</span> <span class="dv">3</span>]</span>
+<span id="cb11-5"><a href="chapter1.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 2</span></span>
+<span id="cb11-6"><a href="chapter1.html#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="chapter1.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 另一个向量</span></span>
+<span id="cb11-8"><a href="chapter1.html#cb11-8" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>)</span>
+<span id="cb11-9"><a href="chapter1.html#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="chapter1.html#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除 &#39;small&#39; 这一项</span></span>
+<span id="cb11-11"><a href="chapter1.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(t, t <span class="sc">!=</span> <span class="st">&quot;small&quot;</span>)</span>
+<span id="cb11-12"><a href="chapter1.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;large&quot;  &quot;medium&quot;</span></span>
+<span id="cb11-13"><a href="chapter1.html#cb11-13" aria-hidden="true" tabindex="-1"></a>t[t <span class="sc">!=</span> <span class="st">&quot;small&quot;</span>]</span>
+<span id="cb11-14"><a href="chapter1.html#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;large&quot;  &quot;medium&quot;</span></span></code></pre></div>
 <p>这两种方法之间的一个重要区别在于方括号索引可以为元素赋值，而 <code>subset()</code> 不可以。</p>
-<pre class="sourceCode r"><code class="sourceCode r">v[v <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">9</span>
-<span class="kw">subset</span>(v, v <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) &lt;-<span class="st"> </span><span class="dv">9</span>
-<span class="co">#&gt; Error in subset(v, v &lt; 3) &lt;- 9: 没有&quot;subset&lt;-&quot;这个函数</span></code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="chapter1.html#cb12-1" aria-hidden="true" tabindex="-1"></a>v[v <span class="sc">&lt;</span> <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb12-2"><a href="chapter1.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(v, v <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb12-3"><a href="chapter1.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in subset(v, v &lt; 3) &lt;- 9: 没有&quot;subset&lt;-&quot;这个函数</span></span></code></pre></div>
 <p>数据框：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 样本数据框</span>
-data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header =</span> T, <span class="dt">text =</span> <span class="st">&quot;</span>
-<span class="st"> subject sex size</span>
-<span class="st">     1   M    7</span>
-<span class="st">     2   F    6</span>
-<span class="st">     3   F    9</span>
-<span class="st">     4   M   11</span>
-<span class="st"> &quot;</span>)
-<span class="kw">subset</span>(data, subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>)
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-data[data<span class="op">$</span>subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>, ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-
-
-<span class="co"># 特定行和列的子集</span>
-<span class="kw">subset</span>(data, subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">select =</span> <span class="op">-</span>subject)
-<span class="co">#&gt;   sex size</span>
-<span class="co">#&gt; 1   M    7</span>
-<span class="co">#&gt; 2   F    6</span>
-<span class="kw">subset</span>(data, subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">select =</span> <span class="kw">c</span>(sex, size))
-<span class="co">#&gt;   sex size</span>
-<span class="co">#&gt; 1   M    7</span>
-<span class="co">#&gt; 2   F    6</span>
-<span class="kw">subset</span>(data, subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">select =</span> sex<span class="op">:</span>size)
-<span class="co">#&gt;   sex size</span>
-<span class="co">#&gt; 1   M    7</span>
-<span class="co">#&gt; 2   F    6</span>
-data[data<span class="op">$</span>subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;size&quot;</span>)]
-<span class="co">#&gt;   sex size</span>
-<span class="co">#&gt; 1   M    7</span>
-<span class="co">#&gt; 2   F    6</span>
-
-<span class="co"># 逻辑与的两个条件</span>
-<span class="kw">subset</span>(data, subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>)
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-data[data<span class="op">$</span>subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>data<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>, ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-
-
-<span class="co"># 逻辑或的两个条件</span>
-<span class="kw">subset</span>(data, subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>)
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-<span class="co">#&gt; 4       4   M   11</span>
-data[data<span class="op">$</span>subject <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>data<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>, ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 2       2   F    6</span>
-<span class="co">#&gt; 4       4   M   11</span>
-
-
-<span class="co"># 基于转换数据的条件</span>
-<span class="kw">subset</span>(data, <span class="kw">log2</span>(size) <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>)
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 3       3   F    9</span>
-<span class="co">#&gt; 4       4   M   11</span>
-data[<span class="kw">log2</span>(data<span class="op">$</span>size) <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>, ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 3       3   F    9</span>
-<span class="co">#&gt; 4       4   M   11</span>
-
-<span class="co"># 当元素在另一个向量里时的子集</span>
-<span class="kw">subset</span>(data, subject <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 3       3   F    9</span>
-data[data<span class="op">$</span>subject <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), ]
-<span class="co">#&gt;   subject sex size</span>
-<span class="co">#&gt; 1       1   M    7</span>
-<span class="co">#&gt; 3       3   F    9</span></code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="chapter1.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 样本数据框</span></span>
+<span id="cb13-2"><a href="chapter1.html#cb13-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">header =</span> T, <span class="at">text =</span> <span class="st">&quot;</span></span>
+<span id="cb13-3"><a href="chapter1.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st"> subject sex size</span></span>
+<span id="cb13-4"><a href="chapter1.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">       1   M    7</span></span>
+<span id="cb13-5"><a href="chapter1.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">       2   F    6</span></span>
+<span id="cb13-6"><a href="chapter1.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">       3   F    9</span></span>
+<span id="cb13-7"><a href="chapter1.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">       4   M   11</span></span>
+<span id="cb13-8"><a href="chapter1.html#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st"> &quot;</span>)</span>
+<span id="cb13-9"><a href="chapter1.html#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, subject <span class="sc">&lt;</span> <span class="dv">3</span>)</span>
+<span id="cb13-10"><a href="chapter1.html#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-11"><a href="chapter1.html#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-12"><a href="chapter1.html#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb13-13"><a href="chapter1.html#cb13-13" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>subject <span class="sc">&lt;</span> <span class="dv">3</span>, ]</span>
+<span id="cb13-14"><a href="chapter1.html#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-15"><a href="chapter1.html#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-16"><a href="chapter1.html#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb13-17"><a href="chapter1.html#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="chapter1.html#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="chapter1.html#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 特定行和列的子集</span></span>
+<span id="cb13-20"><a href="chapter1.html#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, subject <span class="sc">&lt;</span> <span class="dv">3</span>, <span class="at">select =</span> <span class="sc">-</span>subject)</span>
+<span id="cb13-21"><a href="chapter1.html#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex size</span></span>
+<span id="cb13-22"><a href="chapter1.html#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   M    7</span></span>
+<span id="cb13-23"><a href="chapter1.html#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   F    6</span></span>
+<span id="cb13-24"><a href="chapter1.html#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, subject <span class="sc">&lt;</span> <span class="dv">3</span>, <span class="at">select =</span> <span class="fu">c</span>(sex, size))</span>
+<span id="cb13-25"><a href="chapter1.html#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex size</span></span>
+<span id="cb13-26"><a href="chapter1.html#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   M    7</span></span>
+<span id="cb13-27"><a href="chapter1.html#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   F    6</span></span>
+<span id="cb13-28"><a href="chapter1.html#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, subject <span class="sc">&lt;</span> <span class="dv">3</span>, <span class="at">select =</span> sex<span class="sc">:</span>size)</span>
+<span id="cb13-29"><a href="chapter1.html#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex size</span></span>
+<span id="cb13-30"><a href="chapter1.html#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   M    7</span></span>
+<span id="cb13-31"><a href="chapter1.html#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   F    6</span></span>
+<span id="cb13-32"><a href="chapter1.html#cb13-32" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>subject <span class="sc">&lt;</span> <span class="dv">3</span>, <span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;size&quot;</span>)]</span>
+<span id="cb13-33"><a href="chapter1.html#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex size</span></span>
+<span id="cb13-34"><a href="chapter1.html#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   M    7</span></span>
+<span id="cb13-35"><a href="chapter1.html#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   F    6</span></span>
+<span id="cb13-36"><a href="chapter1.html#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="chapter1.html#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 逻辑与的两个条件</span></span>
+<span id="cb13-38"><a href="chapter1.html#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, subject <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
+<span id="cb13-39"><a href="chapter1.html#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-40"><a href="chapter1.html#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-41"><a href="chapter1.html#cb13-41" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>subject <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> data<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span>, ]</span>
+<span id="cb13-42"><a href="chapter1.html#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-43"><a href="chapter1.html#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-44"><a href="chapter1.html#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="chapter1.html#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="chapter1.html#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 逻辑或的两个条件</span></span>
+<span id="cb13-47"><a href="chapter1.html#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, subject <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
+<span id="cb13-48"><a href="chapter1.html#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-49"><a href="chapter1.html#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-50"><a href="chapter1.html#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb13-51"><a href="chapter1.html#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4   M   11</span></span>
+<span id="cb13-52"><a href="chapter1.html#cb13-52" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>subject <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> data<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span>, ]</span>
+<span id="cb13-53"><a href="chapter1.html#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-54"><a href="chapter1.html#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-55"><a href="chapter1.html#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       2   F    6</span></span>
+<span id="cb13-56"><a href="chapter1.html#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4   M   11</span></span>
+<span id="cb13-57"><a href="chapter1.html#cb13-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-58"><a href="chapter1.html#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-59"><a href="chapter1.html#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="co"># 基于转换数据的条件</span></span>
+<span id="cb13-60"><a href="chapter1.html#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, <span class="fu">log2</span>(size) <span class="sc">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb13-61"><a href="chapter1.html#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-62"><a href="chapter1.html#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       3   F    9</span></span>
+<span id="cb13-63"><a href="chapter1.html#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4   M   11</span></span>
+<span id="cb13-64"><a href="chapter1.html#cb13-64" aria-hidden="true" tabindex="-1"></a>data[<span class="fu">log2</span>(data<span class="sc">$</span>size) <span class="sc">&gt;</span> <span class="dv">3</span>, ]</span>
+<span id="cb13-65"><a href="chapter1.html#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-66"><a href="chapter1.html#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       3   F    9</span></span>
+<span id="cb13-67"><a href="chapter1.html#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4   M   11</span></span>
+<span id="cb13-68"><a href="chapter1.html#cb13-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-69"><a href="chapter1.html#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="co"># 当元素在另一个向量里时的子集</span></span>
+<span id="cb13-70"><a href="chapter1.html#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(data, subject <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb13-71"><a href="chapter1.html#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-72"><a href="chapter1.html#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-73"><a href="chapter1.html#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       3   F    9</span></span>
+<span id="cb13-74"><a href="chapter1.html#cb13-74" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>subject <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), ]</span>
+<span id="cb13-75"><a href="chapter1.html#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   subject sex size</span></span>
+<span id="cb13-76"><a href="chapter1.html#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       1   M    7</span></span>
+<span id="cb13-77"><a href="chapter1.html#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       3   F    9</span></span></code></pre></div>
 </div>
 </div>
-<div id="section-1.4" class="section level2">
+<div id="创建填满值的向量" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> 创建填满值的向量</h2>
-<div id="-3" class="section level3">
+<div id="问题-3" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> 问题</h3>
 <p>你想创建一个填满值的列表。</p>
 </div>
-<div id="-3" class="section level3">
+<div id="方案-3" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> 方案</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">50</span>)
-<span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span>
-<span class="co">#&gt; [26] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span>
-<span class="kw">rep</span>(F, <span class="dv">20</span>)
-<span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
-<span class="co">#&gt;  [9] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
-<span class="co">#&gt; [17] FALSE FALSE FALSE FALSE</span>
-<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">4</span>)
-<span class="co">#&gt;  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</span>
-<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">each =</span> <span class="dv">4</span>)
-<span class="co">#&gt;  [1] 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5</span>
-
-<span class="co"># 用在因子变量上</span>
-<span class="kw">rep</span>(<span class="kw">factor</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]), <span class="dv">5</span>)
-<span class="co">#&gt;  [1] A B C A B C A B C A B C A B C</span>
-<span class="co">#&gt; Levels: A B C</span></code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter1.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">50</span>)</span>
+<span id="cb14-2"><a href="chapter1.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span></span>
+<span id="cb14-3"><a href="chapter1.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [26] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span></span>
+<span id="cb14-4"><a href="chapter1.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(F, <span class="dv">20</span>)</span>
+<span id="cb14-5"><a href="chapter1.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb14-6"><a href="chapter1.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb14-7"><a href="chapter1.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] FALSE FALSE FALSE FALSE</span></span>
+<span id="cb14-8"><a href="chapter1.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">4</span>)</span>
+<span id="cb14-9"><a href="chapter1.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</span></span>
+<span id="cb14-10"><a href="chapter1.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb14-11"><a href="chapter1.html#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5</span></span>
+<span id="cb14-12"><a href="chapter1.html#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="chapter1.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 用在因子变量上</span></span>
+<span id="cb14-14"><a href="chapter1.html#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">factor</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]), <span class="dv">5</span>)</span>
+<span id="cb14-15"><a href="chapter1.html#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] A B C A B C A B C A B C A B C</span></span>
+<span id="cb14-16"><a href="chapter1.html#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: A B C</span></span></code></pre></div>
 </div>
 </div>
-<div id="section-1.5" class="section level2">
+<div id="变量信息" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> 变量信息</h2>
-<div id="-4" class="section level3">
+<div id="问题-4" class="section level3" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> 问题</h3>
 <p>你想找到关于变量的信息。</p>
 </div>
-<div id="-4" class="section level3">
+<div id="方案-4" class="section level3" number="1.5.2">
 <h3><span class="header-section-number">1.5.2</span> 方案</h3>
 <p>以下为关于样本变量的一些例子：</p>
-<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">6</span>
-n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
-let &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]
-df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(n, let)</code></pre>
-<div id="section-1.5.2.1" class="section level4">
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chapter1.html#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb15-2"><a href="chapter1.html#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb15-3"><a href="chapter1.html#cb15-3" aria-hidden="true" tabindex="-1"></a>let <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb15-4"><a href="chapter1.html#cb15-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(n, let)</span></code></pre></div>
+<div id="关于存在的信息" class="section level4" number="1.5.2.1">
 <h4><span class="header-section-number">1.5.2.1</span> 关于存在的信息</h4>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 列出当前所定义的变量</span>
-<span class="kw">ls</span>()
-<span class="co">#&gt;  [1] &quot;contr&quot;             &quot;data&quot;             </span>
-<span class="co">#&gt;  [3] &quot;detachAllPackages&quot; &quot;df&quot;               </span>
-<span class="co">#&gt;  [5] &quot;let&quot;               &quot;n&quot;                </span>
-<span class="co">#&gt;  [7] &quot;t&quot;                 &quot;tb&quot;               </span>
-<span class="co">#&gt;  [9] &quot;v&quot;                 &quot;x&quot;</span>
-
-<span class="co"># 检查名为“x”的变量是否存在</span>
-<span class="kw">exists</span>(<span class="st">&quot;x&quot;</span>)
-<span class="co">#&gt; [1] TRUE</span>
-
-<span class="co"># 检查名为“y”的变量是否存在</span>
-<span class="kw">exists</span>(<span class="st">&quot;y&quot;</span>)
-<span class="co">#&gt; [1] FALSE</span>
-
-<span class="co"># 删除变量“x”</span>
-<span class="kw">rm</span>(x)
-x
-<span class="co">#&gt; Error in eval(expr, envir, enclos): 找不到对象&#39;x&#39;</span></code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="chapter1.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列出当前所定义的变量</span></span>
+<span id="cb16-2"><a href="chapter1.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb16-3"><a href="chapter1.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;contr&quot;             &quot;data&quot;             </span></span>
+<span id="cb16-4"><a href="chapter1.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;detachAllPackages&quot; &quot;df&quot;               </span></span>
+<span id="cb16-5"><a href="chapter1.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;let&quot;               &quot;n&quot;                </span></span>
+<span id="cb16-6"><a href="chapter1.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;t&quot;                 &quot;tb&quot;               </span></span>
+<span id="cb16-7"><a href="chapter1.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;v&quot;                 &quot;x&quot;</span></span>
+<span id="cb16-8"><a href="chapter1.html#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="chapter1.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查名为“x”的变量是否存在</span></span>
+<span id="cb16-10"><a href="chapter1.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">exists</span>(<span class="st">&quot;x&quot;</span>)</span>
+<span id="cb16-11"><a href="chapter1.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb16-12"><a href="chapter1.html#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="chapter1.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查名为“y”的变量是否存在</span></span>
+<span id="cb16-14"><a href="chapter1.html#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">exists</span>(<span class="st">&quot;y&quot;</span>)</span>
+<span id="cb16-15"><a href="chapter1.html#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb16-16"><a href="chapter1.html#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="chapter1.html#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除变量“x”</span></span>
+<span id="cb16-18"><a href="chapter1.html#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span>
+<span id="cb16-19"><a href="chapter1.html#cb16-19" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb16-20"><a href="chapter1.html#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): 找不到对象&#39;x&#39;</span></span></code></pre></div>
 </div>
-<div id="section-1.5.2.2" class="section level4">
+<div id="关于大小结构的信息" class="section level4" number="1.5.2.2">
 <h4><span class="header-section-number">1.5.2.2</span> 关于大小/结构的信息</h4>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 获得关于结构的信息</span>
-<span class="kw">str</span>(n)
-<span class="co">#&gt;  int [1:4] 1 2 3 4</span>
-<span class="kw">str</span>(df)
-<span class="co">#&gt; &#39;data.frame&#39;:    4 obs. of  2 variables:</span>
-<span class="co">#&gt;  $ n  : int  1 2 3 4</span>
-<span class="co">#&gt;  $ let: Factor w/ 4 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;: 1 2 3 4</span>
-
-<span class="co"># 得到一个向量的长度</span>
-<span class="kw">length</span>(n)
-<span class="co">#&gt; [1] 4</span>
-
-<span class="co"># 可能会得不到我们想要的长度</span>
-<span class="kw">length</span>(df)
-<span class="co">#&gt; [1] 2</span>
-
-<span class="co"># 行数</span>
-<span class="kw">nrow</span>(df)
-<span class="co">#&gt; [1] 4</span>
-
-<span class="co"># 列数</span>
-<span class="kw">ncol</span>(df)
-<span class="co">#&gt; [1] 2</span>
-
-<span class="co"># 得到行数和列数</span>
-<span class="kw">dim</span>(df)
-<span class="co">#&gt; [1] 4 2</span></code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter1.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 获得关于结构的信息</span></span>
+<span id="cb17-2"><a href="chapter1.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(n)</span>
+<span id="cb17-3"><a href="chapter1.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  int [1:4] 1 2 3 4</span></span>
+<span id="cb17-4"><a href="chapter1.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb17-5"><a href="chapter1.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    4 obs. of  2 variables:</span></span>
+<span id="cb17-6"><a href="chapter1.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ n  : int  1 2 3 4</span></span>
+<span id="cb17-7"><a href="chapter1.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ let: chr  &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot;</span></span>
+<span id="cb17-8"><a href="chapter1.html#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="chapter1.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 得到一个向量的长度</span></span>
+<span id="cb17-10"><a href="chapter1.html#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(n)</span>
+<span id="cb17-11"><a href="chapter1.html#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb17-12"><a href="chapter1.html#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="chapter1.html#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 可能会得不到我们想要的长度</span></span>
+<span id="cb17-14"><a href="chapter1.html#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(df)</span>
+<span id="cb17-15"><a href="chapter1.html#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb17-16"><a href="chapter1.html#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="chapter1.html#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 行数</span></span>
+<span id="cb17-18"><a href="chapter1.html#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span>
+<span id="cb17-19"><a href="chapter1.html#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb17-20"><a href="chapter1.html#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="chapter1.html#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 列数</span></span>
+<span id="cb17-22"><a href="chapter1.html#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(df)</span>
+<span id="cb17-23"><a href="chapter1.html#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb17-24"><a href="chapter1.html#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="chapter1.html#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 得到行数和列数</span></span>
+<span id="cb17-26"><a href="chapter1.html#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span>
+<span id="cb17-27"><a href="chapter1.html#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 2</span></span></code></pre></div>
 </div>
 </div>
 </div>
-<div id="nullnanan-" class="section level2">
+<div id="nullnanan-的处理" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> NULL、NA、NaN 的处理</h2>
-<div id="-5" class="section level3">
+<div id="问题-5" class="section level3" number="1.6.1">
 <h3><span class="header-section-number">1.6.1</span> 问题</h3>
 <p>你想正确处理<code>NULL</code>、<code>NA</code> （Not Available）、<code>NaN</code>（Not a Number）。</p>
 </div>
-<div id="-5" class="section level3">
+<div id="方案-5" class="section level3" number="1.6.2">
 <h3><span class="header-section-number">1.6.2</span> 方案</h3>
 <p>你的数据有时将会存在<code>NULL</code>、<code>NA</code> 、<code>NaN</code>。处理这些数据有些不同于「正常」值，并可能需要确定性测试。</p>
 <p>以下是这些值相比较的例子：</p>
-<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="ot">NULL</span>
-x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>
-<span class="co">#&gt; logical(0)</span>
-
-y &lt;-<span class="st"> </span><span class="ot">NA</span>
-y <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>
-<span class="co">#&gt; [1] NA</span>
-
-z &lt;-<span class="st"> </span><span class="ot">NaN</span>
-z <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>
-<span class="co">#&gt; [1] NA</span></code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter1.html#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb18-2"><a href="chapter1.html#cb18-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span>
+<span id="cb18-3"><a href="chapter1.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; logical(0)</span></span>
+<span id="cb18-4"><a href="chapter1.html#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="chapter1.html#cb18-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb18-6"><a href="chapter1.html#cb18-6" aria-hidden="true" tabindex="-1"></a>y <span class="sc">&gt;</span> <span class="dv">5</span></span>
+<span id="cb18-7"><a href="chapter1.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb18-8"><a href="chapter1.html#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="chapter1.html#cb18-9" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
+<span id="cb18-10"><a href="chapter1.html#cb18-10" aria-hidden="true" tabindex="-1"></a>z <span class="sc">&gt;</span> <span class="dv">5</span></span>
+<span id="cb18-11"><a href="chapter1.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>如何测试某个变量是否是其中的一个值：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.null</span>(x)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.na</span>(y)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.nan</span>(z)
-<span class="co">#&gt; [1] TRUE</span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter1.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(x)</span>
+<span id="cb19-2"><a href="chapter1.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb19-3"><a href="chapter1.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(y)</span>
+<span id="cb19-4"><a href="chapter1.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb19-5"><a href="chapter1.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(z)</span>
+<span id="cb19-6"><a href="chapter1.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>注意，<code>NULL</code> 不同于其他两个。<code>NULL</code> 意味着没有值，而 <code>NA</code> 和 <code>NaN</code> 表示有值，尽管也许是不可用的。下面有一个例子区分：</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># y 是 null 吗？</span>
-<span class="kw">is.null</span>(y)
-<span class="co">#&gt; [1] FALSE</span>
-<span class="co"># FALSE</span>
-
-<span class="co"># x 是 NA 吗？</span>
-<span class="kw">is.na</span>(x)
-<span class="co">#&gt; logical(0)</span></code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter1.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># y 是 null 吗？</span></span>
+<span id="cb20-2"><a href="chapter1.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(y)</span>
+<span id="cb20-3"><a href="chapter1.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb20-4"><a href="chapter1.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># FALSE</span></span>
+<span id="cb20-5"><a href="chapter1.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="chapter1.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># x 是 NA 吗？</span></span>
+<span id="cb20-7"><a href="chapter1.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
+<span id="cb20-8"><a href="chapter1.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; logical(0)</span></span></code></pre></div>
 <p>第一个例子，检查 <code>y</code> 是否是 <code>NULL</code> ，结果 <code>y</code> 并不是；第二个例子，试图检查 <code>x</code> 是否是 <code>NA</code>，但并没有值被检测。</p>
-<div id="section-1.6.2.1" class="section level4">
+<div id="忽视向量汇总函数中的坏值" class="section level4" number="1.6.2.1">
 <h4><span class="header-section-number">1.6.2.1</span> 忽视向量汇总函数中的「坏」值</h4>
 <p>如果你对包含 <code>NA</code> 或 <code>NaN</code> 的向量使用诸如 <code>mean()</code> 或 <code>sum()</code> 之类的函数，结果将返回 <code>NA</code> 和 <code>NaN</code>，这通常没有任何意义，虽然这样的结果会提醒你有「坏」值的存在。许多函数都有 <code>na.rm</code>，可以将这些值忽略。</p>
-<pre class="sourceCode r"><code class="sourceCode r">vy &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="dv">5</span>)
-<span class="kw">mean</span>(vy)
-<span class="co">#&gt; [1] NA</span>
-<span class="kw">mean</span>(vy, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] 2.75</span>
-vz &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NaN</span>, <span class="dv">5</span>)
-<span class="kw">sum</span>(vz)
-<span class="co">#&gt; [1] NaN</span>
-<span class="kw">sum</span>(vz, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] 11</span>
-
-<span class="co"># NULL不是问题，因为它不存在</span>
-vx &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NULL</span>, <span class="dv">5</span>)
-<span class="kw">sum</span>(vx)
-<span class="co">#&gt; [1] 11</span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter1.html#cb21-1" aria-hidden="true" tabindex="-1"></a>vy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>)</span>
+<span id="cb21-2"><a href="chapter1.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vy)</span>
+<span id="cb21-3"><a href="chapter1.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb21-4"><a href="chapter1.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-5"><a href="chapter1.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.75</span></span>
+<span id="cb21-6"><a href="chapter1.html#cb21-6" aria-hidden="true" tabindex="-1"></a>vz <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">NaN</span>, <span class="dv">5</span>)</span>
+<span id="cb21-7"><a href="chapter1.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(vz)</span>
+<span id="cb21-8"><a href="chapter1.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span>
+<span id="cb21-9"><a href="chapter1.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(vz, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-10"><a href="chapter1.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span>
+<span id="cb21-11"><a href="chapter1.html#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="chapter1.html#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># NULL不是问题，因为它不存在</span></span>
+<span id="cb21-13"><a href="chapter1.html#cb21-13" aria-hidden="true" tabindex="-1"></a>vx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">NULL</span>, <span class="dv">5</span>)</span>
+<span id="cb21-14"><a href="chapter1.html#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(vx)</span>
+<span id="cb21-15"><a href="chapter1.html#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span></code></pre></div>
 </div>
-<div id="section-1.6.2.2" class="section level4">
+<div id="从向量中移除坏值" class="section level4" number="1.6.2.2">
 <h4><span class="header-section-number">1.6.2.2</span> 从向量中移除「坏值」</h4>
 <p>使用 <code>is.na()</code> 或 <code>is.nan()</code> 的反向函数，可以将这些值移除。</p>
-<pre class="sourceCode r"><code class="sourceCode r">vy
-<span class="co">#&gt; [1]  1  2  3 NA  5</span>
-vy[<span class="op">!</span><span class="kw">is.na</span>(vy)]
-<span class="co">#&gt; [1] 1 2 3 5</span>
-vz
-<span class="co">#&gt; [1]   1   2   3 NaN   5</span>
-vz[<span class="op">!</span><span class="kw">is.nan</span>(vz)]
-<span class="co">#&gt; [1] 1 2 3 5</span></code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter1.html#cb22-1" aria-hidden="true" tabindex="-1"></a>vy</span>
+<span id="cb22-2"><a href="chapter1.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  2  3 NA  5</span></span>
+<span id="cb22-3"><a href="chapter1.html#cb22-3" aria-hidden="true" tabindex="-1"></a>vy[<span class="sc">!</span><span class="fu">is.na</span>(vy)]</span>
+<span id="cb22-4"><a href="chapter1.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 5</span></span>
+<span id="cb22-5"><a href="chapter1.html#cb22-5" aria-hidden="true" tabindex="-1"></a>vz</span>
+<span id="cb22-6"><a href="chapter1.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]   1   2   3 NaN   5</span></span>
+<span id="cb22-7"><a href="chapter1.html#cb22-7" aria-hidden="true" tabindex="-1"></a>vz[<span class="sc">!</span><span class="fu">is.nan</span>(vz)]</span>
+<span id="cb22-8"><a href="chapter1.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 5</span></span></code></pre></div>
 </div>
-<div id="section-1.6.2.3" class="section level4">
+<div id="注意" class="section level4" number="1.6.2.3">
 <h4><span class="header-section-number">1.6.2.3</span> 注意</h4>
 <p>也有无限值 <code>Inf</code> 和 <code>-Inf</code>，及其相应的函数 <code>is.finite()</code> 和 <code>is.infinite()</code>。</p>
 
@@ -738,16 +759,18 @@ vz[<span class="op">!</span><span class="kw">is.nan</span>(vz)]
         </div>
       </div>
 <a href="author.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="数字.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
 <script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
 <script src="libs/gitbook/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -755,12 +778,12 @@ gitbook.start({
 "github": true,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -775,7 +798,15 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"view": {
+"link": null,
+"text": null
+},
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 10 章 图形混杂 | Cookbook for R 中文版</title>
+  <meta name="description" content="第 10 章 图形混杂 | Cookbook for R 中文版本" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 10 章 图形混杂 | Cookbook for R 中文版" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="第 10 章 图形混杂 | Cookbook for R 中文版本" />
+  <meta name="github-repo" content="openbiox/Cookbook-for-R-Chinese" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 10 章 图形混杂 | Cookbook for R 中文版" />
+  
+  <meta name="twitter:description" content="第 10 章 图形混杂 | Cookbook for R 中文版本" />
+  
+
+<meta name="author" content="Winston Chang（著）" />
+<meta name="author" content="王诗翔 等（译）" />
+
+
+<meta name="date" content="2021-08-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggplot2.html"/>
+<link rel="next" href="其他有趣图形.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Cookbook for R 中文版</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#问题与反馈"><i class="fa fa-check"></i><b>0.1</b> 问题与反馈</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#致谢"><i class="fa fa-check"></i><b>0.2</b> 致谢</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者简介</a></li>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> 基础</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#r-pkg-installation"><i class="fa fa-check"></i><b>1.1</b> 安装和使用 R 包</a></li>
+<li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#数据结构的索引"><i class="fa fa-check"></i><b>1.2</b> 数据结构的索引</a></li>
+<li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#获取数据结构的子集"><i class="fa fa-check"></i><b>1.3</b> 获取数据结构的子集</a></li>
+<li class="chapter" data-level="1.4" data-path="chapter1.html"><a href="chapter1.html#创建填满值的向量"><i class="fa fa-check"></i><b>1.4</b> 创建填满值的向量</a></li>
+<li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#变量信息"><i class="fa fa-check"></i><b>1.5</b> 变量信息</a></li>
+<li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#nullnanan-的处理"><i class="fa fa-check"></i><b>1.6</b> NULL、NA、NaN 的处理</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数字.html"><a href="数字.html"><i class="fa fa-check"></i><b>2</b> 数字</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数字.html"><a href="数字.html#生成随机数"><i class="fa fa-check"></i><b>2.1</b> 生成随机数</a></li>
+<li class="chapter" data-level="2.2" data-path="数字.html"><a href="数字.html#生成可重复的随机序列"><i class="fa fa-check"></i><b>2.2</b> 生成可重复的随机序列</a></li>
+<li class="chapter" data-level="2.3" data-path="数字.html"><a href="数字.html#保持随机数生成器的状态"><i class="fa fa-check"></i><b>2.3</b> 保持随机数生成器的状态</a></li>
+<li class="chapter" data-level="2.4" data-path="数字.html"><a href="数字.html#对数值取整"><i class="fa fa-check"></i><b>2.4</b> 对数值取整</a></li>
+<li class="chapter" data-level="2.5" data-path="数字.html"><a href="数字.html#比较浮点数"><i class="fa fa-check"></i><b>2.5</b> 比较浮点数</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="字符串.html"><a href="字符串.html"><i class="fa fa-check"></i><b>3</b> 字符串</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="字符串.html"><a href="字符串.html#使用-grepsubgsub-进行搜索和替换"><i class="fa fa-check"></i><b>3.1</b> 使用 grep、sub、gsub 进行搜索和替换</a></li>
+<li class="chapter" data-level="3.2" data-path="字符串.html"><a href="字符串.html#通过变量创建字符串"><i class="fa fa-check"></i><b>3.2</b> 通过变量创建字符串</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="公式.html"><a href="公式.html"><i class="fa fa-check"></i><b>4</b> 公式</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="公式.html"><a href="公式.html#通过字符串创建公式"><i class="fa fa-check"></i><b>4.1</b> 通过字符串创建公式</a></li>
+<li class="chapter" data-level="4.2" data-path="公式.html"><a href="公式.html#从公式中提取组分"><i class="fa fa-check"></i><b>4.2</b> 从公式中提取组分</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html"><i class="fa fa-check"></i><b>5</b> 数据的导入与导出</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-import-data-from-file"><i class="fa fa-check"></i><b>5.1</b> R载入文件中的数据</a></li>
+<li class="chapter" data-level="5.2" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#read-data-from-keyboard"><i class="fa fa-check"></i><b>5.2</b> 通过键盘和剪贴板把数据载入并保存到 R</a></li>
+<li class="chapter" data-level="5.3" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#run-r-script"><i class="fa fa-check"></i><b>5.3</b> 运行 R 脚本</a></li>
+<li class="chapter" data-level="5.4" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-write-data-into-file"><i class="fa fa-check"></i><b>5.4</b> 用 R 把数据写入文件</a></li>
+<li class="chapter" data-level="5.5" data-path="数据的导入与导出.html"><a href="数据的导入与导出.html#r-output-analysis"><i class="fa fa-check"></i><b>5.5</b> 用 R 写入文本，分析输出到文件</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="数据操作.html"><a href="数据操作.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="数据操作.html"><a href="数据操作.html#排序"><i class="fa fa-check"></i><b>6.1</b> 排序</a></li>
+<li class="chapter" data-level="6.2" data-path="数据操作.html"><a href="数据操作.html#随机排序"><i class="fa fa-check"></i><b>6.2</b> 随机排序</a></li>
+<li class="chapter" data-level="6.3" data-path="数据操作.html"><a href="数据操作.html#转换向量类型"><i class="fa fa-check"></i><b>6.3</b> 转换向量类型</a></li>
+<li class="chapter" data-level="6.4" data-path="数据操作.html"><a href="数据操作.html#查找并移除重复记录"><i class="fa fa-check"></i><b>6.4</b> 查找并移除重复记录</a></li>
+<li class="chapter" data-level="6.5" data-path="数据操作.html"><a href="数据操作.html#compare-with-nas"><i class="fa fa-check"></i><b>6.5</b> NA 存在时进行向量或因子比较</a></li>
+<li class="chapter" data-level="6.6" data-path="数据操作.html"><a href="数据操作.html#数据重新编码"><i class="fa fa-check"></i><b>6.6</b> 数据重新编码</a></li>
+<li class="chapter" data-level="6.7" data-path="数据操作.html"><a href="数据操作.html#映射向量值"><i class="fa fa-check"></i><b>6.7</b> 映射向量值</a></li>
+<li class="chapter" data-level="6.8" data-path="数据操作.html"><a href="数据操作.html#重命名因子水平"><i class="fa fa-check"></i><b>6.8</b> 重命名因子水平</a></li>
+<li class="chapter" data-level="6.9" data-path="数据操作.html"><a href="数据操作.html#重计算因子水平"><i class="fa fa-check"></i><b>6.9</b> 重计算因子水平</a></li>
+<li class="chapter" data-level="6.10" data-path="数据操作.html"><a href="数据操作.html#改变因子水平次序"><i class="fa fa-check"></i><b>6.10</b> 改变因子水平次序</a></li>
+<li class="chapter" data-level="6.11" data-path="数据操作.html"><a href="数据操作.html#重命名数据框的列"><i class="fa fa-check"></i><b>6.11</b> 重命名数据框的列</a></li>
+<li class="chapter" data-level="6.12" data-path="数据操作.html"><a href="数据操作.html#添加和移除数据框的列"><i class="fa fa-check"></i><b>6.12</b> 添加和移除数据框的列</a></li>
+<li class="chapter" data-level="6.13" data-path="数据操作.html"><a href="数据操作.html#对数据框的列重新排序"><i class="fa fa-check"></i><b>6.13</b> 对数据框的列重新排序</a></li>
+<li class="chapter" data-level="6.14" data-path="数据操作.html"><a href="数据操作.html#合并数据框"><i class="fa fa-check"></i><b>6.14</b> 合并数据框</a></li>
+<li class="chapter" data-level="6.15" data-path="数据操作.html"><a href="数据操作.html#比较数据框"><i class="fa fa-check"></i><b>6.15</b> 比较数据框</a></li>
+<li class="chapter" data-level="6.16" data-path="数据操作.html"><a href="数据操作.html#重计算数据框所有因子列的水平"><i class="fa fa-check"></i><b>6.16</b> 重计算数据框所有因子列的水平</a></li>
+<li class="chapter" data-level="6.17" data-path="数据操作.html"><a href="数据操作.html#长宽格式数据互换"><i class="fa fa-check"></i><b>6.17</b> 长宽格式数据互换</a></li>
+<li class="chapter" data-level="6.18" data-path="数据操作.html"><a href="数据操作.html#汇总数据"><i class="fa fa-check"></i><b>6.18</b> 汇总数据</a></li>
+<li class="chapter" data-level="6.19" data-path="数据操作.html"><a href="数据操作.html#数据框与列联表互换"><i class="fa fa-check"></i><b>6.19</b> 数据框与列联表互换</a></li>
+<li class="chapter" data-level="6.20" data-path="数据操作.html"><a href="数据操作.html#计算移动平均数"><i class="fa fa-check"></i><b>6.20</b> 计算移动平均数</a></li>
+<li class="chapter" data-level="6.21" data-path="数据操作.html"><a href="数据操作.html#窗口平滑"><i class="fa fa-check"></i><b>6.21</b> 窗口平滑</a></li>
+<li class="chapter" data-level="6.22" data-path="数据操作.html"><a href="数据操作.html#寻找唯一值序列"><i class="fa fa-check"></i><b>6.22</b> 寻找唯一值序列</a></li>
+<li class="chapter" data-level="6.23" data-path="数据操作.html"><a href="数据操作.html#fill-na-with-last-value"><i class="fa fa-check"></i><b>6.23</b> 用最后一个非 NA 值填充 NA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="统计分析.html"><a href="统计分析.html"><i class="fa fa-check"></i><b>7</b> 统计分析</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="统计分析.html"><a href="统计分析.html#回归和相关分析"><i class="fa fa-check"></i><b>7.1</b> 回归和相关分析</a></li>
+<li class="chapter" data-level="7.2" data-path="统计分析.html"><a href="统计分析.html#t-检验"><i class="fa fa-check"></i><b>7.2</b> t 检验</a></li>
+<li class="chapter" data-level="7.3" data-path="统计分析.html"><a href="统计分析.html#频率检验"><i class="fa fa-check"></i><b>7.3</b> 频率检验</a></li>
+<li class="chapter" data-level="7.4" data-path="统计分析.html"><a href="统计分析.html#anova"><i class="fa fa-check"></i><b>7.4</b> ANOVA</a></li>
+<li class="chapter" data-level="7.5" data-path="统计分析.html"><a href="统计分析.html#逻辑回归"><i class="fa fa-check"></i><b>7.5</b> 逻辑回归</a></li>
+<li class="chapter" data-level="7.6" data-path="统计分析.html"><a href="统计分析.html#变量同质性"><i class="fa fa-check"></i><b>7.6</b> 变量同质性</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="标准绘图.html"><a href="标准绘图.html"><i class="fa fa-check"></i><b>8</b> 标准绘图</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="标准绘图.html"><a href="标准绘图.html#直方图和密度图"><i class="fa fa-check"></i><b>8.1</b> 直方图和密度图</a></li>
+<li class="chapter" data-level="8.2" data-path="标准绘图.html"><a href="标准绘图.html#散点图"><i class="fa fa-check"></i><b>8.2</b> 散点图</a></li>
+<li class="chapter" data-level="8.3" data-path="标准绘图.html"><a href="标准绘图.html#箱线图"><i class="fa fa-check"></i><b>8.3</b> 箱线图</a></li>
+<li class="chapter" data-level="8.4" data-path="标准绘图.html"><a href="标准绘图.html#qq-plot"><i class="fa fa-check"></i><b>8.4</b> QQ 图</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>9</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ggplot2.html"><a href="ggplot2.html#条形图与线图"><i class="fa fa-check"></i><b>9.1</b> 条形图与线图</a></li>
+<li class="chapter" data-level="9.2" data-path="ggplot2.html"><a href="ggplot2.html#绘制均值和误差线"><i class="fa fa-check"></i><b>9.2</b> 绘制均值和误差线</a></li>
+<li class="chapter" data-level="9.3" data-path="ggplot2.html"><a href="ggplot2.html#分布图"><i class="fa fa-check"></i><b>9.3</b> 分布图</a></li>
+<li class="chapter" data-level="9.4" data-path="ggplot2.html"><a href="ggplot2.html#散点图-1"><i class="fa fa-check"></i><b>9.4</b> 散点图</a></li>
+<li class="chapter" data-level="9.5" data-path="ggplot2.html"><a href="ggplot2.html#标题"><i class="fa fa-check"></i><b>9.5</b> 标题</a></li>
+<li class="chapter" data-level="9.6" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-axes"><i class="fa fa-check"></i><b>9.6</b> 坐标轴</a></li>
+<li class="chapter" data-level="9.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-legends"><i class="fa fa-check"></i><b>9.7</b> 图例</a></li>
+<li class="chapter" data-level="9.8" data-path="ggplot2.html"><a href="ggplot2.html#线条"><i class="fa fa-check"></i><b>9.8</b> 线条</a></li>
+<li class="chapter" data-level="9.9" data-path="ggplot2.html"><a href="ggplot2.html#ggplot-facet"><i class="fa fa-check"></i><b>9.9</b> 分面</a></li>
+<li class="chapter" data-level="9.10" data-path="ggplot2.html"><a href="ggplot2.html#多图"><i class="fa fa-check"></i><b>9.10</b> 多图</a></li>
+<li class="chapter" data-level="9.11" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-colors"><i class="fa fa-check"></i><b>9.11</b> 颜色</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="图形混杂.html"><a href="图形混杂.html"><i class="fa fa-check"></i><b>10</b> 图形混杂</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="图形混杂.html"><a href="图形混杂.html#输出到文件-pdf-png-tiff-svg"><i class="fa fa-check"></i><b>10.1</b> 输出到文件 PDF-PNG-TIFF-SVG</a></li>
+<li class="chapter" data-level="10.2" data-path="图形混杂.html"><a href="图形混杂.html#shape-and-linetype"><i class="fa fa-check"></i><b>10.2</b> 形状和线形</a></li>
+<li class="chapter" data-level="10.3" data-path="图形混杂.html"><a href="图形混杂.html#字体"><i class="fa fa-check"></i><b>10.3</b> 字体</a></li>
+<li class="chapter" data-level="10.4" data-path="图形混杂.html"><a href="图形混杂.html#抗混淆位图输出"><i class="fa fa-check"></i><b>10.4</b> 抗混淆位图输出</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="其他有趣图形.html"><a href="其他有趣图形.html"><i class="fa fa-check"></i><b>11</b> 其他有趣图形</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="其他有趣图形.html"><a href="其他有趣图形.html#corr-mat"><i class="fa fa-check"></i><b>11.1</b> 相关矩阵</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="脚本与函数.html"><a href="脚本与函数.html"><i class="fa fa-check"></i><b>12</b> 脚本与函数</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="脚本与函数.html"><a href="脚本与函数.html#创建和运行一个脚本"><i class="fa fa-check"></i><b>12.1</b> 创建和运行一个脚本</a></li>
+<li class="chapter" data-level="12.2" data-path="脚本与函数.html"><a href="脚本与函数.html#调试脚本或函数"><i class="fa fa-check"></i><b>12.2</b> 调试脚本或函数</a></li>
+<li class="chapter" data-level="12.3" data-path="脚本与函数.html"><a href="脚本与函数.html#测量运行的时间"><i class="fa fa-check"></i><b>12.3</b> 测量运行的时间</a></li>
+<li class="chapter" data-level="12.4" data-path="脚本与函数.html"><a href="脚本与函数.html#获取包中的函数和对象列表"><i class="fa fa-check"></i><b>12.4</b> 获取包中的函数和对象列表</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="工具.html"><a href="工具.html"><i class="fa fa-check"></i><b>13</b> 工具</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="工具.html"><a href="工具.html#生成拉丁方"><i class="fa fa-check"></i><b>13.1</b> 生成拉丁方</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>A</b> 资料推荐</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="materials.html"><a href="materials.html#书籍"><i class="fa fa-check"></i><b>A.1</b> 书籍</a></li>
+<li class="chapter" data-level="A.2" data-path="materials.html"><a href="materials.html#r-包"><i class="fa fa-check"></i><b>A.2</b> R 包</a></li>
+<li class="chapter" data-level="A.3" data-path="materials.html"><a href="materials.html#网站"><i class="fa fa-check"></i><b>A.3</b> 网站</a></li>
+<li class="chapter" data-level="A.4" data-path="materials.html"><a href="materials.html#列表-2"><i class="fa fa-check"></i><b>A.4</b> 列表</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cookbook for R 中文版</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="图形混杂" class="section level1" number="10">
+<h1><span class="header-section-number">第 10 章</span> 图形混杂</h1>
+<div id="输出到文件-pdf-png-tiff-svg" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> 输出到文件 PDF-PNG-TIFF-SVG</h2>
+<div id="问题-64" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> 问题</h3>
+<p>你想将图形保存到文件。</p>
+</div>
+<div id="方案-63" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> 方案</h3>
+<p>R 中有好几种命令可以直接将图形导出为文件而不是打印到屏幕上。另外，你必须通过 <code>dev.off()</code> 命令告诉 R 你已经完成作图了，否则你的图形是不会显示出来的。</p>
+<div id="pdf格式" class="section level4" number="10.1.2.1">
+<h4><span class="header-section-number">10.1.2.1</span> PDF格式</h4>
+<p>PDF 是一种矢量文件格式。一般我们都更倾向于将图形输出为矢量图文件，因为这样的图无论怎样缩放都不会出现像素点。矢量图文件的大小通常要比位图文件要小，除非该文件里包含了过多的内容（比如说一张散点图内包含了上千个点，这时候就会造成矢量图大而位图小）。</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="图形混杂.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>)</span>
+<span id="cb479-2"><a href="图形混杂.html#cb479-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>PDF 默认是 7x7 英寸，并且每个图形都单独占一页。这个尺寸是可以更改的：</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="图形混杂.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6x3 英寸</span></span>
+<span id="cb480-2"><a href="图形混杂.html#cb480-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">3</span>)</span>
+<span id="cb480-3"><a href="图形混杂.html#cb480-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 10x6 厘米</span></span>
+<span id="cb480-4"><a href="图形混杂.html#cb480-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>, <span class="at">width =</span> <span class="dv">10</span><span class="sc">/</span><span class="fl">2.54</span>, <span class="at">height =</span> <span class="dv">6</span><span class="sc">/</span><span class="fl">2.54</span>)</span></code></pre></div>
+<p>如果你想在 Inkscape 或者 Illustrator 这样的矢量图编辑器中修改你的文件，图形中的一些绘制点有可能看上去更像是字母而并非原来的圆形或方形等。为了防止这种情况的发生可以输入：</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="图形混杂.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>, <span class="at">useDingbats =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="svg-格式" class="section level4" number="10.1.2.2">
+<h4><span class="header-section-number">10.1.2.2</span> SVG 格式</h4>
+<p>SVG 是另一种矢量图。默认的 <code>svg()</code> 命令无法将多页图形输出到一个文件中，因为大部分的 SVG 浏览软件无法处理多页的 SVG 文件。后面的 PNG 内容中将涉及如何输出到多个文件。</p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="图形混杂.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svg</span>(<span class="st">&quot;plots.svg&quot;</span>)</span>
+<span id="cb482-2"><a href="图形混杂.html#cb482-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>SVG 文件比 PDF 文件更适合矢量图编辑器。</p>
+</div>
+<div id="pngtiff格式" class="section level4" number="10.1.2.3">
+<h4><span class="header-section-number">10.1.2.3</span> PNG/TIFF格式</h4>
+<p>PNG 和 TIFF 是位图（栅格图像），对它们进行缩放时可能会出现像素点。</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="图形混杂.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;plot.png&quot;</span>)</span>
+<span id="cb483-2"><a href="图形混杂.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 或者 tiff(&#39;plot.tiff&#39;)</span></span>
+<span id="cb483-3"><a href="图形混杂.html#cb483-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>输出的图像默认尺寸为 480x480 像素，分辨率为 72dpi （即 6.66x6.66 英寸）</p>
+<p>当分辨率增加时文本与图像元素的大小也会（以像素为单位）增加。这是因为这些元素的大小只与图像的物理大小有关（比如 4x4 英寸），而与图像的像素大小无关。例如，一个 12 磅的字符高度为 12/72 = 1/6 英寸，在分辨率为 72dpi 的情况下，它共包含 12 个像素点；而在分辨率放大到 120dpi 时，它就含有 20 个像素点了。</p>
+<p>以下创建一个大小为 480x240 像素，分辨率为 120dpi 的图像,其实际大小相当于 4x2 英寸。</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="图形混杂.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;plot.png&quot;</span>, <span class="at">width =</span> <span class="dv">480</span>, <span class="at">height =</span> <span class="dv">240</span>, <span class="at">res =</span> <span class="dv">120</span>)</span>
+<span id="cb484-2"><a href="图形混杂.html#cb484-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>如果你要创建不止一张图像，必须对每张图像执行一个新的 <code>png()</code> 命令，或者将 <code>%d</code> 放置到文件名中:</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="图形混杂.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;plot-%d.png&quot;</span>)</span>
+<span id="cb485-2"><a href="图形混杂.html#cb485-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>上述代码会生成 plot-1.png, plot-2.png 等系列文件。</p>
+</div>
+<div id="对于不支持-pdf-格式的程序-ms-office" class="section level4" number="10.1.2.4">
+<h4><span class="header-section-number">10.1.2.4</span> 对于不支持 PDF 格式的程序 （MS Office）</h4>
+<p>有些不支持 PDF 文件导入的程序一般都需要高分辨率的 PNG 或 TIFF 文件。比如说微软 Office 无法导入 PDF 格式文件。而对于印刷出版物，则需要使用 300dpi 的图像。</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="图形混杂.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制一幅 6x6 英寸，300dpi 的图像</span></span>
+<span id="cb486-2"><a href="图形混杂.html#cb486-2" aria-hidden="true" tabindex="-1"></a>ppi <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb486-3"><a href="图形混杂.html#cb486-3" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;plot.png&quot;</span>, <span class="at">width =</span> <span class="dv">6</span> <span class="sc">*</span> ppi, <span class="at">height =</span> <span class="dv">6</span> <span class="sc">*</span> ppi, <span class="at">res =</span> ppi)</span>
+<span id="cb486-4"><a href="图形混杂.html#cb486-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(...)</span>
+<span id="cb486-5"><a href="图形混杂.html#cb486-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+</div>
+<div id="ggplot2-1" class="section level4" number="10.1.2.5">
+<h4><span class="header-section-number">10.1.2.5</span> ggplot2</h4>
+<p>如果你在脚本或函数中使用 <strong>ggplot2</strong> 进行绘图，必须使用 <code>print()</code> 命令确保图像得到渲染。</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="图形混杂.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 无效命令</span></span>
+<span id="cb487-2"><a href="图形混杂.html#cb487-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>)</span>
+<span id="cb487-3"><a href="图形混杂.html#cb487-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(...)</span>
+<span id="cb487-4"><a href="图形混杂.html#cb487-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb487-5"><a href="图形混杂.html#cb487-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 正确的做法</span></span>
+<span id="cb487-6"><a href="图形混杂.html#cb487-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;plots.pdf&quot;</span>)</span>
+<span id="cb487-7"><a href="图形混杂.html#cb487-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">qplot</span>(...))</span>
+<span id="cb487-8"><a href="图形混杂.html#cb487-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>从屏幕中保存一个 ggplot 图像为文件，你可以使用 <code>ggsave()</code>。</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="图形混杂.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;plot.pdf&quot;</span>)</span>
+<span id="cb488-2"><a href="图形混杂.html#cb488-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;plot.pdf&quot;</span>, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb488-3"><a href="图形混杂.html#cb488-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 将图形保存为 400x400，100 ppi的文件</span></span>
+<span id="cb488-4"><a href="图形混杂.html#cb488-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;plot.png&quot;</span>, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">100</span>)</span></code></pre></div>
+</div>
+<div id="保存屏幕中的图像" class="section level4" number="10.1.2.6">
+<h4><span class="header-section-number">10.1.2.6</span> 保存屏幕中的图像</h4>
+<p>如果你的屏幕中已经有一张图像了，可以将其保存为位图。</p>
+<p>这是一种将屏幕中的对象作出从像素到像素的拷贝，不过这种操作很大概率只能在 Linux 和 Mac 的 X11 系统下得以实现：</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="图形混杂.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在屏幕中绘制一张图形</span></span>
+<span id="cb489-2"><a href="图形混杂.html#cb489-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(...)</span>
+<span id="cb489-3"><a href="图形混杂.html#cb489-3" aria-hidden="true" tabindex="-1"></a><span class="fu">savePlot</span>(<span class="st">&quot;myplot.png&quot;</span>)</span></code></pre></div>
+<p>这一步是保存屏幕当前图像，并且根据不同的设备对图像进行重新渲染，图像大小可能会因此发生变化。如果你需要图形大小固定，则需要以像素为单位对尺寸进行指定。</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="图形混杂.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在屏幕中绘制图像</span></span>
+<span id="cb490-2"><a href="图形混杂.html#cb490-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(...)</span>
+<span id="cb490-3"><a href="图形混杂.html#cb490-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy</span>(pdf, <span class="st">&quot;myplot.pdf&quot;</span>, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb490-4"><a href="图形混杂.html#cb490-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb490-5"><a href="图形混杂.html#cb490-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 等同于： pdf(&#39;myplot.pdf&#39;, width=4, height=4)</span></span>
+<span id="cb490-6"><a href="图形混杂.html#cb490-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(...)  dev.off()</span></span>
+<span id="cb490-7"><a href="图形混杂.html#cb490-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy</span>(png, <span class="st">&quot;myplot.png&quot;</span>, <span class="at">width =</span> <span class="dv">400</span>, <span class="at">height =</span> <span class="dv">400</span>)</span>
+<span id="cb490-8"><a href="图形混杂.html#cb490-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="shape-and-linetype" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> 形状和线形</h2>
+<div id="问题-65" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> 问题</h3>
+<p>你想在图形中使用不同的形状和线条。</p>
+</div>
+<div id="方案-64" class="section level3" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> 方案</h3>
+<p>在输出位图时，对符号 15-18 的渲染可能不具抗锯齿性，即无论这些图形的绘制是否来自同一个平台，这些符号都有可能会被拉伸变形，出现像素点，或者无法居中。符号 19 和 21-25 在填充部分外周会有边框线，在大部分情况下这种边线在渲染时其边缘都是平滑的。另外，要使符号 21-25 显示实心填充，需要指定与边线颜色 (<code>col</code>) 一致的填充 (<code>bg</code>) 颜色，否则这些符号将会是空心的。</p>
+<div id="标准图形" class="section level4" number="10.2.2.1">
+<h4><span class="header-section-number">10.2.2.1</span> 标准图形</h4>
+<p>通过 <code>pch</code> 选项来设置符号形状, 并且通过 <code>lty</code> 和 <code>lwd</code> 来设定线条的类型和粗细。线条的类型可以通过名字或数字来指定。</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="图形混杂.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">331</span>)</span>
+<span id="cb491-2"><a href="图形混杂.html#cb491-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb491-3"><a href="图形混杂.html#cb491-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制一些点线</span></span>
+<span id="cb491-4"><a href="图形混杂.html#cb491-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定绘画范围</span></span>
+<span id="cb491-5"><a href="图形混杂.html#cb491-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb491-6"><a href="图形混杂.html#cb491-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb491-7"><a href="图形混杂.html#cb491-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制实心圆和实线</span></span>
+<span id="cb491-8"><a href="图形混杂.html#cb491-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="fu">runif</span>(<span class="dv">4</span>), <span class="at">type=</span><span class="st">&quot;b&quot;</span>, <span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb491-9"><a href="图形混杂.html#cb491-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加空心方框和粗虚线</span></span>
+<span id="cb491-10"><a href="图形混杂.html#cb491-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="fu">runif</span>(<span class="dv">4</span>), <span class="at">type=</span><span class="st">&quot;b&quot;</span>, <span class="at">pch=</span><span class="dv">0</span>,  <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb491-11"><a href="图形混杂.html#cb491-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="fu">runif</span>(<span class="dv">4</span>), <span class="at">type=</span><span class="st">&quot;b&quot;</span>, <span class="at">pch=</span><span class="dv">23</span>,   <span class="co"># 菱形符号</span></span>
+<span id="cb491-12"><a href="图形混杂.html#cb491-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty=</span><span class="st">&quot;dotted&quot;</span>, <span class="at">cex=</span><span class="dv">2</span>,               <span class="co"># 点状线, 符号形状放大一倍</span></span>
+<span id="cb491-13"><a href="图形混杂.html#cb491-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">&quot;#000099&quot;</span>, <span class="at">bg=</span><span class="st">&quot;#FF6666&quot;</span>)       <span class="co"># 线条蓝色，符号形状红色填充</span></span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-375-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ggplot2-2" class="section level4" number="10.2.2.2">
+<h4><span class="header-section-number">10.2.2.2</span> ggplot2</h4>
+<p>在调用 <strong>ggplot2</strong> 的情况下，可以对图中的符号形状和线条类型进行全局的部署（比方说你想让所有数据点都是方形，所有的线条都为虚线），或者通过一个变量来调整它们。</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="图形混杂.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例数据</span></span>
+<span id="cb492-2"><a href="图形混杂.html#cb492-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">header=</span>T, <span class="at">text=</span><span class="st">&#39;</span></span>
+<span id="cb492-3"><a href="图形混杂.html#cb492-3" aria-hidden="true" tabindex="-1"></a><span class="st">  cond xval yval</span></span>
+<span id="cb492-4"><a href="图形混杂.html#cb492-4" aria-hidden="true" tabindex="-1"></a><span class="st">     A    1  2.0</span></span>
+<span id="cb492-5"><a href="图形混杂.html#cb492-5" aria-hidden="true" tabindex="-1"></a><span class="st">     A    2  2.5</span></span>
+<span id="cb492-6"><a href="图形混杂.html#cb492-6" aria-hidden="true" tabindex="-1"></a><span class="st">     B    1  3.0</span></span>
+<span id="cb492-7"><a href="图形混杂.html#cb492-7" aria-hidden="true" tabindex="-1"></a><span class="st">     B    2  2.0</span></span>
+<span id="cb492-8"><a href="图形混杂.html#cb492-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span>)</span>
+<span id="cb492-9"><a href="图形混杂.html#cb492-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb492-10"><a href="图形混杂.html#cb492-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb492-11"><a href="图形混杂.html#cb492-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb492-12"><a href="图形混杂.html#cb492-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用标准的线条和符号形状作图</span></span>
+<span id="cb492-13"><a href="图形混杂.html#cb492-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 用 group = cond 表示点线之间的对应关系</span></span>
+<span id="cb492-14"><a href="图形混杂.html#cb492-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>xval, <span class="at">y=</span>yval, <span class="at">group =</span> cond)) <span class="sc">+</span></span>
+<span id="cb492-15"><a href="图形混杂.html#cb492-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb492-16"><a href="图形混杂.html#cb492-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="图形混杂.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置全局的符号形状和线条类型</span></span>
+<span id="cb493-2"><a href="图形混杂.html#cb493-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>xval, <span class="at">y=</span>yval, <span class="at">group =</span> cond)) <span class="sc">+</span></span>
+<span id="cb493-3"><a href="图形混杂.html#cb493-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>,  <span class="co"># 虚线</span></span>
+<span id="cb493-4"><a href="图形混杂.html#cb493-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span>       <span class="co"># 加粗</span></span>
+<span id="cb493-5"><a href="图形混杂.html#cb493-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">0</span>,         <span class="co"># 空心方块</span></span>
+<span id="cb493-6"><a href="图形混杂.html#cb493-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">4</span>)          <span class="co"># 放大形状</span></span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-2.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="图形混杂.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 通过变量 cond 调整符号图形和线类型</span></span>
+<span id="cb494-2"><a href="图形混杂.html#cb494-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>xval, <span class="at">y=</span>yval, <span class="at">group =</span> cond)) <span class="sc">+</span></span>
+<span id="cb494-3"><a href="图形混杂.html#cb494-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype=</span>cond), <span class="co"># cond 决定线条类型</span></span>
+<span id="cb494-4"><a href="图形混杂.html#cb494-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span>       <span class="co"># 线条加粗</span></span>
+<span id="cb494-5"><a href="图形混杂.html#cb494-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>cond),   <span class="co"># cond 决定形状</span></span>
+<span id="cb494-6"><a href="图形混杂.html#cb494-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">4</span>)          <span class="co"># 放大形状</span></span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-3.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="图形混杂.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在上述的基础上同时改变所使用的线条和形状</span></span>
+<span id="cb495-2"><a href="图形混杂.html#cb495-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>xval, <span class="at">y=</span>yval, <span class="at">group =</span> cond)) <span class="sc">+</span></span>
+<span id="cb495-3"><a href="图形混杂.html#cb495-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype=</span>cond), <span class="co"># cond 决定线条类型</span></span>
+<span id="cb495-4"><a href="图形混杂.html#cb495-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span>       <span class="co"># 线条加粗</span></span>
+<span id="cb495-5"><a href="图形混杂.html#cb495-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>cond),   <span class="co"># cond 决定形状</span></span>
+<span id="cb495-6"><a href="图形混杂.html#cb495-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>        <span class="co"># 放大形状</span></span>
+<span id="cb495-7"><a href="图形混杂.html#cb495-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">5</span>)) <span class="sc">+</span>                  <span class="co"># 更改形状</span></span>
+<span id="cb495-8"><a href="图形混杂.html#cb495-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;dotted&quot;</span>)) <span class="co"># 更改线条类型</span></span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-376-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>一般来说 <strong>ggplot2</strong> 使用的是实心形状。如果你想要空心的形状又不想手动地对每个形状进行定义，可以设定 <code>scale_shape(solid=FALSE)</code>。注意，这个时候形状空心部分中的线条是可见的。为了避免这种情况，你可以使用符号形状 21-25 并且指定白色填充。</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="图形混杂.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 空心形状</span></span>
+<span id="cb496-2"><a href="图形混杂.html#cb496-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>xval, <span class="at">y=</span>yval, <span class="at">group =</span> cond)) <span class="sc">+</span></span>
+<span id="cb496-3"><a href="图形混杂.html#cb496-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype=</span>cond), <span class="co"># cond 决定线条类型</span></span>
+<span id="cb496-4"><a href="图形混杂.html#cb496-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span>       <span class="co"># 线条加粗</span></span>
+<span id="cb496-5"><a href="图形混杂.html#cb496-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>cond),   <span class="co"># cond 决定符号形状</span></span>
+<span id="cb496-6"><a href="图形混杂.html#cb496-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">4</span>)  <span class="sc">+</span>       <span class="co"># 放大形状</span></span>
+<span id="cb496-7"><a href="图形混杂.html#cb496-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_shape</span>(<span class="at">solid=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-377-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="图形混杂.html#cb497-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb497-2"><a href="图形混杂.html#cb497-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 白色填充形状</span></span>
+<span id="cb497-3"><a href="图形混杂.html#cb497-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>xval, <span class="at">y=</span>yval, <span class="at">group =</span> cond)) <span class="sc">+</span></span>
+<span id="cb497-4"><a href="图形混杂.html#cb497-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype=</span>cond), <span class="co"># cond 决定线条类型</span></span>
+<span id="cb497-5"><a href="图形混杂.html#cb497-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span>       <span class="co"># 线条加粗</span></span>
+<span id="cb497-6"><a href="图形混杂.html#cb497-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>cond),   <span class="co"># cond 决定符号形状</span></span>
+<span id="cb497-7"><a href="图形混杂.html#cb497-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>,    <span class="co"># 白色填充</span></span>
+<span id="cb497-8"><a href="图形混杂.html#cb497-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">4</span>)  <span class="sc">+</span>       <span class="co"># 放大形状</span></span>
+<span id="cb497-9"><a href="图形混杂.html#cb497-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">21</span>,<span class="dv">24</span>))  <span class="co"># 形状：实心圆和三角形</span></span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-377-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="附录" class="section level4" number="10.2.2.3">
+<h4><span class="header-section-number">10.2.2.3</span> 附录</h4>
+<p>以下代码会生成本章节开头所示的图表。</p>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="图形混杂.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb498-2"><a href="图形混杂.html#cb498-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb498-3"><a href="图形混杂.html#cb498-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定绘图区域</span></span>
+<span id="cb498-4"><a href="图形混杂.html#cb498-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">6.5</span>, <span class="sc">-</span><span class="fl">0.5</span>), <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb498-5"><a href="图形混杂.html#cb498-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="at">xlab =</span> <span class="cn">NA</span>, <span class="at">ylab =</span> <span class="cn">NA</span>)</span>
+<span id="cb498-6"><a href="图形混杂.html#cb498-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb498-7"><a href="图形混杂.html#cb498-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 画线条</span></span>
+<span id="cb498-8"><a href="图形混杂.html#cb498-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>) {</span>
+<span id="cb498-9"><a href="图形混杂.html#cb498-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(<span class="fu">c</span>(<span class="fl">0.25</span>, <span class="dv">1</span>), <span class="fu">c</span>(i, i), <span class="at">lty =</span> i, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span>
+<span id="cb498-10"><a href="图形混杂.html#cb498-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb498-11"><a href="图形混杂.html#cb498-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加标签</span></span>
+<span id="cb498-12"><a href="图形混杂.html#cb498-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">&quot;0. &#39;blank&#39;&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb498-13"><a href="图形混杂.html#cb498-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="st">&quot;1. &#39;solid&#39;&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb498-14"><a href="图形混杂.html#cb498-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="st">&quot;2. &#39;dashed&#39;&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb498-15"><a href="图形混杂.html#cb498-15" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="st">&quot;3. &#39;dotted&#39;&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb498-16"><a href="图形混杂.html#cb498-16" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="st">&quot;4. &#39;dotdash&#39;&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb498-17"><a href="图形混杂.html#cb498-17" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="st">&quot;5. &#39;longdash&#39;&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb498-18"><a href="图形混杂.html#cb498-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="st">&quot;6. &#39;twodash&#39;&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-378-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="字体" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> 字体</h2>
+<div id="问题-66" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> 问题</h3>
+<p>你想在图像中使用不同的字体。</p>
+</div>
+<div id="方案-65" class="section level3" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> 方案</h3>
+<p>更新: 查看 <a href="https://github.com/wch/extrafont"><strong>extrafont</strong></a> 包相关内容，该包能更好地支持 PDF 和 Windows 位图中的字体设定。</p>
+<p>R 在一般情况下都不能很好地支持字体的显示。在不同的操作系统和不同的输出格式中都会出现不一样的结果。</p>
+<div id="geom_text" class="section level4" number="10.3.2.1">
+<h4><span class="header-section-number">10.3.2.1</span> geom_text</h4>
+<p>通过 <strong>ggplot2</strong> 中的 <code>geom_text()</code> or <code>annotate()</code> , 你可以对图形文本中的一系列属性进行设置。 <code>geom_text()</code> 用于将数据框中的文本加入到图表中，而 <code>annotate()</code> 则用于往图表中添加单个文本元素。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>size</code></td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left"><code>family</code></td>
+<td align="left"><code>""</code> (sans)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fontface</code></td>
+<td align="left"><code>plain</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>lineheight</code></td>
+<td align="left">1.2</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>angle</code></td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left"><code>hjust</code></td>
+<td align="left">0.5</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vjust</code></td>
+<td align="left">0.5</td>
+</tr>
+</tbody>
+</table>
+<p>注意这里 <code>size</code> 的单位是毫米, 而非磅。</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="图形混杂.html#cb499-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">text =</span> <span class="fu">c</span>(<span class="st">&quot;This is text&quot;</span>, <span class="st">&quot;Text with</span><span class="sc">\n</span><span class="st">multiple lines&quot;</span>,</span>
+<span id="cb499-2"><a href="图形混杂.html#cb499-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Some more text&quot;</span>))</span>
+<span id="cb499-3"><a href="图形混杂.html#cb499-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb499-4"><a href="图形混杂.html#cb499-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb499-5"><a href="图形混杂.html#cb499-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,</span>
+<span id="cb499-6"><a href="图形混杂.html#cb499-6" aria-hidden="true" tabindex="-1"></a>  <span class="fl">3.5</span>), <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>)</span>
+<span id="cb499-7"><a href="图形混杂.html#cb499-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb499-8"><a href="图形混杂.html#cb499-8" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> text))</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-379-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="图形混杂.html#cb500-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> text), <span class="at">family =</span> <span class="st">&quot;Times&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>,</span>
+<span id="cb500-2"><a href="图形混杂.html#cb500-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineheight =</span> <span class="fl">0.8</span>) <span class="sc">+</span> <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="fl">1.5</span>,</span>
+<span id="cb500-3"><a href="图形混杂.html#cb500-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&quot;Annotation text&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">7</span>,</span>
+<span id="cb500-4"><a href="图形混杂.html#cb500-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">&quot;Courier&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">angle =</span> <span class="dv">30</span>)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-379-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="theme-和-element_text" class="section level4" number="10.3.2.2">
+<h4><span class="header-section-number">10.3.2.2</span> theme() 和 element_text()</h4>
+<p>在管理类似标题，图注，坐标轴标签等元素时，可以使用 <code>element_text()</code>, 其参数设置跟 <code>geom_text()</code> 基本一致, 除了 <code>size</code> 的单位是 <strong>points</strong> (而非 mm), 还有就是它用的是 <code>face</code> 而不是 <code>fontface</code> 。默认情况下，<code>size</code> 取决于元素，比如图形标题的字体总是比刻度标签的大。</p>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="图形混杂.html#cb501-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;This is a Title&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Times&quot;</span>,</span>
+<span id="cb501-2"><a href="图形混杂.html#cb501-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">20</span>))</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-380-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="字体表格" class="section level4" number="10.3.2.3">
+<h4><span class="header-section-number">10.3.2.3</span> 字体表格</h4>
+<p>你可以运行下列代码来生成一张不同字体的图形表。 每种字体都有<strong>简称</strong>和<strong>字体标准家族名称</strong>，定义字体时使用其中一种即可。</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="图形混杂.html#cb502-1" aria-hidden="true" tabindex="-1"></a>fonttable <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb502-2"><a href="图形混杂.html#cb502-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">&quot;</span></span>
+<span id="cb502-3"><a href="图形混杂.html#cb502-3" aria-hidden="true" tabindex="-1"></a><span class="st">Short,Canonical</span></span>
+<span id="cb502-4"><a href="图形混杂.html#cb502-4" aria-hidden="true" tabindex="-1"></a><span class="st">mono,Courier</span></span>
+<span id="cb502-5"><a href="图形混杂.html#cb502-5" aria-hidden="true" tabindex="-1"></a><span class="st">sans,Helvetica</span></span>
+<span id="cb502-6"><a href="图形混杂.html#cb502-6" aria-hidden="true" tabindex="-1"></a><span class="st">serif,Times</span></span>
+<span id="cb502-7"><a href="图形混杂.html#cb502-7" aria-hidden="true" tabindex="-1"></a><span class="st">,AvantGarde</span></span>
+<span id="cb502-8"><a href="图形混杂.html#cb502-8" aria-hidden="true" tabindex="-1"></a><span class="st">,Bookman</span></span>
+<span id="cb502-9"><a href="图形混杂.html#cb502-9" aria-hidden="true" tabindex="-1"></a><span class="st">,Helvetica-Narrow</span></span>
+<span id="cb502-10"><a href="图形混杂.html#cb502-10" aria-hidden="true" tabindex="-1"></a><span class="st">,NewCenturySchoolbook</span></span>
+<span id="cb502-11"><a href="图形混杂.html#cb502-11" aria-hidden="true" tabindex="-1"></a><span class="st">,Palatino</span></span>
+<span id="cb502-12"><a href="图形混杂.html#cb502-12" aria-hidden="true" tabindex="-1"></a><span class="st">,URWGothic</span></span>
+<span id="cb502-13"><a href="图形混杂.html#cb502-13" aria-hidden="true" tabindex="-1"></a><span class="st">,URWBookman</span></span>
+<span id="cb502-14"><a href="图形混杂.html#cb502-14" aria-hidden="true" tabindex="-1"></a><span class="st">,NimbusMon</span></span>
+<span id="cb502-15"><a href="图形混杂.html#cb502-15" aria-hidden="true" tabindex="-1"></a><span class="st">URWHelvetica,NimbusSan</span></span>
+<span id="cb502-16"><a href="图形混杂.html#cb502-16" aria-hidden="true" tabindex="-1"></a><span class="st">,NimbusSanCond</span></span>
+<span id="cb502-17"><a href="图形混杂.html#cb502-17" aria-hidden="true" tabindex="-1"></a><span class="st">,CenturySch</span></span>
+<span id="cb502-18"><a href="图形混杂.html#cb502-18" aria-hidden="true" tabindex="-1"></a><span class="st">,URWPalladio</span></span>
+<span id="cb502-19"><a href="图形混杂.html#cb502-19" aria-hidden="true" tabindex="-1"></a><span class="st">URWTimes,NimbusRom</span></span>
+<span id="cb502-20"><a href="图形混杂.html#cb502-20" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>)</span>
+<span id="cb502-21"><a href="图形混杂.html#cb502-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-22"><a href="图形混杂.html#cb502-22" aria-hidden="true" tabindex="-1"></a>fonttable<span class="sc">$</span>pos <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(fonttable)</span>
+<span id="cb502-23"><a href="图形混杂.html#cb502-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-24"><a href="图形混杂.html#cb502-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb502-25"><a href="图形混杂.html#cb502-25" aria-hidden="true" tabindex="-1"></a>fonttable <span class="ot">&lt;-</span> <span class="fu">melt</span>(fonttable, <span class="at">id.vars =</span> <span class="st">&quot;pos&quot;</span>, <span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">&quot;Short&quot;</span>,</span>
+<span id="cb502-26"><a href="图形混杂.html#cb502-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Canonical&quot;</span>), <span class="at">variable.name =</span> <span class="st">&quot;NameType&quot;</span>, <span class="at">value.name =</span> <span class="st">&quot;Font&quot;</span>)</span>
+<span id="cb502-27"><a href="图形混杂.html#cb502-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-28"><a href="图形混杂.html#cb502-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个分面形式的图表。确保因子的顺序是正确的</span></span>
+<span id="cb502-29"><a href="图形混杂.html#cb502-29" aria-hidden="true" tabindex="-1"></a>facetable <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Face =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;plain&quot;</span>, <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb502-30"><a href="图形混杂.html#cb502-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;italic&quot;</span>, <span class="st">&quot;bold.italic&quot;</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;plain&quot;</span>, <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb502-31"><a href="图形混杂.html#cb502-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;italic&quot;</span>, <span class="st">&quot;bold.italic&quot;</span>)))</span>
+<span id="cb502-32"><a href="图形混杂.html#cb502-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-33"><a href="图形混杂.html#cb502-33" aria-hidden="true" tabindex="-1"></a>fullfonts <span class="ot">&lt;-</span> <span class="fu">merge</span>(fonttable, facetable)</span>
+<span id="cb502-34"><a href="图形混杂.html#cb502-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-35"><a href="图形混杂.html#cb502-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb502-36"><a href="图形混杂.html#cb502-36" aria-hidden="true" tabindex="-1"></a>pf <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(fullfonts, <span class="fu">aes</span>(<span class="at">x =</span> NameType, <span class="at">y =</span> pos)) <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Font,</span>
+<span id="cb502-37"><a href="图形混杂.html#cb502-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> Font, <span class="at">fontface =</span> Face)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Face,</span>
+<span id="cb502-38"><a href="图形混杂.html#cb502-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>在屏幕中查看:</p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="图形混杂.html#cb503-1" aria-hidden="true" tabindex="-1"></a>pf</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-382-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>你在屏幕中所看见的不一定跟你输出为 PNG 或 PDF 格式后的结果完全一样。查看 PNG 格式的输出结果：</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="图形混杂.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;fonttable.png&quot;</span>, <span class="at">width =</span> <span class="dv">720</span>, <span class="at">height =</span> <span class="dv">720</span>, <span class="at">res =</span> <span class="dv">72</span>)</span>
+<span id="cb504-2"><a href="图形混杂.html#cb504-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pf)</span>
+<span id="cb504-3"><a href="图形混杂.html#cb504-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb504-4"><a href="图形混杂.html#cb504-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; quartz_off_screen </span></span>
+<span id="cb504-5"><a href="图形混杂.html#cb504-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 2</span></span></code></pre></div>
+<p>需要注意的是，对于生成这张图片的操作系统来说，大部分的字体（位于顶部）是不兼容的，只有一些基础字体（位于底部）是可以使用的。</p>
+<p>PDF 格式输出结果(以下示例图已从 PDF 格式转化为 PNG 格式）:</p>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="图形混杂.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;fonttable.pdf&quot;</span>, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">10</span>)</span>
+<span id="cb505-2"><a href="图形混杂.html#cb505-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pf)</span>
+<span id="cb505-3"><a href="图形混杂.html#cb505-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb505-4"><a href="图形混杂.html#cb505-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 用 GraphicsMagick 将 PDF 转化为PNG格式: system(&#39;gm</span></span>
+<span id="cb505-5"><a href="图形混杂.html#cb505-5" aria-hidden="true" tabindex="-1"></a><span class="co"># convert -resize 720x720 -background white</span></span>
+<span id="cb505-6"><a href="图形混杂.html#cb505-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fonttable.pdf fonttable-pdf.png&#39;)</span></span></code></pre></div>
+<p>PDF 设备对于不同字体的支持比 PNG 设备更好。基本所有的字体都能兼容（虽然这些字体并不一定很好看）。</p>
+</div>
+</div>
+</div>
+<div id="抗混淆位图输出" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> 抗混淆位图输出</h2>
+<div id="问题-67" class="section level3" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> 问题</h3>
+<p>你想要在 <strong>windows</strong> 操作环境下保存抗锯齿的位图结果（<a href="https://www.computerhope.com/jargon/a/antialias.htm"><strong>抗锯齿位图介绍</strong></a>）。</p>
+</div>
+<div id="方案-66" class="section level3" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> 方案</h3>
+<p>类似于 <strong>png</strong> 和 <strong>jpeg</strong> 的标准图形设备可以将图形保存成 <strong>cairo、Xlib、 quartz</strong> 三种不同的文件格式。当使用 <strong>cairo</strong>，我们便可以获得抗锯齿化的图形结果。在 <strong>MacOS</strong> 和 <strong>linux</strong> 系统下，自动将图片保存为 <strong>cairo</strong> 格式，但是在 <strong>windows</strong> 系统下的相应参数是 <code>NULL</code>。</p>
+<p>绘图示例：</p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="图形混杂.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置伪随机数种子</span></span>
+<span id="cb506-2"><a href="图形混杂.html#cb506-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb506-3"><a href="图形混杂.html#cb506-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成符合正态分布的100个随机数</span></span>
+<span id="cb506-4"><a href="图形混杂.html#cb506-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb506-5"><a href="图形混杂.html#cb506-5" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;antialiasing_1.png&quot;</span>, <span class="at">type =</span> <span class="st">&quot;cairo&quot;</span>)</span>
+<span id="cb506-6"><a href="图形混杂.html#cb506-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x)</span>
+<span id="cb506-7"><a href="图形混杂.html#cb506-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb506-8"><a href="图形混杂.html#cb506-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; quartz_off_screen </span></span>
+<span id="cb506-9"><a href="图形混杂.html#cb506-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 2</span></span></code></pre></div>
+<p>在 <strong>windows</strong> 系统环境下不可强行使用 <code>type="cairo"</code>，需要借助 <strong>Cairo</strong> 工具包获取抗锯齿化结果。</p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="图形混杂.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装Cairo包 install.packages(&#39;Cairo&#39;)</span></span>
+<span id="cb507-2"><a href="图形混杂.html#cb507-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;Cairo&quot;</span>)</span>
+<span id="cb507-3"><a href="图形混杂.html#cb507-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置伪随机数种子</span></span>
+<span id="cb507-4"><a href="图形混杂.html#cb507-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb507-5"><a href="图形混杂.html#cb507-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成符合正态分布的100个随机数</span></span>
+<span id="cb507-6"><a href="图形混杂.html#cb507-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb507-7"><a href="图形混杂.html#cb507-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Cairo</span>(<span class="at">width =</span> <span class="dv">540</span>, <span class="at">height =</span> <span class="dv">380</span>, <span class="at">file =</span> <span class="st">&quot;antialiasing_2.png&quot;</span>,</span>
+<span id="cb507-8"><a href="图形混杂.html#cb507-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;png&quot;</span>, <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span>
+<span id="cb507-9"><a href="图形混杂.html#cb507-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x)</span></code></pre></div>
+<p><img src="bookdown_files/figure-html/unnamed-chunk-389-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="图形混杂.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb508-2"><a href="图形混杂.html#cb508-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; quartz_off_screen </span></span>
+<span id="cb508-3"><a href="图形混杂.html#cb508-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 2</span></span></code></pre></div>
+<div id="提示" class="section level4" number="10.4.2.1">
+<h4><span class="header-section-number">10.4.2.1</span> 提示</h4>
+<p>有关该部分的更多相关信息，参阅 <a href="https://csgillespie.github.io/efficientR/cairo-type.html">Efficient R programming</a>。</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="其他有趣图形.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/openbiox/Cookbook-for-R-Chinese/edit/master/book/10-graphs-misc.Rmd",
+"text": "编辑"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

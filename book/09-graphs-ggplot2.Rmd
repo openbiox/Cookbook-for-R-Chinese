@@ -1772,7 +1772,7 @@ spf + geom_hline(aes(yintercept=10))
 如果你希望不同的线条出现在不同的方面，有两个选项。 一种是创建具有所需线条值的新数据框。 另一种选择（控制更有限）是在 `geom_line()` 中设定 `stat` 和 `xintercept`。
 
 ```{r}
-dat_vlines <- data.frame(cond=levels(dat$cond), xval=c(10,11.5))
+dat_vlines <- data.frame(cond=c("control", "treatment"), xval=c(10,11.5))
 dat_vlines
 spf + geom_hline(aes(yintercept=10)) +
       geom_vline(aes(xintercept=xval), data=dat_vlines,
