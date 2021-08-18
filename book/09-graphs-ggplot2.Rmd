@@ -2105,7 +2105,7 @@ knitr::include_graphics("https://kaopubear-1254299507.cos.ap-shanghai.myqcloud.c
 默认情况下，离散比例的颜色围绕 HSL 色环均匀分布。例如，如果有两种颜色，那么它们将从圆圈上的相对点中选择; 如果有三种颜色，它们在色环上将相隔 120° 等等。用于不同级别的颜色如下所示：
 
 ```{r, fig.cap="均匀色环", echo=F}
-knitr::include_graphics("![](https://kaopubear-1254299507.cos.ap-shanghai.myqcloud.com/picgo/202108181126387.png)")
+knitr::include_graphics("https://kaopubear-1254299507.cos.ap-shanghai.myqcloud.com/picgo/202108181126387.png")
 ```
 
 默认颜色选择使用 `scale_fill_hue()` 和 `scale_colour_hue()`。 例如，在以下情况下添加这些命令是多余的：
