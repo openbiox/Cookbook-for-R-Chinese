@@ -55,7 +55,7 @@ tb = tibble::tribble(
   "download.packages", "下载一系列R包到本地目录",
   "install.packages", "从资源库下载安装一系列R包",
   "remove.packages", "移除一系列已安装的R包",
-  "installed.packages", "将已经安装的R包更新到最新版本",
+  "update.packages", "将已经安装的R包更新到最新版本",
   "setRepositories", "设定当前的R包的资源库列表 ",
 )
 knitr::kable(tb, caption = "常见包安装命令")
